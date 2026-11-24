@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-24T12:48:01.511Z",
+  "generated": "2026-11-24T12:59:47.408Z",
   "generator": "scripts/build-trace.mjs",
   "registry": {
     "areas": 24,
@@ -20,7 +20,11 @@
     "contracts": 219,
     "audits": 216,
     "actors": 237,
-    "permissions": 304
+    "permissions": 304,
+    "mustHave": 297,
+    "shouldHave": 106,
+    "couldHave": 31,
+    "roadmapChanges": 52
   },
   "totals": {
     "features": 434,

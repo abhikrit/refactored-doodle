@@ -56,6 +56,18 @@ expect('external systems', external.length, 45, 'L1 section 6.9');
 expect('licensed plugins', licensed.length, 11, 'L1 section 6.8');
 expect('core modifications', coreMods.length, 6, 'L1 section 6.3');
 
+// MoSCoW priority and category, from the Product Feature List workbook
+expect('priority: Must Have', features.filter((f) => f.priority === 'Must Have').length, 297, 'Product Feature List, Priority View');
+expect('priority: Should Have', features.filter((f) => f.priority === 'Should Have').length, 106, 'Product Feature List, Priority View');
+expect('priority: Could Have', features.filter((f) => f.priority === 'Could Have').length, 31, 'Product Feature List, Priority View');
+expect('category: Commerce', features.filter((f) => f.category === 'Commerce').length, 217, 'Product Feature List, Priority View');
+expect('category: Platform & Administration', features.filter((f) => f.category === 'Platform & Administration').length, 100, 'Product Feature List, Priority View');
+expect('category: Fulfilment & Customer Service', features.filter((f) => f.category === 'Fulfilment & Customer Service').length, 70, 'Product Feature List, Priority View');
+expect('category: Channels, Reporting & AI', features.filter((f) => f.category === 'Channels, Reporting & AI').length, 35, 'Product Feature List, Priority View');
+expect('category: Vertical Packs', features.filter((f) => f.category === 'Vertical Packs').length, 12, 'Product Feature List, Priority View');
+expect('Phase 3 capability types', features.filter((f) => f.capabilityType).length, 21, 'Product Feature List, Phase 3 Features');
+expectEmpty('feature -> priority', features.filter((f) => !f.priority).map((f) => f.id), 'every feature carries a MoSCoW priority');
+
 expect('phase P1', features.filter((f) => f.phase === 'P1').length, 337, 'L1 section 3.1');
 expect('phase P2', features.filter((f) => f.phase === 'P2').length, 76, 'L1 section 3.1');
 expect('phase P3', features.filter((f) => f.phase === 'P3').length, 21, 'L1 section 3.1');

@@ -1,0 +1,418 @@
+[
+  {
+    "feature": "PRD-CAT-002",
+    "name": "Product master record",
+    "field": "Implementation",
+    "oldValue": "Reusable — configuration",
+    "newValue": "Code-level modification",
+    "reason": "Correction from the later 4.90 reviews, re-verified on 5.00.1. Category unchanged. No change: no relevant 5.00.1 addition found; the 4.90.8 evidence still exists in 5.00.1 source."
+  },
+  {
+    "feature": "PRD-CAT-039",
+    "name": "Customer and company price lists",
+    "field": "Implementation",
+    "oldValue": "Code-level modification",
+    "newValue": "Reusable — configuration",
+    "reason": "nopCommerce 5.00.1 native capability. Category changed: CHANGED: customer/role price lists with validity dates and manual contract prices that override the standard price are now native in 5.00 (were a custom build in 4.90)."
+  },
+  {
+    "feature": "PRD-IAM-010",
+    "name": "User administration console",
+    "field": "Implementation",
+    "oldValue": "Reusable — configuration",
+    "newValue": "Code-level modification",
+    "reason": "Correction from the later 4.90 reviews, re-verified on 5.00.1. Category unchanged. No change: no relevant 5.00.1 addition found; the 4.90.8 evidence still exists in 5.00.1 source."
+  },
+  {
+    "feature": "PRD-INT-012",
+    "name": "Punch-out",
+    "field": "Implementation",
+    "oldValue": "Code-level modification",
+    "newValue": "Reusable — configuration",
+    "reason": "nopCommerce 5.00.1 native capability. Category changed: Changed: 5.00 bundles a working cXML punch-out plugin (session handling and cart return), which was the 4.90 build scope."
+  },
+  {
+    "feature": "PRD-MKT-011",
+    "name": "Customer segmentation attributes",
+    "field": "Implementation",
+    "oldValue": "Reusable — configuration",
+    "newValue": "Code-level modification",
+    "reason": "Correction from the later 4.90 reviews, re-verified on 5.00.1. Category unchanged. Category unchanged. No 5.00 addition affecting this feature found in 5.00.1 source."
+  },
+  {
+    "feature": "PRD-RPT-001",
+    "name": "Standard reports and dashboard",
+    "field": "Implementation",
+    "oldValue": "Reusable — configuration",
+    "newValue": "Code-level modification",
+    "reason": "Correction from the later 4.90 reviews, re-verified on 5.00.1. Category unchanged. Category unchanged."
+  },
+  {
+    "feature": "PRD-SRC-001",
+    "name": "Keyword search",
+    "field": "Implementation",
+    "oldValue": "Code-level modification",
+    "newValue": "Reusable — configuration",
+    "reason": "nopCommerce 5.00.1 native capability. Category changed: Changed: the 4.90 gap (natural-language search needs a custom ISearchProvider) is covered in 5.00 by the bundled Google AI Commerce Search plugin, which hooks keyword search natively. Conditional on Google Cloud account, GA plugin and acceptance testing; reverts to Code-level modification if the client rejects Google Cloud."
+  },
+  {
+    "feature": "PRD-SRC-012",
+    "name": "Search history",
+    "field": "Implementation",
+    "oldValue": "Code-level modification",
+    "newValue": "Reusable — configuration",
+    "reason": "nopCommerce 5.00.1 native capability. Category changed: Changed: 4.90 had store-wide search-term statistics only; 5.00 adds per-customer search history with repeat from the search box, which was the whole 4.90 gap."
+  },
+  {
+    "feature": "PRD-AI-005",
+    "name": "OCR and ID document checks",
+    "field": "Phase",
+    "oldValue": "P3",
+    "newValue": "P2",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-AI-010",
+    "name": "AI governance",
+    "field": "Phase",
+    "oldValue": "P3",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-CAT-013",
+    "name": "Call-for-price / negotiable flag",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-CAT-027",
+    "name": "Service booking",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-CAT-035",
+    "name": "Listing syndication and product feeds",
+    "field": "Phase",
+    "oldValue": "P3",
+    "newValue": "P2",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-CRM-009",
+    "name": "Contact and messaging",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-IAM-011",
+    "name": "Staff invitation and access reviews",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-INT-012",
+    "name": "Punch-out",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P3",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-INV-004",
+    "name": "Stock reservation and hold",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-ORD-021",
+    "name": "Performance securities",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P3",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-PAY-026",
+    "name": "KRA eTIMS adapter",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-PAY-027",
+    "name": "MRA EIS adapter",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-PLT-002",
+    "name": "Client data isolation",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-PLT-007",
+    "name": "Custom domain and SSL",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-PLT-008",
+    "name": "Email sender identity",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-PLT-018",
+    "name": "Accessibility",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-RPT-007",
+    "name": "Public transparency dashboard",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P3",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-SEC-006",
+    "name": "Data residency",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-SEC-008",
+    "name": "Breach notification workflow",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-SEC-011",
+    "name": "Vulnerability management",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-SEC-013",
+    "name": "Bot protection",
+    "field": "Phase",
+    "oldValue": "P2",
+    "newValue": "P1",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-SVC-009",
+    "name": "Service vouchers and e-tickets",
+    "field": "Phase",
+    "oldValue": "P1",
+    "newValue": "P2",
+    "reason": "Phase placement correction applied in the current baseline (v10); listed as pending in the old Overview note A49"
+  },
+  {
+    "feature": "PRD-CAT-031",
+    "name": "Product page delivery promise",
+    "field": "Description",
+    "oldValue": "The product page shows how long delivery will take, who sells it, delivery options and a returns summary.",
+    "newValue": "The product page shows how long delivery will take, who sells it, delivery options and a returns summary. The page also explains how disputes are resolved, and the same explanation appears on the order page; the returns-policy summary also appears on the order page.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-CRM-005",
+    "name": "Support quality analytics",
+    "field": "Description",
+    "oldValue": "Customer satisfaction scores, support dashboards, complaint trends and early warnings.",
+    "newValue": "Customer satisfaction scores, support dashboards, complaint trends and early warnings. Customers are asked to rate the service, with an optional comment, after their ticket is resolved, and these scores feed the dashboards.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-CRM-014",
+    "name": "Issue routing and escalation",
+    "field": "Description",
+    "oldValue": "Support requests are grouped into categories and sent automatically to the right team, and escalated from first-line support to specialists; customers can report order problems directly.",
+    "newValue": "Support requests are grouped into categories and sent automatically to the right team, and escalated from first-line support to specialists; customers can report order problems directly. When a customer reports a problem with an order, the ticket is filled in automatically with that order's details.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-IAM-004",
+    "name": "Multi-factor authentication by role",
+    "field": "Description",
+    "oldValue": "Staff in sensitive roles must use a second check when logging in: a code from an authenticator app, a code sent by email or SMS, or a hardware security key.",
+    "newValue": "Staff in sensitive roles must use a second check when logging in: a code from an authenticator app, a code sent by email or SMS, or a hardware security key. Buyers can also switch on a second login check for their own accounts and choose the factor (SMS, email or authenticator app).",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-IAM-010",
+    "name": "User administration console",
+    "field": "Description",
+    "oldValue": "A screen for staff to find users, view their details, activate or deactivate them and, when helping them, see the shop as they see it, with every action recorded.",
+    "newValue": "A screen for staff to find users, view their details, activate or deactivate them and, when helping them, see the shop as they see it, with every action recorded. Customers can deactivate their own account and later reactivate it.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-IAM-011",
+    "name": "Staff invitation and access reviews",
+    "field": "Description",
+    "oldValue": "Staff are invited by email, and managers regularly confirm that each person still needs their access.",
+    "newValue": "Staff are invited by email, and managers regularly confirm that each person still needs their access. Administrators can also run access audit reports showing role assignments, privileged accounts and each user's MFA status.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-INT-001",
+    "name": "Public REST API",
+    "field": "Description",
+    "oldValue": "A secure, documented technical interface (API) that lets other systems and apps read and update products, customers, orders, shipments, payments and documents, with access keys, limits on how often it can be called, numbered versions with notice before old versions are retired, and an optional flexible query format (GraphQL).",
+    "newValue": "A secure, documented technical interface (API) that lets other systems and apps read and update products, customers, orders, shipments, payments and documents, with access keys, limits on how often it can be called, numbered versions with notice before old versions are retired, and an optional flexible query format (GraphQL). Partner systems sign in using the OAuth 2.0 / OpenID Connect standards.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-LOG-016",
+    "name": "Cross-border shipping",
+    "field": "Description",
+    "oldValue": "Handles international postal shipping: customs declarations, international tracking and duties, using the postal systems CDS and IPS.",
+    "newValue": "Handles international postal shipping: customs declarations, international tracking and duties, using the postal systems CDS and IPS. It also exchanges data with the UPU Global Monitoring System (GMS).",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-LOG-025",
+    "name": "FedEx adapter",
+    "field": "Description",
+    "oldValue": "Connects to FedEx for delivery services (as far as FedEx's system allows).",
+    "newValue": "Connects to FedEx for delivery services (as far as FedEx's system allows). This includes shipment tracking events, which are fed into the tracking event hub.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-LOG-026",
+    "name": "G4S adapter",
+    "field": "Description",
+    "oldValue": "Connects to G4S courier services in Kenya.",
+    "newValue": "Connects to G4S courier services in Kenya. This includes shipment tracking events, which are fed into the tracking event hub.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-LOG-027",
+    "name": "Skynet adapter",
+    "field": "Description",
+    "oldValue": "Connects to Skynet courier services.",
+    "newValue": "Connects to Skynet courier services. This includes shipment tracking events, which are fed into the tracking event hub.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-LOG-028",
+    "name": "Wells Fargo (Kenya) courier adapter",
+    "field": "Description",
+    "oldValue": "Connects to Wells Fargo courier services in Kenya.",
+    "newValue": "Connects to Wells Fargo courier services in Kenya. This includes shipment tracking events, which are fed into the tracking event hub.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-LOG-029",
+    "name": "Aramex adapter",
+    "field": "Description",
+    "oldValue": "Connects to Aramex courier services.",
+    "newValue": "Connects to Aramex courier services. This includes shipment tracking events, which are fed into the tracking event hub.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-LOG-030",
+    "name": "Shipping lines and agents adapter",
+    "field": "Description",
+    "oldValue": "Connects to shipping lines and shipping agents for sea freight.",
+    "newValue": "Connects to shipping lines and shipping agents for sea freight. This includes shipment tracking events, which are fed into the tracking event hub.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-PAY-008",
+    "name": "Cash on delivery and cash at outlet",
+    "field": "Description",
+    "oldValue": "Customers pay in cash on delivery or at an outlet, using a secure reference; the client decides which sellers, items or areas allow it. Demand drafts, banker's cheques and payment slips paid to the client are also accepted and matched by staff.",
+    "newValue": "Customers pay in cash on delivery or at an outlet, using a secure reference; the client decides which sellers, items or areas allow it. Banker's cheques and payment slips paid to the client (local instruments to be confirmed per client) are also accepted and matched by staff.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-PAY-016",
+    "name": "Refunds",
+    "field": "Description",
+    "oldValue": "Full or partial refunds back to the original payment method, with status tracking; large refunds need approval.",
+    "newValue": "Full or partial refunds back to the original payment method, with status tracking; large refunds need approval. When part of an order is refunded, related fees are adjusted in proportion, and customers are shown the expected refund time for each payment method.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-RPT-011",
+    "name": "Commerce and marketing analytics",
+    "field": "Description",
+    "oldValue": "Analysis of costs, customer groups, abandoned carts, marketing campaign results, customer segments, trends over time and groups of customers who joined at the same time.",
+    "newValue": "Analysis of costs, customer groups, abandoned carts, marketing campaign results, customer segments, trends over time and groups of customers who joined at the same time. Advertising and campaign spend (for example Google Ads, social media or print) can be imported so that costs can be compared with sales; the cost sources are to be confirmed with the client.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-SRC-014",
+    "name": "Search engine: relevance, synonyms, multilingual",
+    "field": "Description",
+    "oldValue": "A more powerful search engine that ranks the best matches first, understands synonyms and word forms, tolerates typing mistakes and works across languages.",
+    "newValue": "A more powerful search engine that ranks the best matches first, understands synonyms and word forms, tolerates typing mistakes and works across languages. Administrators can set boosting rules (for example by category, featured items or location), and every change to these rules is recorded.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-TRK-006",
+    "name": "Notification preferences",
+    "field": "Description",
+    "oldValue": "Customers choose which messages they want and on which channels, set quiet hours and limits, and follow a particular order.",
+    "newValue": "Customers choose which messages they want and on which channels, set quiet hours and limits, and follow a particular order. Customers can also subscribe to, or unsubscribe from, updates for a single order.",
+    "reason": "Description updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-PAY-031",
+    "name": "KTDA bank card gateway adapter",
+    "field": "Who benefits",
+    "oldValue": "KTDA; its shoppers",
+    "newValue": "KTDA; KTDA shoppers",
+    "reason": "Updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-PAY-032",
+    "name": "MPC card gateway adapter",
+    "field": "Who benefits",
+    "oldValue": "Malawi Post; its shoppers",
+    "newValue": "Malawi Post; Malawi Post shoppers",
+    "reason": "Updated in the current baseline (v10)"
+  },
+  {
+    "feature": "PRD-PLT-002",
+    "name": "Client data isolation",
+    "field": "Who benefits",
+    "oldValue": "Clients; their customers",
+    "newValue": "Clients; clients' customers",
+    "reason": "Updated in the current baseline (v10)"
+  }
+]

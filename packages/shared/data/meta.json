@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-24T12:06:41.637Z",
+  "generated": "2026-11-24T12:58:37.687Z",
   "generator": "scripts/generate-registries.mjs",
   "sources": [
     "docs/prd/01-product-prd.md",
@@ -27,6 +27,10 @@
     "contracts": 219,
     "audits": 216,
     "actors": 237,
-    "permissions": 304
+    "permissions": 304,
+    "mustHave": 297,
+    "shouldHave": 106,
+    "couldHave": 31,
+    "roadmapChanges": 52
   }
 }

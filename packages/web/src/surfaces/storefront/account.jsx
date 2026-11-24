@@ -53,7 +53,7 @@ export function Login() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-5">
-      <h1 className="nop-page-title text-[20px] font-semibold">Welcome, please sign in</h1>
+      <h1 className="nop-page-title">Welcome, please sign in</h1>
       {error && <Alert tone="error">{error}</Alert>}
 
       <div className="grid gap-4 md:grid-cols-2">
@@ -120,7 +120,7 @@ export function Login() {
 export function Register() {
   return (
     <div className="max-w-xl mx-auto space-y-4">
-      <h1 className="nop-page-title text-[20px] font-semibold">Register</h1>
+      <h1 className="nop-page-title">Register</h1>
       <Alert tone="warning" title="Not built in Session 0 - wave 1 Foundation">
         IAM-001 registration is a configuration feature of the native page. The prototype seeds accounts instead
         (P-5) and demonstrates mobile-number registration through the one-time code on the sign-in page (IAM-002).
@@ -163,7 +163,7 @@ function AccountLayout({ children, title }) {
         ))}
       </nav>
       <div className="min-w-0">
-        <h1 className="nop-page-title text-[20px] font-semibold">{title}</h1>
+        <h1 className="nop-page-title">{title}</h1>
         {children}
       </div>
     </div>
@@ -366,7 +366,7 @@ export function OrderStatus() {
 
   return (
     <div className="max-w-xl mx-auto space-y-4">
-      <h1 className="nop-page-title text-[20px] font-semibold">Check an order</h1>
+      <h1 className="nop-page-title">Check an order</h1>
       <Panel subtitle="TRK-011 order status check for guests">
         <div className="space-y-3">
           <Field label="Order number" required><Input value={orderNumber} onChange={(e) => setOrderNumber(e.target.value)} placeholder="KTDA-2026-000001" /></Field>
@@ -397,7 +397,7 @@ export function PublicTracking() {
   if (!tracking) return <Spinner />;
   return (
     <div className="max-w-2xl mx-auto space-y-4">
-      <h1 className="nop-page-title text-[20px] font-semibold">Tracking {trackingNumber}</h1>
+      <h1 className="nop-page-title">Tracking {trackingNumber}</h1>
       {!tracking.found ? <Alert tone="warning">No shipment was found for that number.</Alert> : (
         <Panel title={`${tracking.carrier} · ${tracking.order?.orderNumber}`}>
           <ol className="relative border-l border-nop-border ml-2 space-y-3">

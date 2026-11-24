@@ -39,13 +39,15 @@ const BTN = {
   success: 'bg-nop-green hover:brightness-95 text-white border-transparent',
   danger: 'bg-nop-red hover:brightness-95 text-white border-transparent',
   warning: 'bg-nop-amber hover:brightness-95 text-white border-transparent',
-  brand: 'brand-bg hover:brightness-110 border-transparent',
+  // .button-1 in DefaultClean: no border, uppercase, 15px, padding 10px 30px, square
+  brand: 'brand-bg hover:brightness-110 border-transparent uppercase tracking-wide rounded-none',
 };
 
 export function Button({
   variant = 'default', size = 'md', as = 'button', to, children, className = '', ...rest
 }) {
   const cls = `inline-flex items-center justify-center gap-1.5 border rounded-sm font-medium transition
+    ${variant === 'brand' ? (size === 'lg' ? '!px-8 !py-2.5 !text-[15px]' : '') : ''}
     ${size === 'sm' ? 'text-xs px-2.5 py-1.5' : size === 'lg' ? 'text-[15px] px-5 py-2.5' : 'text-[13px] px-3 py-2'}
     ${BTN[variant] ?? BTN.default} disabled:opacity-50 disabled:cursor-not-allowed ${className}`;
   if (as === 'link') return <Link to={to} className={cls} {...rest}>{children}</Link>;
@@ -304,6 +306,7 @@ export function ProductPicture({ picture, name, size = 'md' }) {
     red: ['#fbeceb', '#9c1b1f'],
   };
   const [bg, fg] = tones[picture?.tone] ?? tones.grey;
+  // .item-box .picture a:before { padding-top: 100% } - a square box, image centred
   const dims = { sm: 'size-12', md: 'size-full aspect-square', lg: 'size-full aspect-square' };
   const icons = {
     tea: 'M6 9h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5V9Zm12 1h2a2 2 0 0 1 0 4h-2',
@@ -316,7 +319,7 @@ export function ProductPicture({ picture, name, size = 'md' }) {
   };
   const d = icons[picture?.kind] ?? icons.box;
   return (
-    <div className={`${dims[size]} flex items-center justify-center rounded-sm border border-nop-border`} style={{ background: bg }} role="img" aria-label={name ? `${name} (placeholder picture)` : 'placeholder picture'}>
+    <div className={`${dims[size]} flex items-center justify-center border border-store-border`} style={{ background: bg }} role="img" aria-label={name ? `${name} (placeholder picture)` : 'placeholder picture'}>
       <svg viewBox="0 0 24 24" className={size === 'sm' ? 'size-7' : 'size-16'} fill="none" stroke={fg} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
         <path d={d} />
       </svg>

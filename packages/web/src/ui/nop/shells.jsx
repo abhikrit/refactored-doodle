@@ -123,8 +123,8 @@ export function StorefrontShell({ children }) {
 
   return (
     <div className="min-h-full flex flex-col bg-white">
-      {/* header upper: currency, language, account links - DefaultClean */}
-      <div className="border-b border-gray-100 text-[12px] text-nop-muted">
+      {/* .header-upper - border-bottom 1px solid #ddd */}
+      <div className="border-b border-store-border text-[12px] text-store-text">
         <div className="mx-auto max-w-[1280px] px-4 py-1.5 flex flex-wrap items-center gap-x-4 gap-y-1">
           <span className="hidden md:inline">{content?.tagline}</span>
           <div className="ml-auto flex items-center gap-3">
@@ -160,9 +160,9 @@ export function StorefrontShell({ children }) {
         </div>
       </div>
 
-      {/* header: logo, search, cart */}
-      <div className="border-b border-nop-border">
-        <div className="mx-auto max-w-[1280px] px-4 py-3 flex items-center gap-4">
+      {/* .header-lower - padding 35px 0 in the theme; tightened for a 1280 canvas */}
+      <div className="border-b border-store-border">
+        <div className="mx-auto max-w-[1280px] px-4 py-5 flex items-center gap-4">
           <Link to="/" className="flex items-center gap-2.5 shrink-0">
             <span className="size-9 rounded-sm grid place-items-center font-bold text-white brand-bg">
               {(content?.brand?.logoText ?? 'NC').slice(0, 2).toUpperCase()}
@@ -183,9 +183,9 @@ export function StorefrontShell({ children }) {
                 onChange={(e) => setTerm(e.target.value)}
                 placeholder="Search store"
                 aria-label="Search store"
-                className="w-full border border-nop-border rounded-l-sm px-3 py-2 text-[13px] focus:border-nop-blue"
+                className="w-full border border-store-border px-3 py-2 h-9 text-[13px] focus:border-store-accent"
               />
-              <button type="submit" className="brand-bg px-4 rounded-r-sm text-[13px] font-medium">Search</button>
+              <button type="submit" className="brand-bg px-5 h-9 text-[13px] font-medium uppercase tracking-wide">Search</button>
             </form>
             {suggestions.length > 0 && (
               <ul className="absolute z-40 left-0 right-0 bg-white border border-nop-border border-t-0 shadow-lg max-h-80 overflow-auto">
@@ -205,7 +205,7 @@ export function StorefrontShell({ children }) {
             )}
           </div>
 
-          <Link to="/cart" className="flex items-center gap-2 shrink-0 border border-nop-border rounded-sm px-3 py-2 hover:bg-gray-50">
+          <Link to="/cart" className="flex items-center gap-2 shrink-0 border border-store-border px-3 py-2 hover:bg-gray-50">
             <span className="text-[13px] font-medium">Shopping cart</span>
             <Badge tone="blue">{cart?.itemCount ?? 0}</Badge>
             {cart?.subtotal > 0 && <span className="hidden sm:inline text-[12px] text-nop-muted">{money(cart.subtotal, currency?.code)}</span>}
@@ -231,7 +231,7 @@ export function StorefrontShell({ children }) {
 
       <main className="flex-1 mx-auto max-w-[1280px] w-full px-4 py-6">{children}</main>
 
-      <footer className="border-t border-nop-border mt-8 bg-nop-head">
+      <footer className="border-t border-store-border mt-8 bg-store-panel">
         <div className="mx-auto max-w-[1280px] px-4 py-8 grid gap-6 md:grid-cols-4 text-[13px]">
           <div>
             <h3 className="font-semibold mb-2 text-gray-800">Information</h3>
@@ -348,7 +348,7 @@ export function AdminShell({ children, breadcrumb }) {
   const toggle = (label) => setOpenGroups((g) => (g.includes(label) ? g.filter((x) => x !== label) : [...g, label]));
 
   return (
-    <div className="min-h-full flex bg-nop-canvas">
+    <div className="nop-admin min-h-full flex bg-nop-canvas">
       <aside className="w-60 shrink-0 bg-nop-sidebar text-gray-300 hidden md:flex md:flex-col">
         <div className="px-4 py-3 bg-nop-sidebar-dark">
           <div className="text-white font-semibold text-[14px]">nopCommerce</div>

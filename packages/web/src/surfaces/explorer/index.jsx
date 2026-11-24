@@ -64,6 +64,7 @@ function ExplorerShell({ children, title, intro, actions }) {
 }
 
 const PHASE_TONE = { P1: 'green', P2: 'amber', P3: 'slate' };
+const PRIORITY_TONE = { 'Must Have': 'red', 'Should Have': 'blue', 'Could Have': 'slate' };
 
 /* ----------------------------------------------------------------- overview -- */
 
@@ -163,7 +164,7 @@ export function Overview() {
 export function FeatureList() {
   const { features, areas } = useProduct();
   const [filter, setFilter] = useState({
-    q: '', area: '', phase: '', implementation: '', held: '', pack: '', wave: '',
+    q: '', area: '', phase: '', implementation: '', held: '', pack: '', wave: '', priority: '', category: '',
   });
 
   const implementations = useMemo(() => [...new Set(features.map((f) => f.implementation))].sort(), [features]);
@@ -177,6 +178,8 @@ export function FeatureList() {
     && (!filter.pack || f.pack === filter.pack)
     && (!filter.wave || String(f.wave) === filter.wave)
     && (!filter.held || (filter.held === 'yes' ? f.held : !f.held))
+    && (!filter.priority || f.priority === filter.priority)
+    && (!filter.category || f.category === filter.category)
   ));
 
   return (
@@ -184,7 +187,7 @@ export function FeatureList() {
       title={`Features (${features.length})`}
       intro="Every product feature with its phase, implementation route, pack, dependencies, acceptance criteria and the decision that holds it. Click a feature for the full chapter content."
     >
-      <SearchPanel onClear={() => setFilter({ q: '', area: '', phase: '', implementation: '', held: '', pack: '', wave: '' })}>
+      <SearchPanel onClear={() => setFilter({ q: '', area: '', phase: '', implementation: '', held: '', pack: '', wave: '', priority: '', category: '' })}>
         <Field label="ID, name or description"><Input value={filter.q} onChange={(e) => setFilter({ ...filter, q: e.target.value })} /></Field>
         <Field label="Area">
           <Select value={filter.area} onChange={(e) => setFilter({ ...filter, area: e.target.value })}>
@@ -223,6 +226,18 @@ export function FeatureList() {
             <option value="no">Not held</option>
           </Select>
         </Field>
+        <Field label="Priority (MoSCoW)">
+          <Select value={filter.priority} onChange={(e) => setFilter({ ...filter, priority: e.target.value })}>
+            <option value="">All</option>
+            {['Must Have', 'Should Have', 'Could Have'].map((x) => <option key={x} value={x}>{x}</option>)}
+          </Select>
+        </Field>
+        <Field label="Category">
+          <Select value={filter.category} onChange={(e) => setFilter({ ...filter, category: e.target.value })}>
+            <option value="">All</option>
+            {[...new Set(features.map((f) => f.category).filter(Boolean))].sort().map((x) => <option key={x} value={x}>{x}</option>)}
+          </Select>
+        </Field>
       </SearchPanel>
 
       <Panel bodyClass="p-0" subtitle={`${rows.length} of ${features.length} features`}>
@@ -233,6 +248,7 @@ export function FeatureList() {
             { key: 'name', header: 'Name', render: (f) => <span><span className="font-medium">{f.name}</span><span className="block text-[11.5px] text-nop-muted line-clamp-1">{f.summary}</span></span> },
             { key: 'area', header: 'Area', render: (f) => <Link to={`/explorer/areas/${f.area}`}><Badge tone="slate">{f.area}</Badge></Link> },
             { key: 'phase', header: 'Phase', render: (f) => <Badge tone={PHASE_TONE[f.phase]}>{f.phase}</Badge> },
+            { key: 'priority', header: 'Priority', render: (f) => (f.priority ? <Badge tone={PRIORITY_TONE[f.priority]}>{f.priority.replace(' Have', '')}</Badge> : '-') },
             { key: 'implementation', header: 'Implementation' },
             { key: 'pack', header: 'Pack' },
             { key: 'criteria', header: 'ACs', align: 'right', render: (f) => f.criteria.length },
@@ -274,6 +290,7 @@ export function FeatureDetail() {
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Badge tone={PHASE_TONE[f.phase]}>{f.phase}</Badge>
+          {f.priority && <Badge tone={PRIORITY_TONE[f.priority]}>{f.priority}</Badge>}
           <Badge tone="slate">{f.implementation}</Badge>
           <Badge tone="blue">Wave {f.wave}</Badge>
           <Button as="link" to={`/explorer/areas/${f.area}`} size="sm">{f.area} module</Button>
@@ -313,6 +330,9 @@ export function FeatureDetail() {
                 ['Why it matters', f.whyItMatters],
                 ['Who benefits', f.whoBenefits],
                 ['Phase', f.phase],
+                ['Priority (MoSCoW)', f.priority ?? '-'],
+                ['Category', f.category ?? '-'],
+                f.capabilityType && ['Phase 3 capability type', f.capabilityType],
                 ['Implementation', f.implementation],
                 ['Code change', f.codeChange || '-'],
                 ['Pack', f.pack],

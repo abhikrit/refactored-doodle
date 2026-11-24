@@ -6,6 +6,8 @@
    client pack at runtime (PLT-006 branding and look), so switching the pack re-skins the
    storefront with no code change. */
 @theme {
+  /* Admin palette, measured from src/Presentation/Nop.Web/wwwroot/css/admin/styles.css
+     in nopCommerce release-5.00.1 (AdminLTE 3 on Bootstrap 4). */
   --color-nop-blue: #3c8dbc;
   --color-nop-blue-dark: #367fa9;
   --color-nop-sidebar: #222d32;
@@ -13,18 +15,35 @@
   --color-nop-sidebar-hover: #1e282c;
   --color-nop-canvas: #ecf0f5;
   --color-nop-border: #d2d6de;
-  --color-nop-head: #f9fafb;
+  --color-nop-head: #f4f4f4;
+  --color-nop-info: #00c0ef;
   --color-nop-green: #00a65a;
   --color-nop-amber: #f39c12;
   --color-nop-red: #dd4b39;
   --color-nop-ink: #333333;
   --color-nop-muted: #6b7280;
-  --font-sans: "Segoe UI", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+
+  /* Storefront palette, measured from Themes/DefaultClean/Content/css/styles.css :root
+     in release-5.00.1. See docs/platform/ui-reference.md. */
+  --color-store-accent: #4ab2f1;
+  --color-store-accent-active: #248ece;
+  --color-store-text: #6B6B6B;
+  --color-store-dark: #444444;
+  --color-store-border: #dddddd;
+  --color-store-panel: #f6f6f6;
+  --color-store-totals: #f9f9f9;
+  --color-store-error: #d51f28;
+  --color-store-success: #207d4c;
+
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-admin: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 :root {
-  --brand: #0f6b45;
-  --brand-accent: #d4a015;
+  /* PRD-PLT-006 branding: the client pack overrides these at runtime. The defaults are
+     nopCommerce's own accent colours, so an unbranded install looks like stock nopCommerce. */
+  --brand: #4ab2f1;
+  --brand-accent: #248ece;
   --brand-ink: #ffffff;
   color-scheme: light;
 }
@@ -33,11 +52,14 @@ html, body, #root { height: 100%; }
 body {
   margin: 0;
   background: #ffffff;
-  color: var(--color-nop-ink);
-  font-family: var(--font-sans);
-  font-size: 14px;
+  /* DefaultClean: body { font: normal 14px Arial, Helvetica, sans-serif; color: var(--gray-color) } */
+  color: var(--color-store-text);
+  font: normal 14px var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
+
+/* The admin area is AdminLTE, not DefaultClean: darker ink, its own stack. */
+.nop-admin { color: var(--color-nop-ink); font-family: var(--font-admin); }
 
 /* nopCommerce-style focus ring, kept visible for WCAG 2.1 AA (PLT-018) */
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
@@ -51,12 +73,66 @@ body {
 .brand-border { border-color: var(--brand); }
 .accent-bg { background-color: var(--brand-accent); }
 
-/* storefront page title, as DefaultClean renders it */
+/* .page-title, verbatim from DefaultClean:
+   min-height 50px; margin 0 0 25px; border-bottom 1px solid #ddd; padding 6px 10px
+   h1 { font-size: 30px; font-weight: normal } */
 .nop-page-title {
-  border-bottom: 1px solid var(--color-nop-border);
-  padding-bottom: 10px;
-  margin-bottom: 18px;
+  min-height: 50px;
+  margin: 0 0 25px;
+  border-bottom: 1px solid var(--color-store-border);
+  padding: 6px 10px 6px 0;
+  font-size: 30px;
+  font-weight: normal;
+  color: var(--color-store-dark);
+  line-height: 1.3;
 }
+
+/* .block .title - the left-column block heading */
+.nop-block-title {
+  border-bottom: 1px solid var(--color-store-border);
+  background: var(--color-store-panel);
+  padding: 12px 10px;
+  font-size: 20px;
+  font-weight: normal;
+  color: var(--color-store-dark);
+}
+
+/* .button-1 / .button-2 - square, uppercase, 15px, padding 10px 30px */
+.nop-button {
+  border: none;
+  padding: 10px 30px;
+  font-size: 15px;
+  color: #fff;
+  text-transform: uppercase;
+  background-color: var(--brand);
+  cursor: pointer;
+}
+.nop-button:hover { background-color: var(--brand-accent); }
+.nop-button-2 { background-color: #888; }
+.nop-button-2:hover { background-color: #999; }
+
+/* .item-box .picture a:before { padding-top: 100% } - the square picture box */
+.nop-picture-box { position: relative; }
+.nop-picture-box::before { content: ""; display: block; padding-top: 100%; }
+.nop-picture-box > * { position: absolute; inset: 0; }
+
+/* .order-progress - the checkout step bar */
+.nop-order-progress {
+  background-color: var(--color-store-panel);
+  padding: 15px 0;
+  text-align: center;
+  margin: 0 0 30px;
+}
+.nop-order-progress .step-mark {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 10px;
+  border: 1px solid #bbb;
+  background: #fff;
+  display: grid;
+  place-items: center;
+}
+.nop-order-progress .inactive-step { opacity: 0.3; }
 
 /* admin grid */
 .nop-grid th {

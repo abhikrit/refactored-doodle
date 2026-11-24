@@ -43,14 +43,14 @@ export function Cart() {
 
   return (
     <div className="space-y-5">
-      <h1 className="nop-page-title text-[20px] font-semibold">Shopping cart</h1>
+      <h1 className="nop-page-title">Shopping cart</h1>
       {warnings.length > 0 && <Alert tone="warning">{warnings.join(' ')}</Alert>}
 
       {cart.items.length === 0 ? (
         <Alert tone="info">Your shopping cart is empty. <Link to="/search" className="underline">Browse the catalogue</Link>.</Alert>
       ) : (
         <>
-          <div className="border border-nop-border rounded-sm bg-white overflow-x-auto">
+          <div className="border border-store-border bg-white overflow-x-auto">
             <table className="w-full text-[13px]">
               <thead className="bg-nop-head text-[12.5px] text-gray-600">
                 <tr>
@@ -158,7 +158,7 @@ export function Cart() {
             </div>
 
             <div className="space-y-3">
-              <Panel title="Order summary" bodyClass="p-3">
+              <Panel title="Order summary" bodyClass="p-3 bg-store-totals">
                 <div className="flex justify-between text-[13px] py-1"><span>Sub-total</span><span className="font-medium">{money(cart.subtotal, currency)}</span></div>
                 <div className="flex justify-between text-[12.5px] py-1 text-nop-muted"><span>Delivery</span><span>calculated at checkout</span></div>
                 <div className="flex justify-between text-[12.5px] py-1 text-nop-muted"><span>Tax</span><span>calculated at checkout</span></div>
@@ -203,18 +203,18 @@ const STEP_LABELS = {
 function CheckoutProgress({ steps, current }) {
   const index = steps.findIndex((s) => s.id === current);
   return (
-    <ol className="flex flex-wrap items-center gap-x-1 gap-y-2 text-[12px] mb-5">
+    <ol className="nop-order-progress flex flex-wrap items-start justify-center gap-x-6 gap-y-3">
       {steps.map((s, i) => (
-        <li key={s.id} className="flex items-center gap-1">
-          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm border ${
-            i === index ? 'brand-bg border-transparent font-medium'
-              : i < index ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                : 'bg-white text-nop-muted border-nop-border'}`}
+        <li key={s.id} className={i > index ? 'inactive-step' : undefined}>
+          <span
+            className="step-mark text-[15px]"
+            style={i === index ? { borderColor: 'var(--brand)', color: 'var(--brand)' } : undefined}
           >
-            <span className="font-mono">{i + 1}</span>
+            {i + 1}
+          </span>
+          <span className={`block min-w-[80px] text-[14px] ${i === index ? 'font-semibold text-store-dark' : 'text-store-dark'}`}>
             {STEP_LABELS[s.id] ?? s.name}
           </span>
-          {i < steps.length - 1 && <span className="text-gray-300">→</span>}
         </li>
       ))}
     </ol>
@@ -275,7 +275,7 @@ export function Checkout() {
   if (state.signInRequired) {
     return (
       <div className="max-w-xl mx-auto space-y-4">
-        <h1 className="nop-page-title text-[20px] font-semibold">Sign in to continue</h1>
+        <h1 className="nop-page-title">Sign in to continue</h1>
         <Alert tone="warning" title="This client requires an account before payment">
           Guests may browse and fill a cart, but no order or payment can be made by a guest.
           <Citation className="mt-1">
@@ -341,7 +341,7 @@ export function Checkout() {
   if (pending) {
     return (
       <div className="max-w-lg mx-auto space-y-4">
-        <h1 className="nop-page-title text-[20px] font-semibold">Confirm the payment on your phone</h1>
+        <h1 className="nop-page-title">Confirm the payment on your phone</h1>
         <Panel title={selected?.name}>
           <p className="text-[13px]">{pending.payment.customerAction}</p>
           <dl className="mt-3 text-[13px] space-y-1">
@@ -364,7 +364,7 @@ export function Checkout() {
 
   return (
     <div className="space-y-4">
-      <h1 className="nop-page-title text-[20px] font-semibold">Checkout</h1>
+      <h1 className="nop-page-title">Checkout</h1>
       <CheckoutProgress steps={state.steps} current={step} />
 
       {failures.length > 0 && (
@@ -545,7 +545,7 @@ export function Checkout() {
         </div>
 
         <aside className="space-y-3">
-          <Panel title="Order summary" bodyClass="p-3">
+          <Panel title="Order summary" bodyClass="p-3 bg-store-totals">
             {!totals ? <Spinner label="Calculating" /> : (
               <>
                 <Row label="Sub-total" value={money(totals.subtotal, currency)} />
@@ -583,8 +583,8 @@ export function Checkout() {
 
 function Row({ label, value, strong }) {
   return (
-    <div className={`flex justify-between py-1 ${strong ? 'text-[15px] font-semibold' : 'text-[13px]'}`}>
-      <span className={strong ? '' : 'text-nop-muted'}>{label}</span>
+    <div className={`flex justify-between py-1 ${strong ? 'text-[20px] brand-text' : 'text-[13px]'}`}>
+      <span className={strong ? 'text-store-dark text-[15px] self-center' : 'text-nop-muted'}>{label}</span>
       <span>{value}</span>
     </div>
   );
@@ -602,7 +602,7 @@ export function OrderCompleted() {
   if (!result) {
     return (
       <div className="max-w-xl mx-auto space-y-3">
-        <h1 className="nop-page-title text-[20px] font-semibold">Thank you</h1>
+        <h1 className="nop-page-title">Thank you</h1>
         <Alert tone="info">
           Your order has been placed. Open <Link to="/account/orders" className="underline">My account - Orders</Link> to see it.
         </Alert>
@@ -613,7 +613,7 @@ export function OrderCompleted() {
   const currency = result.totals?.currency ?? 'USD';
   return (
     <div className="max-w-3xl mx-auto space-y-4">
-      <h1 className="nop-page-title text-[20px] font-semibold">Your order has been placed</h1>
+      <h1 className="nop-page-title">Your order has been placed</h1>
       <Alert tone="success" title={result.confirmation}>
         Checkout reference <span className="font-mono">{result.checkoutReference}</span>
         {result.split ? ` · ${result.orders.length} sub-orders` : ''}

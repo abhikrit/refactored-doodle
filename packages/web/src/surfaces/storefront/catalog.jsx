@@ -24,10 +24,10 @@ export function ProductBox({ product, onAdd, view = 'grid' }) {
   const price = product.callForPrice ? 'Call for price' : money(product.finalPrice, product.currency ?? currency);
   if (view === 'list') {
     return (
-      <article className="flex gap-4 border border-nop-border rounded-sm p-3 bg-white">
+      <article className="flex gap-4 border border-store-border p-3 bg-white">
         <Link to={`/product/${product.id}`} className="w-28 shrink-0"><ProductPicture picture={product.picture} name={product.name} /></Link>
         <div className="min-w-0 flex-1">
-          <Link to={`/product/${product.id}`} className="font-medium text-[14px] text-nop-ink hover:brand-text">{product.name}</Link>
+          <Link to={`/product/${product.id}`} className="text-[17px] leading-[1.2] brand-text hover:underline">{product.name}</Link>
           <p className="text-[12.5px] text-nop-muted mt-1 line-clamp-2">{product.shortDescription}</p>
           <div className="flex flex-wrap items-center gap-2 mt-2">
             {product.vendor && <Badge tone="slate">{product.vendor.name}</Badge>}
@@ -37,7 +37,7 @@ export function ProductBox({ product, onAdd, view = 'grid' }) {
           </div>
         </div>
         <div className="w-44 shrink-0 text-right">
-          <div className="text-[17px] font-semibold text-nop-ink">{price}</div>
+          <div className="text-[16px] text-store-text">{price}</div>
           {product.oldPrice > 0 && <div className="text-[12px] text-nop-muted line-through">{money(product.oldPrice, product.currency ?? currency)}</div>}
           <div className="mt-2 flex flex-col gap-1.5">
             <Button variant="brand" onClick={() => onAdd?.(product)} disabled={product.callForPrice}>
@@ -50,7 +50,7 @@ export function ProductBox({ product, onAdd, view = 'grid' }) {
     );
   }
   return (
-    <article className="border border-nop-border rounded-sm bg-white flex flex-col hover:shadow-sm transition">
+    <article className="border border-store-border bg-white flex flex-col hover:shadow-sm transition">
       <Link to={`/product/${product.id}`} className="p-3 pb-0"><ProductPicture picture={product.picture} name={product.name} /></Link>
       <div className="p-3 flex-1 flex flex-col">
         <Link to={`/product/${product.id}`} className="font-medium text-[13.5px] leading-snug text-nop-ink hover:brand-text line-clamp-2">
@@ -64,7 +64,7 @@ export function ProductBox({ product, onAdd, view = 'grid' }) {
         </div>
         <div className="mt-3 flex items-end justify-between gap-2">
           <div>
-            <div className="text-[16px] font-semibold text-nop-ink">{price}</div>
+            <div className="text-[16px] text-store-text">{price}</div>
             {product.priceParts?.applied === 'price-list' && <div className="text-[11px] text-emerald-700">Your price list</div>}
             {product.oldPrice > 0 && <div className="text-[11.5px] text-nop-muted line-through">{money(product.oldPrice, product.currency ?? currency)}</div>}
           </div>
@@ -109,7 +109,7 @@ export function Home() {
       </section>
 
       <div>
-        <h2 className="nop-page-title text-[18px] font-semibold">Featured products</h2>
+        <h2 className="nop-page-title">Featured products</h2>
         {!data ? <Spinner /> : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {data.items.map((p) => <ProductBox key={p.id} product={p} onAdd={add} />)}
@@ -248,7 +248,7 @@ export function ProductList({ mode = 'search' }) {
       <div>
         {notice && <div className="mb-3"><Alert tone="success">{notice}</Alert></div>}
         <div className="nop-page-title flex flex-wrap items-end gap-3 justify-between">
-          <h1 className="text-[20px] font-semibold">{title}</h1>
+          <h1 className="text-[30px] font-normal leading-tight text-store-dark">{title}</h1>
           <div className="flex items-center gap-2 text-[12.5px]">
             <span className="text-nop-muted">Sort by</span>
             <select

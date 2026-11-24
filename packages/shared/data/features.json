@@ -72,6 +72,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-ENV-001"
     ],
@@ -132,6 +135,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision F-CAT-B pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": []
   },
@@ -219,6 +225,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-PLT-01"
@@ -308,6 +317,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-287",
       "REQ-MPC-FR-300",
@@ -382,6 +394,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-317"
     ],
@@ -439,6 +454,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-UX-002"
     ],
@@ -490,6 +508,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-PLT-05"
@@ -544,6 +565,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-PLT-05"
@@ -600,6 +624,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOC-001",
       "REQ-MPC-FR-023"
@@ -660,6 +687,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOC-002",
       "REQ-MPC-FR-023"
@@ -711,6 +741,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-023"
     ],
@@ -764,6 +797,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-PLT-06"
@@ -818,6 +854,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PRJ-002",
       "REQ-KTDA-CUS-002",
@@ -880,6 +919,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-290",
       "REQ-MPC-FR-299"
@@ -939,6 +981,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-NFR-001",
       "REQ-KTDA-HST-001",
@@ -1001,6 +1046,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-297",
       "REQ-MPC-NFR-001",
@@ -1057,6 +1105,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-UX-001",
       "REQ-MPC-UX-001",
@@ -1113,6 +1164,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-PLT-10"
@@ -1166,6 +1220,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-325"
     ],
@@ -1235,6 +1292,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-225",
       "REQ-MPC-FR-322"
@@ -1298,6 +1358,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-PLT-08"
@@ -1357,6 +1420,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-PLT-04"
@@ -1415,6 +1481,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-PLT-08"
@@ -1465,6 +1534,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOC-002"
     ],
@@ -1528,6 +1600,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOC-001"
     ],
@@ -1581,6 +1656,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision C-SIZE pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-HST-002"
     ],
@@ -1637,6 +1715,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": []
   },
@@ -1706,6 +1787,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-003",
       "REQ-KTDA-CUS-004",
@@ -1800,6 +1884,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-001",
       "REQ-MPC-FR-002",
@@ -1874,6 +1961,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-003",
       "REQ-MPC-FR-021"
@@ -1941,6 +2031,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-002",
       "REQ-MPC-FR-012",
@@ -2008,6 +2101,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": []
   },
@@ -2069,6 +2165,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-013"
     ],
@@ -2146,6 +2245,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PRJ-001",
       "REQ-KTDA-CUS-001",
@@ -2213,6 +2315,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PRJ-001"
     ],
@@ -2275,6 +2380,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-IAM-13"
@@ -2347,6 +2455,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-016",
       "REQ-MPC-FR-024"
@@ -2412,6 +2523,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-298"
     ],
@@ -2478,6 +2592,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-015"
     ],
@@ -2532,6 +2649,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-IAM-02",
@@ -2588,6 +2708,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-005",
       "REQ-MPC-FR-004",
@@ -2647,6 +2770,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-004",
       "REQ-MPC-FR-005"
@@ -2715,6 +2841,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-006",
       "REQ-MPC-FR-022"
@@ -2795,6 +2924,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LEG-001",
       "REQ-KTDA-ANL-008",
@@ -2860,6 +2992,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-008"
     ],
@@ -2916,6 +3051,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-020"
     ],
@@ -2976,6 +3114,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-344"
     ],
@@ -3036,6 +3177,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-005",
       "REQ-MPC-FR-007",
@@ -3102,6 +3246,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-002"
     ],
@@ -3164,6 +3311,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-002"
     ],
@@ -3222,6 +3372,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-002",
       "REQ-KTDA-TAX-001"
@@ -3275,6 +3428,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-IAM-07"
@@ -3345,6 +3501,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-014",
       "REQ-MPC-FR-025"
@@ -3405,6 +3564,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF pending",
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-IAM-08"
@@ -3470,6 +3632,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-026"
     ],
@@ -3547,6 +3712,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-027",
       "REQ-MPC-FR-036"
@@ -3636,6 +3804,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-028",
       "REQ-MPC-FR-029",
@@ -3709,6 +3880,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-047"
     ],
@@ -3782,6 +3956,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-031",
       "REQ-MPC-FR-039"
@@ -3844,6 +4021,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-030"
     ],
@@ -3909,6 +4089,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-033",
       "REQ-MPC-FR-046"
@@ -3964,6 +4147,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-034"
     ],
@@ -4026,6 +4212,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-038"
     ],
@@ -4080,6 +4269,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SEL-09"
@@ -4140,6 +4332,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-037",
       "REQ-MPC-FR-046"
@@ -4202,6 +4397,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-050"
     ],
@@ -4271,6 +4469,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-118",
       "REQ-MPC-FR-323"
@@ -4328,6 +4529,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SEL-17"
@@ -4384,6 +4588,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SEL-18"
@@ -4446,6 +4653,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-043",
       "REQ-MPC-FR-303"
@@ -4532,6 +4742,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01 pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-042",
       "REQ-MPC-FR-145"
@@ -4592,6 +4805,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-032",
       "REQ-MPC-FR-044"
@@ -4654,6 +4870,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-049"
     ],
@@ -4713,6 +4932,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-045"
     ],
@@ -4766,6 +4988,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-048"
     ],
@@ -4819,6 +5044,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": "Best-in-class / specialised",
     "requirements": [],
     "screens": [
       "SCR-SEL-14"
@@ -4872,6 +5100,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-035",
       "REQ-MPC-FR-325"
@@ -4937,6 +5168,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-041"
     ],
@@ -5012,6 +5246,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF, PO-REC-v8, PAY-DIRECT / LIC-01, E-INV, PAID-STUB, DOC-LIB / PH-INF / PO-REC-v8 / PAY-DIRECT / LIC-01 / E-INV / PAID-STUB / DOC-LIB pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SEL-13"
@@ -5074,6 +5311,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CAT-001",
       "REQ-MPC-FR-052"
@@ -5153,6 +5393,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CAT-001",
       "REQ-MPC-FR-051",
@@ -5214,6 +5457,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-064"
     ],
@@ -5270,6 +5516,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-SRC-002",
       "REQ-MPC-FR-057"
@@ -5338,6 +5587,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-071",
       "REQ-MPC-FR-309"
@@ -5396,6 +5648,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-053"
     ],
@@ -5454,6 +5709,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-065"
     ],
@@ -5513,6 +5771,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CAT-05",
@@ -5579,6 +5840,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-054"
     ],
@@ -5637,6 +5901,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-054"
     ],
@@ -5706,6 +5973,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision API-01, PAID-STUB, API-GW / API-01 / PAID-STUB / API-GW pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-072"
     ],
@@ -5764,6 +6034,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PRJ-002",
       "REQ-MPC-FR-061"
@@ -5827,6 +6100,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CAT-02",
@@ -5878,6 +6154,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-TAX-001"
     ],
@@ -5934,6 +6213,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-002",
       "REQ-KTDA-LEG-001",
@@ -5999,6 +6281,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CNT-001",
       "REQ-MPC-FR-060"
@@ -6056,6 +6341,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOC-001"
     ],
@@ -6116,6 +6404,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CAT-02",
@@ -6178,6 +6469,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CAT-05",
@@ -6233,6 +6527,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CNT-001"
     ],
@@ -6301,6 +6598,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-059",
       "REQ-MPC-FR-073",
@@ -6398,6 +6698,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-319"
     ],
@@ -6461,6 +6764,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-064"
     ],
@@ -6523,6 +6829,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-056"
     ],
@@ -6576,6 +6885,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CAT-05"
@@ -6634,6 +6946,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-074",
       "REQ-MPC-FR-100"
@@ -6710,6 +7025,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06 pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CAT-02",
@@ -6763,6 +7081,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CAT-02",
@@ -6822,6 +7143,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-REV-001",
       "REQ-MPC-FR-075"
@@ -6876,6 +7200,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-067"
     ],
@@ -6941,6 +7268,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-068",
       "REQ-MPC-FR-088",
@@ -7000,6 +7330,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CAT-05"
@@ -7057,6 +7390,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-070"
     ],
@@ -7118,6 +7454,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAID-STUB pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-066",
       "REQ-MPC-FR-091"
@@ -7173,6 +7512,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CAT-05",
@@ -7225,6 +7567,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PRJ-002",
       "REQ-KTDA-CAT-002"
@@ -7284,6 +7629,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CAT-05"
@@ -7336,6 +7684,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-051"
     ],
@@ -7414,6 +7765,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PRJ-002"
     ],
@@ -7474,6 +7828,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CAT-05",
@@ -7532,6 +7889,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF, UOM-01 / PH-INF / UOM-01 pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PRJ-002"
     ],
@@ -7612,6 +7972,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOC-002"
     ],
@@ -7677,6 +8040,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-058",
       "REQ-MPC-FR-319"
@@ -7750,6 +8116,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-INV-001",
       "REQ-KTDA-INV-002",
@@ -7816,6 +8185,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-INV-001"
     ],
@@ -7879,6 +8251,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-INV-001",
       "REQ-MPC-FR-055"
@@ -7970,6 +8345,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-INV-01",
@@ -8047,6 +8425,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-INV-001"
     ],
@@ -8118,6 +8499,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-INV-001"
     ],
@@ -8179,6 +8563,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-INV-10"
@@ -8240,6 +8627,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-INV-10"
@@ -8309,6 +8699,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-INV-11",
@@ -8369,6 +8762,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-INV-12",
@@ -8431,6 +8827,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-INV-11",
@@ -8498,6 +8897,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAID-STUB pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-INT-001"
     ],
@@ -8562,6 +8964,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-ANL-002"
     ],
@@ -8643,6 +9048,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-SRC-001",
       "REQ-MPC-FR-076",
@@ -8701,6 +9109,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-SRC-001",
       "REQ-MPC-FR-079"
@@ -8773,6 +9184,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-SRC-002",
       "REQ-MPC-FR-077",
@@ -8837,6 +9251,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-077",
       "REQ-MPC-FR-084"
@@ -8898,6 +9315,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-078"
     ],
@@ -8955,6 +9375,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-SRC-001",
       "REQ-MPC-FR-080",
@@ -9019,6 +9442,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-SRC-001",
       "REQ-MPC-FR-082",
@@ -9081,6 +9507,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-087"
     ],
@@ -9148,6 +9577,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-081"
     ],
@@ -9204,6 +9636,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-086"
     ],
@@ -9261,6 +9696,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SRC-06"
@@ -9319,6 +9757,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SRC-06"
@@ -9369,6 +9810,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CAT-003",
       "REQ-MPC-FR-085"
@@ -9446,6 +9890,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAID-STUB pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-090",
       "REQ-MPC-FR-095"
@@ -9503,6 +9950,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SRC-05"
@@ -9565,6 +10015,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-099",
       "REQ-MPC-FR-309"
@@ -9623,6 +10076,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-082",
       "REQ-MPC-FR-083"
@@ -9684,6 +10140,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-088"
     ],
@@ -9744,6 +10203,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-098"
     ],
@@ -9796,6 +10258,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06 pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-100"
     ],
@@ -9851,6 +10316,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-ANL-001",
       "REQ-MPC-FR-091"
@@ -9906,6 +10374,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-092"
     ],
@@ -9963,6 +10434,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-096"
     ],
@@ -10020,6 +10494,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAID-STUB pending",
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-097"
     ],
@@ -10071,6 +10548,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SRC-08"
@@ -10122,6 +10602,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": []
   },
@@ -10174,6 +10657,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SRC-07"
@@ -10233,6 +10719,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CHK-001",
       "REQ-MPC-FR-101",
@@ -10309,6 +10798,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CHK-002",
       "REQ-KTDA-CUS-006",
@@ -10399,6 +10891,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-103"
     ],
@@ -10481,6 +10976,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01 pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-110"
     ],
@@ -10541,6 +11039,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-104"
     ],
@@ -10609,6 +11110,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-106"
     ],
@@ -10671,6 +11175,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-113"
     ],
@@ -10736,6 +11243,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-108",
       "REQ-MPC-FR-114"
@@ -10803,6 +11313,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LEG-001",
       "REQ-MPC-FR-107",
@@ -10863,6 +11376,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-122"
     ],
@@ -10922,6 +11438,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-111",
       "REQ-MPC-FR-118"
@@ -10986,6 +11505,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-124"
     ],
@@ -11048,6 +11570,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-112"
     ],
@@ -11107,6 +11632,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-119"
     ],
@@ -11165,6 +11693,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-002"
     ],
@@ -11234,6 +11765,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF, PAID-STUB / PH-INF / PAID-STUB pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-002"
     ],
@@ -11292,6 +11826,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-002"
     ],
@@ -11361,6 +11898,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF, WF-ENG / PH-INF / WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-002"
     ],
@@ -11417,6 +11957,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-WF-006",
       "REQ-MPC-FR-159"
@@ -11488,6 +12031,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PAY-007",
       "REQ-MPC-FR-116",
@@ -11561,6 +12107,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PAY-001",
       "REQ-KTDA-PAY-002",
@@ -11615,6 +12164,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision K-08 pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PAY-003",
       "REQ-KTDA-PAY-007"
@@ -11690,6 +12242,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PAY-004",
       "REQ-MPC-FR-126",
@@ -11761,6 +12316,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PAY-005",
       "REQ-KTDA-INT-002",
@@ -11828,6 +12386,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PAY-006",
       "REQ-KTDA-PAY-008",
@@ -11893,6 +12454,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAY-DIRECT / LIC-01 pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PAY-008"
     ],
@@ -11961,6 +12525,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-131",
       "REQ-MPC-FR-132"
@@ -12031,6 +12598,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, PAY-DIRECT / LIC-01, WAL-01 / FG-06 / PAY-DIRECT / LIC-01 / WAL-01 pending",
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-130"
     ],
@@ -12096,6 +12666,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAY-DIRECT / LIC-01 pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-133"
     ],
@@ -12175,6 +12748,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-134",
       "REQ-MPC-FR-150"
@@ -12230,6 +12806,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-135"
     ],
@@ -12287,6 +12866,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-136"
     ],
@@ -12346,6 +12928,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-137",
       "REQ-MPC-FR-149"
@@ -12413,6 +12998,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-139",
       "REQ-MPC-FR-141",
@@ -12494,6 +13082,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-RET-001",
       "REQ-MPC-FR-140",
@@ -12554,6 +13145,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-142"
     ],
@@ -12623,6 +13217,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-118",
       "REQ-MPC-FR-143",
@@ -12682,6 +13279,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-144"
     ],
@@ -12735,6 +13335,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-TAX-001",
       "REQ-MPC-FR-107"
@@ -12792,6 +13395,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-147",
       "REQ-MPC-FR-303",
@@ -12852,6 +13458,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": "Agri-finance and schemes pack",
     "requirements": [],
     "screens": [
       "SCR-PAY-18"
@@ -12907,6 +13516,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision C-FX pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOC-002"
     ],
@@ -12969,6 +13581,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PAY-007",
       "REQ-MPC-FR-330",
@@ -13040,6 +13655,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-ORD-002",
       "REQ-KTDA-TAX-001"
@@ -13099,6 +13717,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": []
   },
@@ -13153,6 +13774,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": []
   },
@@ -13204,6 +13828,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PAY-004"
     ],
@@ -13253,6 +13880,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-126",
       "REQ-MPC-FR-330",
@@ -13304,6 +13934,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-127",
       "REQ-MPC-FR-330",
@@ -13360,6 +13993,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision KG-04 pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PAY-001",
       "REQ-KTDA-PAY-002"
@@ -13414,6 +14050,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision MG-03 pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-129",
       "REQ-MPC-PAY-001"
@@ -13480,6 +14119,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAID-STUB pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-PAY-05"
@@ -13537,6 +14179,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-112",
       "REQ-MPC-FR-131"
@@ -13604,6 +14249,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PO-REC-v8, PAY-DIRECT / LIC-01 / PO-REC-v8 / PAY-DIRECT / LIC-01 pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-PAY-07"
@@ -13665,6 +14313,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG, PO-REC-v8, PAY-DIRECT / LIC-01 / WF-ENG / PO-REC-v8 / PAY-DIRECT / LIC-01 pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-PAY-06",
@@ -13730,6 +14381,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-156",
       "REQ-MPC-FR-174"
@@ -13813,6 +14467,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-WF-006",
       "REQ-MPC-FR-153"
@@ -13887,6 +14544,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-156",
       "REQ-MPC-FR-175"
@@ -13958,6 +14618,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-154",
       "REQ-MPC-FR-155",
@@ -14026,6 +14689,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-152",
       "REQ-MPC-FR-160",
@@ -14090,6 +14756,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-158"
     ],
@@ -14148,6 +14817,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-172"
     ],
@@ -14199,6 +14871,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-173"
     ],
@@ -14267,6 +14942,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision DOC-LIB pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-ORD-002",
       "REQ-MPC-FR-120",
@@ -14338,6 +15016,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-169"
     ],
@@ -14404,6 +15085,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-046",
       "REQ-MPC-FR-165",
@@ -14482,6 +15166,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-OFR-003"
     ],
@@ -14552,6 +15239,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-OFR-002",
       "REQ-KTDA-OFR-003"
@@ -14617,6 +15307,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision K-01 pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-OFR-001",
       "REQ-KTDA-OFR-002",
@@ -14686,6 +15379,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PRJ-002",
       "REQ-KTDA-WF-001",
@@ -14757,6 +15453,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision DOC-LIB pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PRJ-002",
       "REQ-KTDA-WF-003"
@@ -14824,6 +15523,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision DOC-LIB pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-ORD-06",
@@ -14887,6 +15589,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-ORD-07"
@@ -14936,6 +15641,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-ORD-07"
@@ -14995,6 +15703,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision DOC-LIB pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-ORD-07"
@@ -15050,6 +15761,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": "Best-in-class / specialised",
     "requirements": [],
     "screens": [
       "SCR-ORD-07"
@@ -15115,6 +15829,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision CALLOFF-PLACE, DOC-LIB / CALLOFF-PLACE / DOC-LIB pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PRJ-002",
       "REQ-KTDA-WF-003"
@@ -15175,6 +15892,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-ORD-07"
@@ -15237,6 +15957,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": "Agri-finance and schemes pack",
     "requirements": [],
     "screens": [
       "SCR-ORD-07"
@@ -15297,6 +16020,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF, DOC-LIB / PH-INF / DOC-LIB pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-PAY-006",
       "REQ-KTDA-PAY-009"
@@ -15355,6 +16081,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PH-INF pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-002",
       "REQ-KTDA-LEG-001"
@@ -15410,6 +16139,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": []
   },
@@ -15466,6 +16198,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": []
   },
@@ -15525,6 +16260,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOG-001",
       "REQ-KTDA-LOG-002",
@@ -15604,6 +16342,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOG-001",
       "REQ-MPC-FR-105",
@@ -15675,6 +16416,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-188"
     ],
@@ -15743,6 +16487,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-069",
       "REQ-MPC-FR-197"
@@ -15809,6 +16556,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-182"
     ],
@@ -15869,6 +16619,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-INT-003",
       "REQ-KTDA-LOG-003"
@@ -15934,6 +16687,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-157",
       "REQ-MPC-FR-183"
@@ -16001,6 +16757,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-WF-007",
       "REQ-MPC-FR-161"
@@ -16079,6 +16838,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-WF-005",
       "REQ-MPC-FR-168",
@@ -16142,6 +16904,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-WF-005",
       "REQ-MPC-FR-157"
@@ -16205,6 +16970,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06 pending",
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-176",
       "REQ-MPC-FR-177"
@@ -16277,6 +17045,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-164",
       "REQ-MPC-FR-195"
@@ -16348,6 +17119,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-186",
       "REQ-MPC-FR-193",
@@ -16409,6 +17183,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-194"
     ],
@@ -16467,6 +17244,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-185",
       "REQ-MPC-FR-200"
@@ -16529,6 +17309,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-190",
       "REQ-MPC-FR-191",
@@ -16600,6 +17383,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-167",
       "REQ-MPC-FR-311"
@@ -16661,6 +17447,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAID-STUB pending",
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-196"
     ],
@@ -16717,6 +17506,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": "Best-in-class / specialised",
     "requirements": [],
     "screens": []
   },
@@ -16771,6 +17563,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-163",
       "REQ-MPC-FR-205"
@@ -16845,6 +17640,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-INT-003",
       "REQ-KTDA-LOG-003",
@@ -16908,6 +17706,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06 pending",
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-178"
     ],
@@ -16969,6 +17770,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06 pending",
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-192"
     ],
@@ -17029,6 +17833,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06 pending",
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-179"
     ],
@@ -17087,6 +17894,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOG-003"
     ],
@@ -17142,6 +17952,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOG-003"
     ],
@@ -17197,6 +18010,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOG-003"
     ],
@@ -17252,6 +18068,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOG-003"
     ],
@@ -17307,6 +18126,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOG-003"
     ],
@@ -17359,6 +18181,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LOG-003"
     ],
@@ -17412,6 +18237,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-180"
     ],
@@ -17474,6 +18302,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, PAID-STUB / FG-06 / PAID-STUB pending",
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-187"
     ],
@@ -17546,6 +18377,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-ORD-001",
       "REQ-MPC-FR-201",
@@ -17633,6 +18467,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-INT-003",
       "REQ-KTDA-LOG-003",
@@ -17709,6 +18546,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06 pending",
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-204",
       "REQ-MPC-FR-224"
@@ -17774,6 +18614,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-212",
       "REQ-MPC-FR-310"
@@ -17858,6 +18701,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-159",
       "REQ-MPC-FR-212",
@@ -17942,6 +18788,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-009",
       "REQ-MPC-FR-210",
@@ -18009,6 +18858,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-213",
       "REQ-MPC-FR-215"
@@ -18063,6 +18915,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-TRK-03"
@@ -18120,6 +18975,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-223",
       "REQ-MPC-FR-267"
@@ -18176,6 +19034,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-218",
       "REQ-MPC-ORD-001"
@@ -18234,6 +19095,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-201"
     ],
@@ -18302,6 +19166,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-202",
       "REQ-MPC-FR-206",
@@ -18382,6 +19249,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-RET-001",
       "REQ-MPC-FR-226",
@@ -18454,6 +19324,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-237"
     ],
@@ -18523,6 +19396,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision T-MISS pending",
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-189",
       "REQ-MPC-FR-228",
@@ -18591,6 +19467,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-250"
     ],
@@ -18667,6 +19546,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-232",
       "REQ-MPC-FR-233"
@@ -18729,6 +19611,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-238"
     ],
@@ -18819,6 +19704,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-231",
       "REQ-MPC-FR-234",
@@ -18900,6 +19788,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-241",
       "REQ-MPC-FR-242",
@@ -18962,6 +19853,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-248",
       "REQ-MPC-FR-249"
@@ -19027,6 +19921,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-230"
     ],
@@ -19093,6 +19990,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-236"
     ],
@@ -19181,6 +20081,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-251",
       "REQ-MPC-FR-252",
@@ -19271,6 +20174,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-253",
       "REQ-MPC-FR-260"
@@ -19340,6 +20246,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-022",
       "REQ-MPC-FR-211",
@@ -19418,6 +20327,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG, T-MISS / WF-ENG / T-MISS pending",
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-269",
       "REQ-MPC-FR-270"
@@ -19482,6 +20394,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-261",
       "REQ-MPC-FR-262"
@@ -19547,6 +20462,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-268",
       "REQ-MPC-FR-272",
@@ -19618,6 +20536,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-255",
       "REQ-MPC-FR-256",
@@ -19687,6 +20608,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CHT-001"
     ],
@@ -19750,6 +20674,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-251"
     ],
@@ -19811,6 +20738,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-266"
     ],
@@ -19872,6 +20802,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-REV-002",
       "REQ-KTDA-REV-003",
@@ -19927,6 +20860,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CRM-04",
@@ -19980,6 +20916,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": "Best-in-class / specialised",
     "requirements": [],
     "screens": [
       "SCR-CRM-04"
@@ -20051,6 +20990,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-257",
       "REQ-MPC-FR-258",
@@ -20116,6 +21058,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Fulfilment & Customer Service",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CRM-03",
@@ -20189,6 +21134,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-MKT-003",
       "REQ-KTDA-MKT-006",
@@ -20262,6 +21210,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-MKT-002"
     ],
@@ -20323,6 +21274,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-MKT-002"
     ],
@@ -20389,6 +21343,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-109"
     ],
@@ -20462,6 +21419,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-MKT-004"
     ],
@@ -20528,6 +21488,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-MKT-005"
     ],
@@ -20597,6 +21560,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LEG-002",
       "REQ-KTDA-CNT-001",
@@ -20678,6 +21644,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LEG-002",
       "REQ-MPC-FR-306",
@@ -20743,6 +21712,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-SEO-001",
       "REQ-KTDA-SEO-002",
@@ -20811,6 +21783,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-MKT-001",
       "REQ-KTDA-ANL-006",
@@ -20872,6 +21847,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-316"
     ],
@@ -20937,6 +21915,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": []
   },
@@ -20996,6 +21977,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-MKT-04",
@@ -21056,6 +22040,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-061"
     ],
@@ -21129,6 +22116,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-ANL-001",
       "REQ-KTDA-ANL-002",
@@ -21208,6 +22198,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAID-STUB pending",
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-276",
       "REQ-MPC-FR-288",
@@ -21285,6 +22278,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-ANL-007",
       "REQ-MPC-FR-275",
@@ -21357,6 +22353,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-284",
       "REQ-MPC-FR-285",
@@ -21417,6 +22416,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-283"
     ],
@@ -21474,6 +22476,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-287",
       "REQ-MPC-FR-292"
@@ -21530,6 +22535,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": "Best-in-class / specialised",
     "requirements": [],
     "screens": [
       "SCR-RPT-08",
@@ -21588,6 +22596,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAID-STUB pending",
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-RPT-06"
@@ -21640,6 +22651,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-RPT-07"
@@ -21705,6 +22719,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAID-STUB pending",
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-277",
       "REQ-MPC-FR-278",
@@ -21786,6 +22803,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAID-STUB pending",
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-ANL-003",
       "REQ-KTDA-ANL-004",
@@ -21848,6 +22868,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, PAID-STUB / FG-06 / PAID-STUB pending",
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-281",
       "REQ-MPC-FR-295"
@@ -21932,6 +22955,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-301"
     ],
@@ -22024,6 +23050,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-WF-004",
       "REQ-KTDA-WF-005",
@@ -22099,6 +23128,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-ADM-04"
@@ -22162,6 +23194,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-ADM-05"
@@ -22227,6 +23262,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-ADM-06",
@@ -22310,6 +23348,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision WF-ENG pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-WF-004",
       "REQ-MPC-FR-039",
@@ -22386,6 +23427,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-162"
     ],
@@ -22454,6 +23498,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-324"
     ],
@@ -22516,6 +23563,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-ADM-10"
@@ -22570,6 +23620,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-ADM-11"
@@ -22634,6 +23687,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-ADM-12"
@@ -22690,6 +23746,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Platform & Administration",
+    "capabilityType": "Best-in-class / specialised",
     "requirements": [],
     "screens": [
       "SCR-ADM-12"
@@ -22773,6 +23832,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision DOC-LIB pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-DOC-01",
@@ -22849,6 +23911,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-DOC-03",
@@ -22912,6 +23977,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-DOC-03",
@@ -22972,6 +24040,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-DOC-04"
@@ -23041,6 +24112,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-DOC-05"
@@ -23103,6 +24177,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision DOC-LIB pending",
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CUS-002",
       "REQ-KTDA-LEG-001"
@@ -23178,6 +24255,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-SEC-002",
       "REQ-MPC-FR-148",
@@ -23251,6 +24331,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-HST-001",
       "REQ-KTDA-SEC-002",
@@ -23310,6 +24393,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-SEC-001",
       "REQ-MPC-FR-129",
@@ -23407,6 +24493,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-039",
       "REQ-MPC-FR-287",
@@ -23467,6 +24556,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SEC-08"
@@ -23521,6 +24613,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision DP-01 pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SEC-06"
@@ -23595,6 +24690,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LEG-001",
       "REQ-KTDA-ANL-008",
@@ -23665,6 +24763,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SEC-05"
@@ -23719,6 +24820,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SEC-08"
@@ -23777,6 +24881,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SEC-02",
@@ -23836,6 +24943,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": []
   },
@@ -23902,6 +25012,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-LEG-001",
       "REQ-KTDA-ANL-008"
@@ -23961,6 +25074,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SEC-09"
@@ -24025,6 +25141,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision DP-01 pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SEC-07"
@@ -24075,6 +25194,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SEC-08"
@@ -24171,6 +25293,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision API-01, PAID-STUB, API-GW / API-01 / PAID-STUB / API-GW pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-INT-001",
       "REQ-KTDA-INT-002",
@@ -24262,6 +25387,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision API-GW pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-314",
       "REQ-MPC-FR-321",
@@ -24349,6 +25477,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-166",
       "REQ-MPC-FR-217",
@@ -24421,6 +25552,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-342"
     ],
@@ -24506,6 +25640,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PAID-STUB pending",
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-INT-001"
     ],
@@ -24568,6 +25705,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-138",
       "REQ-MPC-FR-328"
@@ -24634,6 +25774,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-166",
       "REQ-MPC-FR-221",
@@ -24694,6 +25837,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-INT-002"
     ],
@@ -24754,6 +25900,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-343",
       "REQ-MPC-INT-001"
@@ -24818,6 +25967,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-349"
     ],
@@ -24880,6 +26032,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-NFR-001",
       "REQ-MPC-INT-001",
@@ -24944,6 +26099,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Platform & Administration",
+    "capabilityType": "Best-in-class / specialised",
     "requirements": [],
     "screens": [
       "SCR-INT-04"
@@ -24997,6 +26155,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision MG-09 pending",
+    "priority": "Could Have",
+    "category": "Platform & Administration",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-INT-001"
     ],
@@ -25061,6 +26222,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision M-19, PAID-STUB / M-19 / PAID-STUB pending",
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-MOB-001",
       "REQ-MPC-MOB-002"
@@ -25129,6 +26293,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-019"
     ],
@@ -25200,6 +26367,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-INT-002"
     ],
@@ -25260,6 +26430,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CHN-05",
@@ -25338,6 +26511,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CHN-04"
@@ -25412,6 +26588,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CHT-001"
     ],
@@ -25474,6 +26653,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-KTDA-CHT-001"
     ],
@@ -25527,6 +26709,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": "Best-in-class / specialised",
     "requirements": [],
     "screens": [
       "SCR-CHN-02",
@@ -25588,6 +26773,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CHN-08"
@@ -25654,6 +26842,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06 pending",
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CHN-12"
@@ -25706,6 +26897,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-INT-003"
     ],
@@ -25775,6 +26969,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CHN-02",
@@ -25836,6 +27033,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-CHN-02",
@@ -25901,6 +27101,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": "AI pack",
     "requirements": [],
     "screens": [
       "SCR-AI-02",
@@ -25973,6 +27176,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": "AI pack",
     "requirements": [],
     "screens": [
       "SCR-AI-02"
@@ -26054,6 +27260,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-256",
       "REQ-MPC-CHT-001"
@@ -26112,6 +27321,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": "AI pack",
     "requirements": [],
     "screens": [
       "SCR-AI-07"
@@ -26172,6 +27384,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-AI-06"
@@ -26226,6 +27441,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": "AI pack",
     "requirements": [],
     "screens": [
       "SCR-AI-08"
@@ -26285,6 +27503,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": "AI pack",
     "requirements": [],
     "screens": []
   },
@@ -26337,6 +27558,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": "AI pack",
     "requirements": [],
     "screens": []
   },
@@ -26386,6 +27610,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Could Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": "AI pack",
     "requirements": [],
     "screens": [
       "SCR-AI-07"
@@ -26453,6 +27680,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Channels, Reporting & AI",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-AI-01",
@@ -26540,6 +27770,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Vertical Packs",
+    "capabilityType": "Agri-finance and schemes pack",
     "requirements": [],
     "screens": [
       "SCR-FIN-01",
@@ -26611,6 +27844,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Vertical Packs",
+    "capabilityType": "Agri-finance and schemes pack",
     "requirements": [],
     "screens": [
       "SCR-FIN-01",
@@ -26683,6 +27919,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Vertical Packs",
+    "capabilityType": "Agri-finance and schemes pack",
     "requirements": [],
     "screens": [
       "SCR-FIN-02",
@@ -26755,6 +27994,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Vertical Packs",
+    "capabilityType": "Agri-finance and schemes pack",
     "requirements": [],
     "screens": [
       "SCR-FIN-06"
@@ -26830,6 +28072,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+    "priority": "Could Have",
+    "category": "Vertical Packs",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-336"
     ],
@@ -26907,6 +28152,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+    "priority": "Must Have",
+    "category": "Vertical Packs",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-089",
       "REQ-MPC-FR-307"
@@ -27003,6 +28251,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, WF-ENG, T-MISS / FG-06 / WF-ENG / T-MISS pending",
+    "priority": "Must Have",
+    "category": "Vertical Packs",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-307",
       "REQ-MPC-FR-332",
@@ -27077,6 +28328,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+    "priority": "Could Have",
+    "category": "Vertical Packs",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-334"
     ],
@@ -27147,6 +28401,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+    "priority": "Must Have",
+    "category": "Vertical Packs",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-335"
     ],
@@ -27221,6 +28478,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+    "priority": "Must Have",
+    "category": "Vertical Packs",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-146",
       "REQ-MPC-FR-331"
@@ -27288,6 +28548,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+    "priority": "Should Have",
+    "category": "Vertical Packs",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-307",
       "REQ-MPC-FR-345"
@@ -27357,6 +28620,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, WF-ENG, T-MISS / FG-06 / WF-ENG / T-MISS pending",
+    "priority": "Should Have",
+    "category": "Vertical Packs",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-350"
     ],
@@ -27432,6 +28698,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PO-REC-v8 pending",
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SVC-01"
@@ -27503,6 +28772,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SVC-03"
@@ -27581,6 +28853,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, PO-REC-v8 / FG-06 / PO-REC-v8 pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SVC-02",
@@ -27661,6 +28936,9 @@
     ],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, PO-REC-v8 / FG-06 / PO-REC-v8 pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SVC-01",
@@ -27743,6 +29021,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-074",
       "REQ-MPC-FR-100",
@@ -27809,6 +29090,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PO-REC-v8 pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SVC-01"
@@ -27876,6 +29160,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PO-REC-v8 pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SVC-02"
@@ -27937,6 +29224,9 @@
     ],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Must Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": []
   },
@@ -28005,6 +29295,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PO-REC-v8 pending",
+    "priority": "Could Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SVC-02",
@@ -28071,6 +29364,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision PO-REC-v8 pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": []
   },
@@ -28134,6 +29430,9 @@
     "readinessConditions": [],
     "held": false,
     "prototypeDefaultLabel": null,
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [
       "REQ-MPC-FR-165",
       "REQ-MPC-FR-311"
@@ -28198,6 +29497,9 @@
     "readinessConditions": [],
     "held": true,
     "prototypeDefaultLabel": "Prototype default — decision FG-06, PO-REC-v8 / FG-06 / PO-REC-v8 pending",
+    "priority": "Should Have",
+    "category": "Commerce",
+    "capabilityType": null,
     "requirements": [],
     "screens": [
       "SCR-SVC-03",

@@ -30,6 +30,9 @@ const L1 = read('prd/01-product-prd.md');
 const CLIENT = read('client/Client-PRD.md');
 const COMPLIANCE = read('compliance/Compliance-Traceability.md');
 const REGISTER = read('register/Decisions-Gaps-Register.md');
+const ROADMAP = (() => {
+  try { return read('roadmap/priority-and-category.md'); } catch { return ''; }
+})();
 const MODULE_FILES = readdirSync(join(DOCS, 'prd/modules')).filter((f) => f.endsWith('.md')).sort();
 const MODULES = Object.fromEntries(MODULE_FILES.map((f) => [f.slice(4, -3), read(`prd/modules/${f}`)]));
 
@@ -599,6 +602,47 @@ function buildLicensed() {
   return (t ? t.rows : []).filter((r) => r._cells && r._cells[0]).map((r) => Object.fromEntries(t.headers.map((h, i) => [h, r._cells[i] || ''])));
 }
 
+// ------------------------------------------------------------- roadmap ------
+// The Product Feature List workbook adds three fields on top of the backlog: the MoSCoW
+// priority, the category grouping of the 24 modules, and the Phase 3 capability type.
+// docs/roadmap/priority-and-category.md carries them, plus its change log from the 4.90 edition.
+function buildRoadmap() {
+  if (!ROADMAP) return { priority: {}, category: {}, capabilityType: {}, changes: [] };
+  const tables = parseTables(ROADMAP);
+  const priority = {};
+  const category = {};
+  const capabilityType = {};
+  const changes = [];
+  for (const t of tables) {
+    if (t.headers.includes('Priority') && t.headers.includes('Category')) {
+      for (const r of t.rows) {
+        if (!/^PRD-/.test(r.Feature || '')) continue;
+        priority[r.Feature] = r.Priority;
+        category[r.Feature] = r.Category;
+      }
+    }
+    if (t.headers.includes('Capability type')) {
+      for (const r of t.rows) {
+        if (/^PRD-/.test(r.Feature || '')) capabilityType[r.Feature] = r['Capability type'];
+      }
+    }
+    if (t.headers.includes('Field') && t.headers.includes('Reason')) {
+      for (const r of t.rows) {
+        if (!/^PRD-/.test(r.Feature || '')) continue;
+        changes.push({
+          feature: r.Feature,
+          name: r.Name,
+          field: r.Field,
+          oldValue: r['Old value (4.90)'],
+          newValue: r['New value (5.00)'],
+          reason: r.Reason,
+        });
+      }
+    }
+  }
+  return { priority, category, capabilityType, changes };
+}
+
 // ----------------------------------------------------------------- main -----
 const areas = buildAreas();
 const { features, stories, criteria } = buildFeatures(areas);
@@ -610,6 +654,7 @@ const { decisions, gaps } = buildDecisions();
 const requirements = buildRequirements();
 const packs = buildPacks();
 const journeys = buildJourneys();
+const roadmap = buildRoadmap();
 
 // hold / readiness flags onto the features (P-1: build the Proposed option, label the decision)
 const heldBy = {};
@@ -624,6 +669,14 @@ for (const f of features) {
     ? `Prototype default — decision ${f.heldBy.join(' / ')} pending`
     : null;
 }
+// roadmap fields onto the features (MoSCoW priority, category, Phase 3 capability type)
+for (const f of features) {
+  f.priority = roadmap.priority[f.id] ?? null;
+  f.category = roadmap.category[f.id] ?? null;
+  f.capabilityType = roadmap.capabilityType[f.id] ?? null;
+  if (roadmap.priority[f.id] === undefined && ROADMAP) warn(`no roadmap priority for ${f.id}`);
+}
+
 // requirement coverage onto the features
 const reqByFeature = {};
 for (const r of requirements) for (const f of r.features) (reqByFeature[f] ||= []).push(r.id);
@@ -663,6 +716,10 @@ const meta = {
     audits: audits.length,
     actors: actors.length,
     permissions: permissions.length,
+    mustHave: features.filter((f) => f.priority === 'Must Have').length,
+    shouldHave: features.filter((f) => f.priority === 'Should Have').length,
+    couldHave: features.filter((f) => f.priority === 'Could Have').length,
+    roadmapChanges: roadmap.changes.length,
   },
 };
 
@@ -700,6 +757,7 @@ write('contracts.json', contracts);
 write('audit-events.json', audits);
 write('actors.json', actors);
 write('permissions.json', permissions);
+write('roadmap-changes.json', roadmap.changes);
 
 if (warnings.length) {
   console.log(`\n${warnings.length} warning(s):`);
