@@ -75,6 +75,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 4,
     "requirements": [
       "REQ-KTDA-ENV-001"
     ],
@@ -138,6 +139,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 5,
     "requirements": [],
     "screens": []
   },
@@ -228,6 +230,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 6,
     "requirements": [],
     "screens": [
       "SCR-PLT-01"
@@ -320,6 +323,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 7,
     "requirements": [
       "REQ-MPC-FR-287",
       "REQ-MPC-FR-300",
@@ -397,6 +401,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 8,
     "requirements": [
       "REQ-MPC-FR-317"
     ],
@@ -457,6 +462,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 9,
     "requirements": [
       "REQ-KTDA-UX-002"
     ],
@@ -511,6 +517,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 10,
     "requirements": [],
     "screens": [
       "SCR-PLT-05"
@@ -568,6 +575,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 11,
     "requirements": [],
     "screens": [
       "SCR-PLT-05"
@@ -627,6 +635,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 12,
     "requirements": [
       "REQ-KTDA-LOC-001",
       "REQ-MPC-FR-023"
@@ -690,6 +699,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 13,
     "requirements": [
       "REQ-KTDA-LOC-002",
       "REQ-MPC-FR-023"
@@ -744,6 +754,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 14,
     "requirements": [
       "REQ-MPC-FR-023"
     ],
@@ -800,6 +811,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 15,
     "requirements": [],
     "screens": [
       "SCR-PLT-06"
@@ -857,6 +869,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 16,
     "requirements": [
       "REQ-KTDA-PRJ-002",
       "REQ-KTDA-CUS-002",
@@ -922,6 +935,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 17,
     "requirements": [
       "REQ-MPC-FR-290",
       "REQ-MPC-FR-299"
@@ -984,6 +998,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 18,
     "requirements": [
       "REQ-KTDA-NFR-001",
       "REQ-KTDA-HST-001",
@@ -1049,6 +1064,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 19,
     "requirements": [
       "REQ-MPC-FR-297",
       "REQ-MPC-NFR-001",
@@ -1108,6 +1124,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 20,
     "requirements": [
       "REQ-KTDA-UX-001",
       "REQ-MPC-UX-001",
@@ -1167,6 +1184,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 21,
     "requirements": [],
     "screens": [
       "SCR-PLT-10"
@@ -1223,6 +1241,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 22,
     "requirements": [
       "REQ-MPC-FR-325"
     ],
@@ -1295,6 +1314,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 23,
     "requirements": [
       "REQ-MPC-FR-225",
       "REQ-MPC-FR-322"
@@ -1361,6 +1381,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 24,
     "requirements": [],
     "screens": [
       "SCR-PLT-08"
@@ -1423,6 +1444,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 25,
     "requirements": [],
     "screens": [
       "SCR-PLT-04"
@@ -1484,6 +1506,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 26,
     "requirements": [],
     "screens": [
       "SCR-PLT-08"
@@ -1537,6 +1560,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 27,
     "requirements": [
       "REQ-KTDA-LOC-002"
     ],
@@ -1603,6 +1627,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 28,
     "requirements": [
       "REQ-KTDA-LOC-001"
     ],
@@ -1659,6 +1684,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 29,
     "requirements": [
       "REQ-MPC-HST-002"
     ],
@@ -1718,6 +1744,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 30,
     "requirements": [],
     "screens": []
   },
@@ -1790,6 +1817,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 34,
     "requirements": [
       "REQ-KTDA-CUS-003",
       "REQ-KTDA-CUS-004",
@@ -1887,6 +1915,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 35,
     "requirements": [
       "REQ-MPC-FR-001",
       "REQ-MPC-FR-002",
@@ -1964,6 +1993,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 36,
     "requirements": [
       "REQ-MPC-FR-003",
       "REQ-MPC-FR-021"
@@ -2034,6 +2064,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 37,
     "requirements": [
       "REQ-MPC-FR-002",
       "REQ-MPC-FR-012",
@@ -2104,6 +2135,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 38,
     "requirements": [],
     "screens": []
   },
@@ -2168,6 +2200,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 39,
     "requirements": [
       "REQ-MPC-FR-013"
     ],
@@ -2248,6 +2281,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 40,
     "requirements": [
       "REQ-KTDA-PRJ-001",
       "REQ-KTDA-CUS-001",
@@ -2318,6 +2352,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 41,
     "requirements": [
       "REQ-KTDA-PRJ-001"
     ],
@@ -2383,6 +2418,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 42,
     "requirements": [],
     "screens": [
       "SCR-IAM-13"
@@ -2458,6 +2494,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 43,
     "requirements": [
       "REQ-MPC-FR-016",
       "REQ-MPC-FR-024"
@@ -2526,6 +2563,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 44,
     "requirements": [
       "REQ-MPC-FR-298"
     ],
@@ -2595,6 +2633,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 45,
     "requirements": [
       "REQ-MPC-FR-015"
     ],
@@ -2652,6 +2691,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 46,
     "requirements": [],
     "screens": [
       "SCR-IAM-02",
@@ -2711,6 +2751,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 47,
     "requirements": [
       "REQ-KTDA-CUS-005",
       "REQ-MPC-FR-004",
@@ -2773,6 +2814,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 48,
     "requirements": [
       "REQ-MPC-FR-004",
       "REQ-MPC-FR-005"
@@ -2844,6 +2886,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 49,
     "requirements": [
       "REQ-MPC-FR-006",
       "REQ-MPC-FR-022"
@@ -2927,6 +2970,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 50,
     "requirements": [
       "REQ-KTDA-LEG-001",
       "REQ-KTDA-ANL-008",
@@ -2995,6 +3039,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 51,
     "requirements": [
       "REQ-MPC-FR-008"
     ],
@@ -3054,6 +3099,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 52,
     "requirements": [
       "REQ-MPC-FR-020"
     ],
@@ -3117,6 +3163,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 53,
     "requirements": [
       "REQ-MPC-FR-344"
     ],
@@ -3180,6 +3227,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 54,
     "requirements": [
       "REQ-KTDA-CUS-005",
       "REQ-MPC-FR-007",
@@ -3249,6 +3297,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 55,
     "requirements": [
       "REQ-KTDA-CUS-002"
     ],
@@ -3314,6 +3363,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 56,
     "requirements": [
       "REQ-KTDA-CUS-002"
     ],
@@ -3375,6 +3425,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 57,
     "requirements": [
       "REQ-KTDA-CUS-002",
       "REQ-KTDA-TAX-001"
@@ -3431,6 +3482,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 58,
     "requirements": [],
     "screens": [
       "SCR-IAM-07"
@@ -3504,6 +3556,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 59,
     "requirements": [
       "REQ-MPC-FR-014",
       "REQ-MPC-FR-025"
@@ -3567,6 +3620,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 60,
     "requirements": [],
     "screens": [
       "SCR-IAM-08"
@@ -3635,6 +3689,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 64,
     "requirements": [
       "REQ-MPC-FR-026"
     ],
@@ -3715,6 +3770,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 65,
     "requirements": [
       "REQ-MPC-FR-027",
       "REQ-MPC-FR-036"
@@ -3807,6 +3863,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 66,
     "requirements": [
       "REQ-MPC-FR-028",
       "REQ-MPC-FR-029",
@@ -3883,6 +3940,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 67,
     "requirements": [
       "REQ-MPC-FR-047"
     ],
@@ -3959,6 +4017,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 68,
     "requirements": [
       "REQ-MPC-FR-031",
       "REQ-MPC-FR-039"
@@ -4024,6 +4083,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 69,
     "requirements": [
       "REQ-MPC-FR-030"
     ],
@@ -4092,6 +4152,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 70,
     "requirements": [
       "REQ-MPC-FR-033",
       "REQ-MPC-FR-046"
@@ -4150,6 +4211,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 71,
     "requirements": [
       "REQ-MPC-FR-034"
     ],
@@ -4215,6 +4277,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 72,
     "requirements": [
       "REQ-MPC-FR-038"
     ],
@@ -4272,6 +4335,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 73,
     "requirements": [],
     "screens": [
       "SCR-SEL-09"
@@ -4335,6 +4399,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 74,
     "requirements": [
       "REQ-MPC-FR-037",
       "REQ-MPC-FR-046"
@@ -4400,6 +4465,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 75,
     "requirements": [
       "REQ-MPC-FR-050"
     ],
@@ -4472,6 +4538,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 76,
     "requirements": [
       "REQ-MPC-FR-118",
       "REQ-MPC-FR-323"
@@ -4532,6 +4599,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 77,
     "requirements": [],
     "screens": [
       "SCR-SEL-17"
@@ -4591,6 +4659,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 78,
     "requirements": [],
     "screens": [
       "SCR-SEL-18"
@@ -4656,6 +4725,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 79,
     "requirements": [
       "REQ-MPC-FR-043",
       "REQ-MPC-FR-303"
@@ -4745,6 +4815,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 80,
     "requirements": [
       "REQ-MPC-FR-042",
       "REQ-MPC-FR-145"
@@ -4808,6 +4879,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 81,
     "requirements": [
       "REQ-MPC-FR-032",
       "REQ-MPC-FR-044"
@@ -4873,6 +4945,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 82,
     "requirements": [
       "REQ-MPC-FR-049"
     ],
@@ -4935,6 +5008,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 83,
     "requirements": [
       "REQ-MPC-FR-045"
     ],
@@ -4991,6 +5065,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 84,
     "requirements": [
       "REQ-MPC-FR-048"
     ],
@@ -5047,6 +5122,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": "Best-in-class / specialised",
+    "roadmapRow": 85,
     "requirements": [],
     "screens": [
       "SCR-SEL-14"
@@ -5103,6 +5179,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 86,
     "requirements": [
       "REQ-MPC-FR-035",
       "REQ-MPC-FR-325"
@@ -5171,6 +5248,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 87,
     "requirements": [
       "REQ-MPC-FR-041"
     ],
@@ -5249,6 +5327,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 88,
     "requirements": [],
     "screens": [
       "SCR-SEL-13"
@@ -5314,6 +5393,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 92,
     "requirements": [
       "REQ-KTDA-CAT-001",
       "REQ-MPC-FR-052"
@@ -5396,6 +5476,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 93,
     "requirements": [
       "REQ-KTDA-CAT-001",
       "REQ-MPC-FR-051",
@@ -5460,6 +5541,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 94,
     "requirements": [
       "REQ-MPC-FR-064"
     ],
@@ -5519,6 +5601,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 95,
     "requirements": [
       "REQ-KTDA-SRC-002",
       "REQ-MPC-FR-057"
@@ -5590,6 +5673,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 96,
     "requirements": [
       "REQ-MPC-FR-071",
       "REQ-MPC-FR-309"
@@ -5651,6 +5735,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 97,
     "requirements": [
       "REQ-MPC-FR-053"
     ],
@@ -5712,6 +5797,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 98,
     "requirements": [
       "REQ-MPC-FR-065"
     ],
@@ -5774,6 +5860,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 99,
     "requirements": [],
     "screens": [
       "SCR-CAT-05",
@@ -5843,6 +5930,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 100,
     "requirements": [
       "REQ-MPC-FR-054"
     ],
@@ -5904,6 +5992,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 101,
     "requirements": [
       "REQ-MPC-FR-054"
     ],
@@ -5976,6 +6065,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 102,
     "requirements": [
       "REQ-MPC-FR-072"
     ],
@@ -6037,6 +6127,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 103,
     "requirements": [
       "REQ-KTDA-PRJ-002",
       "REQ-MPC-FR-061"
@@ -6103,6 +6194,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 104,
     "requirements": [],
     "screens": [
       "SCR-CAT-02",
@@ -6157,6 +6249,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 105,
     "requirements": [
       "REQ-KTDA-TAX-001"
     ],
@@ -6216,6 +6309,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 106,
     "requirements": [
       "REQ-KTDA-CUS-002",
       "REQ-KTDA-LEG-001",
@@ -6284,6 +6378,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 107,
     "requirements": [
       "REQ-KTDA-CNT-001",
       "REQ-MPC-FR-060"
@@ -6344,6 +6439,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 108,
     "requirements": [
       "REQ-KTDA-LOC-001"
     ],
@@ -6407,6 +6503,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 109,
     "requirements": [],
     "screens": [
       "SCR-CAT-02",
@@ -6472,6 +6569,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 110,
     "requirements": [],
     "screens": [
       "SCR-CAT-05",
@@ -6530,6 +6628,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 111,
     "requirements": [
       "REQ-KTDA-CNT-001"
     ],
@@ -6601,6 +6700,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 112,
     "requirements": [
       "REQ-MPC-FR-059",
       "REQ-MPC-FR-073",
@@ -6701,6 +6801,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 113,
     "requirements": [
       "REQ-MPC-FR-319"
     ],
@@ -6767,6 +6868,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 114,
     "requirements": [
       "REQ-MPC-FR-064"
     ],
@@ -6832,6 +6934,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 115,
     "requirements": [
       "REQ-MPC-FR-056"
     ],
@@ -6888,6 +6991,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 116,
     "requirements": [],
     "screens": [
       "SCR-CAT-05"
@@ -6949,6 +7053,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 117,
     "requirements": [
       "REQ-MPC-FR-074",
       "REQ-MPC-FR-100"
@@ -7028,6 +7133,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 118,
     "requirements": [],
     "screens": [
       "SCR-CAT-02",
@@ -7084,6 +7190,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 119,
     "requirements": [],
     "screens": [
       "SCR-CAT-02",
@@ -7146,6 +7253,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 120,
     "requirements": [
       "REQ-KTDA-REV-001",
       "REQ-MPC-FR-075"
@@ -7203,6 +7311,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 121,
     "requirements": [
       "REQ-MPC-FR-067"
     ],
@@ -7271,6 +7380,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 122,
     "requirements": [
       "REQ-MPC-FR-068",
       "REQ-MPC-FR-088",
@@ -7333,6 +7443,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 123,
     "requirements": [],
     "screens": [
       "SCR-CAT-05"
@@ -7393,6 +7504,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 124,
     "requirements": [
       "REQ-MPC-FR-070"
     ],
@@ -7457,6 +7569,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 125,
     "requirements": [
       "REQ-MPC-FR-066",
       "REQ-MPC-FR-091"
@@ -7515,6 +7628,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 126,
     "requirements": [],
     "screens": [
       "SCR-CAT-05",
@@ -7570,6 +7684,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 127,
     "requirements": [
       "REQ-KTDA-PRJ-002",
       "REQ-KTDA-CAT-002"
@@ -7632,6 +7747,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 128,
     "requirements": [],
     "screens": [
       "SCR-CAT-05"
@@ -7687,6 +7803,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 129,
     "requirements": [
       "REQ-MPC-FR-051"
     ],
@@ -7768,6 +7885,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 130,
     "requirements": [
       "REQ-KTDA-PRJ-002"
     ],
@@ -7831,6 +7949,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 131,
     "requirements": [],
     "screens": [
       "SCR-CAT-05",
@@ -7892,6 +8011,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 132,
     "requirements": [
       "REQ-KTDA-PRJ-002"
     ],
@@ -7975,6 +8095,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 133,
     "requirements": [
       "REQ-KTDA-LOC-002"
     ],
@@ -8043,6 +8164,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 134,
     "requirements": [
       "REQ-MPC-FR-058",
       "REQ-MPC-FR-319"
@@ -8119,6 +8241,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 138,
     "requirements": [
       "REQ-KTDA-INV-001",
       "REQ-KTDA-INV-002",
@@ -8188,6 +8311,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 139,
     "requirements": [
       "REQ-KTDA-INV-001"
     ],
@@ -8254,6 +8378,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 140,
     "requirements": [
       "REQ-KTDA-INV-001",
       "REQ-MPC-FR-055"
@@ -8348,6 +8473,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 141,
     "requirements": [],
     "screens": [
       "SCR-INV-01",
@@ -8428,6 +8554,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 142,
     "requirements": [
       "REQ-KTDA-INV-001"
     ],
@@ -8502,6 +8629,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 143,
     "requirements": [
       "REQ-KTDA-INV-001"
     ],
@@ -8566,6 +8694,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 144,
     "requirements": [],
     "screens": [
       "SCR-INV-10"
@@ -8630,6 +8759,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 145,
     "requirements": [],
     "screens": [
       "SCR-INV-10"
@@ -8702,6 +8832,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 146,
     "requirements": [],
     "screens": [
       "SCR-INV-11",
@@ -8765,6 +8896,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 147,
     "requirements": [],
     "screens": [
       "SCR-INV-12",
@@ -8830,6 +8962,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 148,
     "requirements": [],
     "screens": [
       "SCR-INV-11",
@@ -8900,6 +9033,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 149,
     "requirements": [
       "REQ-KTDA-INT-001"
     ],
@@ -8967,6 +9101,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 150,
     "requirements": [
       "REQ-KTDA-ANL-002"
     ],
@@ -9051,6 +9186,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 154,
     "requirements": [
       "REQ-KTDA-SRC-001",
       "REQ-MPC-FR-076",
@@ -9112,6 +9248,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 155,
     "requirements": [
       "REQ-KTDA-SRC-001",
       "REQ-MPC-FR-079"
@@ -9187,6 +9324,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 156,
     "requirements": [
       "REQ-KTDA-SRC-002",
       "REQ-MPC-FR-077",
@@ -9254,6 +9392,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 157,
     "requirements": [
       "REQ-MPC-FR-077",
       "REQ-MPC-FR-084"
@@ -9318,6 +9457,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 158,
     "requirements": [
       "REQ-MPC-FR-078"
     ],
@@ -9378,6 +9518,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 159,
     "requirements": [
       "REQ-KTDA-SRC-001",
       "REQ-MPC-FR-080",
@@ -9445,6 +9586,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 160,
     "requirements": [
       "REQ-KTDA-SRC-001",
       "REQ-MPC-FR-082",
@@ -9510,6 +9652,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 161,
     "requirements": [
       "REQ-MPC-FR-087"
     ],
@@ -9580,6 +9723,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 162,
     "requirements": [
       "REQ-MPC-FR-081"
     ],
@@ -9639,6 +9783,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 163,
     "requirements": [
       "REQ-MPC-FR-086"
     ],
@@ -9699,6 +9844,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 164,
     "requirements": [],
     "screens": [
       "SCR-SRC-06"
@@ -9760,6 +9906,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 165,
     "requirements": [],
     "screens": [
       "SCR-SRC-06"
@@ -9813,6 +9960,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 166,
     "requirements": [
       "REQ-KTDA-CAT-003",
       "REQ-MPC-FR-085"
@@ -9893,6 +10041,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 167,
     "requirements": [
       "REQ-MPC-FR-090",
       "REQ-MPC-FR-095"
@@ -9953,6 +10102,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 168,
     "requirements": [],
     "screens": [
       "SCR-SRC-05"
@@ -10018,6 +10168,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 169,
     "requirements": [
       "REQ-MPC-FR-099",
       "REQ-MPC-FR-309"
@@ -10079,6 +10230,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 170,
     "requirements": [
       "REQ-MPC-FR-082",
       "REQ-MPC-FR-083"
@@ -10143,6 +10295,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 171,
     "requirements": [
       "REQ-MPC-FR-088"
     ],
@@ -10206,6 +10359,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 172,
     "requirements": [
       "REQ-MPC-FR-098"
     ],
@@ -10261,6 +10415,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 173,
     "requirements": [
       "REQ-MPC-FR-100"
     ],
@@ -10319,6 +10474,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 174,
     "requirements": [
       "REQ-KTDA-ANL-001",
       "REQ-MPC-FR-091"
@@ -10377,6 +10533,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 175,
     "requirements": [
       "REQ-MPC-FR-092"
     ],
@@ -10437,6 +10594,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 176,
     "requirements": [
       "REQ-MPC-FR-096"
     ],
@@ -10497,6 +10655,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 177,
     "requirements": [
       "REQ-MPC-FR-097"
     ],
@@ -10551,6 +10710,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 178,
     "requirements": [],
     "screens": [
       "SCR-SRC-08"
@@ -10605,6 +10765,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 179,
     "requirements": [],
     "screens": []
   },
@@ -10660,6 +10821,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 180,
     "requirements": [],
     "screens": [
       "SCR-SRC-07"
@@ -10722,6 +10884,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 184,
     "requirements": [
       "REQ-KTDA-CHK-001",
       "REQ-MPC-FR-101",
@@ -10801,6 +10964,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 185,
     "requirements": [
       "REQ-KTDA-CHK-002",
       "REQ-KTDA-CUS-006",
@@ -10894,6 +11058,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 186,
     "requirements": [
       "REQ-MPC-FR-103"
     ],
@@ -10979,6 +11144,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 187,
     "requirements": [
       "REQ-MPC-FR-110"
     ],
@@ -11042,6 +11208,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 188,
     "requirements": [
       "REQ-MPC-FR-104"
     ],
@@ -11113,6 +11280,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 189,
     "requirements": [
       "REQ-MPC-FR-106"
     ],
@@ -11178,6 +11346,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 190,
     "requirements": [
       "REQ-MPC-FR-113"
     ],
@@ -11246,6 +11415,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 191,
     "requirements": [
       "REQ-MPC-FR-108",
       "REQ-MPC-FR-114"
@@ -11316,6 +11486,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 192,
     "requirements": [
       "REQ-KTDA-LEG-001",
       "REQ-MPC-FR-107",
@@ -11379,6 +11550,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 193,
     "requirements": [
       "REQ-MPC-FR-122"
     ],
@@ -11441,6 +11613,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 194,
     "requirements": [
       "REQ-MPC-FR-111",
       "REQ-MPC-FR-118"
@@ -11508,6 +11681,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 195,
     "requirements": [
       "REQ-MPC-FR-124"
     ],
@@ -11573,6 +11747,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 196,
     "requirements": [
       "REQ-MPC-FR-112"
     ],
@@ -11635,6 +11810,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 197,
     "requirements": [
       "REQ-MPC-FR-119"
     ],
@@ -11696,6 +11872,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 198,
     "requirements": [
       "REQ-KTDA-CUS-002"
     ],
@@ -11768,6 +11945,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 199,
     "requirements": [
       "REQ-KTDA-CUS-002"
     ],
@@ -11829,6 +12007,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 200,
     "requirements": [
       "REQ-KTDA-CUS-002"
     ],
@@ -11901,6 +12080,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 201,
     "requirements": [
       "REQ-KTDA-CUS-002"
     ],
@@ -11960,6 +12140,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 202,
     "requirements": [
       "REQ-KTDA-WF-006",
       "REQ-MPC-FR-159"
@@ -12034,6 +12215,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 206,
     "requirements": [
       "REQ-KTDA-PAY-007",
       "REQ-MPC-FR-116",
@@ -12110,6 +12292,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 207,
     "requirements": [
       "REQ-KTDA-PAY-001",
       "REQ-KTDA-PAY-002",
@@ -12167,6 +12350,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 208,
     "requirements": [
       "REQ-KTDA-PAY-003",
       "REQ-KTDA-PAY-007"
@@ -12245,6 +12429,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 209,
     "requirements": [
       "REQ-KTDA-PAY-004",
       "REQ-MPC-FR-126",
@@ -12319,6 +12504,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 210,
     "requirements": [
       "REQ-KTDA-PAY-005",
       "REQ-KTDA-INT-002",
@@ -12389,6 +12575,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 211,
     "requirements": [
       "REQ-KTDA-PAY-006",
       "REQ-KTDA-PAY-008",
@@ -12457,6 +12644,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 212,
     "requirements": [
       "REQ-KTDA-PAY-008"
     ],
@@ -12528,6 +12716,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 213,
     "requirements": [
       "REQ-MPC-FR-131",
       "REQ-MPC-FR-132"
@@ -12601,6 +12790,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 214,
     "requirements": [
       "REQ-MPC-FR-130"
     ],
@@ -12669,6 +12859,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 215,
     "requirements": [
       "REQ-MPC-FR-133"
     ],
@@ -12751,6 +12942,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 216,
     "requirements": [
       "REQ-MPC-FR-134",
       "REQ-MPC-FR-150"
@@ -12809,6 +13001,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 217,
     "requirements": [
       "REQ-MPC-FR-135"
     ],
@@ -12869,6 +13062,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 218,
     "requirements": [
       "REQ-MPC-FR-136"
     ],
@@ -12931,6 +13125,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 219,
     "requirements": [
       "REQ-MPC-FR-137",
       "REQ-MPC-FR-149"
@@ -13001,6 +13196,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 220,
     "requirements": [
       "REQ-MPC-FR-139",
       "REQ-MPC-FR-141",
@@ -13085,6 +13281,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 221,
     "requirements": [
       "REQ-KTDA-RET-001",
       "REQ-MPC-FR-140",
@@ -13148,6 +13345,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 222,
     "requirements": [
       "REQ-MPC-FR-142"
     ],
@@ -13220,6 +13418,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 223,
     "requirements": [
       "REQ-MPC-FR-118",
       "REQ-MPC-FR-143",
@@ -13282,6 +13481,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 224,
     "requirements": [
       "REQ-MPC-FR-144"
     ],
@@ -13338,6 +13538,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 225,
     "requirements": [
       "REQ-KTDA-TAX-001",
       "REQ-MPC-FR-107"
@@ -13398,6 +13599,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 226,
     "requirements": [
       "REQ-MPC-FR-147",
       "REQ-MPC-FR-303",
@@ -13461,6 +13663,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": "Agri-finance and schemes pack",
+    "roadmapRow": 227,
     "requirements": [],
     "screens": [
       "SCR-PAY-18"
@@ -13519,6 +13722,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 228,
     "requirements": [
       "REQ-KTDA-LOC-002"
     ],
@@ -13584,6 +13788,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 229,
     "requirements": [
       "REQ-KTDA-PAY-007",
       "REQ-MPC-FR-330",
@@ -13658,6 +13863,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 230,
     "requirements": [
       "REQ-KTDA-ORD-002",
       "REQ-KTDA-TAX-001"
@@ -13720,6 +13926,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 231,
     "requirements": [],
     "screens": []
   },
@@ -13777,6 +13984,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 232,
     "requirements": [],
     "screens": []
   },
@@ -13831,6 +14039,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 233,
     "requirements": [
       "REQ-KTDA-PAY-004"
     ],
@@ -13883,6 +14092,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 234,
     "requirements": [
       "REQ-MPC-FR-126",
       "REQ-MPC-FR-330",
@@ -13937,6 +14147,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 235,
     "requirements": [
       "REQ-MPC-FR-127",
       "REQ-MPC-FR-330",
@@ -13996,6 +14207,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 236,
     "requirements": [
       "REQ-KTDA-PAY-001",
       "REQ-KTDA-PAY-002"
@@ -14053,6 +14265,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 237,
     "requirements": [
       "REQ-MPC-FR-129",
       "REQ-MPC-PAY-001"
@@ -14122,6 +14335,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 238,
     "requirements": [],
     "screens": [
       "SCR-PAY-05"
@@ -14182,6 +14396,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 239,
     "requirements": [
       "REQ-MPC-FR-112",
       "REQ-MPC-FR-131"
@@ -14252,6 +14467,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 240,
     "requirements": [],
     "screens": [
       "SCR-PAY-07"
@@ -14316,6 +14532,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 241,
     "requirements": [],
     "screens": [
       "SCR-PAY-06",
@@ -14384,6 +14601,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 245,
     "requirements": [
       "REQ-MPC-FR-156",
       "REQ-MPC-FR-174"
@@ -14470,6 +14688,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 246,
     "requirements": [
       "REQ-KTDA-WF-006",
       "REQ-MPC-FR-153"
@@ -14547,6 +14766,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 247,
     "requirements": [
       "REQ-MPC-FR-156",
       "REQ-MPC-FR-175"
@@ -14621,6 +14841,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 248,
     "requirements": [
       "REQ-MPC-FR-154",
       "REQ-MPC-FR-155",
@@ -14692,6 +14913,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 249,
     "requirements": [
       "REQ-MPC-FR-152",
       "REQ-MPC-FR-160",
@@ -14759,6 +14981,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 250,
     "requirements": [
       "REQ-MPC-FR-158"
     ],
@@ -14820,6 +15043,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 251,
     "requirements": [
       "REQ-MPC-FR-172"
     ],
@@ -14874,6 +15098,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 252,
     "requirements": [
       "REQ-MPC-FR-173"
     ],
@@ -14945,6 +15170,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 253,
     "requirements": [
       "REQ-KTDA-ORD-002",
       "REQ-MPC-FR-120",
@@ -15019,6 +15245,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 254,
     "requirements": [
       "REQ-MPC-FR-169"
     ],
@@ -15088,6 +15315,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 255,
     "requirements": [
       "REQ-MPC-FR-046",
       "REQ-MPC-FR-165",
@@ -15169,6 +15397,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 256,
     "requirements": [
       "REQ-KTDA-OFR-003"
     ],
@@ -15242,6 +15471,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 257,
     "requirements": [
       "REQ-KTDA-OFR-002",
       "REQ-KTDA-OFR-003"
@@ -15310,6 +15540,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 258,
     "requirements": [
       "REQ-KTDA-OFR-001",
       "REQ-KTDA-OFR-002",
@@ -15382,6 +15613,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 259,
     "requirements": [
       "REQ-KTDA-PRJ-002",
       "REQ-KTDA-WF-001",
@@ -15456,6 +15688,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 260,
     "requirements": [
       "REQ-KTDA-PRJ-002",
       "REQ-KTDA-WF-003"
@@ -15526,6 +15759,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 261,
     "requirements": [],
     "screens": [
       "SCR-ORD-06",
@@ -15592,6 +15826,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 262,
     "requirements": [],
     "screens": [
       "SCR-ORD-07"
@@ -15644,6 +15879,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 263,
     "requirements": [],
     "screens": [
       "SCR-ORD-07"
@@ -15706,6 +15942,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 264,
     "requirements": [],
     "screens": [
       "SCR-ORD-07"
@@ -15764,6 +16001,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": "Best-in-class / specialised",
+    "roadmapRow": 265,
     "requirements": [],
     "screens": [
       "SCR-ORD-07"
@@ -15832,6 +16070,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 266,
     "requirements": [
       "REQ-KTDA-PRJ-002",
       "REQ-KTDA-WF-003"
@@ -15895,6 +16134,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 267,
     "requirements": [],
     "screens": [
       "SCR-ORD-07"
@@ -15960,6 +16200,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": "Agri-finance and schemes pack",
+    "roadmapRow": 268,
     "requirements": [],
     "screens": [
       "SCR-ORD-07"
@@ -16023,6 +16264,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 269,
     "requirements": [
       "REQ-KTDA-PAY-006",
       "REQ-KTDA-PAY-009"
@@ -16084,6 +16326,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 270,
     "requirements": [
       "REQ-KTDA-CUS-002",
       "REQ-KTDA-LEG-001"
@@ -16142,6 +16385,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 271,
     "requirements": [],
     "screens": []
   },
@@ -16201,6 +16445,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 272,
     "requirements": [],
     "screens": []
   },
@@ -16263,6 +16508,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 276,
     "requirements": [
       "REQ-KTDA-LOG-001",
       "REQ-KTDA-LOG-002",
@@ -16345,6 +16591,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 277,
     "requirements": [
       "REQ-KTDA-LOG-001",
       "REQ-MPC-FR-105",
@@ -16419,6 +16666,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 278,
     "requirements": [
       "REQ-MPC-FR-188"
     ],
@@ -16490,6 +16738,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 279,
     "requirements": [
       "REQ-MPC-FR-069",
       "REQ-MPC-FR-197"
@@ -16559,6 +16808,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 280,
     "requirements": [
       "REQ-MPC-FR-182"
     ],
@@ -16622,6 +16872,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 281,
     "requirements": [
       "REQ-KTDA-INT-003",
       "REQ-KTDA-LOG-003"
@@ -16690,6 +16941,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 282,
     "requirements": [
       "REQ-MPC-FR-157",
       "REQ-MPC-FR-183"
@@ -16760,6 +17012,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 283,
     "requirements": [
       "REQ-KTDA-WF-007",
       "REQ-MPC-FR-161"
@@ -16841,6 +17094,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 284,
     "requirements": [
       "REQ-KTDA-WF-005",
       "REQ-MPC-FR-168",
@@ -16907,6 +17161,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 285,
     "requirements": [
       "REQ-KTDA-WF-005",
       "REQ-MPC-FR-157"
@@ -16973,6 +17228,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 286,
     "requirements": [
       "REQ-MPC-FR-176",
       "REQ-MPC-FR-177"
@@ -17048,6 +17304,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 287,
     "requirements": [
       "REQ-MPC-FR-164",
       "REQ-MPC-FR-195"
@@ -17122,6 +17379,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 288,
     "requirements": [
       "REQ-MPC-FR-186",
       "REQ-MPC-FR-193",
@@ -17186,6 +17444,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 289,
     "requirements": [
       "REQ-MPC-FR-194"
     ],
@@ -17247,6 +17506,7 @@
     "priority": "Could Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 290,
     "requirements": [
       "REQ-MPC-FR-185",
       "REQ-MPC-FR-200"
@@ -17312,6 +17572,7 @@
     "priority": "Could Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 291,
     "requirements": [
       "REQ-MPC-FR-190",
       "REQ-MPC-FR-191",
@@ -17386,6 +17647,7 @@
     "priority": "Could Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 292,
     "requirements": [
       "REQ-MPC-FR-167",
       "REQ-MPC-FR-311"
@@ -17450,6 +17712,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 293,
     "requirements": [
       "REQ-MPC-FR-196"
     ],
@@ -17509,6 +17772,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": "Best-in-class / specialised",
+    "roadmapRow": 294,
     "requirements": [],
     "screens": []
   },
@@ -17566,6 +17830,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 295,
     "requirements": [
       "REQ-MPC-FR-163",
       "REQ-MPC-FR-205"
@@ -17643,6 +17908,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 296,
     "requirements": [
       "REQ-KTDA-INT-003",
       "REQ-KTDA-LOG-003",
@@ -17709,6 +17975,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 297,
     "requirements": [
       "REQ-MPC-FR-178"
     ],
@@ -17773,6 +18040,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 298,
     "requirements": [
       "REQ-MPC-FR-192"
     ],
@@ -17836,6 +18104,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 299,
     "requirements": [
       "REQ-MPC-FR-179"
     ],
@@ -17897,6 +18166,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 300,
     "requirements": [
       "REQ-KTDA-LOG-003"
     ],
@@ -17955,6 +18225,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 301,
     "requirements": [
       "REQ-KTDA-LOG-003"
     ],
@@ -18013,6 +18284,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 302,
     "requirements": [
       "REQ-KTDA-LOG-003"
     ],
@@ -18071,6 +18343,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 303,
     "requirements": [
       "REQ-KTDA-LOG-003"
     ],
@@ -18129,6 +18402,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 304,
     "requirements": [
       "REQ-KTDA-LOG-003"
     ],
@@ -18184,6 +18458,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 305,
     "requirements": [
       "REQ-KTDA-LOG-003"
     ],
@@ -18240,6 +18515,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 306,
     "requirements": [
       "REQ-MPC-FR-180"
     ],
@@ -18305,6 +18581,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 307,
     "requirements": [
       "REQ-MPC-FR-187"
     ],
@@ -18380,6 +18657,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 311,
     "requirements": [
       "REQ-KTDA-ORD-001",
       "REQ-MPC-FR-201",
@@ -18470,6 +18748,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 312,
     "requirements": [
       "REQ-KTDA-INT-003",
       "REQ-KTDA-LOG-003",
@@ -18549,6 +18828,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 313,
     "requirements": [
       "REQ-MPC-FR-204",
       "REQ-MPC-FR-224"
@@ -18617,6 +18897,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 314,
     "requirements": [
       "REQ-MPC-FR-212",
       "REQ-MPC-FR-310"
@@ -18704,6 +18985,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 315,
     "requirements": [
       "REQ-MPC-FR-159",
       "REQ-MPC-FR-212",
@@ -18791,6 +19073,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 316,
     "requirements": [
       "REQ-MPC-FR-009",
       "REQ-MPC-FR-210",
@@ -18861,6 +19144,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 317,
     "requirements": [
       "REQ-MPC-FR-213",
       "REQ-MPC-FR-215"
@@ -18918,6 +19202,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 318,
     "requirements": [],
     "screens": [
       "SCR-TRK-03"
@@ -18978,6 +19263,7 @@
     "priority": "Could Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 319,
     "requirements": [
       "REQ-MPC-FR-223",
       "REQ-MPC-FR-267"
@@ -19037,6 +19323,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 320,
     "requirements": [
       "REQ-MPC-FR-218",
       "REQ-MPC-ORD-001"
@@ -19098,6 +19385,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 321,
     "requirements": [
       "REQ-MPC-FR-201"
     ],
@@ -19169,6 +19457,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 322,
     "requirements": [
       "REQ-MPC-FR-202",
       "REQ-MPC-FR-206",
@@ -19252,6 +19541,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 326,
     "requirements": [
       "REQ-KTDA-RET-001",
       "REQ-MPC-FR-226",
@@ -19327,6 +19617,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 327,
     "requirements": [
       "REQ-MPC-FR-237"
     ],
@@ -19399,6 +19690,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 328,
     "requirements": [
       "REQ-MPC-FR-189",
       "REQ-MPC-FR-228",
@@ -19470,6 +19762,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 329,
     "requirements": [
       "REQ-MPC-FR-250"
     ],
@@ -19549,6 +19842,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 330,
     "requirements": [
       "REQ-MPC-FR-232",
       "REQ-MPC-FR-233"
@@ -19614,6 +19908,7 @@
     "priority": "Could Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 331,
     "requirements": [
       "REQ-MPC-FR-238"
     ],
@@ -19707,6 +20002,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 332,
     "requirements": [
       "REQ-MPC-FR-231",
       "REQ-MPC-FR-234",
@@ -19791,6 +20087,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 333,
     "requirements": [
       "REQ-MPC-FR-241",
       "REQ-MPC-FR-242",
@@ -19856,6 +20153,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 334,
     "requirements": [
       "REQ-MPC-FR-248",
       "REQ-MPC-FR-249"
@@ -19924,6 +20222,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 335,
     "requirements": [
       "REQ-MPC-FR-230"
     ],
@@ -19993,6 +20292,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 336,
     "requirements": [
       "REQ-MPC-FR-236"
     ],
@@ -20084,6 +20384,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 340,
     "requirements": [
       "REQ-MPC-FR-251",
       "REQ-MPC-FR-252",
@@ -20177,6 +20478,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 341,
     "requirements": [
       "REQ-MPC-FR-253",
       "REQ-MPC-FR-260"
@@ -20249,6 +20551,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 342,
     "requirements": [
       "REQ-MPC-FR-022",
       "REQ-MPC-FR-211",
@@ -20330,6 +20633,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 343,
     "requirements": [
       "REQ-MPC-FR-269",
       "REQ-MPC-FR-270"
@@ -20397,6 +20701,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 344,
     "requirements": [
       "REQ-MPC-FR-261",
       "REQ-MPC-FR-262"
@@ -20465,6 +20770,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 345,
     "requirements": [
       "REQ-MPC-FR-268",
       "REQ-MPC-FR-272",
@@ -20539,6 +20845,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 346,
     "requirements": [
       "REQ-MPC-FR-255",
       "REQ-MPC-FR-256",
@@ -20611,6 +20918,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 347,
     "requirements": [
       "REQ-KTDA-CHT-001"
     ],
@@ -20677,6 +20985,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 348,
     "requirements": [
       "REQ-MPC-FR-251"
     ],
@@ -20741,6 +21050,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 349,
     "requirements": [
       "REQ-MPC-FR-266"
     ],
@@ -20805,6 +21115,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 350,
     "requirements": [
       "REQ-KTDA-REV-002",
       "REQ-KTDA-REV-003",
@@ -20863,6 +21174,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 351,
     "requirements": [],
     "screens": [
       "SCR-CRM-04",
@@ -20919,6 +21231,7 @@
     "priority": "Could Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": "Best-in-class / specialised",
+    "roadmapRow": 352,
     "requirements": [],
     "screens": [
       "SCR-CRM-04"
@@ -20993,6 +21306,7 @@
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 353,
     "requirements": [
       "REQ-MPC-FR-257",
       "REQ-MPC-FR-258",
@@ -21061,6 +21375,7 @@
     "priority": "Should Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
+    "roadmapRow": 354,
     "requirements": [],
     "screens": [
       "SCR-CRM-03",
@@ -21137,6 +21452,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 358,
     "requirements": [
       "REQ-KTDA-MKT-003",
       "REQ-KTDA-MKT-006",
@@ -21213,6 +21529,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 359,
     "requirements": [
       "REQ-KTDA-MKT-002"
     ],
@@ -21277,6 +21594,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 360,
     "requirements": [
       "REQ-KTDA-MKT-002"
     ],
@@ -21346,6 +21664,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 361,
     "requirements": [
       "REQ-MPC-FR-109"
     ],
@@ -21422,6 +21741,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 362,
     "requirements": [
       "REQ-KTDA-MKT-004"
     ],
@@ -21491,6 +21811,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 363,
     "requirements": [
       "REQ-KTDA-MKT-005"
     ],
@@ -21563,6 +21884,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 364,
     "requirements": [
       "REQ-KTDA-LEG-002",
       "REQ-KTDA-CNT-001",
@@ -21647,6 +21969,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 365,
     "requirements": [
       "REQ-KTDA-LEG-002",
       "REQ-MPC-FR-306",
@@ -21715,6 +22038,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 366,
     "requirements": [
       "REQ-KTDA-SEO-001",
       "REQ-KTDA-SEO-002",
@@ -21786,6 +22110,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 367,
     "requirements": [
       "REQ-KTDA-MKT-001",
       "REQ-KTDA-ANL-006",
@@ -21850,6 +22175,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 368,
     "requirements": [
       "REQ-MPC-FR-316"
     ],
@@ -21918,6 +22244,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 369,
     "requirements": [],
     "screens": []
   },
@@ -21980,6 +22307,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 370,
     "requirements": [],
     "screens": [
       "SCR-MKT-04",
@@ -22043,6 +22371,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 371,
     "requirements": [
       "REQ-MPC-FR-061"
     ],
@@ -22119,6 +22448,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 375,
     "requirements": [
       "REQ-KTDA-ANL-001",
       "REQ-KTDA-ANL-002",
@@ -22201,6 +22531,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 376,
     "requirements": [
       "REQ-MPC-FR-276",
       "REQ-MPC-FR-288",
@@ -22281,6 +22612,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 377,
     "requirements": [
       "REQ-KTDA-ANL-007",
       "REQ-MPC-FR-275",
@@ -22356,6 +22688,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 378,
     "requirements": [
       "REQ-MPC-FR-284",
       "REQ-MPC-FR-285",
@@ -22419,6 +22752,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 379,
     "requirements": [
       "REQ-MPC-FR-283"
     ],
@@ -22479,6 +22813,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 380,
     "requirements": [
       "REQ-MPC-FR-287",
       "REQ-MPC-FR-292"
@@ -22538,6 +22873,7 @@
     "priority": "Should Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": "Best-in-class / specialised",
+    "roadmapRow": 381,
     "requirements": [],
     "screens": [
       "SCR-RPT-08",
@@ -22599,6 +22935,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 382,
     "requirements": [],
     "screens": [
       "SCR-RPT-06"
@@ -22654,6 +22991,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 383,
     "requirements": [],
     "screens": [
       "SCR-RPT-07"
@@ -22722,6 +23060,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 384,
     "requirements": [
       "REQ-MPC-FR-277",
       "REQ-MPC-FR-278",
@@ -22806,6 +23145,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 385,
     "requirements": [
       "REQ-KTDA-ANL-003",
       "REQ-KTDA-ANL-004",
@@ -22871,6 +23211,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 386,
     "requirements": [
       "REQ-MPC-FR-281",
       "REQ-MPC-FR-295"
@@ -22958,6 +23299,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 390,
     "requirements": [
       "REQ-MPC-FR-301"
     ],
@@ -23053,6 +23395,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 391,
     "requirements": [
       "REQ-KTDA-WF-004",
       "REQ-KTDA-WF-005",
@@ -23131,6 +23474,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 392,
     "requirements": [],
     "screens": [
       "SCR-ADM-04"
@@ -23197,6 +23541,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 393,
     "requirements": [],
     "screens": [
       "SCR-ADM-05"
@@ -23265,6 +23610,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 394,
     "requirements": [],
     "screens": [
       "SCR-ADM-06",
@@ -23351,6 +23697,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 395,
     "requirements": [
       "REQ-KTDA-WF-004",
       "REQ-MPC-FR-039",
@@ -23430,6 +23777,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 396,
     "requirements": [
       "REQ-MPC-FR-162"
     ],
@@ -23501,6 +23849,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 397,
     "requirements": [
       "REQ-MPC-FR-324"
     ],
@@ -23566,6 +23915,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 398,
     "requirements": [],
     "screens": [
       "SCR-ADM-10"
@@ -23623,6 +23973,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 399,
     "requirements": [],
     "screens": [
       "SCR-ADM-11"
@@ -23690,6 +24041,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 400,
     "requirements": [],
     "screens": [
       "SCR-ADM-12"
@@ -23749,6 +24101,7 @@
     "priority": "Could Have",
     "category": "Platform & Administration",
     "capabilityType": "Best-in-class / specialised",
+    "roadmapRow": 401,
     "requirements": [],
     "screens": [
       "SCR-ADM-12"
@@ -23835,6 +24188,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 405,
     "requirements": [],
     "screens": [
       "SCR-DOC-01",
@@ -23914,6 +24268,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 406,
     "requirements": [],
     "screens": [
       "SCR-DOC-03",
@@ -23980,6 +24335,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 407,
     "requirements": [],
     "screens": [
       "SCR-DOC-03",
@@ -24043,6 +24399,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 408,
     "requirements": [],
     "screens": [
       "SCR-DOC-04"
@@ -24115,6 +24472,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 409,
     "requirements": [],
     "screens": [
       "SCR-DOC-05"
@@ -24180,6 +24538,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 410,
     "requirements": [
       "REQ-KTDA-CUS-002",
       "REQ-KTDA-LEG-001"
@@ -24258,6 +24617,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 414,
     "requirements": [
       "REQ-KTDA-SEC-002",
       "REQ-MPC-FR-148",
@@ -24334,6 +24694,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 415,
     "requirements": [
       "REQ-KTDA-HST-001",
       "REQ-KTDA-SEC-002",
@@ -24396,6 +24757,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 416,
     "requirements": [
       "REQ-KTDA-SEC-001",
       "REQ-MPC-FR-129",
@@ -24496,6 +24858,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 417,
     "requirements": [
       "REQ-MPC-FR-039",
       "REQ-MPC-FR-287",
@@ -24559,6 +24922,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 418,
     "requirements": [],
     "screens": [
       "SCR-SEC-08"
@@ -24616,6 +24980,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 419,
     "requirements": [],
     "screens": [
       "SCR-SEC-06"
@@ -24693,6 +25058,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 420,
     "requirements": [
       "REQ-KTDA-LEG-001",
       "REQ-KTDA-ANL-008",
@@ -24766,6 +25132,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 421,
     "requirements": [],
     "screens": [
       "SCR-SEC-05"
@@ -24823,6 +25190,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 422,
     "requirements": [],
     "screens": [
       "SCR-SEC-08"
@@ -24884,6 +25252,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 423,
     "requirements": [],
     "screens": [
       "SCR-SEC-02",
@@ -24946,6 +25315,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 424,
     "requirements": [],
     "screens": []
   },
@@ -25015,6 +25385,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 425,
     "requirements": [
       "REQ-KTDA-LEG-001",
       "REQ-KTDA-ANL-008"
@@ -25077,6 +25448,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 426,
     "requirements": [],
     "screens": [
       "SCR-SEC-09"
@@ -25144,6 +25516,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 427,
     "requirements": [],
     "screens": [
       "SCR-SEC-07"
@@ -25197,6 +25570,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 428,
     "requirements": [],
     "screens": [
       "SCR-SEC-08"
@@ -25296,6 +25670,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 432,
     "requirements": [
       "REQ-KTDA-INT-001",
       "REQ-KTDA-INT-002",
@@ -25390,6 +25765,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 433,
     "requirements": [
       "REQ-MPC-FR-314",
       "REQ-MPC-FR-321",
@@ -25480,6 +25856,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 434,
     "requirements": [
       "REQ-MPC-FR-166",
       "REQ-MPC-FR-217",
@@ -25555,6 +25932,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 435,
     "requirements": [
       "REQ-MPC-FR-342"
     ],
@@ -25643,6 +26021,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 436,
     "requirements": [
       "REQ-KTDA-INT-001"
     ],
@@ -25708,6 +26087,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 437,
     "requirements": [
       "REQ-MPC-FR-138",
       "REQ-MPC-FR-328"
@@ -25777,6 +26157,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 438,
     "requirements": [
       "REQ-MPC-FR-166",
       "REQ-MPC-FR-221",
@@ -25840,6 +26221,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 439,
     "requirements": [
       "REQ-KTDA-INT-002"
     ],
@@ -25903,6 +26285,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 440,
     "requirements": [
       "REQ-MPC-FR-343",
       "REQ-MPC-INT-001"
@@ -25970,6 +26353,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 441,
     "requirements": [
       "REQ-MPC-FR-349"
     ],
@@ -26035,6 +26419,7 @@
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 442,
     "requirements": [
       "REQ-KTDA-NFR-001",
       "REQ-MPC-INT-001",
@@ -26102,6 +26487,7 @@
     "priority": "Should Have",
     "category": "Platform & Administration",
     "capabilityType": "Best-in-class / specialised",
+    "roadmapRow": 443,
     "requirements": [],
     "screens": [
       "SCR-INT-04"
@@ -26158,6 +26544,7 @@
     "priority": "Could Have",
     "category": "Platform & Administration",
     "capabilityType": null,
+    "roadmapRow": 444,
     "requirements": [
       "REQ-MPC-INT-001"
     ],
@@ -26225,6 +26612,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 448,
     "requirements": [
       "REQ-MPC-MOB-001",
       "REQ-MPC-MOB-002"
@@ -26296,6 +26684,7 @@
     "priority": "Should Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 449,
     "requirements": [
       "REQ-MPC-FR-019"
     ],
@@ -26370,6 +26759,7 @@
     "priority": "Should Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 450,
     "requirements": [
       "REQ-MPC-INT-002"
     ],
@@ -26433,6 +26823,7 @@
     "priority": "Should Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 451,
     "requirements": [],
     "screens": [
       "SCR-CHN-05",
@@ -26514,6 +26905,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 452,
     "requirements": [],
     "screens": [
       "SCR-CHN-04"
@@ -26591,6 +26983,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 453,
     "requirements": [
       "REQ-KTDA-CHT-001"
     ],
@@ -26656,6 +27049,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 454,
     "requirements": [
       "REQ-KTDA-CHT-001"
     ],
@@ -26712,6 +27106,7 @@
     "priority": "Could Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": "Best-in-class / specialised",
+    "roadmapRow": 455,
     "requirements": [],
     "screens": [
       "SCR-CHN-02",
@@ -26776,6 +27171,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 456,
     "requirements": [],
     "screens": [
       "SCR-CHN-08"
@@ -26845,6 +27241,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 457,
     "requirements": [],
     "screens": [
       "SCR-CHN-12"
@@ -26900,6 +27297,7 @@
     "priority": "Should Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 458,
     "requirements": [
       "REQ-MPC-INT-003"
     ],
@@ -26972,6 +27370,7 @@
     "priority": "Should Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 459,
     "requirements": [],
     "screens": [
       "SCR-CHN-02",
@@ -27036,6 +27435,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 460,
     "requirements": [],
     "screens": [
       "SCR-CHN-02",
@@ -27104,6 +27504,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": "AI pack",
+    "roadmapRow": 464,
     "requirements": [],
     "screens": [
       "SCR-AI-02",
@@ -27179,6 +27580,7 @@
     "priority": "Could Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": "AI pack",
+    "roadmapRow": 465,
     "requirements": [],
     "screens": [
       "SCR-AI-02"
@@ -27263,6 +27665,7 @@
     "priority": "Should Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 466,
     "requirements": [
       "REQ-MPC-FR-256",
       "REQ-MPC-CHT-001"
@@ -27324,6 +27727,7 @@
     "priority": "Should Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": "AI pack",
+    "roadmapRow": 467,
     "requirements": [],
     "screens": [
       "SCR-AI-07"
@@ -27387,6 +27791,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 468,
     "requirements": [],
     "screens": [
       "SCR-AI-06"
@@ -27444,6 +27849,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": "AI pack",
+    "roadmapRow": 469,
     "requirements": [],
     "screens": [
       "SCR-AI-08"
@@ -27506,6 +27912,7 @@
     "priority": "Should Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": "AI pack",
+    "roadmapRow": 470,
     "requirements": [],
     "screens": []
   },
@@ -27561,6 +27968,7 @@
     "priority": "Could Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": "AI pack",
+    "roadmapRow": 471,
     "requirements": [],
     "screens": []
   },
@@ -27613,6 +28021,7 @@
     "priority": "Could Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": "AI pack",
+    "roadmapRow": 472,
     "requirements": [],
     "screens": [
       "SCR-AI-07"
@@ -27683,6 +28092,7 @@
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
+    "roadmapRow": 473,
     "requirements": [],
     "screens": [
       "SCR-AI-01",
@@ -27773,6 +28183,7 @@
     "priority": "Must Have",
     "category": "Vertical Packs",
     "capabilityType": "Agri-finance and schemes pack",
+    "roadmapRow": 477,
     "requirements": [],
     "screens": [
       "SCR-FIN-01",
@@ -27847,6 +28258,7 @@
     "priority": "Should Have",
     "category": "Vertical Packs",
     "capabilityType": "Agri-finance and schemes pack",
+    "roadmapRow": 478,
     "requirements": [],
     "screens": [
       "SCR-FIN-01",
@@ -27922,6 +28334,7 @@
     "priority": "Must Have",
     "category": "Vertical Packs",
     "capabilityType": "Agri-finance and schemes pack",
+    "roadmapRow": 479,
     "requirements": [],
     "screens": [
       "SCR-FIN-02",
@@ -27997,6 +28410,7 @@
     "priority": "Must Have",
     "category": "Vertical Packs",
     "capabilityType": "Agri-finance and schemes pack",
+    "roadmapRow": 480,
     "requirements": [],
     "screens": [
       "SCR-FIN-06"
@@ -28075,6 +28489,7 @@
     "priority": "Could Have",
     "category": "Vertical Packs",
     "capabilityType": null,
+    "roadmapRow": 481,
     "requirements": [
       "REQ-MPC-FR-336"
     ],
@@ -28155,6 +28570,7 @@
     "priority": "Must Have",
     "category": "Vertical Packs",
     "capabilityType": null,
+    "roadmapRow": 485,
     "requirements": [
       "REQ-MPC-FR-089",
       "REQ-MPC-FR-307"
@@ -28254,6 +28670,7 @@
     "priority": "Must Have",
     "category": "Vertical Packs",
     "capabilityType": null,
+    "roadmapRow": 486,
     "requirements": [
       "REQ-MPC-FR-307",
       "REQ-MPC-FR-332",
@@ -28331,6 +28748,7 @@
     "priority": "Could Have",
     "category": "Vertical Packs",
     "capabilityType": null,
+    "roadmapRow": 487,
     "requirements": [
       "REQ-MPC-FR-334"
     ],
@@ -28404,6 +28822,7 @@
     "priority": "Must Have",
     "category": "Vertical Packs",
     "capabilityType": null,
+    "roadmapRow": 488,
     "requirements": [
       "REQ-MPC-FR-335"
     ],
@@ -28481,6 +28900,7 @@
     "priority": "Must Have",
     "category": "Vertical Packs",
     "capabilityType": null,
+    "roadmapRow": 489,
     "requirements": [
       "REQ-MPC-FR-146",
       "REQ-MPC-FR-331"
@@ -28551,6 +28971,7 @@
     "priority": "Should Have",
     "category": "Vertical Packs",
     "capabilityType": null,
+    "roadmapRow": 490,
     "requirements": [
       "REQ-MPC-FR-307",
       "REQ-MPC-FR-345"
@@ -28623,6 +29044,7 @@
     "priority": "Should Have",
     "category": "Vertical Packs",
     "capabilityType": null,
+    "roadmapRow": 491,
     "requirements": [
       "REQ-MPC-FR-350"
     ],
@@ -28701,6 +29123,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 495,
     "requirements": [],
     "screens": [
       "SCR-SVC-01"
@@ -28775,6 +29198,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 496,
     "requirements": [],
     "screens": [
       "SCR-SVC-03"
@@ -28856,6 +29280,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 497,
     "requirements": [],
     "screens": [
       "SCR-SVC-02",
@@ -28939,6 +29364,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 498,
     "requirements": [],
     "screens": [
       "SCR-SVC-01",
@@ -29024,6 +29450,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 499,
     "requirements": [
       "REQ-MPC-FR-074",
       "REQ-MPC-FR-100",
@@ -29093,6 +29520,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 500,
     "requirements": [],
     "screens": [
       "SCR-SVC-01"
@@ -29163,6 +29591,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 501,
     "requirements": [],
     "screens": [
       "SCR-SVC-02"
@@ -29227,6 +29656,7 @@
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 502,
     "requirements": [],
     "screens": []
   },
@@ -29298,6 +29728,7 @@
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 503,
     "requirements": [],
     "screens": [
       "SCR-SVC-02",
@@ -29367,6 +29798,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 504,
     "requirements": [],
     "screens": []
   },
@@ -29433,6 +29865,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 505,
     "requirements": [
       "REQ-MPC-FR-165",
       "REQ-MPC-FR-311"
@@ -29500,6 +29933,7 @@
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
+    "roadmapRow": 506,
     "requirements": [],
     "screens": [
       "SCR-SVC-03",

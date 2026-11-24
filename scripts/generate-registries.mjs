@@ -610,10 +610,15 @@ function buildLicensed() {
 // priority, the category grouping of the 24 modules, and the Phase 3 capability type.
 // docs/roadmap/priority-and-category.md carries them, plus its change log from the 4.90 edition.
 function buildRoadmap() {
-  if (!ROADMAP) return { priority: {}, category: {}, capabilityType: {}, changes: [] };
+  if (!ROADMAP) {
+    return {
+      priority: {}, category: {}, capabilityType: {}, changes: [], roadmapRow: {},
+    };
+  }
   const tables = parseTables(ROADMAP);
   const priority = {};
   const category = {};
+  const roadmapRow = {};
   const capabilityType = {};
   const changes = [];
   for (const t of tables) {
@@ -622,6 +627,7 @@ function buildRoadmap() {
         if (!/^PRD-/.test(r.Feature || '')) continue;
         priority[r.Feature] = r.Priority;
         category[r.Feature] = r.Category;
+        if (r['Roadmap row']) roadmapRow[r.Feature] = Number(r['Roadmap row']);
       }
     }
     if (t.headers.includes('Capability type')) {
@@ -643,7 +649,9 @@ function buildRoadmap() {
       }
     }
   }
-  return { priority, category, capabilityType, changes };
+  return {
+    priority, category, capabilityType, changes, roadmapRow,
+  };
 }
 
 // ------------------------------------------------- working role groups ------
@@ -722,6 +730,8 @@ for (const f of features) {
   f.priority = roadmap.priority[f.id] ?? null;
   f.category = roadmap.category[f.id] ?? null;
   f.capabilityType = roadmap.capabilityType[f.id] ?? null;
+  // the row of the "Product Features" sheet in Product_Feature_List_nopCommerce_5.00.xlsx
+  f.roadmapRow = roadmap.roadmapRow[f.id] ?? null;
   if (roadmap.priority[f.id] === undefined && ROADMAP) warn(`no roadmap priority for ${f.id}`);
 }
 

@@ -332,6 +332,7 @@ export function FeatureDetail() {
                 ['Who benefits', f.whoBenefits],
                 ['Phase', f.phase],
                 ['Priority (MoSCoW)', f.priority ?? '-'],
+                ['Roadmap row', f.roadmapRow ? `"Product Features" sheet, row ${f.roadmapRow}` : '-'],
                 ['Category', f.category ?? '-'],
                 f.capabilityType && ['Phase 3 capability type', f.capabilityType],
                 ['Implementation', f.implementation],
@@ -921,7 +922,9 @@ export function GroupDetail() {
           <div className="p-3 space-y-4">
             <Citation>
               Wave first (handoff section 5.2), then P1 → P2 → P3, then Must → Should → Could, then the
-              workbook "Depends on" order. The same order is written to trace/build-map-{g.id}.md.
+              workbook "Depends on" order. Feature IDs are written exactly as the roadmap writes them,
+              with the PRD- prefix, and "Roadmap row" is the row of its "Product Features" sheet. The
+              same order is written to trace/build-map-{g.id}.md.
             </Citation>
             {byWave.map((w) => (
               <div key={w.wave} className="border border-nop-border rounded-sm">
@@ -937,7 +940,8 @@ export function GroupDetail() {
                   dense
                   columns={[
                     { key: 'n', header: '#', width: 40, render: (f, i) => i + 1 },
-                    { key: 'id', header: 'Feature', render: (f) => <Link to={`/explorer/features/${f.id}`} className="font-mono text-[12px] text-nop-blue hover:underline">{f.id}</Link> },
+                    { key: 'id', header: 'Feature ID', render: (f) => <Link to={`/explorer/features/${f.id}`} className="font-mono text-[12px] text-nop-blue hover:underline">{f.id}</Link> },
+                    { key: 'roadmapRow', header: 'Roadmap row', align: 'right', render: (f) => (f.roadmapRow ?? '-') },
                     { key: 'name', header: 'Name' },
                     { key: 'area', header: 'Module', render: (f) => <Badge tone="slate">{f.area}</Badge> },
                     { key: 'phase', header: 'Phase', render: (f) => <Badge tone={PHASE_TONE[f.phase]}>{f.phase}</Badge> },

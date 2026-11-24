@@ -120,17 +120,22 @@ ${table(['Module', 'Name', 'Features', 'P1', 'Must', 'Held', 'ACs'], areas
 Wave first (handoff section 5.2), then P1 → P2 → P3, then Must → Should → Could, then the
 workbook "Depends on" order. "State" is what the prototype has today, from \`trace/trace.json\`.
 
+**Feature ID** is the ID exactly as the roadmap writes it, with the \`PRD-\` prefix.
+**Roadmap row** is its row in the "Product Features" sheet of
+\`docs/Product_Feature_List_nopCommerce_5.00.xlsx\`, so every line here can be opened in the
+workbook directly.
+
 ${plan.map(({ wave, waveName, features: list }) => `### Wave ${wave} — ${waveName} (${list.length} features)
 
-${table(['#', 'Feature', 'Name', 'Module', 'Phase', 'Priority', 'Implementation', 'ACs', 'Screens', 'State', 'Held by'],
-    list.map((f, i) => `| ${i + 1} | ${f.id} | ${esc(f.name)} | ${f.area} | ${f.phase} | ${esc(f.priority)} | ${esc(f.implementation)} | ${f.criteria.length} | ${f.screens.length} | ${STATE_LABEL[stateOf(f.id)]} | ${f.heldBy.join(' / ') || '—'} |`))}`).join('\n\n')}
+${table(['#', 'Feature ID', 'Roadmap row', 'Name', 'Module', 'Phase', 'Priority', 'Implementation', 'ACs', 'Screens', 'State', 'Held by'],
+    list.map((f, i) => `| ${i + 1} | ${f.id} | ${f.roadmapRow ?? '—'} | ${esc(f.name)} | ${f.area} | ${f.phase} | ${esc(f.priority)} | ${esc(f.implementation)} | ${f.criteria.length} | ${f.screens.length} | ${STATE_LABEL[stateOf(f.id)]} | ${f.heldBy.join(' / ') || '—'} |`))}`).join('\n\n')}
 
 ## 3. Screens these features own
 
 ${table(['Surface', 'Screen', 'Module', 'Features', 'Native or new'], [...new Map(members
     .flatMap((f) => screensFor(f).map((s) => [s.id, s]))).values()]
     .sort((a, b) => a.surface.localeCompare(b.surface) || a.area.localeCompare(b.area))
-    .map((s) => `| ${esc(s.surfaceLabel)} | ${esc(s.screen)} | ${s.area} | ${s.features.map((x) => x.replace('PRD-', '')).join(', ')} | ${esc(s.nativeOrNew)} |`))}
+    .map((s) => `| ${esc(s.surfaceLabel)} | ${esc(s.screen)} | ${s.area} | ${s.features.join(', ')} | ${esc(s.nativeOrNew)} |`))}
 
 ## 4. Open decisions that hold features in this group
 
@@ -139,7 +144,7 @@ ${group.held === 0 ? 'None.' : table(['Decision', 'Features held in this group']
       for (const d of f.heldBy) (acc[d] ||= []).push(f.id);
       return acc;
     }, {})).sort((a, b) => b[1].length - a[1].length)
-      .map(([d, ids]) => `| ${d} | ${ids.length} — ${ids.map((x) => x.replace('PRD-', '')).join(', ')} |`))}
+      .map(([d, ids]) => `| ${d} | ${ids.length} — ${ids.join(', ')} |`))}
 
 Each is built to the PRD's Proposed option and labelled "Prototype default — decision <ID> pending"
 (prototype decision P-1). A real build does not start a held feature until the decision is recorded.
