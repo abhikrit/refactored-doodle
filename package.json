@@ -22,7 +22,8 @@
     "trace": "node scripts/build-trace.mjs",
     "test": "node --test \"tests/unit/*.test.js\"",
     "test:ui": "node --test \"tests/ui/*.test.js\"",
-    "verify": "npm run check && npm test && npm run trace"
+    "verify": "npm run check && npm test && npm run trace && npm run map",
+    "map": "node scripts/build-group-map.mjs"
   },
   "devDependencies": {
     "@tailwindcss/vite": "4.3.5",

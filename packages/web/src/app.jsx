@@ -28,8 +28,8 @@ import {
 import { SellerDashboard, SellerList } from './surfaces/seller/index.jsx';
 import { OutletCounter } from './surfaces/outlet/index.jsx';
 import {
-  AreaDetail, AreaList, Decisions, FeatureDetail, FeatureList, Journeys, Overview, Requirements,
-  RoleDetail, RoleList, Trace,
+  AreaDetail, AreaList, Decisions, FeatureDetail, FeatureList, GroupDetail, GroupList, Journeys,
+  Overview, Requirements, RoleDetail, RoleList, Trace,
 } from './surfaces/explorer/index.jsx';
 
 const store = (el) => <StorefrontShell>{el}</StorefrontShell>;
@@ -118,6 +118,8 @@ export default function App() {
               <Route path="/explorer/features/:id" element={<FeatureDetail />} />
               <Route path="/explorer/areas" element={<AreaList />} />
               <Route path="/explorer/areas/:code" element={<AreaDetail />} />
+              <Route path="/explorer/groups" element={<GroupList />} />
+              <Route path="/explorer/groups/:id" element={<GroupDetail />} />
               <Route path="/explorer/roles" element={<RoleList />} />
               <Route path="/explorer/roles/:id" element={<RoleDetail />} />
               <Route path="/explorer/journeys" element={<Journeys />} />

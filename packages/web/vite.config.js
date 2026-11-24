@@ -9,7 +9,7 @@ const apiMiddleware = {
   name: 'product-api',
   async configureServer(server) {
     const { createApiApp } = await import('@product/server');
-    const { app } = await createApiApp({ defaultClient: process.env.CLIENT ?? 'KTDA' });
+    const { app } = await createApiApp({ defaultClient: process.env.CLIENT ?? 'MPC' });
     server.middlewares.use(app);
     server.config.logger.info('  API mounted on the same port under /api');
   },

@@ -10,7 +10,7 @@ const PORT = Number(process.env.PORT ?? 4000);
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 const DIST = join(ROOT, 'packages', 'web', 'dist');
 
-const { app } = await createApiApp({ defaultClient: process.env.CLIENT ?? 'KTDA' });
+const { app } = await createApiApp({ defaultClient: process.env.CLIENT ?? 'MPC' });
 
 if (!existsSync(DIST)) {
   console.error('packages/web/dist is missing - run "npm run build" first.');

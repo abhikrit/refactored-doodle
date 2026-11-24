@@ -50,16 +50,21 @@ npm run build && npm start
    and the other to *Collect at an outlet* → Checkout → choose **M-Pesa** → confirm the push on the
    "handset" → the order splits into **two sub-orders under one checkout reference**, and the
    collection sub-order shows its **pickup code**.
-2. **Switch the client pack** in the black bar at the top: *Kenya Tea Development Agency* ⇄
-   *Malawi Posts Corporation*. The storefront re-skins, the language and currency change, the
-   payment rails change, and guest checkout is refused for Malawi Post — with **no code change**.
-   See it in Administration → Configuration → **Configuration packs**.
+2. **Switch the client pack** in the black bar at the top: *Malawi Posts Corporation* (the default,
+   and the client being implemented) ⇄ *Kenya Tea Development Agency*. The storefront re-skins, the
+   language and currency change, the payment rails change, and guest checkout is refused for
+   Malawi Post — with **no code change**. See it in Administration → Configuration →
+   **Configuration packs**. Start on another pack with `CLIENT=KTDA npm run dev`.
 3. **Hand the parcel over** at Outlet / agent → *Hand over a collection*: a wrong code is refused,
    the right code completes the delivery.
 4. **Look behind it**: Administration → Local plugins (the 24 area plugins and the override
    register), System → Audit trail, System → Mocks console, Configuration → Feature registry.
-5. **Plan the build**: Product explorer → Features / Areas / **Roles** / Requirement coverage /
-   Decisions / Trace report.
+6. **Look at the whole product**: Product explorer → Features / Areas / Roles / Requirement
+   coverage / Decisions / Trace report.
+
+5. **Plan the build by user group**: Product explorer → **User groups** → *Client administrators*
+   — the 137 features of the product mapping diagram, in build order by wave, phase, priority and
+   dependency. The same order is written to `trace/build-map-client-administrators.md`.
 
 Seeded sign-ins (synthetic, password `demo` for all): `buyer@example.com`,
 `company.buyer@example.com`, `admin@example.com`, `finance@example.com`, `logistics@example.com`,
@@ -74,6 +79,7 @@ Seeded sign-ins (synthetic, password `demo` for all): `buyer@example.com`,
 | `npm test` | Acceptance tests over the API; **every test is named by an AC ID** |
 | `npm run test:ui` | The same journey in a real browser (needs `npm run dev` running) |
 | `npm run trace` | Rebuilds `trace/trace.md`, `trace/trace.json` and `trace/coverage.html` |
+| `npm run map` | Writes the build map for a user group, e.g. `npm run map -- finance-fraud-and-legal-staff` |
 | `npm run verify` | check → test → trace |
 
 ---

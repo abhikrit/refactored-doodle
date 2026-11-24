@@ -20,7 +20,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, '..', '..', '..');
 const baseline = JSON.parse(readFileSync(join(ROOT, 'platform', 'baseline.json'), 'utf8'));
 
-export async function createApiApp({ defaultClient = 'KTDA' } = {}) {
+export async function createApiApp({ defaultClient = 'MPC' } = {}) {
   const app = express();
   app.use(express.json({ limit: '2mb' }));
 

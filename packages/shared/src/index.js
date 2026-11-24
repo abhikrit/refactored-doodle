@@ -27,6 +27,7 @@ import auditEvents from '../data/audit-events.json' with { type: 'json' };
 import actors from '../data/actors.json' with { type: 'json' };
 import permissions from '../data/permissions.json' with { type: 'json' };
 import roadmapChanges from '../data/roadmap-changes.json' with { type: 'json' };
+import workingGroups from '../data/working-groups.json' with { type: 'json' };
 import meta from '../data/meta.json' with { type: 'json' };
 
 export const registry = {
@@ -58,6 +59,7 @@ export const registry = {
   actors,
   permissions,
   roadmapChanges,
+  workingGroups,
 };
 
 export const AREA_CODES = areas.map((a) => a.code);

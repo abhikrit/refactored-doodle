@@ -33,6 +33,9 @@ const REGISTER = read('register/Decisions-Gaps-Register.md');
 const ROADMAP = (() => {
   try { return read('roadmap/priority-and-category.md'); } catch { return ''; }
 })();
+const WORKING_GROUPS = (() => {
+  try { return read('roadmap/working-groups.md'); } catch { return ''; }
+})();
 const MODULE_FILES = readdirSync(join(DOCS, 'prd/modules')).filter((f) => f.endsWith('.md')).sort();
 const MODULES = Object.fromEntries(MODULE_FILES.map((f) => [f.slice(4, -3), read(`prd/modules/${f}`)]));
 
@@ -643,6 +646,51 @@ function buildRoadmap() {
   return { priority, category, capabilityType, changes };
 }
 
+// ------------------------------------------------- working role groups ------
+// The product mapping diagram's four clusters and fifteen groups. A feature belongs to a group
+// when its Client-PRD "Who uses it" list names one of the group's role names. The counts overlap
+// on purpose and do not sum to 434. The grouping is a reading aid, not a client source.
+function buildWorkingGroups() {
+  if (!WORKING_GROUPS) return [];
+  const table = parseTables(WORKING_GROUPS).find((t) => t.headers.includes('Diagram count'));
+  if (!table) return [];
+  const usersOf = (f) => (f.whoUsesIt || '').split(';').map((x) => x.trim().toLowerCase()).filter(Boolean);
+  return table.rows.filter((r) => r.Group).map((r) => {
+    const names = r['Role names in the "Who uses it" list'].split(';').map((x) => x.trim().toLowerCase()).filter(Boolean);
+    const members = features.filter((f) => usersOf(f).some((u) => names.includes(u)));
+    const diagramCount = Number(r['Diagram count']) || 0;
+    const actual = members.length;
+    if (actual !== diagramCount) {
+      warn(`working group "${r.Group}": diagram says ${diagramCount}, the registry gives ${actual}`);
+    }
+    return {
+      id: r.Group.replace(/[^A-Za-z0-9]+/g, '-').toLowerCase(),
+      cluster: r.Cluster,
+      group: r.Group,
+      diagramCount,
+      count: actual,
+      matchesDiagram: actual === diagramCount,
+      confirmed: /yes/i.test(r.Confirmed || ''),
+      roleNames: names,
+      features: members.map((f) => f.id),
+      phases: {
+        P1: members.filter((f) => f.phase === 'P1').length,
+        P2: members.filter((f) => f.phase === 'P2').length,
+        P3: members.filter((f) => f.phase === 'P3').length,
+      },
+      priorities: {
+        'Must Have': members.filter((f) => f.priority === 'Must Have').length,
+        'Should Have': members.filter((f) => f.priority === 'Should Have').length,
+        'Could Have': members.filter((f) => f.priority === 'Could Have').length,
+      },
+      held: members.filter((f) => f.held).length,
+      criteria: members.reduce((s2, f) => s2 + f.criteria.length, 0),
+      areas: [...new Set(members.map((f) => f.area))].sort(),
+      waves: [...new Set(members.map((f) => f.wave))].filter(Boolean).sort(),
+    };
+  });
+}
+
 // ----------------------------------------------------------------- main -----
 const areas = buildAreas();
 const { features, stories, criteria } = buildFeatures(areas);
@@ -686,6 +734,8 @@ const scrByFeature = {};
 for (const s of screens) for (const f of s.features) (scrByFeature[f] ||= []).push(s.id);
 for (const f of features) f.screens = uniq(scrByFeature[f.id] || []);
 
+const workingGroups = buildWorkingGroups();
+
 const meta = {
   generated: new Date().toISOString(),
   generator: 'scripts/generate-registries.mjs',
@@ -720,6 +770,8 @@ const meta = {
     shouldHave: features.filter((f) => f.priority === 'Should Have').length,
     couldHave: features.filter((f) => f.priority === 'Could Have').length,
     roadmapChanges: roadmap.changes.length,
+    workingGroups: workingGroups.length,
+    workingGroupsMatchingDiagram: workingGroups.filter((g) => g.matchesDiagram).length,
   },
 };
 
@@ -758,6 +810,7 @@ write('audit-events.json', audits);
 write('actors.json', actors);
 write('permissions.json', permissions);
 write('roadmap-changes.json', roadmap.changes);
+write('working-groups.json', workingGroups);
 
 if (warnings.length) {
   console.log(`\n${warnings.length} warning(s):`);

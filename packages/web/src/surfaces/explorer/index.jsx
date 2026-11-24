@@ -20,6 +20,7 @@ const NAV = [
   { to: '/explorer', label: 'Overview', end: true },
   { to: '/explorer/features', label: 'Features' },
   { to: '/explorer/areas', label: 'Areas and waves' },
+  { to: '/explorer/groups', label: 'User groups' },
   { to: '/explorer/roles', label: 'Roles' },
   { to: '/explorer/journeys', label: 'Journeys' },
   { to: '/explorer/requirements', label: 'Requirement coverage' },
@@ -791,6 +792,196 @@ export function RoleDetail() {
             rows={role.actors}
             rowKey={(a, i) => i}
             empty="No actor row in a module chapter matches this beneficiary group by name."
+          />
+        )}
+      </div>
+    </ExplorerShell>
+  );
+}
+
+/* ------------------------------------------------------------ user groups -- */
+
+const CLUSTER_TONE = {
+  'Buyers and citizens': 'blue',
+  'Sellers and partners': 'green',
+  'Oversight and government': 'amber',
+  'Client staff': 'purple',
+};
+
+export function GroupList() {
+  const [groups, setGroups] = useState(null);
+  useEffect(() => { api.get('/registry/workingGroups').then(setGroups).catch(() => {}); }, []);
+  if (!groups) return <ExplorerShell><Spinner /></ExplorerShell>;
+
+  const clusters = [...new Set(groups.map((g) => g.cluster))];
+  const confirmed = groups.filter((g) => g.matchesDiagram).length;
+
+  return (
+    <ExplorerShell
+      title="User groups"
+      intro="The product mapping diagram's clusters and groups. A feature belongs to a group when its Client-PRD 'Who uses it' list names that group. The counts overlap on purpose - a feature serves several users - so they do not sum to 434."
+    >
+      <Alert tone={confirmed === groups.length ? 'success' : 'info'} title={`${confirmed} of ${groups.length} groups reproduce the diagram count exactly`}>
+        The grouping is a reading aid, not a client source - the diagram says so itself. Where the
+        registry and the diagram differ, the group's role-name list in
+        {' '}<span className="font-mono">docs/roadmap/working-groups.md</span> needs one line of confirmation,
+        and correcting it there changes the registry, this view and the build order together.
+      </Alert>
+
+      <div className="grid gap-4 lg:grid-cols-2">
+        {clusters.map((cluster) => (
+          <Panel key={cluster} title={cluster} bodyClass="p-0" className={cluster === 'Client staff' ? 'lg:row-span-2' : ''}>
+            <Grid
+              dense
+              columns={[
+                { key: 'group', header: 'Group', render: (g) => <Link to={`/explorer/groups/${g.id}`} className="text-nop-blue hover:underline font-medium">{g.group}</Link> },
+                { key: 'count', header: 'Features', align: 'right', render: (g) => <span className="font-semibold">{g.count}</span> },
+                {
+                  key: 'match',
+                  header: 'vs diagram',
+                  align: 'right',
+                  render: (g) => (g.matchesDiagram
+                    ? <Badge tone="green">exact</Badge>
+                    : <Badge tone="amber">diagram {g.diagramCount}</Badge>),
+                },
+                { key: 'p1', header: 'P1', align: 'right', render: (g) => g.phases.P1 },
+                { key: 'must', header: 'Must', align: 'right', render: (g) => g.priorities['Must Have'] },
+                { key: 'held', header: 'Held', align: 'right' },
+                { key: 'criteria', header: 'ACs', align: 'right' },
+              ]}
+              rows={groups.filter((g) => g.cluster === cluster)}
+              rowKey={(g) => g.id}
+            />
+          </Panel>
+        ))}
+      </div>
+      <Citation>
+        Client-PRD section 7 "Who uses it". The role-name roll-up per group is in
+        docs/roadmap/working-groups.md; 169 distinct role names appear across the 434 features.
+      </Citation>
+    </ExplorerShell>
+  );
+}
+
+export function GroupDetail() {
+  const { id } = useParams();
+  const { features, areas } = useProduct();
+  const [groups, setGroups] = useState(null);
+  const [tab, setTab] = useState('plan');
+  useEffect(() => { api.get('/registry/workingGroups').then(setGroups).catch(() => {}); }, []);
+  if (!groups) return <ExplorerShell><Spinner /></ExplorerShell>;
+  const g = groups.find((x) => x.id === id);
+  if (!g) return <ExplorerShell><Alert tone="warning">Unknown group.</Alert></ExplorerShell>;
+
+  const PRIORITY_ORDER = { 'Must Have': 0, 'Should Have': 1, 'Could Have': 2 };
+  const PHASE_ORDER = { P1: 0, P2: 1, P3: 2 };
+  const members = g.features.map((fid) => features.find((f) => f.id === fid)).filter(Boolean);
+  const byWave = (g.waves ?? []).map((w) => ({
+    wave: w,
+    waveName: areas.find((a) => a.wave === w)?.waveName ?? '',
+    features: members.filter((f) => f.wave === w).sort((a, b) => (PHASE_ORDER[a.phase] - PHASE_ORDER[b.phase])
+      || ((PRIORITY_ORDER[a.priority] ?? 9) - (PRIORITY_ORDER[b.priority] ?? 9))
+      || a.id.localeCompare(b.id)),
+  }));
+
+  const tabs = [
+    { id: 'plan', label: 'Build order', count: members.length },
+    { id: 'modules', label: 'By module', count: g.areas.length },
+    { id: 'held', label: 'Held by a decision', count: g.held },
+  ];
+
+  return (
+    <ExplorerShell>
+      <Breadcrumb items={[{ label: 'User groups', to: '/explorer/groups' }, { label: g.group }]} />
+      <div className="flex flex-wrap items-start gap-3 justify-between">
+        <div>
+          <h1 className="text-[20px] font-semibold">{g.group}</h1>
+          <p className="text-[12.5px] text-nop-muted">{g.cluster} · names matched: {g.roleNames.join(' · ')}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Badge tone={CLUSTER_TONE[g.cluster] ?? 'slate'}>{g.count} features</Badge>
+          {g.matchesDiagram
+            ? <Badge tone="green">matches the diagram ({g.diagramCount})</Badge>
+            : <Badge tone="amber">diagram says {g.diagramCount}</Badge>}
+          <Badge tone="slate">{g.criteria} ACs</Badge>
+          <Badge tone="red">{g.held} held</Badge>
+        </div>
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-4">
+        <StatTile label="Phase 1" value={g.phases.P1} tone="green" hint={`P2 ${g.phases.P2} · P3 ${g.phases.P3}`} />
+        <StatTile label="Must Have" value={g.priorities['Must Have']} tone="red" hint={`Should ${g.priorities['Should Have']} · Could ${g.priorities['Could Have']}`} />
+        <StatTile label="Modules touched" value={`${g.areas.length} of 24`} tone="blue" />
+        <StatTile label="Acceptance criteria" value={g.criteria} tone="slate" hint="one test per AC is the Definition of Done" />
+      </div>
+
+      <Tabs tabs={tabs} active={tab} onChange={setTab} />
+      <div className="border border-t-0 border-nop-border bg-white">
+        {tab === 'plan' && (
+          <div className="p-3 space-y-4">
+            <Citation>
+              Wave first (handoff section 5.2), then P1 → P2 → P3, then Must → Should → Could, then the
+              workbook "Depends on" order. The same order is written to trace/build-map-{g.id}.md.
+            </Citation>
+            {byWave.map((w) => (
+              <div key={w.wave} className="border border-nop-border rounded-sm">
+                <div className="px-3 py-2 bg-nop-head flex flex-wrap items-center gap-2">
+                  <Badge tone="blue">Wave {w.wave}</Badge>
+                  <span className="text-[13px] font-medium">{w.waveName}</span>
+                  <span className="ml-auto text-[12px] text-nop-muted">
+                    {w.features.length} features · {w.features.reduce((s, f) => s + f.criteria.length, 0)} ACs ·
+                    {' '}{w.features.filter((f) => f.held).length} held
+                  </span>
+                </div>
+                <Grid
+                  dense
+                  columns={[
+                    { key: 'n', header: '#', width: 40, render: (f, i) => i + 1 },
+                    { key: 'id', header: 'Feature', render: (f) => <Link to={`/explorer/features/${f.id}`} className="font-mono text-[12px] text-nop-blue hover:underline">{f.id}</Link> },
+                    { key: 'name', header: 'Name' },
+                    { key: 'area', header: 'Module', render: (f) => <Badge tone="slate">{f.area}</Badge> },
+                    { key: 'phase', header: 'Phase', render: (f) => <Badge tone={PHASE_TONE[f.phase]}>{f.phase}</Badge> },
+                    { key: 'priority', header: 'Priority', render: (f) => (f.priority ? <Badge tone={PRIORITY_TONE[f.priority]}>{f.priority.replace(' Have', '')}</Badge> : '-') },
+                    { key: 'implementation', header: 'Implementation' },
+                    { key: 'criteria', header: 'ACs', align: 'right', render: (f) => f.criteria.length },
+                    { key: 'held', header: 'Decision', render: (f) => (f.held ? <HeldLabel feature={f} /> : '-') },
+                  ]}
+                  rows={w.features}
+                  rowKey={(f) => f.id}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+        {tab === 'modules' && (
+          <Grid
+            dense
+            columns={[
+              { key: 'code', header: 'Module', render: (a) => <Link to={`/explorer/areas/${a.code}`} className="font-mono text-nop-blue hover:underline">{a.code}</Link> },
+              { key: 'name', header: 'Name' },
+              { key: 'wave', header: 'Wave', render: (a) => `${a.wave} ${a.waveName}` },
+              { key: 'n', header: 'In this group', align: 'right', render: (a) => members.filter((f) => f.area === a.code).length },
+              { key: 'p1', header: 'P1', align: 'right', render: (a) => members.filter((f) => f.area === a.code && f.phase === 'P1').length },
+              { key: 'must', header: 'Must', align: 'right', render: (a) => members.filter((f) => f.area === a.code && f.priority === 'Must Have').length },
+              { key: 'acs', header: 'ACs', align: 'right', render: (a) => members.filter((f) => f.area === a.code).reduce((s, f) => s + f.criteria.length, 0) },
+            ]}
+            rows={areas.filter((a) => g.areas.includes(a.code))}
+            rowKey={(a) => a.code}
+          />
+        )}
+        {tab === 'held' && (
+          <Grid
+            dense
+            columns={[
+              { key: 'id', header: 'Feature', render: (f) => <Link to={`/explorer/features/${f.id}`} className="font-mono text-[12px] text-nop-blue hover:underline">{f.id}</Link> },
+              { key: 'name', header: 'Name' },
+              { key: 'area', header: 'Module' },
+              { key: 'phase', header: 'Phase' },
+              { key: 'heldBy', header: 'Held by', render: (f) => f.heldBy.join(' / ') },
+            ]}
+            rows={members.filter((f) => f.held)}
+            rowKey={(f) => f.id}
+            empty="No feature in this group is held by an open decision."
           />
         )}
       </div>

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-24T12:58:37.687Z",
+  "generated": "2026-11-24T13:11:50.202Z",
   "generator": "scripts/generate-registries.mjs",
   "sources": [
     "docs/prd/01-product-prd.md",
@@ -31,6 +31,8 @@
     "mustHave": 297,
     "shouldHave": 106,
     "couldHave": 31,
-    "roadmapChanges": 52
+    "roadmapChanges": 52,
+    "workingGroups": 17,
+    "workingGroupsMatchingDiagram": 5
   }
 }
