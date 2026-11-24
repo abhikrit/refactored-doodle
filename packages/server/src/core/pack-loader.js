@@ -11,7 +11,7 @@
 // BR-PLT-013 / decision CFG-01: a secret never travels in a pack. A pack carrying one is refused.
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, sep } from 'node:path';
 import { featureById } from '@product/shared';
 import { saveSettingAsync, clearSettingsAsync } from './settings.js';
 import { auditAsync } from './audit.js';
@@ -29,6 +29,8 @@ function packsRoot(root) {
 function readPack(file) {
   const pack = JSON.parse(readFileSync(file, 'utf8'));
   pack._file = file;
+  // a repo-relative path for display, with forward slashes on every platform
+  pack._path = file.split(sep).join('/').replace(/^.*\/packs\//, 'packs/');
   return pack;
 }
 
@@ -141,7 +143,7 @@ export async function applyPackChainAsync(chain, { storeId = 1, replace = true, 
     storeId,
     appliedOnUtc: new Date().toISOString(),
     chain: chain.map((p) => ({
-      layer: p.layer, id: p.id, name: p.name, version: p.version ?? null, file: p._file.replace(/.*\/packs\//, 'packs/'),
+      layer: p.layer, id: p.id, name: p.name, version: p.version ?? null, file: p._path,
       settings: Object.keys(p.settings ?? {}).length,
       features: Object.keys(p.features ?? {}).length,
     })),

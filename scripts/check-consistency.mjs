@@ -4,7 +4,7 @@
 //
 //   npm run check
 
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -105,16 +105,23 @@ const areaCodes = new Set(areas.map((a) => a.code));
 expectEmpty('feature -> area', features.filter((f) => !areaCodes.has(f.area)).map((f) => f.id), 'L1 section 7');
 
 // ---- tests must be named by AC ID (Definition of Done / handoff 5.3.4) -----
-let testNames = [];
-try {
-  const { execSync } = await import('node:child_process');
-  const out = execSync(
-    `grep -rhoE "(test|it)\\(\\s*'(AC-[A-Z]+-[0-9]{3}-[0-9]{2}-[0-9]{2})'" ${join(ROOT, 'tests')} || true`,
-    { encoding: 'utf8' },
-  );
-  testNames = [...out.matchAll(/'(AC-[A-Z]+-\d{3}-\d{2}-\d{2})'/g)].map((m) => m[1]);
-} catch { /* tests not present yet */ }
+// Read the test files in Node rather than shelling out: grep and "|| true" need a POSIX shell,
+// which Windows does not have, and an unquoted path breaks on any directory with a space.
+function testFiles(dir) {
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) return testFiles(full);
+    return /\.(test|spec)\.(m|c)?js$/.test(entry.name) ? [full] : [];
+  });
+}
+
+const TEST_NAME = /\b(?:test|it)\s*\(\s*['"`](AC-[A-Z]+-\d{3}-\d{2}-\d{2})['"`]/g;
+const testNames = testFiles(join(ROOT, 'tests'))
+  .flatMap((file) => [...readFileSync(file, 'utf8').matchAll(TEST_NAME)].map((m) => m[1]));
+
 expectEmpty('test name -> AC ID', testNames.filter((t) => !criterionIds.has(t)), 'CLAUDE.md: test name = AC ID');
+ok.push(`tests named by an AC ID: ${new Set(testNames).size}`);
 
 // ---- report ----------------------------------------------------------------
 console.log(`check-consistency: ${ok.length} checks passed`);

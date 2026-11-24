@@ -22,7 +22,9 @@ import {
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DOCS = join(ROOT, 'docs');
 const OUT = join(ROOT, 'packages', 'shared', 'data');
-const read = (p) => readFileSync(join(DOCS, p), 'utf8');
+// Normalise CRLF on read: a Windows checkout otherwise leaves \r on every line, which stops the
+// heading and section regexes matching (in a JS regex "." does not match \r).
+const read = (p) => readFileSync(join(DOCS, p), 'utf8').replace(/\r\n?/g, '\n');
 const warnings = [];
 const warn = (m) => { warnings.push(m); };
 

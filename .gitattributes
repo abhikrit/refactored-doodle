@@ -1,0 +1,10 @@
+# Keep text files LF in the working tree on every platform. The generator parses /docs with
+# regexes where "." does not match \r, so a CRLF checkout would otherwise change behaviour.
+# The readers normalise CRLF anyway; this keeps diffs clean as well.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.gif binary
+*.pdf binary
+*.xlsx binary

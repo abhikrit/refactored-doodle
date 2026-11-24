@@ -27,11 +27,18 @@ export function splitRow(line) {
 const isSeparator = (line) => /^\|[\s:|-]+\|?\s*$/.test(line) && line.includes('-');
 
 /**
+ * Split into lines with CRLF normalised. A Windows checkout (core.autocrlf=true) leaves a \r on
+ * every line, and in a JavaScript regex "." does not match \r - so "^#+\s+(.*)$" stops matching
+ * headings and every section lookup silently returns nothing. Normalise once, here.
+ */
+export const lines = (md) => String(md).replace(/\r\n?/g, '\n').split('\n');
+
+/**
  * Find every markdown table in `md`.
  * @returns {{headers: string[], rows: Object[], line: number}[]}
  */
 export function parseTables(md) {
-  const lines = md.split('\n');
+  const lines = String(md).replace(/\r\n?/g, '\n').split('\n');
   const tables = [];
   for (let i = 0; i < lines.length; i += 1) {
     if (!lines[i].trimStart().startsWith('|')) continue;
@@ -57,7 +64,7 @@ export function parseTables(md) {
 
 /** Slice the document from the heading matching `re` up to the next heading of the same or higher level. */
 export function section(md, re) {
-  const lines = md.split('\n');
+  const lines = String(md).replace(/\r\n?/g, '\n').split('\n');
   let start = -1;
   let level = 0;
   for (let i = 0; i < lines.length; i += 1) {
@@ -74,7 +81,7 @@ export function section(md, re) {
 
 /** All `### <id> <title>` blocks whose id matches `idRe`, within `md`. */
 export function blocksByHeading(md, headingLevel, idRe) {
-  const lines = md.split('\n');
+  const lines = String(md).replace(/\r\n?/g, '\n').split('\n');
   const hashes = '#'.repeat(headingLevel);
   const out = [];
   let cur = null;
@@ -95,7 +102,8 @@ export function blocksByHeading(md, headingLevel, idRe) {
 }
 
 /** Bullet list items that follow a `**Label**` line, until the next blank-line-separated block. */
-export function bulletsAfter(md, label) {
+export function bulletsAfter(mdRaw, label) {
+  const md = String(mdRaw).replace(/\r\n?/g, '\n');
   const re = new RegExp(`^\\*\\*${label}\\*\\*\\s*$`, 'm');
   const m = re.exec(md);
   if (!m) return [];

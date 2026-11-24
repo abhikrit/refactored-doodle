@@ -52,7 +52,7 @@ export function packInventory() {
     id: p.id,
     name: p.name,
     version: p.version ?? null,
-    file: p._file.replace(/.*\/packs\//, 'packs/'),
+    file: p._path,
     settings: Object.keys(p.settings ?? {}).length,
     features: Object.keys(p.features ?? {}).length,
     description: p.description ?? '',
