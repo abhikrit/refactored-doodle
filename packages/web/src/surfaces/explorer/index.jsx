@@ -1037,14 +1037,23 @@ export function Journeys() {
 
 export function Requirements() {
   const [rows, setRows] = useState(null);
-  const [filter, setFilter] = useState({ q: '', client: '', status: '' });
+  const [filter, setFilter] = useState({
+    q: '', client: '', status: '', actor: '', domain: '', bidder: '',
+  });
+  const [expanded, setExpanded] = useState(null);
   useEffect(() => { api.get('/registry/requirements').then(setRows).catch(() => {}); }, []);
 
   const statuses = useMemo(() => [...new Set((rows ?? []).map((r) => r.status))].sort(), [rows]);
+  const actors = useMemo(() => [...new Set((rows ?? []).map((r) => r.actor).filter(Boolean))].sort(), [rows]);
+  const domains = useMemo(() => [...new Set((rows ?? []).map((r) => r.domain).filter(Boolean))].sort(), [rows]);
+  const bidders = useMemo(() => [...new Set((rows ?? []).map((r) => r.bidderResponse).filter(Boolean))].sort(), [rows]);
   const filtered = (rows ?? []).filter((r) => (
     (!filter.q || `${r.id} ${r.text}`.toLowerCase().includes(filter.q.toLowerCase()))
     && (!filter.client || r.client === filter.client)
     && (!filter.status || r.status === filter.status)
+    && (!filter.actor || r.actor === filter.actor)
+    && (!filter.domain || r.domain === filter.domain)
+    && (!filter.bidder || r.bidderResponse === filter.bidder)
   ));
 
   const ktda = (rows ?? []).filter((r) => r.client === 'KTDA');
@@ -1053,7 +1062,7 @@ export function Requirements() {
   return (
     <ExplorerShell
       title="Client requirement coverage"
-      intro="The requirement baseline from the compliance report: KTDA 95 and Malawi Post 411, each with its compliance status and the P1 features that deliver it."
+      intro="The requirement baseline from the compliance report: KTDA 95 and Malawi Post 411, each with its compliance status and the P1 features that deliver it. The 350 Malawi Post Lot 1 requirements also carry the client's own annex: actor, domain, acceptance criteria, priority and the bidder response already given. Click a requirement ID to see the client's acceptance criteria."
     >
       {!rows ? <Spinner /> : (
         <>
@@ -1061,9 +1070,12 @@ export function Requirements() {
             <StatTile label="KTDA requirements" value={ktda.length} tone="green" />
             <StatTile label="Malawi Post requirements" value={mpc.length} tone="red" />
             <StatTile label="Compliant" value={rows.filter((r) => r.status.startsWith('Compliant')).length} tone="blue" />
-            <StatTile label="Project service, not a product feature" value={rows.filter((r) => r.status.startsWith('Project service')).length} tone="slate" />
+            <StatTile label="Lot 1 FRs with the client's own annex" value={rows.filter((r) => r.frId).length} tone="amber" hint="actor, domain, client AC, bidder response" />
           </div>
-          <SearchPanel onClear={() => setFilter({ q: '', client: '', status: '' })}>
+          <SearchPanel onClear={() => setFilter({
+            q: '', client: '', status: '', actor: '', domain: '', bidder: '',
+          })}
+          >
             <Field label="Requirement or text"><Input value={filter.q} onChange={(e) => setFilter({ ...filter, q: e.target.value })} /></Field>
             <Field label="Client">
               <Select value={filter.client} onChange={(e) => setFilter({ ...filter, client: e.target.value })}>
@@ -1078,16 +1090,62 @@ export function Requirements() {
                 {statuses.map((s) => <option key={s} value={s}>{s}</option>)}
               </Select>
             </Field>
+            <Field label="Actor (Malawi Post Lot 1)">
+              <Select value={filter.actor} onChange={(e) => setFilter({ ...filter, actor: e.target.value })}>
+                <option value="">All</option>
+                {actors.map((s) => <option key={s} value={s}>{s}</option>)}
+              </Select>
+            </Field>
+            <Field label="Domain (Malawi Post Lot 1)">
+              <Select value={filter.domain} onChange={(e) => setFilter({ ...filter, domain: e.target.value })}>
+                <option value="">All</option>
+                {domains.map((s) => <option key={s} value={s}>{s}</option>)}
+              </Select>
+            </Field>
+            <Field label="Bidder response">
+              <Select value={filter.bidder} onChange={(e) => setFilter({ ...filter, bidder: e.target.value })}>
+                <option value="">All</option>
+                {bidders.map((s) => <option key={s} value={s}>{s}</option>)}
+              </Select>
+            </Field>
           </SearchPanel>
           <Panel bodyClass="p-0" subtitle={`${filtered.length} of ${rows.length}`}>
             <Grid
               dense
               columns={[
-                { key: 'id', header: 'Requirement', render: (r) => <span className="font-mono text-[12px]">{r.id}</span> },
+                {
+                  key: 'id',
+                  header: 'Requirement',
+                  render: (r) => (
+                    <button type="button" onClick={() => setExpanded(expanded === r.id ? null : r.id)} className="font-mono text-[12px] text-nop-blue hover:underline text-left">
+                      {r.id}
+                    </button>
+                  ),
+                },
                 { key: 'client', header: 'Client', render: (r) => <Badge tone={r.client === 'KTDA' ? 'green' : 'red'}>{r.client}</Badge> },
-                { key: 'area', header: 'Area' },
-                { key: 'text', header: 'Requirement (source text)' },
-                { key: 'status', header: 'Status' },
+                { key: 'actor', header: 'Actor', render: (r) => (r.actor ? <Badge tone="slate">{r.actor}</Badge> : '-') },
+                { key: 'area', header: 'Area', render: (r) => r.domain ?? r.area },
+                {
+                  key: 'text',
+                  header: 'Requirement (source text)',
+                  render: (r) => (
+                    <span>
+                      {r.text}
+                      {expanded === r.id && r.clientAcceptanceCriteria && (
+                        <span className="block mt-1.5 border-l-2 border-nop-blue pl-2 text-[12px] text-nop-muted">
+                          <span className="font-semibold text-gray-700">Client acceptance criteria: </span>
+                          {r.clientAcceptanceCriteria.join(' ')}
+                          {r.bidderComments && (
+                            <span className="block mt-1"><span className="font-semibold text-gray-700">Bidder comment: </span>{r.bidderComments}</span>
+                          )}
+                        </span>
+                      )}
+                    </span>
+                  ),
+                },
+                { key: 'clientPriority', header: 'Client priority', render: (r) => (r.clientPriority ? <Badge tone={r.clientPriority === 'Must' ? 'red' : r.clientPriority === 'Should' ? 'blue' : 'slate'}>{r.clientPriority}</Badge> : '-') },
+                { key: 'bidderResponse', header: 'Bidder response', render: (r) => (r.bidderResponse ? <Badge tone={r.bidderResponse === 'Available' ? 'green' : 'amber'}>{r.bidderResponse}</Badge> : '-') },
+                { key: 'status', header: 'Compliance status' },
                 {
                   key: 'features',
                   header: 'P1 features',

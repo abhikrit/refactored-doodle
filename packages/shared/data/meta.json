@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-24T13:27:22.739Z",
+  "generated": "2026-11-24T13:43:28.657Z",
   "generator": "scripts/generate-registries.mjs",
   "sources": [
     "docs/prd/01-product-prd.md",
@@ -32,6 +32,7 @@
     "shouldHave": 106,
     "couldHave": 31,
     "roadmapChanges": 52,
+    "mpcLot1Requirements": 350,
     "workingGroups": 17,
     "workingGroupsMatchingDiagram": 5
   }

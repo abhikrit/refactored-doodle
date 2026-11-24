@@ -38,6 +38,9 @@ const ROADMAP = (() => {
 const WORKING_GROUPS = (() => {
   try { return read('roadmap/working-groups.md'); } catch { return ''; }
 })();
+const MPC_CATALOGUE = (() => {
+  try { return read('client/MPC-Lot1-FR-Catalogue.md'); } catch { return ''; }
+})();
 const MODULE_FILES = readdirSync(join(DOCS, 'prd/modules')).filter((f) => f.endsWith('.md')).sort();
 const MODULES = Object.fromEntries(MODULE_FILES.map((f) => [f.slice(4, -3), read(`prd/modules/${f}`)]));
 
@@ -493,6 +496,35 @@ function buildDecisions() {
   return { decisions, gaps };
 }
 
+// ------------------------------------------- Malawi Post Lot 1 catalogue ----
+// The client's own annex adds four fields the compliance report does not carry: the actor,
+// the client's 14-domain grouping, the client's acceptance criteria and the client's MoSCoW
+// priority - plus the bidder response already given to Malawi Post. Joined on FR-nnn, which is
+// the same numbering as REQ-MPC-FR-nnn.
+function buildMpcCatalogue() {
+  if (!MPC_CATALOGUE) return {};
+  const table = parseTables(MPC_CATALOGUE).find((t) => t.headers.includes('Shall statement'));
+  if (!table) return {};
+  const out = {};
+  for (const r of table.rows) {
+    if (!/^FR-\d{3}$/.test(r['Req ID'] || '')) continue;
+    out[`REQ-MPC-${r['Req ID']}`] = {
+      frId: r['Req ID'],
+      actor: r.Actor,
+      domain: r.Domain,
+      clientPriority: r.Priority,
+      shall: r['Shall statement'],
+      rationale: r.Rationale,
+      clientAcceptanceCriteria: (r['Acceptance criteria'] || '')
+        .split(/(?=\d+\.\s)/).map((x) => x.trim()).filter(Boolean),
+      bidderResponse: r['Bidder response'],
+      bidderNote: r['Bidder note'] || '',
+      bidderComments: r['Bidder comments'] || '',
+    };
+  }
+  return out;
+}
+
 // --------------------------------------------------------- requirements -----
 function buildRequirements() {
   const out = [];
@@ -710,6 +742,11 @@ const {
 const { holds, readiness } = buildHolds();
 const { decisions, gaps } = buildDecisions();
 const requirements = buildRequirements();
+const mpcCatalogue = buildMpcCatalogue();
+for (const r of requirements) {
+  const extra = mpcCatalogue[r.id];
+  if (extra) Object.assign(r, extra);
+}
 const packs = buildPacks();
 const journeys = buildJourneys();
 const roadmap = buildRoadmap();
@@ -782,6 +819,7 @@ const meta = {
     shouldHave: features.filter((f) => f.priority === 'Should Have').length,
     couldHave: features.filter((f) => f.priority === 'Could Have').length,
     roadmapChanges: roadmap.changes.length,
+    mpcLot1Requirements: Object.keys(mpcCatalogue).length,
     workingGroups: workingGroups.length,
     workingGroupsMatchingDiagram: workingGroups.filter((g) => g.matchesDiagram).length,
   },

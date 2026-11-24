@@ -56,6 +56,19 @@ expect('external systems', external.length, 45, 'L1 section 6.9');
 expect('licensed plugins', licensed.length, 11, 'L1 section 6.8');
 expect('core modifications', coreMods.length, 6, 'L1 section 6.3');
 
+// Malawi Post Lot 1 catalogue (the client's own annex)
+const mpcLot1 = requirements.filter((r) => r.frId);
+expect('MPC Lot 1 requirements', mpcLot1.length, 350, 'MPC Requirements Catalogue Annex, Deliverable 2');
+expect('MPC Lot 1 domains', new Set(mpcLot1.map((r) => r.domain)).size, 14, 'the annex groups them 25 per domain');
+expectEmpty('MPC domain holds 25', [...new Set(mpcLot1.map((r) => r.domain))]
+  .filter((d) => mpcLot1.filter((r) => r.domain === d).length !== 25), 'the annex groups them 25 per domain');
+expect('MPC actor: Admin', mpcLot1.filter((r) => r.actor === 'Admin').length, 87, 'annex Actor/Role column');
+expect('MPC priority: Must', mpcLot1.filter((r) => r.clientPriority === 'Must').length, 148, 'annex Priority column');
+expect('MPC priority: Should', mpcLot1.filter((r) => r.clientPriority === 'Should').length, 138, 'annex Priority column');
+expect('MPC priority: Could', mpcLot1.filter((r) => r.clientPriority === 'Could').length, 64, 'annex Priority column');
+expectEmpty('MPC requirement -> client AC', mpcLot1.filter((r) => r.clientAcceptanceCriteria.length === 0).map((r) => r.id), 'every annex row states acceptance criteria');
+expectEmpty('MPC requirement -> feature', mpcLot1.filter((r) => r.features.length === 0).map((r) => r.id), 'Compliance section 4.2 maps every FR to a feature');
+
 // MoSCoW priority and category, from the Product Feature List workbook
 expect('priority: Must Have', features.filter((f) => f.priority === 'Must Have').length, 297, 'Product Feature List, Priority View');
 expect('priority: Should Have', features.filter((f) => f.priority === 'Should Have').length, 106, 'Product Feature List, Priority View');
