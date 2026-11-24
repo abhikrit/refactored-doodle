@@ -1,6 +1,6 @@
 # Trace report
 
-Generated 2026-11-24T13:46:16.950Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
+Generated 2026-11-24T13:52:48.467Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
 
 ## 1. Reconciliation
 
