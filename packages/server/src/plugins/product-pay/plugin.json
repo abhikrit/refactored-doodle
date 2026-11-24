@@ -1,0 +1,224 @@
+{
+  "systemName": "Product.PAY",
+  "friendlyName": "Product - Payments, tax, settlement and reconciliation",
+  "area": "PAY",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 8,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.PAY",
+    "projectName": "Nop.Plugin.Product.PAY"
+  },
+  "wave": 3,
+  "waveName": "Buy",
+  "dependsOnAreas": [
+    "CHN",
+    "INV",
+    "ORD",
+    "RET"
+  ],
+  "counts": {
+    "features": 36,
+    "p1": 33,
+    "p2": 2,
+    "p3": 1,
+    "held": 14,
+    "criteria": 190,
+    "screens": 19,
+    "rules": 36,
+    "contracts": 16,
+    "messages": 17,
+    "auditEvents": 11
+  },
+  "fit": {
+    "configuration": 2,
+    "licensedPlugin": 0,
+    "codeLevel": 31,
+    "externalSystem": 3
+  },
+  "features": [
+    "PRD-PAY-001",
+    "PRD-PAY-002",
+    "PRD-PAY-003",
+    "PRD-PAY-004",
+    "PRD-PAY-005",
+    "PRD-PAY-006",
+    "PRD-PAY-007",
+    "PRD-PAY-008",
+    "PRD-PAY-009",
+    "PRD-PAY-010",
+    "PRD-PAY-011",
+    "PRD-PAY-012",
+    "PRD-PAY-013",
+    "PRD-PAY-014",
+    "PRD-PAY-015",
+    "PRD-PAY-016",
+    "PRD-PAY-017",
+    "PRD-PAY-018",
+    "PRD-PAY-019",
+    "PRD-PAY-020",
+    "PRD-PAY-021",
+    "PRD-PAY-022",
+    "PRD-PAY-023",
+    "PRD-PAY-024",
+    "PRD-PAY-025",
+    "PRD-PAY-026",
+    "PRD-PAY-027",
+    "PRD-PAY-028",
+    "PRD-PAY-029",
+    "PRD-PAY-030",
+    "PRD-PAY-031",
+    "PRD-PAY-032",
+    "PRD-PAY-033",
+    "PRD-PAY-034",
+    "PRD-PAY-035",
+    "PRD-PAY-036"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-PAY-003",
+      "decisions": [
+        "K-08"
+      ]
+    },
+    {
+      "id": "PRD-PAY-007",
+      "decisions": [
+        "PAY-DIRECT / LIC-01"
+      ]
+    },
+    {
+      "id": "PRD-PAY-009",
+      "decisions": [
+        "FG-06, PAY-DIRECT / LIC-01, WAL-01",
+        "FG-06",
+        "PAY-DIRECT / LIC-01",
+        "WAL-01"
+      ]
+    },
+    {
+      "id": "PRD-PAY-010",
+      "decisions": [
+        "PAY-DIRECT / LIC-01"
+      ]
+    },
+    {
+      "id": "PRD-PAY-023",
+      "decisions": [
+        "C-FX"
+      ]
+    },
+    {
+      "id": "PRD-PAY-025",
+      "decisions": [
+        "PH-INF, E-INV, DOC-LIB",
+        "PH-INF",
+        "E-INV",
+        "DOC-LIB"
+      ]
+    },
+    {
+      "id": "PRD-PAY-026",
+      "decisions": [
+        "PH-INF, E-INV, DOC-LIB",
+        "PH-INF",
+        "E-INV",
+        "DOC-LIB"
+      ]
+    },
+    {
+      "id": "PRD-PAY-027",
+      "decisions": [
+        "PH-INF, E-INV, DOC-LIB",
+        "PH-INF",
+        "E-INV",
+        "DOC-LIB"
+      ]
+    },
+    {
+      "id": "PRD-PAY-031",
+      "decisions": [
+        "KG-04"
+      ]
+    },
+    {
+      "id": "PRD-PAY-032",
+      "decisions": [
+        "MG-03"
+      ]
+    },
+    {
+      "id": "PRD-PAY-033",
+      "decisions": [
+        "PAID-STUB"
+      ]
+    },
+    {
+      "id": "PRD-PAY-034",
+      "decisions": [
+        "PH-INF"
+      ]
+    },
+    {
+      "id": "PRD-PAY-035",
+      "decisions": [
+        "PO-REC-v8, PAY-DIRECT / LIC-01",
+        "PO-REC-v8",
+        "PAY-DIRECT / LIC-01"
+      ]
+    },
+    {
+      "id": "PRD-PAY-036",
+      "decisions": [
+        "WF-ENG, PO-REC-v8, PAY-DIRECT / LIC-01",
+        "WF-ENG",
+        "PO-REC-v8",
+        "PAY-DIRECT / LIC-01"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "C-FX",
+    "DOC-LIB",
+    "E-INV",
+    "FG-06",
+    "FG-06, PAY-DIRECT / LIC-01, WAL-01",
+    "K-08",
+    "KG-04",
+    "MG-03",
+    "PAID-STUB",
+    "PAY-DIRECT / LIC-01",
+    "PH-INF",
+    "PH-INF, E-INV, DOC-LIB",
+    "PO-REC-v8",
+    "PO-REC-v8, PAY-DIRECT / LIC-01",
+    "WAL-01",
+    "WF-ENG",
+    "WF-ENG, PO-REC-v8, PAY-DIRECT / LIC-01"
+  ],
+  "contracts": [
+    "IC-PAY-01",
+    "IC-PAY-01",
+    "IC-PAY-01",
+    "IC-PAY-01",
+    "IC-PAY-01",
+    "IC-PAY-01",
+    "IC-PAY-01",
+    "IC-PAY-02",
+    "IC-PAY-03",
+    "IC-PAY-04",
+    "IC-PAY-05",
+    "IC-PAY-06",
+    "IC-PAY-07",
+    "IC-PAY-08",
+    "IC-PAY-09",
+    "IC-PAY-10"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-PAY.md"
+}

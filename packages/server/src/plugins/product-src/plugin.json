@@ -1,0 +1,112 @@
+{
+  "systemName": "Product.SRC",
+  "friendlyName": "Product - Search, discovery and merchandising",
+  "area": "SRC",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 6,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.SRC",
+    "projectName": "Nop.Plugin.Product.SRC"
+  },
+  "wave": 2,
+  "waveName": "Catalogue",
+  "dependsOnAreas": [
+    "ADM",
+    "CAT",
+    "CHN",
+    "LOG"
+  ],
+  "counts": {
+    "features": 27,
+    "p1": 21,
+    "p2": 6,
+    "p3": 0,
+    "held": 4,
+    "criteria": 149,
+    "screens": 13,
+    "rules": 18,
+    "contracts": 4,
+    "messages": 12,
+    "auditEvents": 3
+  },
+  "fit": {
+    "configuration": 10,
+    "licensedPlugin": 2,
+    "codeLevel": 14,
+    "externalSystem": 1
+  },
+  "features": [
+    "PRD-SRC-001",
+    "PRD-SRC-002",
+    "PRD-SRC-003",
+    "PRD-SRC-004",
+    "PRD-SRC-005",
+    "PRD-SRC-006",
+    "PRD-SRC-007",
+    "PRD-SRC-008",
+    "PRD-SRC-009",
+    "PRD-SRC-010",
+    "PRD-SRC-011",
+    "PRD-SRC-012",
+    "PRD-SRC-013",
+    "PRD-SRC-014",
+    "PRD-SRC-015",
+    "PRD-SRC-016",
+    "PRD-SRC-017",
+    "PRD-SRC-018",
+    "PRD-SRC-019",
+    "PRD-SRC-020",
+    "PRD-SRC-021",
+    "PRD-SRC-022",
+    "PRD-SRC-023",
+    "PRD-SRC-024",
+    "PRD-SRC-025",
+    "PRD-SRC-026",
+    "PRD-SRC-027"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-SRC-014",
+      "decisions": [
+        "PAID-STUB"
+      ]
+    },
+    {
+      "id": "PRD-SRC-016",
+      "decisions": [
+        "WF-ENG"
+      ]
+    },
+    {
+      "id": "PRD-SRC-020",
+      "decisions": [
+        "FG-06"
+      ]
+    },
+    {
+      "id": "PRD-SRC-024",
+      "decisions": [
+        "PAID-STUB"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "FG-06",
+    "PAID-STUB",
+    "WF-ENG"
+  ],
+  "contracts": [
+    "IC-SRC-01",
+    "IC-SRC-02",
+    "IC-SRC-03",
+    "IC-SRC-04"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-SRC.md"
+}

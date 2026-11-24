@@ -1,0 +1,195 @@
+{
+  "layer": "client",
+  "id": "KTDA",
+  "name": "KTDA (Kenya)",
+  "version": "0.1.0",
+  "description": "Client pack for KTDA. Onboarding a client is this file plus its country and vertical selection - no code. Every value cites a KTDA source or is marked not stated.",
+  "extends": {
+    "country": "KE",
+    "verticals": [
+      "b2b-trade",
+      "commerce-extensions",
+      "engagement-loyalty",
+      "analytics",
+      "warehouse",
+      "access-admin-extensions",
+      "ai"
+    ]
+  },
+  "settings": {
+    "storeinformationsettings.storename": "KTDA Trade",
+    "storeinformationsettings.defaultstoretheme": "ktda",
+    "ordersettings.anonymouscheckoutallowed": true,
+    "ordersettings.termsofserviceonorderconfirmpage": true,
+    "ordersettings.customordernumbermask": "KTDA-{YYYY}-{ID:000000}",
+    "catalogsettings.enablespecificationattributefiltering": true,
+    "catalogsettings.compareproductsenabled": true,
+    "currencysettings.primarystorecurrencyid": 1,
+    "localizationsettings.defaultlanguageid": 1,
+    "datetimesettings.defaultstoretimezoneid": "Africa/Nairobi",
+    "paymentsettings.activepaymentmethodsystemnames": [
+      "Payments.KtdaBankGateway",
+      "Payments.Card",
+      "Payments.PayPalStandard",
+      "Payments.MPesa",
+      "Payments.BankTransfer",
+      "Payments.LetterOfCredit"
+    ],
+    "shippingsettings.activeshippingratecomputationmethodsystemnames": [
+      "Shipping.LogFeeEngine"
+    ],
+    "shippingsettings.activepickuppointprovidersystemnames": [
+      "Pickup.PickupInStore"
+    ],
+    "shippingsettings.allowpickupinstore": true,
+    "store.sslenabled": true,
+    "pay.bulkbuyer.role": "BulkBuyer",
+    "sel.marketplace.enabled": false
+  },
+  "content": {
+    "clientName": "Kenya Tea Development Agency",
+    "brand": {
+      "primary": "#0f6b45",
+      "accent": "#d4a015",
+      "logoText": "KTDA"
+    },
+    "storefronts": [
+      {
+        "id": 1,
+        "name": "KTDA Trade (B2B)",
+        "channel": "B2B"
+      },
+      {
+        "id": 2,
+        "name": "KTDA Shop (B2C)",
+        "channel": "B2C"
+      }
+    ],
+    "tagline": "Value-added teas, bulk teas, contract packaging and forward contracts"
+  },
+  "entities": {
+    "languages": [
+      {
+        "id": 1,
+        "name": "English",
+        "culture": "en-GB",
+        "rtl": false,
+        "published": true
+      },
+      {
+        "id": 2,
+        "name": "Kiswahili",
+        "culture": "sw-KE",
+        "rtl": false,
+        "published": true
+      },
+      {
+        "id": 3,
+        "name": "French",
+        "culture": "fr-FR",
+        "rtl": false,
+        "published": true
+      },
+      {
+        "id": 4,
+        "name": "Arabic",
+        "culture": "ar-AE",
+        "rtl": true,
+        "published": true
+      },
+      {
+        "id": 5,
+        "name": "Russian",
+        "culture": "ru-RU",
+        "rtl": false,
+        "published": false
+      },
+      {
+        "id": 6,
+        "name": "Mandarin",
+        "culture": "zh-CN",
+        "rtl": false,
+        "published": false
+      }
+    ],
+    "shippingMethods": [
+      {
+        "name": "Export air freight",
+        "description": "DHL or FedEx, 3-6 working days"
+      },
+      {
+        "name": "Domestic courier",
+        "description": "G4S or Wells Fargo, 1-3 working days"
+      },
+      {
+        "name": "Collect at factory",
+        "description": "Collection from the named KTDA factory"
+      }
+    ],
+    "pickupPoints": [
+      {
+        "name": "KTDA Kangaita Factory",
+        "city": "Kirinyaga",
+        "openingHours": "Mon-Fri 08:00-17:00"
+      },
+      {
+        "name": "KTDA Nairobi Depot",
+        "city": "Nairobi",
+        "openingHours": "Mon-Sat 08:00-18:00"
+      }
+    ]
+  },
+  "_sources": {
+    "ordersettings.anonymouscheckoutallowed": "On - REQ-KTDA-CUS-006 (guest checkout). BR-CHK-002: a per-client setting, no code differs between clients",
+    "catalogsettings.enablespecificationattributefiltering": "On - KTDA SRC-002 (CAT section 10.2 'Specification attribute filtering')",
+    "catalogsettings.compareproductsenabled": "Required - KTDA CAT-003 (SRC section 10.2 'Comparison')",
+    "paymentsettings.activepaymentmethodsystemnames": "PAY section 10.2 'Active payment methods' (KTDA): card (bank gateway), PayPal, M-Pesa, bank transfer, letter of credit. The bank is not named (KG-04) and K-08 is open",
+    "store.sslenabled": "Required - KTDA SEC-002 (SEC section 10.2 'HTTPS on every store')",
+    "entities.languages": "REQ-KTDA-LOC-001: Kiswahili, English, French, Arabic, Russian, Mandarin; right-to-left for Arabic is an inference (KG-14)",
+    "currencysettings.primarystorecurrencyid": "USD base - REQ-KTDA-LOC-002",
+    "content.brand": "REQ-KTDA-UX-002 asks for an interface aligned with KTDA branding; brand guidelines were not provided, so these colours are placeholders (P-5)",
+    "content.tagline": "REQ-KTDA-CUS-002 / CAT-002 / PRJ-002: value-added teas, bulk teas, contract packaging, forward contracts",
+    "extends.verticals": "L1 section 6.6 pack set. The Marketplace pack is off because the KTDA seller model is not stated (gap KG-01)",
+    "sel.marketplace.enabled": "Off - gap KG-01: it is not stated whether KTDA is the only seller or the 71 factories and subsidiaries sell",
+    "ordersettings.customordernumbermask": "ORD section 10.2: OrderSettings.CustomOrderNumberMask - mask not stated in the KTDA source, prototype default"
+  },
+  "_notStatedInSource": [
+    "Brand guidelines not provided (REQ-KTDA-UX-002) - colours and logo are placeholders",
+    "Organisation structure and roles not described (G-ORG, KG-16)",
+    "Tax regimes not stated (KG-06); exchange-rate settlement currency open (C-FX)",
+    "Shipping method prices and rules not stated (KG-13)",
+    "Pickup points, factories and depots here are synthetic (P-5)"
+  ],
+  "_heldDecisionsVisibleToUsers": [
+    "PH-INF",
+    "K-01",
+    "K-08",
+    "C-FX",
+    "KG-04",
+    "DP-01",
+    "E-INV",
+    "WF-ENG",
+    "DOC-LIB",
+    "PAID-STUB",
+    "API-01",
+    "API-GW",
+    "UOM-01",
+    "F-CAT-B"
+  ],
+  "features": {
+    "PRD-PAY-031": true
+  },
+  "_packAssignment": {
+    "note": "generated by scripts/build-packs.mjs from the workbook pack column (L1 section 6.6) - do not edit by hand",
+    "packNames": [
+      "Client: KTDA"
+    ],
+    "count": 1,
+    "held": 1,
+    "phases": {
+      "P1": 1,
+      "P2": 0,
+      "P3": 0
+    }
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "layer": "client",
+  "id": "MPC",
+  "name": "Malawi Post (MPC)",
+  "version": "0.1.0",
+  "description": "Client pack for Malawi Post. Same product, same code, different pack.",
+  "extends": {
+    "country": "MW",
+    "verticals": [
+      "marketplace",
+      "postal-logistics",
+      "assisted-service",
+      "channels",
+      "service-desk-extensions",
+      "commerce-extensions",
+      "engagement-loyalty",
+      "services-bookings",
+      "e-government",
+      "agri-finance-schemes",
+      "analytics",
+      "ai",
+      "access-admin-extensions",
+      "warehouse",
+      "b2b-trade"
+    ]
+  },
+  "settings": {
+    "storeinformationsettings.storename": "Malawi Post Online",
+    "storeinformationsettings.defaultstoretheme": "mpc",
+    "ordersettings.anonymouscheckoutallowed": false,
+    "ordersettings.termsofserviceonorderconfirmpage": true,
+    "ordersettings.customordernumbermask": "MP-{YYYY}-{ID:000000}",
+    "ordersettings.isreorderallowed": true,
+    "ordersettings.completeorderwhendelivered": true,
+    "shoppingcartsettings.allowmultiplewishlist": true,
+    "shippingsettings.allowpickupinstore": true,
+    "shippingsettings.allowcustomertochoosedeliverydate": true,
+    "shippingsettings.displayshipmenteventstocustomers": true,
+    "catalogsettings.productreviewsmustbeapproved": true,
+    "catalogsettings.productreviewpossibleonlyafterpurchasing": true,
+    "vendorsettings.showvendoronproductdetailspage": true,
+    "vendorsettings.termsofserviceenabled": true,
+    "currencysettings.primarystorecurrencyid": 1,
+    "localizationsettings.defaultlanguageid": 1,
+    "datetimesettings.defaultstoretimezoneid": "Africa/Blantyre",
+    "paymentsettings.activepaymentmethodsystemnames": [
+      "Payments.TnmMpamba",
+      "Payments.AirtelMoney",
+      "Payments.BankTransfer",
+      "Payments.Card",
+      "Payments.CashAtOutlet",
+      "Payments.CashOnDelivery"
+    ],
+    "paymentsettings.allowrepostingpayments": true,
+    "shippingsettings.activeshippingratecomputationmethodsystemnames": [
+      "Shipping.LogFeeEngine"
+    ],
+    "shippingsettings.activepickuppointprovidersystemnames": [
+      "Pickup.MalawiPostOutlets"
+    ],
+    "store.sslenabled": true,
+    "otpsettings.loginbyphoneenabled": true,
+    "chk.pickup.identification": [
+      "code",
+      "qr"
+    ],
+    "chk.map.pinenabled": true,
+    "sel.marketplace.enabled": true,
+    "iam.mfa.requiredroles": [
+      "Administrators",
+      "PlatformTeam",
+      "FinanceStaff"
+    ],
+    "trk.channels.enabled": [
+      "email",
+      "sms",
+      "inapp"
+    ]
+  },
+  "content": {
+    "clientName": "Malawi Posts Corporation",
+    "brand": {
+      "primary": "#9c1b1f",
+      "accent": "#f0b323",
+      "logoText": "Malawi Post"
+    },
+    "storefronts": [
+      {
+        "id": 1,
+        "name": "Malawi Post Online",
+        "channel": "B2B + B2C"
+      }
+    ],
+    "tagline": "SME marketplace, postal, financial and e-government services"
+  },
+  "entities": {
+    "languages": [
+      {
+        "id": 1,
+        "name": "English",
+        "culture": "en-GB",
+        "rtl": false,
+        "published": true
+      },
+      {
+        "id": 2,
+        "name": "Chichewa",
+        "culture": "ny-MW",
+        "rtl": false,
+        "published": true
+      }
+    ],
+    "shippingMethods": [
+      {
+        "name": "Standard",
+        "description": "Malawi Post standard delivery"
+      },
+      {
+        "name": "Express",
+        "description": "Malawi Post express delivery"
+      },
+      {
+        "name": "Pickup at a post office",
+        "description": "Collect at the chosen outlet with your pickup code"
+      }
+    ],
+    "pickupPoints": [
+      {
+        "name": "Lilongwe Post Office",
+        "city": "Lilongwe",
+        "openingHours": "Mon-Fri 08:00-16:30, Sat 08:00-12:00"
+      },
+      {
+        "name": "Blantyre Post Office",
+        "city": "Blantyre",
+        "openingHours": "Mon-Fri 08:00-16:30, Sat 08:00-12:00"
+      },
+      {
+        "name": "Mzuzu Post Office",
+        "city": "Mzuzu",
+        "openingHours": "Mon-Fri 08:00-16:30"
+      },
+      {
+        "name": "Zomba Post Office",
+        "city": "Zomba",
+        "openingHours": "Mon-Fri 08:00-16:30"
+      }
+    ]
+  },
+  "_sources": {
+    "ordersettings.anonymouscheckoutallowed": "Off - REQ-MPC-FR-125 (guests browse, login required before payment). BR-CHK-002",
+    "shoppingcartsettings.allowmultiplewishlist": "Save for later - REQ-MPC-FR-123 (CHK section 10.2 'Cart behaviour'; AllowMultipleWishlist is required for it)",
+    "shippingsettings.allowpickupinstore": "On - REQ-MPC-FR-104 (CHK section 10.2 'Pickup allowed')",
+    "shippingsettings.allowcustomertochoosedeliverydate": "Date of the time window - REQ-MPC-FR-106; the value is not stated",
+    "chk.pickup.identification": "Code and QR - REQ-MPC-FR-124 (CHK section 10.2); the failure limit is not stated",
+    "chk.map.pinenabled": "Pin - REQ-MPC-FR-113; the map provider is not stated and its key is a secret, never in a pack (BR-PLT-013)",
+    "paymentsettings.activepaymentmethodsystemnames": "PAY section 10.2 (Malawi Post): TNM Mpamba, Airtel Money, bank transfer, card, cash at outlet, cash on delivery (FR-126-FR-129, FR-131, FR-132)",
+    "paymentsettings.allowrepostingpayments": "On - REQ-MPC-FR-150 (retry)",
+    "ordersettings.customordernumbermask": "ORD section 10.2: 'e.g. MP-2026-000123'",
+    "ordersettings.isreorderallowed": "On - REQ-MPC-FR-173",
+    "catalogsettings.productreviewsmustbeapproved": "After purchase with moderation - REQ-MPC-FR-075",
+    "vendorsettings.showvendoronproductdetailspage": "On - REQ-MPC-FR-068 / FR-088",
+    "vendorsettings.termsofserviceenabled": "Required for activation - REQ-MPC-FR-030",
+    "otpsettings.loginbyphoneenabled": "Required - REQ-MPC-FR-001 / FR-002 (mobile-number accounts with one-time codes)",
+    "iam.mfa.requiredroles": "Privileged administrative roles - REQ-MPC-FR-012",
+    "trk.channels.enabled": "SMS, email, in-app - REQ-MPC-FR-214",
+    "entities.languages": "REQ-MPC-FR-023: English and Chichewa (priority Could); languages and currency not fixed (MG-04)",
+    "entities.shippingMethods": "Standard, express, pickup - REQ-MPC-FR-184; prices not stated",
+    "sel.marketplace.enabled": "On - the Marketplace pack: SMEs sell through Malawi Post is an inference (gap MG-02)",
+    "content.brand": "Branding is not stated in the Malawi Post source - placeholder colours (P-5)"
+  },
+  "_notStatedInSource": [
+    "Branding not stated in source",
+    "Tables 8, 10 and 13 and the Complaints and ADR policy were not provided (T-MISS) - FIN-005, RET-003, EGV-* and CRM-004 content is a placeholder",
+    "Seller model is an inference (MG-02); whether Malawi Post sells or SMEs sell through it is open",
+    "Hosting region (MG-14) and data-protection region (DP-01) open; sizing floor-or-ceiling open (C-SIZE)",
+    "Postal operations scope held by FG-06; native mobile apps held by M-19"
+  ],
+  "_heldDecisionsVisibleToUsers": [
+    "FG-06",
+    "M-19",
+    "T-MISS",
+    "PH-INF",
+    "WAL-01",
+    "E-INV",
+    "MG-03",
+    "MG-09",
+    "DP-01",
+    "C-SIZE",
+    "WF-ENG",
+    "DOC-LIB",
+    "PAID-STUB",
+    "CALLOFF-PLACE",
+    "PO-REC-v8",
+    "PAY-DIRECT / LIC-01"
+  ],
+  "features": {
+    "PRD-IAM-019": true,
+    "PRD-PAY-032": true,
+    "PRD-LOG-031": true,
+    "PRD-INT-006": true,
+    "PRD-INT-007": true,
+    "PRD-INT-013": true
+  },
+  "_packAssignment": {
+    "note": "generated by scripts/build-packs.mjs from the workbook pack column (L1 section 6.6) - do not edit by hand",
+    "packNames": [
+      "Client: MPC"
+    ],
+    "count": 6,
+    "held": 2,
+    "phases": {
+      "P1": 6,
+      "P2": 0,
+      "P3": 0
+    }
+  }
+}

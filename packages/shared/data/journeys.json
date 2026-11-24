@@ -1,0 +1,266 @@
+[
+  {
+    "id": "JRN-01",
+    "area": "PLT",
+    "n": 1,
+    "title": "Platform foundation and multi-client set-up",
+    "steps": [
+      "The platform team sets up a new client from one recipe, checks the practice site with the client, records sign-off and then opens the live site.",
+      "A client administrator changes an important setting, an approver checks what it will affect and approves it, and the history shows who changed what.",
+      "A shopper opens the shop on a phone, picks a language and a currency, and shops in the local time zone with the client's own branding."
+    ]
+  },
+  {
+    "id": "JRN-02",
+    "area": "IAM",
+    "n": 2,
+    "title": "Accounts, sign-in and access",
+    "steps": [
+      "A shopper without email signs up with a mobile number, confirms the code sent by SMS, accepts the terms and starts shopping.",
+      "A walk-in customer at a post office is registered by a named agent, who then places an order for them with the agent and outlet recorded.",
+      "A business applies for a trade account, staff approve it, and the company's buyers then see trade prices and share addresses and order history."
+    ]
+  },
+  {
+    "id": "JRN-03",
+    "area": "SEL",
+    "n": 3,
+    "title": "Sellers and marketplace",
+    "steps": [
+      "A business applies to sell, uploads its documents, accepts the seller agreement, passes identity checks and is approved by compliance staff.",
+      "An approved seller registers a payout account, sells through the marketplace and receives a settlement statement and payout on its cycle.",
+      "A seller whose performance falls below a set level receives a warning, and compliance staff decide on further action."
+    ]
+  },
+  {
+    "id": "JRN-04",
+    "area": "CAT",
+    "n": 4,
+    "title": "Product catalogue",
+    "steps": [
+      "A seller creates a listing with the guided form, the platform checks it is complete and allowed, and client staff approve it before it is published.",
+      "A business buyer signs in, sees the company's agreed range and prices, and requests a quote for a bulk item that has no fixed price.",
+      "A shopper browses a category in their own language, compares options, reads reviews and sees when the item will arrive before buying."
+    ]
+  },
+  {
+    "id": "JRN-05",
+    "area": "INV",
+    "n": 5,
+    "title": "Inventory and warehouses",
+    "steps": [
+      "A shopper sees that a product is in stock, starts checkout, and the item is held for them while they pay; if they do not pay in time, the item is released for others.",
+      "Warehouse staff receive goods against a purchase order, note any shortage or damage, and the accepted goods become available for sale straight away.",
+      "Quality staff find a faulty batch, recall it, and get a list of every customer who received it."
+    ]
+  },
+  {
+    "id": "JRN-06",
+    "area": "SRC",
+    "n": 6,
+    "title": "Search, discovery and merchandising",
+    "steps": [
+      "A shopper types \"black tea\", picks a suggestion with a picture, narrows the results to in-stock items from a chosen seller, and sorts them by price.",
+      "A shopper in a district without home delivery shows only items available for pickup at a nearby outlet, and sees the expected delivery time on each product card.",
+      "Marketing staff set up a seasonal campaign page with banners and a product carousel that appear and disappear on set dates."
+    ]
+  },
+  {
+    "id": "JRN-07",
+    "area": "CHK",
+    "n": 7,
+    "title": "Cart and checkout",
+    "steps": [
+      "A shopper fills a cart, chooses home delivery for one item and pickup at a post office for another, pays once, and receives a confirmation with one order reference.",
+      "An agent at a post office places an order for a walk-in customer and records that the customer paid in cash.",
+      "A company buyer uploads a spreadsheet of product codes, sends the order to a company approver because it is above their limit, and pays on account once it is approved."
+    ]
+  },
+  {
+    "id": "JRN-08",
+    "area": "PAY",
+    "n": 8,
+    "title": "Payments, tax, settlement and reconciliation",
+    "steps": [
+      "A Kenyan shopper chooses M-Pesa, confirms the payment request on their phone with their PIN, and receives a receipt by email and SMS.",
+      "A shopper in a rural district chooses cash at a post office, receives a secure reference, pays at the counter and gets a printed receipt.",
+      "Finance staff open the daily reconciliation, see which provider payments do not match orders, and resolve each one with a note."
+    ]
+  },
+  {
+    "id": "JRN-09",
+    "area": "ORD",
+    "n": 9,
+    "title": "Orders, quotations and contracts",
+    "steps": [
+      "A shopper places an order, the seller accepts, packs and hands it over, and the shopper follows each stage until delivery and confirms acceptance.",
+      "A business buyer asks several sellers for a price, compares the quotes side by side, negotiates, and accepts one quote, which becomes an order.",
+      "A business buyer requests a forward contract through an online form; after internal approval a contract is drafted, signed electronically and turned into scheduled orders."
+    ]
+  },
+  {
+    "id": "JRN-10",
+    "area": "LOG",
+    "n": 10,
+    "title": "Shipping, delivery and fulfilment",
+    "steps": [
+      "A shopper sees only the delivery and pickup options available at their address, with the fee broken down and an expected delivery range, and chooses one.",
+      "Warehouse staff pick from a shelf-ordered list, check every item at packing, print a barcoded label and confirm dispatch with the carrier.",
+      "A Malawi Post courier works through the day's delivery list, records each attempt, and captures proof of delivery on a phone."
+    ]
+  },
+  {
+    "id": "JRN-11",
+    "area": "TRK",
+    "n": 11,
+    "title": "Tracking and customer messages",
+    "steps": [
+      "A shopper is told when the parcel is shipped, out for delivery and ready for pickup, opens the tracking page from the message, and shares the link with the recipient.",
+      "A guest buyer checks an order status with the order number and phone number, without an account.",
+      "Support staff see that parcels are delayed at one hub, send a notice to every affected customer and show a banner on the tracking page."
+    ]
+  },
+  {
+    "id": "JRN-12",
+    "area": "RET",
+    "n": 12,
+    "title": "Returns, refunds and disputes",
+    "steps": [
+      "A shopper requests a return with photos, drops the item at an outlet with a return label, and is refunded automatically once staff accept the item on inspection.",
+      "A shopper reports a damaged item; support staff review the evidence, including proof of delivery, propose a remedy, and close the case once the shopper accepts it.",
+      "A buyer and a seller message each other inside a dispute case, and client staff step in as mediator when they cannot agree."
+    ]
+  },
+  {
+    "id": "JRN-13",
+    "area": "CRM",
+    "n": 13,
+    "title": "Customer service, help desk and chat",
+    "steps": [
+      "A shopper reports a missing parcel from the order page, gets a ticket number at once, and the ticket goes straight to the right team with the order details already filled in.",
+      "A customer phones the call centre; the agent logs the call on the customer's ticket, sees orders, payments and tracking on one screen, and resolves the request in one call.",
+      "After the ticket is resolved, the shopper rates the service, and the rating appears on the support manager's dashboard."
+    ]
+  },
+  {
+    "id": "JRN-14",
+    "area": "MKT",
+    "n": 14,
+    "title": "Marketing, promotions, loyalty, content and SEO",
+    "steps": [
+      "Marketing staff create a promo code for a category with start and end dates and a usage limit; a shopper enters it in the cart and sees the discount.",
+      "Content staff edit the returns policy; an approver who is not the author approves it with an effective date, and the earlier version stays on record.",
+      "A registered customer shares a referral link; when the new customer's first order is complete, the referrer receives reward points."
+    ]
+  },
+  {
+    "id": "JRN-15",
+    "area": "RPT",
+    "n": 15,
+    "title": "Reporting and analytics",
+    "steps": [
+      "A manager signs in and sees order and customer figures on the home dashboard, then runs the best-sellers report for the month.",
+      "An executive opens the dashboard of key measures, clicks on a drop in orders and follows it down to the individual orders behind it.",
+      "A monthly operations report is filled in automatically from system figures and e-mailed to the named recipients."
+    ]
+  },
+  {
+    "id": "JRN-16",
+    "area": "ADM",
+    "n": 16,
+    "title": "Administration, workflow and operations console",
+    "steps": [
+      "A client administrator designs a two-step approval for large orders, tests it with sample data, and publishes it without new development.",
+      "A seller changes the payout account; the change waits in an approver's queue, and the old account stays in use until it is approved.",
+      "An operator opens the exception queue, sees the most severe problems first, and clears a group with the same cause in one action."
+    ]
+  },
+  {
+    "id": "JRN-17",
+    "area": "DOC",
+    "n": 17,
+    "title": "Documents and records",
+    "steps": [
+      "A shopper places an order, receives an invoice in their own language with the client's logo and a QR code, and later downloads it again from My account.",
+      "A seller applying to sell uploads the required licences once, the platform checks them at once, and the seller reuses them from their document vault in later applications.",
+      "An auditor selects all documents for a period and downloads them as one package with a record of who opened or changed each one."
+    ]
+  },
+  {
+    "id": "JRN-18",
+    "area": "SEC",
+    "n": 18,
+    "title": "Security, audit and compliance",
+    "steps": [
+      "A visitor arrives, chooses which cookie categories to allow, and analytics tags run only if they accepted them.",
+      "An auditor receives time-limited read-only access, searches the audit trail for a period and exports the results with proof that nothing was changed.",
+      "A privacy officer records a personal-data breach, the platform works out the legal deadlines from the country profile, and the officer notifies the affected people on time."
+    ]
+  },
+  {
+    "id": "JRN-19",
+    "area": "INT",
+    "n": 19,
+    "title": "Connections with other systems",
+    "steps": [
+      "A shopper pays for an order; the platform posts the sale to the client's finance system and tells the postal system to prepare the parcel, with no re-keying.",
+      "A partner developer reads the documentation in the developer portal, tests in the test area, receives approved access and connects their system.",
+      "A business buyer starts shopping from their organisation's purchasing system, fills a cart and sends it back there for approval; the order arrives later as a purchase order."
+    ]
+  },
+  {
+    "id": "JRN-20",
+    "area": "CHN",
+    "n": 20,
+    "title": "Channels: mobile app, installable website, USSD, SMS, WhatsApp and assisted service",
+    "steps": [
+      "A shopper with a basic phone dials a short code, checks the status of an order and pays for a new one from their mobile-money wallet.",
+      "A shopper sends a WhatsApp message to the business number and is answered by the chat assistant or a support agent in the same conversation.",
+      "An agent at an outlet places an order for a walk-in customer; the order counts for the agent's network and earns commission once paid."
+    ]
+  },
+  {
+    "id": "JRN-21",
+    "area": "AI",
+    "n": 21,
+    "title": "AI capabilities",
+    "steps": [
+      "A shopper asks the website assistant where their order is, gets the status of their own order, and asks to talk to a person when they need more help.",
+      "A seller asks for a product description and a suggested price, reviews both, and saves only what they accept.",
+      "A content editor asks for translations of a product page, checks them, and a second person approves them before they go live."
+    ]
+  },
+  {
+    "id": "JRN-22",
+    "area": "FIN",
+    "n": 22,
+    "title": "Financial products",
+    "steps": [
+      "A seller sees a loan offer from a partner lender, agrees to share named business data, applies, and later sees repayments deducted from their platform settlements.",
+      "A buyer adds transit insurance at checkout, receives the policy number after payment, and follows a claim in My account if goods are damaged.",
+      "An eligible farmer sees the subsidy for an eligible product in the cart and pays only their share."
+    ]
+  },
+  {
+    "id": "JRN-23",
+    "area": "EGV",
+    "n": 23,
+    "title": "e-Government and service catalogue (optional pack)",
+    "steps": [
+      "A citizen finds a certificate service, uploads the required documents, pays the fee, follows the application status and collects the certificate at a post office.",
+      "An agency officer checks the documents of an application, asks for a clearer copy of one, then approves it and hands the issued document to the delivery network.",
+      "Finance staff group the fees owed to an agency for a period, record the payment to the agency and record the agency's confirmation."
+    ]
+  },
+  {
+    "id": "JRN-24",
+    "area": "SVC",
+    "n": 24,
+    "title": "Services commerce (booking, delivery and completion of services)",
+    "steps": [
+      "A farmer books a spraying service priced per hectare at their farm, pays a deposit, gets a reminder, and confirms the service was delivered so the provider can be paid.",
+      "A shopper buys an e-ticket for a partner service, receives a code and QR code, and outlet staff scan it once to redeem it.",
+      "A business buyer hires equipment for chosen dates, sees the price for that length of hire and only dates on which a unit is free."
+    ]
+  }
+]

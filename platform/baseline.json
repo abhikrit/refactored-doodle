@@ -1,0 +1,21 @@
+{
+  "product": "nopCommerce",
+  "tag": "release-5.00.1",
+  "versionConstants": { "currentVersion": "5.00", "minorVersion": 1 },
+  "runtime": ".NET 10 (net10.0, SDK 10.0.401 pinned in global.json)",
+  "decision": "VER-500 (approved 2026-11-24)",
+  "source": "https://github.com/nopSolutions/nopCommerce",
+  "vendoredInThisRepo": false,
+  "whyNotVendored": "This repository is a UI/UX prototype in React + Node + Tailwind with no .NET and no database (user decision). The 5.00.1 tree cannot build or run here, so the baseline is pinned as a reference and its screens, entities, setting keys and permission names are replicated/mapped in docs/platform/baseline-mapping.md.",
+  "fit": { "configuration": 70, "licensedPlugin": 11, "codeLevel": 308, "externalSystem": 45, "total": 434 },
+  "phases": { "P1": 337, "P2": 76, "P3": 21 },
+  "areas": 24,
+  "fixedDecisions": {
+    "CART-500": "Single cart split across sellers; shoppingcartsettings.vendorenabled = false and .vendorrequired = false",
+    "PRICE-500": "Native price lists for CAT-039/042; per-currency fixed prices built",
+    "VER-500": "nopCommerce 5.00.1 on .NET 10"
+  },
+  "asyncOnly": true,
+  "databaseProviders": ["SQL Server 2012+", "MySQL (8.0 dialect)", "PostgreSQL"],
+  "prototypeStore": "in-memory, behind an async IRepository-shaped interface (no database - P-4 deviation)"
+}

@@ -1,0 +1,410 @@
+[
+  {
+    "code": "PLT",
+    "name": "Platform foundation and multi-client configuration",
+    "features": 27,
+    "p1": 25,
+    "p2": 2,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-PLT.md",
+    "fit": {
+      "configuration": 9,
+      "licensedPlugin": 1,
+      "codeLevel": 12,
+      "externalSystem": 5
+    },
+    "wave": 1,
+    "waveName": "Foundation"
+  },
+  {
+    "code": "IAM",
+    "name": "Identity, access and accounts",
+    "features": 27,
+    "p1": 22,
+    "p2": 5,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-IAM.md",
+    "fit": {
+      "configuration": 3,
+      "licensedPlugin": 0,
+      "codeLevel": 23,
+      "externalSystem": 1
+    },
+    "wave": 1,
+    "waveName": "Foundation"
+  },
+  {
+    "code": "SEL",
+    "name": "Sellers and marketplace onboarding",
+    "features": 25,
+    "p1": 20,
+    "p2": 4,
+    "p3": 1,
+    "modulePrd": "docs/prd/modules/PRD-SEL.md",
+    "fit": {
+      "configuration": 3,
+      "licensedPlugin": 0,
+      "codeLevel": 21,
+      "externalSystem": 1
+    },
+    "wave": 2,
+    "waveName": "Catalogue"
+  },
+  {
+    "code": "CAT",
+    "name": "Catalogue and listings",
+    "features": 43,
+    "p1": 34,
+    "p2": 9,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-CAT.md",
+    "fit": {
+      "configuration": 10,
+      "licensedPlugin": 1,
+      "codeLevel": 32,
+      "externalSystem": 0
+    },
+    "wave": 2,
+    "waveName": "Catalogue"
+  },
+  {
+    "code": "INV",
+    "name": "Inventory and warehouses",
+    "features": 13,
+    "p1": 8,
+    "p2": 5,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-INV.md",
+    "fit": {
+      "configuration": 2,
+      "licensedPlugin": 0,
+      "codeLevel": 11,
+      "externalSystem": 0
+    },
+    "wave": 2,
+    "waveName": "Catalogue"
+  },
+  {
+    "code": "SRC",
+    "name": "Search, discovery and merchandising",
+    "features": 27,
+    "p1": 21,
+    "p2": 6,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-SRC.md",
+    "fit": {
+      "configuration": 10,
+      "licensedPlugin": 2,
+      "codeLevel": 14,
+      "externalSystem": 1
+    },
+    "wave": 2,
+    "waveName": "Catalogue"
+  },
+  {
+    "code": "CHK",
+    "name": "Cart and checkout",
+    "features": 19,
+    "p1": 19,
+    "p2": 0,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-CHK.md",
+    "fit": {
+      "configuration": 4,
+      "licensedPlugin": 1,
+      "codeLevel": 14,
+      "externalSystem": 0
+    },
+    "wave": 3,
+    "waveName": "Buy"
+  },
+  {
+    "code": "PAY",
+    "name": "Payments, tax, settlement and reconciliation",
+    "features": 36,
+    "p1": 33,
+    "p2": 2,
+    "p3": 1,
+    "modulePrd": "docs/prd/modules/PRD-PAY.md",
+    "fit": {
+      "configuration": 2,
+      "licensedPlugin": 0,
+      "codeLevel": 31,
+      "externalSystem": 3
+    },
+    "wave": 3,
+    "waveName": "Buy"
+  },
+  {
+    "code": "ORD",
+    "name": "Orders and B2B transactions (RFQ, contracts, requisitions, offers, group buying)",
+    "features": 28,
+    "p1": 19,
+    "p2": 7,
+    "p3": 2,
+    "modulePrd": "docs/prd/modules/PRD-ORD.md",
+    "fit": {
+      "configuration": 2,
+      "licensedPlugin": 0,
+      "codeLevel": 25,
+      "externalSystem": 1
+    },
+    "wave": 3,
+    "waveName": "Buy"
+  },
+  {
+    "code": "LOG",
+    "name": "Shipping, logistics and fulfilment",
+    "features": 32,
+    "p1": 31,
+    "p2": 0,
+    "p3": 1,
+    "modulePrd": "docs/prd/modules/PRD-LOG.md",
+    "fit": {
+      "configuration": 2,
+      "licensedPlugin": 1,
+      "codeLevel": 25,
+      "externalSystem": 4
+    },
+    "wave": 4,
+    "waveName": "Fulfil"
+  },
+  {
+    "code": "TRK",
+    "name": "Tracking and notifications",
+    "features": 12,
+    "p1": 11,
+    "p2": 1,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-TRK.md",
+    "fit": {
+      "configuration": 1,
+      "licensedPlugin": 1,
+      "codeLevel": 9,
+      "externalSystem": 1
+    },
+    "wave": 4,
+    "waveName": "Fulfil"
+  },
+  {
+    "code": "RET",
+    "name": "Returns, refunds and disputes",
+    "features": 11,
+    "p1": 11,
+    "p2": 0,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-RET.md",
+    "fit": {
+      "configuration": 1,
+      "licensedPlugin": 0,
+      "codeLevel": 10,
+      "externalSystem": 0
+    },
+    "wave": 4,
+    "waveName": "Fulfil"
+  },
+  {
+    "code": "CRM",
+    "name": "Customer service, help desk and chat",
+    "features": 15,
+    "p1": 12,
+    "p2": 2,
+    "p3": 1,
+    "modulePrd": "docs/prd/modules/PRD-CRM.md",
+    "fit": {
+      "configuration": 2,
+      "licensedPlugin": 2,
+      "codeLevel": 11,
+      "externalSystem": 0
+    },
+    "wave": 5,
+    "waveName": "Engage and run"
+  },
+  {
+    "code": "MKT",
+    "name": "Marketing, promotions, loyalty, content and SEO",
+    "features": 14,
+    "p1": 12,
+    "p2": 2,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-MKT.md",
+    "fit": {
+      "configuration": 9,
+      "licensedPlugin": 0,
+      "codeLevel": 5,
+      "externalSystem": 0
+    },
+    "wave": 5,
+    "waveName": "Engage and run"
+  },
+  {
+    "code": "RPT",
+    "name": "Reporting and analytics",
+    "features": 12,
+    "p1": 9,
+    "p2": 2,
+    "p3": 1,
+    "modulePrd": "docs/prd/modules/PRD-RPT.md",
+    "fit": {
+      "configuration": 0,
+      "licensedPlugin": 1,
+      "codeLevel": 3,
+      "externalSystem": 8
+    },
+    "wave": 5,
+    "waveName": "Engage and run"
+  },
+  {
+    "code": "ADM",
+    "name": "Administration, workflow and operations console",
+    "features": 12,
+    "p1": 6,
+    "p2": 5,
+    "p3": 1,
+    "modulePrd": "docs/prd/modules/PRD-ADM.md",
+    "fit": {
+      "configuration": 1,
+      "licensedPlugin": 0,
+      "codeLevel": 11,
+      "externalSystem": 0
+    },
+    "wave": 1,
+    "waveName": "Foundation"
+  },
+  {
+    "code": "DOC",
+    "name": "Documents and records",
+    "features": 6,
+    "p1": 3,
+    "p2": 3,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-DOC.md",
+    "fit": {
+      "configuration": 0,
+      "licensedPlugin": 0,
+      "codeLevel": 5,
+      "externalSystem": 1
+    },
+    "wave": 4,
+    "waveName": "Fulfil"
+  },
+  {
+    "code": "SEC",
+    "name": "Security, audit and compliance",
+    "features": 15,
+    "p1": 10,
+    "p2": 5,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-SEC.md",
+    "fit": {
+      "configuration": 4,
+      "licensedPlugin": 0,
+      "codeLevel": 5,
+      "externalSystem": 6
+    },
+    "wave": 1,
+    "waveName": "Foundation"
+  },
+  {
+    "code": "INT",
+    "name": "Integrations and APIs",
+    "features": 13,
+    "p1": 12,
+    "p2": 0,
+    "p3": 1,
+    "modulePrd": "docs/prd/modules/PRD-INT.md",
+    "fit": {
+      "configuration": 2,
+      "licensedPlugin": 0,
+      "codeLevel": 9,
+      "externalSystem": 2
+    },
+    "wave": 6,
+    "waveName": "Reach"
+  },
+  {
+    "code": "CHN",
+    "name": "Channels: mobile app, PWA, USSD, SMS, WhatsApp, assisted/agent",
+    "features": 13,
+    "p1": 7,
+    "p2": 5,
+    "p3": 1,
+    "modulePrd": "docs/prd/modules/PRD-CHN.md",
+    "fit": {
+      "configuration": 1,
+      "licensedPlugin": 1,
+      "codeLevel": 8,
+      "externalSystem": 3
+    },
+    "wave": 6,
+    "waveName": "Reach"
+  },
+  {
+    "code": "AI",
+    "name": "AI capabilities",
+    "features": 10,
+    "p1": 2,
+    "p2": 1,
+    "p3": 7,
+    "modulePrd": "docs/prd/modules/PRD-AI.md",
+    "fit": {
+      "configuration": 0,
+      "licensedPlugin": 0,
+      "codeLevel": 5,
+      "externalSystem": 5
+    },
+    "wave": 6,
+    "waveName": "Reach"
+  },
+  {
+    "code": "FIN",
+    "name": "Financial products",
+    "features": 5,
+    "p1": 1,
+    "p2": 0,
+    "p3": 4,
+    "modulePrd": "docs/prd/modules/PRD-FIN.md",
+    "fit": {
+      "configuration": 0,
+      "licensedPlugin": 0,
+      "codeLevel": 2,
+      "externalSystem": 3
+    },
+    "wave": 7,
+    "waveName": "Verticals"
+  },
+  {
+    "code": "EGV",
+    "name": "e-Government and service catalogue (optional pack)",
+    "features": 7,
+    "p1": 7,
+    "p2": 0,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-EGV.md",
+    "fit": {
+      "configuration": 1,
+      "licensedPlugin": 0,
+      "codeLevel": 6,
+      "externalSystem": 0
+    },
+    "wave": 7,
+    "waveName": "Verticals"
+  },
+  {
+    "code": "SVC",
+    "name": "Services commerce (booking, delivery and completion of services; SVC-007 covers electronically delivered goods)",
+    "features": 12,
+    "p1": 2,
+    "p2": 10,
+    "p3": 0,
+    "modulePrd": "docs/prd/modules/PRD-SVC.md",
+    "fit": {
+      "configuration": 1,
+      "licensedPlugin": 0,
+      "codeLevel": 11,
+      "externalSystem": 0
+    },
+    "wave": 7,
+    "waveName": "Verticals"
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "_source": "Shaped like the documented PayPal order capture payload. Recorded sample for the prototype - no credentials, no real transaction, nothing sent (decision P-3).",
+  "feature": "PRD-PAY-003",
+  "request": {
+    "intent": "CAPTURE",
+    "purchase_units": [
+      {
+        "reference_id": "CHK-REFERENCE",
+        "amount": {
+          "currency_code": "USD",
+          "value": "0.00"
+        }
+      }
+    ]
+  },
+  "response": {
+    "id": "PAYPAL-ORDER-0000",
+    "status": "COMPLETED",
+    "purchase_units": [
+      {
+        "payments": {
+          "captures": [
+            {
+              "id": "CAPTURE-0000",
+              "status": "COMPLETED"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

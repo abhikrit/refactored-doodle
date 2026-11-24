@@ -1,0 +1,93 @@
+{
+  "systemName": "Product.ADM",
+  "friendlyName": "Product - Administration, workflow and operations console",
+  "area": "ADM",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 16,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.ADM",
+    "projectName": "Nop.Plugin.Product.ADM"
+  },
+  "wave": 1,
+  "waveName": "Foundation",
+  "dependsOnAreas": [
+    "SEL"
+  ],
+  "counts": {
+    "features": 12,
+    "p1": 6,
+    "p2": 5,
+    "p3": 1,
+    "held": 2,
+    "criteria": 103,
+    "screens": 13,
+    "rules": 22,
+    "contracts": 17,
+    "messages": 16,
+    "auditEvents": 9
+  },
+  "fit": {
+    "configuration": 1,
+    "licensedPlugin": 0,
+    "codeLevel": 11,
+    "externalSystem": 0
+  },
+  "features": [
+    "PRD-ADM-001",
+    "PRD-ADM-002",
+    "PRD-ADM-003",
+    "PRD-ADM-004",
+    "PRD-ADM-005",
+    "PRD-ADM-006",
+    "PRD-ADM-007",
+    "PRD-ADM-008",
+    "PRD-ADM-009",
+    "PRD-ADM-010",
+    "PRD-ADM-011",
+    "PRD-ADM-012"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-ADM-002",
+      "decisions": [
+        "WF-ENG"
+      ]
+    },
+    {
+      "id": "PRD-ADM-006",
+      "decisions": [
+        "WF-ENG"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "WF-ENG"
+  ],
+  "contracts": [
+    "IC-ADM-01",
+    "IC-ADM-01",
+    "IC-ADM-01",
+    "IC-ADM-01",
+    "IC-ADM-01",
+    "IC-ADM-02",
+    "IC-ADM-02",
+    "IC-ADM-03",
+    "IC-ADM-03",
+    "IC-ADM-03",
+    "IC-ADM-04",
+    "IC-ADM-04",
+    "IC-ADM-05",
+    "IC-ADM-06",
+    "IC-ADM-07",
+    "IC-ADM-08",
+    "IC-ADM-08"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-ADM.md"
+}

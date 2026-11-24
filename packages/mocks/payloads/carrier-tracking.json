@@ -1,0 +1,30 @@
+{
+  "_source": "A carrier tracking feed, normalised to the TRK-002 event dictionary (EventCode / SourceCodeMapping are TRK entities in the real build).",
+  "feature": "PRD-TRK-002",
+  "events": [
+    {
+      "code": "ShipmentCreated",
+      "description": "Shipment created and label printed",
+      "location": "Origin",
+      "occurredOnUtc": "2026-11-24T09:40:00Z"
+    },
+    {
+      "code": "Dispatched",
+      "description": "Dispatched from the origin",
+      "location": "Origin hub",
+      "occurredOnUtc": "2026-11-24T12:05:00Z"
+    },
+    {
+      "code": "InTransit",
+      "description": "In transit",
+      "location": "Regional hub",
+      "occurredOnUtc": "2026-11-25T06:20:00Z"
+    },
+    {
+      "code": "ArrivedAtOutlet",
+      "description": "Arrived at the collection outlet",
+      "location": "Destination outlet",
+      "occurredOnUtc": "2026-11-25T15:10:00Z"
+    }
+  ]
+}

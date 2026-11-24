@@ -1,0 +1,88 @@
+{
+  "systemName": "Product.CHN",
+  "friendlyName": "Product - Channels: mobile app, PWA, USSD, SMS, WhatsApp, assisted/agent",
+  "area": "CHN",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 20,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.CHN",
+    "projectName": "Nop.Plugin.Product.CHN"
+  },
+  "wave": 6,
+  "waveName": "Reach",
+  "dependsOnAreas": [
+    "TRK"
+  ],
+  "counts": {
+    "features": 13,
+    "p1": 7,
+    "p2": 5,
+    "p3": 1,
+    "held": 2,
+    "criteria": 72,
+    "screens": 12,
+    "rules": 12,
+    "contracts": 6,
+    "messages": 10,
+    "auditEvents": 5
+  },
+  "fit": {
+    "configuration": 1,
+    "licensedPlugin": 1,
+    "codeLevel": 8,
+    "externalSystem": 3
+  },
+  "features": [
+    "PRD-CHN-001",
+    "PRD-CHN-002",
+    "PRD-CHN-003",
+    "PRD-CHN-004",
+    "PRD-CHN-005",
+    "PRD-CHN-006",
+    "PRD-CHN-007",
+    "PRD-CHN-008",
+    "PRD-CHN-009",
+    "PRD-CHN-010",
+    "PRD-CHN-011",
+    "PRD-CHN-012",
+    "PRD-CHN-013"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-CHN-001",
+      "decisions": [
+        "M-19, PAID-STUB",
+        "M-19",
+        "PAID-STUB"
+      ]
+    },
+    {
+      "id": "PRD-CHN-010",
+      "decisions": [
+        "FG-06"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "FG-06",
+    "M-19",
+    "M-19, PAID-STUB",
+    "PAID-STUB"
+  ],
+  "contracts": [
+    "IC-CHN-01",
+    "IC-CHN-02",
+    "IC-CHN-03",
+    "IC-CHN-04",
+    "IC-CHN-05",
+    "IC-CHN-06"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-CHN.md"
+}

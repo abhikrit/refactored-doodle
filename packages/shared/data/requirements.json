@@ -1,0 +1,5678 @@
+[
+  {
+    "id": "REQ-KTDA-PRJ-001",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "Platform supports KTDA organisational structures, multiple user roles, multiple business models, touch points and data domains (RFP §1.2).",
+    "status": "Partially compliant",
+    "features": [
+      "PRD-IAM-007",
+      "PRD-IAM-008"
+    ],
+    "notes": "Code-level modification | Organisation structure and roles not stated (KG-16, G-ORG); no measurable criterion stated in source"
+  },
+  {
+    "id": "REQ-KTDA-PRJ-002",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "Platform supports multiple business models (retail, bulk, contract packaging, forward contracts per ToR b.ii).",
+    "status": "Compliant (by inference — confirm with client)",
+    "features": [
+      "PRD-CAT-012",
+      "PRD-CAT-036",
+      "PRD-CAT-039",
+      "PRD-CAT-041",
+      "PRD-ORD-015",
+      "PRD-ORD-016",
+      "PRD-ORD-022",
+      "PRD-PLT-013"
+    ],
+    "notes": "Code-level modification | mapping added; still by inference: link to ToR b.ii is inferred"
+  },
+  {
+    "id": "REQ-KTDA-PRJ-003",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "Vendor designs, develops and deploys an end-to-end e-commerce platform.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature. Satisfied by the product as a whole."
+  },
+  {
+    "id": "REQ-KTDA-CAT-001",
+    "client": "KTDA",
+    "area": "Catalog",
+    "text": "Product catalog and product listings.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-001",
+      "PRD-CAT-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-CHK-001",
+    "client": "KTDA",
+    "area": "Cart & checkout",
+    "text": "Shopping cart.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-001"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native shopping cart meets the requirement; save-for-later (the reason the mapped feature is code-level) is not requested by KTDA"
+  },
+  {
+    "id": "REQ-KTDA-CHK-002",
+    "client": "KTDA",
+    "area": "Cart & checkout",
+    "text": "Secure checkout.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-002"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-PAY-001",
+    "client": "KTDA",
+    "area": "Payments",
+    "text": "Payment gateway integrations operated by a CBK-regulated bank.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-PAY-002",
+      "PRD-PAY-031"
+    ],
+    "notes": "Code-level modification | Bank not named (KG-04); K-08 open"
+  },
+  {
+    "id": "REQ-KTDA-ORD-001",
+    "client": "KTDA",
+    "area": "Orders & fulfilment",
+    "text": "Order delivery tracking.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-001"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-ANL-001",
+    "client": "KTDA",
+    "area": "Analytics",
+    "text": "Analytics and reporting dashboard.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-001",
+      "PRD-SRC-021"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-SEO-001",
+    "client": "KTDA",
+    "area": "SEO",
+    "text": "Search engine optimisation.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-009"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-MKT-001",
+    "client": "KTDA",
+    "area": "Marketing",
+    "text": "Vendor runs marketing via Google Ads, social media, print and electronic media.",
+    "status": "Project service — not a product feature",
+    "features": [
+      "PRD-MKT-010"
+    ],
+    "notes": "Supporting product features: PRD-MKT-010 | Running Google Ads / social / print / electronic-media campaigns is a vendor service; PRD-MKT-010 is tooling only"
+  },
+  {
+    "id": "REQ-KTDA-CUS-001",
+    "client": "KTDA",
+    "area": "Customers",
+    "text": "Target audience: KTDA and its stakeholders.",
+    "status": "Compliant (by inference — confirm with client)",
+    "features": [
+      "PRD-IAM-007"
+    ],
+    "notes": "Reusable — configuration | Stakeholder types undefined (KG-16)"
+  },
+  {
+    "id": "REQ-KTDA-CUS-002",
+    "client": "KTDA",
+    "area": "Customers",
+    "text": "Target audience: local and international buyers of value-added teas, bulk teas, contract packaging and forward contracts.",
+    "status": "Compliant (by inference — confirm with client)",
+    "features": [
+      "PRD-CAT-015",
+      "PRD-CHK-015",
+      "PRD-CHK-016",
+      "PRD-CHK-017",
+      "PRD-CHK-018",
+      "PRD-DOC-006",
+      "PRD-IAM-022",
+      "PRD-IAM-023",
+      "PRD-IAM-024",
+      "PRD-ORD-026",
+      "PRD-PLT-013"
+    ],
+    "notes": "Code-level modification | B2B features mapped by inference (PH-INF)"
+  },
+  {
+    "id": "REQ-KTDA-CUS-003",
+    "client": "KTDA",
+    "area": "Customers",
+    "text": "Target audience: retail consumers.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-001",
+      "PRD-PLT-013"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-CUS-004",
+    "client": "KTDA",
+    "area": "Customers",
+    "text": "Target audience: general public.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-001"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-CAT-002",
+    "client": "KTDA",
+    "area": "Catalog",
+    "text": "List bulk teas and small packaged teas separately.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-036"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-WF-001",
+    "client": "KTDA",
+    "area": "Workflows",
+    "text": "Buyers requisition custom blends through a workflow.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-015"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-WF-002",
+    "client": "KTDA",
+    "area": "Workflows",
+    "text": "Buyers requisition contract packaging through a workflow.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-015"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-WF-003",
+    "client": "KTDA",
+    "area": "Workflows",
+    "text": "Buyers requisition forward contracts through a workflow.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-015",
+      "PRD-ORD-016",
+      "PRD-ORD-022"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-RET-001",
+    "client": "KTDA",
+    "area": "Returns",
+    "text": "Process customer returns per the return policy.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-PAY-016",
+      "PRD-RET-001"
+    ],
+    "notes": "Code-level modification | Return policy content not provided (KG-12)"
+  },
+  {
+    "id": "REQ-KTDA-LOC-001",
+    "client": "KTDA",
+    "area": "Localisation",
+    "text": "Multilingual interface: minimum Kiswahili, English, French, Arabic, Russian, Mandarin.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-CAT-017",
+      "PRD-PLT-009",
+      "PRD-PLT-025"
+    ],
+    "notes": "Code-level modification | Translation responsibility and Mandarin script not stated (KG-14); PRD-SRC-014 not required by the requirement"
+  },
+  {
+    "id": "REQ-KTDA-LOC-002",
+    "client": "KTDA",
+    "area": "Localisation",
+    "text": "Multi-currency transactions; USD base currency.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-CAT-042",
+      "PRD-PAY-023",
+      "PRD-PLT-010",
+      "PRD-PLT-024"
+    ],
+    "notes": "Code-level modification | C-FX open; currency list and rate source not stated (KG-15)"
+  },
+  {
+    "id": "REQ-KTDA-LOG-001",
+    "client": "KTDA",
+    "area": "Shipping & logistics",
+    "text": "Delivery charges calculated dynamically.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-001",
+      "PRD-LOG-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-LOG-002",
+    "client": "KTDA",
+    "area": "Shipping & logistics",
+    "text": "Multiple delivery methods.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-001"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-OFR-001",
+    "client": "KTDA",
+    "area": "Offer management",
+    "text": "KTDA posts offers.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-ORD-014"
+    ],
+    "notes": "Code-level modification | PRD-ORD-014 description itself states scope depends on K-01"
+  },
+  {
+    "id": "REQ-KTDA-OFR-002",
+    "client": "KTDA",
+    "area": "Offer management",
+    "text": "Receive buyer bids on offers.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-ORD-013",
+      "PRD-ORD-014"
+    ],
+    "notes": "Code-level modification | K-01 (bid exclusion D-02); mechanics not stated (KG-10)"
+  },
+  {
+    "id": "REQ-KTDA-OFR-003",
+    "client": "KTDA",
+    "area": "Offer management",
+    "text": "Manage the purchase cycle from offer to purchase.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-ORD-012",
+      "PRD-ORD-013",
+      "PRD-ORD-014"
+    ],
+    "notes": "Code-level modification | mapping added; purchase cycle undefined (KG-10); carries K-01"
+  },
+  {
+    "id": "REQ-KTDA-ORD-002",
+    "client": "KTDA",
+    "area": "Orders & fulfilment",
+    "text": "Automated invoicing.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-009",
+      "PRD-PAY-025"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-TAX-001",
+    "client": "KTDA",
+    "area": "Tax",
+    "text": "Automated tax calculation.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-014",
+      "PRD-IAM-024",
+      "PRD-PAY-020",
+      "PRD-PAY-025"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-PAY-002",
+    "client": "KTDA",
+    "area": "Payments",
+    "text": "Payment by credit/debit card.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-002",
+      "PRD-PAY-031"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-PAY-003",
+    "client": "KTDA",
+    "area": "Payments",
+    "text": "Payment by PayPal.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-PAY-003"
+    ],
+    "notes": "Reusable — configuration | K-08: PayPal is not a CBK-regulated bank gateway"
+  },
+  {
+    "id": "REQ-KTDA-PAY-004",
+    "client": "KTDA",
+    "area": "Payments",
+    "text": "Payment by mobile money, including M-Pesa.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-PAY-004",
+      "PRD-PAY-028"
+    ],
+    "notes": "Code-level modification | C-FX (USD base vs M-Pesa KES settlement) applies to this method; other providers KG-05"
+  },
+  {
+    "id": "REQ-KTDA-PAY-005",
+    "client": "KTDA",
+    "area": "Payments",
+    "text": "Payment by bank transfer.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-PAY-006",
+    "client": "KTDA",
+    "area": "Payments",
+    "text": "Payment by Letter of Credit.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-025",
+      "PRD-PAY-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-INV-001",
+    "client": "KTDA",
+    "area": "Inventory",
+    "text": "Comprehensive inventory management tools.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INV-001",
+      "PRD-INV-002",
+      "PRD-INV-003",
+      "PRD-INV-005",
+      "PRD-INV-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-SEO-002",
+    "client": "KTDA",
+    "area": "SEO",
+    "text": "SEO.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-009"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-UX-001",
+    "client": "KTDA",
+    "area": "UX & design",
+    "text": "Responsive on mobile, tablet and desktop.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-017"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-CUS-005",
+    "client": "KTDA",
+    "area": "Customers",
+    "text": "Customer registration; data retained for repeat purchase.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-001",
+      "PRD-IAM-014",
+      "PRD-IAM-021"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-CUS-006",
+    "client": "KTDA",
+    "area": "Customers",
+    "text": "Guest checkout.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-002"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-MKT-002",
+    "client": "KTDA",
+    "area": "Marketing",
+    "text": "Loyalty rewards and incentives incl. BOGOF, discounts, banding.",
+    "status": "Compliant (by inference — confirm with client)",
+    "features": [
+      "PRD-MKT-002",
+      "PRD-MKT-003"
+    ],
+    "notes": "Code-level modification | 'Banding' undefined (KG-11); PRD-MKT-002 interprets it as spending bands without an inference label"
+  },
+  {
+    "id": "REQ-KTDA-MKT-003",
+    "client": "KTDA",
+    "area": "Marketing",
+    "text": "Promotion and discount code tools.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-001"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-CHT-001",
+    "client": "KTDA",
+    "area": "Communication",
+    "text": "Interactive live chat integrated with WhatsApp Business and WeChat.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHN-006",
+      "PRD-CHN-007",
+      "PRD-CRM-008"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-INT-001",
+    "client": "KTDA",
+    "area": "Integrations",
+    "text": "API integration with ERP(s).",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-001",
+      "PRD-INT-005",
+      "PRD-INV-012"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-INT-002",
+    "client": "KTDA",
+    "area": "Integrations",
+    "text": "API integration with bank systems.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-001",
+      "PRD-INT-008",
+      "PRD-PAY-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-INT-003",
+    "client": "KTDA",
+    "area": "Integrations",
+    "text": "API integration with shipping systems.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-001",
+      "PRD-LOG-006",
+      "PRD-LOG-021",
+      "PRD-TRK-002"
+    ],
+    "notes": "Code-level modification | closed by mapping added; Only DHL + generic API mapped"
+  },
+  {
+    "id": "REQ-KTDA-REV-001",
+    "client": "KTDA",
+    "area": "Reviews & feedback",
+    "text": "Product reviews and comments.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-029"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-REV-002",
+    "client": "KTDA",
+    "area": "Reviews & feedback",
+    "text": "Feedback on service, products and overall experience.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-011"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-REV-003",
+    "client": "KTDA",
+    "area": "Reviews & feedback",
+    "text": "Feedback visible to the 'user' for action and improvement.",
+    "status": "Compliant (by inference — confirm with client)",
+    "features": [
+      "PRD-CRM-011"
+    ],
+    "notes": "Code-level modification | mapping added; 'user' ambiguous (staff or customer) — confirm with KTDA"
+  },
+  {
+    "id": "REQ-KTDA-CHK-003",
+    "client": "KTDA",
+    "area": "Cart & checkout",
+    "text": "Easy-to-use checkout.",
+    "status": "Partially compliant",
+    "features": [
+      "PRD-CHK-002"
+    ],
+    "notes": "Reusable — configuration | COMP-R5 (Proposed, PO to ratify): \"easy-to-use checkout\" states no measurable criterion; tested by inference only (AC-CHK-002-01-01, -01-03; measures Proposed)"
+  },
+  {
+    "id": "REQ-KTDA-NFR-001",
+    "client": "KTDA",
+    "area": "Non-functional",
+    "text": "Scalable; new features can be added.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-011",
+      "PRD-PLT-015"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-SRC-001",
+    "client": "KTDA",
+    "area": "Search & navigation",
+    "text": "User-friendly navigation with site/product search.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-001",
+      "PRD-SRC-002",
+      "PRD-SRC-006",
+      "PRD-SRC-007"
+    ],
+    "notes": "Reusable — configuration (licensed plugin)"
+  },
+  {
+    "id": "REQ-KTDA-SRC-002",
+    "client": "KTDA",
+    "area": "Search & navigation",
+    "text": "Product filters by size, features, availability and other attributes.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-004",
+      "PRD-SRC-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-CAT-003",
+    "client": "KTDA",
+    "area": "Catalog",
+    "text": "Product comparison.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-013"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-LEG-001",
+    "client": "KTDA",
+    "area": "Legal & compliance",
+    "text": "Comply with local and international e-commerce, trade and data protection regulations.",
+    "status": "Partially compliant",
+    "features": [
+      "PRD-CAT-015",
+      "PRD-CHK-009",
+      "PRD-DOC-006",
+      "PRD-IAM-017",
+      "PRD-ORD-026",
+      "PRD-SEC-007",
+      "PRD-SEC-012"
+    ],
+    "notes": "Code-level modification | Trade-regulation part mapped to CAT-015, DOC-006, ORD-026 (ORD-026 by inference, PH-INF). Missing: international data-protection regimes for foreign buyers; DP-01 open"
+  },
+  {
+    "id": "REQ-KTDA-LEG-002",
+    "client": "KTDA",
+    "area": "Legal & compliance",
+    "text": "Vendor develops privacy policy, terms of use, shipping and returns policies.",
+    "status": "Project service — not a product feature",
+    "features": [
+      "PRD-MKT-007",
+      "PRD-MKT-008"
+    ],
+    "notes": "Supporting product features: PRD-MKT-007, PRD-MKT-008 | Drafting policies is vendor content work (same as CNT-002); PRD-MKT-007 only hosts them"
+  },
+  {
+    "id": "REQ-KTDA-LEG-003",
+    "client": "KTDA",
+    "area": "Legal & compliance",
+    "text": "Vendor supports KTDA in acquiring e-commerce licences/approvals.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Regulatory licences/approvals support — service."
+  },
+  {
+    "id": "REQ-KTDA-PAY-007",
+    "client": "KTDA",
+    "area": "Payments",
+    "text": "Integrate globally accepted payment gateways.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-PAY-001",
+      "PRD-PAY-002",
+      "PRD-PAY-003",
+      "PRD-PAY-024"
+    ],
+    "notes": "Code-level modification | Delivered by PAY-001 routing, PAY-002 card, PAY-003 PayPal, PAY-024 SDK; which global processors are acceptable is K-08"
+  },
+  {
+    "id": "REQ-KTDA-SEC-001",
+    "client": "KTDA",
+    "area": "Security",
+    "text": "PCI-DSS compliance.",
+    "status": "Partially compliant",
+    "features": [
+      "PRD-SEC-003"
+    ],
+    "notes": "Reusable — configuration | COMP-R5 (Proposed, PO to ratify): card data kept out of the shop (SEC-003); formal PCI-DSS validation with the acquirer is an organisational activity outside the product (ORG-SVC)"
+  },
+  {
+    "id": "REQ-KTDA-PAY-008",
+    "client": "KTDA",
+    "area": "Payments",
+    "text": "Escrow or LC-based payment for bulk buyers.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-PAY-006",
+      "PRD-PAY-007"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | Escrow provider/mechanism not stated (KG-07); Decisions PAY-DIRECT names this requirement"
+  },
+  {
+    "id": "REQ-KTDA-UX-002",
+    "client": "KTDA",
+    "area": "UX & design",
+    "text": "Clean, modern, user-friendly interface aligned with KTDA branding (RFP §IV f.i).",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-PLT-006"
+    ],
+    "notes": "Reusable — configuration (licensed plugin) | Brand guidelines not provided (content pending); no measurable criterion stated in source; subject to V-01 (5.00 availability of the licensed plugin; not verifiable from source)"
+  },
+  {
+    "id": "REQ-KTDA-CNT-001",
+    "client": "KTDA",
+    "area": "Content",
+    "text": "Rich content: factory information, product imagery, farmer stories.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-016",
+      "PRD-CAT-020",
+      "PRD-MKT-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-CNT-002",
+    "client": "KTDA",
+    "area": "Content",
+    "text": "Vendor assists content development: product descriptions, blog posts, banner ads, videos.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Content production — service; tooling in PRD-MKT-007."
+  },
+  {
+    "id": "REQ-KTDA-MKT-004",
+    "client": "KTDA",
+    "area": "Marketing",
+    "text": "Email campaigns.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-005"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-MKT-005",
+    "client": "KTDA",
+    "area": "Marketing",
+    "text": "Pop-ups.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-MKT-006",
+    "client": "KTDA",
+    "area": "Marketing",
+    "text": "Promo codes.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-001"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-SEO-003",
+    "client": "KTDA",
+    "area": "SEO",
+    "text": "SEO-friendly content and structure.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-009"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-KTDA-ANL-002",
+    "client": "KTDA",
+    "area": "Analytics",
+    "text": "Dashboard: sales performance — fast/slow movers, stock levels, actual sales.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INV-013",
+      "PRD-RPT-001"
+    ],
+    "notes": "Code-level modification | roll-up = minimal sufficient set: RPT-001 (native reports) and INV-013 satisfy it; RPT-002 removed"
+  },
+  {
+    "id": "REQ-KTDA-ANL-003",
+    "client": "KTDA",
+    "area": "Analytics",
+    "text": "Dashboard: cost analysis — product, shipping, returns, discounts, ad campaigns, taxes.",
+    "status": "Partially compliant",
+    "features": [
+      "PRD-RPT-011"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | RPT-011 amended; cost sources not named in source (to confirm)"
+  },
+  {
+    "id": "REQ-KTDA-ANL-004",
+    "client": "KTDA",
+    "area": "Analytics",
+    "text": "Dashboard: customer demographics and behaviour.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-011"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-KTDA-ANL-005",
+    "client": "KTDA",
+    "area": "Analytics",
+    "text": "Dashboard: abandoned carts.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-011"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-KTDA-ANL-006",
+    "client": "KTDA",
+    "area": "Analytics",
+    "text": "Dashboard: marketing campaign performance.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-010",
+      "PRD-RPT-011"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-KTDA-ANL-007",
+    "client": "KTDA",
+    "area": "Analytics",
+    "text": "Integration with AI and advanced analytics platforms.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-003"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-KTDA-PRJ-004",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "Budget broken down by milestones.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-KTDA-PRJ-005",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "Deliver within 8 weeks of contract signing.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature. Conflicts with build effort (see flags)."
+  },
+  {
+    "id": "REQ-KTDA-PRJ-006",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "Milestones and deliverables tied to payment schedule.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-KTDA-PRJ-007",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "Monitoring plan with KPIs and success metrics.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature. KPI tooling in PRD-RPT-002."
+  },
+  {
+    "id": "REQ-KTDA-PRJ-008",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "Weekly progress reports.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-KTDA-PRJ-009",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "UAT with KTDA stakeholders.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-KTDA-PRJ-010",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "Training: platform use, maintenance, content management.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Training / knowledge transfer — service."
+  },
+  {
+    "id": "REQ-KTDA-SUP-001",
+    "client": "KTDA",
+    "area": "Support",
+    "text": "Minimum 12 months post-implementation support.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Support and maintenance — service (SLA terms, not product function)."
+  },
+  {
+    "id": "REQ-KTDA-PRJ-011",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "Documentation: source code, architecture, user manual.",
+    "status": "Project service — subject to decision (K-02)",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature. Source-code handover conflicts with reusable product IP (K-02)."
+  },
+  {
+    "id": "REQ-KTDA-PRJ-012",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "Dedicated project manager.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-KTDA-PRJ-013",
+    "client": "KTDA",
+    "area": "Delivery",
+    "text": "Implementation schedule with dependencies and risks.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-KTDA-ENV-001",
+    "client": "KTDA",
+    "area": "Environments",
+    "text": "UAT environment before production.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-001"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-KTDA-HST-001",
+    "client": "KTDA",
+    "area": "Hosting",
+    "text": "Secure, scalable hosting; cloud preferred (AWS, Azure).",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-015",
+      "PRD-SEC-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | mapping added; hosting provision itself is a project service (KG-20/K-05)"
+  },
+  {
+    "id": "REQ-KTDA-LEG-004",
+    "client": "KTDA",
+    "area": "Legal & compliance",
+    "text": "All developed software code, content and trademarks owned by KTDA.",
+    "status": "Project service — subject to decision (K-02)",
+    "features": [],
+    "notes": "Commercial/IP term — conflicts with reusable product ownership (K-02). Decision required."
+  },
+  {
+    "id": "REQ-KTDA-SEC-002",
+    "client": "KTDA",
+    "area": "Security",
+    "text": "Best-practice cybersecurity incl. firewall, SSL, DDoS protection.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEC-001",
+      "PRD-SEC-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-KTDA-LOG-003",
+    "client": "KTDA",
+    "area": "Shipping & logistics",
+    "text": "Integrate 3PLs (DHL, FedEx, G4S, Skynet, Wells Fargo, Aramex, shipping lines/agents, others) for real-time shipping updates.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-006",
+      "PRD-LOG-021",
+      "PRD-LOG-025",
+      "PRD-LOG-026",
+      "PRD-LOG-027",
+      "PRD-LOG-028",
+      "PRD-LOG-029",
+      "PRD-LOG-030",
+      "PRD-TRK-002"
+    ],
+    "notes": "Code-level modification | closed by LOG-025..030 amended; PRD-LOG-025..030 descriptions do not commit to tracking / real-time updates (only LOG-006 does); carrier connector framework and tracking hub not mapped; carrier API availability unverified (Inference); carrier API availability unverified (F-3); confirm per carrier"
+  },
+  {
+    "id": "REQ-KTDA-ANL-008",
+    "client": "KTDA",
+    "area": "Analytics",
+    "text": "Lawful data collection for analytics and customer insights.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-017",
+      "PRD-SEC-007",
+      "PRD-SEC-012"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-KTDA-WF-004",
+    "client": "KTDA",
+    "area": "Workflows",
+    "text": "Internal approval stages.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ADM-002",
+      "PRD-ADM-006",
+      "PRD-ORD-015"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-WF-005",
+    "client": "KTDA",
+    "area": "Workflows",
+    "text": "Shipping workflow.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ADM-002",
+      "PRD-LOG-009",
+      "PRD-LOG-010"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-WF-006",
+    "client": "KTDA",
+    "area": "Workflows",
+    "text": "Order confirmation logic.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-CHK-019",
+      "PRD-ORD-002"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): confirmation mechanism covered (CHK-019, AC-ORD-002-05-01); the KTDA order-confirmation logic is not described in source"
+  },
+  {
+    "id": "REQ-KTDA-WF-007",
+    "client": "KTDA",
+    "area": "Workflows",
+    "text": "Fulfilment processes.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ADM-002",
+      "PRD-LOG-008"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-PAY-009",
+    "client": "KTDA",
+    "area": "Payments",
+    "text": "LC verification before shipping.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-025",
+      "PRD-PAY-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-KTDA-INV-002",
+    "client": "KTDA",
+    "area": "Inventory",
+    "text": "Real-time stock tracking.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INV-001"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-001",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall allow a user to create a Buyer account using a unique identifier (mobile number and/or email address).",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-001",
+      "PRD-IAM-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-002",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall provide secure user authentication for Buyer accounts using configurable authentication factors.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-002",
+      "PRD-IAM-004"
+    ],
+    "notes": "Code-level modification | closed by IAM-004 amended; Buyer-configurable factors: PRD-IAM-004 description is limited to staff in sensitive roles"
+  },
+  {
+    "id": "REQ-MPC-FR-003",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall provide a self-service password reset / account recovery workflow for Buyer accounts.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-002",
+      "PRD-IAM-003"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-004",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall allow a Buyer to maintain a profile including name, contact details, and preferred notification channels.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-014",
+      "PRD-IAM-015"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-005",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall allow a Buyer to manage an address book with multiple delivery addresses and pick-up preferences.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-014",
+      "PRD-IAM-015"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-006",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall present and record acceptance of Platform Terms of Use and Privacy Policy at first registration and on updates.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-016"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-007",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall allow a Buyer to view and download transaction receipts/invoices associated with their account.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-021"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native My account order details and PDF invoice; IAM-021 export not required"
+  },
+  {
+    "id": "REQ-MPC-FR-008",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall provide account activity history (logins, critical profile changes, payment attempts) visible to the user and to authorized admins.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-018"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-009",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall support user notification preference settings (opt-in/opt-out) per channel and per notification type.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-010",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall provide a consent management mechanism for cookies/tracking and marketing communications as applicable.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-017",
+      "PRD-SEC-007"
+    ],
+    "notes": "Reusable — configuration | mapping added; roll-up = minimal sufficient set: category carried by the mapped features"
+  },
+  {
+    "id": "REQ-MPC-FR-011",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall implement role-based access control (RBAC) for administrative and operational users.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-007"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-012",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall support MFA for privileged administrative roles.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-013",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall enforce configurable session timeout and idle logout for authenticated users.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-014",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall provide an assisted registration workflow for in-person support at MPC outlets (assisted digital).",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-026"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-015",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall log all authentication events and expose them for security monitoring and audit.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-012"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-016",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall support account deactivation and reactivation workflows initiated by the user and by administrators.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-010"
+    ],
+    "notes": "Code-level modification | closed by IAM-010 amended; User-initiated deactivation/reactivation not in any description (IAM-010 admin-only; IAM-017 deletion ≠ deactivation); roll-up = minimal sufficient set: customer self-deactivation is a custom plugin in PRD-IAM-010 (fit updated)"
+  },
+  {
+    "id": "REQ-MPC-FR-017",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall provide a mechanism for users to request access to their personal data and obtain an export (DSAR).",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-017",
+      "PRD-SEC-007"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native GDPR personal-data export in My account (PRD-SEC-007)"
+  },
+  {
+    "id": "REQ-MPC-FR-018",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall provide a mechanism for users to request correction of personal information used for orders and deliveries.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-017"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-019",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall provide accessibility features suitable for low-bandwidth and low-end devices (lightweight web/app experience).",
+    "status": "Partially compliant",
+    "features": [
+      "PRD-CHN-002"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): light pages and installable website covered (CHN-002); measurable page-weight / load target not stated (NFR-X-006)"
+  },
+  {
+    "id": "REQ-MPC-FR-020",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall support user account data synchronization where required between Platform and core systems via the Integration Layer.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-019"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-021",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall provide configurable account security policies (password policy, lockout thresholds, MFA enforcement) aligned to MPC security program.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-IAM-003",
+      "PRD-IAM-004"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): password, lockout and MFA policies configurable and tested (IAM-003, IAM-004); \"aligned to MPC security program\": programme not provided"
+  },
+  {
+    "id": "REQ-MPC-FR-022",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall provide an audit trail view for user-consent and terms acceptance events for customer support resolution.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-003",
+      "PRD-IAM-016",
+      "PRD-IAM-017"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-023",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall provide configurable localization settings for date/time formats, currency display, and interface text packs. Language should be in commonly used local languages like English and Chichewa.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-PLT-009",
+      "PRD-PLT-010",
+      "PRD-PLT-011"
+    ],
+    "notes": "Reusable — configuration | Chichewa language pack/translations not available (content); PLT-024/025 not required; mapped in Feature sources but not delivering this requirement (L3 roll-up rows): PRD-PLT-024, PRD-PLT-025; roll-up = minimal sufficient set: category carried by the mapped features"
+  },
+  {
+    "id": "REQ-MPC-FR-024",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall provide a user administration console to search, view, and manage user accounts with full audit logging.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-010"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-025",
+    "client": "MPC",
+    "area": "User & Access Management",
+    "text": "The Platform shall allow MPC outlet agents to authenticate using named accounts and record transactions performed on behalf of customers (assisted service).",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-026"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-026",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall allow a Seller to create a Seller account and submit a Seller profile for marketplace participation.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-001"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-027",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall capture and store Seller KYC information (identity and business registration details) required for compliance.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-028",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall provide a workflow for verification and approval of Seller profiles with status states (Submitted, Under Review, Approved, Rejected, Suspended).",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-029",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall support risk-based Seller verification (e.g., tiered verification levels) configurable by Admin.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-030",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall provide Seller agreement acceptance (Seller Terms) as a prerequisite for activation.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-006"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-031",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall allow a Seller to register one or more payout accounts (mobile money and/or bank) for settlement.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-032",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall allow Sellers to manage business locations and pick-up/drop-off preferences.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-018"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-033",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall enforce Seller listing eligibility rules before allowing product publication.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-034",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall provide a Seller dashboard showing onboarding checklist completion and required actions.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-008"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-035",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall provide guided product listing training resources for sellers (in-platform help, templates, or links).",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-023"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-036",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall allow Admin to configure required Seller profile fields and documents without code changes.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-037",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall provide a Seller performance monitoring view (orders fulfilled, cancellation rate, return rate, complaints) with configurable thresholds for interventions.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-011"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-038",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall allow a Seller to manage staff/sub-accounts with role-based permissions.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-009"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-039",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall provide an approval workflow for high-risk actions (e.g., payout account changes) with audit trail.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ADM-006",
+      "PRD-SEC-004",
+      "PRD-SEL-005"
+    ],
+    "notes": "Code-level modification | Generic high-risk-action approval only covered for payout changes"
+  },
+  {
+    "id": "REQ-MPC-FR-040",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall allow Sellers to request verification upgrades or status appeals through an in-platform process.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-041",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall support blacklisting and watchlist controls for Sellers with fraud/abuse history.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-024"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-042",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall allow a Seller to view and download monthly settlement statements for payouts.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-SEL-017"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): SEL-017 statements covered; SEL-017 is held by PAY-DIRECT / LIC-01 (collecting and settling funds for sellers; licensing) through PAY-010, and by WF-ENG (the Decisions, gaps and open items register §2); as FR-133"
+  },
+  {
+    "id": "REQ-MPC-FR-043",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall support configurable Seller commission and fee rules by category/service (e.g., listing type, logistics services).",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-016"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-044",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall allow Sellers to opt-in to MPC-provided fulfilment/logistics services where available.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-018"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-045",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall provide Seller notifications for required actions (verification issues, order updates, complaints) in configured channels.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-020"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-046",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall allow Admin to configure and publish marketplace rules for Sellers (prohibited products, listing standards, delivery SLAs) and enforce them.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-011",
+      "PRD-SEL-007",
+      "PRD-SEL-011"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-047",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall support Seller identity linkage to mobile-money verified identities where feasible (KYC leveraging national IDs linked to mobile accounts).",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-004"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-048",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall provide reporting on Seller onboarding funnel (registered, submitted, approved, rejected) and cycle time.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-021"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-049",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall allow Sellers to temporarily pause sales/listings (vacation mode) with customer-facing messaging.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-019"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-050",
+    "client": "MPC",
+    "area": "Seller/SME Onboarding & Verification",
+    "text": "The Platform shall allow Buyers to rate Sellers and provide feedback after order completion, with moderation controls for abuse.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-012"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-051",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall allow an approved Seller to create and manage product listings with mandatory fields (title, description, price, stock, images).",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-002",
+      "PRD-CAT-038"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: category carried by the mapped features"
+  },
+  {
+    "id": "REQ-MPC-FR-052",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall support product categorization using an Admin-managed category taxonomy.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-001"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-053",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall support product variants (e.g., size, color) with separate SKU, price, and stock per variant.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-006"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-054",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall support bulk product upload and update using a standard template (CSV/Excel) with validation feedback.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-009",
+      "PRD-CAT-010"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-055",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall support product inventory management including stock quantities and low-stock alerts configurable by Seller.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INV-001",
+      "PRD-INV-003"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-056",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall support scheduling of product availability (start/end dates) and pre-order listings where applicable.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-024"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native available start/end dates and pre-order fields"
+  },
+  {
+    "id": "REQ-MPC-FR-057",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall allow Sellers to define product fulfilment attributes required for logistics (weight, dimensions, fragility, handling notes).",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-002",
+      "PRD-CAT-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-058",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall support an Admin moderation workflow for product listings (approve, reject, request changes) with reasons.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-043"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-059",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall allow Admin to define prohibited product categories/items and enforce automated checks where feasible.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-021"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-060",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall support image and document uploads for product listings with server-side validation (file type, size limits) configurable by Admin.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-002",
+      "PRD-CAT-016"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-061",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall allow Sellers to manage pricing including base price, discounts, and promotional pricing with effective dates.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-012",
+      "PRD-MKT-014"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-062",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall support platform-level promotions (sitewide campaigns, category campaigns) managed by Admin.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-001"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-063",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall allow Sellers to configure tax/duty-related fields required for cross-border shipments where applicable.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-015"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-064",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall generate unique product identifiers (SKU) and maintain product version history for audit.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-003",
+      "PRD-CAT-023"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-065",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall allow Sellers to create product bundles/kits and define bundle pricing.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-066",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall provide catalog analytics for Admin (active listings, categories, out-of-stock rate, listing rejection reasons).",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-034"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-067",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall allow Sellers to manage returnability settings per product consistent with platform returns policy.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-030"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-068",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall display product details including price, seller, delivery options, estimated delivery timelines, and returns policy summary.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-031"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-069",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall allow Sellers to set geographic delivery coverage constraints where applicable (e.g., deliverable districts) and enforce them at checkout.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-070",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall support a featured listing/advertising mechanism with configurable placement rules and fees.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-033"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-071",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall provide seller-side catalog quality checks (missing fields, image quality prompts) before submission for approval.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-072",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall provide an API endpoint (via the Integration Layer) to expose product catalog data to authorized internal services (e.g., CRM, analytics) and external partners as permitted.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-011"
+    ],
+    "notes": "Reusable — configuration (licensed plugin)"
+  },
+  {
+    "id": "REQ-MPC-FR-073",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall support product takedown requests and evidence capture for regulatory or policy compliance.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-021"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-074",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall allow Sellers to manage service listings (non-physical services) where enabled, with delivery method and fulfillment confirmation.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-026",
+      "PRD-SVC-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-075",
+    "client": "MPC",
+    "area": "Product Catalog Management",
+    "text": "The Platform shall allow Buyers to submit product ratings and reviews after purchase, with moderation and fraud controls.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-029"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-076",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide keyword search over product and service listings.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-001"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native keyword search; natural-language search not required"
+  },
+  {
+    "id": "REQ-MPC-FR-077",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide faceted filtering of search results by category, price range, seller, location, and delivery option.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-003",
+      "PRD-SRC-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-078",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide sorting options for search and category listings (e.g., relevance, price, popularity, newest, place of origin).",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-079",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide auto-suggest and search-as-you-type suggestions.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-002"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-080",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide category browsing pages with curated subcategories and featured items.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-006"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-081",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide personalized recommendations based on browsing and purchase history where consented.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-009"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-082",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall allow Admin to configure featured placements (homepage banners, featured sellers, featured categories) with start/end dates.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-007",
+      "PRD-SRC-017"
+    ],
+    "notes": "Code-level modification | mapping added; roll-up = minimal sufficient set: category carried by the mapped features"
+  },
+  {
+    "id": "REQ-MPC-FR-083",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall display Seller badges (e.g., verified seller, top-rated) as configured by Admin.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-017"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-084",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall support a 'nearby pickup' discovery mode based on selected pickup outlet or district.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-085",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide product comparison functionality for selected attributes within a category.",
+    "status": "Partially compliant",
+    "features": [
+      "PRD-SRC-013"
+    ],
+    "notes": "Reusable — configuration | COMP-R5 (Proposed, PO to ratify): comparison covered (SRC-013); restriction \"within a category\" is not in the 5.00 fit and not specified"
+  },
+  {
+    "id": "REQ-MPC-FR-086",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide a Wishlist/favorites feature for buyers.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-010"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-087",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide a 'recently viewed' list for buyers.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-008"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-088",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall display clear delivery promise indicators (estimated delivery window, pickup availability) on listing cards and product pages.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-031",
+      "PRD-SRC-018"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-089",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall support search for e-government services and display a structured service catalogue (fees, required documents, delivery options).",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-EGV-001"
+    ],
+    "notes": "Reusable — configuration | Table 13 pending; e-Gov scope FG-06/O-2 open"
+  },
+  {
+    "id": "REQ-MPC-FR-090",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide configurable search relevance tuning (boosting by category, featured status, location) with audit of changes.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-014"
+    ],
+    "notes": "Code-level modification | closed by SRC-014 amended; Admin boosting rules (category, featured, location) and audit of changes not in PRD-SRC-014 description"
+  },
+  {
+    "id": "REQ-MPC-FR-091",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide category and search result analytics (click-through rates, conversion) to Admin reporting.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-034",
+      "PRD-SRC-021"
+    ],
+    "notes": "Code-level modification | mapping added; roll-up = minimal sufficient set: category carried by the mapped features"
+  },
+  {
+    "id": "REQ-MPC-FR-092",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide accessibility-friendly search and navigation (keyboard navigation, screen-reader labels) as applicable to web channels.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-022"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-093",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide a mechanism for users to report suspicious listings or fraud concerns from product/search pages.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-021"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-094",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall support dynamic category landing pages for campaigns with configurable layout components.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-007"
+    ],
+    "notes": "Reusable — configuration (licensed plugin) | subject to V-01 (5.00 availability of the licensed plugin; not verifiable from source)"
+  },
+  {
+    "id": "REQ-MPC-FR-095",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall support multilingual search matching where multiple language packs are configured.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-014"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-096",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide offline-friendly error handling and retry prompts for search under intermittent connectivity.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-023"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-097",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide an API for search queries and results to support integration with other channels (e.g., USSD/SMS inquiry or kiosk) where implemented.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-024"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-098",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall ensure that search results exclude unpublished, suspended, or out-of-stock items according to configurable rules.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-019"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-099",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide a taxonomy governance workflow (propose new categories, approve, deprecate) with audit trail.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-016"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-100",
+    "client": "MPC",
+    "area": "Search & Discovery",
+    "text": "The Platform shall provide a dedicated browsing area for MPC services (postal, logistics, financial services) separate from marketplace goods, with clear service descriptions and ordering flows.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-CAT-026",
+      "PRD-SRC-020",
+      "PRD-SVC-005"
+    ],
+    "notes": "Code-level modification | mapping added; MPC/financial services scope is decision FG-06; roll-up = minimal sufficient set: category carried by the mapped features"
+  },
+  {
+    "id": "REQ-MPC-FR-101",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall allow Buyers to add goods and services to a shopping cart and modify quantities prior to checkout.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-001"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native cart"
+  },
+  {
+    "id": "REQ-MPC-FR-102",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall persist the cart for authenticated users across sessions.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-001"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native persistent cart"
+  },
+  {
+    "id": "REQ-MPC-FR-103",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall validate item availability and pricing at checkout and prevent checkout if validation fails.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-003"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native cart warnings re-check stock and price at checkout"
+  },
+  {
+    "id": "REQ-MPC-FR-104",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall support selection of fulfilment method per order line: delivery to address or pick-up at selected MPC outlet (click-and-collect) where available.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-105",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall compute delivery fees based on configurable rules (weight, distance, service level, pickup vs delivery) and show the fee breakdown at checkout.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-106",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall allow Buyers to select preferred delivery time window were supported and capture delivery instructions.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-107",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall present an order summary including items, quantities, taxes/fees, delivery fees, and returns policy acknowledgement before payment.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-002",
+      "PRD-CHK-009",
+      "PRD-PAY-020"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-108",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall generate a unique order ID upon checkout initiation and maintain it through payment and fulfilment lifecycle.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-002",
+      "PRD-CHK-008"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-109",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall support promo codes and vouchers as configured by Admin, with validation and audit trail.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-001",
+      "PRD-MKT-004"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-110",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall support split checkout for items from multiple sellers and generate separate fulfilment tasks per seller while presenting a unified checkout experience.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-CHK-004"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): CHK-004 split checkout covered; CHK-004 is held by PAY-DIRECT / LIC-01 through PAY-010 group payment, and by WF-ENG; P1 single-seller carts until group payment (SPLIT-PAY); as FR-133"
+  },
+  {
+    "id": "REQ-MPC-FR-111",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall support cart-level and item-level validation for prohibited combinations (e.g., delivery constraints, pickup-only items).",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-011"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-112",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall provide assisted checkout at MPC outlets, enabling an agent to create an order and record payment method for a customer.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-013",
+      "PRD-PAY-034"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-113",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall provide a mechanism to capture and validate delivery addresses using a standardized addressing approach (including landmark/pin/alias fields).",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-114",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall provide a checkout failure recovery workflow (resume checkout after payment interruption) with idempotency controls.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-008"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-115",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall enforce ETCSA consumer controls at checkout, including confirmation message generation within the required timeframe as configured.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-CHK-009"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): notice and confirmation-timing mechanism covered (CHK-009); ETCSA control list and time limit not stated in source"
+  },
+  {
+    "id": "REQ-MPC-FR-116",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall allow Buyers to select payment method at checkout from the configured set (mobile money, bank rails, cards, wallet, cash-on-delivery, assisted payment).",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-001"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native payment-method selection; routing belongs to FR-305"
+  },
+  {
+    "id": "REQ-MPC-FR-117",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall display and require acknowledgement of returns/refund policy for items/services where applicable during checkout.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-009"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-118",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall prevent checkout for users with account restrictions (e.g., suspected fraud) according to configurable rules.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-011",
+      "PRD-PAY-018",
+      "PRD-SEL-013"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-119",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall provide an estimated delivery time (EDT) or pickup availability indicator during checkout based on service standards configuration.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-014"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-120",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall support creation of separate invoices/receipts per seller and a consolidated receipt for the buyer when applicable.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-009"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-121",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall provide a secure checkout session and prevent tampering with price/totals between client and server.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-002"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-122",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall allow configuration of minimum order values and fee thresholds (e.g., free pickup) per policy.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-010"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-123",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall provide a 'save for later' feature for cart items.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-001"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-124",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall support buyer-side selection of preferred pickup identification method (e.g., order code, QR code) and present it at pickup.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-012"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-125",
+    "client": "MPC",
+    "area": "Cart & Checkout",
+    "text": "The Platform shall allow guest users to browse listings and initiate checkout, and shall require account creation or authentication before payment is executed.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-002"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-126",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall integrate with TNM Mpamba mobile money to initiate and confirm payments for orders and services.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-004",
+      "PRD-PAY-029"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-127",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall integrate with Airtel Money to initiate and confirm payments for orders and services.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-004",
+      "PRD-PAY-030"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-128",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall support bank transfer / bank rails payments where integrated, including payment reference generation.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-129",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall support card payments (debit/credit) where a payment gateway is selected, including PCI-DSS aligned handling (tokenization).",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-002",
+      "PRD-PAY-032",
+      "PRD-SEC-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-130",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall support digital wallet payments (e.g. PostPay wallet) if enabled by Purchaser, including wallet top-up and wallet balance checks.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-PAY-009"
+    ],
+    "notes": "Code-level modification | FG-06 (MPC/financial services); Inference: stored-value wallet may need e-money licensing in Malawi — not stated in source"
+  },
+  {
+    "id": "REQ-MPC-FR-131",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall support assisted cash payments at MPC outlets for orders initiated online, with secure payment reference and reconciliation.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-008",
+      "PRD-PAY-034"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-132",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall support cash-on-delivery (COD) as a configurable payment option per seller/item and geography.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-008"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-133",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall support split payments and fee splitting among stakeholders (seller payout, MPC logistics fee, platform commission) as per configured rules.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-PAY-010"
+    ],
+    "notes": "Code-level modification | Decisions PAY-DIRECT names FR-133 (payment-service licensing)"
+  },
+  {
+    "id": "REQ-MPC-FR-134",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall record payment status lifecycle (Initiated, Pending, Successful, Failed, Reversed) and link it to the order lifecycle.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-011"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-135",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall implement idempotency for payment initiation to prevent duplicate charges under retry conditions.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-012"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-136",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall generate and deliver payment confirmations/receipts to users via configured channels after successful payment.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-013"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-137",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall provide automated reconciliation reports comparing payment provider transactions with Platform orders and settlements.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-014"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-138",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall integrate with SAGE 200 to post summarized financial transactions and support reconciliation workflows.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-INT-006"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): summarised posting covered (INT-006); summary rules not received (MG-09)"
+  },
+  {
+    "id": "REQ-MPC-FR-139",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall provide configuration for payment fees (provider fees, platform fees) and support versioned fee schedules.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-015"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-140",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall support refund processing to the original payment method (where supported) and record refund lifecycle and references.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-004",
+      "PRD-PAY-016"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-141",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall support partial refunds at item level and proportional fee adjustments.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-015",
+      "PRD-PAY-016"
+    ],
+    "notes": "Code-level modification | closed by PAY-016 amended, PAY-015 mapped; Proportional fee adjustment on partial refunds not described"
+  },
+  {
+    "id": "REQ-MPC-FR-142",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall provide chargeback and dispute tracking for card payments where applicable.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-017"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-143",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall support payment risk controls (velocity checks, suspicious transaction flags) configurable by Admin.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-018"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-144",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall provide a payments operations console for authorized users to view transaction logs, exceptions, and manual interventions with audit trail.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-019"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-145",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall support settlement scheduling (daily/weekly) to sellers based on configurable payout cycles.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-SEL-017"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): SEL-017 settlement scheduling covered; SEL-017 is held by PAY-DIRECT / LIC-01 through PAY-010, and by WF-ENG (the Decisions, gaps and open items register §2); as FR-133"
+  },
+  {
+    "id": "REQ-MPC-FR-146",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall provide integration hooks for government fee collection and remittance workflows for e-government services.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-EGV-005"
+    ],
+    "notes": "Code-level modification | e-Gov scope FG-06/O-2"
+  },
+  {
+    "id": "REQ-MPC-FR-147",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall support configurable taxation rules for fees and commissions where required and generate tax reports.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-021"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-148",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall encrypt payment-related data at rest and in transit, and shall never store sensitive card data in cleartext.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEC-001",
+      "PRD-SEC-003"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | roll-up = minimal sufficient set: encryption at rest is a database/hosting function (for example transparent data encryption) outside nopCommerce; SEC-001 covers transport and password hashing"
+  },
+  {
+    "id": "REQ-MPC-FR-149",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall provide daily payment reconciliation exports in a format suitable for upload into finance systems if direct API integration is not available.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-014"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-150",
+    "client": "MPC",
+    "area": "Payments & Reconciliation",
+    "text": "The Platform shall provide a payment status page that clearly communicates next steps for pending or failed payments, including retry and support options.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-011"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-151",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall provide buyers with an order history view including status, items, totals, and tracking reference(s).",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-021"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native order history with shipments and tracking numbers"
+  },
+  {
+    "id": "REQ-MPC-FR-152",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall provide sellers with an order management dashboard to view incoming orders and required actions (accept, pack, handover).",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-153",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall implement an order status model with defined states (e.g., Created, Awaiting Payment, Paid, Processing, Shipped, Ready for Pickup, Delivered, Completed, Cancelled, Returned, Refunded).",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-154",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall allow buyers to cancel an order prior to fulfilment start according to configurable policy.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-155",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall allow sellers to cancel or reject an order under defined conditions (e.g., out of stock), with mandatory reason code.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-156",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall provide an admin console for order search and intervention, with all interventions requiring reason codes and audit logs.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-001",
+      "PRD-ORD-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-157",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall generate packing slips and shipping labels for seller fulfilment tasks according to configured templates.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-007",
+      "PRD-LOG-010"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-158",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall support partial fulfilment where an order contains multiple items and some are unavailable, with buyer notification and approval workflow as configured.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-159",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall send order confirmation notifications after order placement and status change notifications thereafter.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHK-019",
+      "PRD-TRK-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-160",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall send sellers notifications for new orders, payment confirmation, and fulfilment deadlines.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-161",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall allocate fulfilment tasks between MPC and seller/partner based on configured fulfilment model (merchant-fulfilled, MPC-fulfilled, third-party).",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-008"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-162",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall provide an operational view of orders requiring pickup, sorting, dispatch, and last-mile delivery actions.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ADM-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-163",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall support unique shipment identifiers linked to order lines and tracking references compatible with UPU S10 where applicable.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-020"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-164",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall provide digital proof of delivery/collection confirmation (e.g., signature capture, OTP, or scan) and store it in the order record.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-012"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-165",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall allow configuration of order cut-off times and fulfilment SLAs per service level.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-011",
+      "PRD-SVC-011"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-166",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall provide an event-driven integration mechanism to notify PostGlobal and other systems of order and shipment events.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-003",
+      "PRD-INT-007"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-167",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall allow buyers to modify delivery address/instructions before dispatch subject to configurable rules. The platform shall define the number of days MPC will store an item at no cost, beyond which configurable daily warehousing charges shall apply.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-017"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-168",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall provide seller-side order batching and printing tools (pick list, packing list) for processing multiple orders.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-009",
+      "PRD-ORD-005"
+    ],
+    "notes": "Code-level modification | Seller-side batching: PRD-LOG-009 described as warehouse function"
+  },
+  {
+    "id": "REQ-MPC-FR-169",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall support order holds for suspected fraud or compliance review, preventing fulfilment until release.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-010"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-170",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall support configuration of seller fulfilment deadlines and automatic cancellations/penalties for non-compliance as per marketplace policy.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-171",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall provide a digital invoice that includes seller identity, MPC service fees, and tax components as configured.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-009"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-172",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall provide configurable order numbering formats and prefixes to support separation of lots/services and reporting.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-007"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native CustomOrderNumberMask covers formats and prefixes; zero-padding is a product choice (ORD-007)"
+  },
+  {
+    "id": "REQ-MPC-FR-173",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall allow buyers to reorder past orders (repeat purchase) with availability and price revalidation.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-008"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-174",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall provide an order export function for authorized users with filters (date, status, seller) to support offline analysis and statutory reporting.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-001"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-175",
+    "client": "MPC",
+    "area": "Order Management",
+    "text": "The Platform shall maintain immutable audit logs for all order state transitions and key order field changes.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ORD-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-176",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall integrate with a logistics management module to create fulfilment tasks for pickup, sorting, dispatch, and delivery/collection.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-LOG-011"
+    ],
+    "notes": "Code-level modification | Postal-operations scope: decision FG-06 (O-2)"
+  },
+  {
+    "id": "REQ-MPC-FR-177",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall allow MPC Ops to schedule parcel pick-up from sellers and record pickup confirmation.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-LOG-011"
+    ],
+    "notes": "Code-level modification | Postal-operations scope: decision FG-06 (O-2)"
+  },
+  {
+    "id": "REQ-MPC-FR-178",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support drop-off processing at post offices/agencies, including scanning and acceptance of parcels for delivery.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-LOG-022"
+    ],
+    "notes": "Code-level modification | Postal-operations scope: decision FG-06 (O-2)"
+  },
+  {
+    "id": "REQ-MPC-FR-179",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support route planning/dispatch lists for last-mile delivery tasks with ability to mark delivery attempts.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-LOG-024"
+    ],
+    "notes": "Code-level modification | Postal-operations scope: decision FG-06 (O-2)"
+  },
+  {
+    "id": "REQ-MPC-FR-180",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support multiple delivery partners (MPC fleet, private couriers) with configurable partner assignment rules.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-021",
+      "PRD-LOG-031"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-181",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support warehouse/fulfilment center operations where enabled (pick, pack, stage, dispatch) for MPC-fulfilled items.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-LOG-009"
+    ],
+    "notes": "Code-level modification | Postal-operations scope: decision FG-06 (O-2)"
+  },
+  {
+    "id": "REQ-MPC-FR-182",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall compute and present estimated delivery times based on service standards, connectivity constraints, and operational cut-offs.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-183",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support creation and printing of standardized shipping labels and barcodes compatible with postal scanning processes.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-184",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall allow configuration of delivery service levels (standard, express, pickup) and corresponding pricing and SLAs.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-001",
+      "PRD-ORD-011"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-185",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support address validation and geocoding where available, and store geolocation coordinates to support last-mile routing.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-015"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-186",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support incident reporting for logistics (lost parcel, damaged parcel, delayed) with escalation workflows.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-013"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-187",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support proof-of-delivery capture, including time, location, recipient acknowledgement method, and media attachment where applicable.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-LOG-032"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | COMP-R5 (Proposed, PO to ratify): LOG-032 criteria held by FG-06 (postal operations scope) and PAID-STUB"
+  },
+  {
+    "id": "REQ-MPC-FR-188",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support pickup point management including operating hours, capacity flags, and temporary closure status.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-189",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support reverse logistics workflows for returns, including return pickup/drop-off and routing back to seller/warehouse.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-RET-003"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): RET-003 criteria held by T-MISS (Table 10 return shipping models not provided)"
+  },
+  {
+    "id": "REQ-MPC-FR-190",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support cross-border shipment workflows including generation of customs declarations and exchange of customs data via CDS where integrated.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-016"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-191",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support integration with IPS for international mail tracking where required and expose tracking information to users.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-016"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-192",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support hub-and-spoke sorting operations with scanning events at each handover point.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-LOG-023"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | Postal-operations scope: decision FG-06 (O-2)"
+  },
+  {
+    "id": "REQ-MPC-FR-193",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall provide delivery status exception handling for unreachable addresses (address correction workflow, redelivery scheduling, return-to-sender).",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-013"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-194",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support cash collection handling for COD deliveries including reconciliation of cash collected to order and delivery run.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-LOG-014"
+    ],
+    "notes": "Code-level modification | Postal-operations scope: decision FG-06 (O-2)"
+  },
+  {
+    "id": "REQ-MPC-FR-195",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support configurable delivery proof methods (signature, OTP, QR scan) selectable per service level.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-012"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-196",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall provide a logistics performance dashboard (on-time delivery, delivery success rate, average transit time) for MPC Ops and management.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-018"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-197",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support serviceability rules that determine whether delivery is available for a given buyer location/outlet and show available options accordingly.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-198",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support configuration of pickup and delivery fees and revenue share models for logistics partners where applicable.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-199",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall provide a mechanism to generate daily dispatch manifests for handover to linehaul/transport operators.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-LOG-009"
+    ],
+    "notes": "Code-level modification | Postal-operations scope: decision FG-06 (O-2)"
+  },
+  {
+    "id": "REQ-MPC-FR-200",
+    "client": "MPC",
+    "area": "Logistics & Fulfilment",
+    "text": "The Platform shall support integration with an addressing / digital postcode or alias system if adopted, and include it in labels and tracking.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-015"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-201",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide shipment tracking to buyers using tracking number and/or order ID.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-001",
+      "PRD-TRK-011"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-202",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall send proactive delivery status notifications (e.g., shipped, out for delivery, ready for pickup, delivered) via configured channels.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-012"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-203",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall support tracking event capture from multiple sources (MPC scans, partner courier updates, IPS/CDS where integrated).",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-204",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide scanning interfaces for recording track-and-trace events at pickup, hub, and delivery points.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-TRK-003"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | Postal-operations scope: decision FG-06 (O-2)"
+  },
+  {
+    "id": "REQ-MPC-FR-205",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall support UPU S10 tracking number standard formatting and validation for international shipments where applicable.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-020"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-206",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide pickup readiness notifications and include pickup instructions (outlet address, hours, required ID/code).",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-012"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-207",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide delivery attempt notifications including reason codes (unreachable, not at home, address issue) and rescheduling options.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-013",
+      "PRD-TRK-012"
+    ],
+    "notes": "Code-level modification | Rescheduling options not in PRD-TRK-012"
+  },
+  {
+    "id": "REQ-MPC-FR-208",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide a tracking timeline view showing event history with timestamps and locations where available.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-001"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-209",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide an exception status handling mechanism for delayed or missing scans and flag them for ops review.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-210",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall allow buyers to subscribe/unsubscribe to tracking updates per order.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-006"
+    ],
+    "notes": "Code-level modification | closed by TRK-006 amended; Per-order subscribe/unsubscribe not described (TRK-006 is per message type/channel)"
+  },
+  {
+    "id": "REQ-MPC-FR-211",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide customer support users with a consolidated view of order, payment, and tracking status for a given customer query.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-212",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall support notification templates with configurable content for each event type and channel.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-004",
+      "PRD-TRK-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-213",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide notification delivery reports (sent, delivered, failed) by channel and event type.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-214",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall support multi-channel notifications including SMS and email, and in-app notifications where channels are enabled.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-215",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall record notification events and link them to order/shipment records for audit.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-216",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide estimated pickup deadline reminders and uncollected parcel escalation notifications.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-012"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-217",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall support API-based event subscription (webhooks) for sellers and partners to receive order/shipment updates.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-218",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide sellers with shipment tracking visibility for their orders, including handover and delivery events.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-010"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-219",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide configuration for notification suppression rules (quiet hours, rate limits) to manage user experience.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-220",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide a secure sharing mechanism for tracking updates with third parties (e.g., recipient) without exposing full account details.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-001"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-221",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall maintain a standardized event dictionary for tracking statuses and provide mappings for external systems (PostGlobal, IPS).",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-007",
+      "PRD-LOG-016",
+      "PRD-TRK-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-222",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide real-time status refresh and manual refresh controls for tracking pages.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-001"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-223",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall provide an outage/degradation notification mechanism to inform users when tracking updates are delayed due to system issues.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-009"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-224",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall support capturing delivery agent identifiers and device identifiers for tracking events for accountability.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-TRK-003"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | Postal-operations scope: decision FG-06 (O-2)"
+  },
+  {
+    "id": "REQ-MPC-FR-225",
+    "client": "MPC",
+    "area": "Tracking & Notifications",
+    "text": "The Platform shall support tracking event retention and archival rules consistent with compliance requirements and operational needs.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-020",
+      "PRD-TRK-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-226",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall allow buyers to initiate a return request for eligible items within the configured return window.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-001"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-227",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall allow buyers to select a return reason from a standardized list and provide free-text details and evidence attachments where permitted.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-001"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-228",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall support configurable return shipping models (merchant-paid, customer-paid, shared, MPC-subsidized) based on Table 10 and policy configuration.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-RET-003"
+    ],
+    "notes": "Code-level modification | Table 10 not provided (T-MISS)"
+  },
+  {
+    "id": "REQ-MPC-FR-229",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall create a return logistics task (pickup or drop-off) when a return is approved and provide a return tracking reference.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-RET-003"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): RET-003 criteria held by T-MISS (Table 10 return shipping models not provided)"
+  },
+  {
+    "id": "REQ-MPC-FR-230",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall allow sellers to review and respond to return requests within configured timelines.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-010"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-231",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall provide an escalation path for unresolved return disputes, including routing to MPC dispute resolution process.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-RET-007"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): escalation path covered (AC-RET-007-05-01); routing to the Malawi Post dispute process needs the Complaints and ADR Policy (T-MISS)"
+  },
+  {
+    "id": "REQ-MPC-FR-232",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall initiate a refund workflow upon approved return, order cancellation, or service failure according to policy.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-RET-005",
+      "PRD-SVC-005"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): refund initiation on approved return, cancellation and service failure covered (RET-005, SVC-005); refund amounts \"according to policy\" not stated in source"
+  },
+  {
+    "id": "REQ-MPC-FR-233",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall support partial returns and partial refunds at item level.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-234",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall display returns policy and dispute resolution process clearly on product pages and order pages.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-031",
+      "PRD-RET-001",
+      "PRD-RET-007"
+    ],
+    "notes": "Code-level modification | closed by CAT-031 amended, RET-007 mapped; Dispute-resolution process display on product and order pages not described"
+  },
+  {
+    "id": "REQ-MPC-FR-235",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall provide a case management view for returns and disputes with status, parties, evidence, and decision logging.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-236",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall support buyer-seller messaging within a dispute/return case, with moderation and audit trail.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-011"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-237",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall enforce return eligibility rules per product category and seller policy (e.g., non-returnable items).",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-238",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall calculate and record return-related fees (restocking, logistics fees) where applicable, with transparency to buyers.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-239",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall provide evidence capture for delivered items (proof of delivery) and link it to dispute cases.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-240",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall allow buyers to request order issue resolution (missing item, damaged item, wrong item) separate from formal returns where policy allows.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-241",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall provide configurable SLA timers for dispute/return handling (seller response time, support resolution time).",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-008"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-242",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall support automated dispute categorization and triage rules based on reason codes and transaction attributes.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-008"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-243",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall provide clear refund status tracking and expected timelines for refund completion per payment method.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-016"
+    ],
+    "notes": "Code-level modification | closed by PAY-016 amended; Expected refund timelines per payment method not in PRD-PAY-016"
+  },
+  {
+    "id": "REQ-MPC-FR-244",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall support reversal handling for mobile money transactions where a payment is reversed by provider.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-245",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall support refund approval controls and segregation of duties for manual refunds above a configurable threshold.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-016"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-246",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall provide return labels and/or return instructions for buyers depending on chosen return shipping model.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-RET-003"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): RET-003 criteria held by T-MISS (Table 10 return shipping models not provided)"
+  },
+  {
+    "id": "REQ-MPC-FR-247",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall support dispute escalation to external regulators/ADR channels as applicable (e.g., MACRA) with export of case dossier.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-008"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-248",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall support configurable retention of dispute/return case records and evidence per data retention policy.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-009"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-249",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall generate periodic reports on returns rate, dispute reasons, resolution times, and outcomes.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-009"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-250",
+    "client": "MPC",
+    "area": "Returns, Refunds & Dispute Resolution",
+    "text": "The Platform shall support return item inspection at MPC outlet/warehouse (received condition, photos, acceptance/rejection) and record the inspection outcome in the return case.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RET-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-251",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall provide a customer support contact interface (in-app/web form) for inquiries and complaints.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-001",
+      "PRD-CRM-009"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native Contact us form (PRD-CRM-009)"
+  },
+  {
+    "id": "REQ-MPC-FR-252",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall provide a ticketing system for customer support to manage cases with statuses, assignment, and SLA timers.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-001"
+    ],
+    "notes": "Reusable — configuration (licensed plugin) | subject to V-01 (5.00 availability of the licensed plugin; not verifiable from source)"
+  },
+  {
+    "id": "REQ-MPC-FR-253",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall support multi-channel case intake (web/app form, email-to-ticket, phone/call center logging) as configured.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-254",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall provide a 360-degree customer view for support agents (profile, orders, payments, delivery events, disputes).",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-255",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall provide an in-platform knowledge base/FAQ accessible to users.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-007",
+      "PRD-MKT-007"
+    ],
+    "notes": "Reusable — configuration | roll-up = minimal sufficient set: native Topics serve as FAQ (PRD-MKT-007); approval workflow not required here"
+  },
+  {
+    "id": "REQ-MPC-FR-256",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall support scripted responses and templates for common inquiries, with version control and approval. And this will be used through AI chat bots achieved though platforms such as Whatsapp, browser chat Support Agents",
+    "status": "Compliant",
+    "features": [
+      "PRD-AI-003",
+      "PRD-CRM-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-257",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall provide order issue reporting functionality (missing parcel, delayed delivery, payment issue) that auto-populates order details in ticket.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-001",
+      "PRD-CRM-014"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-258",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall support escalation workflows from Level 1 support to specialized teams (payments ops, logistics ops, technical support).",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-014"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-259",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall provide configurable support categories and routing rules (by service type, order status, geography).",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-014"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-260",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall log all customer-support communications (messages, calls, emails) as part of the case history.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-002"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-261",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall provide customer satisfaction feedback capture after ticket resolution (rating + optional comments).",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-005",
+      "PRD-CRM-011"
+    ],
+    "notes": "Code-level modification | closed by CRM-005 amended; Post-resolution CSAT capture not described (CRM-005 is analytics)"
+  },
+  {
+    "id": "REQ-MPC-FR-262",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall provide support performance dashboards (ticket volume, resolution time, SLA breaches) by queue and agent.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-263",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall support role-based permissions for support agents to restrict access to sensitive personal data.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-264",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall allow users to track the status of their support tickets from their account.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-001"
+    ],
+    "notes": "Reusable — configuration (licensed plugin) | subject to V-01 (5.00 availability of the licensed plugin; not verifiable from source)"
+  },
+  {
+    "id": "REQ-MPC-FR-265",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall support attachment uploads in tickets with file type and size controls.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-001"
+    ],
+    "notes": "Reusable — configuration (licensed plugin) | subject to V-01 (5.00 availability of the licensed plugin; not verifiable from source)"
+  },
+  {
+    "id": "REQ-MPC-FR-266",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall support fraud reporting and referral workflow when fraud indicators are detected (e.g., repeated complaints, suspicious sellers).",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-010"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-267",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall provide an outbound communications tool for proactive updates (service outage, delivery delays) to affected users based on criteria.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-009"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-268",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall integrate ticketing with order/dispute workflows such that dispute/return cases can be created from tickets and linked bidirectionally.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-269",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall provide a standardized complaint submission process aligned to Complaints & ADR Policy referenced in feasibility study.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-CRM-004"
+    ],
+    "notes": "Code-level modification | Complaints & ADR Policy not provided (T-MISS)"
+  },
+  {
+    "id": "REQ-MPC-FR-270",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall support a complaints escalation matrix (internal escalation steps, external escalation points) configurable by Admin.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-CRM-004"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): CRM-004 criteria held by T-MISS (Complaints and ADR Policy not provided)"
+  },
+  {
+    "id": "REQ-MPC-FR-271",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall provide automated acknowledgements for support requests and complaints within configured{resolution} time windows.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-001"
+    ],
+    "notes": "Reusable — configuration (licensed plugin) | subject to V-01 (5.00 availability of the licensed plugin; not verifiable from source)"
+  },
+  {
+    "id": "REQ-MPC-FR-272",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall support internal notes and collaboration for support agents on a ticket without exposing notes to customers.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-273",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall support a knowledge article approval workflow to ensure published guidance is accurate and consistent with policies.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-007"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-274",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall provide audit logs for all ticket modifications (status changes, assignment, edits) with actor and timestamp.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-275",
+    "client": "MPC",
+    "area": "Customer Service & CRM",
+    "text": "The Platform shall support integration of CRM data into the data warehouse for analytics and performance management.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-003"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-276",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide dashboards for key KPIs including registrations, active buyers/sellers, GMV, orders, and conversion rates.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-277",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide order and logistics performance reports (on-time delivery, delivery success rate, average transit time) by outlet/hub/ user/service.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-010"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-278",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide payments reports (payment success rate, method mix, reconciliation exceptions, refunds) by payment method.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-010"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-279",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide seller performance reports (fulfilment SLA adherence, cancellations, returns rate, ratings) and export capabilities.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-010"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-280",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide fraud and risk analytics (flagged transactions, rule triggers, fraud case outcomes).",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-010"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-281",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide e-government service usage reports (service requests, payments collected, fulfilment status) by agency and service type.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-RPT-012"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | e-Gov scope FG-06/O-2"
+  },
+  {
+    "id": "REQ-MPC-FR-282",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall implement an analytics data model and ETL processes to populate a data warehouse/lake for reporting.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-003"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-283",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall support role-based access to reports and dashboards, including restriction of sensitive data fields.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-005"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-284",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide configurable report scheduling and email delivery of reports to nominated recipients.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-004"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-285",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide ad-hoc query and export capability for authorized analysts using defined data views.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-004"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-286",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall maintain a data dictionary describing key data entities and fields used in reporting.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-003"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-287",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide audit log reporting (logins, admin actions, configuration changes) for security and compliance monitoring.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-004",
+      "PRD-RPT-006",
+      "PRD-SEC-004"
+    ],
+    "notes": "Code-level modification | roll-up = minimal sufficient set: category carried by the mapped features"
+  },
+  {
+    "id": "REQ-MPC-FR-288",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide a configurable KPI catalogue where PIU/MPC can define additional KPIs and formulas (where feasible) without code changes.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-289",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide data export interfaces (API or batch files) for sharing reports with other government/MPC systems as authorized.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-001",
+      "PRD-RPT-004"
+    ],
+    "notes": "Code-level modification | roll-up = minimal sufficient set: category carried by the mapped features"
+  },
+  {
+    "id": "REQ-MPC-FR-290",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide monitoring of system health and usage analytics (page views, API calls) with alerts on anomalies.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-014"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-291",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall support data quality checks (missing values, duplicates, invalid statuses) in the analytics pipeline and report data quality issues.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-003"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-292",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide regulatory/compliance reporting as required by policies (complaints, AML/CFT flags, privacy requests).",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-RPT-006"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | COMP-R5 (Proposed, PO to ratify): complaints, AML/CFT flags and privacy requests reported (AC-RPT-006-02-01); formats \"as required by policies\" not stated"
+  },
+  {
+    "id": "REQ-MPC-FR-293",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide a mechanism to anonymize/pseudonymize data for analytics when required by policy.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-003"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-294",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall support segmentation reports (by district/outlet, buyer type, [ age, Gender, rural/ urban) seller type [ SMEs} for targeted outreach and adoption campaigns.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-011"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-295",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall support integration of community engagement/dashboard data (if applicable) into analytics for adoption monitoring.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-RPT-012"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | COMP-R5 (Proposed, PO to ratify): RPT-012 held by FG-06 (e-Government scope); community engagement data source not stated (\"if applicable\")"
+  },
+  {
+    "id": "REQ-MPC-FR-296",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide a standard monthly implementation and operations report template auto-populated from system metrics.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-297",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide data backup and restore reporting (backup success, last restore test) for audit.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-016"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-298",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide user management and access audit reports (role assignments, privileged accounts, MFA status).",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-011"
+    ],
+    "notes": "Code-level modification | roll-up = minimal sufficient set: admin report plugin over role, privileged-account and MFA data (PRD-IAM-011); BI regulator reports (RPT-006) not required"
+  },
+  {
+    "id": "REQ-MPC-FR-299",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall provide performance dashboards for system response times and key transaction latencies (search, checkout, payment confirmation).",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-014"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-300",
+    "client": "MPC",
+    "area": "Reporting & Analytics",
+    "text": "The Platform shall maintain versioned configuration change logs and allow rollback of selected configuration settings as applicable.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-301",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall provide an administrative console for system configuration and governance functions.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ADM-001"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-302",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of user roles and permissions (RBAC) including creation of custom roles.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-007"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-FR-303",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of marketplace commission rates, fees, Taxes and effective dates without code changes.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-021",
+      "PRD-SEL-016"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-304",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of logistics pricing tables (delivery fees, pickup fees, COD fees) by service level and location (rular/ urban}.",
+    "status": "Compliant",
+    "features": [
+      "PRD-LOG-002",
+      "PRD-PAY-015"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-305",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of payment methods availability and routing per service type and {Location rular and urban} geography.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-001"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-306",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of policy documents and legal notices (Privacy, Terms, Returns, Complaints) with version control.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-007",
+      "PRD-MKT-008"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-307",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration and management of e-government service catalogue entries (service definitions, fees, required documents, workflows).",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-ADM-002",
+      "PRD-EGV-001",
+      "PRD-EGV-002",
+      "PRD-EGV-006"
+    ],
+    "notes": "Code-level modification | Workflows by ADM-002/EGV-002; service content Table 13 (T-MISS); scope FG-06; roll-up = minimal sufficient set: category carried by the mapped features"
+  },
+  {
+    "id": "REQ-MPC-FR-308",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of seller verification rules, tiers, and limits without code changes.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEL-003"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-309",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of product categories, attributes, and required listing fields with governance workflow.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CAT-005",
+      "PRD-SRC-016"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-310",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall provide configuration of notification templates and channel settings (SMS, email, in-app) including quiet hours and rate limits.",
+    "status": "Compliant",
+    "features": [
+      "PRD-TRK-004",
+      "PRD-TRK-005",
+      "PRD-TRK-006"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-311",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of service-level standards (delivery SLA, pickup deadline, support SLA) and associated escalations.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-001",
+      "PRD-LOG-017",
+      "PRD-ORD-011",
+      "PRD-RET-008",
+      "PRD-SVC-011"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-312",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall provide configuration for dispute resolution rules and escalation matrix in line with Complaints & ADR Policy.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-RET-008"
+    ],
+    "notes": "Code-level modification | Complaints & ADR Policy not provided (same as FR-269)"
+  },
+  {
+    "id": "REQ-MPC-FR-313",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of content pages, banners, Customer service charter and announcements (CMS) with publish/unpublish and approval workflow.",
+    "status": "Partially compliant",
+    "features": [
+      "PRD-MKT-007",
+      "PRD-MKT-008"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): pages, announcements and charter covered (MKT-007, MKT-008); banner (Swiper slide) publish / unpublish and approval not covered"
+  },
+  {
+    "id": "REQ-MPC-FR-314",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall provide an integration configuration console to manage API endpoints, credentials (securely), and integration health status for connected systems.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-315",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of tax and fee rules applicable to platform transactions and generate corresponding reports.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-021"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-316",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of user segmentation attributes (buyer type,Gender, Age, rular/ uran seller type SMEs) used for reporting and marketing.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-011"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-317",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall provide a configuration baseline export and import function for backup and environment replication (dev/test/prod Recovery).",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-005"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-318",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall provide audit logs for all administrative configuration changes including actor, timestamp, old/new values.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-319",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of product/seller moderation queues and assignment rules.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ADM-006",
+      "PRD-CAT-022",
+      "PRD-CAT-043",
+      "PRD-SEL-003"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-320",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of fraud rules and thresholds and allow enabling/disabling rules with audit trail.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-018",
+      "PRD-PLT-004",
+      "PRD-SEC-004"
+    ],
+    "notes": "Code-level modification | Audit by AC-PAY-018-02-01, PLT-004, SEC-004"
+  },
+  {
+    "id": "REQ-MPC-FR-321",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of API rate limits, throttling, and allowed client applications.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-322",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of data retention and archival rules for key modules (orders, payments, tickets, logs).",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-020"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-323",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall provide administrative tools for managing blacklists/whitelists (users, sellers, IPs, devices) with audit trail.",
+    "status": "Partially compliant",
+    "features": [
+      "PRD-SEL-013"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): block and watch lists covered (SEL-013); the effect of whitelist (Allow) entries beyond suppressing Watch flags is not stated in source"
+  },
+  {
+    "id": "REQ-MPC-FR-324",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall provide system parameter configuration for maximum file upload sizes, supported file types, and content scanning controls.",
+    "status": "Compliant",
+    "features": [
+      "PRD-ADM-008"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-325",
+    "client": "MPC",
+    "area": "Administration & Configuration",
+    "text": "The Platform shall support configuration of onboarding content, training materials, and guided tours for users and sellers.",
+    "status": "Compliant",
+    "features": [
+      "PRD-MKT-007",
+      "PRD-PLT-019",
+      "PRD-SEL-023"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-FR-326",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall implement an Integration Layer using API management/gateway to securely expose and consume APIs for internal and external systems.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-327",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall integrate with PostGlobal to exchange order, shipment, and tracking data as per agreed interface specification.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-INT-007"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): INT-007 held until the PostGlobal interface specification is agreed; which postal operations stay in PostGlobal is FG-06"
+  },
+  {
+    "id": "REQ-MPC-FR-328",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall integrate with SAGE 200 for financial posting and reconciliation as specified by Purchaser.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-INT-006"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): posting and reconciliation mechanism covered (INT-006); posting content \"as specified by Purchaser\" not received (MG-09)"
+  },
+  {
+    "id": "REQ-MPC-FR-329",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall provide integration capabilities for IPS, CDS, and GMS as required for cross-border shipments and monitoring.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-LOG-016"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | COMP-R5 (Proposed, PO to ratify): UPU CDS and IPS exchange covered (LOG-016); the data to exchange with GMS is not stated (MG-09); closed by LOG-016 amended"
+  },
+  {
+    "id": "REQ-MPC-FR-330",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall integrate with mobile money providers (TNM Mpamba, Airtel Money) via secure APIs for payments and refunds.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-024",
+      "PRD-PAY-029",
+      "PRD-PAY-030"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-331",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall provide an integration mechanism for government e-service fee collection and remittance reporting per agency requirements.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-EGV-005"
+    ],
+    "notes": "Code-level modification | e-Gov scope FG-06/O-2"
+  },
+  {
+    "id": "REQ-MPC-FR-332",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall provide a user-facing workflow to request priority e-government services identified in Table 13, including application submission, fee payment, and status tracking.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-EGV-002"
+    ],
+    "notes": "Code-level modification | Table 13 not provided; FG-06"
+  },
+  {
+    "id": "REQ-MPC-FR-333",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall support document upload, validation, and secure storage for e-government service applications.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-EGV-002"
+    ],
+    "notes": "Code-level modification | e-Gov scope FG-06/O-2"
+  },
+  {
+    "id": "REQ-MPC-FR-334",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall support appointment scheduling and notifications for e-government services that require in-person visits, where applicable.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-EGV-003"
+    ],
+    "notes": "Code-level modification | e-Gov scope FG-06/O-2"
+  },
+  {
+    "id": "REQ-MPC-FR-335",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall support physical delivery/collection options for e-government outputs (documents) via MPC delivery network, including tracking.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-EGV-004"
+    ],
+    "notes": "Code-level modification | e-Gov scope FG-06/O-2"
+  },
+  {
+    "id": "REQ-MPC-FR-336",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall provide a service catalogue that can include private sector service offerings (e.g., agency banking, insurance, bill aggregation, ticketing) as identified in Table 8, subject to Purchaser rollout decisions.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-FIN-005"
+    ],
+    "notes": "Code-level modification | Table 8 + FG-06; also served later by PRD-SVC-009 (P2)"
+  },
+  {
+    "id": "REQ-MPC-FR-337",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall provide an API developer portal and API documentation for external partners and government agencies to integrate with the platform.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-338",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall implement secure authentication and authorization for APIs (e.g., OAuth2/OpenID Connect or equivalent) as supported by the selected API gateway.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-001",
+      "PRD-INT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | closed by INT-001 amended, INT-002 mapped; OAuth2/OIDC not stated (INT-001 says access keys); gateway not mapped"
+  },
+  {
+    "id": "REQ-MPC-FR-339",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall implement API rate limiting, throttling, and abuse detection for external clients.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-340",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall maintain an integration registry of connected systems, interface versions, and environment endpoints (test/prod).",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-341",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall provide message transformation and mapping capabilities to support heterogeneous integration formats (JSON/XML/CSV) as required.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-342",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall support integration health monitoring and alerting for API failures and latency thresholds.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-004"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-343",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall support data exchange with regulatory or oversight entities where required (e.g., reporting, complaints escalation), subject to approvals.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-009"
+    ],
+    "notes": "Code-level modification | PRD-INT-013 MANEPS is e-procurement, not a regulator/oversight body"
+  },
+  {
+    "id": "REQ-MPC-FR-344",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall support integration of user identity verification where KYC is required, leveraging existing mobile-money KYC where feasible.",
+    "status": "Compliant",
+    "features": [
+      "PRD-IAM-020"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | closed by SEL-004 replaced by IAM-020; PRD-SEL-004 is seller-only; requirement is user identity KYC"
+  },
+  {
+    "id": "REQ-MPC-FR-345",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall provide an e-government service administration module to manage agency users, permissions, and service workflows.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-EGV-006"
+    ],
+    "notes": "Code-level modification | e-Gov scope FG-06/O-2"
+  },
+  {
+    "id": "REQ-MPC-FR-346",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall provide an integration test harness/sandbox environment for partners and agencies to validate integrations prior to production.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-FR-347",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall maintain integration change logs and provide backward compatibility policies for API versioning.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-001"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-348",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall support event-driven integrations (publish/subscribe) for key business events (order paid, shipment dispatched, service request submitted).",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-INT-003"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): order paid and shipment dispatched covered (INT-003); \"service request submitted\" depends on EGV-002, held by FG-06"
+  },
+  {
+    "id": "REQ-MPC-FR-349",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall provide secure data synchronization mechanisms for master data (outlets, service catalogues, tariffs) between Platform and other MPC systems as applicable.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-010"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-FR-350",
+    "client": "MPC",
+    "area": "Integrations & e-Government Services",
+    "text": "The Platform shall support digital identity related service workflows (e.g., application for IDs/documents) if included in the priority eGov services list, without hardcoding service-specific logic.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-EGV-007"
+    ],
+    "notes": "Code-level modification | Conditional on Table 13 list; FG-06"
+  },
+  {
+    "id": "REQ-MPC-ARC-001",
+    "client": "MPC",
+    "area": "Architecture",
+    "text": "Three-tier architecture: database servers, application servers, clients; data warehouse for data storage.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-015",
+      "PRD-RPT-003"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-ARC-002",
+    "client": "MPC",
+    "area": "Architecture",
+    "text": "Browser-based access.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-015"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-ARC-003",
+    "client": "MPC",
+    "area": "Architecture",
+    "text": "Open, non-proprietary database architecture.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-015"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-ARC-004",
+    "client": "MPC",
+    "area": "Architecture",
+    "text": "Compatible with Windows Server 2019 or newest at implementation.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-015"
+    ],
+    "notes": "Reusable — configuration | M-12: open database vs Windows Server 2019 — compatible (Inference)"
+  },
+  {
+    "id": "REQ-MPC-ARC-005",
+    "client": "MPC",
+    "area": "Architecture",
+    "text": "Extensible design for future expansion.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-015"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-AUD-001",
+    "client": "MPC",
+    "area": "Audit",
+    "text": "Transaction audit trail, exportable in different formats.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEC-004"
+    ],
+    "notes": "Code-level modification"
+  },
+  {
+    "id": "REQ-MPC-CHT-001",
+    "client": "MPC",
+    "area": "Chatbot & help",
+    "text": "Chatbot with machine-learning capability for basic help and guidance.",
+    "status": "Partially compliant",
+    "features": [
+      "PRD-AI-003"
+    ],
+    "notes": "Code-level modification | COMP-R5 (Proposed, PO to ratify): \"machine-learning capability\" undefined (MG-11); a language model answering from approved content is Proposed (AI-003)"
+  },
+  {
+    "id": "REQ-MPC-HST-001",
+    "client": "MPC",
+    "area": "Hosting",
+    "text": "Assess the hosting environment; deliver a hosting assessment report.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hosting assessment — service."
+  },
+  {
+    "id": "REQ-MPC-HST-002",
+    "client": "MPC",
+    "area": "Hosting",
+    "text": "Cloud hosting for the first 6 months, minimum 2 TB storage, 4 cores @2.0 GHz, 8 GB RAM.",
+    "status": "Project service — subject to decision (C-SIZE)",
+    "features": [
+      "PRD-PLT-026"
+    ],
+    "notes": "Supporting product features: PRD-PLT-026 | Hosting supply for 6 months is a List-of-Goods service line (SCC payment 6%); PLT-026 is a sizing document, not a product function; MG-14 post-6-month owner"
+  },
+  {
+    "id": "REQ-MPC-HW-001",
+    "client": "MPC",
+    "area": "Lot 2 hardware",
+    "text": "3 heavy-duty photocopiers (print/copy/scan, ≥55 ppm, duplex, ADF ≥50, LAN/USB/Wi-Fi, local SLA).",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hardware / infrastructure supply — out of product scope."
+  },
+  {
+    "id": "REQ-MPC-HW-002",
+    "client": "MPC",
+    "area": "Lot 2 hardware",
+    "text": "10 laptops (1 TB, 13\", ≥8 GB, touchscreen, Windows Pro, local SLA).",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hardware / infrastructure supply — out of product scope."
+  },
+  {
+    "id": "REQ-MPC-HW-003",
+    "client": "MPC",
+    "area": "Lot 2 hardware",
+    "text": "10 desktops (i5 13th gen, 8 GB, 512 GB SSD, FHD, Win 11 Pro, MS Office 2021, antivirus).",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hardware / infrastructure supply — out of product scope."
+  },
+  {
+    "id": "REQ-MPC-HW-004",
+    "client": "MPC",
+    "area": "Lot 2 hardware",
+    "text": "3 mono laser MFPs (≥42 ppm, duplex, ADF).",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hardware / infrastructure supply — out of product scope."
+  },
+  {
+    "id": "REQ-MPC-HW-005",
+    "client": "MPC",
+    "area": "Lot 2 hardware",
+    "text": "10 thermal receipt printers (80 mm, 300 mm/s, USB/Ethernet).",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hardware / infrastructure supply — out of product scope."
+  },
+  {
+    "id": "REQ-MPC-HW-006",
+    "client": "MPC",
+    "area": "Lot 2 hardware",
+    "text": "3 colour laser MFPs (≥27 ppm, duplex, ADF).",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hardware / infrastructure supply — out of product scope."
+  },
+  {
+    "id": "REQ-MPC-HW-007",
+    "client": "MPC",
+    "area": "Lot 2 hardware",
+    "text": "10 tablets (Android ≥10, LTE, 128 GB, 6 GB RAM, 10\").",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hardware / infrastructure supply — out of product scope."
+  },
+  {
+    "id": "REQ-MPC-HW-008",
+    "client": "MPC",
+    "area": "Lot 2 hardware",
+    "text": "3 projectors (3LCD, VGA/HDMI).",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hardware / infrastructure supply — out of product scope."
+  },
+  {
+    "id": "REQ-MPC-HW-009",
+    "client": "MPC",
+    "area": "Lot 2 hardware",
+    "text": "2 slim servers (10 cores, 64 GB, 2 TB) with latest Windows Server.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hardware / infrastructure supply — out of product scope."
+  },
+  {
+    "id": "REQ-MPC-HW-010",
+    "client": "MPC",
+    "area": "Lot 2 hardware",
+    "text": "2 × 48-port smart switches; 3 load-balance routers (firewall, SFP); 3 × 6U racks.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hardware / infrastructure supply — out of product scope."
+  },
+  {
+    "id": "REQ-MPC-HW-011",
+    "client": "MPC",
+    "area": "Lot 2 hardware",
+    "text": "Configure servers, routers and switches within 60 days.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hardware / infrastructure supply — out of product scope."
+  },
+  {
+    "id": "REQ-MPC-HW-012",
+    "client": "MPC",
+    "area": "Lot 2 related services",
+    "text": "Related services: data-centre migration, internal chat, corporate email, extranet, file/print server, automatic backup.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Hardware / infrastructure supply — out of product scope. Includes internal chat, corporate email, extranet, file/print server — separate IT services, not e-commerce product."
+  },
+  {
+    "id": "REQ-MPC-INT-001",
+    "client": "MPC",
+    "area": "Integrations",
+    "text": "Integration with other e-systems via plug-ins/additional modules, e.g. MANEPS.",
+    "status": "Compliant subject to client content",
+    "features": [
+      "PRD-INT-009",
+      "PRD-INT-011",
+      "PRD-INT-013"
+    ],
+    "notes": "Code-level modification | mapping added; MANEPS purpose and data not stated (MG-09)"
+  },
+  {
+    "id": "REQ-MPC-INT-002",
+    "client": "MPC",
+    "area": "Integrations",
+    "text": "USSD functionality via plug-in.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHN-003"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-INT-003",
+    "client": "MPC",
+    "area": "Integrations",
+    "text": "Social media platform plug-ins.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CHN-011",
+      "PRD-MKT-010"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-INT-004",
+    "client": "MPC",
+    "area": "Integrations",
+    "text": "Integration with other systems.",
+    "status": "Compliant",
+    "features": [
+      "PRD-INT-001",
+      "PRD-INT-002",
+      "PRD-INT-011"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration) | mapping added; roll-up = minimal sufficient set: category carried by the mapped features"
+  },
+  {
+    "id": "REQ-MPC-MOB-001",
+    "client": "MPC",
+    "area": "Mobile",
+    "text": "Web platform and mobile application functionality.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-CHN-001"
+    ],
+    "notes": "Reusable — configuration (licensed plugin) | Decision M-19"
+  },
+  {
+    "id": "REQ-MPC-MOB-002",
+    "client": "MPC",
+    "area": "Mobile",
+    "text": "Architecture allows easy integration of / extension to Android and iOS apps.",
+    "status": "Compliant subject to decision",
+    "features": [
+      "PRD-CHN-001",
+      "PRD-INT-001"
+    ],
+    "notes": "Code-level modification | mapping added; native apps as a deliverable is decision M-19"
+  },
+  {
+    "id": "REQ-MPC-NFR-001",
+    "client": "MPC",
+    "area": "Resilience",
+    "text": "Disaster recovery approach ensuring high availability.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-016"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-NFR-002",
+    "client": "MPC",
+    "area": "Resilience",
+    "text": "Online backup without interrupting core operations.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-016"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-ORD-001",
+    "client": "MPC",
+    "area": "Orders & tracking",
+    "text": "Dashboard for customers and stakeholders to track and trace orders, linked to delivery.",
+    "status": "Compliant",
+    "features": [
+      "PRD-CRM-003",
+      "PRD-INT-007",
+      "PRD-TRK-001",
+      "PRD-TRK-002",
+      "PRD-TRK-010"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-PAY-001",
+    "client": "MPC",
+    "area": "Payments",
+    "text": "Integrate multiple payment gateways.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PAY-001",
+      "PRD-PAY-002",
+      "PRD-PAY-004",
+      "PRD-PAY-005",
+      "PRD-PAY-024",
+      "PRD-PAY-029",
+      "PRD-PAY-030",
+      "PRD-PAY-032"
+    ],
+    "notes": "Code-level modification | mapping added"
+  },
+  {
+    "id": "REQ-MPC-PRJ-001",
+    "client": "MPC",
+    "area": "Delivery",
+    "text": "Develop and implement an e-commerce platform within the Malawi Postal Network.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature. Satisfied by the product as a whole."
+  },
+  {
+    "id": "REQ-MPC-PRJ-002",
+    "client": "MPC",
+    "area": "Delivery",
+    "text": "Develop a web-based platform per the user requirements documents.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature. Satisfied by the product as a whole."
+  },
+  {
+    "id": "REQ-MPC-PRJ-003",
+    "client": "MPC",
+    "area": "Delivery",
+    "text": "Bidder may recommend additions for gaps in the user requirements document.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-MPC-PRJ-004",
+    "client": "MPC",
+    "area": "Delivery",
+    "text": "Roll out to hosting environment with checks on usability, controls and confidentiality.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-MPC-PRJ-005",
+    "client": "MPC",
+    "area": "Delivery",
+    "text": "Hand over source code; train ICT staff to upgrade the system.",
+    "status": "Project service — subject to decision (K-02 / M-18)",
+    "features": [],
+    "notes": "Source-code handover — conflicts with reusable product IP (same issue as K-02). Decision required."
+  },
+  {
+    "id": "REQ-MPC-PRJ-006",
+    "client": "MPC",
+    "area": "Delivery",
+    "text": "Inception report within 2 weeks of signing.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-MPC-PRJ-007",
+    "client": "MPC",
+    "area": "Delivery",
+    "text": "Implementation report after full rollout and training.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-MPC-PRJ-008",
+    "client": "MPC",
+    "area": "Delivery",
+    "text": "Final report after 3-month post-implementation review.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-MPC-PRJ-009",
+    "client": "MPC",
+    "area": "Delivery",
+    "text": "Hand over a fully functional web-based platform.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-MPC-PRJ-010",
+    "client": "MPC",
+    "area": "Delivery",
+    "text": "Provide development tools for continuous development.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Development tooling handover — service/commercial."
+  },
+  {
+    "id": "REQ-MPC-PRJ-011",
+    "client": "MPC",
+    "area": "Delivery",
+    "text": "Inception to implementation within 183 days.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature. 183 days vs fit-gap 1,995 person-days (FG-07)."
+  },
+  {
+    "id": "REQ-MPC-QA-001",
+    "client": "MPC",
+    "area": "Testing",
+    "text": "Conduct UAT.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-MPC-QA-002",
+    "client": "MPC",
+    "area": "Testing",
+    "text": "Fix defects found in UAT.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-MPC-QA-003",
+    "client": "MPC",
+    "area": "Testing",
+    "text": "Detailed UAT plan (2 weeks after development).",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-MPC-QA-004",
+    "client": "MPC",
+    "area": "Testing",
+    "text": "Purchaser may inspect the system in a test environment before dispatch, incl. UAT.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Project delivery obligation — service, not a product feature."
+  },
+  {
+    "id": "REQ-MPC-RPT-001",
+    "client": "MPC",
+    "area": "Reporting",
+    "text": "Reports and KPIs in text and graphic form.",
+    "status": "Compliant",
+    "features": [
+      "PRD-RPT-001",
+      "PRD-RPT-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-SEC-001",
+    "client": "MPC",
+    "area": "Security",
+    "text": "Security against hacking/tampering, unauthorised access, and for data in transit.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SEC-001",
+      "PRD-SEC-002"
+    ],
+    "notes": "Cannot be done in nopCommerce (external system + integration)"
+  },
+  {
+    "id": "REQ-MPC-SUP-001",
+    "client": "MPC",
+    "area": "Support",
+    "text": "18 months post-implementation support.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Support and maintenance — service (SLA terms, not product function)."
+  },
+  {
+    "id": "REQ-MPC-SUP-002",
+    "client": "MPC",
+    "area": "Support",
+    "text": "Support SLA: critical 1 h, high 4 h, medium 8 h.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Support and maintenance — service (SLA terms, not product function)."
+  },
+  {
+    "id": "REQ-MPC-SUP-003",
+    "client": "MPC",
+    "area": "Support",
+    "text": "Second-level help desk with machine-learning abilities for bugs and errors.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Second-level help desk with ML for bugs/errors — support-desk service and vendor tooling, not a customer-facing product feature."
+  },
+  {
+    "id": "REQ-MPC-TRN-001",
+    "client": "MPC",
+    "area": "Training",
+    "text": "Train MPC staff and other users on system management, maintenance and upgrading.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Training / knowledge transfer — service."
+  },
+  {
+    "id": "REQ-MPC-TRN-002",
+    "client": "MPC",
+    "area": "Training",
+    "text": "Facilitate a learning/benchmarking visit to an e-commerce platform within 2 months of signing.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Training / knowledge transfer — service."
+  },
+  {
+    "id": "REQ-MPC-TRN-003",
+    "client": "MPC",
+    "area": "Training",
+    "text": "User manual/guide and system administrator training.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Training / knowledge transfer — service. Manuals are deliverables."
+  },
+  {
+    "id": "REQ-MPC-TRN-004",
+    "client": "MPC",
+    "area": "Training",
+    "text": "Train MPC IT staff and super users for first-line support.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Training / knowledge transfer — service."
+  },
+  {
+    "id": "REQ-MPC-TRN-005",
+    "client": "MPC",
+    "area": "Training",
+    "text": "Knowledge transfer to MPC IT officers throughout development and deployment.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Training / knowledge transfer — service."
+  },
+  {
+    "id": "REQ-MPC-TRN-006",
+    "client": "MPC",
+    "area": "Training",
+    "text": "Technical and end-user manuals.",
+    "status": "Project service — not a product feature",
+    "features": [],
+    "notes": "Training / knowledge transfer — service."
+  },
+  {
+    "id": "REQ-MPC-UX-001",
+    "client": "MPC",
+    "area": "UX",
+    "text": "User-friendly platform and ordering system.",
+    "status": "Partially compliant",
+    "features": [
+      "PRD-CHK-002",
+      "PRD-PLT-017",
+      "PRD-SRC-006"
+    ],
+    "notes": "Reusable — configuration | COMP-R5 (Proposed, PO to ratify): ordering on every device covered (PLT-017, SRC-006, CHK-002); \"user-friendly\" has no measurable criterion in source"
+  },
+  {
+    "id": "REQ-MPC-UX-002",
+    "client": "MPC",
+    "area": "UX",
+    "text": "PC- and mobile-friendly platform.",
+    "status": "Compliant",
+    "features": [
+      "PRD-PLT-017"
+    ],
+    "notes": "Reusable — configuration"
+  },
+  {
+    "id": "REQ-MPC-UX-003",
+    "client": "MPC",
+    "area": "UX",
+    "text": "Runs smoothly on mobile web browsers.",
+    "status": "Partially compliant",
+    "features": [
+      "PRD-PLT-017"
+    ],
+    "notes": "Reusable — configuration | COMP-R5 (Proposed, PO to ratify): mobile-browser operation covered (PLT-017); \"smoothly\" has no measurable target in source (NFR-X-006)"
+  },
+  {
+    "id": "REQ-MPC-UX-004",
+    "client": "MPC",
+    "area": "UX",
+    "text": "Multiple navigation options suited to user experience levels.",
+    "status": "Compliant",
+    "features": [
+      "PRD-SRC-001",
+      "PRD-SRC-003",
+      "PRD-SRC-006"
+    ],
+    "notes": "Code-level modification"
+  }
+]

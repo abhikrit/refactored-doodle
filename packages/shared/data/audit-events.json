@@ -1,0 +1,1514 @@
+[
+  {
+    "id": "AUD-ADM-001",
+    "area": "ADM",
+    "event": "Customer deactivated or reactivated; bulk product edit or archive",
+    "entity": "Customer, Product",
+    "features": []
+  },
+  {
+    "id": "AUD-ADM-002",
+    "area": "ADM",
+    "event": "Workflow definition published or retired; case cancelled or step retried manually",
+    "entity": "WorkflowDefinition, WorkflowCase",
+    "features": []
+  },
+  {
+    "id": "AUD-ADM-003",
+    "area": "ADM",
+    "event": "Rule created, changed, activated or retired; precedence changed",
+    "entity": "Rule, RuleSet",
+    "features": []
+  },
+  {
+    "id": "AUD-ADM-004",
+    "area": "ADM",
+    "event": "Approval decision (approve, approve with conditions, reject, appeal, condition confirmed)",
+    "entity": "ApprovalItem",
+    "features": []
+  },
+  {
+    "id": "AUD-ADM-005",
+    "area": "ADM",
+    "event": "Eligibility binding, quota or screening decision",
+    "entity": "EligibilityBinding, Quota, ScreeningResult",
+    "features": []
+  },
+  {
+    "id": "AUD-ADM-006",
+    "area": "ADM",
+    "event": "Upload refused (type, size, infected, scan unavailable)",
+    "entity": "UploadScan",
+    "features": []
+  },
+  {
+    "id": "AUD-ADM-007",
+    "area": "ADM",
+    "event": "Exception resolved, retried, escalated (single or bulk)",
+    "entity": "ExceptionRecord",
+    "features": []
+  },
+  {
+    "id": "AUD-ADM-008",
+    "area": "ADM",
+    "event": "Alert rule changed; alert acknowledged",
+    "entity": "AlertRule, AlertEvent",
+    "features": []
+  },
+  {
+    "id": "AUD-ADM-009",
+    "area": "ADM",
+    "event": "Transaction type, template version approved or restored",
+    "entity": "TransactionType, TransactionTemplate",
+    "features": []
+  },
+  {
+    "id": "AUD-AI-001",
+    "area": "AI",
+    "event": "Chatbot configuration changed",
+    "entity": "Chatbot settings",
+    "features": []
+  },
+  {
+    "id": "AUD-AI-002",
+    "area": "AI",
+    "event": "AI translation approved or rejected",
+    "entity": "AiTranslationDraft",
+    "features": []
+  },
+  {
+    "id": "AUD-AI-003",
+    "area": "AI",
+    "event": "AI suggestion accepted (content, image, price, draft)",
+    "entity": "AiSuggestion, target entity",
+    "features": []
+  },
+  {
+    "id": "AUD-AI-004",
+    "area": "AI",
+    "event": "AI use register entry created or changed",
+    "entity": "AiUseRegister",
+    "features": []
+  },
+  {
+    "id": "AUD-AI-005",
+    "area": "AI",
+    "event": "Document check decided",
+    "entity": "DocumentCheck",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-001",
+    "area": "CAT",
+    "event": "Listing state change",
+    "entity": "ListingState",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-002",
+    "area": "CAT",
+    "event": "Approval step decision",
+    "entity": "ApprovalStep",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-003",
+    "area": "CAT",
+    "event": "Schema, queue or assignment-rule change and its approval",
+    "entity": "CategorySchema, ModerationQueue, AssignmentRule",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-004",
+    "area": "CAT",
+    "event": "Prohibited rule change",
+    "entity": "ProhibitedRule",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-005",
+    "area": "CAT",
+    "event": "Report or takedown decision",
+    "entity": "ListingReport, TakedownRequest",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-006",
+    "area": "CAT",
+    "event": "Listing withdrawn",
+    "entity": "ListingState",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-007",
+    "area": "CAT",
+    "event": "Version restored",
+    "entity": "ProductVersion",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-008",
+    "area": "CAT",
+    "event": "Compliance status or certificate change; auto-pause on expiry",
+    "entity": "ComplianceStatus, ProductCertificate",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-009",
+    "area": "CAT",
+    "event": "Price list change",
+    "entity": "PriceList, PriceListItem",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-010",
+    "area": "CAT",
+    "event": "Placement decision",
+    "entity": "PromotedPlacement",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-011",
+    "area": "CAT",
+    "event": "Staff view of a product edit page",
+    "entity": "CatalogueViewLog",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-012",
+    "area": "CAT",
+    "event": "Import committed",
+    "entity": "ImportJob",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-013",
+    "area": "CAT",
+    "event": "SKU pattern change",
+    "entity": "SkuPattern",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-014",
+    "area": "CAT",
+    "event": "Fixed currency price change",
+    "entity": "ProductCurrencyPrice",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-015",
+    "area": "CAT",
+    "event": "Question or answer moderated",
+    "entity": "ProductQuestion, ProductAnswer",
+    "features": []
+  },
+  {
+    "id": "AUD-CAT-016",
+    "area": "CAT",
+    "event": "Vendor listings paused or resumed",
+    "entity": "VendorListingPause, ListingPauseReason",
+    "features": []
+  },
+  {
+    "id": "AUD-CHK-001",
+    "area": "CHK",
+    "event": "Configuration change (cart rule, delivery window, e-transactions notice)",
+    "entity": "Rule entity",
+    "features": []
+  },
+  {
+    "id": "AUD-CHK-002",
+    "area": "CHK",
+    "event": "Acknowledgement linked to order (the acceptance itself is audited by IAM, AUD-IAM-012)",
+    "entity": "NoticeAcknowledgement",
+    "features": []
+  },
+  {
+    "id": "AUD-CHK-003",
+    "area": "CHK",
+    "event": "Assisted order placed",
+    "entity": "AssistedOrder",
+    "features": []
+  },
+  {
+    "id": "AUD-CHK-004",
+    "area": "CHK",
+    "event": "Pickup code checked (valid, failed), locked, used or revoked",
+    "entity": "PickupCode",
+    "features": []
+  },
+  {
+    "id": "AUD-CHK-005",
+    "area": "CHK",
+    "event": "Credit account change",
+    "entity": "CreditAccount",
+    "features": []
+  },
+  {
+    "id": "AUD-CHK-006",
+    "area": "CHK",
+    "event": "Purchase approval decision",
+    "entity": "PurchaseApprovalRequest",
+    "features": []
+  },
+  {
+    "id": "AUD-CHK-007",
+    "area": "CHK",
+    "event": "Split placement exception, participant error and its resolution",
+    "entity": "CheckoutSession",
+    "features": []
+  },
+  {
+    "id": "AUD-CHN-001",
+    "area": "CHN",
+    "event": "Channel provider or account configured or changed",
+    "entity": "ChannelAccount",
+    "features": []
+  },
+  {
+    "id": "AUD-CHN-002",
+    "area": "CHN",
+    "event": "Opt-out or opt-in keyword processed and passed to TRK-006",
+    "entity": "InboundSms (the preference change itself is AUD-TRK-005)",
+    "features": []
+  },
+  {
+    "id": "AUD-CHN-003",
+    "area": "CHN",
+    "event": "Network member added, suspended, reinstated or deactivated; commission rule changed; commission paid",
+    "entity": "AgentNetworkMember, AgentCommissionRule, AgentCommission",
+    "features": []
+  },
+  {
+    "id": "AUD-CHN-004",
+    "area": "CHN",
+    "event": "Inbound callback rejected (verification failed)",
+    "entity": "ChannelAccount",
+    "features": []
+  },
+  {
+    "id": "AUD-CHN-005",
+    "area": "CHN",
+    "event": "USSD or IVR menu changed",
+    "entity": "UssdMenu",
+    "features": []
+  },
+  {
+    "id": "AUD-CRM-001",
+    "area": "CRM",
+    "event": "Ticket change (status, assignment, priority, category, fields, notes)",
+    "entity": "Ticket, TicketExt",
+    "features": []
+  },
+  {
+    "id": "AUD-CRM-002",
+    "area": "CRM",
+    "event": "Ticket merge",
+    "entity": "Ticket",
+    "features": []
+  },
+  {
+    "id": "AUD-CRM-003",
+    "area": "CRM",
+    "event": "Sensitive field revealed in the 360-degree view",
+    "entity": "Customer",
+    "features": []
+  },
+  {
+    "id": "AUD-CRM-004",
+    "area": "CRM",
+    "event": "Configuration change (routing, SLA policy, escalation matrix, categories, mailbox, masking list)",
+    "entity": "Rule entity",
+    "features": []
+  },
+  {
+    "id": "AUD-CRM-005",
+    "area": "CRM",
+    "event": "Escalation (manual or SLA breach)",
+    "entity": "Ticket",
+    "features": []
+  },
+  {
+    "id": "AUD-CRM-006",
+    "area": "CRM",
+    "event": "Ready-made answer version approved or rejected",
+    "entity": "ReadyMadeAnswerVersion",
+    "features": []
+  },
+  {
+    "id": "AUD-CRM-007",
+    "area": "CRM",
+    "event": "Knowledge-base article approval",
+    "entity": "Topic",
+    "features": []
+  },
+  {
+    "id": "AUD-CRM-008",
+    "area": "CRM",
+    "event": "Fraud referral status and outcome",
+    "entity": "FraudReferral",
+    "features": []
+  },
+  {
+    "id": "AUD-CRM-009",
+    "area": "CRM",
+    "event": "Feedback action recorded",
+    "entity": "ExperienceFeedback",
+    "features": []
+  },
+  {
+    "id": "AUD-CRM-010",
+    "area": "CRM",
+    "event": "Account manager assigned; impersonation refused",
+    "entity": "AccountManagerAssignment",
+    "features": []
+  },
+  {
+    "id": "AUD-DOC-001",
+    "area": "DOC",
+    "event": "Document version stored (with hash), signed, verified",
+    "entity": "DocumentVersion",
+    "features": []
+  },
+  {
+    "id": "AUD-DOC-002",
+    "area": "DOC",
+    "event": "Document submitted, reviewed, finalised, rejected",
+    "entity": "DocumentRecord",
+    "features": []
+  },
+  {
+    "id": "AUD-DOC-003",
+    "area": "DOC",
+    "event": "Legal hold placed or released; deletion refused",
+    "entity": "LegalHold, DocumentRecord",
+    "features": []
+  },
+  {
+    "id": "AUD-DOC-004",
+    "area": "DOC",
+    "event": "Compliance export run and downloaded",
+    "entity": "ComplianceExport",
+    "features": []
+  },
+  {
+    "id": "AUD-DOC-005",
+    "area": "DOC",
+    "event": "Template activated or retired",
+    "entity": "DocumentTemplate",
+    "features": []
+  },
+  {
+    "id": "AUD-DOC-006",
+    "area": "DOC",
+    "event": "Document downloaded or viewed by staff (chain of custody)",
+    "entity": "DocumentRecord",
+    "features": []
+  },
+  {
+    "id": "AUD-EGV-001",
+    "area": "EGV",
+    "event": "Document or application decision; appointment check-in",
+    "entity": "ApplicationDocument, ServiceApplication",
+    "features": []
+  },
+  {
+    "id": "AUD-EGV-002",
+    "area": "EGV",
+    "event": "Agency user created, deactivated or role changed; workflow assigned",
+    "entity": "Customer, ServiceApplication config",
+    "features": []
+  },
+  {
+    "id": "AUD-EGV-003",
+    "area": "EGV",
+    "event": "Remittance batch created, remitted, confirmed",
+    "entity": "RemittanceBatch",
+    "features": []
+  },
+  {
+    "id": "AUD-FIN-001",
+    "area": "FIN",
+    "event": "Consent given or withdrawn (recorded by IAM, AUD-IAM-012); data sent to a partner",
+    "entity": "IAM PolicyAcceptance (id), FinanceReferral",
+    "features": []
+  },
+  {
+    "id": "AUD-FIN-002",
+    "area": "FIN",
+    "event": "Repayment instruction suspended, resumed or corrected",
+    "entity": "RepaymentInstruction",
+    "features": []
+  },
+  {
+    "id": "AUD-FIN-003",
+    "area": "FIN",
+    "event": "Invoice assigned to a lender",
+    "entity": "InvoiceFinancing, Receivable",
+    "features": []
+  },
+  {
+    "id": "AUD-FIN-004",
+    "area": "FIN",
+    "event": "Subsidy scheme created or changed",
+    "entity": "SubsidyScheme, Discount",
+    "features": []
+  },
+  {
+    "id": "AUD-FIN-005",
+    "area": "FIN",
+    "event": "Partner callback rejected",
+    "entity": "Connector",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-001",
+    "area": "IAM",
+    "event": "One-time code issued / verified / locked",
+    "entity": "OtpChallenge",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-002",
+    "area": "IAM",
+    "event": "Account recovered (email link or SMS code)",
+    "entity": "Customer",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-003",
+    "area": "IAM",
+    "event": "Sensitive-account recovery decision",
+    "entity": "RecoveryRequest",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-004",
+    "area": "IAM",
+    "event": "MFA provider set up or removed",
+    "entity": "Customer",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-005",
+    "area": "IAM",
+    "event": "Session revoked or forced logout",
+    "entity": "UserSession",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-006",
+    "area": "IAM",
+    "event": "Role, permission, ACL or scope change; scope denial",
+    "entity": "CustomerRole, mapping, ScopeAssignment",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-007",
+    "area": "IAM",
+    "event": "Delegation created, ended or revoked",
+    "entity": "Delegation",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-008",
+    "area": "IAM",
+    "event": "Account activated, deactivated or reactivated",
+    "entity": "Customer",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-009",
+    "area": "IAM",
+    "event": "Access-review decision",
+    "entity": "AccessReviewItem",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-010",
+    "area": "IAM",
+    "event": "Staff read access to customer personal data",
+    "entity": "Customer",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-011",
+    "area": "IAM",
+    "event": "Privacy request decision; erasure executed",
+    "entity": "PrivacyRequest, Customer",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-012",
+    "area": "IAM",
+    "event": "Policy accepted or declined",
+    "entity": "PolicyAcceptance",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-013",
+    "area": "IAM",
+    "event": "Trade application decision",
+    "entity": "TradeApplication",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-014",
+    "area": "IAM",
+    "event": "Assisted registration; acting session started or ended",
+    "entity": "AssistedServiceRecord",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-015",
+    "area": "IAM",
+    "event": "Identity verification result or manual decision",
+    "entity": "VerificationCase",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-016",
+    "area": "IAM",
+    "event": "Suspicious-login flag raised, confirmed or dismissed",
+    "entity": "SuspiciousLoginFlag",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-017",
+    "area": "IAM",
+    "event": "Invitation sent, accepted or revoked",
+    "entity": "Invitation",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-018",
+    "area": "IAM",
+    "event": "Authentication event",
+    "entity": "AuthEvent",
+    "features": []
+  },
+  {
+    "id": "AUD-IAM-019",
+    "area": "IAM",
+    "event": "Acting session (impersonation) refused by the impersonation filter",
+    "entity": "Customer",
+    "features": []
+  },
+  {
+    "id": "AUD-INT-001",
+    "area": "INT",
+    "event": "API client created, changed, revoked or key rotated",
+    "entity": "ApiClient",
+    "features": []
+  },
+  {
+    "id": "AUD-INT-002",
+    "area": "INT",
+    "event": "Webhook subscription created, verified, paused, resumed or deleted",
+    "entity": "WebhookSubscription",
+    "features": []
+  },
+  {
+    "id": "AUD-INT-003",
+    "area": "INT",
+    "event": "Dead-lettered message replayed or discarded",
+    "entity": "IntegrationMessage",
+    "features": []
+  },
+  {
+    "id": "AUD-INT-004",
+    "area": "INT",
+    "event": "Connector configuration changed",
+    "entity": "ConnectorConfig",
+    "features": []
+  },
+  {
+    "id": "AUD-INT-005",
+    "area": "INT",
+    "event": "Posting batch re-posted; reconciliation exception resolved",
+    "entity": "PostingBatch, PostingException",
+    "features": []
+  },
+  {
+    "id": "AUD-INT-006",
+    "area": "INT",
+    "event": "Government submission approved, declined or sent",
+    "entity": "GovSubmission",
+    "features": []
+  },
+  {
+    "id": "AUD-INT-007",
+    "area": "INT",
+    "event": "API call refused (401 or 403)",
+    "entity": "ApiClient",
+    "features": []
+  },
+  {
+    "id": "AUD-INT-008",
+    "area": "INT",
+    "event": "External change applied to a native record (sync or API write)",
+    "entity": "Product, Customer, StorePickupPoint and others",
+    "features": []
+  },
+  {
+    "id": "AUD-INT-009",
+    "area": "INT",
+    "event": "API version deprecated or retired",
+    "entity": "ApiVersion",
+    "features": []
+  },
+  {
+    "id": "AUD-INV-001",
+    "area": "INV",
+    "event": "Stock adjustment requested / approved / rejected / applied",
+    "entity": "StockAdjustment",
+    "features": []
+  },
+  {
+    "id": "AUD-INV-002",
+    "area": "INV",
+    "event": "Native stock edit refused",
+    "entity": "Product",
+    "features": []
+  },
+  {
+    "id": "AUD-INV-003",
+    "area": "INV",
+    "event": "Warehouse code or coordinates changed",
+    "entity": "WarehouseExtension",
+    "features": []
+  },
+  {
+    "id": "AUD-INV-004",
+    "area": "INV",
+    "event": "Unpaid-order action: reminder, flag, cancel, closed, dismissed, released",
+    "entity": "UnpaidOrderWatch, Order",
+    "features": []
+  },
+  {
+    "id": "AUD-INV-005",
+    "area": "INV",
+    "event": "Transfer dispatched / received / cancelled",
+    "entity": "StockTransfer",
+    "features": []
+  },
+  {
+    "id": "AUD-INV-006",
+    "area": "INV",
+    "event": "Goods receipt posted with discrepancies",
+    "entity": "GoodsReceipt",
+    "features": []
+  },
+  {
+    "id": "AUD-INV-007",
+    "area": "INV",
+    "event": "Count posted",
+    "entity": "CycleCount",
+    "features": []
+  },
+  {
+    "id": "AUD-INV-008",
+    "area": "INV",
+    "event": "Lot status change, quality result, custody event, recall",
+    "entity": "Lot",
+    "features": []
+  },
+  {
+    "id": "AUD-INV-009",
+    "area": "INV",
+    "event": "Serial number status change or correction",
+    "entity": "SerialNumber",
+    "features": []
+  },
+  {
+    "id": "AUD-INV-010",
+    "area": "INV",
+    "event": "Inbound sync message applied / refused / conflict resolved",
+    "entity": "SyncInboundRecord, SyncConflict",
+    "features": []
+  },
+  {
+    "id": "AUD-INV-011",
+    "area": "INV",
+    "event": "INV setting changed (windows, actions, thresholds, reason codes)",
+    "entity": "Setting",
+    "features": []
+  },
+  {
+    "id": "AUD-INV-012",
+    "area": "INV",
+    "event": "Shipment capture exception raised or resolved (item without confirmed capture, expired capture)",
+    "entity": "ShipmentCapture, ShipmentItem",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-001",
+    "area": "LOG",
+    "event": "Shipment date corrected through a native admin edit",
+    "entity": "Shipment",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-002",
+    "area": "LOG",
+    "event": "Configuration change (fee table, coverage area, delivery standard, carrier rule, proof method, holding-charge rule)",
+    "entity": "Rule entity",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-003",
+    "area": "LOG",
+    "event": "Carrier booking created, cancelled or failed; callback rejected",
+    "entity": "CarrierBooking",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-004",
+    "area": "LOG",
+    "event": "Allocation or partner assignment overridden",
+    "entity": "FulfilmentTask, Shipment",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-005",
+    "area": "LOG",
+    "event": "Proof of delivery stored; code verification failed",
+    "entity": "ProofOfDelivery",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-006",
+    "area": "LOG",
+    "event": "Delivery exception action, escalation or resolution",
+    "entity": "DeliveryException",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-007",
+    "area": "LOG",
+    "event": "COD remittance recorded or discrepancy resolved",
+    "entity": "CodRemittance",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-008",
+    "area": "LOG",
+    "event": "Delivery address or instructions changed after placement",
+    "entity": "Order address",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-009",
+    "area": "LOG",
+    "event": "Holding charge recorded paid or waived",
+    "entity": "OutletParcel",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-010",
+    "area": "LOG",
+    "event": "S10 identifier assigned or entered manually",
+    "entity": "ShipmentReference",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-011",
+    "area": "LOG",
+    "event": "Outlet closure or capacity flag changed",
+    "entity": "OutletExtension",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-012",
+    "area": "LOG",
+    "event": "Drop-off accepted; seller pickup confirmed",
+    "entity": "SellerPickup, Shipment",
+    "features": []
+  },
+  {
+    "id": "AUD-LOG-013",
+    "area": "LOG",
+    "event": "Customs declaration submitted and result",
+    "entity": "CustomsDeclaration",
+    "features": []
+  },
+  {
+    "id": "AUD-MKT-001",
+    "area": "MKT",
+    "event": "Discount or gift card created, changed, deleted",
+    "entity": "Discount, GiftCard",
+    "features": []
+  },
+  {
+    "id": "AUD-MKT-002",
+    "area": "MKT",
+    "event": "Reward points, SEO, newsletter, tag or plugin settings changed",
+    "entity": "Setting",
+    "features": []
+  },
+  {
+    "id": "AUD-MKT-003",
+    "area": "MKT",
+    "event": "Content revision submitted, approved, rejected; policy version created",
+    "entity": "ContentRevision, PolicyVersion",
+    "features": []
+  },
+  {
+    "id": "AUD-MKT-004",
+    "area": "MKT",
+    "event": "Seller price, tier price or discount changed",
+    "entity": "Product, TierPrice, Discount",
+    "features": []
+  },
+  {
+    "id": "AUD-MKT-005",
+    "area": "MKT",
+    "event": "Segment rule changed; segment membership run",
+    "entity": "SegmentRule",
+    "features": []
+  },
+  {
+    "id": "AUD-MKT-006",
+    "area": "MKT",
+    "event": "Referral reward and affiliate commission status change",
+    "entity": "Referral, AffiliateCommission",
+    "features": []
+  },
+  {
+    "id": "AUD-ORD-001",
+    "area": "ORD",
+    "event": "Order intervention, stage change, cancellation or partial-supply change",
+    "entity": "Order, OrderIntervention",
+    "features": []
+  },
+  {
+    "id": "AUD-ORD-002",
+    "area": "ORD",
+    "event": "Refused stage transition",
+    "entity": "Order",
+    "features": []
+  },
+  {
+    "id": "AUD-ORD-003",
+    "area": "ORD",
+    "event": "Order acceptance (explicit or deemed)",
+    "entity": "OrderAcceptance",
+    "features": []
+  },
+  {
+    "id": "AUD-ORD-004",
+    "area": "ORD",
+    "event": "Seller task step",
+    "entity": "SellerTask",
+    "features": []
+  },
+  {
+    "id": "AUD-ORD-005",
+    "area": "ORD",
+    "event": "Hold placed or released",
+    "entity": "OrderHold",
+    "features": []
+  },
+  {
+    "id": "AUD-ORD-006",
+    "area": "ORD",
+    "event": "Contract approval, signature, amendment",
+    "entity": "Contract",
+    "features": []
+  },
+  {
+    "id": "AUD-ORD-008",
+    "area": "ORD",
+    "event": "Shipment insert refused by a shipment guard (BR-ORD-055)",
+    "entity": "Order (shipment not saved)",
+    "features": []
+  },
+  {
+    "id": "AUD-ORD-007",
+    "area": "ORD",
+    "event": "Configuration change (stages, reason codes, policies, service levels, masks, Incoterms)",
+    "entity": "Configuration entity",
+    "features": []
+  },
+  {
+    "id": "AUD-PAY-001",
+    "area": "PAY",
+    "event": "Payment transaction status change",
+    "entity": "PaymentTransaction",
+    "features": []
+  },
+  {
+    "id": "AUD-PAY-002",
+    "area": "PAY",
+    "event": "Manual payment intervention (mark paid, capture, void, re-query, cheque match)",
+    "entity": "PaymentTransaction, Order",
+    "features": []
+  },
+  {
+    "id": "AUD-PAY-003",
+    "area": "PAY",
+    "event": "Configuration change (fee schedule, risk rule, routing rule, tax/commission rule)",
+    "entity": "Rule entity",
+    "features": []
+  },
+  {
+    "id": "AUD-PAY-004",
+    "area": "PAY",
+    "event": "Reversal or chargeback outcome",
+    "entity": "PaymentTransaction, Chargeback",
+    "features": []
+  },
+  {
+    "id": "AUD-PAY-005",
+    "area": "PAY",
+    "event": "Reconciliation exception resolved",
+    "entity": "ReconciliationLine",
+    "features": []
+  },
+  {
+    "id": "AUD-PAY-006",
+    "area": "PAY",
+    "event": "LC verification / rejection (shipment refusals are AUD-ORD-008)",
+    "entity": "LetterOfCredit; order (shipment attempt)",
+    "features": []
+  },
+  {
+    "id": "AUD-PAY-007",
+    "area": "PAY",
+    "event": "Escrow release sent / failed",
+    "entity": "EscrowStage",
+    "features": []
+  },
+  {
+    "id": "AUD-PAY-008",
+    "area": "PAY",
+    "event": "Refund requested / approved / completed",
+    "entity": "Refund",
+    "features": []
+  },
+  {
+    "id": "AUD-PAY-009",
+    "area": "PAY",
+    "event": "Shift closed",
+    "entity": "OutletShift",
+    "features": []
+  },
+  {
+    "id": "AUD-PAY-010",
+    "area": "PAY",
+    "event": "Callback rejected (signature invalid)",
+    "entity": "Adapter",
+    "features": []
+  },
+  {
+    "id": "AUD-PAY-011",
+    "area": "PAY",
+    "event": "Receivable offered, assigned, released or allocated from a lender report (FIN-002)",
+    "entity": "Receivable",
+    "features": []
+  },
+  {
+    "id": "AUD-PLT-001",
+    "area": "PLT",
+    "event": "Instance status change; UAT sign-off recorded",
+    "entity": "InstanceProfile",
+    "features": []
+  },
+  {
+    "id": "AUD-PLT-002",
+    "area": "PLT",
+    "event": "Pack imported, validated, applied or failed",
+    "entity": "PackApplyRun",
+    "features": []
+  },
+  {
+    "id": "AUD-PLT-003",
+    "area": "PLT",
+    "event": "Pack conflict decision; deviation recorded",
+    "entity": "ConfigDeviation",
+    "features": []
+  },
+  {
+    "id": "AUD-PLT-004",
+    "area": "PLT",
+    "event": "Change set captured, approved, rejected, applied, stale or withdrawn",
+    "entity": "ChangeSet",
+    "features": []
+  },
+  {
+    "id": "AUD-PLT-005",
+    "area": "PLT",
+    "event": "Rollback requested",
+    "entity": "ChangeSet",
+    "features": []
+  },
+  {
+    "id": "AUD-PLT-006",
+    "area": "PLT",
+    "event": "Configuration export, import, promotion or clone",
+    "entity": "ConfigPack",
+    "features": []
+  },
+  {
+    "id": "AUD-PLT-007",
+    "area": "PLT",
+    "event": "Feature state changed",
+    "entity": "Setting productfeature.*",
+    "features": []
+  },
+  {
+    "id": "AUD-PLT-008",
+    "area": "PLT",
+    "event": "Migration dry run, import or reconciliation",
+    "entity": "MigrationRun",
+    "features": []
+  },
+  {
+    "id": "AUD-PLT-009",
+    "area": "PLT",
+    "event": "Retention rule changed; retention run",
+    "entity": "RetentionRule, RetentionRun",
+    "features": []
+  },
+  {
+    "id": "AUD-PLT-010",
+    "area": "PLT",
+    "event": "Upgrade run and check results; rollback",
+    "entity": "UpgradeRun",
+    "features": []
+  },
+  {
+    "id": "AUD-PLT-011",
+    "area": "PLT",
+    "event": "Translation marked checked",
+    "entity": "TranslationStatus",
+    "features": []
+  },
+  {
+    "id": "AUD-PLT-012",
+    "area": "PLT",
+    "event": "Transaction-type or transaction override",
+    "entity": "ConfigDeviation",
+    "features": []
+  },
+  {
+    "id": "AUD-RET-001",
+    "area": "RET",
+    "event": "Return status change",
+    "entity": "ReturnRequest, ReturnRequestExt",
+    "features": []
+  },
+  {
+    "id": "AUD-RET-002",
+    "area": "RET",
+    "event": "Eligibility rule change",
+    "entity": "ReturnEligibilityRule",
+    "features": []
+  },
+  {
+    "id": "AUD-RET-003",
+    "area": "RET",
+    "event": "Inspection recorded",
+    "entity": "ReturnInspection",
+    "features": []
+  },
+  {
+    "id": "AUD-RET-004",
+    "area": "RET",
+    "event": "Refund trigger created / sent",
+    "entity": "RefundTrigger",
+    "features": []
+  },
+  {
+    "id": "AUD-RET-005",
+    "area": "RET",
+    "event": "Fee rule change",
+    "entity": "ReturnFeeRule",
+    "features": []
+  },
+  {
+    "id": "AUD-RET-006",
+    "area": "RET",
+    "event": "Case opened / status change",
+    "entity": "DisputeCase",
+    "features": []
+  },
+  {
+    "id": "AUD-RET-007",
+    "area": "RET",
+    "event": "Decision and remedy recorded; remedy accepted or rejected",
+    "entity": "DisputeCase",
+    "features": []
+  },
+  {
+    "id": "AUD-RET-008",
+    "area": "RET",
+    "event": "Escalation (internal, SLA breach, external) and case export",
+    "entity": "DisputeCase, CaseExport",
+    "features": []
+  },
+  {
+    "id": "AUD-RET-009",
+    "area": "RET",
+    "event": "Case message hidden or released",
+    "entity": "CaseMessage",
+    "features": []
+  },
+  {
+    "id": "AUD-RET-010",
+    "area": "RET",
+    "event": "Records purged or archived under retention",
+    "entity": "Retention run",
+    "features": []
+  },
+  {
+    "id": "AUD-RET-011",
+    "area": "RET",
+    "event": "Seller response or staff override",
+    "entity": "ReturnRequestExt",
+    "features": []
+  },
+  {
+    "id": "AUD-RPT-001",
+    "area": "RPT",
+    "event": "Extract dataset or pseudonymisation change",
+    "entity": "ExtractDataset",
+    "features": []
+  },
+  {
+    "id": "AUD-RPT-002",
+    "area": "RPT",
+    "event": "Extract run result",
+    "entity": "ExtractRun",
+    "features": []
+  },
+  {
+    "id": "AUD-RPT-003",
+    "area": "RPT",
+    "event": "KPI definition change or activation",
+    "entity": "KpiDefinition",
+    "features": []
+  },
+  {
+    "id": "AUD-RPT-004",
+    "area": "RPT",
+    "event": "Ad spend import or replacement",
+    "entity": "AdSpendImport",
+    "features": []
+  },
+  {
+    "id": "AUD-RPT-005",
+    "area": "RPT",
+    "event": "BI connection or external consumer change",
+    "entity": "ExternalConsumer",
+    "features": []
+  },
+  {
+    "id": "AUD-RPT-006",
+    "area": "RPT",
+    "event": "Public metric published or withdrawn",
+    "entity": "PublicMetric",
+    "features": []
+  },
+  {
+    "id": "AUD-RPT-007",
+    "area": "RPT",
+    "event": "Operator metric definitions changed",
+    "entity": "RPT settings",
+    "features": []
+  },
+  {
+    "id": "AUD-RPT-008",
+    "area": "RPT",
+    "event": "Report data delivered to an external system",
+    "entity": "ExternalConsumer",
+    "features": []
+  },
+  {
+    "id": "AUD-SEC-001",
+    "area": "SEC",
+    "event": "Entity inserted, updated or deleted (automatic)",
+    "entity": "Any audited entity",
+    "features": []
+  },
+  {
+    "id": "AUD-SEC-002",
+    "area": "SEC",
+    "event": "Audit export generated or downloaded",
+    "entity": "AuditExport",
+    "features": []
+  },
+  {
+    "id": "AUD-SEC-003",
+    "area": "SEC",
+    "event": "Audit-chain verification failed",
+    "entity": "AuditChainCheckpoint",
+    "features": []
+  },
+  {
+    "id": "AUD-SEC-004",
+    "area": "SEC",
+    "event": "Auditor access granted, revoked or expired",
+    "entity": "AuditorAccessGrant",
+    "features": []
+  },
+  {
+    "id": "AUD-SEC-005",
+    "area": "SEC",
+    "event": "Breach case action (create, assess, notify, close)",
+    "entity": "BreachCase",
+    "features": []
+  },
+  {
+    "id": "AUD-SEC-006",
+    "area": "SEC",
+    "event": "Country profile, processing activity, transfer or impact assessment changed",
+    "entity": "CountryPrivacyProfile, ProcessingActivity, TransferRecord, ImpactAssessment",
+    "features": []
+  },
+  {
+    "id": "AUD-SEC-007",
+    "area": "SEC",
+    "event": "Cookie consent choice",
+    "entity": "CookieConsent",
+    "features": []
+  },
+  {
+    "id": "AUD-SEC-008",
+    "area": "SEC",
+    "event": "Masked value revealed",
+    "entity": "Entity of the field",
+    "features": []
+  },
+  {
+    "id": "AUD-SEC-009",
+    "area": "SEC",
+    "event": "Data classification or masking rule changed",
+    "entity": "DataClassification, MaskingRule",
+    "features": []
+  },
+  {
+    "id": "AUD-SEC-010",
+    "area": "SEC",
+    "event": "Security, captcha or GDPR setting changed",
+    "entity": "Setting",
+    "features": []
+  },
+  {
+    "id": "AUD-SEC-011",
+    "area": "SEC",
+    "event": "Security export failure or backlog alert",
+    "entity": "SecurityExportBatch",
+    "features": []
+  },
+  {
+    "id": "AUD-SEC-012",
+    "area": "SEC",
+    "event": "File access refused by the download-ownership filter",
+    "entity": "Download",
+    "features": []
+  },
+  {
+    "id": "AUD-SEL-001",
+    "area": "SEL",
+    "event": "Application or verification-request status change",
+    "entity": "SellerApplication, VerificationRequest",
+    "features": []
+  },
+  {
+    "id": "AUD-SEL-002",
+    "area": "SEL",
+    "event": "Document review decision",
+    "entity": "SellerDocument",
+    "features": []
+  },
+  {
+    "id": "AUD-SEL-003",
+    "area": "SEL",
+    "event": "Payout account change requested, approved, rejected",
+    "entity": "SellerPayoutAccount, PayoutAccountChange",
+    "features": []
+  },
+  {
+    "id": "AUD-SEL-004",
+    "area": "SEL",
+    "event": "Withdrawn in : seller terms acceptance is audited by IAM (AUD-IAM-012) when SEL calls IC-IAM-05 (decision ONE-RECORD)",
+    "entity": "—",
+    "features": []
+  },
+  {
+    "id": "AUD-SEL-005",
+    "area": "SEL",
+    "event": "Configuration change (tier, type, document type, rule, threshold, commission rule, cycle, panel)",
+    "entity": "Rule entity",
+    "features": []
+  },
+  {
+    "id": "AUD-SEL-006",
+    "area": "SEL",
+    "event": "Listing pause or resume requested; KPI intervention",
+    "entity": "SellerIntervention, pause reason",
+    "features": []
+  },
+  {
+    "id": "AUD-SEL-007",
+    "area": "SEL",
+    "event": "List entry created, changed, revoked, expired; appeal decided",
+    "entity": "ListEntry, ListAppeal",
+    "features": []
+  },
+  {
+    "id": "AUD-SEL-008",
+    "area": "SEL",
+    "event": "Settlement released; payout result",
+    "entity": "SettlementBatch, SellerPayout",
+    "features": []
+  },
+  {
+    "id": "AUD-SEL-009",
+    "area": "SEL",
+    "event": "Seller staff member added, changed, removed",
+    "entity": "SellerStaffMember",
+    "features": []
+  },
+  {
+    "id": "AUD-SEL-010",
+    "area": "SEL",
+    "event": "Rating moderated or hidden",
+    "entity": "SellerRating",
+    "features": []
+  },
+  {
+    "id": "AUD-SEL-011",
+    "area": "SEL",
+    "event": "Commission invoice issued or corrected",
+    "entity": "CommissionInvoice",
+    "features": []
+  },
+  {
+    "id": "AUD-SEL-012",
+    "area": "SEL",
+    "event": "Activation, deactivation or deletion refused by the gate; identity-check manual review outcome or override",
+    "entity": "Vendor, IdentityCheckResult",
+    "features": []
+  },
+  {
+    "id": "AUD-SRC-001",
+    "area": "SRC",
+    "event": "Synonym group or boosting rule created / changed / enabled / disabled",
+    "entity": "SynonymGroup, BoostingRule",
+    "features": []
+  },
+  {
+    "id": "AUD-SRC-002",
+    "area": "SRC",
+    "event": "Taxonomy proposal submitted / approved / rejected / withdrawn; native category change refused",
+    "entity": "TaxonomyProposal, Category",
+    "features": []
+  },
+  {
+    "id": "AUD-SRC-003",
+    "area": "SRC",
+    "event": "Placement or badge created, changed or withdrawn",
+    "entity": "Placement, SellerBadgeAssignment",
+    "features": []
+  },
+  {
+    "id": "AUD-SVC-001",
+    "area": "SVC",
+    "event": "Service stage change; disputed completion decided",
+    "entity": "ServiceOrderStage",
+    "features": []
+  },
+  {
+    "id": "AUD-SVC-002",
+    "area": "SVC",
+    "event": "Booking rescheduled, cancelled or marked no-show",
+    "entity": "Booking",
+    "features": []
+  },
+  {
+    "id": "AUD-SVC-003",
+    "area": "SVC",
+    "event": "Policy or SLA target changed",
+    "entity": "ServicePolicy",
+    "features": []
+  },
+  {
+    "id": "AUD-SVC-004",
+    "area": "SVC",
+    "event": "Voucher redeemed or refused",
+    "entity": "ServiceVoucher",
+    "features": []
+  },
+  {
+    "id": "AUD-SVC-005",
+    "area": "SVC",
+    "event": "Resource or qualification changed",
+    "entity": "ServiceResource",
+    "features": []
+  },
+  {
+    "id": "AUD-TRK-001",
+    "area": "TRK",
+    "event": "Manual event entered, corrected or reprocessed",
+    "entity": "TrackingEvent",
+    "features": []
+  },
+  {
+    "id": "AUD-TRK-002",
+    "area": "TRK",
+    "event": "Configuration change (mapping, scan rule, notification definition, channel content, template, preference defaults)",
+    "entity": "Rule entity",
+    "features": []
+  },
+  {
+    "id": "AUD-TRK-003",
+    "area": "TRK",
+    "event": "Ingestion authentication rejected",
+    "entity": "TrackingSource / Device",
+    "features": []
+  },
+  {
+    "id": "AUD-TRK-004",
+    "area": "TRK",
+    "event": "Device registered or revoked",
+    "entity": "Device",
+    "features": []
+  },
+  {
+    "id": "AUD-TRK-005",
+    "area": "TRK",
+    "event": "Customer preference, per-order subscription or phone-number opt-out changed",
+    "entity": "NotificationPreference, OrderSubscription, ContactOptOut",
+    "features": []
+  },
+  {
+    "id": "AUD-TRK-006",
+    "area": "TRK",
+    "event": "Proactive notice sent or scheduled; banner activated",
+    "entity": "OutreachNotice, ServiceBanner",
+    "features": []
+  },
+  {
+    "id": "AUD-TRK-007",
+    "area": "TRK",
+    "event": "Share link created or revoked",
+    "entity": "ShareLink",
+    "features": []
+  },
+  {
+    "id": "AUD-TRK-008",
+    "area": "TRK",
+    "event": "Scan alert resolved by staff",
+    "entity": "ScanAlert",
+    "features": []
+  },
+  {
+    "id": "AUD-TRK-009",
+    "area": "TRK",
+    "event": "Email bounce flag set or cleared",
+    "entity": "Customer",
+    "features": []
+  }
+]

@@ -1,0 +1,3616 @@
+[
+  {
+    "id": "SCR-ADM-01",
+    "area": "ADM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Native admin areas: settings, plugins, widgets, schedule tasks, log, maintenance, products (bulk edit), customers",
+    "features": [
+      "PRD-ADM-001"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-ADM-02",
+    "area": "ADM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — System",
+    "screen": "Product extension register and start-up check",
+    "features": [
+      "PRD-ADM-001"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-ADM-03",
+    "area": "ADM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Workflow designer, simulator, versions; case list and replay",
+    "features": [
+      "PRD-ADM-002"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-ADM-04",
+    "area": "ADM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Rule sets, rule editor, pattern library, test harness, evaluation log",
+    "features": [
+      "PRD-ADM-003"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-ADM-05",
+    "area": "ADM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Transaction types, parameter schemas, chains",
+    "features": [
+      "PRD-ADM-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-ADM-06",
+    "area": "ADM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Eligibility bindings, quotas, screening review",
+    "features": [
+      "PRD-ADM-005"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-ADM-07",
+    "area": "ADM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Operations",
+    "screen": "Approval queue and item page; chain and reason-code configuration; moderation queues",
+    "features": [
+      "PRD-ADM-006"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-ADM-08",
+    "area": "ADM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Operations",
+    "screen": "Operations console (queue tabs, personal dashboard, saved views, operational order view, live count)",
+    "features": [
+      "PRD-ADM-007"
+    ],
+    "nativeOrNew": "New (mobile-responsive)",
+    "native": false
+  },
+  {
+    "id": "SCR-ADM-09",
+    "area": "ADM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Upload policy",
+    "features": [
+      "PRD-ADM-008"
+    ],
+    "nativeOrNew": "New settings page",
+    "native": false
+  },
+  {
+    "id": "SCR-ADM-10",
+    "area": "ADM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Operations",
+    "screen": "Exception queue and patterns",
+    "features": [
+      "PRD-ADM-009"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-ADM-11",
+    "area": "ADM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Operations",
+    "screen": "Alert rules and alerts",
+    "features": [
+      "PRD-ADM-010"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-ADM-12",
+    "area": "ADM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Template library, versions, analytics, shared library; configuration workspace",
+    "features": [
+      "PRD-ADM-011",
+      "PRD-ADM-012"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-ADM-13",
+    "area": "ADM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Eligibility and quota messages in cart and checkout",
+    "features": [
+      "PRD-ADM-005"
+    ],
+    "nativeOrNew": "Native cart warnings (through the CHK-003 provider host)",
+    "native": true
+  },
+  {
+    "id": "SCR-AI-01",
+    "area": "AI",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Chat widget with disclosure, sources and hand-off",
+    "features": [
+      "PRD-AI-003",
+      "PRD-AI-010"
+    ],
+    "nativeOrNew": "New (widget)",
+    "native": false
+  },
+  {
+    "id": "SCR-AI-02",
+    "area": "AI",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — edit pages",
+    "screen": "Pre-translation on further entity types; description and meta generation; price suggestion, quality flags, image generation",
+    "features": [
+      "PRD-AI-001",
+      "PRD-AI-002"
+    ],
+    "nativeOrNew": "Native pages extended",
+    "native": true
+  },
+  {
+    "id": "SCR-AI-03",
+    "area": "AI",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Translation approval queue",
+    "features": [
+      "PRD-AI-001"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-AI-04",
+    "area": "AI",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Chatbot settings, conversations and unanswered questions",
+    "features": [
+      "PRD-AI-003"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-AI-05",
+    "area": "AI",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "AI use register and AI use log",
+    "features": [
+      "PRD-AI-010"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-AI-06",
+    "area": "AI",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Document checks review",
+    "features": [
+      "PRD-AI-005"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-AI-07",
+    "area": "AI",
+    "surface": "Admin",
+    "surfaceLabel": "Help desk / DOC",
+    "screen": "Draft reply, summary, contract and letter drafts",
+    "features": [
+      "PRD-AI-004",
+      "PRD-AI-009"
+    ],
+    "nativeOrNew": "Licensed help desk and DOC pages extended",
+    "native": false
+  },
+  {
+    "id": "SCR-AI-08",
+    "area": "AI",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Fraud score on the PAY-018 review queue",
+    "features": [
+      "PRD-AI-006"
+    ],
+    "nativeOrNew": "PAY screen extended",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-01",
+    "area": "CAT",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Category pages and navigation",
+    "features": [
+      "PRD-CAT-001",
+      "PRD-CAT-036"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-CAT-02",
+    "area": "CAT",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Product page extensions: request-a-quote button, bundle contents, 360 viewer and brochures, provenance documents, delivery promise, pickup label, returns and dispute summary, Q&A, report listing, booking slot picker, map",
+    "features": [
+      "PRD-CAT-007",
+      "PRD-CAT-013",
+      "PRD-CAT-016",
+      "PRD-CAT-018",
+      "PRD-CAT-020",
+      "PRD-CAT-021",
+      "PRD-CAT-027",
+      "PRD-CAT-028",
+      "PRD-CAT-031"
+    ],
+    "nativeOrNew": "Native page + CAT widgets / view overrides",
+    "native": true
+  },
+  {
+    "id": "SCR-CAT-03",
+    "area": "CAT",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Order details page: returns and dispute summary",
+    "features": [
+      "PRD-CAT-031"
+    ],
+    "nativeOrNew": "Native page + widget",
+    "native": true
+  },
+  {
+    "id": "SCR-CAT-04",
+    "area": "CAT",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Reviews (write, list, helpful)",
+    "features": [
+      "PRD-CAT-029"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-CAT-05",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin (staff and vendors)",
+    "screen": "Product edit: listing state panel, submit, versions and compare, audit tab, trade fields, regulatory fields and certificates, service details, slots, location, fixed currency prices, quantity rules",
+    "features": [
+      "PRD-CAT-002",
+      "PRD-CAT-003",
+      "PRD-CAT-004",
+      "PRD-CAT-005",
+      "PRD-CAT-006",
+      "PRD-CAT-007",
+      "PRD-CAT-008",
+      "PRD-CAT-009",
+      "PRD-CAT-010",
+      "PRD-CAT-011",
+      "PRD-CAT-012",
+      "PRD-CAT-013",
+      "PRD-CAT-014",
+      "PRD-CAT-015",
+      "PRD-CAT-016",
+      "PRD-CAT-017",
+      "PRD-CAT-018",
+      "PRD-CAT-019",
+      "PRD-CAT-020",
+      "PRD-CAT-021",
+      "PRD-CAT-022",
+      "PRD-CAT-023",
+      "PRD-CAT-024",
+      "PRD-CAT-025",
+      "PRD-CAT-026",
+      "PRD-CAT-027",
+      "PRD-CAT-028",
+      "PRD-CAT-029",
+      "PRD-CAT-030",
+      "PRD-CAT-031",
+      "PRD-CAT-032",
+      "PRD-CAT-033",
+      "PRD-CAT-034",
+      "PRD-CAT-035",
+      "PRD-CAT-036",
+      "PRD-CAT-037",
+      "PRD-CAT-038",
+      "PRD-CAT-039",
+      "PRD-CAT-040",
+      "PRD-CAT-041",
+      "PRD-CAT-042"
+    ],
+    "nativeOrNew": "Native page + CAT tabs",
+    "native": true
+  },
+  {
+    "id": "SCR-CAT-06",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin (vendors)",
+    "screen": "Guided listing wizard",
+    "features": [
+      "PRD-CAT-038"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-07",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Moderation queue and decision page",
+    "features": [
+      "PRD-CAT-022",
+      "PRD-CAT-043"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-08",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Moderation queues, steps and assignment rules",
+    "features": [
+      "PRD-CAT-022"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-09",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Category schemas and schema approval",
+    "features": [
+      "PRD-CAT-005"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-10",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "SKU patterns",
+    "features": [
+      "PRD-CAT-003"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-11",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Bulk import with validation report",
+    "features": [
+      "PRD-CAT-009",
+      "PRD-CAT-010"
+    ],
+    "nativeOrNew": "Native import extended",
+    "native": true
+  },
+  {
+    "id": "SCR-CAT-12",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Bundle editor; listing templates",
+    "features": [
+      "PRD-CAT-007",
+      "PRD-CAT-008"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-13",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Prohibited rules; listing reports and takedowns",
+    "features": [
+      "PRD-CAT-021"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-14",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Questions and answers moderation",
+    "features": [
+      "PRD-CAT-018"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-15",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Compliance status and certificates list",
+    "features": [
+      "PRD-CAT-019"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-16",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Promoted placements and placement types",
+    "features": [
+      "PRD-CAT-033"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-17",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Catalogue analytics",
+    "features": [
+      "PRD-CAT-034"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-18",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Feed targets and runs",
+    "features": [
+      "PRD-CAT-035"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CAT-19",
+    "area": "CAT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Price lists (native 5.00 Catalog > Price lists, plus the CAT pricing-conflicts list); company assortments, units of measure",
+    "features": [
+      "PRD-CAT-039",
+      "PRD-CAT-040",
+      "PRD-CAT-041"
+    ],
+    "nativeOrNew": "Native (price lists); New (conflicts list, assortments, units)",
+    "native": true
+  },
+  {
+    "id": "SCR-CHK-01",
+    "area": "CHK",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Cart, mini cart, saved-for-later list",
+    "features": [
+      "PRD-CHK-001"
+    ],
+    "nativeOrNew": "Native pages extended",
+    "native": true
+  },
+  {
+    "id": "SCR-CHK-02",
+    "area": "CHK",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Checkout steps (address with IAM-014 default pre-selected, shipping with per-line fulfilment and IAM-015 preferred outlet, windows and estimates, payment, confirm with notices and acknowledgements)",
+    "features": [
+      "PRD-CHK-002",
+      "PRD-CHK-005",
+      "PRD-CHK-006",
+      "PRD-CHK-009",
+      "PRD-CHK-014"
+    ],
+    "nativeOrNew": "Native checkout extended",
+    "native": true
+  },
+  {
+    "id": "SCR-CHK-03",
+    "area": "CHK",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Address form with landmark, name, PO box and map pin",
+    "features": [
+      "PRD-CHK-007"
+    ],
+    "nativeOrNew": "Native form extended",
+    "native": true
+  },
+  {
+    "id": "SCR-CHK-04",
+    "area": "CHK",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Order completed page with checkout reference and sub-orders",
+    "features": [
+      "PRD-CHK-008",
+      "PRD-CHK-019"
+    ],
+    "nativeOrNew": "Native page extended",
+    "native": true
+  },
+  {
+    "id": "SCR-CHK-05",
+    "area": "CHK",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Pickup code / QR on order details",
+    "features": [
+      "PRD-CHK-012"
+    ],
+    "nativeOrNew": "New block",
+    "native": false
+  },
+  {
+    "id": "SCR-CHK-06",
+    "area": "CHK",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — B2B",
+    "screen": "Quick order (SKU entry, upload), saved lists, approval requests and approver queue",
+    "features": [
+      "PRD-CHK-017",
+      "PRD-CHK-018"
+    ],
+    "nativeOrNew": "New (or licensed plugin for CHK-017)",
+    "native": false
+  },
+  {
+    "id": "SCR-CHK-07",
+    "area": "CHK",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Cart restriction rules; delivery windows; e-transactions notices",
+    "features": [
+      "PRD-CHK-006",
+      "PRD-CHK-009",
+      "PRD-CHK-011"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CHK-08",
+    "area": "CHK",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Credit accounts",
+    "features": [
+      "PRD-CHK-016"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CHK-09",
+    "area": "CHK",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Checkout exceptions (split placement, unsent confirmations, participant errors, unreleased reservations)",
+    "features": [
+      "PRD-CHK-004",
+      "PRD-CHK-009"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CHK-10",
+    "area": "CHK",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — outlet",
+    "screen": "Place order for customer (native impersonation start, IAM agent filter), assisted orders list",
+    "features": [
+      "PRD-CHK-013"
+    ],
+    "nativeOrNew": "Native impersonation + new list; pickup-code entry is on the LOG-012 handover screen",
+    "native": true
+  },
+  {
+    "id": "SCR-CHN-01",
+    "area": "CHN",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Installable website, offline page and banner, light mode",
+    "features": [
+      "PRD-CHN-002"
+    ],
+    "nativeOrNew": "Theme/view override + plugin",
+    "native": false
+  },
+  {
+    "id": "SCR-CHN-02",
+    "area": "CHN",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Link Telegram; notification permission; SMS opt-in status",
+    "features": [
+      "PRD-CHN-008",
+      "PRD-CHN-012",
+      "PRD-CHN-013"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CHN-03",
+    "area": "CHN",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Social sign-in",
+    "features": [
+      "PRD-CHN-011"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-CHN-04",
+    "area": "CHN",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "SMS providers, log, inbound commands, opt-out keywords",
+    "features": [
+      "PRD-CHN-005",
+      "PRD-CHN-012"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CHN-05",
+    "area": "CHN",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Channel accounts and templates (WhatsApp, WeChat, Telegram, push, voice)",
+    "features": [
+      "PRD-CHN-004",
+      "PRD-CHN-006",
+      "PRD-CHN-007",
+      "PRD-CHN-008",
+      "PRD-CHN-013"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CHN-06",
+    "area": "CHN",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "USSD and IVR menu editor",
+    "features": [
+      "PRD-CHN-003",
+      "PRD-CHN-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CHN-07",
+    "area": "CHN",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "PWA settings per store",
+    "features": [
+      "PRD-CHN-002"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CHN-08",
+    "area": "CHN",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Agent networks, members, commission rules and commissions",
+    "features": [
+      "PRD-CHN-009"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CHN-09",
+    "area": "CHN",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "External authentication",
+    "features": [
+      "PRD-CHN-011"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-CHN-10",
+    "area": "CHN",
+    "surface": "Admin",
+    "surfaceLabel": "Live chat console",
+    "screen": "WhatsApp and WeChat conversations",
+    "features": [
+      "PRD-CHN-006",
+      "PRD-CHN-007"
+    ],
+    "nativeOrNew": "CRM-008 licensed plugin",
+    "native": false
+  },
+  {
+    "id": "SCR-CHN-11",
+    "area": "CHN",
+    "surface": "Mobile / field",
+    "surfaceLabel": "Mobile app",
+    "screen": "App screens and admin content configuration",
+    "features": [
+      "PRD-CHN-001"
+    ],
+    "nativeOrNew": "Licensed product (V-01)",
+    "native": false
+  },
+  {
+    "id": "SCR-CHN-12",
+    "area": "CHN",
+    "surface": "Mobile / field",
+    "surfaceLabel": "Field app",
+    "screen": "Capture, offline queue, sync conflicts",
+    "features": [
+      "PRD-CHN-010"
+    ],
+    "nativeOrNew": "External app",
+    "native": false
+  },
+  {
+    "id": "SCR-CRM-01",
+    "area": "CRM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Ticket form; contact-us page (native); contact-the-seller page (native)",
+    "features": [
+      "PRD-CRM-001",
+      "PRD-CRM-009"
+    ],
+    "nativeOrNew": "Plugin + native",
+    "native": true
+  },
+  {
+    "id": "SCR-CRM-02",
+    "area": "CRM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — order details",
+    "screen": "Report a problem (issue form with order details)",
+    "features": [
+      "PRD-CRM-014"
+    ],
+    "nativeOrNew": "New widget (orderdetails_page_overview)",
+    "native": false
+  },
+  {
+    "id": "SCR-CRM-03",
+    "area": "CRM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "My tickets; ticket conversation; rating page; My feedback; account manager",
+    "features": [
+      "PRD-CRM-001",
+      "PRD-CRM-005",
+      "PRD-CRM-011",
+      "PRD-CRM-015"
+    ],
+    "nativeOrNew": "Plugin + new",
+    "native": false
+  },
+  {
+    "id": "SCR-CRM-04",
+    "area": "CRM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Help centre (knowledge-base categories, search, articles); support channel directory; chat widget; forums",
+    "features": [
+      "PRD-CRM-007",
+      "PRD-CRM-012",
+      "PRD-CRM-008",
+      "PRD-CRM-013"
+    ],
+    "nativeOrNew": "Native topics/forums + new",
+    "native": true
+  },
+  {
+    "id": "SCR-CRM-05",
+    "area": "CRM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Ticket queues and ticket view (notes, history, links, merge, escalate, call log, ready-made answers)",
+    "features": [
+      "PRD-CRM-001",
+      "PRD-CRM-002",
+      "PRD-CRM-006",
+      "PRD-CRM-014"
+    ],
+    "nativeOrNew": "Plugin pages + CRM extension",
+    "native": false
+  },
+  {
+    "id": "SCR-CRM-06",
+    "area": "CRM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Agent 360-degree view",
+    "features": [
+      "PRD-CRM-003"
+    ],
+    "nativeOrNew": "New page + admin_customer_details_block widget",
+    "native": false
+  },
+  {
+    "id": "SCR-CRM-07",
+    "area": "CRM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Complaints queue and escalation matrix",
+    "features": [
+      "PRD-CRM-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CRM-08",
+    "area": "CRM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Support dashboard, complaint trends, early-warning rules",
+    "features": [
+      "PRD-CRM-005"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CRM-09",
+    "area": "CRM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Ready-made answers and approval; knowledge-base categories",
+    "features": [
+      "PRD-CRM-007"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CRM-10",
+    "area": "CRM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Fraud referrals",
+    "features": [
+      "PRD-CRM-010"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CRM-11",
+    "area": "CRM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Experience feedback",
+    "features": [
+      "PRD-CRM-011"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CRM-12",
+    "area": "CRM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Categories, issue types, routing rules, SLA policies, mailboxes, channel directory",
+    "features": [
+      "PRD-CRM-002",
+      "PRD-CRM-012",
+      "PRD-CRM-014"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-CRM-13",
+    "area": "CRM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Account manager assignment",
+    "features": [
+      "PRD-CRM-015"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-DOC-01",
+    "area": "DOC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Content",
+    "screen": "Document templates (editor, preview with sample record, versions)",
+    "features": [
+      "PRD-DOC-001"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-DOC-02",
+    "area": "DOC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Orders",
+    "screen": "Invoice and packing-slip PDF buttons",
+    "features": [
+      "PRD-DOC-001"
+    ],
+    "nativeOrNew": "Native buttons, DOC rendering",
+    "native": true
+  },
+  {
+    "id": "SCR-DOC-03",
+    "area": "DOC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Document repository: search, versions, legal holds, integrity checks",
+    "features": [
+      "PRD-DOC-002",
+      "PRD-DOC-003"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-DOC-04",
+    "area": "DOC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Document review queue (ADM-006) and compliance exports",
+    "features": [
+      "PRD-DOC-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-DOC-05",
+    "area": "DOC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Document requirements per process; validation review",
+    "features": [
+      "PRD-DOC-005"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-DOC-06",
+    "area": "DOC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Orders",
+    "screen": "Export document set for an order",
+    "features": [
+      "PRD-DOC-006"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-DOC-07",
+    "area": "DOC",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "My documents (invoices, vault uploads with expiry)",
+    "features": [
+      "PRD-DOC-001",
+      "PRD-DOC-002"
+    ],
+    "nativeOrNew": "New tab; native invoice link kept",
+    "native": true
+  },
+  {
+    "id": "SCR-DOC-08",
+    "area": "DOC",
+    "surface": "Seller portal",
+    "surfaceLabel": "Seller portal",
+    "screen": "Own documents and vault",
+    "features": [
+      "PRD-DOC-002"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-DOC-09",
+    "area": "DOC",
+    "surface": "Public",
+    "surfaceLabel": "Public",
+    "screen": "Document verification page (from QR)",
+    "features": [
+      "PRD-DOC-003"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-EGV-01",
+    "area": "EGV",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "e-Government service page (fee, documents, process, delivery options)",
+    "features": [
+      "PRD-EGV-001"
+    ],
+    "nativeOrNew": "Native product page; e-Gov template Proposed",
+    "native": true
+  },
+  {
+    "id": "SCR-EGV-02",
+    "area": "EGV",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Applications: status, history, resubmission upload, appointment, tracking",
+    "features": [
+      "PRD-EGV-002",
+      "PRD-EGV-003",
+      "PRD-EGV-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-EGV-03",
+    "area": "EGV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin (agency scope)",
+    "screen": "Application queue and review (documents, decisions, issue, hand-over)",
+    "features": [
+      "PRD-EGV-002",
+      "PRD-EGV-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-EGV-04",
+    "area": "EGV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin (agency scope)",
+    "screen": "Agency users and roles; workflow per service",
+    "features": [
+      "PRD-EGV-006",
+      "PRD-EGV-007"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-EGV-05",
+    "area": "EGV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Remittance lines, batches, agency reports and connector status",
+    "features": [
+      "PRD-EGV-005"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-EGV-06",
+    "area": "EGV",
+    "surface": "Outlet / agent",
+    "surfaceLabel": "Outlet / agent",
+    "screen": "Appointment check-in; document collection hand-over",
+    "features": [
+      "PRD-EGV-003",
+      "PRD-EGV-004"
+    ],
+    "nativeOrNew": "New (with LOG-003 outlet screens)",
+    "native": false
+  },
+  {
+    "id": "SCR-FIN-01",
+    "area": "FIN",
+    "surface": "Seller portal",
+    "surfaceLabel": "Seller portal",
+    "screen": "Finance offers, consent and referrals; repayment deductions; invoice discounting",
+    "features": [
+      "PRD-FIN-001",
+      "PRD-FIN-002"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-FIN-02",
+    "area": "FIN",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Credit offer link on product pages; transit insurance option at confirm step",
+    "features": [
+      "PRD-FIN-001",
+      "PRD-FIN-003"
+    ],
+    "nativeOrNew": "Native product page and checkout attribute extended",
+    "native": true
+  },
+  {
+    "id": "SCR-FIN-03",
+    "area": "FIN",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Consents (withdraw); referrals; insurance policies and claims",
+    "features": [
+      "PRD-FIN-001",
+      "PRD-FIN-003"
+    ],
+    "nativeOrNew": "New tabs",
+    "native": false
+  },
+  {
+    "id": "SCR-FIN-04",
+    "area": "FIN",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Partner services category with information, hand-off and integrated modes",
+    "features": [
+      "PRD-FIN-005"
+    ],
+    "nativeOrNew": "Native catalog pages",
+    "native": true
+  },
+  {
+    "id": "SCR-FIN-05",
+    "area": "FIN",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Partners and partner products; consent records; referrals; invoice financing; policies and claims; partner fulfilments",
+    "features": [
+      "PRD-FIN-001",
+      "PRD-FIN-002",
+      "PRD-FIN-003",
+      "PRD-FIN-005"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-FIN-06",
+    "area": "FIN",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Subsidy schemes and claim report",
+    "features": [
+      "PRD-FIN-004"
+    ],
+    "nativeOrNew": "New; discount edit is native",
+    "native": true
+  },
+  {
+    "id": "SCR-IAM-01",
+    "area": "IAM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Register (email) and Register with mobile number (code entry)",
+    "features": [
+      "PRD-IAM-001",
+      "PRD-IAM-002",
+      "PRD-IAM-016"
+    ],
+    "nativeOrNew": "Native page extended + new page",
+    "native": true
+  },
+  {
+    "id": "SCR-IAM-02",
+    "area": "IAM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Login (email and password, mobile number and code, passkey); MFA verification",
+    "features": [
+      "PRD-IAM-001",
+      "PRD-IAM-002",
+      "PRD-IAM-004",
+      "PRD-IAM-013"
+    ],
+    "nativeOrNew": "Native page extended",
+    "native": true
+  },
+  {
+    "id": "SCR-IAM-03",
+    "area": "IAM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Password recovery by email and by SMS; sensitive-account recovery",
+    "features": [
+      "PRD-IAM-002",
+      "PRD-IAM-003"
+    ],
+    "nativeOrNew": "Native page extended + new page",
+    "native": true
+  },
+  {
+    "id": "SCR-IAM-04",
+    "area": "IAM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Policy acceptance page",
+    "features": [
+      "PRD-IAM-016"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-IAM-05",
+    "area": "IAM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Information, addresses with default, preferences (pickup point, channel), MFA, passkeys",
+    "features": [
+      "PRD-IAM-004",
+      "PRD-IAM-013",
+      "PRD-IAM-014",
+      "PRD-IAM-015"
+    ],
+    "nativeOrNew": "Native pages extended",
+    "native": true
+  },
+  {
+    "id": "SCR-IAM-06",
+    "area": "IAM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Privacy (consents, export, correction request, deletion request); account activity; deactivate account",
+    "features": [
+      "PRD-IAM-010",
+      "PRD-IAM-017",
+      "PRD-IAM-018"
+    ],
+    "nativeOrNew": "Native GDPR tools extended + new tabs",
+    "native": true
+  },
+  {
+    "id": "SCR-IAM-07",
+    "area": "IAM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Orders, invoices, quotes, returns, history export; home dashboard (P2)",
+    "features": [
+      "PRD-IAM-021",
+      "PRD-IAM-025"
+    ],
+    "nativeOrNew": "Native pages extended + new (P2)",
+    "native": true
+  },
+  {
+    "id": "SCR-IAM-08",
+    "area": "IAM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Company members, company addresses, cost centres and budgets",
+    "features": [
+      "PRD-IAM-022",
+      "PRD-IAM-027"
+    ],
+    "nativeOrNew": "New (B2B pack)",
+    "native": false
+  },
+  {
+    "id": "SCR-IAM-09",
+    "area": "IAM",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Trade-account application",
+    "features": [
+      "PRD-IAM-023"
+    ],
+    "nativeOrNew": "New (B2B pack)",
+    "native": false
+  },
+  {
+    "id": "SCR-IAM-10",
+    "area": "IAM",
+    "surface": "Outlet / agent",
+    "surfaceLabel": "Agent portal",
+    "screen": "Agent login, register customer, start and end acting session",
+    "features": [
+      "PRD-IAM-026"
+    ],
+    "nativeOrNew": "New (Assisted service pack)",
+    "native": false
+  },
+  {
+    "id": "SCR-IAM-11",
+    "area": "IAM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Customers (search, edit, activate / deactivate, impersonate, account activity tab)",
+    "features": [
+      "PRD-IAM-010",
+      "PRD-IAM-018"
+    ],
+    "nativeOrNew": "Native page extended",
+    "native": true
+  },
+  {
+    "id": "SCR-IAM-12",
+    "area": "IAM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Roles and permissions; ACL",
+    "features": [
+      "PRD-IAM-007"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-IAM-13",
+    "area": "IAM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Scopes, delegations, invitations, access-review campaigns, access audit report",
+    "features": [
+      "PRD-IAM-008",
+      "PRD-IAM-009",
+      "PRD-IAM-011"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-IAM-14",
+    "area": "IAM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Sessions; authentication events and suspicious-login flags",
+    "features": [
+      "PRD-IAM-006",
+      "PRD-IAM-012"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-IAM-15",
+    "area": "IAM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Consent and privacy trail; privacy request queue",
+    "features": [
+      "PRD-IAM-016",
+      "PRD-IAM-017"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-IAM-16",
+    "area": "IAM",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Trade applications and companies; agents and outlets; verification review queue",
+    "features": [
+      "PRD-IAM-020",
+      "PRD-IAM-022",
+      "PRD-IAM-023",
+      "PRD-IAM-026"
+    ],
+    "nativeOrNew": "New (account synchronisation messages of IAM-019 are shown in the INT-004 message log)",
+    "native": false
+  },
+  {
+    "id": "SCR-INT-01",
+    "area": "INT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "API clients and versions (scopes, store limits, keys, change log)",
+    "features": [
+      "PRD-INT-001"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-INT-02",
+    "area": "INT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Webhook subscriptions and delivery history",
+    "features": [
+      "PRD-INT-003"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-INT-03",
+    "area": "INT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Integration messages: log, failures, dead-letter list with replay and discard",
+    "features": [
+      "PRD-INT-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-INT-04",
+    "area": "INT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Connectors: ERP, SAGE 200, PostGlobal, banks, government, master-data sync, punch-out",
+    "features": [
+      "PRD-INT-005",
+      "PRD-INT-006",
+      "PRD-INT-007",
+      "PRD-INT-008",
+      "PRD-INT-009",
+      "PRD-INT-010",
+      "PRD-INT-012",
+      "PRD-INT-013"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-INT-05",
+    "area": "INT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Posting batches and reconciliation exceptions",
+    "features": [
+      "PRD-INT-005",
+      "PRD-INT-006"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-INT-06",
+    "area": "INT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Government submissions: approval queue",
+    "features": [
+      "PRD-INT-009"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-INT-07",
+    "area": "INT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Local plugins (install, store and role limits)",
+    "features": [
+      "PRD-INT-011"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-INT-08",
+    "area": "INT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — product edit",
+    "screen": "ERP-managed field marker",
+    "features": [
+      "PRD-INT-005"
+    ],
+    "nativeOrNew": "Native page extended",
+    "native": true
+  },
+  {
+    "id": "SCR-INT-09",
+    "area": "INT",
+    "surface": "Seller portal",
+    "surfaceLabel": "Seller portal",
+    "screen": "Own webhook subscriptions",
+    "features": [
+      "PRD-INT-003"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-INT-10",
+    "area": "INT",
+    "surface": "External",
+    "surfaceLabel": "Gateway (external)",
+    "screen": "Integration console, registry, developer portal, sandbox, health dashboard",
+    "features": [
+      "PRD-INT-002",
+      "PRD-INT-004"
+    ],
+    "nativeOrNew": "External product",
+    "native": false
+  },
+  {
+    "id": "SCR-INV-01",
+    "area": "INV",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Product page availability text; cart stock warnings (native) and hold warning",
+    "features": [
+      "PRD-INV-001",
+      "PRD-INV-004"
+    ],
+    "nativeOrNew": "Native + INV message",
+    "native": true
+  },
+  {
+    "id": "SCR-INV-02",
+    "area": "INV",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Unpaid-order reminder link to the pay-again page (PAY-011)",
+    "features": [
+      "PRD-INV-004"
+    ],
+    "nativeOrNew": "PAY page",
+    "native": false
+  },
+  {
+    "id": "SCR-INV-03",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin / seller portal",
+    "screen": "Product inventory section (native) with stock fields guarded by BR-INV-030",
+    "features": [
+      "PRD-INV-001",
+      "PRD-INV-003",
+      "PRD-INV-005"
+    ],
+    "nativeOrNew": "Native page, INV filter",
+    "native": true
+  },
+  {
+    "id": "SCR-INV-04",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin / seller portal",
+    "screen": "Stock by warehouse; stock history (native tab) with INV reasons; holds",
+    "features": [
+      "PRD-INV-001",
+      "PRD-INV-002",
+      "PRD-INV-004"
+    ],
+    "nativeOrNew": "Native tab extended + new view",
+    "native": true
+  },
+  {
+    "id": "SCR-INV-05",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Warehouses with code and coordinates",
+    "features": [
+      "PRD-INV-002"
+    ],
+    "nativeOrNew": "Native page extended",
+    "native": true
+  },
+  {
+    "id": "SCR-INV-06",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin / seller portal",
+    "screen": "Low-stock report",
+    "features": [
+      "PRD-INV-003"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-INV-07",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Unpaid-order list",
+    "features": [
+      "PRD-INV-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-INV-08",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin / seller portal",
+    "screen": "Stock adjustments and approval queue",
+    "features": [
+      "PRD-INV-005"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-INV-09",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Purchase orders and goods receipts, inspection queue",
+    "features": [
+      "PRD-INV-006"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-INV-10",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Transfers; cycle counts and count sheets",
+    "features": [
+      "PRD-INV-007",
+      "PRD-INV-008"
+    ],
+    "nativeOrNew": "New (P2)",
+    "native": false
+  },
+  {
+    "id": "SCR-INV-11",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Lots: quality results, custody, recall list; near-expiry list",
+    "features": [
+      "PRD-INV-009",
+      "PRD-INV-011"
+    ],
+    "nativeOrNew": "New (P2)",
+    "native": false
+  },
+  {
+    "id": "SCR-INV-12",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Serial number lookup",
+    "features": [
+      "PRD-INV-010"
+    ],
+    "nativeOrNew": "New (P2)",
+    "native": false
+  },
+  {
+    "id": "SCR-INV-13",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — order shipment",
+    "screen": "Lot and serial capture on shipment creation",
+    "features": [
+      "PRD-INV-009",
+      "PRD-INV-010",
+      "PRD-INV-011"
+    ],
+    "nativeOrNew": "Native page extended, INV filter",
+    "native": true
+  },
+  {
+    "id": "SCR-INV-14",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Synchronisation monitor: applied inbound messages and conflicts; outbound messages are shown in the INT-004 message log",
+    "features": [
+      "PRD-INV-012"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-INV-15",
+    "area": "INV",
+    "surface": "Admin",
+    "surfaceLabel": "Admin / seller portal",
+    "screen": "Inventory analytics reports (sell rate, days of cover, stock-outs, dead stock, ABC); the fast / slow mover and stock-level dashboard is RPT-001 (ANL-002-OWN)",
+    "features": [
+      "PRD-INV-013"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-LOG-01",
+    "area": "LOG",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Delivery step: methods, fees with breakdown, expected range; pickup point list and map with closures and full flags",
+    "features": [
+      "PRD-LOG-001",
+      "PRD-LOG-002",
+      "PRD-LOG-003",
+      "PRD-LOG-004",
+      "PRD-LOG-005"
+    ],
+    "nativeOrNew": "Native checkout step extended",
+    "native": true
+  },
+  {
+    "id": "SCR-LOG-02",
+    "area": "LOG",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Order: change address or instructions before dispatch; holding charge due; reschedule a failed delivery",
+    "features": [
+      "PRD-LOG-013",
+      "PRD-LOG-017"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-LOG-03",
+    "area": "LOG",
+    "surface": "Seller portal",
+    "surfaceLabel": "Seller portal",
+    "screen": "Delivery coverage districts; batch pick and packing lists; labels; drop-off list",
+    "features": [
+      "PRD-LOG-004",
+      "PRD-LOG-007",
+      "PRD-LOG-009",
+      "PRD-LOG-022"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-LOG-04",
+    "area": "LOG",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — configuration",
+    "screen": "Fee tables; coverage areas; delivery standards; outlet extensions and closures; carriers and assignment rules; label templates and printers; proof methods; S10 series; postal-pack settings",
+    "features": [
+      "PRD-LOG-002",
+      "PRD-LOG-003",
+      "PRD-LOG-004",
+      "PRD-LOG-005",
+      "PRD-LOG-007",
+      "PRD-LOG-012",
+      "PRD-LOG-017",
+      "PRD-LOG-020",
+      "PRD-LOG-021"
+    ],
+    "nativeOrNew": "New (Configuration.ManageShippingSettings)",
+    "native": false
+  },
+  {
+    "id": "SCR-LOG-05",
+    "area": "LOG",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — fulfilment",
+    "screen": "Allocation queue; pick lists; pack confirmation; staging; dispatch; manifests; carrier booking and labels",
+    "features": [
+      "PRD-LOG-007",
+      "PRD-LOG-008",
+      "PRD-LOG-009",
+      "PRD-LOG-021"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-LOG-06",
+    "area": "LOG",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — shipments",
+    "screen": "Native shipment pages with LOG filters (BR-LOG-160), proof-of-delivery panel, references",
+    "features": [
+      "PRD-LOG-010",
+      "PRD-LOG-012",
+      "PRD-LOG-020"
+    ],
+    "nativeOrNew": "Native, extended by widget zone admin_order_shipment_details_buttons",
+    "native": true
+  },
+  {
+    "id": "SCR-LOG-07",
+    "area": "LOG",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — operations",
+    "screen": "Delivery exceptions and incidents; COD remittances; logistics tasks and seller pickups; drop-off acceptance; route lists; customs declarations",
+    "features": [
+      "PRD-LOG-011",
+      "PRD-LOG-013",
+      "PRD-LOG-014",
+      "PRD-LOG-016",
+      "PRD-LOG-022",
+      "PRD-LOG-024"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-LOG-08",
+    "area": "LOG",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — reports",
+    "screen": "Logistics KPI dashboard",
+    "features": [
+      "PRD-LOG-018"
+    ],
+    "nativeOrNew": "New (or external BI, PAID-STUB)",
+    "native": false
+  },
+  {
+    "id": "SCR-LOG-09",
+    "area": "LOG",
+    "surface": "Outlet / agent",
+    "surfaceLabel": "Outlet counter",
+    "screen": "Code check and hand-over; holding charge; drop-off acceptance",
+    "features": [
+      "PRD-LOG-012",
+      "PRD-LOG-017",
+      "PRD-LOG-022"
+    ],
+    "nativeOrNew": "New (with PAY-034 outlet pages)",
+    "native": false
+  },
+  {
+    "id": "SCR-LOG-10",
+    "area": "LOG",
+    "surface": "Mobile / field",
+    "surfaceLabel": "Courier (mobile page or external app)",
+    "screen": "Route list, attempts, proof of delivery",
+    "features": [
+      "PRD-LOG-024",
+      "PRD-LOG-032"
+    ],
+    "nativeOrNew": "New page / external app",
+    "native": false
+  },
+  {
+    "id": "SCR-MKT-01",
+    "area": "MKT",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Cart discount box and gift card box; reward points at checkout",
+    "features": [
+      "PRD-MKT-001",
+      "PRD-MKT-003",
+      "PRD-MKT-004"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-MKT-02",
+    "area": "MKT",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Newsletter block and subscription types; pop-ups",
+    "features": [
+      "PRD-MKT-005",
+      "PRD-MKT-006"
+    ],
+    "nativeOrNew": "Native block; new pop-up widget",
+    "native": true
+  },
+  {
+    "id": "SCR-MKT-03",
+    "area": "MKT",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Pages, blog, news, polls, menus, banners, policy pages, FAQ",
+    "features": [
+      "PRD-MKT-007"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-MKT-04",
+    "area": "MKT",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Reward points; referral link and status",
+    "features": [
+      "PRD-MKT-003",
+      "PRD-MKT-013"
+    ],
+    "nativeOrNew": "Native page; new referral tab",
+    "native": true
+  },
+  {
+    "id": "SCR-MKT-05",
+    "area": "MKT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Discounts (with buy-X-get-Y, spend-band and bundle rules)",
+    "features": [
+      "PRD-MKT-001",
+      "PRD-MKT-002"
+    ],
+    "nativeOrNew": "Native page + requirement-rule plugins",
+    "native": true
+  },
+  {
+    "id": "SCR-MKT-06",
+    "area": "MKT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Gift cards; reward points settings",
+    "features": [
+      "PRD-MKT-003",
+      "PRD-MKT-004"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-MKT-07",
+    "area": "MKT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Subscribers, subscription types, campaigns",
+    "features": [
+      "PRD-MKT-005"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-MKT-08",
+    "area": "MKT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Pop-ups",
+    "features": [
+      "PRD-MKT-006"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-MKT-09",
+    "area": "MKT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Topics, blog, news, polls, menus, Swiper widget",
+    "features": [
+      "PRD-MKT-007"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-MKT-10",
+    "area": "MKT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Content approval queue; policy version history",
+    "features": [
+      "PRD-MKT-008"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-MKT-11",
+    "area": "MKT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "SEO, sitemap, robots, widgets (Google Analytics, Facebook Pixel)",
+    "features": [
+      "PRD-MKT-009",
+      "PRD-MKT-010"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-MKT-12",
+    "area": "MKT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Customer attributes; segment rules",
+    "features": [
+      "PRD-MKT-011"
+    ],
+    "nativeOrNew": "Native + new",
+    "native": true
+  },
+  {
+    "id": "SCR-MKT-13",
+    "area": "MKT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Affiliates; referral and commission rules; commissions",
+    "features": [
+      "PRD-MKT-013"
+    ],
+    "nativeOrNew": "Native + new",
+    "native": true
+  },
+  {
+    "id": "SCR-MKT-14",
+    "area": "MKT",
+    "surface": "Seller portal",
+    "surfaceLabel": "Seller portal",
+    "screen": "Own products and tier prices; own discounts",
+    "features": [
+      "PRD-MKT-014"
+    ],
+    "nativeOrNew": "Native vendor-scoped pages, MKT filter",
+    "native": true
+  },
+  {
+    "id": "SCR-ORD-01",
+    "area": "ORD",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Order list and order page with stage, holds, interventions, snapshots",
+    "features": [
+      "PRD-ORD-001",
+      "PRD-ORD-002",
+      "PRD-ORD-003",
+      "PRD-ORD-010"
+    ],
+    "nativeOrNew": "Native pages extended",
+    "native": true
+  },
+  {
+    "id": "SCR-ORD-02",
+    "area": "ORD",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Stage model, reason codes, cancellation policy, service levels, numbering masks, invoice fields, Incoterms",
+    "features": [
+      "PRD-ORD-002",
+      "PRD-ORD-003",
+      "PRD-ORD-004",
+      "PRD-ORD-007",
+      "PRD-ORD-009",
+      "PRD-ORD-011",
+      "PRD-ORD-026"
+    ],
+    "nativeOrNew": "New configuration pages",
+    "native": false
+  },
+  {
+    "id": "SCR-ORD-03",
+    "area": "ORD",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Intervention approval queue; stage exceptions; overdue orders",
+    "features": [
+      "PRD-ORD-002",
+      "PRD-ORD-003",
+      "PRD-ORD-011"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-ORD-04",
+    "area": "ORD",
+    "surface": "Seller portal",
+    "surfaceLabel": "Seller portal",
+    "screen": "Order dashboard (accept, pack, hand over, reject, partial supply), batch printing, RFQ invitations and quotes, offers",
+    "features": [
+      "PRD-ORD-005",
+      "PRD-ORD-006",
+      "PRD-ORD-012",
+      "PRD-ORD-013",
+      "PRD-ORD-014"
+    ],
+    "nativeOrNew": "New ORD endpoints",
+    "native": false
+  },
+  {
+    "id": "SCR-ORD-05",
+    "area": "ORD",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Order stage, cancel with reason, accept order, partial-supply decision, re-order, invoices and consolidated receipt",
+    "features": [
+      "PRD-ORD-002",
+      "PRD-ORD-004",
+      "PRD-ORD-006",
+      "PRD-ORD-008",
+      "PRD-ORD-009"
+    ],
+    "nativeOrNew": "Native pages extended",
+    "native": true
+  },
+  {
+    "id": "SCR-ORD-06",
+    "area": "ORD",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — B2B",
+    "screen": "Requests for quote with custom items, quote comparison and negotiation, offers, requisition forms, contracts to sign, drawdowns, proformas",
+    "features": [
+      "PRD-ORD-012",
+      "PRD-ORD-013",
+      "PRD-ORD-014",
+      "PRD-ORD-015",
+      "PRD-ORD-016",
+      "PRD-ORD-017",
+      "PRD-ORD-022",
+      "PRD-ORD-025"
+    ],
+    "nativeOrNew": "Misc.RFQ pages extended + new",
+    "native": false
+  },
+  {
+    "id": "SCR-ORD-07",
+    "area": "ORD",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — B2B",
+    "screen": "Requisitions, contracts and versions, repository, letters, securities, call-offs, group deals, schemes",
+    "features": [
+      "PRD-ORD-015",
+      "PRD-ORD-016",
+      "PRD-ORD-017",
+      "PRD-ORD-018",
+      "PRD-ORD-019",
+      "PRD-ORD-020",
+      "PRD-ORD-021",
+      "PRD-ORD-022",
+      "PRD-ORD-023",
+      "PRD-ORD-024"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-01",
+    "area": "PAY",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Payment method selection (checkout step)",
+    "features": [
+      "PRD-PAY-001",
+      "PRD-PAY-015",
+      "PRD-PAY-020"
+    ],
+    "nativeOrNew": "Native checkout step extended",
+    "native": true
+  },
+  {
+    "id": "SCR-PAY-02",
+    "area": "PAY",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Payment status / retry page",
+    "features": [
+      "PRD-PAY-011"
+    ],
+    "nativeOrNew": "New (REQ-MPC-FR-150)",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-03",
+    "area": "PAY",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Mobile-money waiting page (request sent / QR)",
+    "features": [
+      "PRD-PAY-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-04",
+    "area": "PAY",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Bank transfer and outlet-cash instructions with reference",
+    "features": [
+      "PRD-PAY-005",
+      "PRD-PAY-008"
+    ],
+    "nativeOrNew": "Native confirmation page extended",
+    "native": true
+  },
+  {
+    "id": "SCR-PAY-05",
+    "area": "PAY",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Wallet balance and ledger; refunds with status and expected time; statement and receivables",
+    "features": [
+      "PRD-PAY-009",
+      "PRD-PAY-016",
+      "PRD-PAY-033"
+    ],
+    "nativeOrNew": "New tabs",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-06",
+    "area": "PAY",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Confirm or contest an offline direct payment",
+    "features": [
+      "PRD-PAY-036"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-07",
+    "area": "PAY",
+    "surface": "Seller portal",
+    "surfaceLabel": "Seller portal",
+    "screen": "Payment account connection; offline payment mark-paid with proof; refunds for direct-payment orders; split amounts per order",
+    "features": [
+      "PRD-PAY-035",
+      "PRD-PAY-036",
+      "PRD-PAY-010"
+    ],
+    "nativeOrNew": "New PAY endpoints (native admin payment actions are blocked for vendors)",
+    "native": true
+  },
+  {
+    "id": "SCR-PAY-08",
+    "area": "PAY",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Payment methods and routing rules",
+    "features": [
+      "PRD-PAY-001"
+    ],
+    "nativeOrNew": "Native list extended + new rules page",
+    "native": true
+  },
+  {
+    "id": "SCR-PAY-09",
+    "area": "PAY",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Payments operations console (transactions, exceptions, interventions)",
+    "features": [
+      "PRD-PAY-019"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-10",
+    "area": "PAY",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — order edit",
+    "screen": "Native payment buttons intercepted (BR-PAY-082)",
+    "features": [
+      "PRD-PAY-016",
+      "PRD-PAY-019"
+    ],
+    "nativeOrNew": "Native page, PAY filter",
+    "native": true
+  },
+  {
+    "id": "SCR-PAY-11",
+    "area": "PAY",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Reconciliation (runs, exceptions, daily file)",
+    "features": [
+      "PRD-PAY-014"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-12",
+    "area": "PAY",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Fee schedules",
+    "features": [
+      "PRD-PAY-015"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-13",
+    "area": "PAY",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Refund approval queue",
+    "features": [
+      "PRD-PAY-016"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-14",
+    "area": "PAY",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Chargebacks",
+    "features": [
+      "PRD-PAY-017"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-15",
+    "area": "PAY",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Risk rules and review queue (with model score, model version and reasons where AI-006 applies)",
+    "features": [
+      "PRD-PAY-018"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-16",
+    "area": "PAY",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Letters of credit; escrow stages",
+    "features": [
+      "PRD-PAY-006",
+      "PRD-PAY-007"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-17",
+    "area": "PAY",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Tax reports; e-invoicing submissions",
+    "features": [
+      "PRD-PAY-021",
+      "PRD-PAY-025"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-18",
+    "area": "PAY",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Disbursement batches",
+    "features": [
+      "PRD-PAY-022"
+    ],
+    "nativeOrNew": "New (P3)",
+    "native": false
+  },
+  {
+    "id": "SCR-PAY-19",
+    "area": "PAY",
+    "surface": "Outlet / agent",
+    "surfaceLabel": "Outlet / agent",
+    "screen": "Payment recording on assisted orders, receipt print, shift cash-up",
+    "features": [
+      "PRD-PAY-008",
+      "PRD-PAY-034"
+    ],
+    "nativeOrNew": "New (with CHK-013 assisted checkout)",
+    "native": false
+  },
+  {
+    "id": "SCR-PLT-01",
+    "area": "PLT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Packs: list, import, validate, apply runs, conflicts, deviations, applied pack set",
+    "features": [
+      "PRD-PLT-003",
+      "PRD-PLT-005"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PLT-02",
+    "area": "PLT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Change sets: my changes, pending approvals, history, as-of view, compare, configuration-change report",
+    "features": [
+      "PRD-PLT-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PLT-03",
+    "area": "PLT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Settings pages and All settings (controlled keys show a \"pending change\" marker)",
+    "features": [
+      "PRD-PLT-004"
+    ],
+    "nativeOrNew": "Native pages, PLT action filter",
+    "native": true
+  },
+  {
+    "id": "SCR-PLT-04",
+    "area": "PLT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Feature registry",
+    "features": [
+      "PRD-PLT-022"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PLT-05",
+    "area": "PLT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Stores, languages, currencies, e-mail accounts, countries",
+    "features": [
+      "PRD-PLT-007",
+      "PRD-PLT-008",
+      "PRD-PLT-009",
+      "PRD-PLT-010",
+      "PRD-PLT-011",
+      "PRD-PLT-013"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-PLT-06",
+    "area": "PLT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Fiscal calendar; retention rules and runs",
+    "features": [
+      "PRD-PLT-012",
+      "PRD-PLT-020"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PLT-07",
+    "area": "PLT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Configuration",
+    "screen": "Translation export/import, coverage and review status",
+    "features": [
+      "PRD-PLT-025"
+    ],
+    "nativeOrNew": "Native language pages extended + new",
+    "native": true
+  },
+  {
+    "id": "SCR-PLT-08",
+    "area": "PLT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — System",
+    "screen": "Instance profile and UAT sign-off; upgrade runs and checks; migration runs and reconciliation reports",
+    "features": [
+      "PRD-PLT-001",
+      "PRD-PLT-021",
+      "PRD-PLT-023"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PLT-09",
+    "area": "PLT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — Content",
+    "screen": "Help tips and guided tours",
+    "features": [
+      "PRD-PLT-019"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-PLT-10",
+    "area": "PLT",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront and admin",
+    "screen": "Help tips, guided tours, accessibility toggle",
+    "features": [
+      "PRD-PLT-018",
+      "PRD-PLT-019"
+    ],
+    "nativeOrNew": "New widgets",
+    "native": false
+  },
+  {
+    "id": "SCR-PLT-11",
+    "area": "PLT",
+    "surface": "External",
+    "surfaceLabel": "External",
+    "screen": "Monitoring dashboards and operator cross-client view; provisioning pipeline; backup reports",
+    "features": [
+      "PRD-PLT-001",
+      "PRD-PLT-014",
+      "PRD-PLT-016"
+    ],
+    "nativeOrNew": "External system",
+    "native": false
+  },
+  {
+    "id": "SCR-RET-01",
+    "area": "RET",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — order details",
+    "screen": "Return items link; Report a problem (entry owned by CRM-014)",
+    "features": [
+      "PRD-RET-001",
+      "PRD-RET-007"
+    ],
+    "nativeOrNew": "Native page; CRM-014 widget",
+    "native": true
+  },
+  {
+    "id": "SCR-RET-02",
+    "area": "RET",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Return form with eligibility, conditions, evidence upload, fees notice, policy text",
+    "features": [
+      "PRD-RET-001",
+      "PRD-RET-002",
+      "PRD-RET-006"
+    ],
+    "nativeOrNew": "Native page extended (view override)",
+    "native": true
+  },
+  {
+    "id": "SCR-RET-03",
+    "area": "RET",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Return requests with RET detail, return shipment choice (pickup slot or drop-off), label download, refund breakdown",
+    "features": [
+      "PRD-RET-001",
+      "PRD-RET-003",
+      "PRD-RET-005",
+      "PRD-RET-006"
+    ],
+    "nativeOrNew": "Native list extended + new detail",
+    "native": true
+  },
+  {
+    "id": "SCR-RET-04",
+    "area": "RET",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "My cases: case detail, evidence, remedy accept / reject, case messages",
+    "features": [
+      "PRD-RET-007",
+      "PRD-RET-011"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-RET-05",
+    "area": "RET",
+    "surface": "Seller portal",
+    "surfaceLabel": "Seller portal",
+    "screen": "Return requests of own products; seller inspection; case messages",
+    "features": [
+      "PRD-RET-004",
+      "PRD-RET-010",
+      "PRD-RET-011"
+    ],
+    "nativeOrNew": "New RET seller endpoints",
+    "native": false
+  },
+  {
+    "id": "SCR-RET-06",
+    "area": "RET",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Return requests (native list) with RET status and actions; status changes checked by BR-RET-001",
+    "features": [
+      "PRD-RET-001",
+      "PRD-RET-005"
+    ],
+    "nativeOrNew": "Native page, RET filter and widget",
+    "native": true
+  },
+  {
+    "id": "SCR-RET-07",
+    "area": "RET",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Receipt and inspection (outlet or warehouse)",
+    "features": [
+      "PRD-RET-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-RET-08",
+    "area": "RET",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Cases queue and case view (log, evidence, decision, escalation, export)",
+    "features": [
+      "PRD-RET-007",
+      "PRD-RET-008"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-RET-09",
+    "area": "RET",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Eligibility rules, shipping models, destinations, fee rules, issue types, triage rules, external bodies",
+    "features": [
+      "PRD-RET-002",
+      "PRD-RET-003",
+      "PRD-RET-006",
+      "PRD-RET-007",
+      "PRD-RET-008"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-RET-10",
+    "area": "RET",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Returns and disputes report",
+    "features": [
+      "PRD-RET-009"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-RPT-01",
+    "area": "RPT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Dashboard and native reports",
+    "features": [
+      "PRD-RPT-001"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-RPT-02",
+    "area": "RPT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Fast and slow movers and stock-level report",
+    "features": [
+      "PRD-RPT-001"
+    ],
+    "nativeOrNew": "New (RPT plugin page; data from INV-013)",
+    "native": false
+  },
+  {
+    "id": "SCR-RPT-03",
+    "area": "RPT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Extract datasets, runs, manifests, data dictionary",
+    "features": [
+      "PRD-RPT-003"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-RPT-04",
+    "area": "RPT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "KPI catalogue",
+    "features": [
+      "PRD-RPT-002"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-RPT-05",
+    "area": "RPT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Advertising spend import",
+    "features": [
+      "PRD-RPT-011"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-RPT-06",
+    "area": "RPT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "External consumers and BI connections",
+    "features": [
+      "PRD-RPT-004",
+      "PRD-RPT-008"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-RPT-07",
+    "area": "RPT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Operator metrics",
+    "features": [
+      "PRD-RPT-009"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-RPT-08",
+    "area": "RPT",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Public metrics selection",
+    "features": [
+      "PRD-RPT-007"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-RPT-09",
+    "area": "RPT",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Public transparency page",
+    "features": [
+      "PRD-RPT-007"
+    ],
+    "nativeOrNew": "New route",
+    "native": false
+  },
+  {
+    "id": "SCR-RPT-10",
+    "area": "RPT",
+    "surface": "External",
+    "surfaceLabel": "BI platform",
+    "screen": "Executive, operational, commerce, marketing, compliance, e-government dashboards; schedules; self-service",
+    "features": [
+      "PRD-RPT-002",
+      "PRD-RPT-004",
+      "PRD-RPT-005",
+      "PRD-RPT-006",
+      "PRD-RPT-010",
+      "PRD-RPT-011",
+      "PRD-RPT-012"
+    ],
+    "nativeOrNew": "External",
+    "native": false
+  },
+  {
+    "id": "SCR-SEC-01",
+    "area": "SEC",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Cookie consent banner and cookie settings page",
+    "features": [
+      "PRD-SEC-007"
+    ],
+    "nativeOrNew": "New (replaces the native cookie warning)",
+    "native": true
+  },
+  {
+    "id": "SCR-SEC-02",
+    "area": "SEC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Audit trail search, entity history, replay, access replay, integrity verification, exports",
+    "features": [
+      "PRD-SEC-004",
+      "PRD-SEC-010"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEC-03",
+    "area": "SEC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Compliance report (logins, admin actions, configuration changes)",
+    "features": [
+      "PRD-SEC-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEC-04",
+    "area": "SEC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Auditor access grants",
+    "features": [
+      "PRD-SEC-010"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEC-05",
+    "area": "SEC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Breach cases (record, affected list, notices, deadlines)",
+    "features": [
+      "PRD-SEC-008"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEC-06",
+    "area": "SEC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Country data-protection profile, processing register, transfers, impact assessments",
+    "features": [
+      "PRD-SEC-012",
+      "PRD-SEC-006"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEC-07",
+    "area": "SEC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Data classification and masking rules; Reveal action on masked values",
+    "features": [
+      "PRD-SEC-014"
+    ],
+    "nativeOrNew": "New (P2)",
+    "native": false
+  },
+  {
+    "id": "SCR-SEC-08",
+    "area": "SEC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Security-monitoring export configuration and queue; evidence export",
+    "features": [
+      "PRD-SEC-005",
+      "PRD-SEC-009",
+      "PRD-SEC-015"
+    ],
+    "nativeOrNew": "New (P2)",
+    "native": false
+  },
+  {
+    "id": "SCR-SEC-09",
+    "area": "SEC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Security, captcha, GDPR and store-information settings",
+    "features": [
+      "PRD-SEC-001",
+      "PRD-SEC-002",
+      "PRD-SEC-007",
+      "PRD-SEC-013"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-SEL-01",
+    "area": "SEL",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Apply for vendor account (native form + SEL terms check and seller sign-up entry)",
+    "features": [
+      "PRD-SEL-001",
+      "PRD-SEL-006",
+      "PRD-SEL-013"
+    ],
+    "nativeOrNew": "Native page extended (widget zones applyvendor_top / applyvendor_bottom)",
+    "native": true
+  },
+  {
+    "id": "SCR-SEL-02",
+    "area": "SEL",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Seller application: status, checklist, documents, verification requests, appeals, onboarding content",
+    "features": [
+      "PRD-SEL-001",
+      "PRD-SEL-002",
+      "PRD-SEL-003",
+      "PRD-SEL-008",
+      "PRD-SEL-023",
+      "PRD-SEL-024"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-03",
+    "area": "SEL",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Rate the seller of a completed order",
+    "features": [
+      "PRD-SEL-012"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-04",
+    "area": "SEL",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Vendor page and product page notices (vacation); seller rating summary",
+    "features": [
+      "PRD-SEL-012",
+      "PRD-SEL-019"
+    ],
+    "nativeOrNew": "Widget zones vendordetails_top, productdetails_top",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-05",
+    "area": "SEL",
+    "surface": "Seller portal",
+    "surfaceLabel": "Seller portal (admin area, vendor-scoped)",
+    "screen": "Dashboard widget with checklist and required actions",
+    "features": [
+      "PRD-SEL-008"
+    ],
+    "nativeOrNew": "New widget on native vendor dashboard",
+    "native": true
+  },
+  {
+    "id": "SCR-SEL-06",
+    "area": "SEL",
+    "surface": "Seller portal",
+    "surfaceLabel": "Seller portal",
+    "screen": "Documents; payout accounts; terms; staff; locations and fulfilment opt-in; vacation; statements; ratings; verification and tier",
+    "features": [
+      "PRD-SEL-002",
+      "PRD-SEL-003",
+      "PRD-SEL-004",
+      "PRD-SEL-005",
+      "PRD-SEL-006",
+      "PRD-SEL-009",
+      "PRD-SEL-017",
+      "PRD-SEL-018",
+      "PRD-SEL-019"
+    ],
+    "nativeOrNew": "New (permission Marketplace.Core.SellerPortal.Access)",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-07",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Seller applications queue, application detail and decision",
+    "features": [
+      "PRD-SEL-003",
+      "PRD-SEL-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-08",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Document review queue",
+    "features": [
+      "PRD-SEL-002"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-09",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Tiers, types, document types, rules, KPI thresholds, staff profiles, settlement cycles",
+    "features": [
+      "PRD-SEL-002",
+      "PRD-SEL-003",
+      "PRD-SEL-007",
+      "PRD-SEL-009",
+      "PRD-SEL-010",
+      "PRD-SEL-011",
+      "PRD-SEL-017"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-10",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Payout account change approvals",
+    "features": [
+      "PRD-SEL-005"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-11",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Commission and fee rules with versions",
+    "features": [
+      "PRD-SEL-016"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-12",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Settlement batches, payouts, statements",
+    "features": [
+      "PRD-SEL-017"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-13",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Commission invoices",
+    "features": [
+      "PRD-SEL-025"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-14",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Seller performance, onboarding funnel, diversity reports",
+    "features": [
+      "PRD-SEL-011",
+      "PRD-SEL-021",
+      "PRD-SEL-022"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-15",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Seller rating moderation",
+    "features": [
+      "PRD-SEL-012"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-16",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Block, watch and allow lists; appeals",
+    "features": [
+      "PRD-SEL-013",
+      "PRD-SEL-024"
+    ],
+    "nativeOrNew": "New (Platform core)",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-17",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Supplier panels",
+    "features": [
+      "PRD-SEL-014"
+    ],
+    "nativeOrNew": "New (B2B trade pack)",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-18",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Participant import and invitations",
+    "features": [
+      "PRD-SEL-015"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SEL-19",
+    "area": "SEL",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — vendor edit",
+    "screen": "Native vendor pages with activation gate",
+    "features": [
+      "PRD-SEL-003"
+    ],
+    "nativeOrNew": "Native page, SEL filter",
+    "native": true
+  },
+  {
+    "id": "SCR-SRC-01",
+    "area": "SRC",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Search box with suggestions; search results page with advanced form, filters and sorting",
+    "features": [
+      "PRD-SRC-001",
+      "PRD-SRC-002",
+      "PRD-SRC-003",
+      "PRD-SRC-004",
+      "PRD-SRC-005",
+      "PRD-SRC-022",
+      "PRD-SRC-023"
+    ],
+    "nativeOrNew": "Native extended",
+    "native": true
+  },
+  {
+    "id": "SCR-SRC-02",
+    "area": "SRC",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Category pages, tag pages, menus, services area",
+    "features": [
+      "PRD-SRC-006",
+      "PRD-SRC-020"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-SRC-03",
+    "area": "SRC",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Location and nearby-pickup mode",
+    "features": [
+      "PRD-SRC-004"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SRC-04",
+    "area": "SRC",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Product cards with ribbons, badges, delivery promise, pickup availability",
+    "features": [
+      "PRD-SRC-007",
+      "PRD-SRC-017",
+      "PRD-SRC-018"
+    ],
+    "nativeOrNew": "Native card + widgets in productbox_addinfo zones",
+    "native": true
+  },
+  {
+    "id": "SCR-SRC-05",
+    "area": "SRC",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Recommendation, recently viewed, also-bought, trending and featured-seller blocks",
+    "features": [
+      "PRD-SRC-008",
+      "PRD-SRC-009",
+      "PRD-SRC-015",
+      "PRD-SRC-017"
+    ],
+    "nativeOrNew": "Native + widgets",
+    "native": true
+  },
+  {
+    "id": "SCR-SRC-06",
+    "area": "SRC",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Wish lists; saved searches and watches; search history",
+    "features": [
+      "PRD-SRC-010",
+      "PRD-SRC-011",
+      "PRD-SRC-012"
+    ],
+    "nativeOrNew": "Native + new tabs",
+    "native": true
+  },
+  {
+    "id": "SCR-SRC-07",
+    "area": "SRC",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Comparison page; conveniences (quick view, buy now, previous / next)",
+    "features": [
+      "PRD-SRC-013",
+      "PRD-SRC-027"
+    ],
+    "nativeOrNew": "Native + licensed plugins (5.00 builds to confirm, VER-500)",
+    "native": true
+  },
+  {
+    "id": "SCR-SRC-08",
+    "area": "SRC",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Unified search results",
+    "features": [
+      "PRD-SRC-025"
+    ],
+    "nativeOrNew": "New (P2)",
+    "native": false
+  },
+  {
+    "id": "SCR-SRC-09",
+    "area": "SRC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Menus, topics, slider, widgets, placements and collections",
+    "features": [
+      "PRD-SRC-007",
+      "PRD-SRC-017"
+    ],
+    "nativeOrNew": "Native + new / licensed",
+    "native": true
+  },
+  {
+    "id": "SCR-SRC-10",
+    "area": "SRC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Synonyms and boosting rules with history",
+    "features": [
+      "PRD-SRC-014"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SRC-11",
+    "area": "SRC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Taxonomy proposals and approval queue",
+    "features": [
+      "PRD-SRC-016"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SRC-12",
+    "area": "SRC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Seller badges",
+    "features": [
+      "PRD-SRC-017"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SRC-13",
+    "area": "SRC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Popular search terms report (native); analytics plugin configuration",
+    "features": [
+      "PRD-SRC-021"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-SVC-01",
+    "area": "SVC",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Service page: unit price label, Request a quote, location step, payment plan summary",
+    "features": [
+      "PRD-SVC-001",
+      "PRD-SVC-004",
+      "PRD-SVC-006"
+    ],
+    "nativeOrNew": "Native product page extended",
+    "native": true
+  },
+  {
+    "id": "SCR-SVC-02",
+    "area": "SVC",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Bookings (reschedule, cancel with fee preview), pay balance, service stages and sign-off, vouchers, downloads",
+    "features": [
+      "PRD-SVC-003",
+      "PRD-SVC-004",
+      "PRD-SVC-005",
+      "PRD-SVC-007",
+      "PRD-SVC-009"
+    ],
+    "nativeOrNew": "New tabs; downloads tab native",
+    "native": true
+  },
+  {
+    "id": "SCR-SVC-03",
+    "area": "SVC",
+    "surface": "Seller portal",
+    "surfaceLabel": "Seller portal",
+    "screen": "Resources and schedules; bookings and stages; no-shows; voucher redemption; reports",
+    "features": [
+      "PRD-SVC-002",
+      "PRD-SVC-003",
+      "PRD-SVC-005",
+      "PRD-SVC-009",
+      "PRD-SVC-012"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SVC-04",
+    "area": "SVC",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Service policies and SLA targets; disputed completions; escalations; reports",
+    "features": [
+      "PRD-SVC-003",
+      "PRD-SVC-004",
+      "PRD-SVC-005",
+      "PRD-SVC-011",
+      "PRD-SVC-012"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-SVC-05",
+    "area": "SVC",
+    "surface": "Outlet / agent",
+    "surfaceLabel": "Outlet / agent",
+    "screen": "Voucher redemption; balance payment through assisted checkout",
+    "features": [
+      "PRD-SVC-004",
+      "PRD-SVC-009"
+    ],
+    "nativeOrNew": "New (with CHK-013, PAY-034)",
+    "native": false
+  },
+  {
+    "id": "SCR-TRK-01",
+    "area": "TRK",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Public tracking page (by tracking number), share-link view, refresh; outage banner",
+    "features": [
+      "PRD-TRK-001",
+      "PRD-TRK-009"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-TRK-02",
+    "area": "TRK",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront",
+    "screen": "Guest order-status lookup",
+    "features": [
+      "PRD-TRK-011"
+    ],
+    "nativeOrNew": "Licensed plugin or new",
+    "native": false
+  },
+  {
+    "id": "SCR-TRK-03",
+    "area": "TRK",
+    "surface": "Storefront",
+    "surfaceLabel": "Storefront — My account",
+    "screen": "Orders with latest tracking status; shipment timeline; notification preferences; per-order subscribe / unsubscribe; bell and notification list",
+    "features": [
+      "PRD-TRK-001",
+      "PRD-TRK-006",
+      "PRD-TRK-008"
+    ],
+    "nativeOrNew": "Native pages extended (widget zones) + new tabs",
+    "native": true
+  },
+  {
+    "id": "SCR-TRK-04",
+    "area": "TRK",
+    "surface": "Seller portal",
+    "surfaceLabel": "Seller (admin area)",
+    "screen": "Shipment list and shipment details with hub timeline",
+    "features": [
+      "PRD-TRK-010"
+    ],
+    "nativeOrNew": "Native",
+    "native": true
+  },
+  {
+    "id": "SCR-TRK-05",
+    "area": "TRK",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Track-and-trace search; rejected events; scan alerts; manual event entry",
+    "features": [
+      "PRD-TRK-002"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-TRK-06",
+    "area": "TRK",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Event dictionary, source mappings, sources, expected-scan rules; devices",
+    "features": [
+      "PRD-TRK-002",
+      "PRD-TRK-003"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-TRK-07",
+    "area": "TRK",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Message templates (native) and notification definitions with channel content; channel settings; preference defaults",
+    "features": [
+      "PRD-TRK-004",
+      "PRD-TRK-005",
+      "PRD-TRK-006"
+    ],
+    "nativeOrNew": "Native list extended + new pages",
+    "native": true
+  },
+  {
+    "id": "SCR-TRK-08",
+    "area": "TRK",
+    "surface": "Admin",
+    "surfaceLabel": "Admin — order edit",
+    "screen": "Notifications panel (widget zone admin_order_details_block)",
+    "features": [
+      "PRD-TRK-007"
+    ],
+    "nativeOrNew": "Native page, widget",
+    "native": true
+  },
+  {
+    "id": "SCR-TRK-09",
+    "area": "TRK",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Notification log and delivery reports",
+    "features": [
+      "PRD-TRK-007"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  },
+  {
+    "id": "SCR-TRK-10",
+    "area": "TRK",
+    "surface": "Admin",
+    "surfaceLabel": "Admin",
+    "screen": "Proactive notices and service banners",
+    "features": [
+      "PRD-TRK-009"
+    ],
+    "nativeOrNew": "New",
+    "native": false
+  }
+]

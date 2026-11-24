@@ -1,0 +1,51 @@
+// Product.LOG - Shipping, logistics and fulfilment
+// Spec: docs/prd/modules/PRD-LOG.md (wave 4 Fulfil)
+// LOG-002 owns the fee engine (the active shipping rate method); LOG-012 owns the handover step,
+// which calls CHK-012 for the pickup code (IC-CHK-09). LOG-011/022/023/024/032 are held by FG-06.
+
+import { Router } from 'express';
+import { definePlugin } from '../../core/plugin-host.js';
+import {
+  shippingMethodsAsync, pickupPointsAsync, deliverySlotsAsync, createShipmentAsync, dispatchShipmentAsync, handoverAsync, shipmentsAsync,
+} from './services/logistics.js';
+
+export default definePlugin({
+  area: 'LOG',
+  startupOrder: 3300,
+  async install(ctx) {
+    ctx.providers.claimOverride('IShippingService', {
+      owner: 'Product.LOG',
+      feature: 'PRD-LOG-002',
+      startupOrder: 3300,
+      note: 'Delivery fee rules and the rate method (LOG-001, LOG-002).',
+    });
+    const r = Router();
+    r.get('/methods', async (req, res, next) => {
+      try { res.json(await shippingMethodsAsync()); } catch (err) { next(err); }
+    });
+    r.get('/pickup-points', async (req, res, next) => {
+      try { res.json(await pickupPointsAsync()); } catch (err) { next(err); }
+    });
+    r.get('/delivery-slots', async (req, res, next) => {
+      try { res.json(await deliverySlotsAsync()); } catch (err) { next(err); }
+    });
+    r.get('/shipments', async (req, res, next) => {
+      try { res.json(await shipmentsAsync()); } catch (err) { next(err); }
+    });
+    r.post('/shipments', async (req, res, next) => {
+      try {
+        res.json(await createShipmentAsync({ orderNumber: req.body.orderNumber, carrier: req.body.carrier ?? null, actor: req.actorEmail ?? 'logistics' }));
+      } catch (err) { next(err); }
+    });
+    r.post('/shipments/:trackingNumber/dispatch', async (req, res, next) => {
+      try {
+        res.json(await dispatchShipmentAsync({ trackingNumber: req.params.trackingNumber, actor: req.actorEmail ?? 'logistics' }));
+      } catch (err) { next(err); }
+    });
+    r.post('/handover', async (req, res, next) => {
+      try { res.json(await handoverAsync({ ...req.body, actor: req.actorEmail ?? 'agent' })); } catch (err) { next(err); }
+    });
+    ctx.addRouter('/api/logistics', r);
+    ctx.declare({ built: true, owns: ['PRD-LOG-001', 'PRD-LOG-002', 'PRD-LOG-003', 'PRD-LOG-010', 'PRD-LOG-012'], note: 'methods, fee engine, outlets, shipments and handover are built in Session 0' });
+  },
+});

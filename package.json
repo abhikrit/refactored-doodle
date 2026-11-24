@@ -1,0 +1,39 @@
+{
+  "name": "nop-product-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "UI/UX prototype of the reusable nopCommerce 5.00.1 e-commerce product (KTDA, Malawi Post) - React + Node + Tailwind, no .NET, no database",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "packages/shared",
+    "packages/mocks",
+    "packages/server",
+    "packages/web"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @product/web",
+    "build": "npm run build --workspace @product/web",
+    "start": "node packages/server/src/standalone.js",
+    "generate": "node scripts/generate-registries.mjs",
+    "check": "node scripts/check-consistency.mjs",
+    "trace": "node scripts/build-trace.mjs",
+    "test": "node --test \"tests/unit/*.test.js\"",
+    "test:ui": "node --test \"tests/ui/*.test.js\"",
+    "verify": "npm run check && npm test && npm run trace"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.5",
+    "@vitejs/plugin-react": "5.1.1",
+    "tailwindcss": "4.3.5",
+    "vite": "7.3.8"
+  },
+  "dependencies": {
+    "express": "5.3.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-router-dom": "7.18.6"
+  }
+}

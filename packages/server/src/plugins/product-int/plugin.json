@@ -1,0 +1,102 @@
+{
+  "systemName": "Product.INT",
+  "friendlyName": "Product - Integrations and APIs",
+  "area": "INT",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 19,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.INT",
+    "projectName": "Nop.Plugin.Product.INT"
+  },
+  "wave": 6,
+  "waveName": "Reach",
+  "dependsOnAreas": [],
+  "counts": {
+    "features": 13,
+    "p1": 12,
+    "p2": 0,
+    "p3": 1,
+    "held": 4,
+    "criteria": 109,
+    "screens": 10,
+    "rules": 19,
+    "contracts": 8,
+    "messages": 5,
+    "auditEvents": 9
+  },
+  "fit": {
+    "configuration": 2,
+    "licensedPlugin": 0,
+    "codeLevel": 9,
+    "externalSystem": 2
+  },
+  "features": [
+    "PRD-INT-001",
+    "PRD-INT-002",
+    "PRD-INT-003",
+    "PRD-INT-004",
+    "PRD-INT-005",
+    "PRD-INT-006",
+    "PRD-INT-007",
+    "PRD-INT-008",
+    "PRD-INT-009",
+    "PRD-INT-010",
+    "PRD-INT-011",
+    "PRD-INT-012",
+    "PRD-INT-013"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-INT-001",
+      "decisions": [
+        "API-01, PAID-STUB, API-GW",
+        "API-01",
+        "PAID-STUB",
+        "API-GW"
+      ]
+    },
+    {
+      "id": "PRD-INT-002",
+      "decisions": [
+        "API-GW"
+      ]
+    },
+    {
+      "id": "PRD-INT-005",
+      "decisions": [
+        "PAID-STUB"
+      ]
+    },
+    {
+      "id": "PRD-INT-013",
+      "decisions": [
+        "MG-09"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "API-01",
+    "API-01, PAID-STUB, API-GW",
+    "API-GW",
+    "MG-09",
+    "PAID-STUB"
+  ],
+  "contracts": [
+    "IC-INT-01",
+    "IC-INT-02",
+    "IC-INT-03",
+    "IC-INT-04",
+    "IC-INT-05",
+    "IC-INT-06",
+    "IC-INT-09",
+    "IC-INT-07"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-INT.md"
+}

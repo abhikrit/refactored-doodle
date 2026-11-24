@@ -1,0 +1,96 @@
+{
+  "systemName": "Product.RET",
+  "friendlyName": "Product - Returns, refunds and disputes",
+  "area": "RET",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 12,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.RET",
+    "projectName": "Nop.Plugin.Product.RET"
+  },
+  "wave": 4,
+  "waveName": "Fulfil",
+  "dependsOnAreas": [
+    "ADM",
+    "CRM",
+    "PAY"
+  ],
+  "counts": {
+    "features": 11,
+    "p1": 11,
+    "p2": 0,
+    "p3": 0,
+    "held": 4,
+    "criteria": 90,
+    "screens": 10,
+    "rules": 22,
+    "contracts": 6,
+    "messages": 10,
+    "auditEvents": 11
+  },
+  "fit": {
+    "configuration": 1,
+    "licensedPlugin": 0,
+    "codeLevel": 10,
+    "externalSystem": 0
+  },
+  "features": [
+    "PRD-RET-001",
+    "PRD-RET-002",
+    "PRD-RET-003",
+    "PRD-RET-004",
+    "PRD-RET-005",
+    "PRD-RET-006",
+    "PRD-RET-007",
+    "PRD-RET-008",
+    "PRD-RET-009",
+    "PRD-RET-010",
+    "PRD-RET-011"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-RET-003",
+      "decisions": [
+        "T-MISS"
+      ]
+    },
+    {
+      "id": "PRD-RET-007",
+      "decisions": [
+        "WF-ENG"
+      ]
+    },
+    {
+      "id": "PRD-RET-008",
+      "decisions": [
+        "WF-ENG"
+      ]
+    },
+    {
+      "id": "PRD-RET-011",
+      "decisions": [
+        "WF-ENG"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "T-MISS",
+    "WF-ENG"
+  ],
+  "contracts": [
+    "IC-RET-01",
+    "IC-RET-01",
+    "IC-RET-01",
+    "IC-RET-02",
+    "IC-RET-04",
+    "IC-RET-03"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-RET.md"
+}

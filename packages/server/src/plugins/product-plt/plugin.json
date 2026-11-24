@@ -1,0 +1,114 @@
+{
+  "systemName": "Product.PLT",
+  "friendlyName": "Product - Platform foundation and multi-client configuration",
+  "area": "PLT",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 1,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.PLT",
+    "projectName": "Nop.Plugin.Product.PLT"
+  },
+  "wave": 1,
+  "waveName": "Foundation",
+  "dependsOnAreas": [
+    "ADM",
+    "SEC"
+  ],
+  "counts": {
+    "features": 27,
+    "p1": 25,
+    "p2": 2,
+    "p3": 0,
+    "held": 3,
+    "criteria": 158,
+    "screens": 11,
+    "rules": 29,
+    "contracts": 14,
+    "messages": 25,
+    "auditEvents": 12
+  },
+  "fit": {
+    "configuration": 9,
+    "licensedPlugin": 1,
+    "codeLevel": 12,
+    "externalSystem": 5
+  },
+  "features": [
+    "PRD-PLT-001",
+    "PRD-PLT-002",
+    "PRD-PLT-003",
+    "PRD-PLT-004",
+    "PRD-PLT-005",
+    "PRD-PLT-006",
+    "PRD-PLT-007",
+    "PRD-PLT-008",
+    "PRD-PLT-009",
+    "PRD-PLT-010",
+    "PRD-PLT-011",
+    "PRD-PLT-012",
+    "PRD-PLT-013",
+    "PRD-PLT-014",
+    "PRD-PLT-015",
+    "PRD-PLT-016",
+    "PRD-PLT-017",
+    "PRD-PLT-018",
+    "PRD-PLT-019",
+    "PRD-PLT-020",
+    "PRD-PLT-021",
+    "PRD-PLT-022",
+    "PRD-PLT-023",
+    "PRD-PLT-024",
+    "PRD-PLT-025",
+    "PRD-PLT-026",
+    "PRD-PLT-027"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-PLT-002",
+      "decisions": [
+        "F-CAT-B"
+      ]
+    },
+    {
+      "id": "PRD-PLT-004",
+      "decisions": [
+        "WF-ENG"
+      ]
+    },
+    {
+      "id": "PRD-PLT-026",
+      "decisions": [
+        "C-SIZE"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "C-SIZE",
+    "F-CAT-B",
+    "WF-ENG"
+  ],
+  "contracts": [
+    "IC-PLT-01",
+    "IC-PLT-01",
+    "IC-PLT-01",
+    "IC-PLT-01",
+    "IC-PLT-02",
+    "IC-PLT-02",
+    "IC-PLT-03",
+    "IC-PLT-03",
+    "IC-PLT-04",
+    "IC-PLT-05",
+    "IC-PLT-06",
+    "IC-PLT-07",
+    "IC-PLT-08",
+    "IC-PLT-09"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-PLT.md"
+}

@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trace report</title>
+<style>
+ :root{color-scheme:light}
+ body{font:14px/1.5 "Segoe UI",system-ui,sans-serif;margin:0;background:#ecf0f5;color:#333}
+ main{max-width:1200px;margin:0 auto;padding:24px 16px}
+ h1{font-size:22px;margin:0 0 4px} p.sub{color:#6b7280;margin:0 0 20px}
+ .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:20px}
+ .tile{background:#fff;border:1px solid #d2d6de;border-radius:2px;overflow:hidden}
+ .tile b{display:block;font-size:24px;padding:10px 12px 2px;color:#fff}
+ .tile span{display:block;padding:0 12px 10px;font-size:12px;color:#fff;opacity:.9}
+ .blue b,.blue span{background:#3c8dbc}.green b,.green span{background:#00a65a}
+ .amber b,.amber span{background:#f39c12}.red b,.red span{background:#dd4b39}.slate b,.slate span{background:#475569}
+ section{background:#fff;border:1px solid #d2d6de;border-radius:2px;margin-bottom:16px}
+ section h2{font-size:15px;margin:0;padding:10px 14px;border-bottom:1px solid #d2d6de}
+ table{border-collapse:collapse;width:100%;font-size:12.5px}
+ th{background:#f9fafb;text-align:left;padding:7px 10px;border-bottom:1px solid #d2d6de;color:#4b5563}
+ td{padding:6px 10px;border-bottom:1px solid #eef1f4}
+ tr:hover td{background:#f8fafc}
+ .pill{display:inline-block;padding:1px 6px;border-radius:2px;font-size:11px;border:1px solid}
+ .built{background:#ecfdf5;color:#065f46;border-color:#a7f3d0}
+ .held-default{background:#fffbeb;color:#78350f;border-color:#fde68a}
+ .mocked{background:#f1f5f9;color:#334155;border-color:#cbd5e1}
+ .not-built{background:#fef2f2;color:#7f1d1d;border-color:#fecaca}
+ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px}
+</style></head><body><main>
+<h1>Trace report</h1>
+<p class="sub">Generated 2026-11-24T12:48:01.511Z · feature → acceptance criterion → test → result · 434 features, 2850 criteria</p>
+<div class="tiles">
+ <div class="tile blue"><b>434</b><span>Features</span></div>
+ <div class="tile green"><b>15</b><span>Built and passing</span></div>
+ <div class="tile amber"><b>99</b><span>Held, prototype default</span></div>
+ <div class="tile slate"><b>30</b><span>Mocked externally</span></div>
+ <div class="tile red"><b>290</b><span>Not built</span></div>
+</div>
+<section><h2>Coverage by area and wave</h2><table><thead><tr><th>Wave</th><th>Area</th><th>Name</th><th>Features</th><th>Built</th><th>Held</th><th>Mocked</th><th>Not built</th></tr></thead><tbody>
+<tr><td>1 Foundation</td><td><code>ADM</code></td><td>Administration, workflow and operations console</td><td>12</td><td>0</td><td>2</td><td>0</td><td>10</td></tr>
+<tr><td>1 Foundation</td><td><code>IAM</code></td><td>Identity, access and accounts</td><td>27</td><td>0</td><td>3</td><td>1</td><td>23</td></tr>
+<tr><td>1 Foundation</td><td><code>PLT</code></td><td>Platform foundation and multi-client configuration</td><td>27</td><td>2</td><td>3</td><td>4</td><td>18</td></tr>
+<tr><td>1 Foundation</td><td><code>SEC</code></td><td>Security, audit and compliance</td><td>15</td><td>1</td><td>2</td><td>5</td><td>7</td></tr>
+<tr><td>2 Catalogue</td><td><code>CAT</code></td><td>Catalogue and listings</td><td>43</td><td>0</td><td>9</td><td>0</td><td>34</td></tr>
+<tr><td>2 Catalogue</td><td><code>INV</code></td><td>Inventory and warehouses</td><td>13</td><td>0</td><td>1</td><td>0</td><td>12</td></tr>
+<tr><td>2 Catalogue</td><td><code>SEL</code></td><td>Sellers and marketplace onboarding</td><td>25</td><td>0</td><td>4</td><td>1</td><td>20</td></tr>
+<tr><td>2 Catalogue</td><td><code>SRC</code></td><td>Search, discovery and merchandising</td><td>27</td><td>0</td><td>4</td><td>1</td><td>22</td></tr>
+<tr><td>3 Buy</td><td><code>CHK</code></td><td>Cart and checkout</td><td>19</td><td>6</td><td>4</td><td>0</td><td>9</td></tr>
+<tr><td>3 Buy</td><td><code>ORD</code></td><td>Orders and B2B transactions (RFQ, contracts, requisitions, offers, group buying)</td><td>28</td><td>2</td><td>11</td><td>0</td><td>15</td></tr>
+<tr><td>3 Buy</td><td><code>PAY</code></td><td>Payments, tax, settlement and reconciliation</td><td>36</td><td>1</td><td>14</td><td>0</td><td>21</td></tr>
+<tr><td>4 Fulfil</td><td><code>DOC</code></td><td>Documents and records</td><td>6</td><td>0</td><td>2</td><td>1</td><td>3</td></tr>
+<tr><td>4 Fulfil</td><td><code>LOG</code></td><td>Shipping, logistics and fulfilment</td><td>32</td><td>1</td><td>6</td><td>2</td><td>23</td></tr>
+<tr><td>4 Fulfil</td><td><code>RET</code></td><td>Returns, refunds and disputes</td><td>11</td><td>0</td><td>4</td><td>0</td><td>7</td></tr>
+<tr><td>4 Fulfil</td><td><code>TRK</code></td><td>Tracking and notifications</td><td>12</td><td>2</td><td>1</td><td>0</td><td>9</td></tr>
+<tr><td>5 Engage and run</td><td><code>CRM</code></td><td>Customer service, help desk and chat</td><td>15</td><td>0</td><td>1</td><td>0</td><td>14</td></tr>
+<tr><td>5 Engage and run</td><td><code>MKT</code></td><td>Marketing, promotions, loyalty, content and SEO</td><td>14</td><td>0</td><td>1</td><td>0</td><td>13</td></tr>
+<tr><td>5 Engage and run</td><td><code>RPT</code></td><td>Reporting and analytics</td><td>12</td><td>0</td><td>5</td><td>4</td><td>3</td></tr>
+<tr><td>6 Reach</td><td><code>AI</code></td><td>AI capabilities</td><td>10</td><td>0</td><td>0</td><td>5</td><td>5</td></tr>
+<tr><td>6 Reach</td><td><code>CHN</code></td><td>Channels: mobile app, PWA, USSD, SMS, WhatsApp, assisted/agent</td><td>13</td><td>0</td><td>2</td><td>2</td><td>9</td></tr>
+<tr><td>6 Reach</td><td><code>INT</code></td><td>Integrations and APIs</td><td>13</td><td>0</td><td>4</td><td>1</td><td>8</td></tr>
+<tr><td>7 Verticals</td><td><code>EGV</code></td><td>e-Government and service catalogue (optional pack)</td><td>7</td><td>0</td><td>7</td><td>0</td><td>0</td></tr>
+<tr><td>7 Verticals</td><td><code>FIN</code></td><td>Financial products</td><td>5</td><td>0</td><td>1</td><td>3</td><td>1</td></tr>
+<tr><td>7 Verticals</td><td><code>SVC</code></td><td>Services commerce (booking, delivery and completion of services; SVC-007 covers electronically delivered goods)</td><td>12</td><td>0</td><td>8</td><td>0</td><td>4</td></tr>
+</tbody></table></section>
+<section><h2>Tests by acceptance criterion</h2><table><thead><tr><th>AC ID</th><th>Feature</th><th>Suite</th><th>Result</th></tr></thead><tbody>
+<tr><td><code>AC-CHK-001-01-01</code></td><td><code>PRD-CHK-001</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-001-01-02</code></td><td><code>PRD-CHK-001</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-001-03-01</code></td><td><code>PRD-CHK-001</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-001-03-02</code></td><td><code>PRD-CHK-001</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-002-02-01</code></td><td><code>PRD-CHK-002</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-002-02-02</code></td><td><code>PRD-CHK-002</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-002-03-01</code></td><td><code>PRD-CHK-002</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-002-04-02</code></td><td><code>PRD-CHK-002</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-002-05-01</code></td><td><code>PRD-CHK-002</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-004-01-01</code></td><td><code>PRD-CHK-004</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-004-01-02</code></td><td><code>PRD-CHK-004</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-004-01-03</code></td><td><code>PRD-CHK-004</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-004-01-07</code></td><td><code>PRD-CHK-004</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-005-01-03</code></td><td><code>PRD-CHK-005</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-005-01-05</code></td><td><code>PRD-CHK-005</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-012-01-02</code></td><td><code>PRD-CHK-012</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-012-02-03</code></td><td><code>PRD-CHK-012</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-CHK-019-01-03</code></td><td><code>PRD-CHK-019</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-LOG-012-03-01</code></td><td><code>PRD-LOG-012</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-ORD-002-02-01</code></td><td><code>PRD-ORD-002</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-ORD-007-01-02</code></td><td><code>PRD-ORD-007</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-PAY-004-01-01</code></td><td><code>PRD-PAY-004</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-PAY-004-01-02</code></td><td><code>PRD-PAY-004</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-PLT-003-01-01</code></td><td><code>PRD-PLT-003</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-PLT-003-01-02</code></td><td><code>PRD-PLT-003</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-PLT-022-01-02</code></td><td><code>PRD-PLT-022</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-SEC-004-03-01</code></td><td><code>PRD-SEC-004</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-TRK-001-01-01</code></td><td><code>PRD-TRK-001</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-TRK-001-01-02</code></td><td><code>PRD-TRK-001</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+<tr><td><code>AC-TRK-011-01-02</code></td><td><code>PRD-TRK-011</code></td><td>node (API and rules)</td><td><span class="pill built">pass</span></td></tr>
+</tbody></table></section>
+<section><h2>Every feature</h2><table><thead><tr><th>Feature</th><th>Name</th><th>Area</th><th>Phase</th><th>Wave</th><th>State</th><th>ACs</th><th>Tested</th><th>Decision</th></tr></thead><tbody>
+<tr><td><code>PRD-PLT-001</code></td><td>Client instance provisioning</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill mocked">mocked</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-002</code></td><td>Client data isolation</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>F-CAT-B</td></tr>
+<tr><td><code>PRD-PLT-003</code></td><td>Configuration packs</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill built">built</span></td><td>19</td><td>2</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-004</code></td><td>Settings change control</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill held-default">held-default</span></td><td>17</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-PLT-005</code></td><td>Configuration export, import and promotion</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-006</code></td><td>Branding and theme</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-007</code></td><td>Custom domain and SSL</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-008</code></td><td>Email sender identity</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-009</code></td><td>Languages and language packs</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-010</code></td><td>Currencies and exchange rates</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-011</code></td><td>Time zone and formats</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-012</code></td><td>Fiscal calendar for reporting</td><td><code>PLT</code></td><td>P2</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-013</code></td><td>Multi-store (B2B and B2C storefronts)</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-014</code></td><td>Instance health and SLA monitoring</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill mocked">mocked</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-015</code></td><td>Scalable, open architecture</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-016</code></td><td>Backup and disaster recovery</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill mocked">mocked</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-017</code></td><td>Responsive storefront</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-018</code></td><td>Accessibility</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-019</code></td><td>Contextual help and guided tours</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-020</code></td><td>Data retention and archival</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>11</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-021</code></td><td>Product release and upgrade management</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill mocked">mocked</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-022</code></td><td>Feature and module registry</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill built">built</span></td><td>6</td><td>1</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-023</code></td><td>Client data migration toolkit</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-024</code></td><td>Exchange-rate provider framework</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-025</code></td><td>Translation management</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PLT-026</code></td><td>Hosting profile and sizing NFR</td><td><code>PLT</code></td><td>P1</td><td>1</td><td><span class="pill held-default">held-default</span></td><td>2</td><td>0</td><td>C-SIZE</td></tr>
+<tr><td><code>PRD-PLT-027</code></td><td>Data consistency safeguards</td><td><code>PLT</code></td><td>P2</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-001</code></td><td>Customer registration and login</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>11</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-002</code></td><td>Mobile-number identity with OTP</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>20</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-003</code></td><td>Password policy, lockout and recovery</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-004</code></td><td>Multi-factor authentication by role</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-005</code></td><td>Single sign-on for staff and B2B buyers</td><td><code>IAM</code></td><td>P2</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-006</code></td><td>Session management</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-007</code></td><td>Roles and permissions</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>13</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-008</code></td><td>Scoped permissions</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-009</code></td><td>Permission delegation</td><td><code>IAM</code></td><td>P2</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-010</code></td><td>User administration console</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>11</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-011</code></td><td>Staff invitation and access reviews</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-012</code></td><td>Authentication audit and suspicious-login detection</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-013</code></td><td>Passwordless and biometric login</td><td><code>IAM</code></td><td>P2</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-014</code></td><td>Customer profile and address book</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-015</code></td><td>Pickup preference and preferred channel</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-016</code></td><td>Terms acceptance with versioning</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-017</code></td><td>Privacy rights</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>13</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-018</code></td><td>Account activity history</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-019</code></td><td>Account synchronisation with core systems</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-020</code></td><td>Identity verification adapter framework</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill mocked">mocked</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-021</code></td><td>Customer transaction history</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-022</code></td><td>B2B company accounts</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill held-default">held-default</span></td><td>7</td><td>0</td><td>PH-INF</td></tr>
+<tr><td><code>PRD-IAM-023</code></td><td>B2B buyer registration and approval</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>PH-INF</td></tr>
+<tr><td><code>PRD-IAM-024</code></td><td>Tax-exempt and VAT-registered buyers</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-025</code></td><td>Customer home dashboard</td><td><code>IAM</code></td><td>P2</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-026</code></td><td>Assisted service by agents</td><td><code>IAM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-IAM-027</code></td><td>Company cost centres and budgets</td><td><code>IAM</code></td><td>P2</td><td>1</td><td><span class="pill held-default">held-default</span></td><td>3</td><td>0</td><td>PH-INF</td></tr>
+<tr><td><code>PRD-SEL-001</code></td><td>Seller application and profile</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-002</code></td><td>Seller KYC documents</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-003</code></td><td>Seller verification workflow and tiers</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>15</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-SEL-004</code></td><td>Identity and registry verification adapters</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill mocked">mocked</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-005</code></td><td>Payout accounts and verification</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>8</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-SEL-006</code></td><td>Seller terms acceptance</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-007</code></td><td>Marketplace rules and listing eligibility</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-008</code></td><td>Seller dashboard and onboarding checklist</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-009</code></td><td>Seller staff accounts</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-010</code></td><td>Seller categorisation</td><td><code>SEL</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-011</code></td><td>Seller performance monitoring</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-012</code></td><td>Seller ratings</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-013</code></td><td>Block and watch lists</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-014</code></td><td>Approved supplier panels</td><td><code>SEL</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-015</code></td><td>Bulk participant import and invitation</td><td><code>SEL</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-016</code></td><td>Commission and fee rules</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-017</code></td><td>Seller settlements and payouts</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>15</td><td>0</td><td>WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01</td></tr>
+<tr><td><code>PRD-SEL-018</code></td><td>Seller locations and fulfilment opt-in</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-019</code></td><td>Seller vacation mode</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-020</code></td><td>Seller notifications</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-021</code></td><td>Seller onboarding funnel report</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-022</code></td><td>Seller diversity tracking</td><td><code>SEL</code></td><td>P3</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-023</code></td><td>Seller training content</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-024</code></td><td>Seller blacklisting</td><td><code>SEL</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEL-025</code></td><td>Commission invoicing to sellers</td><td><code>SEL</code></td><td>P2</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>PH-INF, PO-REC-v8, PAY-DIRECT / LIC-01, E-INV, PAID-STUB, DOC-LIB / PH-INF / PO-REC-v8 / PAY-DIRECT / LIC-01 / E-INV / PAID-STUB / DOC-LIB</td></tr>
+<tr><td><code>PRD-CAT-001</code></td><td>Category taxonomy</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-002</code></td><td>Product master record</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>14</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-003</code></td><td>Identifier patterns</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-004</code></td><td>Product and specification attributes</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-005</code></td><td>Category attribute schema and listing quality rules</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-006</code></td><td>Variants and attribute combinations</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-007</code></td><td>Bundles and kits</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-008</code></td><td>Product cloning and listing templates</td><td><code>CAT</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-009</code></td><td>Bulk import/export and PDF catalogue</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-010</code></td><td>Import validation report</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-011</code></td><td>Catalogue API</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>API-01, PAID-STUB, API-GW / API-01 / PAID-STUB / API-GW</td></tr>
+<tr><td><code>PRD-CAT-012</code></td><td>Price tiers by customer group and quantity</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-013</code></td><td>Call-for-price / negotiable flag</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-014</code></td><td>Product tax category</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-015</code></td><td>Cross-border trade fields</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-016</code></td><td>Product media</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-017</code></td><td>Localised product content</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-018</code></td><td>Product questions and answers</td><td><code>CAT</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-019</code></td><td>Regulatory metadata and certificates</td><td><code>CAT</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-020</code></td><td>Origin and provenance content</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-021</code></td><td>Listing policy enforcement</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-022</code></td><td>Listing lifecycle and operator approval</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>20</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-CAT-023</code></td><td>Listing version history and autosave</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-024</code></td><td>Listing availability and withdrawal</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-025</code></td><td>Stale listing detection</td><td><code>CAT</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-026</code></td><td>Service listings</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-027</code></td><td>Service booking</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>15</td><td>0</td><td>FG-06</td></tr>
+<tr><td><code>PRD-CAT-028</code></td><td>Listing geo-location</td><td><code>CAT</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-029</code></td><td>Product reviews and ratings</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-030</code></td><td>Product returnability flag</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-031</code></td><td>Product page delivery promise</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-032</code></td><td>Catalogue audit log</td><td><code>CAT</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-033</code></td><td>Promoted listings with fees</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-034</code></td><td>Catalogue analytics</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>7</td><td>0</td><td>PAID-STUB</td></tr>
+<tr><td><code>PRD-CAT-035</code></td><td>Listing syndication and product feeds</td><td><code>CAT</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-036</code></td><td>Catalogue segmentation by buyer channel</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-037</code></td><td>Order quantity rules</td><td><code>CAT</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-038</code></td><td>Guided seller listing wizard</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CAT-039</code></td><td>Customer and company price lists</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>13</td><td>0</td><td>PH-INF</td></tr>
+<tr><td><code>PRD-CAT-040</code></td><td>Company-specific assortment</td><td><code>CAT</code></td><td>P2</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>4</td><td>0</td><td>PH-INF</td></tr>
+<tr><td><code>PRD-CAT-041</code></td><td>Units of measure and pack selling</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>3</td><td>0</td><td>PH-INF, UOM-01 / PH-INF / UOM-01</td></tr>
+<tr><td><code>PRD-CAT-042</code></td><td>Fixed prices per currency</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>15</td><td>0</td><td>PH-INF</td></tr>
+<tr><td><code>PRD-CAT-043</code></td><td>Seller listing moderation</td><td><code>CAT</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-INV-001</code></td><td>Stock tracking</td><td><code>INV</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INV-002</code></td><td>Multi-warehouse stock</td><td><code>INV</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INV-003</code></td><td>Low-stock thresholds and alerts</td><td><code>INV</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INV-004</code></td><td>Stock reservation and hold</td><td><code>INV</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>20</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INV-005</code></td><td>Stock adjustments with reason codes</td><td><code>INV</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>13</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INV-006</code></td><td>Goods receiving</td><td><code>INV</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INV-007</code></td><td>Warehouse transfers</td><td><code>INV</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INV-008</code></td><td>Cycle counts</td><td><code>INV</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INV-009</code></td><td>Batch and lot tracking</td><td><code>INV</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INV-010</code></td><td>Serial number tracking</td><td><code>INV</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INV-011</code></td><td>Expiry management</td><td><code>INV</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INV-012</code></td><td>WMS/ERP stock synchronisation</td><td><code>INV</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>7</td><td>0</td><td>PAID-STUB</td></tr>
+<tr><td><code>PRD-INV-013</code></td><td>Inventory analytics</td><td><code>INV</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-001</code></td><td>Keyword search</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>16</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-002</code></td><td>Search-as-you-type</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-003</code></td><td>Faceted filters</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-004</code></td><td>Location and delivery-option discovery</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-005</code></td><td>Sorting options</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-006</code></td><td>Category browse</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-007</code></td><td>Merchandising widgets and landing pages</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-008</code></td><td>Rules-based recommendations</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-009</code></td><td>Personalised recommendations and ranking</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill mocked">mocked</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-010</code></td><td>Wishlist</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-011</code></td><td>Saved searches and watch alerts</td><td><code>SRC</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-012</code></td><td>Search history</td><td><code>SRC</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-013</code></td><td>Product comparison</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-014</code></td><td>Search engine: relevance, synonyms, multilingual</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>12</td><td>0</td><td>PAID-STUB</td></tr>
+<tr><td><code>PRD-SRC-015</code></td><td>Trending and bestsellers</td><td><code>SRC</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-016</code></td><td>Taxonomy governance</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-SRC-017</code></td><td>Seller badges and featured sellers</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-018</code></td><td>Delivery promise on listing cards</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-019</code></td><td>Search result eligibility</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-020</code></td><td>Services browsing area</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>3</td><td>0</td><td>FG-06</td></tr>
+<tr><td><code>PRD-SRC-021</code></td><td>Web analytics</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-022</code></td><td>Accessible search and navigation</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-023</code></td><td>Low-connectivity resilience</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-024</code></td><td>Search API for channels</td><td><code>SRC</code></td><td>P1</td><td>2</td><td><span class="pill held-default">held-default</span></td><td>4</td><td>0</td><td>PAID-STUB</td></tr>
+<tr><td><code>PRD-SRC-025</code></td><td>Unified search</td><td><code>SRC</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-026</code></td><td>Search performance and freshness</td><td><code>SRC</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SRC-027</code></td><td>Storefront conveniences</td><td><code>SRC</code></td><td>P2</td><td>2</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-001</code></td><td>Shopping cart</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill built">built</span></td><td>6</td><td>4</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-002</code></td><td>Checkout</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill built">built</span></td><td>10</td><td>5</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-003</code></td><td>Checkout validation</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>16</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-004</code></td><td>Multi-seller split checkout</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill built">built</span></td><td>12</td><td>4</td><td>WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01</td></tr>
+<tr><td><code>PRD-CHK-005</code></td><td>Fulfilment method per line</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill built">built</span></td><td>6</td><td>2</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-006</code></td><td>Delivery slot and instructions</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-007</code></td><td>Structured address capture</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-008</code></td><td>Checkout resilience and idempotency</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-009</code></td><td>E-transactions consumer controls</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-010</code></td><td>Minimum order and fee thresholds</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-011</code></td><td>Cart restriction rules</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-012</code></td><td>Pickup code / QR</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill built">built</span></td><td>7</td><td>2</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-013</code></td><td>Assisted checkout</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-014</code></td><td>Estimated delivery at checkout</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHK-015</code></td><td>Checkout attributes</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>3</td><td>0</td><td>PH-INF</td></tr>
+<tr><td><code>PRD-CHK-016</code></td><td>B2B on-account payment and credit limits</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>PH-INF, PAID-STUB / PH-INF / PAID-STUB</td></tr>
+<tr><td><code>PRD-CHK-017</code></td><td>B2B quick order and bulk add</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>3</td><td>0</td><td>PH-INF</td></tr>
+<tr><td><code>PRD-CHK-018</code></td><td>B2B purchase approval</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>PH-INF, WF-ENG / PH-INF / WF-ENG</td></tr>
+<tr><td><code>PRD-CHK-019</code></td><td>Order confirmation</td><td><code>CHK</code></td><td>P1</td><td>3</td><td><span class="pill built">built</span></td><td>4</td><td>1</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-001</code></td><td>Payment method framework and routing</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-002</code></td><td>Card payments (framework)</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-003</code></td><td>PayPal</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>2</td><td>0</td><td>K-08</td></tr>
+<tr><td><code>PRD-PAY-004</code></td><td>Mobile money (framework)</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill built">built</span></td><td>9</td><td>2</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-005</code></td><td>Bank transfer</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-006</code></td><td>Letters of credit</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-007</code></td><td>Escrow and staged release</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>7</td><td>0</td><td>PAY-DIRECT / LIC-01</td></tr>
+<tr><td><code>PRD-PAY-008</code></td><td>Cash on delivery and cash at outlet</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-009</code></td><td>Wallet and store credit</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>7</td><td>0</td><td>FG-06, PAY-DIRECT / LIC-01, WAL-01 / FG-06 / PAY-DIRECT / LIC-01 / WAL-01</td></tr>
+<tr><td><code>PRD-PAY-010</code></td><td>Split payments</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>PAY-DIRECT / LIC-01</td></tr>
+<tr><td><code>PRD-PAY-011</code></td><td>Payment status lifecycle</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>15</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-012</code></td><td>Payment idempotency</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-013</code></td><td>Payment receipts</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-014</code></td><td>Payment reconciliation</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-015</code></td><td>Payment fees</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-016</code></td><td>Refunds</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>12</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-017</code></td><td>Chargebacks</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-018</code></td><td>Payment and order risk controls</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>11</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-019</code></td><td>Payments operations console</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-020</code></td><td>Tax calculation</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-021</code></td><td>Tax on fees and tax reporting</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-022</code></td><td>Bulk disbursements</td><td><code>PAY</code></td><td>P3</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-023</code></td><td>Multi-currency settlement</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>3</td><td>0</td><td>C-FX</td></tr>
+<tr><td><code>PRD-PAY-024</code></td><td>Payment connector SDK</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-025</code></td><td>Fiscal e-invoicing framework</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB</td></tr>
+<tr><td><code>PRD-PAY-026</code></td><td>KRA eTIMS adapter</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>1</td><td>0</td><td>PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB</td></tr>
+<tr><td><code>PRD-PAY-027</code></td><td>MRA EIS adapter</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>1</td><td>0</td><td>PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB</td></tr>
+<tr><td><code>PRD-PAY-028</code></td><td>M-Pesa (Kenya) adapter</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-029</code></td><td>TNM Mpamba adapter</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>1</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-030</code></td><td>Airtel Money adapter</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>1</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-PAY-031</code></td><td>KTDA bank card gateway adapter</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>2</td><td>0</td><td>KG-04</td></tr>
+<tr><td><code>PRD-PAY-032</code></td><td>MPC card gateway adapter</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>1</td><td>0</td><td>MG-03</td></tr>
+<tr><td><code>PRD-PAY-033</code></td><td>Accounts receivable</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>10</td><td>0</td><td>PAID-STUB</td></tr>
+<tr><td><code>PRD-PAY-034</code></td><td>Outlet receipt printing and cash-up</td><td><code>PAY</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>4</td><td>0</td><td>PH-INF</td></tr>
+<tr><td><code>PRD-PAY-035</code></td><td>Direct payment to the seller</td><td><code>PAY</code></td><td>P2</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>PO-REC-v8, PAY-DIRECT / LIC-01 / PO-REC-v8 / PAY-DIRECT / LIC-01</td></tr>
+<tr><td><code>PRD-PAY-036</code></td><td>Offline direct payment confirmation</td><td><code>PAY</code></td><td>P2</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>4</td><td>0</td><td>WF-ENG, PO-REC-v8, PAY-DIRECT / LIC-01 / WF-ENG / PO-REC-v8 / PAY-DIRECT / LIC-01</td></tr>
+<tr><td><code>PRD-ORD-001</code></td><td>Order management console</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-002</code></td><td>Configurable order status model</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill built">built</span></td><td>15</td><td>1</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-003</code></td><td>Order interventions with reason codes and audit</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-004</code></td><td>Cancellation rules</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-005</code></td><td>Seller order processing</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-006</code></td><td>Partial fulfilment approval</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-007</code></td><td>Order numbering</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill built">built</span></td><td>5</td><td>1</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-008</code></td><td>Reorder</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-009</code></td><td>Invoices</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>DOC-LIB</td></tr>
+<tr><td><code>PRD-ORD-010</code></td><td>Order holds</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-011</code></td><td>Cut-offs and service levels</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-012</code></td><td>Request for quotation</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-013</code></td><td>Quote negotiation and conversion</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-014</code></td><td>Seller offers</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>K-01</td></tr>
+<tr><td><code>PRD-ORD-015</code></td><td>Configurable requisition workflows</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-ORD-016</code></td><td>Contract drafting</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>DOC-LIB</td></tr>
+<tr><td><code>PRD-ORD-017</code></td><td>Contract e-signature</td><td><code>ORD</code></td><td>P2</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>3</td><td>0</td><td>DOC-LIB</td></tr>
+<tr><td><code>PRD-ORD-018</code></td><td>Contract amendments</td><td><code>ORD</code></td><td>P2</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>4</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-ORD-019</code></td><td>Contract repository</td><td><code>ORD</code></td><td>P2</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-020</code></td><td>Award and acceptance letters</td><td><code>ORD</code></td><td>P2</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>3</td><td>0</td><td>DOC-LIB</td></tr>
+<tr><td><code>PRD-ORD-021</code></td><td>Performance securities</td><td><code>ORD</code></td><td>P3</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-022</code></td><td>Contract-to-order execution</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>CALLOFF-PLACE, DOC-LIB / CALLOFF-PLACE / DOC-LIB</td></tr>
+<tr><td><code>PRD-ORD-023</code></td><td>Group buying</td><td><code>ORD</code></td><td>P2</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-024</code></td><td>Scheme applications</td><td><code>ORD</code></td><td>P3</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-ORD-025</code></td><td>Proforma invoice</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>4</td><td>0</td><td>PH-INF, DOC-LIB / PH-INF / DOC-LIB</td></tr>
+<tr><td><code>PRD-ORD-026</code></td><td>Incoterms</td><td><code>ORD</code></td><td>P1</td><td>3</td><td><span class="pill held-default">held-default</span></td><td>2</td><td>0</td><td>PH-INF</td></tr>
+<tr><td><code>PRD-ORD-027</code></td><td>Sample orders</td><td><code>ORD</code></td><td>P2</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ORD-028</code></td><td>Recurring and subscription orders</td><td><code>ORD</code></td><td>P2</td><td>3</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-001</code></td><td>Shipping methods and rates</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-002</code></td><td>Delivery fee rule engine</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>13</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-003</code></td><td>Pickup points and outlets</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-004</code></td><td>Serviceability rules</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-005</code></td><td>Estimated delivery time engine</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-006</code></td><td>DHL adapter</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-007</code></td><td>Shipping labels and barcodes</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-008</code></td><td>Fulfilment allocation and routing</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-009</code></td><td>Warehouse pick, pack, dispatch</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>12</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-010</code></td><td>Shipments</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-011</code></td><td>Logistics task creation and seller pickup</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>7</td><td>0</td><td>FG-06</td></tr>
+<tr><td><code>PRD-LOG-012</code></td><td>Proof of delivery record</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill built">built</span></td><td>10</td><td>1</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-013</code></td><td>Delivery exceptions</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-014</code></td><td>COD cash reconciliation</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-015</code></td><td>Address validation and geocoding</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-016</code></td><td>Cross-border shipping</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill mocked">mocked</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-017</code></td><td>Holding charges and pre-dispatch changes</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-018</code></td><td>Logistics KPIs</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>PAID-STUB</td></tr>
+<tr><td><code>PRD-LOG-019</code></td><td>Specialised logistics</td><td><code>LOG</code></td><td>P3</td><td>4</td><td><span class="pill mocked">mocked</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-020</code></td><td>S10 identifiers</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-021</code></td><td>Carrier connector framework</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-022</code></td><td>Post-office drop-off acceptance</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>4</td><td>0</td><td>FG-06</td></tr>
+<tr><td><code>PRD-LOG-023</code></td><td>Hub-and-spoke sorting</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>3</td><td>0</td><td>FG-06</td></tr>
+<tr><td><code>PRD-LOG-024</code></td><td>Last-mile route lists and attempts</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>FG-06</td></tr>
+<tr><td><code>PRD-LOG-025</code></td><td>FedEx adapter</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-026</code></td><td>G4S adapter</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-027</code></td><td>Skynet adapter</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-028</code></td><td>Wells Fargo (Kenya) courier adapter</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-029</code></td><td>Aramex adapter</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-030</code></td><td>Shipping lines and agents adapter</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-031</code></td><td>MPC delivery partner adapters</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-LOG-032</code></td><td>Own-fleet POD capture</td><td><code>LOG</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>4</td><td>0</td><td>FG-06, PAID-STUB / FG-06 / PAID-STUB</td></tr>
+<tr><td><code>PRD-TRK-001</code></td><td>Buyer shipment tracking</td><td><code>TRK</code></td><td>P1</td><td>4</td><td><span class="pill built">built</span></td><td>11</td><td>2</td><td>-</td></tr>
+<tr><td><code>PRD-TRK-002</code></td><td>Tracking event hub</td><td><code>TRK</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>15</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-TRK-003</code></td><td>Scanning and field operations app</td><td><code>TRK</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>FG-06</td></tr>
+<tr><td><code>PRD-TRK-004</code></td><td>Email notifications and templates</td><td><code>TRK</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-TRK-005</code></td><td>Notification engine (multi-channel)</td><td><code>TRK</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>17</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-TRK-006</code></td><td>Notification preferences</td><td><code>TRK</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>16</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-TRK-007</code></td><td>Notification delivery tracking and audit</td><td><code>TRK</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-TRK-008</code></td><td>In-app notification feed</td><td><code>TRK</code></td><td>P2</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-TRK-009</code></td><td>Proactive outreach and outage notices</td><td><code>TRK</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-TRK-010</code></td><td>Seller shipment visibility</td><td><code>TRK</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-TRK-011</code></td><td>Guest order-status lookup</td><td><code>TRK</code></td><td>P1</td><td>4</td><td><span class="pill built">built</span></td><td>3</td><td>1</td><td>-</td></tr>
+<tr><td><code>PRD-TRK-012</code></td><td>Shipment and pickup event notifications</td><td><code>TRK</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RET-001</code></td><td>Return requests</td><td><code>RET</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>12</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RET-002</code></td><td>Return eligibility rules</td><td><code>RET</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RET-003</code></td><td>Return logistics</td><td><code>RET</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>8</td><td>0</td><td>T-MISS</td></tr>
+<tr><td><code>PRD-RET-004</code></td><td>Return inspection</td><td><code>RET</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RET-005</code></td><td>Automatic refund trigger</td><td><code>RET</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>12</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RET-006</code></td><td>Return fees</td><td><code>RET</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RET-007</code></td><td>Dispute and issue cases</td><td><code>RET</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>15</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-RET-008</code></td><td>Dispute SLAs and escalation</td><td><code>RET</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>8</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-RET-009</code></td><td>Case retention and reports</td><td><code>RET</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RET-010</code></td><td>Seller return review</td><td><code>RET</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RET-011</code></td><td>Buyer–seller mediation</td><td><code>RET</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-CRM-001</code></td><td>Help desk ticketing</td><td><code>CRM</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>16</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-002</code></td><td>Multi-channel case intake</td><td><code>CRM</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>12</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-003</code></td><td>Agent 360° view</td><td><code>CRM</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-004</code></td><td>Complaints process</td><td><code>CRM</code></td><td>P1</td><td>5</td><td><span class="pill held-default">held-default</span></td><td>7</td><td>0</td><td>WF-ENG, T-MISS / WF-ENG / T-MISS</td></tr>
+<tr><td><code>PRD-CRM-005</code></td><td>Support quality analytics</td><td><code>CRM</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-006</code></td><td>Ticket collaboration and audit</td><td><code>CRM</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-007</code></td><td>Knowledge base</td><td><code>CRM</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-008</code></td><td>Live web chat</td><td><code>CRM</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-009</code></td><td>Contact and messaging</td><td><code>CRM</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-010</code></td><td>Fraud reporting and referral</td><td><code>CRM</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-011</code></td><td>Experience feedback</td><td><code>CRM</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-012</code></td><td>Support channel directory</td><td><code>CRM</code></td><td>P2</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-013</code></td><td>Community forums</td><td><code>CRM</code></td><td>P3</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-014</code></td><td>Issue routing and escalation</td><td><code>CRM</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>12</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CRM-015</code></td><td>B2B account management</td><td><code>CRM</code></td><td>P2</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-001</code></td><td>Discounts and coupons</td><td><code>MKT</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>11</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-002</code></td><td>Advanced promotions</td><td><code>MKT</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-003</code></td><td>Reward points</td><td><code>MKT</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-004</code></td><td>Gift cards and vouchers</td><td><code>MKT</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-005</code></td><td>Newsletter and email campaigns</td><td><code>MKT</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-006</code></td><td>On-site pop-ups</td><td><code>MKT</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-007</code></td><td>Content management</td><td><code>MKT</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-008</code></td><td>Content approval and policy versioning</td><td><code>MKT</code></td><td>P1</td><td>5</td><td><span class="pill held-default">held-default</span></td><td>11</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-MKT-009</code></td><td>SEO</td><td><code>MKT</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-010</code></td><td>Marketing tags and social</td><td><code>MKT</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-011</code></td><td>Customer segmentation attributes</td><td><code>MKT</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-012</code></td><td>Abandoned-cart recovery</td><td><code>MKT</code></td><td>P2</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-013</code></td><td>Affiliates and referrals</td><td><code>MKT</code></td><td>P2</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-MKT-014</code></td><td>Seller-managed pricing and promotions</td><td><code>MKT</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RPT-001</code></td><td>Standard reports and dashboard</td><td><code>RPT</code></td><td>P1</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>11</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RPT-002</code></td><td>KPI framework and executive dashboards</td><td><code>RPT</code></td><td>P1</td><td>5</td><td><span class="pill held-default">held-default</span></td><td>10</td><td>0</td><td>PAID-STUB</td></tr>
+<tr><td><code>PRD-RPT-003</code></td><td>Data warehouse and ETL</td><td><code>RPT</code></td><td>P1</td><td>5</td><td><span class="pill mocked">mocked</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RPT-004</code></td><td>Report delivery and self-service</td><td><code>RPT</code></td><td>P1</td><td>5</td><td><span class="pill mocked">mocked</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RPT-005</code></td><td>Report access control</td><td><code>RPT</code></td><td>P1</td><td>5</td><td><span class="pill mocked">mocked</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RPT-006</code></td><td>Compliance and audit reports</td><td><code>RPT</code></td><td>P1</td><td>5</td><td><span class="pill mocked">mocked</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RPT-007</code></td><td>Public transparency dashboard</td><td><code>RPT</code></td><td>P3</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RPT-008</code></td><td>External BI connectivity</td><td><code>RPT</code></td><td>P2</td><td>5</td><td><span class="pill held-default">held-default</span></td><td>4</td><td>0</td><td>PAID-STUB</td></tr>
+<tr><td><code>PRD-RPT-009</code></td><td>Operator performance metrics</td><td><code>RPT</code></td><td>P2</td><td>5</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-RPT-010</code></td><td>Operational dashboards</td><td><code>RPT</code></td><td>P1</td><td>5</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>PAID-STUB</td></tr>
+<tr><td><code>PRD-RPT-011</code></td><td>Commerce and marketing analytics</td><td><code>RPT</code></td><td>P1</td><td>5</td><td><span class="pill held-default">held-default</span></td><td>9</td><td>0</td><td>PAID-STUB</td></tr>
+<tr><td><code>PRD-RPT-012</code></td><td>e-Government and engagement reports</td><td><code>RPT</code></td><td>P1</td><td>5</td><td><span class="pill held-default">held-default</span></td><td>2</td><td>0</td><td>FG-06, PAID-STUB / FG-06 / PAID-STUB</td></tr>
+<tr><td><code>PRD-ADM-001</code></td><td>Administration console</td><td><code>ADM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>12</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ADM-002</code></td><td>Workflow engine</td><td><code>ADM</code></td><td>P1</td><td>1</td><td><span class="pill held-default">held-default</span></td><td>20</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-ADM-003</code></td><td>Business rules engine</td><td><code>ADM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ADM-004</code></td><td>Transaction types and parameter schema</td><td><code>ADM</code></td><td>P2</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ADM-005</code></td><td>Eligibility and quota rules</td><td><code>ADM</code></td><td>P2</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ADM-006</code></td><td>Approval queues</td><td><code>ADM</code></td><td>P1</td><td>1</td><td><span class="pill held-default">held-default</span></td><td>14</td><td>0</td><td>WF-ENG</td></tr>
+<tr><td><code>PRD-ADM-007</code></td><td>Operations console and work queues</td><td><code>ADM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ADM-008</code></td><td>Upload and content scanning controls</td><td><code>ADM</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ADM-009</code></td><td>Exception management</td><td><code>ADM</code></td><td>P2</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ADM-010</code></td><td>Operational alerts</td><td><code>ADM</code></td><td>P2</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ADM-011</code></td><td>Template library</td><td><code>ADM</code></td><td>P2</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-ADM-012</code></td><td>Template analytics and shared marketplace</td><td><code>ADM</code></td><td>P3</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-DOC-001</code></td><td>Document generation</td><td><code>DOC</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>15</td><td>0</td><td>DOC-LIB</td></tr>
+<tr><td><code>PRD-DOC-002</code></td><td>Document storage</td><td><code>DOC</code></td><td>P1</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-DOC-003</code></td><td>Document integrity</td><td><code>DOC</code></td><td>P2</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-DOC-004</code></td><td>Document review and compliance export</td><td><code>DOC</code></td><td>P2</td><td>4</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-DOC-005</code></td><td>Document requirements and validation</td><td><code>DOC</code></td><td>P2</td><td>4</td><td><span class="pill mocked">mocked</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-DOC-006</code></td><td>Export document set</td><td><code>DOC</code></td><td>P1</td><td>4</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>DOC-LIB</td></tr>
+<tr><td><code>PRD-SEC-001</code></td><td>Encryption and transport security</td><td><code>SEC</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEC-002</code></td><td>Edge protection</td><td><code>SEC</code></td><td>P1</td><td>1</td><td><span class="pill mocked">mocked</span></td><td>12</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEC-003</code></td><td>PCI-DSS scope control</td><td><code>SEC</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEC-004</code></td><td>Platform audit trail</td><td><code>SEC</code></td><td>P1</td><td>1</td><td><span class="pill built">built</span></td><td>20</td><td>1</td><td>-</td></tr>
+<tr><td><code>PRD-SEC-005</code></td><td>Anomaly and correlation detection</td><td><code>SEC</code></td><td>P2</td><td>1</td><td><span class="pill mocked">mocked</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEC-006</code></td><td>Data residency</td><td><code>SEC</code></td><td>P1</td><td>1</td><td><span class="pill held-default">held-default</span></td><td>3</td><td>0</td><td>DP-01</td></tr>
+<tr><td><code>PRD-SEC-007</code></td><td>Consent and privacy tools</td><td><code>SEC</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>10</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEC-008</code></td><td>Breach notification workflow</td><td><code>SEC</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEC-009</code></td><td>Compliance reports and certificates</td><td><code>SEC</code></td><td>P2</td><td>1</td><td><span class="pill mocked">mocked</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEC-010</code></td><td>Auditor read-only access</td><td><code>SEC</code></td><td>P2</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEC-011</code></td><td>Vulnerability management</td><td><code>SEC</code></td><td>P1</td><td>1</td><td><span class="pill mocked">mocked</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEC-012</code></td><td>Country data-protection pack</td><td><code>SEC</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEC-013</code></td><td>Bot protection</td><td><code>SEC</code></td><td>P1</td><td>1</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SEC-014</code></td><td>Data classification and masking</td><td><code>SEC</code></td><td>P2</td><td>1</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>DP-01</td></tr>
+<tr><td><code>PRD-SEC-015</code></td><td>Security incident management</td><td><code>SEC</code></td><td>P2</td><td>1</td><td><span class="pill mocked">mocked</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INT-001</code></td><td>Public REST API</td><td><code>INT</code></td><td>P1</td><td>6</td><td><span class="pill held-default">held-default</span></td><td>20</td><td>0</td><td>API-01, PAID-STUB, API-GW / API-01 / PAID-STUB / API-GW</td></tr>
+<tr><td><code>PRD-INT-002</code></td><td>Integration layer (API gateway)</td><td><code>INT</code></td><td>P1</td><td>6</td><td><span class="pill held-default">held-default</span></td><td>14</td><td>0</td><td>API-GW</td></tr>
+<tr><td><code>PRD-INT-003</code></td><td>Webhooks and events</td><td><code>INT</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>14</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INT-004</code></td><td>Integration health and retries</td><td><code>INT</code></td><td>P1</td><td>6</td><td><span class="pill mocked">mocked</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INT-005</code></td><td>ERP and finance connector framework</td><td><code>INT</code></td><td>P1</td><td>6</td><td><span class="pill held-default">held-default</span></td><td>12</td><td>0</td><td>PAID-STUB</td></tr>
+<tr><td><code>PRD-INT-006</code></td><td>SAGE 200 adapter</td><td><code>INT</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INT-007</code></td><td>PostGlobal adapter</td><td><code>INT</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INT-008</code></td><td>Banking integrations</td><td><code>INT</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INT-009</code></td><td>Government system connector framework</td><td><code>INT</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INT-010</code></td><td>Master data synchronisation</td><td><code>INT</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INT-011</code></td><td>Plugin extensibility</td><td><code>INT</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INT-012</code></td><td>Punch-out</td><td><code>INT</code></td><td>P3</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-INT-013</code></td><td>MANEPS adapter</td><td><code>INT</code></td><td>P1</td><td>6</td><td><span class="pill held-default">held-default</span></td><td>2</td><td>0</td><td>MG-09</td></tr>
+<tr><td><code>PRD-CHN-001</code></td><td>Native mobile apps</td><td><code>CHN</code></td><td>P1</td><td>6</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>M-19, PAID-STUB / M-19 / PAID-STUB</td></tr>
+<tr><td><code>PRD-CHN-002</code></td><td>PWA and low-bandwidth mode</td><td><code>CHN</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHN-003</code></td><td>USSD channel</td><td><code>CHN</code></td><td>P1</td><td>6</td><td><span class="pill mocked">mocked</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHN-004</code></td><td>IVR channel</td><td><code>CHN</code></td><td>P2</td><td>6</td><td><span class="pill mocked">mocked</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHN-005</code></td><td>SMS gateway and SMS commands</td><td><code>CHN</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>11</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHN-006</code></td><td>WhatsApp Business</td><td><code>CHN</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHN-007</code></td><td>WeChat</td><td><code>CHN</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHN-008</code></td><td>Telegram bot</td><td><code>CHN</code></td><td>P3</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHN-009</code></td><td>Agent and correspondent networks</td><td><code>CHN</code></td><td>P2</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHN-010</code></td><td>Field agent app</td><td><code>CHN</code></td><td>P2</td><td>6</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>FG-06</td></tr>
+<tr><td><code>PRD-CHN-011</code></td><td>Social media integration</td><td><code>CHN</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHN-012</code></td><td>SMS sender ID and opt-out</td><td><code>CHN</code></td><td>P2</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>6</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-CHN-013</code></td><td>Push notifications</td><td><code>CHN</code></td><td>P2</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-AI-001</code></td><td>AI translation</td><td><code>AI</code></td><td>P3</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-AI-002</code></td><td>AI listing assistance</td><td><code>AI</code></td><td>P3</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-AI-003</code></td><td>AI chatbot</td><td><code>AI</code></td><td>P1</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>11</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-AI-004</code></td><td>AI drafting and summarisation</td><td><code>AI</code></td><td>P3</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-AI-005</code></td><td>OCR and ID document checks</td><td><code>AI</code></td><td>P2</td><td>6</td><td><span class="pill mocked">mocked</span></td><td>3</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-AI-006</code></td><td>ML fraud detection</td><td><code>AI</code></td><td>P3</td><td>6</td><td><span class="pill mocked">mocked</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-AI-007</code></td><td>ML recommendation engine</td><td><code>AI</code></td><td>P3</td><td>6</td><td><span class="pill mocked">mocked</span></td><td>4</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-AI-008</code></td><td>Forecasting and image inspection</td><td><code>AI</code></td><td>P3</td><td>6</td><td><span class="pill mocked">mocked</span></td><td>2</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-AI-009</code></td><td>AI contract and letter drafting</td><td><code>AI</code></td><td>P3</td><td>6</td><td><span class="pill not-built">not-built</span></td><td>1</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-AI-010</code></td><td>AI governance</td><td><code>AI</code></td><td>P1</td><td>6</td><td><span class="pill mocked">mocked</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-FIN-001</code></td><td>Credit marketplace</td><td><code>FIN</code></td><td>P3</td><td>7</td><td><span class="pill mocked">mocked</span></td><td>14</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-FIN-002</code></td><td>Invoice discounting</td><td><code>FIN</code></td><td>P3</td><td>7</td><td><span class="pill mocked">mocked</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-FIN-003</code></td><td>Insurance</td><td><code>FIN</code></td><td>P3</td><td>7</td><td><span class="pill mocked">mocked</span></td><td>9</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-FIN-004</code></td><td>Subsidies and incentives</td><td><code>FIN</code></td><td>P3</td><td>7</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-FIN-005</code></td><td>Financial and partner services catalogue</td><td><code>FIN</code></td><td>P1</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>8</td><td>0</td><td>FG-06, T-MISS / FG-06 / T-MISS</td></tr>
+<tr><td><code>PRD-EGV-001</code></td><td>e-Government service catalogue</td><td><code>EGV</code></td><td>P1</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>9</td><td>0</td><td>FG-06, T-MISS / FG-06 / T-MISS</td></tr>
+<tr><td><code>PRD-EGV-002</code></td><td>Service applications</td><td><code>EGV</code></td><td>P1</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>18</td><td>0</td><td>FG-06, WF-ENG, T-MISS / FG-06 / WF-ENG / T-MISS</td></tr>
+<tr><td><code>PRD-EGV-003</code></td><td>Appointments</td><td><code>EGV</code></td><td>P1</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>FG-06, T-MISS / FG-06 / T-MISS</td></tr>
+<tr><td><code>PRD-EGV-004</code></td><td>Document delivery</td><td><code>EGV</code></td><td>P1</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>FG-06, T-MISS / FG-06 / T-MISS</td></tr>
+<tr><td><code>PRD-EGV-005</code></td><td>Government fee collection</td><td><code>EGV</code></td><td>P1</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>8</td><td>0</td><td>FG-06, T-MISS / FG-06 / T-MISS</td></tr>
+<tr><td><code>PRD-EGV-006</code></td><td>Agency administration</td><td><code>EGV</code></td><td>P1</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>6</td><td>0</td><td>FG-06, T-MISS / FG-06 / T-MISS</td></tr>
+<tr><td><code>PRD-EGV-007</code></td><td>Digital ID service workflows</td><td><code>EGV</code></td><td>P1</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>4</td><td>0</td><td>FG-06, WF-ENG, T-MISS / FG-06 / WF-ENG / T-MISS</td></tr>
+<tr><td><code>PRD-SVC-001</code></td><td>Service pricing models</td><td><code>SVC</code></td><td>P2</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>8</td><td>0</td><td>PO-REC-v8</td></tr>
+<tr><td><code>PRD-SVC-002</code></td><td>Service providers and resources</td><td><code>SVC</code></td><td>P2</td><td>7</td><td><span class="pill not-built">not-built</span></td><td>8</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SVC-003</code></td><td>Booking changes, cancellations and no-shows</td><td><code>SVC</code></td><td>P2</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>9</td><td>0</td><td>FG-06, PO-REC-v8 / FG-06 / PO-REC-v8</td></tr>
+<tr><td><code>PRD-SVC-004</code></td><td>Deposits and advance payment for bookings</td><td><code>SVC</code></td><td>P2</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>8</td><td>0</td><td>FG-06, PO-REC-v8 / FG-06 / PO-REC-v8</td></tr>
+<tr><td><code>PRD-SVC-005</code></td><td>Service order lifecycle and completion sign-off</td><td><code>SVC</code></td><td>P1</td><td>7</td><td><span class="pill not-built">not-built</span></td><td>13</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SVC-006</code></td><td>Service location at booking</td><td><code>SVC</code></td><td>P2</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>PO-REC-v8</td></tr>
+<tr><td><code>PRD-SVC-007</code></td><td>Digital products and downloads</td><td><code>SVC</code></td><td>P2</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>8</td><td>0</td><td>PO-REC-v8</td></tr>
+<tr><td><code>PRD-SVC-008</code></td><td>Rental and hire</td><td><code>SVC</code></td><td>P2</td><td>7</td><td><span class="pill not-built">not-built</span></td><td>5</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SVC-009</code></td><td>Service vouchers and e-tickets</td><td><code>SVC</code></td><td>P2</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>8</td><td>0</td><td>PO-REC-v8</td></tr>
+<tr><td><code>PRD-SVC-010</code></td><td>Service reminders and follow-up</td><td><code>SVC</code></td><td>P2</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>PO-REC-v8</td></tr>
+<tr><td><code>PRD-SVC-011</code></td><td>Service-level targets for service orders</td><td><code>SVC</code></td><td>P1</td><td>7</td><td><span class="pill not-built">not-built</span></td><td>7</td><td>0</td><td>-</td></tr>
+<tr><td><code>PRD-SVC-012</code></td><td>Service reports</td><td><code>SVC</code></td><td>P2</td><td>7</td><td><span class="pill held-default">held-default</span></td><td>5</td><td>0</td><td>FG-06, PO-REC-v8 / FG-06 / PO-REC-v8</td></tr>
+</tbody></table></section>
+</main></body></html>

@@ -1,0 +1,129 @@
+{
+  "systemName": "Product.CHK",
+  "friendlyName": "Product - Cart and checkout",
+  "area": "CHK",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 7,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.CHK",
+    "projectName": "Nop.Plugin.Product.CHK"
+  },
+  "wave": 3,
+  "waveName": "Buy",
+  "dependsOnAreas": [
+    "ADM",
+    "CHN",
+    "IAM",
+    "LOG",
+    "PAY",
+    "SEL"
+  ],
+  "counts": {
+    "features": 19,
+    "p1": 19,
+    "p2": 0,
+    "p3": 0,
+    "held": 5,
+    "criteria": 130,
+    "screens": 10,
+    "rules": 23,
+    "contracts": 11,
+    "messages": 20,
+    "auditEvents": 7
+  },
+  "fit": {
+    "configuration": 4,
+    "licensedPlugin": 1,
+    "codeLevel": 14,
+    "externalSystem": 0
+  },
+  "features": [
+    "PRD-CHK-001",
+    "PRD-CHK-002",
+    "PRD-CHK-003",
+    "PRD-CHK-004",
+    "PRD-CHK-005",
+    "PRD-CHK-006",
+    "PRD-CHK-007",
+    "PRD-CHK-008",
+    "PRD-CHK-009",
+    "PRD-CHK-010",
+    "PRD-CHK-011",
+    "PRD-CHK-012",
+    "PRD-CHK-013",
+    "PRD-CHK-014",
+    "PRD-CHK-015",
+    "PRD-CHK-016",
+    "PRD-CHK-017",
+    "PRD-CHK-018",
+    "PRD-CHK-019"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-CHK-004",
+      "decisions": [
+        "WF-ENG, PAY-DIRECT / LIC-01",
+        "WF-ENG",
+        "PAY-DIRECT / LIC-01"
+      ]
+    },
+    {
+      "id": "PRD-CHK-015",
+      "decisions": [
+        "PH-INF"
+      ]
+    },
+    {
+      "id": "PRD-CHK-016",
+      "decisions": [
+        "PH-INF, PAID-STUB",
+        "PH-INF",
+        "PAID-STUB"
+      ]
+    },
+    {
+      "id": "PRD-CHK-017",
+      "decisions": [
+        "PH-INF"
+      ]
+    },
+    {
+      "id": "PRD-CHK-018",
+      "decisions": [
+        "PH-INF, WF-ENG",
+        "PH-INF",
+        "WF-ENG"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "PAID-STUB",
+    "PAY-DIRECT / LIC-01",
+    "PH-INF",
+    "PH-INF, PAID-STUB",
+    "PH-INF, WF-ENG",
+    "WF-ENG",
+    "WF-ENG, PAY-DIRECT / LIC-01"
+  ],
+  "contracts": [
+    "IC-CHK-01",
+    "IC-CHK-02",
+    "IC-CHK-03",
+    "IC-CHK-04",
+    "IC-CHK-05",
+    "IC-CHK-06",
+    "IC-CHK-07",
+    "IC-CHK-08",
+    "IC-CHK-09",
+    "IC-CHK-10",
+    "IC-CHK-11"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-CHK.md"
+}

@@ -1,0 +1,130 @@
+{
+  "systemName": "Product.SEL",
+  "friendlyName": "Product - Sellers and marketplace onboarding",
+  "area": "SEL",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 3,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.SEL",
+    "projectName": "Nop.Plugin.Product.SEL"
+  },
+  "wave": 2,
+  "waveName": "Catalogue",
+  "dependsOnAreas": [
+    "ADM",
+    "CAT",
+    "DOC",
+    "IAM",
+    "PAY"
+  ],
+  "counts": {
+    "features": 25,
+    "p1": 20,
+    "p2": 4,
+    "p3": 1,
+    "held": 4,
+    "criteria": 148,
+    "screens": 19,
+    "rules": 25,
+    "contracts": 9,
+    "messages": 19,
+    "auditEvents": 12
+  },
+  "fit": {
+    "configuration": 3,
+    "licensedPlugin": 0,
+    "codeLevel": 21,
+    "externalSystem": 1
+  },
+  "features": [
+    "PRD-SEL-001",
+    "PRD-SEL-002",
+    "PRD-SEL-003",
+    "PRD-SEL-004",
+    "PRD-SEL-005",
+    "PRD-SEL-006",
+    "PRD-SEL-007",
+    "PRD-SEL-008",
+    "PRD-SEL-009",
+    "PRD-SEL-010",
+    "PRD-SEL-011",
+    "PRD-SEL-012",
+    "PRD-SEL-013",
+    "PRD-SEL-014",
+    "PRD-SEL-015",
+    "PRD-SEL-016",
+    "PRD-SEL-017",
+    "PRD-SEL-018",
+    "PRD-SEL-019",
+    "PRD-SEL-020",
+    "PRD-SEL-021",
+    "PRD-SEL-022",
+    "PRD-SEL-023",
+    "PRD-SEL-024",
+    "PRD-SEL-025"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-SEL-003",
+      "decisions": [
+        "WF-ENG"
+      ]
+    },
+    {
+      "id": "PRD-SEL-005",
+      "decisions": [
+        "WF-ENG"
+      ]
+    },
+    {
+      "id": "PRD-SEL-017",
+      "decisions": [
+        "WF-ENG, PAY-DIRECT / LIC-01",
+        "WF-ENG",
+        "PAY-DIRECT / LIC-01"
+      ]
+    },
+    {
+      "id": "PRD-SEL-025",
+      "decisions": [
+        "PH-INF, PO-REC-v8, PAY-DIRECT / LIC-01, E-INV, PAID-STUB, DOC-LIB",
+        "PH-INF",
+        "PO-REC-v8",
+        "PAY-DIRECT / LIC-01",
+        "E-INV",
+        "PAID-STUB",
+        "DOC-LIB"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "DOC-LIB",
+    "E-INV",
+    "PAID-STUB",
+    "PAY-DIRECT / LIC-01",
+    "PH-INF",
+    "PH-INF, PO-REC-v8, PAY-DIRECT / LIC-01, E-INV, PAID-STUB, DOC-LIB",
+    "PO-REC-v8",
+    "WF-ENG",
+    "WF-ENG, PAY-DIRECT / LIC-01"
+  ],
+  "contracts": [
+    "IC-SEL-01",
+    "IC-SEL-01",
+    "IC-SEL-02",
+    "IC-SEL-02",
+    "IC-SEL-03",
+    "IC-SEL-04",
+    "IC-SEL-05",
+    "IC-SEL-06",
+    "IC-SEL-07"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-SEL.md"
+}

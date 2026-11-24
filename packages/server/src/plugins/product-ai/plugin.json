@@ -1,0 +1,65 @@
+{
+  "systemName": "Product.AI",
+  "friendlyName": "Product - AI capabilities",
+  "area": "AI",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 21,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.AI",
+    "projectName": "Nop.Plugin.Product.AI"
+  },
+  "wave": 6,
+  "waveName": "Reach",
+  "dependsOnAreas": [
+    "CHN",
+    "SRC"
+  ],
+  "counts": {
+    "features": 10,
+    "p1": 2,
+    "p2": 1,
+    "p3": 7,
+    "held": 0,
+    "criteria": 47,
+    "screens": 8,
+    "rules": 8,
+    "contracts": 5,
+    "messages": 10,
+    "auditEvents": 5
+  },
+  "fit": {
+    "configuration": 0,
+    "licensedPlugin": 0,
+    "codeLevel": 5,
+    "externalSystem": 5
+  },
+  "features": [
+    "PRD-AI-001",
+    "PRD-AI-002",
+    "PRD-AI-003",
+    "PRD-AI-004",
+    "PRD-AI-005",
+    "PRD-AI-006",
+    "PRD-AI-007",
+    "PRD-AI-008",
+    "PRD-AI-009",
+    "PRD-AI-010"
+  ],
+  "heldFeatures": [],
+  "holdingDecisions": [],
+  "contracts": [
+    "IC-AI-01",
+    "IC-AI-02",
+    "IC-AI-03",
+    "IC-AI-04",
+    "IC-AI-05"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-AI.md"
+}

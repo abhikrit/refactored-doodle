@@ -1,0 +1,113 @@
+{
+  "systemName": "Product.IAM",
+  "friendlyName": "Product - Identity, access and accounts",
+  "area": "IAM",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 2,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.IAM",
+    "projectName": "Nop.Plugin.Product.IAM"
+  },
+  "wave": 1,
+  "waveName": "Foundation",
+  "dependsOnAreas": [
+    "CHN",
+    "SEC"
+  ],
+  "counts": {
+    "features": 27,
+    "p1": 22,
+    "p2": 5,
+    "p3": 0,
+    "held": 3,
+    "criteria": 205,
+    "screens": 16,
+    "rules": 33,
+    "contracts": 15,
+    "messages": 28,
+    "auditEvents": 19
+  },
+  "fit": {
+    "configuration": 3,
+    "licensedPlugin": 0,
+    "codeLevel": 23,
+    "externalSystem": 1
+  },
+  "features": [
+    "PRD-IAM-001",
+    "PRD-IAM-002",
+    "PRD-IAM-003",
+    "PRD-IAM-004",
+    "PRD-IAM-005",
+    "PRD-IAM-006",
+    "PRD-IAM-007",
+    "PRD-IAM-008",
+    "PRD-IAM-009",
+    "PRD-IAM-010",
+    "PRD-IAM-011",
+    "PRD-IAM-012",
+    "PRD-IAM-013",
+    "PRD-IAM-014",
+    "PRD-IAM-015",
+    "PRD-IAM-016",
+    "PRD-IAM-017",
+    "PRD-IAM-018",
+    "PRD-IAM-019",
+    "PRD-IAM-020",
+    "PRD-IAM-021",
+    "PRD-IAM-022",
+    "PRD-IAM-023",
+    "PRD-IAM-024",
+    "PRD-IAM-025",
+    "PRD-IAM-026",
+    "PRD-IAM-027"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-IAM-022",
+      "decisions": [
+        "PH-INF"
+      ]
+    },
+    {
+      "id": "PRD-IAM-023",
+      "decisions": [
+        "PH-INF"
+      ]
+    },
+    {
+      "id": "PRD-IAM-027",
+      "decisions": [
+        "PH-INF"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "PH-INF"
+  ],
+  "contracts": [
+    "IC-IAM-01",
+    "IC-IAM-02",
+    "IC-IAM-02",
+    "IC-IAM-03",
+    "IC-IAM-03",
+    "IC-IAM-04",
+    "IC-IAM-05",
+    "IC-IAM-05",
+    "IC-IAM-05",
+    "IC-IAM-05",
+    "IC-IAM-06",
+    "IC-IAM-07",
+    "IC-IAM-07",
+    "IC-IAM-09",
+    "IC-IAM-08"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-IAM.md"
+}

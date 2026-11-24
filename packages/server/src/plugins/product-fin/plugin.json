@@ -1,0 +1,74 @@
+{
+  "systemName": "Product.FIN",
+  "friendlyName": "Product - Financial products",
+  "area": "FIN",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 22,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.FIN",
+    "projectName": "Nop.Plugin.Product.FIN"
+  },
+  "wave": 7,
+  "waveName": "Verticals",
+  "dependsOnAreas": [],
+  "counts": {
+    "features": 5,
+    "p1": 1,
+    "p2": 0,
+    "p3": 4,
+    "held": 1,
+    "criteria": 46,
+    "screens": 6,
+    "rules": 12,
+    "contracts": 9,
+    "messages": 4,
+    "auditEvents": 5
+  },
+  "fit": {
+    "configuration": 0,
+    "licensedPlugin": 0,
+    "codeLevel": 2,
+    "externalSystem": 3
+  },
+  "features": [
+    "PRD-FIN-001",
+    "PRD-FIN-002",
+    "PRD-FIN-003",
+    "PRD-FIN-004",
+    "PRD-FIN-005"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-FIN-005",
+      "decisions": [
+        "FG-06, T-MISS",
+        "FG-06",
+        "T-MISS"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "FG-06",
+    "FG-06, T-MISS",
+    "T-MISS"
+  ],
+  "contracts": [
+    "IC-FIN-01",
+    "IC-FIN-01",
+    "IC-FIN-01",
+    "IC-FIN-01",
+    "IC-FIN-01",
+    "IC-FIN-02",
+    "IC-FIN-02",
+    "IC-FIN-03",
+    "IC-FIN-04"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-FIN.md"
+}

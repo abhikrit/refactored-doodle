@@ -1,0 +1,2682 @@
+[
+  {
+    "key": "Adm.WorkflowInvalid",
+    "area": "ADM",
+    "text": "The workflow cannot be published: {0}.",
+    "usedBy": [
+      "AC-ADM-002-01-01",
+      "AC-ADM-002-02-02",
+      "AC-ADM-002-02-05"
+    ]
+  },
+  {
+    "key": "Adm.WorkflowStepUnavailable",
+    "area": "ADM",
+    "text": "The workflow uses a step that is not available for this client: {0}.",
+    "usedBy": [
+      "AC-ADM-002-02-06"
+    ]
+  },
+  {
+    "key": "Adm.RuleInvalid",
+    "area": "ADM",
+    "text": "The rule is not valid at position {0}: {1}.",
+    "usedBy": [
+      "AC-ADM-003-01-02"
+    ]
+  },
+  {
+    "key": "Adm.RuleConflict",
+    "area": "ADM",
+    "text": "This rule conflicts with rule {0}. Set the precedence or change one of the rules.",
+    "usedBy": [
+      "AC-ADM-003-04-01"
+    ]
+  },
+  {
+    "key": "Adm.ParameterRequired",
+    "area": "ADM",
+    "text": "Enter {0}. It is required for this type of transaction.",
+    "usedBy": [
+      "AC-ADM-004-01-02"
+    ]
+  },
+  {
+    "key": "Adm.ParameterFixed",
+    "area": "ADM",
+    "text": "{0} is fixed for this type of transaction and cannot be changed.",
+    "usedBy": [
+      "AC-ADM-004-01-03"
+    ]
+  },
+  {
+    "key": "Adm.NotEligible",
+    "area": "ADM",
+    "text": "This item is not available for your account.",
+    "usedBy": [
+      "AC-ADM-005-01-02"
+    ]
+  },
+  {
+    "key": "Adm.QuotaReserved",
+    "area": "ADM",
+    "text": "The remaining quantity of this item is reserved. You can order up to {0}.",
+    "usedBy": [
+      "AC-ADM-005-02-01",
+      "AC-ADM-005-02-02"
+    ]
+  },
+  {
+    "key": "Adm.ScreeningHold",
+    "area": "ADM",
+    "text": "We need to complete a check on your account before you can place orders. Please contact us.",
+    "usedBy": [
+      "AC-ADM-005-03-01"
+    ]
+  },
+  {
+    "key": "Adm.ApproveOwnItem",
+    "area": "ADM",
+    "text": "You cannot approve this item because you requested it or decided an earlier step.",
+    "usedBy": [
+      "AC-ADM-006-02-03"
+    ]
+  },
+  {
+    "key": "Adm.ReasonRequired",
+    "area": "ADM",
+    "text": "Choose a reason.",
+    "usedBy": [
+      "AC-ADM-006-04-01",
+      "AC-ADM-009-02-01"
+    ]
+  },
+  {
+    "key": "Adm.DecisionBlocked",
+    "area": "ADM",
+    "text": "This item cannot be approved yet: {0}.",
+    "usedBy": [
+      "AC-ADM-006-01-04"
+    ]
+  },
+  {
+    "key": "Adm.UploadTypeNotAllowed",
+    "area": "ADM",
+    "text": "This type of file cannot be uploaded here.",
+    "usedBy": [
+      "AC-ADM-008-01-01",
+      "AC-ADM-008-01-04"
+    ]
+  },
+  {
+    "key": "Adm.UploadTooLarge",
+    "area": "ADM",
+    "text": "The file is larger than {0}.",
+    "usedBy": [
+      "AC-ADM-008-01-02"
+    ]
+  },
+  {
+    "key": "Adm.UploadInfected",
+    "area": "ADM",
+    "text": "The file was rejected by the virus check.",
+    "usedBy": [
+      "AC-ADM-008-02-01"
+    ]
+  },
+  {
+    "key": "Adm.UploadScanUnavailable",
+    "area": "ADM",
+    "text": "The file cannot be checked right now. Please try again later.",
+    "usedBy": [
+      "AC-ADM-008-02-02"
+    ]
+  },
+  {
+    "key": "Ai.Disclosure",
+    "area": "AI",
+    "text": "You are chatting with an automated assistant. You can ask for a person at any time.",
+    "usedBy": [
+      "AC-AI-003-01-04",
+      "AC-AI-010-01-01"
+    ]
+  },
+  {
+    "key": "Ai.BotNoAnswer",
+    "area": "AI",
+    "text": "I do not have an answer to that. Would you like to talk to a person?",
+    "usedBy": [
+      "AC-AI-003-01-03"
+    ]
+  },
+  {
+    "key": "Ai.OrderNotFound",
+    "area": "AI",
+    "text": "I could not find that order for you.",
+    "usedBy": [
+      "AC-AI-003-02-02"
+    ]
+  },
+  {
+    "key": "Ai.HandOffAgent",
+    "area": "AI",
+    "text": "I am passing you to a member of our team.",
+    "usedBy": [
+      "AC-AI-003-03-01"
+    ]
+  },
+  {
+    "key": "Ai.HandOffTicket",
+    "area": "AI",
+    "text": "Our team is not available now. We have recorded your question and will reply.",
+    "usedBy": [
+      "AC-AI-003-03-01"
+    ]
+  },
+  {
+    "key": "Ai.BotUnavailable",
+    "area": "AI",
+    "text": "The assistant is not available at the moment. Would you like to talk to a person?",
+    "usedBy": [
+      "AC-AI-003-03-02"
+    ]
+  },
+  {
+    "key": "Ai.AnswerSources",
+    "area": "AI",
+    "text": "This answer is based on: {sources}.",
+    "usedBy": [
+      "AC-AI-010-02-01"
+    ]
+  },
+  {
+    "key": "Ai.GenerationFailed",
+    "area": "AI",
+    "text": "The text could not be generated. Nothing has been changed.",
+    "usedBy": [
+      "AC-AI-002-01-02"
+    ]
+  },
+  {
+    "key": "Ai.NotEnoughData",
+    "area": "AI",
+    "text": "There are not enough comparable products to suggest a price.",
+    "usedBy": [
+      "AC-AI-002-03-02"
+    ]
+  },
+  {
+    "key": "Ai.GeneratedLabel",
+    "area": "AI",
+    "text": "Generated with AI",
+    "usedBy": [
+      "AC-AI-002-05-01",
+      "AC-AI-004-01-01",
+      "AC-AI-004-02-01",
+      "AC-AI-009-01-01"
+    ]
+  },
+  {
+    "key": "Cat.MandatoryFieldMissing",
+    "area": "CAT",
+    "text": "This listing cannot be submitted yet. Complete these fields: {0}.",
+    "usedBy": [
+      "AC-CAT-002-02-02",
+      "AC-CAT-005-01-01",
+      "AC-CAT-005-02-02",
+      "AC-CAT-015-02-01",
+      "AC-CAT-019-01-01",
+      "AC-CAT-038-01-02"
+    ]
+  },
+  {
+    "key": "Cat.ImageQualityLow",
+    "area": "CAT",
+    "text": "One or more pictures are smaller than recommended. You can still submit.",
+    "usedBy": [
+      "AC-CAT-005-02-01"
+    ]
+  },
+  {
+    "key": "Cat.SchemaChangePending",
+    "area": "CAT",
+    "text": "This change is waiting for approval.",
+    "usedBy": [
+      "AC-CAT-005-03-01"
+    ]
+  },
+  {
+    "key": "Cat.SkuDuplicate",
+    "area": "CAT",
+    "text": "This product code is already used.",
+    "usedBy": [
+      "AC-CAT-003-01-02",
+      "AC-CAT-006-01-04"
+    ]
+  },
+  {
+    "key": "Cat.SkuGenerationBusy",
+    "area": "CAT",
+    "text": "The product code could not be created. Please try again.",
+    "usedBy": [
+      "AC-CAT-003-01-03"
+    ]
+  },
+  {
+    "key": "Cat.BundleComponentUnavailable",
+    "area": "CAT",
+    "text": "This bundle is not available because one of its items is not available.",
+    "usedBy": [
+      "AC-CAT-007-01-03"
+    ]
+  },
+  {
+    "key": "Cat.ImportFormatNotSupported",
+    "area": "CAT",
+    "text": "This file format is not supported. Use the Excel, CSV or XML template.",
+    "usedBy": [
+      "AC-CAT-009-01-04"
+    ]
+  },
+  {
+    "key": "Cat.ImportHasErrors",
+    "area": "CAT",
+    "text": "The file has errors. Nothing was imported. Download the error report.",
+    "usedBy": [
+      "AC-CAT-010-01-02"
+    ]
+  },
+  {
+    "key": "Cat.ImportLargeFile",
+    "area": "CAT",
+    "text": "This file is large and may take a long time to import. Do you want to continue?",
+    "usedBy": [
+      "AC-CAT-010-02-01"
+    ]
+  },
+  {
+    "key": "Cat.RequestQuote",
+    "area": "CAT",
+    "text": "Request a quote",
+    "usedBy": [
+      "AC-CAT-013-01-01",
+      "AC-CAT-013-01-02"
+    ]
+  },
+  {
+    "key": "Cat.QuoteRequested",
+    "area": "CAT",
+    "text": "Your request for a quote has been sent.",
+    "usedBy": [
+      "AC-CAT-013-02-01"
+    ]
+  },
+  {
+    "key": "Cat.QuoteRequestRefused",
+    "area": "CAT",
+    "text": "A quote cannot be requested for this product.",
+    "usedBy": [
+      "AC-CAT-013-02-02"
+    ]
+  },
+  {
+    "key": "Cat.HsCodeInvalid",
+    "area": "CAT",
+    "text": "The customs (HS) code is not in the expected format.",
+    "usedBy": [
+      "AC-CAT-015-01-02"
+    ]
+  },
+  {
+    "key": "Cat.QuestionSubmitted",
+    "area": "CAT",
+    "text": "Your question has been sent. It will appear after review.",
+    "usedBy": [
+      "AC-CAT-018-01-01"
+    ]
+  },
+  {
+    "key": "Cat.ProhibitedContent",
+    "area": "CAT",
+    "text": "This listing contains an item or word that is not allowed: {0}.",
+    "usedBy": [
+      "AC-CAT-021-01-01",
+      "AC-CAT-021-01-03"
+    ]
+  },
+  {
+    "key": "Cat.ReportReceived",
+    "area": "CAT",
+    "text": "Thank you. Your report has been received.",
+    "usedBy": [
+      "AC-CAT-021-02-01"
+    ]
+  },
+  {
+    "key": "Cat.PublishNotAllowed",
+    "area": "CAT",
+    "text": "This listing must be approved before it can be published.",
+    "usedBy": [
+      "AC-CAT-022-01-03"
+    ]
+  },
+  {
+    "key": "Cat.ReasonRequired",
+    "area": "CAT",
+    "text": "A reason is required.",
+    "usedBy": [
+      "AC-CAT-022-02-02",
+      "AC-CAT-024-02-01",
+      "AC-CAT-043-01-02"
+    ]
+  },
+  {
+    "key": "Cat.ApproveOwnListing",
+    "area": "CAT",
+    "text": "You cannot decide on a listing you submitted.",
+    "usedBy": [
+      "AC-CAT-022-02-03"
+    ]
+  },
+  {
+    "key": "Cat.SubmissionWithdrawn",
+    "area": "CAT",
+    "text": "Your changes returned this listing to draft. Submit it again for review.",
+    "usedBy": [
+      "AC-CAT-022-02-04"
+    ]
+  },
+  {
+    "key": "Cat.EditConflict",
+    "area": "CAT",
+    "text": "This listing was changed by someone else after you opened it. Reload it before saving.",
+    "usedBy": [
+      "AC-CAT-023-02-03"
+    ]
+  },
+  {
+    "key": "Cat.ServiceAreaNotCovered",
+    "area": "CAT",
+    "text": "This service is not available in your area.",
+    "usedBy": [
+      "AC-CAT-026-01-04"
+    ]
+  },
+  {
+    "key": "Cat.SlotFull",
+    "area": "CAT",
+    "text": "This time slot is no longer available. Please choose another.",
+    "usedBy": [
+      "AC-CAT-027-02-01",
+      "AC-CAT-027-03-02",
+      "AC-CAT-027-04-01"
+    ]
+  },
+  {
+    "key": "Cat.SlotHoldExpired",
+    "area": "CAT",
+    "text": "Your time slot is no longer held. Please choose a slot again.",
+    "usedBy": [
+      "AC-CAT-027-01-05"
+    ]
+  },
+  {
+    "key": "Cat.CoordinatesInvalid",
+    "area": "CAT",
+    "text": "The location is not valid.",
+    "usedBy": [
+      "AC-CAT-028-01-01",
+      "AC-CAT-028-01-02"
+    ]
+  },
+  {
+    "key": "Cat.NotReturnable",
+    "area": "CAT",
+    "text": "This item cannot be returned.",
+    "usedBy": [
+      "AC-CAT-030-01-02",
+      "AC-CAT-031-03-03"
+    ]
+  },
+  {
+    "key": "Cat.DeliveryPromise",
+    "area": "CAT",
+    "text": "Estimated delivery: {0}",
+    "usedBy": [
+      "AC-CAT-031-02-01"
+    ]
+  },
+  {
+    "key": "Cat.PickupAvailable",
+    "area": "CAT",
+    "text": "Pickup available",
+    "usedBy": [
+      "AC-CAT-031-02-02"
+    ]
+  },
+  {
+    "key": "Cat.PlacementFull",
+    "area": "CAT",
+    "text": "No placement slot is free for these dates.",
+    "usedBy": [
+      "AC-CAT-033-02-02"
+    ]
+  },
+  {
+    "key": "Cat.QuantityNotMultiple",
+    "area": "CAT",
+    "text": "This product is sold in multiples of {0}.",
+    "usedBy": [
+      "AC-CAT-037-01-02"
+    ]
+  },
+  {
+    "key": "Cat.QuantityAboveMaximum",
+    "area": "CAT",
+    "text": "The quantity is above the maximum of {0}. You can send it for approval.",
+    "usedBy": [
+      "AC-CAT-037-02-01"
+    ]
+  },
+  {
+    "key": "Cat.SellerListingsPaused",
+    "area": "CAT",
+    "text": "This seller's listings are paused. The listing cannot be published now.",
+    "usedBy": [
+      "AC-CAT-022-04-04"
+    ]
+  },
+  {
+    "key": "Chk.SavedForLater",
+    "area": "CHK",
+    "text": "Saved for later",
+    "usedBy": [
+      "AC-CHK-001-03-01 (name of the list)"
+    ]
+  },
+  {
+    "key": "Chk.TermsRequired",
+    "area": "CHK",
+    "text": "Please accept the terms of service to place your order.",
+    "usedBy": [
+      "AC-CHK-002-05-01"
+    ]
+  },
+  {
+    "key": "Chk.PriceChanged",
+    "area": "CHK",
+    "text": "The price of one or more items has changed. Please check the new total and confirm again.",
+    "usedBy": [
+      "AC-CHK-003-01-02"
+    ]
+  },
+  {
+    "key": "Chk.PaymentMethodInvalid",
+    "area": "CHK",
+    "text": "The selected payment method is no longer available for this order. Please choose another method.",
+    "usedBy": [
+      "AC-CHK-003-02-01"
+    ]
+  },
+  {
+    "key": "Chk.CartCheckUnavailable",
+    "area": "CHK",
+    "text": "We could not check this item just now. Please try again later.",
+    "usedBy": [
+      "AC-CHK-003-03-03"
+    ]
+  },
+  {
+    "key": "Chk.SplitPlacementFailed",
+    "area": "CHK",
+    "text": "We could not complete your order. Please contact us with your checkout reference.",
+    "usedBy": [
+      "AC-CHK-004-01-05"
+    ]
+  },
+  {
+    "key": "Chk.MultiSellerNotSupported",
+    "area": "CHK",
+    "text": "Items from different sellers cannot yet be bought in one order. Please buy them in separate orders.",
+    "usedBy": [
+      "AC-CHK-004-01-07"
+    ]
+  },
+  {
+    "key": "Chk.SlotFull",
+    "area": "CHK",
+    "text": "The delivery window you chose is now full. Please choose another window.",
+    "usedBy": [
+      "AC-CHK-006-01-03"
+    ]
+  },
+  {
+    "key": "Chk.AddressLocatorRequired",
+    "area": "CHK",
+    "text": "Please give a street address, a landmark or a map pin so we can find you.",
+    "usedBy": [
+      "AC-CHK-007-01-03"
+    ]
+  },
+  {
+    "key": "Chk.AcknowledgementRequired",
+    "area": "CHK",
+    "text": "Please confirm that you have read the returns and refund policy.",
+    "usedBy": [
+      "AC-CHK-009-02-01"
+    ]
+  },
+  {
+    "key": "Chk.CartRuleViolation",
+    "area": "CHK",
+    "text": "This item cannot be ordered with the items in your cart: {rule text}",
+    "usedBy": [
+      "AC-CHK-011-01-01",
+      "AC-CHK-011-02-02"
+    ]
+  },
+  {
+    "key": "Chk.PickupOnly",
+    "area": "CHK",
+    "text": "This item can only be collected from an outlet.",
+    "usedBy": [
+      "AC-CHK-011-02-01"
+    ]
+  },
+  {
+    "key": "Chk.PickupCodeInvalid",
+    "area": "CHK",
+    "text": "The pickup code is not valid for this outlet.",
+    "usedBy": [
+      "AC-CHK-012-02-02",
+      "AC-CHK-012-02-04 (shown by LOG-012)"
+    ]
+  },
+  {
+    "key": "Chk.PickupCodeUsed",
+    "area": "CHK",
+    "text": "This pickup code has already been used.",
+    "usedBy": [
+      "AC-CHK-012-02-03 (shown by LOG-012)"
+    ]
+  },
+  {
+    "key": "Chk.PickupCodeLocked",
+    "area": "CHK",
+    "text": "Too many wrong codes. Check the customer's identity before handing over.",
+    "usedBy": [
+      "AC-CHK-012-02-02 (shown by LOG-012)"
+    ]
+  },
+  {
+    "key": "Chk.PickupCode",
+    "area": "CHK",
+    "text": "Your pickup code for order {order number} at {outlet}: {code}",
+    "usedBy": [
+      "AC-CHK-012-01-03",
+      "AC-CHK-019-01-04 (TRK-005 event code",
+      "inactive by default)"
+    ]
+  },
+  {
+    "key": "Chk.CreditLimitExceeded",
+    "area": "CHK",
+    "text": "This order is above your available credit. Choose another payment method or contact us.",
+    "usedBy": [
+      "AC-CHK-016-03-01"
+    ]
+  },
+  {
+    "key": "Chk.QuickOrderSkuNotFound",
+    "area": "CHK",
+    "text": "Product code not found: {code}",
+    "usedBy": [
+      "AC-CHK-017-01-01"
+    ]
+  },
+  {
+    "key": "Chk.ApprovalRequired",
+    "area": "CHK",
+    "text": "This order needs approval from your company before it can be placed.",
+    "usedBy": [
+      "AC-CHK-018-01-02"
+    ]
+  },
+  {
+    "key": "Chk.OrderPlacedGroup",
+    "area": "CHK",
+    "text": "Your order {reference} has been placed. It will be delivered by {count} sellers.",
+    "usedBy": [
+      "AC-CHK-019-01-03",
+      "AC-CHK-019-01-04 (text",
+      "email uses message template Chk.OrderPlacedGroup.CustomerNotification)"
+    ]
+  },
+  {
+    "key": "Chn.OfflineBanner",
+    "area": "CHN",
+    "text": "You are offline. This page may not be up to date.",
+    "usedBy": [
+      "AC-CHN-002-03-01"
+    ]
+  },
+  {
+    "key": "Chn.OfflinePage",
+    "area": "CHN",
+    "text": "You are offline. Check your connection and try again.",
+    "usedBy": [
+      "AC-CHN-002-03-01"
+    ]
+  },
+  {
+    "key": "Chn.OfflineActionBlocked",
+    "area": "CHN",
+    "text": "You need a connection to do this. Nothing has been sent.",
+    "usedBy": [
+      "AC-CHN-002-03-02"
+    ]
+  },
+  {
+    "key": "Chn.UssdNotRegistered",
+    "area": "CHN",
+    "text": "This phone number is not registered with us. Visit our website or an outlet to register.",
+    "usedBy": [
+      "AC-CHN-003-01-03"
+    ]
+  },
+  {
+    "key": "Chn.UssdOrderNotFound",
+    "area": "CHN",
+    "text": "We could not find that order for this phone number.",
+    "usedBy": [
+      "AC-CHN-003-01-04"
+    ]
+  },
+  {
+    "key": "Chn.SmsCommandNotFound",
+    "area": "CHN",
+    "text": "We could not find that order for this phone number.",
+    "usedBy": [
+      "AC-CHN-005-02-02"
+    ]
+  },
+  {
+    "key": "Chn.SmsCommandHelp",
+    "area": "CHN",
+    "text": "Commands you can send: {commands}.",
+    "usedBy": [
+      "AC-CHN-005-02-03"
+    ]
+  },
+  {
+    "key": "Chn.MessageRefusedByProvider",
+    "area": "CHN",
+    "text": "The message was not sent. Reason from the provider: {reason}.",
+    "usedBy": [
+      "AC-CHN-006-02-04",
+      "AC-CHN-007-01-02"
+    ]
+  },
+  {
+    "key": "Chn.SmsOptOutConfirmed",
+    "area": "CHN",
+    "text": "You will no longer receive these messages. Reply START to receive them again.",
+    "usedBy": [
+      "AC-CHN-012-02-01"
+    ]
+  },
+  {
+    "key": "Chn.SmsOptInConfirmed",
+    "area": "CHN",
+    "text": "You will receive our messages again. Reply STOP to stop them.",
+    "usedBy": [
+      "AC-CHN-012-02-02"
+    ]
+  },
+  {
+    "key": "Crm.TicketCreated",
+    "area": "CRM",
+    "text": "Thank you. Your request has been received. Your ticket number is shown below.",
+    "usedBy": [
+      "AC-CRM-001-01-01"
+    ]
+  },
+  {
+    "key": "Crm.AttachmentLimit",
+    "area": "CRM",
+    "text": "You have reached the maximum number of files for this request.",
+    "usedBy": [
+      "AC-CRM-001-04-02"
+    ]
+  },
+  {
+    "key": "Crm.RecipientOptedOut",
+    "area": "CRM",
+    "text": "This customer has opted out of this channel. The reply was not sent.",
+    "usedBy": [
+      "AC-CRM-002-03-02"
+    ]
+  },
+  {
+    "key": "Crm.PossibleDuplicate",
+    "area": "CRM",
+    "text": "This ticket may duplicate another open ticket.",
+    "usedBy": [
+      "AC-CRM-002-05-02"
+    ]
+  },
+  {
+    "key": "Crm.ComplaintOutcomeRequired",
+    "area": "CRM",
+    "text": "Record the outcome and notify the customer before closing this complaint.",
+    "usedBy": [
+      "AC-CRM-004-01-02"
+    ]
+  },
+  {
+    "key": "Crm.AlreadyRated",
+    "area": "CRM",
+    "text": "You have already rated this request. Thank you.",
+    "usedBy": [
+      "AC-CRM-005-01-02"
+    ]
+  },
+  {
+    "key": "Crm.RatingExpired",
+    "area": "CRM",
+    "text": "The time to rate this request has passed.",
+    "usedBy": [
+      "AC-CRM-005-01-03"
+    ]
+  },
+  {
+    "key": "Crm.WaitTimeUnknown",
+    "area": "CRM",
+    "text": "Waiting time not available.",
+    "usedBy": [
+      "AC-CRM-012-01-02"
+    ]
+  },
+  {
+    "key": "Crm.ChannelClosed",
+    "area": "CRM",
+    "text": "Closed now. Opens again at the time shown.",
+    "usedBy": [
+      "AC-CRM-012-01-03"
+    ]
+  },
+  {
+    "key": "Crm.NotAssignedManager",
+    "area": "CRM",
+    "text": "Only the assigned account manager can place orders for this customer.",
+    "usedBy": [
+      "AC-CRM-015-03-01"
+    ]
+  },
+  {
+    "key": "Doc.TemplateTokenUnknown",
+    "area": "DOC",
+    "text": "The template uses an unknown field: {0}.",
+    "usedBy": [
+      "AC-DOC-001-01-01"
+    ]
+  },
+  {
+    "key": "Doc.GenerationDataMissing",
+    "area": "DOC",
+    "text": "The document cannot be created because {0} has no value.",
+    "usedBy": [
+      "AC-DOC-001-01-02"
+    ]
+  },
+  {
+    "key": "Doc.LegalHoldActive",
+    "area": "DOC",
+    "text": "This document is under legal hold and cannot be deleted.",
+    "usedBy": [
+      "AC-DOC-002-04-01"
+    ]
+  },
+  {
+    "key": "Doc.DocumentMissing",
+    "area": "DOC",
+    "text": "Upload the required document: {0}.",
+    "usedBy": [
+      "AC-DOC-005-01-01"
+    ]
+  },
+  {
+    "key": "Doc.DocumentExpired",
+    "area": "DOC",
+    "text": "This document has expired. Upload a valid one.",
+    "usedBy": [
+      "AC-DOC-005-02-01"
+    ]
+  },
+  {
+    "key": "Doc.ExportSetIncomplete",
+    "area": "DOC",
+    "text": "The export document set is missing: {0}.",
+    "usedBy": [
+      "AC-DOC-006-01-05"
+    ]
+  },
+  {
+    "key": "Egv.ResubmissionRequested",
+    "area": "EGV",
+    "text": "The agency needs a new copy of one of your documents. Please see the reason and upload it again.",
+    "usedBy": [
+      "AC-EGV-002-03-01"
+    ]
+  },
+  {
+    "key": "Egv.DocumentsNotAccepted",
+    "area": "EGV",
+    "text": "All required documents must be accepted before the application can be approved.",
+    "usedBy": [
+      "AC-EGV-002-03-03"
+    ]
+  },
+  {
+    "key": "Egv.Status",
+    "area": "EGV",
+    "text": "Status texts per application status (Egv.Status.AwaitingFee, .UnderReview, .ResubmissionRequested, .Approved, .Rejected, .Issued, .Closed, .Cancelled).",
+    "usedBy": [
+      "AC-EGV-002-04-02"
+    ]
+  },
+  {
+    "key": "Egv.NoSlotAvailable",
+    "area": "EGV",
+    "text": "No appointment is available at the moment. Please try again later or contact us.",
+    "usedBy": [
+      "AC-EGV-003-01-02"
+    ]
+  },
+  {
+    "key": "Egv.WorkflowRequired",
+    "area": "EGV",
+    "text": "This service cannot be applied for at the moment.",
+    "usedBy": [
+      "AC-EGV-001-02-05"
+    ]
+  },
+  {
+    "key": "Egv.ShipmentNotAllowed",
+    "area": "EGV",
+    "text": "The document cannot be sent before it is issued.",
+    "usedBy": [
+      "AC-EGV-004-02-02"
+    ]
+  },
+  {
+    "key": "Egv.NotYourAgency",
+    "area": "EGV",
+    "text": "You can manage only users of your own agency.",
+    "usedBy": [
+      "AC-EGV-006-02-02"
+    ]
+  },
+  {
+    "key": "Fin.ConsentRequired",
+    "area": "FIN",
+    "text": "We cannot send your application without your agreement to share the listed data.",
+    "usedBy": [
+      "AC-FIN-001-03-02"
+    ]
+  },
+  {
+    "key": "Fin.SubsidyBudgetExhausted",
+    "area": "FIN",
+    "text": "The subsidy for this item is no longer available.",
+    "usedBy": [
+      "AC-FIN-004-02-02",
+      "AC-FIN-004-02-03"
+    ]
+  },
+  {
+    "key": "Fin.NotEligible",
+    "area": "FIN",
+    "text": "We could not confirm that you are eligible for this scheme.",
+    "usedBy": [
+      "AC-FIN-004-03-01"
+    ]
+  },
+  {
+    "key": "Fin.AccountInvalid",
+    "area": "FIN",
+    "text": "The account or reference number was not accepted by the provider. Please check it and try again.",
+    "usedBy": [
+      "AC-FIN-005-03-01"
+    ]
+  },
+  {
+    "key": "Iam.Otp.Sent",
+    "area": "IAM",
+    "text": "We sent a code by SMS. Enter it to continue.",
+    "usedBy": [
+      "AC-IAM-002-01-01"
+    ]
+  },
+  {
+    "key": "Iam.Otp.Expired",
+    "area": "IAM",
+    "text": "This code has expired. Request a new code.",
+    "usedBy": [
+      "AC-IAM-002-01-05"
+    ]
+  },
+  {
+    "key": "Iam.Otp.TooManyAttempts",
+    "area": "IAM",
+    "text": "Too many wrong codes. Request a new code later.",
+    "usedBy": [
+      "AC-IAM-002-01-04"
+    ]
+  },
+  {
+    "key": "Iam.Otp.Unavailable",
+    "area": "IAM",
+    "text": "We cannot send a code right now. Please try again later.",
+    "usedBy": [
+      "AC-IAM-002-01-06"
+    ]
+  },
+  {
+    "key": "Iam.PhoneInUse",
+    "area": "IAM",
+    "text": "This mobile number already has an account. Please log in.",
+    "usedBy": [
+      "AC-IAM-002-01-03",
+      "AC-IAM-026-02-02"
+    ]
+  },
+  {
+    "key": "Iam.RecoveryRequestReceived",
+    "area": "IAM",
+    "text": "If an account exists for these details, we have sent instructions.",
+    "usedBy": [
+      "AC-IAM-003-04-01"
+    ]
+  },
+  {
+    "key": "Iam.MfaRequired",
+    "area": "IAM",
+    "text": "Your role requires a second login check. Set it up to continue.",
+    "usedBy": [
+      "AC-IAM-004-01-01"
+    ]
+  },
+  {
+    "key": "Iam.SessionExpired",
+    "area": "IAM",
+    "text": "You were logged out because you were inactive. Please log in again.",
+    "usedBy": [
+      "AC-IAM-006-01-01"
+    ]
+  },
+  {
+    "key": "Iam.SessionLimitReached",
+    "area": "IAM",
+    "text": "You are logged in on too many devices. Log out elsewhere and try again.",
+    "usedBy": [
+      "AC-IAM-006-02-01"
+    ]
+  },
+  {
+    "key": "Iam.ScopeDenied",
+    "area": "IAM",
+    "text": "You do not have access to this item.",
+    "usedBy": [
+      "AC-IAM-008-01-02",
+      "AC-IAM-008-01-03",
+      "AC-IAM-026-03-02",
+      "AC-IAM-026-03-03"
+    ]
+  },
+  {
+    "key": "Iam.DelegationNotAllowed",
+    "area": "IAM",
+    "text": "You cannot delegate this permission.",
+    "usedBy": [
+      "AC-IAM-009-01-02"
+    ]
+  },
+  {
+    "key": "Iam.AccountDeactivated",
+    "area": "IAM",
+    "text": "Your account is deactivated. You can reactivate it at any time.",
+    "usedBy": [
+      "AC-IAM-010-04-01"
+    ]
+  },
+  {
+    "key": "Iam.AccountReactivated",
+    "area": "IAM",
+    "text": "Your account is active again.",
+    "usedBy": [
+      "AC-IAM-010-04-02"
+    ]
+  },
+  {
+    "key": "Iam.ContactSupport",
+    "area": "IAM",
+    "text": "Please contact us to reactivate this account.",
+    "usedBy": [
+      "AC-IAM-010-04-03"
+    ]
+  },
+  {
+    "key": "Iam.Invitation",
+    "area": "IAM",
+    "text": "You are invited to an account. Open the link to set your password and finish set-up.",
+    "usedBy": [
+      "AC-IAM-011-01-01 (default text of message template Iam.Invitation.Email)"
+    ]
+  },
+  {
+    "key": "Iam.InvitationExpired",
+    "area": "IAM",
+    "text": "This invitation is no longer valid. Ask for a new invitation.",
+    "usedBy": [
+      "AC-IAM-011-01-03"
+    ]
+  },
+  {
+    "key": "Iam.NewCountryLogin",
+    "area": "IAM",
+    "text": "We noticed a login to your account from a new country.",
+    "usedBy": [
+      "AC-IAM-012-02-02 (SMS text",
+      "the email uses message template Iam.NewCountryLogin.CustomerNotification)"
+    ]
+  },
+  {
+    "key": "Iam.TermsUpdated",
+    "area": "IAM",
+    "text": "Our terms have changed. Please read and accept them to continue.",
+    "usedBy": [
+      "AC-IAM-016-02-01"
+    ]
+  },
+  {
+    "key": "Iam.TermsDeclined",
+    "area": "IAM",
+    "text": "You have been logged out because the new terms were not accepted.",
+    "usedBy": [
+      "AC-IAM-016-02-02"
+    ]
+  },
+  {
+    "key": "Iam.CorrectionRequestReceived",
+    "area": "IAM",
+    "text": "We received your correction request and will reply by the date shown.",
+    "usedBy": [
+      "AC-IAM-017-03-01"
+    ]
+  },
+  {
+    "key": "Iam.PickupPointUnavailable",
+    "area": "IAM",
+    "text": "Your preferred pickup point is no longer available. Please choose another.",
+    "usedBy": [
+      "AC-IAM-015-01-02"
+    ]
+  },
+  {
+    "key": "Iam.TradeApplicationReceived",
+    "area": "IAM",
+    "text": "Thank you. We will review your trade account application.",
+    "usedBy": [
+      "AC-IAM-023-01-01"
+    ]
+  },
+  {
+    "key": "Iam.TradeApplicationApproved",
+    "area": "IAM",
+    "text": "Your trade account is approved.",
+    "usedBy": [
+      "AC-IAM-023-02-01 (SMS text",
+      "the email uses message template Iam.TradeApplicationApproved.CustomerNotification)"
+    ]
+  },
+  {
+    "key": "Iam.AgentNotAssigned",
+    "area": "IAM",
+    "text": "You are not assigned to an outlet. Contact your administrator.",
+    "usedBy": [
+      "AC-IAM-026-04-01"
+    ]
+  },
+  {
+    "key": "Iam.ProductRoleProtected",
+    "area": "IAM",
+    "text": "This role is used by product modules. Its system name cannot be changed and it cannot be deleted.",
+    "usedBy": [
+      "AC-IAM-007-04-03"
+    ]
+  },
+  {
+    "key": "Iam.PermissionExcluded",
+    "area": "IAM",
+    "text": "This permission cannot be given to this role.",
+    "usedBy": [
+      "AC-IAM-007-04-05"
+    ]
+  },
+  {
+    "key": "Iam.ImpersonationNotAllowed",
+    "area": "IAM",
+    "text": "You cannot act for this customer.",
+    "usedBy": [
+      "AC-IAM-010-03-02"
+    ]
+  },
+  {
+    "key": "Iam.BudgetExceeded",
+    "area": "IAM",
+    "text": "This order exceeds the remaining budget of the cost centre.",
+    "usedBy": [
+      "AC-IAM-027-01-02"
+    ]
+  },
+  {
+    "key": "Int.WebhookUrlNotHttps",
+    "area": "INT",
+    "text": "The notification address must start with https://.",
+    "usedBy": [
+      "AC-INT-003-02-03"
+    ]
+  },
+  {
+    "key": "Int.ReasonRequired",
+    "area": "INT",
+    "text": "Enter a reason before you continue.",
+    "usedBy": [
+      "AC-INT-004-02-04"
+    ]
+  },
+  {
+    "key": "Int.ErpManagedField",
+    "area": "INT",
+    "text": "This field is managed in the connected system. Changes made here are replaced at the next synchronisation.",
+    "usedBy": [
+      "AC-INT-005-02-02"
+    ]
+  },
+  {
+    "key": "Int.SubmissionAwaitingApproval",
+    "area": "INT",
+    "text": "The submission is saved and waits for approval. Nothing has been sent.",
+    "usedBy": [
+      "AC-INT-009-01-01"
+    ]
+  },
+  {
+    "key": "Int.CannotApproveOwn",
+    "area": "INT",
+    "text": "You cannot approve a submission you prepared.",
+    "usedBy": [
+      "AC-INT-009-01-03"
+    ]
+  },
+  {
+    "key": "Inv.HeldByOthers",
+    "area": "INV",
+    "text": "Only {0} of this item can be added now because other customers are completing their purchase.",
+    "usedBy": [
+      "AC-INV-004-01-02",
+      "AC-INV-004-01-03",
+      "AC-INV-004-01-09"
+    ]
+  },
+  {
+    "key": "Inv.UnpaidOrderReminder",
+    "area": "INV",
+    "text": "Your order {0} is waiting for payment. Please complete your payment by {1}.",
+    "usedBy": [
+      "AC-INV-004-02-01 (default content of event code Inv.UnpaidOrderReminder",
+      "registered with TRK through IC-TRK-04 RegisterEventCode",
+      "TRK holds the channel variants)"
+    ]
+  },
+  {
+    "key": "Inv.UseStockAdjustment",
+    "area": "INV",
+    "text": "Stock quantities are changed through a stock adjustment. Your changes were not saved.",
+    "usedBy": [
+      "AC-INV-005-03-01",
+      "AC-INV-005-03-02"
+    ]
+  },
+  {
+    "key": "Inv.AdjustmentReasonRequired",
+    "area": "INV",
+    "text": "Select a reason for this stock adjustment.",
+    "usedBy": [
+      "AC-INV-005-01-02"
+    ]
+  },
+  {
+    "key": "Inv.AdjustmentBelowZero",
+    "area": "INV",
+    "text": "This adjustment would make the available stock negative.",
+    "usedBy": [
+      "AC-INV-005-01-04"
+    ]
+  },
+  {
+    "key": "Inv.AdjustmentNeedsApproval",
+    "area": "INV",
+    "text": "This adjustment needs approval before the stock changes.",
+    "usedBy": [
+      "AC-INV-005-02-01"
+    ]
+  },
+  {
+    "key": "Inv.CannotApproveOwn",
+    "area": "INV",
+    "text": "You cannot approve an adjustment you requested.",
+    "usedBy": [
+      "AC-INV-005-02-02"
+    ]
+  },
+  {
+    "key": "Inv.WarehouseCodeDuplicate",
+    "area": "INV",
+    "text": "The warehouse code is empty or already used.",
+    "usedBy": [
+      "AC-INV-002-02-01"
+    ]
+  },
+  {
+    "key": "Inv.CoordinatesInvalid",
+    "area": "INV",
+    "text": "Latitude must be between -90 and 90 and longitude between -180 and 180.",
+    "usedBy": [
+      "AC-INV-002-02-02"
+    ]
+  },
+  {
+    "key": "Inv.ReceiptWithoutPo",
+    "area": "INV",
+    "text": "A receipt must refer to a purchase order.",
+    "usedBy": [
+      "AC-INV-006-01-02"
+    ]
+  },
+  {
+    "key": "Inv.OverReceipt",
+    "area": "INV",
+    "text": "The quantity received is more than the quantity still open on the purchase order.",
+    "usedBy": [
+      "AC-INV-006-02-03"
+    ]
+  },
+  {
+    "key": "Inv.TransferInsufficientStock",
+    "area": "INV",
+    "text": "The source warehouse does not have enough available stock for this transfer.",
+    "usedBy": [
+      "AC-INV-007-01-02"
+    ]
+  },
+  {
+    "key": "Inv.LotRequired",
+    "area": "INV",
+    "text": "Enter the lot number, manufacture date and expiry date.",
+    "usedBy": [
+      "AC-INV-006-01-03",
+      "AC-INV-009-01-01",
+      "AC-INV-009-03-03"
+    ]
+  },
+  {
+    "key": "Inv.LotNotSellable",
+    "area": "INV",
+    "text": "This lot cannot be shipped because it is not released.",
+    "usedBy": [
+      "AC-INV-009-03-01",
+      "AC-INV-009-03-03"
+    ]
+  },
+  {
+    "key": "Inv.SerialCountMismatch",
+    "area": "INV",
+    "text": "Enter one serial number for each unit.",
+    "usedBy": [
+      "AC-INV-006-01-03",
+      "AC-INV-010-02-01 (IC-INV-07)"
+    ]
+  },
+  {
+    "key": "Inv.SerialNotAvailable",
+    "area": "INV",
+    "text": "This serial number is unknown or not in stock.",
+    "usedBy": [
+      "AC-INV-010-01-02"
+    ]
+  },
+  {
+    "key": "Log.NoDeliveryAvailable",
+    "area": "LOG",
+    "text": "Delivery is not available to this address. Please choose another address or a pickup point.",
+    "usedBy": [
+      "AC-LOG-001-01-04",
+      "AC-LOG-004-03-03"
+    ]
+  },
+  {
+    "key": "Log.SellerAreaNotCovered",
+    "area": "LOG",
+    "text": "Some items cannot be delivered to this address by their seller: {0}.",
+    "usedBy": [
+      "AC-LOG-004-02-01"
+    ]
+  },
+  {
+    "key": "Log.OutletClosed",
+    "area": "LOG",
+    "text": "This pickup point is temporarily closed.",
+    "usedBy": [
+      "AC-LOG-003-02-01"
+    ]
+  },
+  {
+    "key": "Log.OutletFull",
+    "area": "LOG",
+    "text": "This pickup point cannot accept more parcels at the moment.",
+    "usedBy": [
+      "AC-LOG-003-02-02"
+    ]
+  },
+  {
+    "key": "Log.FeeBreakdown",
+    "area": "LOG",
+    "text": "Delivery fee breakdown",
+    "usedBy": [
+      "AC-LOG-002-02-01"
+    ]
+  },
+  {
+    "key": "Log.EdtRange",
+    "area": "LOG",
+    "text": "Expected delivery: {0} to {1}",
+    "usedBy": [
+      "AC-LOG-005-01-03"
+    ]
+  },
+  {
+    "key": "Log.EdtUnavailable",
+    "area": "LOG",
+    "text": "The expected delivery date is not available.",
+    "usedBy": [
+      "AC-LOG-005-01-04"
+    ]
+  },
+  {
+    "key": "Log.PackMismatch",
+    "area": "LOG",
+    "text": "The packed items do not match the order. Check the items before sealing.",
+    "usedBy": [
+      "AC-LOG-009-02-01"
+    ]
+  },
+  {
+    "key": "Log.DateEditReasonRequired",
+    "area": "LOG",
+    "text": "Enter a reason for changing this date.",
+    "usedBy": [
+      "AC-LOG-010-01-03"
+    ]
+  },
+  {
+    "key": "Log.PodRequired",
+    "area": "LOG",
+    "text": "This shipment needs proof of delivery before it can be marked as delivered.",
+    "usedBy": [
+      "AC-LOG-012-02-01",
+      "AC-LOG-012-02-02"
+    ]
+  },
+  {
+    "key": "Log.CodeInvalid",
+    "area": "LOG",
+    "text": "The code does not match. Please check it and try again.",
+    "usedBy": [
+      "AC-LOG-012-02-04"
+    ]
+  },
+  {
+    "key": "Log.CustomsNotAccepted",
+    "area": "LOG",
+    "text": "The customs declaration must be accepted before this parcel is dispatched.",
+    "usedBy": [
+      "AC-LOG-016-01-03"
+    ]
+  },
+  {
+    "key": "Log.AddressChangeNotAllowed",
+    "area": "LOG",
+    "text": "The delivery address can no longer be changed for this order.",
+    "usedBy": [
+      "AC-LOG-017-01-02"
+    ]
+  },
+  {
+    "key": "Log.AddressChangeFeeDiffers",
+    "area": "LOG",
+    "text": "This change would change the delivery fee. Please contact us to make it.",
+    "usedBy": [
+      "AC-LOG-017-01-03"
+    ]
+  },
+  {
+    "key": "Log.ShipmentLocked",
+    "area": "LOG",
+    "text": "This shipment has an active courier booking. Cancel the booking first.",
+    "usedBy": [
+      "AC-LOG-017-01-04",
+      "BR-LOG-160"
+    ]
+  },
+  {
+    "key": "Log.HoldingCharge",
+    "area": "LOG",
+    "text": "Storage charge due at collection: {0}",
+    "usedBy": [
+      "AC-LOG-017-02-01"
+    ]
+  },
+  {
+    "key": "Log.S10Invalid",
+    "area": "LOG",
+    "text": "The tracking number is not a valid S10 identifier.",
+    "usedBy": [
+      "AC-LOG-020-02-01"
+    ]
+  },
+  {
+    "key": "Log.UnknownParcel",
+    "area": "LOG",
+    "text": "This parcel is not expected for drop-off.",
+    "usedBy": [
+      "AC-LOG-022-02-02"
+    ]
+  },
+  {
+    "key": "Log.SellerPickupScheduled",
+    "area": "LOG",
+    "text": "A collection of your parcels is booked for {0} between {1} and {2}.",
+    "usedBy": [
+      "Event code default text (BR-LOG-180",
+      "AC-LOG-011-02-01)"
+    ]
+  },
+  {
+    "key": "Log.DropOffAccepted",
+    "area": "LOG",
+    "text": "Your parcel {0} was accepted at {1} on {2}.",
+    "usedBy": [
+      "Event code default text (BR-LOG-180",
+      "AC-LOG-022-02-01)"
+    ]
+  },
+  {
+    "key": "Log.ExceptionEscalated",
+    "area": "LOG",
+    "text": "Delivery exception {0} for shipment {1} has been escalated: {2}.",
+    "usedBy": [
+      "Event code default text (BR-LOG-180",
+      "AC-LOG-013-03-02)"
+    ]
+  },
+  {
+    "key": "Log.CodDiscrepancy",
+    "area": "LOG",
+    "text": "Cash on delivery remittance {0} differs from the expected amount by {1}.",
+    "usedBy": [
+      "Event code default text (BR-LOG-180",
+      "AC-LOG-014-01-02)"
+    ]
+  },
+  {
+    "key": "Log.StaffAlert",
+    "area": "LOG",
+    "text": "Logistics alert: {0}",
+    "usedBy": [
+      "Event code default text (BR-LOG-180",
+      "§13 staff alerts)"
+    ]
+  },
+  {
+    "key": "Mkt.ContentSubmitted",
+    "area": "MKT",
+    "text": "Your change was saved for approval. It will be published when it is approved.",
+    "usedBy": [
+      "AC-MKT-008-01-01"
+    ]
+  },
+  {
+    "key": "Mkt.SelfApprovalNotAllowed",
+    "area": "MKT",
+    "text": "You cannot approve your own change.",
+    "usedBy": [
+      "AC-MKT-008-01-04"
+    ]
+  },
+  {
+    "key": "Mkt.PopupSubscribed",
+    "area": "MKT",
+    "text": "Thank you. Please check your email to confirm your subscription.",
+    "usedBy": [
+      "AC-MKT-006-02-01"
+    ]
+  },
+  {
+    "key": "Mkt.DiscountLimitReached",
+    "area": "MKT",
+    "text": "This promo code has reached its usage limit. Your order was not placed; please remove the code and try again.",
+    "usedBy": [
+      "AC-MKT-001-03-04",
+      "IC-MKT-04"
+    ]
+  },
+  {
+    "key": "Mkt.VendorDiscountScope",
+    "area": "MKT",
+    "text": "You can create discounts only for your own products.",
+    "usedBy": [
+      "AC-MKT-014-02-02 — Withdrawn (VER-500): key not installed",
+      "the native actions enforce the scope"
+    ]
+  },
+  {
+    "key": "Ord.TransitionNotAllowed",
+    "area": "ORD",
+    "text": "This change of order stage is not allowed.",
+    "usedBy": [
+      "AC-ORD-002-02-01",
+      "AC-ORD-002-02-02"
+    ]
+  },
+  {
+    "key": "Ord.ReasonRequired",
+    "area": "ORD",
+    "text": "Please choose a reason for this change.",
+    "usedBy": [
+      "AC-ORD-002-02-03",
+      "AC-ORD-003-01-01",
+      "AC-ORD-004-02-02"
+    ]
+  },
+  {
+    "key": "Ord.ApprovalPending",
+    "area": "ORD",
+    "text": "This change has been sent for approval.",
+    "usedBy": [
+      "AC-ORD-003-03-01"
+    ]
+  },
+  {
+    "key": "Ord.OrderBusy",
+    "area": "ORD",
+    "text": "This order is being changed by someone else. Please try again.",
+    "usedBy": [
+      "AC-ORD-003-04-01"
+    ]
+  },
+  {
+    "key": "Ord.AcceptanceBlockedByDispute",
+    "area": "ORD",
+    "text": "The order cannot be accepted while a dispute is open.",
+    "usedBy": [
+      "AC-ORD-002-04-03"
+    ]
+  },
+  {
+    "key": "Ord.CancelNotAllowed",
+    "area": "ORD",
+    "text": "This order can no longer be cancelled.",
+    "usedBy": [
+      "AC-ORD-004-01-02"
+    ]
+  },
+  {
+    "key": "Ord.OrderOnHold",
+    "area": "ORD",
+    "text": "This order is on hold and cannot be shipped or handed over.",
+    "usedBy": [
+      "AC-ORD-005-01-05",
+      "AC-ORD-010-01-02"
+    ]
+  },
+  {
+    "key": "Ord.MaskInvalid",
+    "area": "ORD",
+    "text": "The order number format contains an unknown token.",
+    "usedBy": [
+      "AC-ORD-007-01-05"
+    ]
+  },
+  {
+    "key": "Ord.InvoiceSettingsMissing",
+    "area": "ORD",
+    "text": "Invoices cannot be issued until the company invoice details are completed.",
+    "usedBy": [
+      "AC-ORD-009-02-02"
+    ]
+  },
+  {
+    "key": "Ord.NegotiationLimitReached",
+    "area": "ORD",
+    "text": "No more counter-offers are allowed for this quote.",
+    "usedBy": [
+      "AC-ORD-013-02-02"
+    ]
+  },
+  {
+    "key": "Ord.CartWillBeReplaced",
+    "area": "ORD",
+    "text": "Accepting this quote will replace the items in your cart.",
+    "usedBy": [
+      "AC-ORD-013-03-01"
+    ]
+  },
+  {
+    "key": "Ord.QuoteExpired",
+    "area": "ORD",
+    "text": "This quote has expired and can no longer be accepted.",
+    "usedBy": [
+      "AC-ORD-013-04-01"
+    ]
+  },
+  {
+    "key": "Ord.ContractQuantityExceeded",
+    "area": "ORD",
+    "text": "This drawdown is more than the quantity left on the contract.",
+    "usedBy": [
+      "AC-ORD-022-02-01"
+    ]
+  },
+  {
+    "key": "Ord.ProformaExpired",
+    "area": "ORD",
+    "text": "This proforma invoice has expired. Please request a new one.",
+    "usedBy": [
+      "AC-ORD-025-01-02"
+    ]
+  },
+  {
+    "key": "Ord.SampleLimitReached",
+    "area": "ORD",
+    "text": "You have reached the sample limit for this product.",
+    "usedBy": [
+      "AC-ORD-027-02-01"
+    ]
+  },
+  {
+    "key": "Pay.NoMethodAvailable",
+    "area": "PAY",
+    "text": "No payment method is available for this order. Please contact us for help.",
+    "usedBy": [
+      "AC-PAY-001-03-02"
+    ]
+  },
+  {
+    "key": "Pay.CheckoutRestricted",
+    "area": "PAY",
+    "text": "We cannot complete this checkout. Please contact us for help.",
+    "usedBy": [
+      "AC-PAY-018-03-01"
+    ]
+  },
+  {
+    "key": "Pay.Status.Pending",
+    "area": "PAY",
+    "text": "Your payment is being confirmed. You will receive a message when it completes.",
+    "usedBy": [
+      "AC-PAY-011-01-01",
+      "§13 (TRK event code)"
+    ]
+  },
+  {
+    "key": "Pay.Status.Failed",
+    "area": "PAY",
+    "text": "Your payment did not go through. You can try again or choose another method.",
+    "usedBy": [
+      "AC-PAY-011-01-01",
+      "§13 (TRK event code)"
+    ]
+  },
+  {
+    "key": "Pay.RetryExpired",
+    "area": "PAY",
+    "text": "The time to pay for this order has passed. Please place a new order.",
+    "usedBy": [
+      "AC-PAY-011-02-02"
+    ]
+  },
+  {
+    "key": "Pay.WalletInsufficient",
+    "area": "PAY",
+    "text": "Your wallet balance is not enough for this order.",
+    "usedBy": [
+      "AC-PAY-009-01-03",
+      "AC-PAY-009-01-04"
+    ]
+  },
+  {
+    "key": "Pay.RefundAfterCancel",
+    "area": "PAY",
+    "text": "We received your payment after the order was cancelled. It is being refunded to you.",
+    "usedBy": [
+      "BR-PAY-083 (on-screen and SMS text",
+      "the email uses message template Pay.RefundAfterCancel.CustomerNotification)"
+    ]
+  },
+  {
+    "key": "Pay.LcNotVerified",
+    "area": "PAY",
+    "text": "A shipment cannot be created until the letter of credit is verified.",
+    "usedBy": [
+      "AC-PAY-006-02-02"
+    ]
+  },
+  {
+    "key": "Pay.MethodNotAllowed",
+    "area": "PAY",
+    "text": "The payment method you chose is no longer available for this order. Please choose another method.",
+    "usedBy": [
+      "AC-PAY-001-03-03"
+    ]
+  },
+  {
+    "key": "Pay.RefundStatus",
+    "area": "PAY",
+    "text": "Your refund for order {order} is now {status}.",
+    "usedBy": [
+      "§13 (TRK event code",
+      "BR-PAY-160)"
+    ]
+  },
+  {
+    "key": "Pay.ReversalRecorded",
+    "area": "PAY",
+    "text": "The provider reversed payment {reference} for order {order}.",
+    "usedBy": [
+      "§13 (TRK event code",
+      "BR-PAY-160)"
+    ]
+  },
+  {
+    "key": "Pay.RefundAwaitingApproval",
+    "area": "PAY",
+    "text": "Refund {reference} for order {order} is waiting for your approval.",
+    "usedBy": [
+      "§13 (TRK event code",
+      "BR-PAY-160)"
+    ]
+  },
+  {
+    "key": "Pay.LcRejected",
+    "area": "PAY",
+    "text": "The letter of credit for order {order} was rejected or has expired.",
+    "usedBy": [
+      "§13 (TRK event code",
+      "BR-PAY-160)"
+    ]
+  },
+  {
+    "key": "Pay.EscrowReleaseFailed",
+    "area": "PAY",
+    "text": "The escrow release for order {order}, stage {stage}, failed.",
+    "usedBy": [
+      "§13 (TRK event code",
+      "BR-PAY-160)"
+    ]
+  },
+  {
+    "key": "Pay.ChargebackDeadline",
+    "area": "PAY",
+    "text": "The response deadline for chargeback {reference} is approaching.",
+    "usedBy": [
+      "§13 (TRK event code",
+      "BR-PAY-160)"
+    ]
+  },
+  {
+    "key": "Pay.FiscalSubmissionFailed",
+    "area": "PAY",
+    "text": "Submission of document {document} to the tax authority keeps failing.",
+    "usedBy": [
+      "§13 (TRK event code",
+      "BR-PAY-160)"
+    ]
+  },
+  {
+    "key": "Pay.ShiftDifference",
+    "area": "PAY",
+    "text": "Shift {shift} was closed with a cash difference of {difference}.",
+    "usedBy": [
+      "§13 (TRK event code",
+      "BR-PAY-160)"
+    ]
+  },
+  {
+    "key": "Plt.ChangePending",
+    "area": "PLT",
+    "text": "Your change was saved for approval. It takes effect when it is approved.",
+    "usedBy": [
+      "AC-PLT-004-01-02"
+    ]
+  },
+  {
+    "key": "Plt.ConfigInvalid",
+    "area": "PLT",
+    "text": "The value of {0} is not valid: {1}.",
+    "usedBy": [
+      "AC-PLT-004-01-01"
+    ]
+  },
+  {
+    "key": "Plt.ChangeStale",
+    "area": "PLT",
+    "text": "This change cannot be applied because the setting was changed after the request. Create a new change.",
+    "usedBy": [
+      "AC-PLT-004-03-04"
+    ]
+  },
+  {
+    "key": "Plt.ApproveOwnChange",
+    "area": "PLT",
+    "text": "You cannot approve a change you requested.",
+    "usedBy": [
+      "AC-PLT-004-03-03"
+    ]
+  },
+  {
+    "key": "Plt.PackKeyUnknown",
+    "area": "PLT",
+    "text": "The pack contains an unknown setting key or an invalid value: {0}.",
+    "usedBy": [
+      "AC-PLT-003-01-04"
+    ]
+  },
+  {
+    "key": "Plt.PackPermissionUnknown",
+    "area": "PLT",
+    "text": "The pack contains an unknown permission: {0}.",
+    "usedBy": [
+      "AC-PLT-003-01-05"
+    ]
+  },
+  {
+    "key": "Plt.PackStoreUnknown",
+    "area": "PLT",
+    "text": "The pack refers to a store that does not exist here: {0}.",
+    "usedBy": [
+      "AC-PLT-003-01-06"
+    ]
+  },
+  {
+    "key": "Plt.PackCountryInvalid",
+    "area": "PLT",
+    "text": "A pack set must name exactly one country pack.",
+    "usedBy": [
+      "AC-PLT-003-01-10"
+    ]
+  },
+  {
+    "key": "Plt.PackSecretRefused",
+    "area": "PLT",
+    "text": "The pack contains a secret value ({0}). Secrets are entered in each instance, never in packs.",
+    "usedBy": [
+      "AC-PLT-003-01-07"
+    ]
+  },
+  {
+    "key": "Plt.PackVersionMismatch",
+    "area": "PLT",
+    "text": "This pack was exported from a newer product release than this instance runs.",
+    "usedBy": [
+      "AC-PLT-005-02-02"
+    ]
+  },
+  {
+    "key": "Plt.PackApplyFailed",
+    "area": "PLT",
+    "text": "The configuration could not be applied. Nothing was changed. See the run report.",
+    "usedBy": [
+      "AC-PLT-003-02-01",
+      "AC-PLT-003-02-02"
+    ]
+  },
+  {
+    "key": "Plt.PackConflict",
+    "area": "PLT",
+    "text": "{0} settings were changed here since the last pack. Choose which value to keep for each.",
+    "usedBy": [
+      "AC-PLT-003-02-05"
+    ]
+  },
+  {
+    "key": "Plt.RestartRequired",
+    "area": "PLT",
+    "text": "Plugin changes take effect after the application restarts.",
+    "usedBy": [
+      "AC-PLT-003-01-08",
+      "AC-PLT-022-01-05"
+    ]
+  },
+  {
+    "key": "Plt.FeatureDependencyOff",
+    "area": "PLT",
+    "text": "This feature needs {0}, which is off.",
+    "usedBy": [
+      "AC-PLT-022-01-03"
+    ]
+  },
+  {
+    "key": "Plt.FeatureAlwaysOn",
+    "area": "PLT",
+    "text": "This is a platform core feature and cannot be switched off.",
+    "usedBy": [
+      "AC-PLT-022-01-04"
+    ]
+  },
+  {
+    "key": "Plt.OverrideNotAllowed",
+    "area": "PLT",
+    "text": "This setting cannot be overridden for a transaction type or a single transaction.",
+    "usedBy": [
+      "AC-PLT-003-03-03"
+    ]
+  },
+  {
+    "key": "Plt.OverrideReasonRequired",
+    "area": "PLT",
+    "text": "Enter the reason for this override.",
+    "usedBy": [
+      "AC-PLT-003-03-02"
+    ]
+  },
+  {
+    "key": "Plt.CloneNotAuthorised",
+    "area": "PLT",
+    "text": "A copy of another client's configuration needs a recorded authorisation.",
+    "usedBy": [
+      "AC-PLT-005-04-01"
+    ]
+  },
+  {
+    "key": "Plt.InstanceNotSignedOff",
+    "area": "PLT",
+    "text": "The live site cannot be activated before UAT sign-off is recorded.",
+    "usedBy": [
+      "AC-PLT-001-01-03"
+    ]
+  },
+  {
+    "key": "Plt.MigrationRowInvalid",
+    "area": "PLT",
+    "text": "Row {0}: {1}",
+    "usedBy": [
+      "AC-PLT-023-01-01"
+    ]
+  },
+  {
+    "key": "Plt.IdempotencyKeyRequired",
+    "area": "PLT",
+    "text": "This request changes data and needs an idempotency key.",
+    "usedBy": [
+      "AC-PLT-027-02-04"
+    ]
+  },
+  {
+    "key": "Plt.ConcurrencyConflict",
+    "area": "PLT",
+    "text": "Someone else changed this record after you opened it. Review the current values and save again.",
+    "usedBy": [
+      "AC-PLT-027-01-01"
+    ]
+  },
+  {
+    "key": "Plt.Accessibility.HighContrast",
+    "area": "PLT",
+    "text": "High contrast",
+    "usedBy": [
+      "AC-PLT-018-02-01"
+    ]
+  },
+  {
+    "key": "Plt.Accessibility.LargerText",
+    "area": "PLT",
+    "text": "Larger text",
+    "usedBy": [
+      "AC-PLT-018-02-01"
+    ]
+  },
+  {
+    "key": "Plt.Help.TourReplay",
+    "area": "PLT",
+    "text": "Replay the tour",
+    "usedBy": [
+      "AC-PLT-019-01-02"
+    ]
+  },
+  {
+    "key": "Ret.ItemNotEligible",
+    "area": "RET",
+    "text": "One or more selected items cannot be returned. Please check your selection.",
+    "usedBy": [
+      "AC-RET-002-02-01"
+    ]
+  },
+  {
+    "key": "Ret.WindowSettingConflict",
+    "area": "RET",
+    "text": "The global return window is shorter than a rule window. Set it to 0 or to at least the longest rule window.",
+    "usedBy": [
+      "AC-RET-002-01-04"
+    ]
+  },
+  {
+    "key": "Ret.EvidenceLimit",
+    "area": "RET",
+    "text": "You have reached the maximum number of files for this return.",
+    "usedBy": [
+      "AC-RET-001-02-02"
+    ]
+  },
+  {
+    "key": "Ret.PickupBooked",
+    "area": "RET",
+    "text": "Your return pickup is booked. Keep the item ready at the time shown.",
+    "usedBy": [
+      "AC-RET-003-01-01"
+    ]
+  },
+  {
+    "key": "Ret.DropOffInstructions",
+    "area": "RET",
+    "text": "Take the item to one of the outlets listed and quote your return reference.",
+    "usedBy": [
+      "AC-RET-003-01-02"
+    ]
+  },
+  {
+    "key": "Ret.StatusChangeNotAllowed",
+    "area": "RET",
+    "text": "This status change is not allowed for this return or case.",
+    "usedBy": [
+      "AC-RET-004-01-02",
+      "BR-RET-001"
+    ]
+  },
+  {
+    "key": "Ret.FeesNotice",
+    "area": "RET",
+    "text": "Return fees may apply to these items. The estimated amounts are shown below.",
+    "usedBy": [
+      "AC-RET-006-02-01"
+    ]
+  },
+  {
+    "key": "Ret.CaseOpened",
+    "area": "RET",
+    "text": "Your case has been opened. We will contact you about the next steps.",
+    "usedBy": [
+      "AC-RET-007-01-01"
+    ]
+  },
+  {
+    "key": "Ret.RemedyProposed",
+    "area": "RET",
+    "text": "We have proposed a solution for your case. Please accept or reject it in your account.",
+    "usedBy": [
+      "AC-RET-007-02-02"
+    ]
+  },
+  {
+    "key": "Ret.MessageHidden",
+    "area": "RET",
+    "text": "This message has been hidden by a moderator.",
+    "usedBy": [
+      "AC-RET-011-03-01"
+    ]
+  },
+  {
+    "key": "Rpt.KpiFormulaInvalid",
+    "area": "RPT",
+    "text": "The formula uses a field that is not in the data dictionary.",
+    "usedBy": [
+      "AC-RPT-002-02-02"
+    ]
+  },
+  {
+    "key": "Rpt.AdSpendRowRejected",
+    "area": "RPT",
+    "text": "This row was not loaded. See the reason shown.",
+    "usedBy": [
+      "AC-RPT-011-02-01"
+    ]
+  },
+  {
+    "key": "Rpt.SuppressedSmallGroup",
+    "area": "RPT",
+    "text": "Not shown: too few records to publish safely.",
+    "usedBy": [
+      "AC-RPT-007-01-02"
+    ]
+  },
+  {
+    "key": "Sec.CookieBanner",
+    "area": "SEC",
+    "text": "We use necessary cookies to run this shop. With your consent we also use cookies for analytics and marketing. Choose what you allow.",
+    "usedBy": [
+      "AC-SEC-007-01-01"
+    ]
+  },
+  {
+    "key": "Sec.CookieSettingsSaved",
+    "area": "SEC",
+    "text": "Your cookie choices are saved.",
+    "usedBy": [
+      "AC-SEC-007-01-02"
+    ]
+  },
+  {
+    "key": "Sec.ChainBroken",
+    "area": "SEC",
+    "text": "Audit trail integrity check failed. Investigation required.",
+    "usedBy": [
+      "AC-SEC-004-02-03"
+    ]
+  },
+  {
+    "key": "Sec.AuditExportReady",
+    "area": "SEC",
+    "text": "Your audit export is ready to download.",
+    "usedBy": [
+      "AC-SEC-004-03-02"
+    ]
+  },
+  {
+    "key": "Sec.AuditorAccessExpired",
+    "area": "SEC",
+    "text": "Your auditor access has ended.",
+    "usedBy": [
+      "AC-SEC-010-01-03"
+    ]
+  },
+  {
+    "key": "Sec.DeadlineNotConfigured",
+    "area": "SEC",
+    "text": "The legal deadline for this case is not configured in the country profile.",
+    "usedBy": [
+      "AC-SEC-008-01-02"
+    ]
+  },
+  {
+    "key": "Sec.ProfileIncomplete",
+    "area": "SEC",
+    "text": "The country data-protection profile is incomplete.",
+    "usedBy": [
+      "AC-SEC-012-01-02"
+    ]
+  },
+  {
+    "key": "Sec.ServerSideAnalyticsBlocked",
+    "area": "SEC",
+    "text": "Server-side analytics events cannot be switched on: the country profile requires consent or is not configured.",
+    "usedBy": [
+      "AC-SEC-007-04-02"
+    ]
+  },
+  {
+    "key": "Sec.FileAccessDenied",
+    "area": "SEC",
+    "text": "You do not have access to this file.",
+    "usedBy": [
+      "AC-SEC-002-04-02",
+      "AC-SEC-002-04-04",
+      "AC-SEC-002-04-05"
+    ]
+  },
+  {
+    "key": "Sec.BreachNotice",
+    "area": "SEC",
+    "text": "We are writing to tell you about an incident that affected your personal data.",
+    "usedBy": [
+      "AC-SEC-008-02-01 (SMS text",
+      "emails use the breach message templates of the case)"
+    ]
+  },
+  {
+    "key": "Sel.TermsRequired",
+    "area": "SEL",
+    "text": "Please accept the seller terms to submit your application.",
+    "usedBy": [
+      "AC-SEL-006-01-01"
+    ]
+  },
+  {
+    "key": "Sel.ActivationBlocked",
+    "area": "SEL",
+    "text": "This seller cannot be activated until the application is approved and the current seller terms are accepted.",
+    "usedBy": [
+      "AC-SEL-003-01-07",
+      "BR-SEL-002"
+    ]
+  },
+  {
+    "key": "Sel.ApprovalBlocked",
+    "area": "SEL",
+    "text": "The application cannot be approved yet. Open items: {0}.",
+    "usedBy": [
+      "AC-SEL-003-01-03"
+    ]
+  },
+  {
+    "key": "Sel.ApplicationApproved",
+    "area": "SEL",
+    "text": "Your seller application has been approved.",
+    "usedBy": [
+      "AC-SEL-003-01-02 (TRK event code Sel.ApplicationApproved.SellerNotification",
+      "IC-TRK-04)"
+    ]
+  },
+  {
+    "key": "Sel.ApplicationRejected",
+    "area": "SEL",
+    "text": "Your seller application was not approved. Reason: {0}.",
+    "usedBy": [
+      "AC-SEL-003-01-04 (TRK event code Sel.ApplicationRejected.SellerNotification",
+      "IC-TRK-04)"
+    ]
+  },
+  {
+    "key": "Sel.DocumentExpiring",
+    "area": "SEL",
+    "text": "Your document {0} expires on {1}. Please upload a renewed document.",
+    "usedBy": [
+      "AC-SEL-002-04-01 (TRK event code Sel.DocumentExpiring.SellerNotification",
+      "IC-TRK-04)"
+    ]
+  },
+  {
+    "key": "Sel.ListingNotEligible",
+    "area": "SEL",
+    "text": "This product cannot be published: {0}.",
+    "usedBy": [
+      "AC-SEL-007-02-03",
+      "AC-SEL-003-02-03"
+    ]
+  },
+  {
+    "key": "Sel.PayoutAccountChangePending",
+    "area": "SEL",
+    "text": "A change to your payout account was requested and is waiting for approval.",
+    "usedBy": [
+      "AC-SEL-005-03-01 (TRK event code Sel.PayoutAccountChangePending.SellerNotification",
+      "IC-TRK-04)"
+    ]
+  },
+  {
+    "key": "Sel.SelfApprovalNotAllowed",
+    "area": "SEL",
+    "text": "You cannot approve a change you requested.",
+    "usedBy": [
+      "AC-SEL-005-03-03"
+    ]
+  },
+  {
+    "key": "Sel.StaffActionDenied",
+    "area": "SEL",
+    "text": "Your seller staff profile does not allow this action.",
+    "usedBy": [
+      "AC-SEL-009-01-02"
+    ]
+  },
+  {
+    "key": "Sel.RatingNotAllowed",
+    "area": "SEL",
+    "text": "You can rate this seller once, after your order is completed.",
+    "usedBy": [
+      "AC-SEL-012-01-02"
+    ]
+  },
+  {
+    "key": "Sel.UseSuspension",
+    "area": "SEL",
+    "text": "This seller is active. Suspend or blacklist the seller instead, so that its listings are paused.",
+    "usedBy": [
+      "AC-SEL-003-01-08",
+      "BR-SEL-002"
+    ]
+  },
+  {
+    "key": "Sel.Blocked",
+    "area": "SEL",
+    "text": "We cannot complete this request. Please contact us for help.",
+    "usedBy": [
+      "AC-SEL-013-02-02",
+      "AC-SEL-024-01-02"
+    ]
+  },
+  {
+    "key": "Sel.VacationNotice",
+    "area": "SEL",
+    "text": "This seller is away until {0}. {1}",
+    "usedBy": [
+      "AC-SEL-019-01-02"
+    ]
+  },
+  {
+    "key": "Sel.NoVerifiedPayoutAccount",
+    "area": "SEL",
+    "text": "The settlement cannot be paid until the seller has a verified payout account.",
+    "usedBy": [
+      "AC-SEL-017-02-03"
+    ]
+  },
+  {
+    "key": "Sel.LocationInUse",
+    "area": "SEL",
+    "text": "This location is used by open shipments and cannot be deactivated yet.",
+    "usedBy": [
+      "AC-SEL-018-01-02"
+    ]
+  },
+  {
+    "key": "Sel.FulfilmentNotAvailable",
+    "area": "SEL",
+    "text": "No fulfilment service is available for your locations yet.",
+    "usedBy": [
+      "AC-SEL-018-02-02"
+    ]
+  },
+  {
+    "key": "Sel.DuplicateRow",
+    "area": "SEL",
+    "text": "This row matches an existing participant or another row.",
+    "usedBy": [
+      "AC-SEL-015-02-01"
+    ]
+  },
+  {
+    "key": "Sel.PanelExpiring",
+    "area": "SEL",
+    "text": "Your approved-supplier status for {0} ends on {1}. Please renew.",
+    "usedBy": [
+      "AC-SEL-014-02-01 (TRK event code Sel.PanelExpiring.SellerNotification",
+      "IC-TRK-04)"
+    ]
+  },
+  {
+    "key": "Src.SortRelevance",
+    "area": "SRC",
+    "text": "Relevance",
+    "usedBy": [
+      "AC-SRC-005-01-02 (label of the \"position\" sort on the search page)"
+    ]
+  },
+  {
+    "key": "Src.LocationNeeded",
+    "area": "SRC",
+    "text": "Choose your district to use this filter.",
+    "usedBy": [
+      "AC-SRC-004-02-02"
+    ]
+  },
+  {
+    "key": "Src.PickupAvailable",
+    "area": "SRC",
+    "text": "Pickup available",
+    "usedBy": [
+      "AC-SRC-018-01-03"
+    ]
+  },
+  {
+    "key": "Src.SavedSearchLimit",
+    "area": "SRC",
+    "text": "You have reached the maximum number of saved searches.",
+    "usedBy": [
+      "AC-SRC-011-01-01"
+    ]
+  },
+  {
+    "key": "Src.HistoryCleared",
+    "area": "SRC",
+    "text": "Withdrawn (VER-500): not used; history terms are deleted one at a time natively",
+    "usedBy": [
+      "AC-SRC-012-01-03 (withdrawn)"
+    ]
+  },
+  {
+    "key": "Src.CannotApproveOwn",
+    "area": "SRC",
+    "text": "You cannot approve a proposal you submitted.",
+    "usedBy": [
+      "AC-SRC-016-02-01"
+    ]
+  },
+  {
+    "key": "Src.UseTaxonomyWorkflow",
+    "area": "SRC",
+    "text": "Categories are changed through a category proposal. Your changes were not saved.",
+    "usedBy": [
+      "AC-SRC-016-01-03"
+    ]
+  },
+  {
+    "key": "Src.SearchSlow",
+    "area": "SRC",
+    "text": "The search is taking longer than usual. Try again.",
+    "usedBy": [
+      "AC-SRC-023-01-01"
+    ]
+  },
+  {
+    "key": "Src.Offline",
+    "area": "SRC",
+    "text": "You are offline. We will search again when your connection returns.",
+    "usedBy": [
+      "AC-SRC-023-01-02"
+    ]
+  },
+  {
+    "key": "Src.SavedSearchMatch",
+    "area": "SRC",
+    "text": "New products match your saved search {0}.",
+    "usedBy": [
+      "AC-SRC-011-01-02 (default content of the TRK event code",
+      "registered through IC-TRK-04 RegisterEventCode)"
+    ]
+  },
+  {
+    "key": "Src.PriceDrop",
+    "area": "SRC",
+    "text": "The price of {0} has dropped to {1}.",
+    "usedBy": [
+      "AC-SRC-011-02-01 (default content of the TRK event code)"
+    ]
+  },
+  {
+    "key": "Src.TaxonomyDecision",
+    "area": "SRC",
+    "text": "A category proposal needs your decision, or your proposal was decided: {0}.",
+    "usedBy": [
+      "SRC-016 notifications (default content of the TRK event code)"
+    ]
+  },
+  {
+    "key": "Svc.QuoteRequired",
+    "area": "SVC",
+    "text": "This service is priced on request. Please ask for a quote.",
+    "usedBy": [
+      "AC-SVC-001-05-02"
+    ]
+  },
+  {
+    "key": "Svc.NotServiceProvider",
+    "area": "SVC",
+    "text": "Only service providers can manage service resources.",
+    "usedBy": [
+      "AC-SVC-002-05-01"
+    ]
+  },
+  {
+    "key": "Svc.CapacityConflict",
+    "area": "SVC",
+    "text": "Some bookings exceed the new capacity of this resource and must be moved.",
+    "usedBy": [
+      "AC-SVC-002-04-02"
+    ]
+  },
+  {
+    "key": "Svc.RescheduleNotAllowed",
+    "area": "SVC",
+    "text": "This booking can no longer be changed online. Please contact us.",
+    "usedBy": [
+      "AC-SVC-003-01-02"
+    ]
+  },
+  {
+    "key": "Svc.CancellationFee",
+    "area": "SVC",
+    "text": "A cancellation fee applies. The amount shown will be refunded.",
+    "usedBy": [
+      "AC-SVC-003-02-02"
+    ]
+  },
+  {
+    "key": "Svc.PriceCheckFailed",
+    "area": "SVC",
+    "text": "The amount for your booking could not be confirmed. Please try again or contact us.",
+    "usedBy": [
+      "AC-SVC-004-02-02"
+    ]
+  },
+  {
+    "key": "Svc.StageNotAllowed",
+    "area": "SVC",
+    "text": "This step is not allowed for the service order at its current stage.",
+    "usedBy": [
+      "AC-SVC-005-01-03"
+    ]
+  },
+  {
+    "key": "Svc.ConfirmService",
+    "area": "SVC",
+    "text": "Your service is marked as completed. Please confirm it was delivered or tell us if it was not.",
+    "usedBy": [
+      "AC-SVC-005-01-04"
+    ]
+  },
+  {
+    "key": "Svc.LocationNotCovered",
+    "area": "SVC",
+    "text": "This service is not available at the chosen location.",
+    "usedBy": [
+      "AC-SVC-006-03-01"
+    ]
+  },
+  {
+    "key": "Svc.RentalUnavailable",
+    "area": "SVC",
+    "text": "This item is not available for all the dates you chose.",
+    "usedBy": [
+      "AC-SVC-008-02-01"
+    ]
+  },
+  {
+    "key": "Svc.VoucherInvalid",
+    "area": "SVC",
+    "text": "This voucher is not valid.",
+    "usedBy": [
+      "AC-SVC-009-02-02"
+    ]
+  },
+  {
+    "key": "Trk.TrackNotFound",
+    "area": "TRK",
+    "text": "We could not find a parcel with this number. Please check it and try again.",
+    "usedBy": [
+      "AC-TRK-001-01-02"
+    ]
+  },
+  {
+    "key": "Trk.NoEventsYet",
+    "area": "TRK",
+    "text": "There are no tracking updates for this parcel yet.",
+    "usedBy": [
+      "AC-TRK-001-01-05"
+    ]
+  },
+  {
+    "key": "Trk.ShareLinkExpired",
+    "area": "TRK",
+    "text": "This tracking link has expired or was withdrawn.",
+    "usedBy": [
+      "AC-TRK-001-02-02"
+    ]
+  },
+  {
+    "key": "Trk.LastUpdated",
+    "area": "TRK",
+    "text": "Last updated: {0}",
+    "usedBy": [
+      "AC-TRK-001-03-01"
+    ]
+  },
+  {
+    "key": "Trk.Refresh",
+    "area": "TRK",
+    "text": "Refresh",
+    "usedBy": [
+      "AC-TRK-001-03-02"
+    ]
+  },
+  {
+    "key": "Trk.EmailBounced",
+    "area": "TRK",
+    "text": "Emails to this address are bouncing.",
+    "usedBy": [
+      "AC-TRK-004-02-01"
+    ]
+  },
+  {
+    "key": "Trk.Unsubscribed",
+    "area": "TRK",
+    "text": "You will no longer receive updates for this order.",
+    "usedBy": [
+      "AC-TRK-006-03-01"
+    ]
+  },
+  {
+    "key": "Trk.Subscribed",
+    "area": "TRK",
+    "text": "You will receive updates for this order.",
+    "usedBy": [
+      "AC-TRK-006-03-02"
+    ]
+  },
+  {
+    "key": "Trk.UpdatesDelayed",
+    "area": "TRK",
+    "text": "Tracking updates are delayed at the moment. Your parcel is still on its way.",
+    "usedBy": [
+      "AC-TRK-009-02-02"
+    ]
+  },
+  {
+    "key": "Trk.GuestLookupFailed",
+    "area": "TRK",
+    "text": "We could not find an order with these details.",
+    "usedBy": [
+      "AC-TRK-011-01-02"
+    ]
+  }
+]

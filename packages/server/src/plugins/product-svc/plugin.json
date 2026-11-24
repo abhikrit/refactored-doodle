@@ -1,0 +1,127 @@
+{
+  "systemName": "Product.SVC",
+  "friendlyName": "Product - Services commerce (booking, delivery and completion of services; SVC-007 covers electronically delivered goods)",
+  "area": "SVC",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 24,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.SVC",
+    "projectName": "Nop.Plugin.Product.SVC"
+  },
+  "wave": 7,
+  "waveName": "Verticals",
+  "dependsOnAreas": [
+    "CAT",
+    "LOG",
+    "ORD",
+    "PAY",
+    "TRK"
+  ],
+  "counts": {
+    "features": 12,
+    "p1": 2,
+    "p2": 10,
+    "p3": 0,
+    "held": 8,
+    "criteria": 89,
+    "screens": 5,
+    "rules": 19,
+    "contracts": 3,
+    "messages": 11,
+    "auditEvents": 5
+  },
+  "fit": {
+    "configuration": 1,
+    "licensedPlugin": 0,
+    "codeLevel": 11,
+    "externalSystem": 0
+  },
+  "features": [
+    "PRD-SVC-001",
+    "PRD-SVC-002",
+    "PRD-SVC-003",
+    "PRD-SVC-004",
+    "PRD-SVC-005",
+    "PRD-SVC-006",
+    "PRD-SVC-007",
+    "PRD-SVC-008",
+    "PRD-SVC-009",
+    "PRD-SVC-010",
+    "PRD-SVC-011",
+    "PRD-SVC-012"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-SVC-001",
+      "decisions": [
+        "PO-REC-v8"
+      ]
+    },
+    {
+      "id": "PRD-SVC-003",
+      "decisions": [
+        "FG-06, PO-REC-v8",
+        "FG-06",
+        "PO-REC-v8"
+      ]
+    },
+    {
+      "id": "PRD-SVC-004",
+      "decisions": [
+        "FG-06, PO-REC-v8",
+        "FG-06",
+        "PO-REC-v8"
+      ]
+    },
+    {
+      "id": "PRD-SVC-006",
+      "decisions": [
+        "PO-REC-v8"
+      ]
+    },
+    {
+      "id": "PRD-SVC-007",
+      "decisions": [
+        "PO-REC-v8"
+      ]
+    },
+    {
+      "id": "PRD-SVC-009",
+      "decisions": [
+        "PO-REC-v8"
+      ]
+    },
+    {
+      "id": "PRD-SVC-010",
+      "decisions": [
+        "PO-REC-v8"
+      ]
+    },
+    {
+      "id": "PRD-SVC-012",
+      "decisions": [
+        "FG-06, PO-REC-v8",
+        "FG-06",
+        "PO-REC-v8"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "FG-06",
+    "FG-06, PO-REC-v8",
+    "PO-REC-v8"
+  ],
+  "contracts": [
+    "IC-SVC-01",
+    "IC-SVC-01",
+    "IC-SVC-02"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-SVC.md"
+}

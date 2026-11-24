@@ -1,0 +1,32 @@
+{
+  "generated": "2026-11-24T12:06:41.637Z",
+  "generator": "scripts/generate-registries.mjs",
+  "sources": [
+    "docs/prd/01-product-prd.md",
+    "docs/prd/modules/PRD-<AREA>.md (24)",
+    "docs/client/Client-PRD.md",
+    "docs/compliance/Compliance-Traceability.md",
+    "docs/register/Decisions-Gaps-Register.md"
+  ],
+  "counts": {
+    "areas": 24,
+    "features": 434,
+    "stories": 1160,
+    "criteria": 2850,
+    "rules": 497,
+    "stateTransitions": 780,
+    "screens": 274,
+    "messages": 324,
+    "settings": 439,
+    "requirements": 506,
+    "decisions": 75,
+    "gaps": 40,
+    "holdDecisions": 24,
+    "readinessConditions": 32,
+    "held": 100,
+    "contracts": 219,
+    "audits": 216,
+    "actors": 237,
+    "permissions": 304
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "PRD ID": "PRD-PLT-018",
+    "Feature": "Accessibility",
+    "Code change type": "Theme/view override + Core modification (admin views)",
+    "What changes": "WCAG 2.1 AA audit and fixes on storefront and admin views; contrast/text-size toggle."
+  },
+  {
+    "PRD ID": "PRD-PLT-027",
+    "Feature": "Data consistency safeguards",
+    "Code change type": "Core modification + Custom plugin",
+    "What changes": "Optimistic concurrency (row version on key tables + repository checks) and idempotency keys for state-changing requests/APIs. Row-version columns on core tables are a registered core modification; idempotency keys are plugin middleware. (NOP-922)"
+  },
+  {
+    "PRD ID": "PRD-IAM-008",
+    "Feature": "Scoped permissions",
+    "Code change type": "Custom plugin + Core modification",
+    "What changes": "Scoped permission model and data filtering in admin queries."
+  },
+  {
+    "PRD ID": "PRD-CAT-041",
+    "Feature": "Units of measure and pack selling",
+    "Code change type": "Custom plugin; Core modification (conditional, decision UOM-01)",
+    "What changes": "Selling by unit of measure with weight-based price. If fractional quantities (for example 2.5 kg) are required: change Quantity/StockQuantity from int to decimal in ShoppingCartItem, OrderItem, ShipmentItem, Product, ProductWarehouseInventory and all services/views (core modification). If not required: sell in integer base units (for example 100 g) with BasepriceEnabled (custom plugin). (NOP-913)"
+  },
+  {
+    "PRD ID": "PRD-CHK-005",
+    "Feature": "Fulfilment method per line",
+    "Code change type": "Core modification",
+    "What changes": "Per-line fulfilment choice. Requires changes to checkout flow, shipping calculation and order model."
+  },
+  {
+    "PRD ID": "PRD-CHK-008",
+    "Feature": "Checkout resilience and idempotency",
+    "Code change type": "Custom plugin; Core modification (conditional)",
+    "What changes": "Base in 5.00.1 (unchanged from 4.90.8): OrderGuid reuse (PaymentSettings.RegenerateOrderGuidInterval), OrderSettings.PlaceOrderWithLock, MinimumOrderPlacementInterval, RePostPayment for unpaid redirect orders. Build: pre-order reference shown before payment for non-redirect methods; core change only if the custom order number must exist before the Order insert. (NOP-914) PlaceOrderWithLock uses a host-local named Mutex; with more than one web node, cross-node duplicate protection relies on the distributed-cache marker and the PLT-027 idempotency key. (R2-03)"
+  }
+]

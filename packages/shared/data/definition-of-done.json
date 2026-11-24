@@ -1,0 +1,86 @@
+[
+  {
+    "n": "1",
+    "area": "Function",
+    "criterion": "Behaviour meets the acceptance criteria of the item's L2 user stories. Linked requirements with status 'subject to decision', 'subject to client content' or 'by inference' are not acceptance criteria until resolved (L1 §11.3 rule 3). Catalog lines marked 'India rail not carried' apply only with the Kenya/Malawi equivalent named by a client source.",
+    "basis": "Traceability; L1 §11.3"
+  },
+  {
+    "n": "2",
+    "area": "Configuration",
+    "criterion": "Anything that differs between clients is a setting, configuration-pack entry or adapter — no client-specific code in core; new settings are added to the Config pack schema.",
+    "basis": "Product Goal; Config pack schema"
+  },
+  {
+    "n": "3",
+    "area": "Platform",
+    "criterion": "Runs on nopCommerce 5.00.1 on .NET 10 (release-5.00.1); any plugin used is installed and tested on 5.00.1 with licence recorded.",
+    "basis": "VER-500; V-01"
+  },
+  {
+    "n": "4",
+    "area": "Quality",
+    "criterion": "Code reviewed by another Developer; automated tests pass; no open critical or high defects.",
+    "basis": "Practice"
+  },
+  {
+    "n": "5",
+    "area": "Security",
+    "criterion": "No new high or critical vulnerabilities in dependency scan; card data never stored; access limited by role.",
+    "basis": "SEC-001, SEC-003, SEC-011"
+  },
+  {
+    "n": "6",
+    "area": "Privacy",
+    "criterion": "Personal data handled per the applicable data-protection rules; once SEC-012 and SEC-014 are Done, per the country pack with masking.",
+    "basis": "SEC-007, SEC-012, SEC-014"
+  },
+  {
+    "n": "7",
+    "area": "Audit",
+    "criterion": "Important actions are logged; once SEC-004 is Done, to the platform audit trail.",
+    "basis": "SEC-004"
+  },
+  {
+    "n": "8",
+    "area": "Localisation",
+    "criterion": "All user-facing text is in language resources (translatable); right-to-left layout not broken.",
+    "basis": "PLT-009, PLT-025"
+  },
+  {
+    "n": "9",
+    "area": "Accessibility",
+    "criterion": "New or changed user-facing screens meet WCAG 2.1 AA.",
+    "basis": "PLT-018"
+  },
+  {
+    "n": "10",
+    "area": "Devices and networks",
+    "criterion": "Works on phone, tablet and desktop; meets the page-weight / load-time target set by the Scrum Team for slow connections (no target is stated in any source — to be set).",
+    "basis": "PLT-017, CHN-002"
+  },
+  {
+    "n": "11",
+    "area": "Documentation",
+    "criterion": "User help and admin configuration notes updated; release notes entry written.",
+    "basis": "Practice"
+  },
+  {
+    "n": "12",
+    "area": "Integration",
+    "criterion": "Integrated into the product Increment and deployable to a client test instance by a documented, repeatable procedure; once PLT-001 is Done, by the provisioning template.",
+    "basis": "Scrum Guide: Increment must be usable; PLT-001"
+  },
+  {
+    "n": "13",
+    "area": "Upgrade safety",
+    "criterion": "No change to nopCommerce core code except for features in the core-modification register (L1 §6.3); each such change is isolated and listed for re-application on upgrade.",
+    "basis": "L1 §6.2 principle 2"
+  },
+  {
+    "n": "",
+    "area": "Note",
+    "criterion": "The Scrum Guide 2020: the Definition of Done is a formal description of the state of the Increment when it meets the quality measures required for the product. If the organisation has a Definition of Done, the Scrum Team follows it as a minimum. The criteria above are a proposal.",
+    "basis": ""
+  }
+]

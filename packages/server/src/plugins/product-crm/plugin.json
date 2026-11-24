@@ -1,0 +1,89 @@
+{
+  "systemName": "Product.CRM",
+  "friendlyName": "Product - Customer service, help desk and chat",
+  "area": "CRM",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 13,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.CRM",
+    "projectName": "Nop.Plugin.Product.CRM"
+  },
+  "wave": 5,
+  "waveName": "Engage and run",
+  "dependsOnAreas": [
+    "ADM",
+    "CHN",
+    "RET",
+    "SEC"
+  ],
+  "counts": {
+    "features": 15,
+    "p1": 12,
+    "p2": 2,
+    "p3": 1,
+    "held": 1,
+    "criteria": 112,
+    "screens": 13,
+    "rules": 14,
+    "contracts": 9,
+    "messages": 10,
+    "auditEvents": 10
+  },
+  "fit": {
+    "configuration": 2,
+    "licensedPlugin": 2,
+    "codeLevel": 11,
+    "externalSystem": 0
+  },
+  "features": [
+    "PRD-CRM-001",
+    "PRD-CRM-002",
+    "PRD-CRM-003",
+    "PRD-CRM-004",
+    "PRD-CRM-005",
+    "PRD-CRM-006",
+    "PRD-CRM-007",
+    "PRD-CRM-008",
+    "PRD-CRM-009",
+    "PRD-CRM-010",
+    "PRD-CRM-011",
+    "PRD-CRM-012",
+    "PRD-CRM-013",
+    "PRD-CRM-014",
+    "PRD-CRM-015"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-CRM-004",
+      "decisions": [
+        "WF-ENG, T-MISS",
+        "WF-ENG",
+        "T-MISS"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "T-MISS",
+    "WF-ENG",
+    "WF-ENG, T-MISS"
+  ],
+  "contracts": [
+    "IC-CRM-01",
+    "IC-CRM-01",
+    "IC-CRM-01",
+    "IC-CRM-01",
+    "IC-CRM-02",
+    "IC-CRM-03",
+    "IC-CRM-05",
+    "IC-CRM-05",
+    "IC-CRM-04"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-CRM.md"
+}

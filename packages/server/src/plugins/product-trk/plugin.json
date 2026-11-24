@@ -1,0 +1,84 @@
+{
+  "systemName": "Product.TRK",
+  "friendlyName": "Product - Tracking and notifications",
+  "area": "TRK",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 11,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.TRK",
+    "projectName": "Nop.Plugin.Product.TRK"
+  },
+  "wave": 4,
+  "waveName": "Fulfil",
+  "dependsOnAreas": [
+    "CHN",
+    "PLT",
+    "SEC"
+  ],
+  "counts": {
+    "features": 12,
+    "p1": 11,
+    "p2": 1,
+    "p3": 0,
+    "held": 1,
+    "criteria": 100,
+    "screens": 10,
+    "rules": 16,
+    "contracts": 12,
+    "messages": 10,
+    "auditEvents": 9
+  },
+  "fit": {
+    "configuration": 1,
+    "licensedPlugin": 1,
+    "codeLevel": 9,
+    "externalSystem": 1
+  },
+  "features": [
+    "PRD-TRK-001",
+    "PRD-TRK-002",
+    "PRD-TRK-003",
+    "PRD-TRK-004",
+    "PRD-TRK-005",
+    "PRD-TRK-006",
+    "PRD-TRK-007",
+    "PRD-TRK-008",
+    "PRD-TRK-009",
+    "PRD-TRK-010",
+    "PRD-TRK-011",
+    "PRD-TRK-012"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-TRK-003",
+      "decisions": [
+        "FG-06"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "FG-06"
+  ],
+  "contracts": [
+    "IC-TRK-01",
+    "IC-TRK-01",
+    "IC-TRK-01",
+    "IC-TRK-01",
+    "IC-TRK-02",
+    "IC-TRK-02",
+    "IC-TRK-03",
+    "IC-TRK-04",
+    "IC-TRK-04",
+    "IC-TRK-05",
+    "IC-TRK-06",
+    "IC-TRK-06"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-TRK.md"
+}

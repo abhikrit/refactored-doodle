@@ -1,0 +1,426 @@
+[
+  {
+    "group": "Shoppers",
+    "features": 159
+  },
+  {
+    "group": "Clients",
+    "features": 48
+  },
+  {
+    "group": "Sellers",
+    "features": 47
+  },
+  {
+    "group": "Business buyers",
+    "features": 40
+  },
+  {
+    "group": "Finance staff",
+    "features": 34
+  },
+  {
+    "group": "Marketing staff",
+    "features": 17
+  },
+  {
+    "group": "Client staff",
+    "features": 15
+  },
+  {
+    "group": "Platform team",
+    "features": 15
+  },
+  {
+    "group": "Support staff",
+    "features": 15
+  },
+  {
+    "group": "Auditors",
+    "features": 13
+  },
+  {
+    "group": "Catalogue staff",
+    "features": 13
+  },
+  {
+    "group": "Client administrators",
+    "features": 12
+  },
+  {
+    "group": "Logistics staff",
+    "features": 12
+  },
+  {
+    "group": "Malawi Post",
+    "features": 12
+  },
+  {
+    "group": "Management",
+    "features": 12
+  },
+  {
+    "group": "Service providers",
+    "features": 11
+  },
+  {
+    "group": "Compliance staff",
+    "features": 8
+  },
+  {
+    "group": "International buyers",
+    "features": 8
+  },
+  {
+    "group": "Regulators",
+    "features": 8
+  },
+  {
+    "group": "All users",
+    "features": 7
+  },
+  {
+    "group": "Government agencies",
+    "features": 6
+  },
+  {
+    "group": "IT teams",
+    "features": 6
+  },
+  {
+    "group": "Sales staff",
+    "features": 6
+  },
+  {
+    "group": "Stock staff",
+    "features": 6
+  },
+  {
+    "group": "Warehouse staff",
+    "features": 6
+  },
+  {
+    "group": "Citizens",
+    "features": 5
+  },
+  {
+    "group": "Export staff",
+    "features": 5
+  },
+  {
+    "group": "Couriers",
+    "features": 4
+  },
+  {
+    "group": "KTDA logistics",
+    "features": 4
+  },
+  {
+    "group": "Outlet staff",
+    "features": 4
+  },
+  {
+    "group": "Walk-in customers",
+    "features": 4
+  },
+  {
+    "group": "Analysts",
+    "features": 3
+  },
+  {
+    "group": "Content staff",
+    "features": 3
+  },
+  {
+    "group": "Fraud staff",
+    "features": 3
+  },
+  {
+    "group": "IT",
+    "features": 3
+  },
+  {
+    "group": "Malawi Post operations",
+    "features": 3
+  },
+  {
+    "group": "New clients",
+    "features": 3
+  },
+  {
+    "group": "Operations staff",
+    "features": 3
+  },
+  {
+    "group": "Partners",
+    "features": 3
+  },
+  {
+    "group": "Programme staff",
+    "features": 3
+  },
+  {
+    "group": "Staff",
+    "features": 3
+  },
+  {
+    "group": "Support managers",
+    "features": 3
+  },
+  {
+    "group": "Agents",
+    "features": 2
+  },
+  {
+    "group": "Approvers",
+    "features": 2
+  },
+  {
+    "group": "Catalogue managers",
+    "features": 2
+  },
+  {
+    "group": "Client operations staff",
+    "features": 2
+  },
+  {
+    "group": "Customers",
+    "features": 2
+  },
+  {
+    "group": "Farmers",
+    "features": 2
+  },
+  {
+    "group": "International shoppers",
+    "features": 2
+  },
+  {
+    "group": "Legal and sales staff",
+    "features": 2
+  },
+  {
+    "group": "Legal staff",
+    "features": 2
+  },
+  {
+    "group": "Malawi Post finance",
+    "features": 2
+  },
+  {
+    "group": "Operations managers",
+    "features": 2
+  },
+  {
+    "group": "Quality staff",
+    "features": 2
+  },
+  {
+    "group": "Security team",
+    "features": 2
+  },
+  {
+    "group": "Shoppers in low-connectivity areas",
+    "features": 2
+  },
+  {
+    "group": "Shoppers on basic phones",
+    "features": 2
+  },
+  {
+    "group": "Stock planners",
+    "features": 2
+  },
+  {
+    "group": "Affiliates",
+    "features": 1
+  },
+  {
+    "group": "All clients",
+    "features": 1
+  },
+  {
+    "group": "Applicants",
+    "features": 1
+  },
+  {
+    "group": "Beneficiaries",
+    "features": 1
+  },
+  {
+    "group": "Catalogue and marketing staff",
+    "features": 1
+  },
+  {
+    "group": "Client management",
+    "features": 1
+  },
+  {
+    "group": "Client managers",
+    "features": 1
+  },
+  {
+    "group": "Client sales staff",
+    "features": 1
+  },
+  {
+    "group": "Clients' customers",
+    "features": 1
+  },
+  {
+    "group": "Content and legal staff",
+    "features": 1
+  },
+  {
+    "group": "Field agents",
+    "features": 1
+  },
+  {
+    "group": "Finance and fraud staff",
+    "features": 1
+  },
+  {
+    "group": "Finance and legal staff",
+    "features": 1
+  },
+  {
+    "group": "Fraud and compliance staff",
+    "features": 1
+  },
+  {
+    "group": "Fraud and security staff",
+    "features": 1
+  },
+  {
+    "group": "Funders",
+    "features": 1
+  },
+  {
+    "group": "Guest shoppers",
+    "features": 1
+  },
+  {
+    "group": "KTDA",
+    "features": 1
+  },
+  {
+    "group": "KTDA export staff",
+    "features": 1
+  },
+  {
+    "group": "KTDA finance",
+    "features": 1
+  },
+  {
+    "group": "KTDA shoppers",
+    "features": 1
+  },
+  {
+    "group": "KTDA staff",
+    "features": 1
+  },
+  {
+    "group": "Kenyan shoppers",
+    "features": 1
+  },
+  {
+    "group": "Logistics managers",
+    "features": 1
+  },
+  {
+    "group": "Malawi Post couriers",
+    "features": 1
+  },
+  {
+    "group": "Malawi Post customers",
+    "features": 1
+  },
+  {
+    "group": "Malawi Post field staff",
+    "features": 1
+  },
+  {
+    "group": "Malawi Post shoppers",
+    "features": 1
+  },
+  {
+    "group": "Malawian shoppers",
+    "features": 1
+  },
+  {
+    "group": "New users",
+    "features": 1
+  },
+  {
+    "group": "Operations",
+    "features": 1
+  },
+  {
+    "group": "Outlet agents",
+    "features": 1
+  },
+  {
+    "group": "Post-office staff",
+    "features": 1
+  },
+  {
+    "group": "Procurement staff",
+    "features": 1
+  },
+  {
+    "group": "Programme and compliance staff",
+    "features": 1
+  },
+  {
+    "group": "Programme funders",
+    "features": 1
+  },
+  {
+    "group": "Sales and logistics staff",
+    "features": 1
+  },
+  {
+    "group": "Security and fraud staff",
+    "features": 1
+  },
+  {
+    "group": "Shoppers and staff with disabilities",
+    "features": 1
+  },
+  {
+    "group": "Shoppers with disabilities",
+    "features": 1
+  },
+  {
+    "group": "Small businesses",
+    "features": 1
+  },
+  {
+    "group": "Small buyers",
+    "features": 1
+  },
+  {
+    "group": "Suppliers",
+    "features": 1
+  },
+  {
+    "group": "Support and client staff",
+    "features": 1
+  },
+  {
+    "group": "Tax authorities",
+    "features": 1
+  },
+  {
+    "group": "The public",
+    "features": 1
+  },
+  {
+    "group": "Translators",
+    "features": 1
+  },
+  {
+    "group": "Warehouse and outlet staff",
+    "features": 1
+  }
+]

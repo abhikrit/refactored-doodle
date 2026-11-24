@@ -1,0 +1,180 @@
+{
+  "systemName": "Product.CAT",
+  "friendlyName": "Product - Catalogue and listings",
+  "area": "CAT",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 4,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.CAT",
+    "projectName": "Nop.Plugin.Product.CAT"
+  },
+  "wave": 2,
+  "waveName": "Catalogue",
+  "dependsOnAreas": [
+    "ADM",
+    "IAM",
+    "INT",
+    "LOG",
+    "SEC"
+  ],
+  "counts": {
+    "features": 43,
+    "p1": 34,
+    "p2": 9,
+    "p3": 0,
+    "held": 9,
+    "criteria": 268,
+    "screens": 19,
+    "rules": 34,
+    "contracts": 14,
+    "messages": 32,
+    "auditEvents": 16
+  },
+  "fit": {
+    "configuration": 10,
+    "licensedPlugin": 1,
+    "codeLevel": 32,
+    "externalSystem": 0
+  },
+  "features": [
+    "PRD-CAT-001",
+    "PRD-CAT-002",
+    "PRD-CAT-003",
+    "PRD-CAT-004",
+    "PRD-CAT-005",
+    "PRD-CAT-006",
+    "PRD-CAT-007",
+    "PRD-CAT-008",
+    "PRD-CAT-009",
+    "PRD-CAT-010",
+    "PRD-CAT-011",
+    "PRD-CAT-012",
+    "PRD-CAT-013",
+    "PRD-CAT-014",
+    "PRD-CAT-015",
+    "PRD-CAT-016",
+    "PRD-CAT-017",
+    "PRD-CAT-018",
+    "PRD-CAT-019",
+    "PRD-CAT-020",
+    "PRD-CAT-021",
+    "PRD-CAT-022",
+    "PRD-CAT-023",
+    "PRD-CAT-024",
+    "PRD-CAT-025",
+    "PRD-CAT-026",
+    "PRD-CAT-027",
+    "PRD-CAT-028",
+    "PRD-CAT-029",
+    "PRD-CAT-030",
+    "PRD-CAT-031",
+    "PRD-CAT-032",
+    "PRD-CAT-033",
+    "PRD-CAT-034",
+    "PRD-CAT-035",
+    "PRD-CAT-036",
+    "PRD-CAT-037",
+    "PRD-CAT-038",
+    "PRD-CAT-039",
+    "PRD-CAT-040",
+    "PRD-CAT-041",
+    "PRD-CAT-042",
+    "PRD-CAT-043"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-CAT-011",
+      "decisions": [
+        "API-01, PAID-STUB, API-GW",
+        "API-01",
+        "PAID-STUB",
+        "API-GW"
+      ]
+    },
+    {
+      "id": "PRD-CAT-022",
+      "decisions": [
+        "WF-ENG"
+      ]
+    },
+    {
+      "id": "PRD-CAT-027",
+      "decisions": [
+        "FG-06"
+      ]
+    },
+    {
+      "id": "PRD-CAT-034",
+      "decisions": [
+        "PAID-STUB"
+      ]
+    },
+    {
+      "id": "PRD-CAT-039",
+      "decisions": [
+        "PH-INF"
+      ]
+    },
+    {
+      "id": "PRD-CAT-040",
+      "decisions": [
+        "PH-INF"
+      ]
+    },
+    {
+      "id": "PRD-CAT-041",
+      "decisions": [
+        "PH-INF, UOM-01",
+        "PH-INF",
+        "UOM-01"
+      ]
+    },
+    {
+      "id": "PRD-CAT-042",
+      "decisions": [
+        "PH-INF"
+      ]
+    },
+    {
+      "id": "PRD-CAT-043",
+      "decisions": [
+        "WF-ENG"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "API-01",
+    "API-01, PAID-STUB, API-GW",
+    "API-GW",
+    "FG-06",
+    "PAID-STUB",
+    "PH-INF",
+    "PH-INF, UOM-01",
+    "UOM-01",
+    "WF-ENG"
+  ],
+  "contracts": [
+    "IC-CAT-01",
+    "IC-CAT-01",
+    "IC-CAT-02",
+    "IC-CAT-03",
+    "IC-CAT-03",
+    "IC-CAT-04",
+    "IC-CAT-04",
+    "IC-CAT-04",
+    "IC-CAT-04",
+    "IC-CAT-05",
+    "IC-CAT-06",
+    "IC-CAT-06",
+    "IC-CAT-06",
+    "IC-CAT-07"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-CAT.md"
+}

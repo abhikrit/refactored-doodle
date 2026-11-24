@@ -1,0 +1,19 @@
+{
+  "_source": "Shaped like the documented MRA Electronic Invoicing System submission payload. Recorded sample for the prototype - no credentials, no real transaction, nothing sent (decision P-3).",
+  "feature": "PRD-PAY-027",
+  "decision": "E-INV - not in the Malawi Post source; inferred from external law",
+  "request": {
+    "tpin": "XXXXXXXXX",
+    "invoiceNumber": "MP-2026-000001",
+    "invoiceDate": "2026-11-24",
+    "totalAmount": 0,
+    "vatAmount": 0,
+    "lines": []
+  },
+  "response": {
+    "status": "ACCEPTED",
+    "fiscalNumber": "MRA-0000000",
+    "qrData": "https://example.invalid/verify/MRA-0000000",
+    "signedAt": "2026-11-24T09:35:00Z"
+  }
+}

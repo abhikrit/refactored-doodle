@@ -1,0 +1,823 @@
+{
+  "holds": [
+    {
+      "decision": "FG-06",
+      "features": [
+        "PRD-LOG-011",
+        "PRD-LOG-022",
+        "PRD-LOG-023",
+        "PRD-LOG-024",
+        "PRD-LOG-032",
+        "PRD-TRK-003",
+        "PRD-EGV-001",
+        "PRD-EGV-002",
+        "PRD-EGV-003",
+        "PRD-EGV-004",
+        "PRD-EGV-005",
+        "PRD-EGV-006",
+        "PRD-EGV-007",
+        "PRD-RPT-012",
+        "PRD-FIN-005",
+        "PRD-PAY-009",
+        "PRD-SRC-020",
+        "PRD-CAT-027",
+        "PRD-CHN-010",
+        "PRD-SVC-003",
+        "PRD-SVC-004",
+        "PRD-SVC-012"
+      ],
+      "heldThroughDependency": {
+        "PRD-CHN-010": "PRD-TRK-003",
+        "PRD-SVC-003": "PRD-CAT-027",
+        "PRD-SVC-004": "PRD-CAT-027",
+        "PRD-SVC-012": "PRD-CAT-027"
+      },
+      "type": "a — scope",
+      "owner": "Malawi Post",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "PH-INF",
+      "features": [
+        "PRD-IAM-022",
+        "PRD-IAM-023",
+        "PRD-CAT-039",
+        "PRD-CAT-041",
+        "PRD-CAT-042",
+        "PRD-CHK-015",
+        "PRD-CHK-016",
+        "PRD-CHK-017",
+        "PRD-CHK-018",
+        "PRD-PAY-025",
+        "PRD-PAY-034",
+        "PRD-ORD-025",
+        "PRD-ORD-026",
+        "PRD-CAT-040",
+        "PRD-IAM-027",
+        "PRD-PAY-026",
+        "PRD-PAY-027",
+        "PRD-SEL-025"
+      ],
+      "heldThroughDependency": {
+        "PRD-CAT-040": "PRD-IAM-022",
+        "PRD-IAM-027": "PRD-IAM-022",
+        "PRD-PAY-026": "PRD-PAY-025",
+        "PRD-PAY-027": "PRD-PAY-025",
+        "PRD-SEL-025": "PRD-PAY-025"
+      },
+      "type": "a — scope",
+      "owner": "Product Owner / KTDA / Malawi Post",
+      "ifNotConfirmed": "Move to P2 (decision text)"
+    },
+    {
+      "decision": "M-19",
+      "features": [
+        "PRD-CHN-001"
+      ],
+      "heldThroughDependency": {},
+      "type": "a — scope",
+      "owner": "Malawi Post",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "K-01",
+      "features": [
+        "PRD-ORD-014"
+      ],
+      "heldThroughDependency": {},
+      "type": "a — scope",
+      "owner": "User / KTDA",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "WF-ENG",
+      "features": [
+        "PRD-ADM-002",
+        "PRD-ADM-006",
+        "PRD-CAT-022",
+        "PRD-CAT-043",
+        "PRD-CHK-004",
+        "PRD-CHK-018",
+        "PRD-CRM-004",
+        "PRD-EGV-002",
+        "PRD-EGV-007",
+        "PRD-MKT-008",
+        "PRD-ORD-015",
+        "PRD-ORD-018",
+        "PRD-ORD-024",
+        "PRD-PAY-036",
+        "PRD-PLT-004",
+        "PRD-RET-007",
+        "PRD-RET-008",
+        "PRD-RET-011",
+        "PRD-SEL-003",
+        "PRD-SEL-005",
+        "PRD-SEL-017",
+        "PRD-SRC-016"
+      ],
+      "heldThroughDependency": {
+        "PRD-ADM-006": "PRD-ADM-002",
+        "PRD-CAT-022": "PRD-ADM-002",
+        "PRD-CAT-043": "PRD-ADM-002",
+        "PRD-CHK-004": "PRD-ADM-002",
+        "PRD-CHK-018": "PRD-ADM-002",
+        "PRD-CRM-004": "PRD-ADM-002",
+        "PRD-EGV-002": "PRD-ADM-002",
+        "PRD-EGV-007": "PRD-ADM-002",
+        "PRD-MKT-008": "PRD-ADM-002",
+        "PRD-ORD-015": "PRD-ADM-002",
+        "PRD-ORD-018": "PRD-ADM-002",
+        "PRD-ORD-024": "PRD-ADM-002",
+        "PRD-PAY-036": "PRD-ADM-002",
+        "PRD-PLT-004": "PRD-ADM-002",
+        "PRD-RET-007": "PRD-ADM-002",
+        "PRD-RET-008": "PRD-ADM-002",
+        "PRD-RET-011": "PRD-ADM-002",
+        "PRD-SEL-003": "PRD-ADM-002",
+        "PRD-SEL-005": "PRD-ADM-002",
+        "PRD-SEL-017": "PRD-ADM-002",
+        "PRD-SRC-016": "PRD-ADM-002"
+      },
+      "type": "b — build approach",
+      "owner": "Architecture",
+      "ifNotConfirmed": "Specification of every ADM-002 dependant waits (decision text)"
+    },
+    {
+      "decision": "PO-REC-v8",
+      "features": [
+        "PRD-SVC-003",
+        "PRD-SVC-004",
+        "PRD-SVC-007",
+        "PRD-SVC-010",
+        "PRD-SVC-012",
+        "PRD-PAY-035",
+        "PRD-PAY-036",
+        "PRD-SEL-025",
+        "PRD-SVC-001",
+        "PRD-SVC-006",
+        "PRD-SVC-009"
+      ],
+      "heldThroughDependency": {},
+      "type": "a — scope",
+      "owner": "Product Owner",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "PAY-DIRECT / LIC-01",
+      "features": [
+        "PRD-PAY-007",
+        "PRD-PAY-009",
+        "PRD-PAY-010",
+        "PRD-PAY-035",
+        "PRD-PAY-036",
+        "PRD-SEL-025",
+        "PRD-CHK-004",
+        "PRD-SEL-017"
+      ],
+      "heldThroughDependency": {
+        "PRD-CHK-004": "PRD-PAY-010",
+        "PRD-SEL-017": "PRD-PAY-010"
+      },
+      "type": "a — scope",
+      "owner": "Product Owner / legal",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "E-INV",
+      "features": [
+        "PRD-PAY-025",
+        "PRD-PAY-026",
+        "PRD-PAY-027",
+        "PRD-SEL-025"
+      ],
+      "heldThroughDependency": {
+        "PRD-SEL-025": "PRD-PAY-025"
+      },
+      "type": "a — scope",
+      "owner": "KTDA / Malawi Post",
+      "ifNotConfirmed": "PAY-026/027 not needed; PAY-025 to P2 (decision text)"
+    },
+    {
+      "decision": "K-08",
+      "features": [
+        "PRD-PAY-003"
+      ],
+      "heldThroughDependency": {},
+      "type": "c — counterpart",
+      "owner": "KTDA",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "C-FX",
+      "features": [
+        "PRD-PAY-023"
+      ],
+      "heldThroughDependency": {},
+      "type": "c — counterpart",
+      "owner": "KTDA",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "T-MISS",
+      "features": [
+        "PRD-FIN-005",
+        "PRD-RET-003",
+        "PRD-CRM-004",
+        "PRD-EGV-001",
+        "PRD-EGV-002",
+        "PRD-EGV-003",
+        "PRD-EGV-004",
+        "PRD-EGV-005",
+        "PRD-EGV-006",
+        "PRD-EGV-007"
+      ],
+      "heldThroughDependency": {},
+      "type": "d — client content",
+      "owner": "Malawi Post (content)",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "F-CAT-B",
+      "features": [
+        "PRD-PLT-002"
+      ],
+      "heldThroughDependency": {},
+      "type": "b — build approach",
+      "owner": "Architecture",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "API-01",
+      "features": [
+        "PRD-CAT-011",
+        "PRD-INT-001"
+      ],
+      "heldThroughDependency": {},
+      "type": "b — build approach",
+      "owner": "Tech lead",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "UOM-01",
+      "features": [
+        "PRD-CAT-041"
+      ],
+      "heldThroughDependency": {},
+      "type": "b — build approach",
+      "owner": "KTDA / Product Owner",
+      "ifNotConfirmed": "CAT-041 sells in integer base units (custom plugin) (decision text)"
+    },
+    {
+      "decision": "WAL-01",
+      "features": [
+        "PRD-PAY-009"
+      ],
+      "heldThroughDependency": {},
+      "type": "b — build approach",
+      "owner": "Malawi Post / Product Owner",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "PAID-STUB",
+      "features": [
+        "PRD-CAT-011",
+        "PRD-CAT-034",
+        "PRD-INV-012",
+        "PRD-SRC-014",
+        "PRD-SRC-024",
+        "PRD-PAY-033",
+        "PRD-LOG-018",
+        "PRD-LOG-032",
+        "PRD-RPT-002",
+        "PRD-RPT-008",
+        "PRD-INT-001",
+        "PRD-INT-005",
+        "PRD-CHN-001",
+        "PRD-CHK-016",
+        "PRD-SEL-025",
+        "PRD-RPT-010",
+        "PRD-RPT-011",
+        "PRD-RPT-012"
+      ],
+      "heldThroughDependency": {
+        "PRD-CHK-016": "PRD-PAY-033",
+        "PRD-SEL-025": "PRD-PAY-033",
+        "PRD-RPT-010": "PRD-RPT-002",
+        "PRD-RPT-011": "PRD-RPT-002",
+        "PRD-RPT-012": "PRD-RPT-002"
+      },
+      "type": "b — build approach",
+      "owner": "Tech lead / Product Owner",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "DP-01",
+      "features": [
+        "PRD-SEC-006",
+        "PRD-SEC-014"
+      ],
+      "heldThroughDependency": {
+        "PRD-SEC-014": "PRD-SEC-006"
+      },
+      "type": "c — counterpart",
+      "owner": "KTDA / Malawi Post",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "C-SIZE",
+      "features": [
+        "PRD-PLT-026"
+      ],
+      "heldThroughDependency": {},
+      "type": "c — counterpart",
+      "owner": "Malawi Post",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "CALLOFF-PLACE",
+      "features": [
+        "PRD-ORD-022"
+      ],
+      "heldThroughDependency": {},
+      "type": "b — build approach",
+      "owner": "Tech lead",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "API-GW",
+      "features": [
+        "PRD-INT-002",
+        "PRD-INT-001",
+        "PRD-CAT-011"
+      ],
+      "heldThroughDependency": {
+        "PRD-CAT-011": "PRD-INT-001"
+      },
+      "type": "b — build approach",
+      "owner": "Tech lead",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "DOC-LIB",
+      "features": [
+        "PRD-DOC-001",
+        "PRD-PAY-025",
+        "PRD-DOC-006",
+        "PRD-ORD-009",
+        "PRD-ORD-016",
+        "PRD-ORD-017",
+        "PRD-ORD-020",
+        "PRD-ORD-022",
+        "PRD-ORD-025",
+        "PRD-PAY-026",
+        "PRD-PAY-027",
+        "PRD-SEL-025"
+      ],
+      "heldThroughDependency": {
+        "PRD-DOC-006": "PRD-DOC-001",
+        "PRD-ORD-009": "PRD-DOC-001",
+        "PRD-ORD-016": "PRD-DOC-001",
+        "PRD-ORD-017": "PRD-DOC-001",
+        "PRD-ORD-020": "PRD-DOC-001",
+        "PRD-ORD-022": "PRD-DOC-001",
+        "PRD-ORD-025": "PRD-DOC-001",
+        "PRD-PAY-026": "PRD-DOC-001",
+        "PRD-PAY-027": "PRD-DOC-001",
+        "PRD-SEL-025": "PRD-DOC-001"
+      },
+      "type": "b — build approach",
+      "owner": "Tech lead",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "KG-04",
+      "features": [
+        "PRD-PAY-031"
+      ],
+      "heldThroughDependency": {},
+      "type": "c — counterpart",
+      "owner": "KTDA",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "MG-03",
+      "features": [
+        "PRD-PAY-032"
+      ],
+      "heldThroughDependency": {},
+      "type": "c — counterpart",
+      "owner": "Malawi Post",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    },
+    {
+      "decision": "MG-09",
+      "features": [
+        "PRD-INT-013"
+      ],
+      "heldThroughDependency": {},
+      "type": "c — counterpart",
+      "owner": "Malawi Post",
+      "ifNotConfirmed": "Not stated in source — requires confirmation"
+    }
+  ],
+  "readiness": [
+    {
+      "decision": "OVR-REG",
+      "kind": "Proposed architecture / product design",
+      "features": [
+        "PRD-ADM-001",
+        "PRD-ADM-005",
+        "PRD-AI-002",
+        "PRD-CAT-002",
+        "PRD-CAT-013",
+        "PRD-CAT-022",
+        "PRD-CAT-037",
+        "PRD-CAT-039",
+        "PRD-CAT-042",
+        "PRD-CHK-003",
+        "PRD-CHK-005",
+        "PRD-CHK-019",
+        "PRD-CHN-003",
+        "PRD-CHN-005",
+        "PRD-DOC-001",
+        "PRD-EGV-001",
+        "PRD-EGV-004",
+        "PRD-FIN-004",
+        "PRD-INT-001",
+        "PRD-INT-011",
+        "PRD-INT-012",
+        "PRD-INV-004",
+        "PRD-INV-009",
+        "PRD-INV-011",
+        "PRD-LOG-007",
+        "PRD-LOG-009",
+        "PRD-LOG-021",
+        "PRD-MKT-001",
+        "PRD-MKT-002",
+        "PRD-MKT-005",
+        "PRD-MKT-006",
+        "PRD-MKT-010",
+        "PRD-MKT-012",
+        "PRD-ORD-009",
+        "PRD-ORD-010",
+        "PRD-PAY-001",
+        "PRD-PAY-006",
+        "PRD-PAY-009",
+        "PRD-PAY-011",
+        "PRD-PAY-013",
+        "PRD-PAY-015",
+        "PRD-PAY-018",
+        "PRD-PAY-025",
+        "PRD-PLT-004",
+        "PRD-RET-002",
+        "PRD-SEC-004",
+        "PRD-SEL-007",
+        "PRD-SEL-013",
+        "PRD-SRC-003",
+        "PRD-SRC-005",
+        "PRD-SRC-009",
+        "PRD-SVC-001",
+        "PRD-SVC-004",
+        "PRD-SVC-008",
+        "PRD-TRK-005"
+      ],
+      "owner": "tech lead / Product Owner"
+    },
+    {
+      "decision": "SINGLE-FILTER",
+      "kind": "Proposed architecture / product design",
+      "features": [
+        "PRD-ADM-001",
+        "PRD-ADM-008",
+        "PRD-CHK-013",
+        "PRD-CHK-015",
+        "PRD-CHN-006",
+        "PRD-CHN-010",
+        "PRD-CRM-001",
+        "PRD-CRM-015",
+        "PRD-DOC-005",
+        "PRD-EGV-002",
+        "PRD-LOG-012",
+        "PRD-LOG-013",
+        "PRD-ORD-012",
+        "PRD-RET-001",
+        "PRD-RPT-011",
+        "PRD-SEL-002",
+        "PRD-TRK-003"
+      ],
+      "owner": "tech lead"
+    },
+    {
+      "decision": "ONE-RECORD",
+      "kind": "Proposed architecture / product design",
+      "features": [
+        "PRD-AI-005",
+        "PRD-CHK-002",
+        "PRD-CHK-009",
+        "PRD-CRM-003",
+        "PRD-EGV-007",
+        "PRD-FIN-001",
+        "PRD-IAM-016",
+        "PRD-MKT-008",
+        "PRD-SEL-004",
+        "PRD-SEL-006"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "MSG-ROUTE",
+      "kind": "Proposed architecture / product design",
+      "features": [
+        "PRD-AI-003",
+        "PRD-CHK-019",
+        "PRD-CHN-005",
+        "PRD-CHN-006",
+        "PRD-CHN-012",
+        "PRD-CHN-013",
+        "PRD-CRM-001",
+        "PRD-CRM-002",
+        "PRD-EGV-002",
+        "PRD-MKT-005",
+        "PRD-ORD-002",
+        "PRD-ORD-017",
+        "PRD-SEL-020",
+        "PRD-SVC-005",
+        "PRD-TRK-005",
+        "PRD-TRK-006"
+      ],
+      "owner": "Product Owner; client choice"
+    },
+    {
+      "decision": "FIELD-APP",
+      "kind": "Proposed architecture / product design",
+      "features": [
+        "PRD-CHN-010",
+        "PRD-TRK-003"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "INV-HOLD",
+      "kind": "Proposed architecture / product design",
+      "features": [
+        "PRD-INV-004",
+        "PRD-PAY-004",
+        "PRD-PAY-011"
+      ],
+      "owner": "Product Owner to confirm"
+    },
+    {
+      "decision": "ANL-002-OWN",
+      "kind": "Proposed architecture / product design",
+      "features": [
+        "PRD-INV-013",
+        "PRD-RPT-001"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "CFG-01",
+      "kind": "Proposed architecture / product design",
+      "features": [
+        "PRD-AI-002",
+        "PRD-CHN-006",
+        "PRD-CHN-007",
+        "PRD-CHN-011",
+        "PRD-CRM-002",
+        "PRD-FIN-001",
+        "PRD-INT-002",
+        "PRD-INV-012",
+        "PRD-PAY-024",
+        "PRD-PLT-001",
+        "PRD-PLT-003",
+        "PRD-PLT-005",
+        "PRD-PLT-008",
+        "PRD-RPT-003",
+        "PRD-RPT-008",
+        "PRD-SEC-001",
+        "PRD-SEC-004"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "SPLIT-PAY",
+      "kind": "Proposed architecture / product design",
+      "features": [
+        "PRD-CAT-042",
+        "PRD-CHK-004",
+        "PRD-PAY-011"
+      ],
+      "owner": "Product Owner / tech lead"
+    },
+    {
+      "decision": "SINGLE-NODE",
+      "kind": "Proposed architecture / product design",
+      "features": [],
+      "owner": "Product Owner / tech lead"
+    },
+    {
+      "decision": "RURAL-SRC",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-LOG-004"
+      ],
+      "owner": "Product Owner / Malawi Post"
+    },
+    {
+      "decision": "ORDER-MAIL",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-TRK-005"
+      ],
+      "owner": "Product Owner / client"
+    },
+    {
+      "decision": "CUTOFF",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-ORD-011"
+      ],
+      "owner": "Malawi Post"
+    },
+    {
+      "decision": "SIGN-SVC",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-ORD-017"
+      ],
+      "owner": "tech lead / Product Owner"
+    },
+    {
+      "decision": "OTP-OPTOUT",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-TRK-006"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "GA-EVENTS",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-SEC-007"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "GC-CONC",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-MKT-004"
+      ],
+      "owner": "Product Owner / tech lead"
+    },
+    {
+      "decision": "AGENT-XOUTLET",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-IAM-026"
+      ],
+      "owner": "Product Owner / Malawi Post"
+    },
+    {
+      "decision": "OPTOUT-SCOPE",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-MKT-005"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "PAYEX-ADM",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-PAY-019"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "HOLD-BILL",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-LOG-017"
+      ],
+      "owner": "Malawi Post"
+    },
+    {
+      "decision": "ORD-UNAVAIL",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-ORD-006"
+      ],
+      "owner": "tech lead"
+    },
+    {
+      "decision": "FEE-CTRL",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-PAY-015",
+        "PRD-PAY-001"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "CART-FAILCLOSE",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-CHK-003"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "PACK-FMT",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-PLT-003",
+        "PRD-PLT-001"
+      ],
+      "owner": "tech lead"
+    },
+    {
+      "decision": "DEP-BAL",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-SVC-004"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "ORD-INTERV",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-ORD-003"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "K-SELLER",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-SEL-001",
+        "PRD-SEL-003"
+      ],
+      "owner": "KTDA"
+    },
+    {
+      "decision": "C-SELLER",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-SEL-001",
+        "PRD-SEL-003",
+        "PRD-ORD-005",
+        "PRD-SEL-002",
+        "PRD-SEL-004",
+        "PRD-SEL-005",
+        "PRD-SEL-006",
+        "PRD-SEL-007",
+        "PRD-SEL-008",
+        "PRD-SEL-009",
+        "PRD-SEL-010",
+        "PRD-SEL-011",
+        "PRD-SEL-012",
+        "PRD-SEL-016",
+        "PRD-SEL-017",
+        "PRD-SEL-018",
+        "PRD-SEL-019",
+        "PRD-SEL-020",
+        "PRD-SEL-021",
+        "PRD-SEL-022",
+        "PRD-SEL-023",
+        "PRD-SEL-024",
+        "PRD-SEL-025"
+      ],
+      "owner": "Malawi Post"
+    },
+    {
+      "decision": "KTDA-ADP",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-INT-005",
+        "PRD-INT-008"
+      ],
+      "owner": "Product Owner"
+    },
+    {
+      "decision": "KG-03",
+      "kind": "Open parameter / client decision",
+      "features": [
+        "PRD-INT-005 (KTDA ERP criteria)",
+        "PRD-INT-001",
+        "PRD-INT-005",
+        "PRD-INV-006",
+        "PRD-INV-012"
+      ],
+      "owner": "KTDA"
+    },
+    {
+      "decision": "COMP-R5",
+      "kind": "Open parameter / client decision",
+      "features": [],
+      "owner": "Product Owner to ratify"
+    }
+  ]
+}

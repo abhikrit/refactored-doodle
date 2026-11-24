@@ -1,0 +1,14 @@
+{
+  "_source": "Offline counter payment: the buyer is given a secure reference and pays at an outlet; the agent confirms it (PAY-008, PAY-034).",
+  "feature": "PRD-PAY-008",
+  "request": {
+    "reference": "CHK-REFERENCE",
+    "amount": 0,
+    "currency": "MWK"
+  },
+  "response": {
+    "status": "AWAITING_COUNTER_PAYMENT",
+    "expiresInHours": 48,
+    "instructions": "Pay at any Malawi Post outlet quoting the reference."
+  }
+}

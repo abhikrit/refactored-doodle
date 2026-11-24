@@ -1,0 +1,79 @@
+{
+  "systemName": "Product.MKT",
+  "friendlyName": "Product - Marketing, promotions, loyalty, content and SEO",
+  "area": "MKT",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 14,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.MKT",
+    "projectName": "Nop.Plugin.Product.MKT"
+  },
+  "wave": 5,
+  "waveName": "Engage and run",
+  "dependsOnAreas": [
+    "ADM",
+    "TRK"
+  ],
+  "counts": {
+    "features": 14,
+    "p1": 12,
+    "p2": 2,
+    "p3": 0,
+    "held": 1,
+    "criteria": 106,
+    "screens": 14,
+    "rules": 15,
+    "contracts": 6,
+    "messages": 5,
+    "auditEvents": 6
+  },
+  "fit": {
+    "configuration": 9,
+    "licensedPlugin": 0,
+    "codeLevel": 5,
+    "externalSystem": 0
+  },
+  "features": [
+    "PRD-MKT-001",
+    "PRD-MKT-002",
+    "PRD-MKT-003",
+    "PRD-MKT-004",
+    "PRD-MKT-005",
+    "PRD-MKT-006",
+    "PRD-MKT-007",
+    "PRD-MKT-008",
+    "PRD-MKT-009",
+    "PRD-MKT-010",
+    "PRD-MKT-011",
+    "PRD-MKT-012",
+    "PRD-MKT-013",
+    "PRD-MKT-014"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-MKT-008",
+      "decisions": [
+        "WF-ENG"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "WF-ENG"
+  ],
+  "contracts": [
+    "IC-MKT-01",
+    "IC-MKT-01",
+    "IC-MKT-02",
+    "IC-MKT-04",
+    "IC-MKT-03",
+    "IC-MKT-03"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-MKT.md"
+}

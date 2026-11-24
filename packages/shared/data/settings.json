@@ -1,0 +1,3514 @@
+[
+  {
+    "area": "ADM",
+    "setting": "Scheduled tasks (interval, enabled, stop on error)",
+    "whereItLives": "ScheduleTask entries (native; installation-wide, no store scope)",
+    "layer": "installation only",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "ADM",
+    "setting": "Workflow definitions",
+    "whereItLives": "WorkflowDefinition (new; pack content)",
+    "layer": "vertical → client",
+    "ktda": "Internal approval stages, shipping and fulfilment workflows (WF-004, WF-005, WF-007); steps not stated (KG-09, KG-13)",
+    "mpc": "Service-entry workflows (FR-307; FG-06, T-MISS)"
+  },
+  {
+    "area": "ADM",
+    "setting": "Business rules and pattern library",
+    "whereItLives": "RuleSet, Rule, RulePattern (new; pack content)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "ADM",
+    "setting": "Transaction types and chains",
+    "whereItLives": "TransactionType, TransactionTypeChain (new; pack content)",
+    "layer": "vertical → client",
+    "ktda": "Not stated (business models by inference, PRJ-002)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "ADM",
+    "setting": "Eligibility bindings, quotas, screening",
+    "whereItLives": "EligibilityBinding, Quota, screening settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "ADM",
+    "setting": "Approval chains, reason codes, moderation queues and assignment rules",
+    "whereItLives": "ApprovalChain, ReasonCode, ModerationQueue (new)",
+    "layer": "vertical → client",
+    "ktda": "Internal approval stages (WF-004); content not stated",
+    "mpc": "Moderation queues (FR-319); high-risk actions (FR-039)"
+  },
+  {
+    "area": "ADM",
+    "setting": "Upload policy per context (ADM and module contexts); scanning; fail mode",
+    "whereItLives": "UploadContext (new; pack content)",
+    "layer": "global → client",
+    "ktda": "Not stated",
+    "mpc": "Required (FR-324); values not stated"
+  },
+  {
+    "area": "ADM",
+    "setting": "Alert rules",
+    "whereItLives": "AlertRule (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "ADM",
+    "setting": "Work-draft retention",
+    "whereItLives": "ADM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "ADM",
+    "setting": "Online-customer window",
+    "whereItLives": "customersettings.onlinecustomerminutes (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "ADM",
+    "setting": "Template library defaults",
+    "whereItLives": "TransactionTemplate (new; pack content)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "ADM",
+    "setting": "Antivirus engine and sanctions-provider credentials",
+    "whereItLives": "ADM adapter settings, flagged secret in the ADM key catalogue (never in packs or exports, BR-ADM-080)",
+    "layer": "client instance only",
+    "ktda": "Entered at deployment",
+    "mpc": "Entered at deployment"
+  },
+  {
+    "area": "AI",
+    "setting": "AI provider, key, timeout, allowed generations and prompts",
+    "whereItLives": "ArtificialIntelligenceSettings: Enabled, ProviderType, GeminiApiKey / ChatGptApiKey / DeepSeekApiKey, RequestTimeout (native default 30 s), AllowProductDescriptionGeneration, AllowMeta*Generation, *Query, and since 5.00 LogRequests (native; Libraries/Nop.Core/Domain/ArtificialIntelligence/ArtificialIntelligenceSettings.cs:13-83). ActiveAIRecommendationProviderSystemName and UseStandardSearchWhenNoResults (5.00, :88-93) belong to the search pipeline (SRC) and stay empty unless an AI search provider is approved",
+    "layer": "client (shared value)",
+    "ktda": "Not stated (KG-17 AI platforms)",
+    "mpc": "Not stated (MG-11)"
+  },
+  {
+    "area": "AI",
+    "setting": "Pre-translation",
+    "whereItLives": "TranslationSettings: AllowPreTranslate, TranslateFromLanguageId, NotTranslateLanguages, TranslationServiceId, GoogleApiKey, DeepLAuthKey (native)",
+    "layer": "client → store",
+    "ktda": "Languages KG-14",
+    "mpc": "Languages MG-04"
+  },
+  {
+    "area": "AI",
+    "setting": "Translation approval per entity type",
+    "whereItLives": "AI pack settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "AI",
+    "setting": "Chatbot channels, sources, languages, failure count, inactivity period, language-model option",
+    "whereItLives": "AI pack settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Required (FR-256, CHT-001); values not stated (MG-11)"
+  },
+  {
+    "area": "AI",
+    "setting": "Disclosure texts",
+    "whereItLives": "Locale resources Ai.Disclosure, Ai.GeneratedLabel; AiUseRegister",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Required with AI-003"
+  },
+  {
+    "area": "AI",
+    "setting": "External ML, OCR, ID-check and image services",
+    "whereItLives": "AI pack settings (new), credentials encrypted",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "AI",
+    "setting": "Thresholds (OCR confidence, comparables minimum); the fraud-score threshold is on the PAY-018 rule",
+    "whereItLives": "AI pack settings (new); PAY-018 RiskRule.Threshold",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "AI",
+    "setting": "Cookie category of the AI chat widget",
+    "whereItLives": "SEC-007 WidgetCategoryMap row for the AI chat widget system name (SEC-007 product default functional, Proposed)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Allow viewing unpublished product page",
+    "whereItLives": "catalogsettings.allowviewunpublishedproductpage (native) — must be false with CAT-022",
+    "layer": "client → store",
+    "ktda": "false (required)",
+    "mpc": "false (required)"
+  },
+  {
+    "area": "CAT",
+    "setting": "Re-publish after cancellation (low-stock)",
+    "whereItLives": "catalogsettings.publishbackproductwhencancellingorders (native; gated by BR-CAT-005)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Ignore ACL / store limitations",
+    "whereItLives": "catalogsettings.ignoreacl, catalogsettings.ignorestorelimitations (native) — false where CAT-036/040 are used",
+    "layer": "client",
+    "ktda": "false where ACL segmentation is used (REQ-KTDA-CAT-002, CAT-036)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Cache product prices",
+    "whereItLives": "catalogsettings.cacheproductprices (native; see BR-CAT-020)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Product editor field visibility",
+    "whereItLives": "productEditorSettings.* (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Vendor product limits",
+    "whereItLives": "vendorsettings.maximumproductnumber, maximumproductpicturesnumber, allowvendorstoimportproducts (native)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Upload limits (allowed extensions, maximum bytes) for product images and documents",
+    "whereItLives": "ADM-008 upload policy, contexts product picture and admin download (no CAT setting); mediasettings.allowsvguploads, maximumimagesize, defaultimagequality, defaultpicturezoomenabled (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable by Admin (FR-060); values not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "SKU pattern",
+    "whereItLives": "SkuPattern (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Category schemas and required fields; schema inheritance",
+    "whereItLives": "CategorySchema (new)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Required (FR-309); content not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Image quality prompt (minimum pixel size)",
+    "whereItLives": "CAT settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Required (FR-071); value not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Moderation queues, steps, assignment rules; auto-publish on approval; re-approval field set",
+    "whereItLives": "ModerationQueue, AssignmentRule (new); CAT settings",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Required (FR-058, FR-319); values not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Prohibited categories, items, terms; report reasons",
+    "whereItLives": "ProhibitedRule (new); CAT settings",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "Required (FR-059, FR-093); content not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Import large-file thresholds; CSV/XML enabled",
+    "whereItLives": "CAT settings (new); catalogsettings.exportimport* (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Autosave interval; version retention",
+    "whereItLives": "CAT settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Stale period per category; grace period; auto-pause",
+    "whereItLives": "CAT settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "CAT",
+    "setting": "Certificate warning period; auto-hide per regulated category",
+    "whereItLives": "CAT settings (new)",
+    "layer": "country → client",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "CAT",
+    "setting": "Specification attribute filtering",
+    "whereItLives": "catalogsettings.enablespecificationattributefiltering (native)",
+    "layer": "client → store",
+    "ktda": "On (KTDA SRC-002)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Review rules",
+    "whereItLives": "catalogsettings.productreviewsmustbeapproved, productreviewpossibleonlyafterpurchasing, onereviewperproductfromcustomer, notifycustomeraboutproductreviewreply; captchasettings.showonproductreviewpage (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "After purchase with moderation (FR-075)"
+  },
+  {
+    "area": "CAT",
+    "setting": "Product page delivery and seller display",
+    "whereItLives": "vendorsettings.showvendoronproductdetailspage, shippingsettings.estimateshippingproductpageenabled, shippingsettings.allowpickupinstore (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "On (FR-068, FR-088)"
+  },
+  {
+    "area": "CAT",
+    "setting": "Returns and dispute summary topics",
+    "whereItLives": "Topic system names held in the RET settings (RET-001, RET-007); CAT reads them, no CAT setting",
+    "layer": "client → store",
+    "ktda": "KG-12",
+    "mpc": "Not provided (T-MISS)"
+  },
+  {
+    "area": "CAT",
+    "setting": "Call for price buy by admins; RFQ enabled",
+    "whereItLives": "ordersettings.allowadminstobuycallforpriceproducts (native); rfqsettings.enabled (Misc.RFQ)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "—"
+  },
+  {
+    "area": "CAT",
+    "setting": "Default tax category",
+    "whereItLives": "taxsettings.defaulttaxcategoryid (native)",
+    "layer": "country → client",
+    "ktda": "KG-06",
+    "mpc": "MG-05"
+  },
+  {
+    "area": "CAT",
+    "setting": "Pre-translation and AI description",
+    "whereItLives": "translationsettings.allowpretranslate; artificialintelligencesettings.allowproductdescriptiongeneration (native)",
+    "layer": "client",
+    "ktda": "Languages LOC-001; KG-14",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Service listings enabled; service types; delivery methods",
+    "whereItLives": "PLT-022 toggle; ServiceListing lists (new)",
+    "layer": "vertical (Services pack) → client",
+    "ktda": "—",
+    "mpc": "Where enabled (FR-074); values not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Booking hold duration, slot length, horizon",
+    "whereItLives": "CAT settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Placement types, slots, fees",
+    "whereItLives": "PlacementType (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Required (FR-070); values not stated"
+  },
+  {
+    "area": "CAT",
+    "setting": "Feed targets",
+    "whereItLives": "FeedTarget (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "CAT",
+    "setting": "Price-list strategy (several lists for one buyer)",
+    "whereItLives": "CatalogSettings.PriceListStrategy (native, 5.00: MinimalPrice or UseByPriority; installation default MinimalPrice); the former B2B precedence setting is withdrawn (tier price wins natively, BR-CAT-034)",
+    "layer": "vertical (B2B pack) → client",
+    "ktda": "Not stated",
+    "mpc": "—"
+  },
+  {
+    "area": "CAT",
+    "setting": "Units of measure",
+    "whereItLives": "UnitOfMeasure (new); measuresettings.baseweightid, basedimensionid (native)",
+    "layer": "global → vertical → client",
+    "ktda": "Not stated (UOM-01)",
+    "mpc": "—"
+  },
+  {
+    "area": "CAT",
+    "setting": "Fixed currency prices enabled; fallback",
+    "whereItLives": "CAT settings (new)",
+    "layer": "client",
+    "ktda": "Not stated (C-FX, KG-15)",
+    "mpc": "—"
+  },
+  {
+    "area": "CAT",
+    "setting": "Feature state of CAT pack features",
+    "whereItLives": "productfeature.<prd-id> (PLT setting, read through IC-PLT-02; BR-CAT-027)",
+    "layer": "client → store",
+    "ktda": "Per pack selection",
+    "mpc": "Per pack selection"
+  },
+  {
+    "area": "CAT",
+    "setting": "CAT key catalogue (every new CAT key with type, layer, secret flag, default)",
+    "whereItLives": "CAT plugin key catalogue (BR-CAT-028); secret: feed target credentials, map provider key",
+    "layer": "global",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "CAT",
+    "setting": "Map provider key",
+    "whereItLives": "CAT setting (new, secret)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Guest checkout",
+    "whereItLives": "OrderSettings.AnonymousCheckoutAllowed (native)",
+    "layer": "client → store",
+    "ktda": "On (CUS-006)",
+    "mpc": "Off (FR-125)"
+  },
+  {
+    "area": "CHK",
+    "setting": "One-page or multi-step checkout; billing step",
+    "whereItLives": "OrderSettings.OnePageCheckoutEnabled, DisableBillingAddressCheckoutStep (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Terms of service on cart / confirm page",
+    "whereItLives": "OrderSettings.TermsOfServiceOnShoppingCartPage, TermsOfServiceOnOrderConfirmPage (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Duplicate-order lock and interval",
+    "whereItLives": "OrderSettings.PlaceOrderWithLock (native, install default off; Proposed on), MinimumOrderPlacementInterval (native, minutes, install default 1)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Order GUID reuse window",
+    "whereItLives": "PaymentSettings.RegenerateOrderGuidInterval (native; owner PAY)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Minimum order value",
+    "whereItLives": "OrderSettings.MinOrderSubtotalAmount, MinOrderTotalAmount, MinOrderSubtotalAmountIncludingTax (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-122); value not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Free delivery and pickup threshold",
+    "whereItLives": "ShippingSettings.FreeShippingOverXEnabled, FreeShippingOverXValue, FreeShippingOverXIncludingTax (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "\"e.g. free pickup\" (FR-122); value not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Cart behaviour",
+    "whereItLives": "ShoppingCartSettings.MiniShoppingCartEnabled, AllowCartItemEditing, AllowMultipleWishlist (native; AllowMultipleWishlist required for save for later)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Save for later (FR-123)"
+  },
+  {
+    "area": "CHK",
+    "setting": "Pickup allowed",
+    "whereItLives": "ShippingSettings.AllowPickupInStore (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "On (FR-104)"
+  },
+  {
+    "area": "CHK",
+    "setting": "Per-seller cart (5.00)",
+    "whereItLives": "ShoppingCartSettings.VendorEnabled, VendorRequired (native) — fixed off (CART-500, BR-CHK-023)",
+    "layer": "global",
+    "ktda": "Off",
+    "mpc": "Off"
+  },
+  {
+    "area": "CHK",
+    "setting": "Desired delivery date (5.00)",
+    "whereItLives": "ShippingSettings.AllowCustomerToChooseDeliveryDate (native, install default on), DeliveryDateRangeDays (native, install default 7)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Date of the time window (FR-106); value not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Address fields and attributes",
+    "whereItLives": "AddressSettings.* (native); AddressAttribute: Landmark, Address name, PO box (native entity); locator rule (new)",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "Landmark / pin / alias (FR-113)"
+  },
+  {
+    "area": "CHK",
+    "setting": "Map pin enabled; map provider key",
+    "whereItLives": "CHK settings (new); the provider key is flagged secret in the CHK key catalogue (BR-PLT-013, CFG-01) and is never in a configuration pack",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Pin (FR-113); provider not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Delivery windows and capacity",
+    "whereItLives": "DeliverySlotDefinition (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Where supported (FR-106); values not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "E-transactions notices and confirmation time limit",
+    "whereItLives": "CountryPrivacyProfile e-transactions fields (owned by CHK-009 in the SEC-012 entity); LegalNotice (new)",
+    "layer": "country",
+    "ktda": "Not stated (LEG-001)",
+    "mpc": "ETCSA controls (FR-115); not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Cart restriction rules",
+    "whereItLives": "CartRestrictionRule (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-111)"
+  },
+  {
+    "area": "CHK",
+    "setting": "Pickup identification methods; code failure limit",
+    "whereItLives": "CHK settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Code and QR (FR-124); limit not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Payment methods for assisted orders",
+    "whereItLives": "PAY routing rules (owner PAY)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated (MG-07)"
+  },
+  {
+    "area": "CHK",
+    "setting": "Checkout session expiry; placement reservation expiry",
+    "whereItLives": "CHK settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Order completed page and confirmation attachment",
+    "whereItLives": "OrderSettings.DisableOrderCompletedPage, AttachPdfInvoiceToOrderPlacedEmail (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CHK",
+    "setting": "Credit terms, limits, overdue blocking",
+    "whereItLives": "CreditAccount (new); CHK settings",
+    "layer": "client",
+    "ktda": "Not stated (PH-INF)",
+    "mpc": "—"
+  },
+  {
+    "area": "CHK",
+    "setting": "Purchase approval thresholds",
+    "whereItLives": "PurchaseApprovalRule (new)",
+    "layer": "client (per company)",
+    "ktda": "Not stated (PH-INF)",
+    "mpc": "—"
+  },
+  {
+    "area": "CHK",
+    "setting": "Feature state per store",
+    "whereItLives": "Setting productfeature.<prd-id> read through IC-PLT-02 (PLT-022) before CHK pages, widgets, providers or scheduled tasks act for a store",
+    "layer": "store, else shared",
+    "ktda": "Per pack",
+    "mpc": "Per pack"
+  },
+  {
+    "area": "CHK",
+    "setting": "Key catalogue",
+    "whereItLives": "Every new CHK setting key above is listed in the CHK plugin key catalogue (key, type, layer, secret flag, default) so pack validation accepts it (NFR-X-008)",
+    "layer": "global",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "CHN",
+    "setting": "SMS providers, retry, secondary provider (provider keys flagged secret, BR-CHN-003)",
+    "whereItLives": "SMS provider plugin settings (new)",
+    "layer": "country → client",
+    "ktda": "Not stated (KTDA SMS only by inference via IAM-002 OTP)",
+    "mpc": "Required (MPC report §5.1); provider not named"
+  },
+  {
+    "area": "CHN",
+    "setting": "Misc.Brevo not installed in client instances",
+    "whereItLives": "App_Data/plugins.json (installed list)",
+    "layer": "installation",
+    "ktda": "Not installed (OVR-REG, BR-CHN-010)",
+    "mpc": "Not installed (OVR-REG, BR-CHN-010)"
+  },
+  {
+    "area": "CHN",
+    "setting": "Sender ID; opt-out and opt-in keywords",
+    "whereItLives": "CHN-012 settings (new); opt-out records and quiet hours are TRK-006 (ContactOptOut, preferences)",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CHN",
+    "setting": "Inbound message routing per channel (chatbot, live chat, tickets)",
+    "whereItLives": "CHN-006 / CHN-007 settings (new)",
+    "layer": "client",
+    "ktda": "Not stated (KG-24)",
+    "mpc": "Chatbot on WhatsApp (FR-256)"
+  },
+  {
+    "area": "CHN",
+    "setting": "CHN feature state per store",
+    "whereItLives": "productfeature.PRD-CHN-nnn (PLT-022, read through IC-PLT-02)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CHN",
+    "setting": "SMS command keywords",
+    "whereItLives": "CHN-005 settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CHN",
+    "setting": "PWA manifest and light mode",
+    "whereItLives": "PwaSettings (new, per store); CommonSettings.FaviconAndAppIconsHeadCode (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Low-bandwidth required (FR-019); values not stated"
+  },
+  {
+    "area": "CHN",
+    "setting": "Script and style bundling",
+    "whereItLives": "WebOptimizerConfig in App_Data/appsettings.json (native, installation-wide, default on)",
+    "layer": "installation",
+    "ktda": "Default",
+    "mpc": "Default"
+  },
+  {
+    "area": "CHN",
+    "setting": "USSD gateway and menus",
+    "whereItLives": "ChannelAccount, UssdMenu (new)",
+    "layer": "country → client",
+    "ktda": "—",
+    "mpc": "Required (INT-002); gateway not named (MG-10)"
+  },
+  {
+    "area": "CHN",
+    "setting": "IVR platform and menus",
+    "whereItLives": "ChannelAccount, UssdMenu (new)",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CHN",
+    "setting": "WhatsApp, WeChat, Telegram accounts and templates",
+    "whereItLives": "ChannelAccount, ChannelTemplate (new)",
+    "layer": "client",
+    "ktda": "WhatsApp and WeChat (CHT-001); KG-24",
+    "mpc": "WhatsApp for the chatbot (FR-256)"
+  },
+  {
+    "area": "CHN",
+    "setting": "Push provider keys",
+    "whereItLives": "ChannelAccount (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CHN",
+    "setting": "Mobile app branding and API client",
+    "whereItLives": "Licensed app configuration (V-01); INT-001 API client",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "M-19"
+  },
+  {
+    "area": "CHN",
+    "setting": "Social sign-in, share code, social links",
+    "whereItLives": "ExternalAuth.Facebook settings; CatalogSettings.ShowShareButton, PageShareCode; StoreInformationSettings.FacebookLink, TwitterLink, YoutubeLink, InstagramLink (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Required (INT-003); accounts not stated"
+  },
+  {
+    "area": "CHN",
+    "setting": "Agent networks and commission rules",
+    "whereItLives": "AgentNetwork, AgentCommissionRule (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Help-desk plugin and adapter",
+    "whereItLives": "Licensed plugin settings; adapter selection (new)",
+    "layer": "client",
+    "ktda": "Help desk (V-01)",
+    "mpc": "Ticketing (FR-252) (V-01)"
+  },
+  {
+    "area": "CRM",
+    "setting": "Acknowledgement window; auto-close period",
+    "whereItLives": "CRM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configured (FR-271); value not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Attachment types and size; attachments per ticket",
+    "whereItLives": "ADM-008 upload policy for the context ticket attachment (owner ADM); CRM setting for the count (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Controls required (FR-265); values not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "SLA policies, calendars and escalation levels",
+    "whereItLives": "SlaPolicy, EscalationLevel (new, CRM-014)",
+    "layer": "client",
+    "ktda": "Not stated (KG-19)",
+    "mpc": "Configurable (FR-252, FR-311); values not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Support categories, issue types, routing rules",
+    "whereItLives": "SupportCategory, IssueType, RoutingRule (new)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "By service type, order status, geography (FR-259); values not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Support mailbox connection",
+    "whereItLives": "SupportMailbox (new); credentials per instance, encrypted",
+    "layer": "client instance only",
+    "ktda": "Not stated",
+    "mpc": "Email-to-ticket (FR-253)"
+  },
+  {
+    "area": "CRM",
+    "setting": "Contact-to-ticket",
+    "whereItLives": "CRM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Contact-us options",
+    "whereItLives": "CommonSettings.SubjectFieldOnContactUsForm, UseSystemEmailForContactUsForm; CaptchaSettings.ShowOnContactUsPage (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Contact the seller",
+    "whereItLives": "VendorSettings.AllowCustomersToContactVendors (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Private messages and forums",
+    "whereItLives": "PrivateMessageSettings.AllowPrivateMessages (native, customer domain since 5.00); ForumSettings.ForumsEnabled (bundled Misc.Forums plugin, installed only with CRM-013)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Masked fields",
+    "whereItLives": "MaskedField (new)",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "Restrict sensitive data (FR-263); list not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Complaint form fields and escalation matrix",
+    "whereItLives": "Service desk extensions pack row (CRM-004)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Complaints and ADR Policy (FR-269, FR-270) — not provided (T-MISS)"
+  },
+  {
+    "area": "CRM",
+    "setting": "Rating scale, rating window, early-warning rules",
+    "whereItLives": "CRM settings, EarlyWarningRule (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Knowledge-base categories",
+    "whereItLives": "KbCategory (new); Topic (native)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Chat plugin and account",
+    "whereItLives": "Licensed plugin settings or SeoSettings.CustomHeadTags (native)",
+    "layer": "client → store",
+    "ktda": "WhatsApp and WeChat (CHT-001); scope KG-24",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Support channel directory",
+    "whereItLives": "SupportChannel (new); Service desk extensions pack row (CRM-012)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Fraud indicator rules",
+    "whereItLives": "CRM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Indicators e.g. repeated complaints, suspicious sellers (FR-266); thresholds not stated"
+  },
+  {
+    "area": "CRM",
+    "setting": "Feedback invitation timing",
+    "whereItLives": "CRM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated (REV-002)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "DOC",
+    "setting": "Document templates per type, language, store",
+    "whereItLives": "DocumentTemplate (new; pack content)",
+    "layer": "vertical → client → store",
+    "ktda": "Invoice; export set (DOC-006); content not stated (KG-23)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "DOC",
+    "setting": "Native PDF defaults",
+    "whereItLives": "pdfsettings.logopictureid, .ltrfontname, .rtlfontname, .invoicefootertextcolumn1, .invoicefootertextcolumn2, .letterpagesizeenabled (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "DOC",
+    "setting": "Invoice language and e-mail attachments",
+    "whereItLives": "ordersettings.generatepdfinvoiceincustomerlanguage, .attachpdfinvoicetoorderplacedemail, .attachpdfinvoicetoorderpaidemail, .attachpdfinvoicetoorderprocessingemail, .attachpdfinvoicetoordercompletedemail (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "DOC",
+    "setting": "Retention class per document type",
+    "whereItLives": "DocumentTemplate / document type registration as PLT-020 record type",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "DOC",
+    "setting": "Watermark rules; QR and signing per type",
+    "whereItLives": "DocumentTemplate (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "DOC",
+    "setting": "Integrity check schedule",
+    "whereItLives": "DOC settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "DOC",
+    "setting": "Compliance export download period",
+    "whereItLives": "DOC settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "DOC",
+    "setting": "Document requirements per process",
+    "whereItLives": "DocumentRequirement (new; pack content); formats and sizes in the ADM-008 upload context of each requirement",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "DOC",
+    "setting": "Signing and OCR service credentials",
+    "whereItLives": "Adapter settings, encrypted (secret, never in packs)",
+    "layer": "client instance only",
+    "ktda": "Entered at deployment",
+    "mpc": "Entered at deployment"
+  },
+  {
+    "area": "EGV",
+    "setting": "Agencies and agency categories",
+    "whereItLives": "Vendor, Category (native)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated (Table 13, T-MISS)"
+  },
+  {
+    "area": "EGV",
+    "setting": "Services, fees, required documents, delivery options",
+    "whereItLives": "Product, ProductAttributeMapping, shipping methods, pickup points (native)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated (Table 13, T-MISS)"
+  },
+  {
+    "area": "EGV",
+    "setting": "Refund on rejection, per service",
+    "whereItLives": "EgvServiceConfig.RefundOnRejection (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "EGV",
+    "setting": "Appointment reminder lead time",
+    "whereItLives": "EgovSettings (new): egovsettings.appointmentreminderleadhours (key name Proposed; EGV key catalogue, BR-EGV-015); templates in TRK-005",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "EGV",
+    "setting": "Connector timeouts and retry counts",
+    "whereItLives": "EgovSettings (new): egovsettings.connectortimeoutseconds, egovsettings.connectorretrycount (key names Proposed; BR-EGV-015)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "EGV",
+    "setting": "Feature state per client and store",
+    "whereItLives": "productfeature.<prd-id> for PRD-EGV-001 to PRD-EGV-007 (PLT-022, IC-PLT-02)",
+    "layer": "client → store",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "EGV",
+    "setting": "Agency connectors and report formats",
+    "whereItLives": "EGV adapter settings (credentials encrypted and flagged secret, BR-EGV-013), AgencyReportFormat (new)",
+    "layer": "client instance only",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "EGV",
+    "setting": "Agency role permissions mapping",
+    "whereItLives": "PermissionRecordCustomerRoleMapping via IAM-007 role pack (BR-IAM-053)",
+    "layer": "vertical (e-Gov pack) → client",
+    "ktda": "—",
+    "mpc": "Proposed"
+  },
+  {
+    "area": "EGV",
+    "setting": "Upload context for application documents (allowed types, size, scan)",
+    "whereItLives": "ADM-008 UploadPolicySettings (owner ADM-008, BR-ADM-060)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "EGV",
+    "setting": "Action for OrderCompleted.CustomerNotification on e-Government orders (send, suppress, substitute)",
+    "whereItLives": "TRK settings (owner TRK-005, BR-TRK-024)",
+    "layer": "vertical (e-Gov pack) → client",
+    "ktda": "—",
+    "mpc": "Not stated (open item)"
+  },
+  {
+    "area": "EGV",
+    "setting": "Workflow definition per service",
+    "whereItLives": "ADM-002 definitions (WF-ENG); assignment in EgvServiceConfig (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "FIN",
+    "setting": "Partners, partner products, data categories",
+    "whereItLives": "FinancePartner / PartnerProduct (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated (Table 8, T-MISS)"
+  },
+  {
+    "area": "FIN",
+    "setting": "Partner credentials",
+    "whereItLives": "FIN adapter settings, encrypted (new); flagged secret in the key catalogue (BR-FIN-010, BR-PLT-013)",
+    "layer": "client instance only",
+    "ktda": "Entered at deployment",
+    "mpc": "Entered at deployment"
+  },
+  {
+    "area": "FIN",
+    "setting": "Consent text per purpose",
+    "whereItLives": "Country law profile (SEC-012)",
+    "layer": "country",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "FIN",
+    "setting": "Connector timeouts and retry counts",
+    "whereItLives": "FinancialServicesSettings (new): financialservicessettings.connectortimeoutseconds, financialservicessettings.connectorretrycount (key names Proposed; FIN key catalogue, BR-FIN-012)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "FIN",
+    "setting": "Feature state per client and store",
+    "whereItLives": "productfeature.<prd-id> for PRD-FIN-001 to PRD-FIN-005 (PLT-022, IC-PLT-02)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "FIN",
+    "setting": "Transit insurance option and premium rule",
+    "whereItLives": "CheckoutAttribute (native) + FIN settings",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "FIN",
+    "setting": "Subsidy schemes, roles, budgets, eligibility expiry",
+    "whereItLives": "Discount (native) + SubsidyScheme (new)",
+    "layer": "vertical (Schemes pack) → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "FIN",
+    "setting": "Partner services: category, fulfilment mode, store mapping",
+    "whereItLives": "Product, Category, StoreMapping (native) + PartnerServiceConfig (new)",
+    "layer": "client → store",
+    "ktda": "—",
+    "mpc": "Not stated (Table 8, T-MISS)"
+  },
+  {
+    "area": "IAM",
+    "setting": "Registration type",
+    "whereItLives": "CustomerSettings.UserRegistrationType (native; installation-wide)",
+    "layer": "client",
+    "ktda": "Not stated (public retail registration, CUS-003/004)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Mobile registration and login enabled; buyer login factors",
+    "whereItLives": "OtpSettings.LoginByPhoneEnabled (native, 5.00: code login); IAM settings (new: mobile registration without email, \"SMS code\" only)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Required (FR-001, FR-002)"
+  },
+  {
+    "area": "IAM",
+    "setting": "One-time code: validity, length, attempts, resend interval, send limits",
+    "whereItLives": "OtpSettings.OtpTimeLife, OtpLength, OtpFailedAllowedAttempts, OtpCountAttemptsToSendCode, OtpTimeToRepeat (native, 5.00); limit per IP address: IAM setting (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "SMS provider",
+    "whereItLives": "MessagesSettings.ActiveSmsProviderSystemName (native, 5.00); provider plugin settings (Sms.Twilio or the CHN-005 aggregator adapter); credentials are secrets (BR-PLT-013)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Password rules",
+    "whereItLives": "CustomerSettings.PasswordMinLength, PasswordMaxLength, PasswordRequire*, UnduplicatedPasswordsNumber, PasswordLifetime; CustomerRole.EnablePasswordLifetime (native)",
+    "layer": "global → client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-021); values not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Lockout",
+    "whereItLives": "CustomerSettings.FailedPasswordAllowedAttempts, FailedPasswordLockoutMinutes, NotifyFailedLoginAttempt (native)",
+    "layer": "global → client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-021); values not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Recovery link validity; re-login after password change",
+    "whereItLives": "CustomerSettings.PasswordRecoveryLinkDaysValid, RequiredReLoginAfterPasswordChange (native)",
+    "layer": "global → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Sensitive roles and their recovery check",
+    "whereItLives": "IAM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Active MFA providers",
+    "whereItLives": "MultiFactorAuthenticationSettings.ActiveAuthenticationMethodSystemNames (native); ForceMultifactorAuthentication = false (native, fixed by BR-IAM-030)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "MFA-required roles",
+    "whereItLives": "IAM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Privileged administrative roles (FR-012); list not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Idle timeout per user class; concurrent-session limit; limit action",
+    "whereItLives": "IAM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-013); values not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Authentication logging",
+    "whereItLives": "Activity log types PublicStore.SuccessfulLogin / FailedLogin / Logout enabled; CustomerSettings.StoreIpAddresses = true (native)",
+    "layer": "global",
+    "ktda": "Not stated",
+    "mpc": "Required (FR-015)"
+  },
+  {
+    "area": "IAM",
+    "setting": "Suspicious-login rules and thresholds; new-country notice",
+    "whereItLives": "IAM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Product role catalogue",
+    "whereItLives": "Role system names of BR-IAM-050 (pack)",
+    "layer": "global",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "IAM",
+    "setting": "Client roles, permissions and ACL",
+    "whereItLives": "CustomerRole, PermissionRecordCustomerRoleMapping, AclRecord (native; role pack)",
+    "layer": "vertical → client",
+    "ktda": "Not stated (KG-16)",
+    "mpc": "Not stated (MG-08)"
+  },
+  {
+    "area": "IAM",
+    "setting": "Scope dimensions and region list",
+    "whereItLives": "IAM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated (G-ORG)",
+    "mpc": "Not stated (MG-08)"
+  },
+  {
+    "area": "IAM",
+    "setting": "Delegable permissions",
+    "whereItLives": "IAM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Invitation validity; access-review reviewers and frequency; privileged-permission list",
+    "whereItLives": "IAM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Policy versions and re-acceptance flag",
+    "whereItLives": "MKT-008 PolicyVersion.ReacceptanceRequired (read through IC-MKT-03; no IAM setting)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Required on updates (FR-006)"
+  },
+  {
+    "area": "IAM",
+    "setting": "Privacy-policy acceptance at registration; GDPR logging",
+    "whereItLives": "CustomerSettings.AcceptPrivacyPolicyEnabled; GdprSettings.GdprEnabled, LogPrivacyPolicyConsent, LogUserProfileChanges (native)",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Correction-request fields",
+    "whereItLives": "IAM settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Orders and deliveries data (FR-018)"
+  },
+  {
+    "area": "IAM",
+    "setting": "Account activity look-back; staff name or role shown to customers",
+    "whereItLives": "IAM settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Account synchronisation: fields, direction, system of record",
+    "whereItLives": "IAM settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated (MG-09)"
+  },
+  {
+    "area": "IAM",
+    "setting": "Identity verification adapter per country; processes requiring KYC",
+    "whereItLives": "IAM settings (new)",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated (FR-344)"
+  },
+  {
+    "area": "IAM",
+    "setting": "Trade application form and required documents",
+    "whereItLives": "IAM settings (new)",
+    "layer": "vertical (B2B pack) → client",
+    "ktda": "Not stated (PH-INF)",
+    "mpc": "—"
+  },
+  {
+    "area": "IAM",
+    "setting": "VAT number display",
+    "whereItLives": "TaxSettings.EuVatEnabled, EuVatUseWebService = false, EuVatAllowVatExemption = false; Country.SubjectToVat (native)",
+    "layer": "country → client",
+    "ktda": "Not stated (KG-06)",
+    "mpc": "Not stated (MG-05)"
+  },
+  {
+    "area": "IAM",
+    "setting": "Re-order allowed",
+    "whereItLives": "OrderSettings.IsReOrderAllowed (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Agents and outlet assignment",
+    "whereItLives": "AgentProfile (new); outlets from LOG-003",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Outlet agents (FR-014, FR-025)"
+  },
+  {
+    "area": "IAM",
+    "setting": "Customer code required for acting sessions (agent reach is fixed: own outlet customers, BR-IAM-130)",
+    "whereItLives": "IAM settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Rule providers to the impersonation filter",
+    "whereItLives": "IC-IAM-09 providers registered by IAM-026 and CRM-015 (DI)",
+    "layer": "global",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "IAM",
+    "setting": "TRK category Security codes mandatory or not",
+    "whereItLives": "TRK-006 category setting (TRK); checked by IAM through IC-TRK-06 CheckAllowed (BR-IAM-150)",
+    "layer": "client → country",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "IAM",
+    "setting": "Native permissions mapped to product roles; permission exclusions",
+    "whereItLives": "Role pack (PLT-003) per BR-IAM-053, BR-IAM-054",
+    "layer": "global → client",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "IAM",
+    "setting": "IAM key catalogue with secret flags",
+    "whereItLives": "IAM plugin key catalogue (BR-IAM-140)",
+    "layer": "global",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "IAM",
+    "setting": "Company roles, budget overrun action",
+    "whereItLives": "B2B pack settings (new)",
+    "layer": "vertical (B2B pack) → client",
+    "ktda": "Not stated",
+    "mpc": "—"
+  },
+  {
+    "area": "INT",
+    "setting": "API clients, scopes, store limits",
+    "whereItLives": "ApiClient (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INT",
+    "setting": "Rate limit per API client; native global limiter",
+    "whereItLives": "ApiClient.RateLimit (new) or gateway rule; CommonConfig.PermitLimit / QueueCount / RejectionStatusCode in App_Data/appsettings.json (native, installation-wide, 0 = off)",
+    "layer": "client (installation for the native limiter)",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INT",
+    "setting": "API deprecation window",
+    "whereItLives": "INT settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated (backward-compatibility policy required, FR-347)"
+  },
+  {
+    "area": "INT",
+    "setting": "Webhook timeout, retry attempts and delays; auto-pause threshold",
+    "whereItLives": "INT settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INT",
+    "setting": "Health thresholds (latency, error rate) and alert recipients",
+    "whereItLives": "Gateway configuration; INT settings (new) for adapters",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated (FR-342)"
+  },
+  {
+    "area": "INT",
+    "setting": "ERP adapter, posting mode (per order / summarised), posting period, master of record per entity type",
+    "whereItLives": "ConnectorConfig (new)",
+    "layer": "client",
+    "ktda": "ERP not named (KG-03)",
+    "mpc": "—"
+  },
+  {
+    "area": "INT",
+    "setting": "SAGE 200 adapter and posting specification",
+    "whereItLives": "ConnectorConfig (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Required (FR-138, FR-328); specification not received (MG-09)"
+  },
+  {
+    "area": "INT",
+    "setting": "PostGlobal endpoint; PostGlobal code mapping",
+    "whereItLives": "ConnectorConfig (new); TRK-002 TrackingSource and SourceCodeMapping (TRK module)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Required (FR-327, FR-221); specification not received; FG-06"
+  },
+  {
+    "area": "INT",
+    "setting": "Bank adapters",
+    "whereItLives": "ConnectorConfig (new) with PAY-024 adapter settings",
+    "layer": "country → client",
+    "ktda": "Bank not named (KG-04)",
+    "mpc": "Banks not named (MG-03)"
+  },
+  {
+    "area": "INT",
+    "setting": "Government connectors and submission types",
+    "whereItLives": "ConnectorConfig (new)",
+    "layer": "country → client",
+    "ktda": "—",
+    "mpc": "Regulators not named (FR-343); MANEPS (MG-09)"
+  },
+  {
+    "area": "INT",
+    "setting": "Master-data sync sources and interval",
+    "whereItLives": "ConnectorConfig (new); ScheduleTask.Seconds (native, installation-wide)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Systems not named (FR-349, MG-09)"
+  },
+  {
+    "area": "INT",
+    "setting": "Plugin store and role limits",
+    "whereItLives": "LimitedToStores / LimitedToCustomerRoles in plugin.json (file); App_Data/plugins.json (installed list)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INT",
+    "setting": "INT feature state per store",
+    "whereItLives": "productfeature.PRD-INT-nnn (PLT-022, read through IC-PLT-02)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INT",
+    "setting": "Credentials for every connector",
+    "whereItLives": "ConnectorConfig.CredentialsRef (encrypted)",
+    "layer": "client instance only",
+    "ktda": "Entered at deployment",
+    "mpc": "Entered at deployment"
+  },
+  {
+    "area": "INV",
+    "setting": "Inventory method, backorders, stock display",
+    "whereItLives": "Product.ManageInventoryMethodId, BackorderModeId, DisplayStockAvailability, DisplayStockQuantity (native, per product)",
+    "layer": "product data",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Low-stock levels and activity",
+    "whereItLives": "Product / ProductAttributeCombination NotifyAdminForQuantityBelow, MinStockQuantity; Product.LowStockActivityId (native)",
+    "layer": "product data",
+    "ktda": "Not stated",
+    "mpc": "Set by the seller (FR-055); values not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Re-enable after stock returns",
+    "whereItLives": "CatalogSettings.PublishBackProductWhenCancellingOrders (native)",
+    "layer": "client -> store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Multiple warehouses per product",
+    "whereItLives": "Product.UseMultipleWarehouses, Product.WarehouseId (native)",
+    "layer": "product data",
+    "ktda": "Not stated (factories: G-ORG)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Warehouse code and coordinates",
+    "whereItLives": "WarehouseExtension (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Cart hold on / off; cart hold window; checkout hold window",
+    "whereItLives": "INV settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Payment window, reminder count and interval, expiry action (Remind / Flag / Cancel) per payment method",
+    "whereItLives": "INV settings (new; owner INV-004)",
+    "layer": "client",
+    "ktda": "Not stated (M-Pesa, bank transfer: values not stated)",
+    "mpc": "Not stated (mobile money, bank transfer: values not stated)"
+  },
+  {
+    "area": "INV",
+    "setting": "Native automatic cancellation and pending-order reminders (5.00)",
+    "whereItLives": "ordersettings.autocancelenabled, ordersettings.autocanceldelay, ordersettings.autocancelignoredpaymentmethods, ordersettings.autocancelrestoreshoppingcart; remindersettings.pendingordersenabled (native)",
+    "layer": "store",
+    "ktda": "Off (BR-INV-023)",
+    "mpc": "Off (BR-INV-023)"
+  },
+  {
+    "area": "INV",
+    "setting": "Unpaid-order task and hold-release task run interval",
+    "whereItLives": "ScheduleTask.Seconds of the INV tasks (native mechanism)",
+    "layer": "client instance",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Adjustment reason codes",
+    "whereItLives": "AdjustmentReason (new)",
+    "layer": "global -> client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Adjustment approval threshold (quantity and / or value)",
+    "whereItLives": "INV settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Receipts without purchase order allowed; over-receipt tolerance; inspection per category",
+    "whereItLives": "INV settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Count plans, blind counting, recount threshold",
+    "whereItLives": "CountPlan, INV settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Lot tracking, serial tracking per product",
+    "whereItLives": "INV product settings (new)",
+    "layer": "vertical (Warehouse pack) -> client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Shipment capture window (Open capture expires without Confirm)",
+    "whereItLives": "INV settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Near-expiry window; expiry task",
+    "whereItLives": "INV settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "WMS / ERP connector, direction and master per data type, retry policy, valuation method, purchase triggers",
+    "whereItLives": "SyncConnectorConfig (new) on the INT-005 framework; connector credentials are settings flagged secret (BR-PLT-013)",
+    "layer": "client instance",
+    "ktda": "ERP not named (KG-03)",
+    "mpc": "Not stated (MG-09)"
+  },
+  {
+    "area": "INV",
+    "setting": "Feature state per store",
+    "whereItLives": "productfeature.<prd-id> (IC-PLT-02) for INV-001 to INV-013",
+    "layer": "store -> shared",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "INV",
+    "setting": "Analytics period, dead-stock window, ABC cut-offs, top / bottom list size",
+    "whereItLives": "INV settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Shipping methods (service levels)",
+    "whereItLives": "ShippingMethod + ShippingMethodCountryMapping (native)",
+    "layer": "client → store",
+    "ktda": "Not stated (KG-13)",
+    "mpc": "Standard, express, pickup (FR-184); prices and SLAs not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Active rate methods and pickup providers",
+    "whereItLives": "ShippingSettings.ActiveShippingRateComputationMethodSystemNames, ActivePickupPointProviderSystemNames, AllowPickupInStore (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "LOG fee engine; LOG outlet provider (Proposed)"
+  },
+  {
+    "area": "LOG",
+    "setting": "Pickup map",
+    "whereItLives": "ShippingSettings.DisplayPickupPointsOnMap, GoogleMapsApiKey (native)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Free delivery threshold",
+    "whereItLives": "ShippingSettings.FreeShippingOverXEnabled, FreeShippingOverXValue, FreeShippingOverXIncludingTax (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Origin from warehouse",
+    "whereItLives": "ShippingSettings.UseWarehouseLocation, ShippingOriginAddressId (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Fee tables and versions",
+    "whereItLives": "DeliveryFeeTable (new)",
+    "layer": "country → client",
+    "ktda": "Dynamic charges (LOG-001); rules not stated (KG-13)",
+    "mpc": "Weight, distance, service level, pickup vs delivery, rural/urban (FR-105, FR-304); values not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Partner revenue share",
+    "whereItLives": "PartnerShareRule (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Where applicable (FR-198); values not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Coverage areas, location type, outlets per area",
+    "whereItLives": "ServiceArea (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Required (FR-197); rural/urban source not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Seller coverage",
+    "whereItLives": "SellerCoverage (new)",
+    "layer": "client",
+    "ktda": "— (seller model KG-01)",
+    "mpc": "Deliverable districts (FR-069)"
+  },
+  {
+    "area": "LOG",
+    "setting": "Delivery standards and transport-link days",
+    "whereItLives": "DeliveryStandard (new); cut-offs, handling times and working calendar in ORD-011 ServiceLevel",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Required (FR-182); values not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Delivery-window precompute interval",
+    "whereItLives": "LOG settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Outlet capacity flag, accepts-returns flag, closures, free storage days, daily charge; outlet-warehouse links",
+    "whereItLives": "OutletExtension, OutletClosure, PickupPointWarehouse (new); Postal pack settings; pickup deadline in ORD-011",
+    "layer": "vertical (Postal pack) → client",
+    "ktda": "—",
+    "mpc": "Required (FR-188, FR-167, FR-311); values not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Allowed service levels and outlets per product",
+    "whereItLives": "ProductDeliveryOption (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "e-Government services with a physical output (EGV-004); values not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Carrier adapters, assignment rules, rate shopping",
+    "whereItLives": "Carrier, CarrierRule (new)",
+    "layer": "country → client",
+    "ktda": "DHL, FedEx, G4S, Skynet, Wells Fargo, Aramex, shipping lines (LOG-003); APIs F-3",
+    "mpc": "Partners not named (FR-180)"
+  },
+  {
+    "area": "LOG",
+    "setting": "Carrier and provider credentials",
+    "whereItLives": "Adapter settings, encrypted, flagged secret in the LOG key catalogue (BR-LOG-180, BR-PLT-013)",
+    "layer": "client instance only",
+    "ktda": "Entered at deployment",
+    "mpc": "Entered at deployment"
+  },
+  {
+    "area": "LOG",
+    "setting": "Label templates, barcode symbology, network printers",
+    "whereItLives": "LOG settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configured templates (FR-157); scanner spec not stated (MG-06)"
+  },
+  {
+    "area": "LOG",
+    "setting": "S10 series",
+    "whereItLives": "S10Series (Postal pack)",
+    "layer": "vertical (Postal pack) → client",
+    "ktda": "—",
+    "mpc": "Indicators and ranges not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Proof methods per service level",
+    "whereItLives": "ServiceLevelProofMethod (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Signature, OTP, QR per level (FR-195)"
+  },
+  {
+    "area": "LOG",
+    "setting": "Reason codes, maximum attempts, escalation thresholds and contacts",
+    "whereItLives": "LOG settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Reason codes from FR-207 and FR-186; numbers not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Address change window and rules",
+    "whereItLives": "LOG settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Configurable (FR-167); values not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Geocoding / validation provider; digital postcode system",
+    "whereItLives": "Adapter settings (new)",
+    "layer": "country → client",
+    "ktda": "—",
+    "mpc": "\"Where available\" / \"if adopted\" (FR-185, FR-200)"
+  },
+  {
+    "area": "LOG",
+    "setting": "CDS, IPS, GMS endpoints",
+    "whereItLives": "Integration plugin settings (new)",
+    "layer": "country",
+    "ktda": "—",
+    "mpc": "Specifications not stated (MG-09)"
+  },
+  {
+    "area": "LOG",
+    "setting": "Fulfilment model default; allow splits across warehouses",
+    "whereItLives": "LOG settings (new) + SEL-018 opt-in",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Merchant / MPC / third-party (FR-161)"
+  },
+  {
+    "area": "LOG",
+    "setting": "Tracking poll interval per carrier; carrier call timeouts",
+    "whereItLives": "Adapter settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "LOG",
+    "setting": "Upload contexts \"proof-of-delivery media\", \"delivery exception evidence\", \"carrier label\" (allowed types, size, scan)",
+    "whereItLives": "ADM-008 UploadPolicySettings per context (owner ADM-008, BR-LOG-082)",
+    "layer": "global → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "Discount box and gift card box in cart",
+    "whereItLives": "ShoppingCartSettings.ShowDiscountBox, ShowGiftCardBox (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "Reward points programme",
+    "whereItLives": "RewardPointsSettings.Enabled, ExchangeRate, PointsForPurchases_Amount, PointsForPurchases_Points, PurchasesPointsValidity, MinimumRewardPointsToUse, MaximumRewardPointsToUsePerOrder, MaximumRedeemedRate, MinOrderTotalToAwardPoints, ActivationDelay (native)",
+    "layer": "client → store",
+    "ktda": "Loyalty rewards (MKT-002); values not stated (KG-11)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "Gift card activation and cancellation",
+    "whereItLives": "OrderSettings.ActivateGiftCardsAfterCompletingOrder, DeactivateGiftCardsAfterCancellingOrder, DeleteGiftCardUsageHistory (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "Newsletter",
+    "whereItLives": "CustomerSettings.NewsletterEnabled, HideNewsletterBlock, NewsletterBlockAllowToUnsubscribe (native); subscription types",
+    "layer": "client → store",
+    "ktda": "Email campaigns (MKT-004)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "Omnisend",
+    "whereItLives": "OmnisendSettings (ApiKey — secret, UseTracking) (bundled plugin, optional); Misc.Brevo not installed (OVR-REG)",
+    "layer": "client instance only",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "Abandoned-cart reminders",
+    "whereItLives": "ReminderSettings.AbandonedCartEnabled (native since 5.00); message templates Reminders.AbandonedCartFollowUp1 to 3 (IsActive, DelayBeforeSend, DelayPeriod)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "Pop-ups",
+    "whereItLives": "Popup (new); MKT widget in WidgetSettings.ActiveWidgetSystemNames (native)",
+    "layer": "client → store",
+    "ktda": "Pop-ups (MKT-005)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "Content types requiring approval",
+    "whereItLives": "MKT settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Approval workflow (FR-313)"
+  },
+  {
+    "area": "MKT",
+    "setting": "Policy topics under versioning",
+    "whereItLives": "MKT settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Version control (FR-306)"
+  },
+  {
+    "area": "MKT",
+    "setting": "SEO",
+    "whereItLives": "SeoSettings (PageTitleSeparator, GenerateProductMetaDescription, CanonicalUrlsEnabled, WwwRequirement, OpenGraphMetaTags, TwitterMetaTags, CustomHeadTags, MicrodataEnabled); SitemapXmlSettings; RobotsTxtSettings; LocalizationSettings.SeoFriendlyUrlsForLanguagesEnabled (native)",
+    "layer": "client → store",
+    "ktda": "SEO (SEO-001 to 003)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "AI meta text",
+    "whereItLives": "ArtificialIntelligenceSettings.Enabled, AllowMetaTitleGeneration, AllowMetaDescriptionGeneration, AllowMetaKeywordsGeneration (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "Marketing tags",
+    "whereItLives": "GoogleAnalyticsSettings.GoogleId, EnableEcommerce (bundled); Widgets.FacebookPixel (bundled, configuration in plugin table); SeoSettings.CustomHeadTags (only tags that need no consent, BR-MKT-012)",
+    "layer": "client → store",
+    "ktda": "Google Ads, social (MKT-001 service)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "Share buttons and social links",
+    "whereItLives": "CatalogSettings.ShowShareButton, PageShareCode; StoreInformationSettings.FacebookLink, TwitterLink, YoutubeLink, InstagramLink (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Social plug-ins (INT-003)"
+  },
+  {
+    "area": "MKT",
+    "setting": "Cookie category of each marketing widget",
+    "whereItLives": "SEC-007 widget-category map (StoreInformationSettings.DisplayEuCookieLawWarning stays off; SEC-007 banner)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "Google Analytics 4 property and export route to the warehouse",
+    "whereItLives": "GoogleAnalyticsSettings.GoogleId, ApiSecret (secret) (bundled); export route Not stated (RPT)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "MKT",
+    "setting": "Customer segmentation fields",
+    "whereItLives": "CustomerSettings.GenderEnabled, DateOfBirthEnabled (native); CustomerAttribute (native); SegmentRule (new)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Buyer type, gender, age, rural / urban, seller type (FR-316)"
+  },
+  {
+    "area": "MKT",
+    "setting": "Referral and affiliate rules",
+    "whereItLives": "MKT settings, AffiliateCommissionRule (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "ORD",
+    "setting": "Stage model and auto-advance rules",
+    "whereItLives": "OrderStageDefinition / Transition (new)",
+    "layer": "vertical → client",
+    "ktda": "Not stated (WF-006 logic not stated)",
+    "mpc": "FR-153 stage list"
+  },
+  {
+    "area": "ORD",
+    "setting": "Complete only when delivered",
+    "whereItLives": "OrderSettings.CompleteOrderWhenDelivered (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Proposed on (aligns Complete with Delivered)"
+  },
+  {
+    "area": "ORD",
+    "setting": "Acceptance enabled; acceptance window",
+    "whereItLives": "ORD settings (new)",
+    "layer": "client",
+    "ktda": "Not stated (needed if escrow, PAY-007)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "ORD",
+    "setting": "Reason codes; interventions needing approval; snapshot stages",
+    "whereItLives": "ReasonCode (new); ORD settings",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Reason codes required (FR-156); list not stated"
+  },
+  {
+    "area": "ORD",
+    "setting": "Customer self-cancel (native) / ORD buyer cancellation and window",
+    "whereItLives": "OrderSettings.AllowCustomersCancelOrders (native, kept off); ORD settings (new)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Configurable policy (FR-154); window not stated"
+  },
+  {
+    "area": "ORD",
+    "setting": "Seller acceptance deadline; penalty rules",
+    "whereItLives": "ORD settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Configurable (FR-170); values not stated"
+  },
+  {
+    "area": "ORD",
+    "setting": "Fulfil-before-payment payment methods",
+    "whereItLives": "ORD settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "ORD",
+    "setting": "Partial supply enabled; buyer decision time; default action",
+    "whereItLives": "ORD settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "\"As configured\" (FR-158); values not stated"
+  },
+  {
+    "area": "ORD",
+    "setting": "Order number masks",
+    "whereItLives": "OrderSettings.CustomOrderNumberMask (native, store-overridable); per order type masks (new)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "e.g. MP-2026-000123 (D); prefixes (FR-172)"
+  },
+  {
+    "area": "ORD",
+    "setting": "Reorder allowed",
+    "whereItLives": "OrderSettings.IsReOrderAllowed (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "On (FR-173)"
+  },
+  {
+    "area": "ORD",
+    "setting": "Invoice issue point and attachments",
+    "whereItLives": "OrderSettings.AttachPdfInvoiceToOrderPlacedEmail / PaidEmail / CompletedEmail (native); PdfSettings.* (native)",
+    "layer": "client → store",
+    "ktda": "Automated (ORD-002)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "ORD",
+    "setting": "Invoice company and tax fields",
+    "whereItLives": "ORD settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Seller identity, fees, tax (FR-171); values not stated"
+  },
+  {
+    "area": "ORD",
+    "setting": "Service levels, cut-offs, pickup deadlines, escalation roles, working calendar",
+    "whereItLives": "ServiceLevel (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "FR-165, FR-184, FR-311; values not stated"
+  },
+  {
+    "area": "ORD",
+    "setting": "RFQ routing and negotiation limits",
+    "whereItLives": "ORD settings (new); Misc.RFQ settings (native)",
+    "layer": "client",
+    "ktda": "Not stated (KG-10)",
+    "mpc": "—"
+  },
+  {
+    "area": "ORD",
+    "setting": "Offer review and publication",
+    "whereItLives": "ORD settings (new)",
+    "layer": "client",
+    "ktda": "Held by K-01",
+    "mpc": "—"
+  },
+  {
+    "area": "ORD",
+    "setting": "Requisition types and workflows",
+    "whereItLives": "RequestType (new) + ADM-002 definitions",
+    "layer": "client",
+    "ktda": "WF-001–WF-004; steps not stated (KG-09)",
+    "mpc": "—"
+  },
+  {
+    "area": "ORD",
+    "setting": "Contract templates; letter templates; signing provider",
+    "whereItLives": "DOC-001 templates; adapter settings (new, credentials per instance; every credential, key or token flagged secret in the ORD key catalogue and never in a configuration pack, BR-PLT-013, CFG-01)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "—"
+  },
+  {
+    "area": "ORD",
+    "setting": "Incoterm list",
+    "whereItLives": "Incoterm (new)",
+    "layer": "client",
+    "ktda": "Not stated (PH-INF)",
+    "mpc": "—"
+  },
+  {
+    "area": "ORD",
+    "setting": "Sample limits",
+    "whereItLives": "ORD settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "—"
+  },
+  {
+    "area": "ORD",
+    "setting": "ADM-007 operational stage mapping; line stage sets",
+    "whereItLives": "OrderStageDefinition.OperationalStage, Scope (new)",
+    "layer": "vertical → client",
+    "ktda": "—",
+    "mpc": "Mapping values not stated (MG-06); service stage set SM-SVC-01 (SVC)"
+  },
+  {
+    "area": "ORD",
+    "setting": "Feature state per store",
+    "whereItLives": "Setting productfeature.<prd-id> read through IC-PLT-02 (PLT-022) before ORD pages, widgets, providers, guards or scheduled tasks act for a store",
+    "layer": "store, else shared",
+    "ktda": "Per pack",
+    "mpc": "Per pack"
+  },
+  {
+    "area": "ORD",
+    "setting": "Key catalogue",
+    "whereItLives": "Every new ORD setting key is listed in the ORD plugin key catalogue (key, type, layer, secret flag, default) so pack validation accepts it (NFR-X-008)",
+    "layer": "global",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "ORD",
+    "setting": "Recurring task interval; cancel after failed payment; next-payment reminder",
+    "whereItLives": "ScheduleTask (installation); PaymentSettings.CancelRecurringPaymentsAfterFailedPayment (native); OrderSettings.NextRecurringPaymentNotificationDays (native, 5.00, install default 1)",
+    "layer": "installation; client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "ORD",
+    "setting": "Misc.RFQ settings (5.00)",
+    "whereItLives": "RfqSettings.Enabled (install default on), ShowCaptchaOnRequestPage, AllowCustomerGenerateQuotePdf (install default off)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PAY",
+    "setting": "Unpaid-order reminders and automatic cancellation (5.00)",
+    "whereItLives": "ReminderSettings.PendingOrdersEnabled (native, install default on; Proposed off), message templates Reminders.PendingOrderFollowUp1 / 2; OrderSettings.AutoCancelEnabled (native, install default off; stays off), AutoCancelDelay, AutoCancelIgnoredPaymentMethods (BR-PAY-170)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PAY",
+    "setting": "Active payment methods",
+    "whereItLives": "PaymentSettings.ActivePaymentMethodSystemNames (native)",
+    "layer": "client → store",
+    "ktda": "Card (bank gateway), PayPal, M-Pesa, bank transfer, LC, escrow (KTDA PAY-001–008)",
+    "mpc": "Mpamba, Airtel Money, bank transfer, card, outlet cash, COD (MPC FR-126–132); wallet if enabled (FR-130)"
+  },
+  {
+    "area": "PAY",
+    "setting": "Payment restrictions by country",
+    "whereItLives": "Setting paymentmethodrestictions.<systemname> (native; source spelling; shared value, StoreId 0 only)",
+    "layer": "client",
+    "ktda": "Not stated in source",
+    "mpc": "Not stated in source"
+  },
+  {
+    "area": "PAY",
+    "setting": "Payment method store / role limits",
+    "whereItLives": "LimitedToStores / LimitedToCustomerRoles in plugin.json (file)",
+    "layer": "client → store",
+    "ktda": "Not stated in source",
+    "mpc": "Not stated in source"
+  },
+  {
+    "area": "PAY",
+    "setting": "Routing rules",
+    "whereItLives": "PaymentRoutingRule (new)",
+    "layer": "client",
+    "ktda": "Not stated in source",
+    "mpc": "Per service type and rural/urban (FR-305)"
+  },
+  {
+    "area": "PAY",
+    "setting": "Re-posting payments allowed",
+    "whereItLives": "PaymentSettings.AllowRePostingPayments (native; applies to Redirection-type methods only)",
+    "layer": "client",
+    "ktda": "Not stated (Proposed: on)",
+    "mpc": "On (FR-150 retry)"
+  },
+  {
+    "area": "PAY",
+    "setting": "Order GUID reuse window",
+    "whereItLives": "PaymentSettings.RegenerateOrderGuidInterval (native, seconds, default 180)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PAY",
+    "setting": "Mobile-money wait time and status-query count",
+    "whereItLives": "PAY settings (new)",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PAY",
+    "setting": "Payment window for unpaid orders, per payment method; action remind / flag / cancel (Proposed)",
+    "whereItLives": "INV-004 settings (owner INV)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PAY",
+    "setting": "COD allowed areas / sellers / items",
+    "whereItLives": "PAY settings + product/vendor flags (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Configurable (FR-132)"
+  },
+  {
+    "area": "PAY",
+    "setting": "Fee schedules; fee taxability",
+    "whereItLives": "PaymentFeeSchedule (new); TaxSettings.PaymentMethodAdditionalFeeIsTaxable (native)",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "Versioned (FR-139); COD fee by location (FR-304)"
+  },
+  {
+    "area": "PAY",
+    "setting": "Refund approval threshold",
+    "whereItLives": "PAY settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-245); value not stated"
+  },
+  {
+    "area": "PAY",
+    "setting": "Expected refund time per method",
+    "whereItLives": "PAY settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Required (FR-243); values not stated"
+  },
+  {
+    "area": "PAY",
+    "setting": "Bulk-buyer customer role for LC and escrow",
+    "whereItLives": "Customer role (native) referenced by PAY settings",
+    "layer": "client",
+    "ktda": "Required (KTDA PAY-008); definition not stated (KG-08)",
+    "mpc": "—"
+  },
+  {
+    "area": "PAY",
+    "setting": "Risk rules and thresholds",
+    "whereItLives": "RiskRule (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-143, FR-320)"
+  },
+  {
+    "area": "PAY",
+    "setting": "Currencies, primary and exchange currency, rate provider",
+    "whereItLives": "Currency, CurrencySettings (native), ECB rate plugin (bundled)",
+    "layer": "client → store",
+    "ktda": "USD base; multi-currency (LOC-002); C-FX open",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PAY",
+    "setting": "Tax provider, categories, prices incl./excl. tax",
+    "whereItLives": "TaxSettings (native)",
+    "layer": "country → client",
+    "ktda": "Not stated (KG-06)",
+    "mpc": "Not stated (MG-05)"
+  },
+  {
+    "area": "PAY",
+    "setting": "E-invoicing adapter",
+    "whereItLives": "FiscalSubmission settings (new)",
+    "layer": "country",
+    "ktda": "KRA eTIMS (E-INV)",
+    "mpc": "MRA EIS (E-INV)"
+  },
+  {
+    "area": "PAY",
+    "setting": "Wallet enabled; spend model",
+    "whereItLives": "PAY settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "If enabled by Malawi Post (FR-130); WAL-01"
+  },
+  {
+    "area": "PAY",
+    "setting": "Direct payment to seller enabled, per seller",
+    "whereItLives": "PAY settings + SellerPaymentAccount (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PAY",
+    "setting": "Provider credentials",
+    "whereItLives": "Adapter settings, encrypted (new)",
+    "layer": "client instance only",
+    "ktda": "Entered at deployment",
+    "mpc": "Entered at deployment"
+  },
+  {
+    "area": "PLT",
+    "setting": "Client pack set and vertical",
+    "whereItLives": "Pack files (PLT-003); InstanceProfile",
+    "layer": "global → vertical → client",
+    "ktda": "Not stated (vertical undefined, FCAT-01)",
+    "mpc": "Not stated (vertical undefined, FCAT-01)"
+  },
+  {
+    "area": "PLT",
+    "setting": "Controlled settings list, impact levels, validators",
+    "whereItLives": "ControlledItem (new)",
+    "layer": "global → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Theme and logo per store",
+    "whereItLives": "storeinformationsettings.defaultstoretheme, .logopictureid, .allowcustomertoselecttheme (native)",
+    "layer": "client → store",
+    "ktda": "KTDA branding (REQ-KTDA-UX-002); guidelines not provided",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Store URL, hosts, SSL",
+    "whereItLives": "Store.Url, Store.Hosts, Store.SslEnabled (native entity; instance-bound)",
+    "layer": "store",
+    "ktda": "Not stated (domain)",
+    "mpc": "Not stated (domain)"
+  },
+  {
+    "area": "PLT",
+    "setting": "Proxy and TLS termination",
+    "whereItLives": "HostingConfig.UseProxy, ForwardedProtoHeaderName (appsettings.json, per installation)",
+    "layer": "installation",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Default sender account",
+    "whereItLives": "EmailAccount entity; emailaccountsettings.defaultemailaccountid (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Languages and RTL",
+    "whereItLives": "Language entity (Rtl, LanguageCulture, LimitedToStores, Published); localizationsettings.* (native)",
+    "layer": "global → vertical → client",
+    "ktda": "Kiswahili, English, French, Arabic, Russian, Mandarin (REQ-KTDA-LOC-001)",
+    "mpc": "English, Chichewa (REQ-MPC-FR-023)"
+  },
+  {
+    "area": "PLT",
+    "setting": "Currencies, primary currencies, auto update, provider",
+    "whereItLives": "Currency entity; currencysettings.primarystorecurrencyid, .primaryexchangeratecurrencyid, .autoupdateenabled, .activeexchangerateprovidersystemname (native)",
+    "layer": "client → store",
+    "ktda": "USD base, multi-currency (REQ-KTDA-LOC-002); list and source not stated (KG-15)",
+    "mpc": "Not stated (MG-04)"
+  },
+  {
+    "area": "PLT",
+    "setting": "Rate tolerance",
+    "whereItLives": "PLT rate-provider settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Time zone",
+    "whereItLives": "datetimesettings.defaultstoretimezoneid, .allowcustomerstosettimezone (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated (MG-04)"
+  },
+  {
+    "area": "PLT",
+    "setting": "Fiscal-year start",
+    "whereItLives": "fiscalcalendarsettings.* (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Feature states",
+    "whereItLives": "Setting productfeature.<prd-id> (new key family)",
+    "layer": "vertical (pack default) → client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Distributed cache",
+    "whereItLives": "DistributedCacheConfig.Enabled, DistributedCacheType, InstanceName (appsettings.json)",
+    "layer": "installation",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Installer plugin exclusions",
+    "whereItLives": "InstallationConfig.DisabledPlugins (appsettings.json; default Misc.AzureBlob, Misc.CloudflareImages)",
+    "layer": "installation",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Retention rules",
+    "whereItLives": "RetentionRule (new); commonsettings.clearlogolderthandays, gdprsettings.deleteinactivecustomersaftermonths (native)",
+    "layer": "country → client",
+    "ktda": "Not stated (KG-18)",
+    "mpc": "Required for orders, payments, tickets, logs (FR-322); values not stated (MG-13)"
+  },
+  {
+    "area": "PLT",
+    "setting": "Integration settings (INT)",
+    "whereItLives": "API client templates without keys, webhook policy, connector configuration without credentials, PostGlobal status map, master of record per entity type (INT plugin settings and tables; keys flagged secret in the INT key catalogue)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Health endpoint access",
+    "whereItLives": "PLT settings: token / IP allow-list (new; token is a secret)",
+    "layer": "installation",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Alert thresholds",
+    "whereItLives": "Monitoring platform (external)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated (FR-290)"
+  },
+  {
+    "area": "PLT",
+    "setting": "Idempotency key retention",
+    "whereItLives": "PLT settings (new)",
+    "layer": "global",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Machine pre-translation",
+    "whereItLives": "translationsettings.allowpretranslate, .translationserviceid (native); API keys are secrets",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Hashed-password import",
+    "whereItLives": "securitysettings.allowstoreownerexportimportcustomerswithhashedpassword (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "PLT",
+    "setting": "Archive period of archived instances",
+    "whereItLives": "Pipeline setting (external)",
+    "layer": "global",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "RET",
+    "setting": "Return requests enabled; window days; files allowed; file size (KB); number mask",
+    "whereItLives": "ReturnRequestSettings.ReturnRequestsEnabled, NumberOfDaysReturnRequestAvailable, ReturnRequestsAllowFiles, ReturnRequestsFileMaximumSize, ReturnRequestNumberMask (native; moved from OrderSettings in 5.00, Libraries/Nop.Core/Domain/Orders/ReturnRequestSettings.cs:13-33)",
+    "layer": "client → store",
+    "ktda": "Not stated (KG-12)",
+    "mpc": "Window \"configured\" (FR-226); value not stated"
+  },
+  {
+    "area": "RET",
+    "setting": "Return reasons and requested actions",
+    "whereItLives": "ReturnRequestReason, ReturnRequestAction (native lists; config pack row)",
+    "layer": "vertical → client",
+    "ktda": "Not stated (KG-12)",
+    "mpc": "Standardised list (FR-227); values not stated"
+  },
+  {
+    "area": "RET",
+    "setting": "Returns-policy topic and dispute-process topic system names",
+    "whereItLives": "RET settings (new) + Topic (native)",
+    "layer": "client → store",
+    "ktda": "Policy content not provided (KG-12)",
+    "mpc": "Dispute policy not provided (T-MISS)"
+  },
+  {
+    "area": "RET",
+    "setting": "Evidence upload enabled; maximum files per request",
+    "whereItLives": "RET settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Evidence \"where permitted\" (FR-227); limit not stated"
+  },
+  {
+    "area": "RET",
+    "setting": "Eligibility rules; window start",
+    "whereItLives": "ReturnEligibilityRule (new)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Per category and seller policy (FR-237); values not stated"
+  },
+  {
+    "area": "RET",
+    "setting": "Return shipping models and destination rules",
+    "whereItLives": "ReturnShippingModel, ReturnDestinationRule (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Four models (FR-228); rules in Table 10 — not provided (T-MISS)"
+  },
+  {
+    "area": "RET",
+    "setting": "Inspection condition grades; seller inspection allowed",
+    "whereItLives": "RET settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "RET",
+    "setting": "Return fee rules",
+    "whereItLives": "ReturnFeeRule (new); Commerce extensions pack row",
+    "layer": "vertical → client → store",
+    "ktda": "Not stated",
+    "mpc": "Could (FR-238); values not stated"
+  },
+  {
+    "area": "RET",
+    "setting": "Issue types and whether each needs a return",
+    "whereItLives": "IssueType (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Missing, damaged, wrong item (FR-240)"
+  },
+  {
+    "area": "RET",
+    "setting": "Remedy acceptance wait time; rejections before escalation",
+    "whereItLives": "RET settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "RET",
+    "setting": "SLA policies (seller response, resolution) and escalation levels",
+    "whereItLives": "CRM-014 SLA component (owner CRM)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-241, FR-311, FR-312); values not stated (T-MISS)"
+  },
+  {
+    "area": "RET",
+    "setting": "Triage rules",
+    "whereItLives": "TriageRule (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-242)"
+  },
+  {
+    "area": "RET",
+    "setting": "External bodies for escalation",
+    "whereItLives": "ExternalBody (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Example MACRA named in FR-247; list not stated"
+  },
+  {
+    "area": "RET",
+    "setting": "Seller response timeout action (escalate / auto-approve)",
+    "whereItLives": "RET settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "RET",
+    "setting": "Message pre-moderation",
+    "whereItLives": "RET settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "RET",
+    "setting": "Retention periods for return and dispute records",
+    "whereItLives": "PLT-020 retention rules (owner PLT)",
+    "layer": "country → client",
+    "ktda": "Not stated (KG-18)",
+    "mpc": "Per retention policy (FR-248); not stated (MG-13)"
+  },
+  {
+    "area": "RET",
+    "setting": "Report period for scheduled reports",
+    "whereItLives": "RET settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "\"Periodic\" (FR-249); period not stated"
+  },
+  {
+    "area": "RET",
+    "setting": "Return conditions added in 5.00: completed orders only; downloadable products returnable; return reasons on; return actions on; guest returns; EU withdrawal wording; withdrawal link days",
+    "whereItLives": "ReturnRequestSettings.ReturnRequestsForCompletedOrdersOnly, DownloadableProductsReturnRequestsAllowed, ReturnReasonsEnabled, ReturnActionsEnabled, GuestReturnRequestsAllowed, UseEuWithdrawalLocales, WithdrawalLinkDaysValid (native, Libraries/Nop.Core/Domain/Orders/ReturnRequestSettings.cs:38-68)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated; product values on / off / on / on / off / off (VER-500, Proposed)"
+  },
+  {
+    "area": "RPT",
+    "setting": "Native report permissions per role",
+    "whereItLives": "PermissionRecordCustomerRoleMapping for Reports.* (native)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "RPT",
+    "setting": "Extract datasets, modes, schedules, off-peak window, retries",
+    "whereItLives": "ExtractDataset (new); Analytics pack row",
+    "layer": "vertical → client",
+    "ktda": "Not stated (KG-17)",
+    "mpc": "Not stated (MG-12)"
+  },
+  {
+    "area": "RPT",
+    "setting": "Pseudonymisation and removal per field",
+    "whereItLives": "ExtractDataset.TreatedFields (new)",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "When required by policy (FR-293); fields not stated"
+  },
+  {
+    "area": "RPT",
+    "setting": "KPI catalogue",
+    "whereItLives": "KpiDefinition (new); config pack row \"KPI catalogue\"; Logistics and postal pack seeds the BR-LOG-120 definitions (Proposed)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Registrations, active buyers/sellers, GMV, orders, conversion (FR-276); definitions not stated"
+  },
+  {
+    "area": "RPT",
+    "setting": "BI connection and external consumers",
+    "whereItLives": "ExternalConsumer (new); credentials per instance",
+    "layer": "client instance only",
+    "ktda": "Not stated",
+    "mpc": "Other government / MPC systems (FR-289); not named"
+  },
+  {
+    "area": "RPT",
+    "setting": "Advertising spend sources",
+    "whereItLives": "RPT settings (new)",
+    "layer": "client",
+    "ktda": "Not named (ANL-003)",
+    "mpc": "—"
+  },
+  {
+    "area": "RPT",
+    "setting": "Public metrics; minimum group size; snapshot schedule",
+    "whereItLives": "PublicMetric (new), RPT settings",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "RPT",
+    "setting": "Operator metric definitions (rework, dispute rate)",
+    "whereItLives": "RPT settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "RPT",
+    "setting": "Abandoned-cart idle time",
+    "whereItLives": "RPT settings (new)",
+    "layer": "client",
+    "ktda": "Not stated (ANL-005)",
+    "mpc": "—"
+  },
+  {
+    "area": "RPT",
+    "setting": "Fiscal year start",
+    "whereItLives": "FiscalCalendarSettings (PLT-012, client layer)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "RPT",
+    "setting": "Fast and slow movers report: default period",
+    "whereItLives": "RPT settings (new)",
+    "layer": "client",
+    "ktda": "Not stated (ANL-002)",
+    "mpc": "—"
+  },
+  {
+    "area": "RPT",
+    "setting": "Dashboard refresh interval",
+    "whereItLives": "BI platform setting (external)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "RPT",
+    "setting": "Google Analytics 4 e-commerce events",
+    "whereItLives": "GoogleAnalyticsSettings.EnableEcommerce (bundled plugin, MKT-010)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEC",
+    "setting": "HTTPS on every store",
+    "whereItLives": "Store.SslEnabled (native)",
+    "layer": "client → store",
+    "ktda": "Required (SSL, SEC-002)",
+    "mpc": "Required (data in transit, SEC-001)"
+  },
+  {
+    "area": "SEC",
+    "setting": "Proxy and forwarded headers",
+    "whereItLives": "HostingConfig.UseProxy, ForwardedProtoHeaderName, ForwardedForHeaderName, KnownProxies, KnownNetworks (appsettings.json, native)",
+    "layer": "installation",
+    "ktda": "Hosting (not stated)",
+    "mpc": "Hosting (not stated)"
+  },
+  {
+    "area": "SEC",
+    "setting": "Encryption",
+    "whereItLives": "SecuritySettings.UseAesEncryptionAlgorithm = true, EncryptionKey per instance (native; secret)",
+    "layer": "installation",
+    "ktda": "Entered at deployment",
+    "mpc": "Entered at deployment"
+  },
+  {
+    "area": "SEC",
+    "setting": "Password storage",
+    "whereItLives": "CustomerSettings.DefaultPasswordFormat = Hashed, HashedPasswordFormat = SHA512 (native install defaults)",
+    "layer": "global",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "SEC",
+    "setting": "Admin IP allow-list; honeypot",
+    "whereItLives": "SecuritySettings.AdminAreaAllowedIpAddresses, HoneypotEnabled, LogHoneypotDetection (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEC",
+    "setting": "Audit: audited entities, ignore list, redaction list",
+    "whereItLives": "SEC settings (new)",
+    "layer": "global → client",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "SEC",
+    "setting": "Audit retention period",
+    "whereItLives": "SEC settings (new); PLT-020",
+    "layer": "country → client",
+    "ktda": "Not stated (KG-18)",
+    "mpc": "Not stated (MG-13)"
+  },
+  {
+    "area": "SEC",
+    "setting": "Audit export formats; signing key",
+    "whereItLives": "SEC settings (new); key per instance (secret)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated (\"different formats\", AUD-001)"
+  },
+  {
+    "area": "SEC",
+    "setting": "Security-monitoring export target and backlog alert age",
+    "whereItLives": "SEC settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEC",
+    "setting": "Cookie categories and widget mapping (including the AI-003 chat widget, Proposed: functional); banner text",
+    "whereItLives": "CookieCategory, WidgetCategoryMap (new); StoreInformationSettings.DisplayEuCookieLawWarning = false (native)",
+    "layer": "country → client → store",
+    "ktda": "Not stated",
+    "mpc": "Cookies and tracking consent (FR-010)"
+  },
+  {
+    "area": "SEC",
+    "setting": "Server-side analytics events",
+    "whereItLives": "CountryPrivacyProfile.ServerSideAnalyticsConsentRequired (new); GoogleAnalyticsSettings.EnableEcommerce (bundled plugin)",
+    "layer": "country → client",
+    "ktda": "Not stated (ANL-008 consent)",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEC",
+    "setting": "GDPR settings",
+    "whereItLives": "GdprSettings.GdprEnabled, LogPrivacyPolicyConsent, LogNewsletterConsent, LogUserProfileChanges, DeleteInactiveCustomersAfterMonths; task \"Delete inactive customers (GDPR)\" (native)",
+    "layer": "country → client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEC",
+    "setting": "Country data-protection profile",
+    "whereItLives": "CountryPrivacyProfile (new)",
+    "layer": "country",
+    "ktda": "Kenya profile; values Not stated (DP-01)",
+    "mpc": "Malawi profile; values Not stated (DP-01)"
+  },
+  {
+    "area": "SEC",
+    "setting": "Breach notice templates per regulator and per affected class",
+    "whereItLives": "MessageTemplate (native) per template system name (new)",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEC",
+    "setting": "Captcha",
+    "whereItLives": "CaptchaSettings.Enabled, CaptchaType, ShowOnLoginPage, ShowOnRegistrationPage, ShowOnContactUsPage, ShowOnProductReviewPage, ShowOnForgotPasswordPage, ShowOnWithdrawalForm (new in 5.00; used only if guest returns are switched on, RET-001, or by the TRK-011 fallback lookup), ReCaptchaV3ScoreThreshold, ReCaptchaPublicKey / PrivateKey (native; private key secret; the forum and news flags left core with the Misc.Forums and Misc.News plugins)",
+    "layer": "global → client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEC",
+    "setting": "Data classes and masking rules",
+    "whereItLives": "DataClassification, MaskingRule (new)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEC",
+    "setting": "Uploaded-file access rule",
+    "whereItLives": "SEC settings (new); UploadOwnership",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEC",
+    "setting": "SEC key catalogue with secret flags",
+    "whereItLives": "SEC plugin key catalogue (BR-SEC-002)",
+    "layer": "global",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "SEC",
+    "setting": "Hosting region",
+    "whereItLives": "Instance profile (PLT-001)",
+    "layer": "installation",
+    "ktda": "AWS or Azure preferred (HST-001); region DP-01",
+    "mpc": "Not stated (MG-14); region DP-01"
+  },
+  {
+    "area": "SEL",
+    "setting": "Marketplace on/off; apply-for-vendor allowed",
+    "whereItLives": "Marketplace pack install (App_Data/plugins.json); VendorSettings.AllowCustomersToApplyForVendorAccount (native); productfeature.<prd-id> (IC-PLT-02)",
+    "layer": "client → store",
+    "ktda": "Not stated (KG-01)",
+    "mpc": "Not stated (MG-02); conflicts with FR-026 to FR-050 (C-SELLER)"
+  },
+  {
+    "area": "SEL",
+    "setting": "Vendor terms required",
+    "whereItLives": "VendorSettings.TermsOfServiceEnabled (native) + topic VendorTermsOfService",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Required for activation (FR-030)"
+  },
+  {
+    "area": "SEL",
+    "setting": "Vendor may edit own info; notify owner of change",
+    "whereItLives": "VendorSettings.AllowVendorsToEditInfo, NotifyStoreOwnerAboutVendorInformationChange (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "Maximum products per vendor; maximum pictures per product",
+    "whereItLives": "VendorSettings.MaximumProductNumber, MaximumProductPicturesNumber (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "Vendors may import products",
+    "whereItLives": "VendorSettings.AllowVendorsToImportProducts (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "Show vendor on product and order pages; contact vendor; search by vendor",
+    "whereItLives": "VendorSettings.ShowVendorOnProductDetailsPage, ShowVendorOnOrderDetailsPage, AllowCustomersToContactVendors, AllowSearchByVendor (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "Required profile fields",
+    "whereItLives": "Vendor attributes with IsRequired (native)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-036)"
+  },
+  {
+    "area": "SEL",
+    "setting": "Seller types, tiers, required documents and checks, limits",
+    "whereItLives": "SellerType, SellerTier, SellerDocumentType (new)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-029, FR-308, FR-036)"
+  },
+  {
+    "area": "SEL",
+    "setting": "Document expiry alert lead time; pause listings on expiry",
+    "whereItLives": "SEL settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "Assignment rules for the seller queue",
+    "whereItLives": "SEL settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-319)"
+  },
+  {
+    "area": "SEL",
+    "setting": "Payout account verification method per type",
+    "whereItLives": "SEL settings (new)",
+    "layer": "country → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "Re-acceptance of a new seller terms version",
+    "whereItLives": "MKT-008 PolicyVersion re-acceptance flag (per version; no SEL setting)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "Marketplace rules",
+    "whereItLives": "MarketplaceRule (new)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-033, FR-046)"
+  },
+  {
+    "area": "SEL",
+    "setting": "KPI thresholds and actions",
+    "whereItLives": "KpiThreshold (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-037)"
+  },
+  {
+    "area": "SEL",
+    "setting": "Seller rating scale; approval required",
+    "whereItLives": "SEL settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "Seller staff profiles",
+    "whereItLives": "SellerStaffProfile (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "Commission and fee rules",
+    "whereItLives": "CommissionRule (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-043, FR-303)"
+  },
+  {
+    "area": "SEL",
+    "setting": "Settlement cycles, eligibility event, hold period, minimum payout, second approver",
+    "whereItLives": "SettlementCycle, SEL settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Daily / weekly cycles (FR-145); other values not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "Commission invoicing period, due days, grace days, pause on overdue",
+    "whereItLives": "SEL settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "Unpublished product pages viewable (vacation notice on product page)",
+    "whereItLives": "CatalogSettings.AllowViewUnpublishedProductPage, DisplayDiscontinuedMessageForUnpublishedProducts (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "Vendor product reviews page size",
+    "whereItLives": "CatalogSettings.VendorProductReviewsPageSize (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SEL",
+    "setting": "List entries (block, watch, allow)",
+    "whereItLives": "ListEntry (new, Platform core)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-323)"
+  },
+  {
+    "area": "SRC",
+    "setting": "Search provider",
+    "whereItLives": "CatalogSettings.ActiveSearchProviderSystemName, UseStandardSearchWhenNoResults (native; on in every pack, BR-SRC-150)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SRC",
+    "setting": "AI search provider (Google AI Commerce Search, optional)",
+    "whereItLives": "ArtificialIntelligenceSettings.ActiveAIRecommendationProviderSystemName, UseStandardSearchWhenNoResults (native; on, BR-SRC-150); GoogleAiSettings.Enabled, SearchAllowed, EnableForRegisteredUsersOnly, ProjectId, LocationId, CatalogId, BranchId (bundled plugin); Google service-account key on the host through GOOGLE_APPLICATION_CREDENTIALS (secret, never in a pack, BR-PLT-013); bundled Widgets.GoogleAnalytics active",
+    "layer": "client instance",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SRC",
+    "setting": "Search history",
+    "whereItLives": "CatalogSettings.ShowSearchTermHistory, NumberOfSearchTermHistoryItems (native; install default on, 10)",
+    "layer": "client -> store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SRC",
+    "setting": "Search box and suggestions",
+    "whereItLives": "CatalogSettings.ProductSearchEnabled, ProductSearchAutoCompleteEnabled, ProductSearchAutoCompleteNumberOfProducts, ShowProductImagesInSearchAutoComplete, ShowLinkToAllResultInSearchAutoComplete, ProductSearchTermMinimumLength, ShowSearchBoxCategories (native)",
+    "layer": "client -> store",
+    "ktda": "Not stated",
+    "mpc": "Required (FR-079); values not stated"
+  },
+  {
+    "area": "SRC",
+    "setting": "Search by category / manufacturer name; search by vendor",
+    "whereItLives": "CatalogSettings.AllowCustomersToSearchWithCategoryName, AllowCustomersToSearchWithManufacturerName; VendorSettings.AllowSearchByVendor (native)",
+    "layer": "client -> store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SRC",
+    "setting": "Filters",
+    "whereItLives": "CatalogSettings.EnablePriceRangeFiltering, EnableSpecificationAttributeFiltering, EnableManufacturerFiltering, SearchPagePriceRangeFiltering; FilterLevelSettings (native); seller, in-stock and location facets on / off (new)",
+    "layer": "client -> store",
+    "ktda": "Size, features, availability (SRC-002)",
+    "mpc": "Category, price, seller, location, delivery option (FR-077)"
+  },
+  {
+    "area": "SRC",
+    "setting": "Sorting",
+    "whereItLives": "CatalogSettings.AllowProductSorting, ProductSortingEnumDisabled, ProductSortingEnumDisplayOrder (native); popularity period, origin attribute (new)",
+    "layer": "client -> store",
+    "ktda": "Not stated",
+    "mpc": "Relevance, price, popularity, newest, origin (FR-078)"
+  },
+  {
+    "area": "SRC",
+    "setting": "Category pages",
+    "whereItLives": "CatalogSettings.CategoryBreadcrumbEnabled, ShowProductsFromSubcategories, IncludeFeaturedProductsInNormalLists, AllowProductViewModeChanging, DefaultViewMode, DefaultCategoryPageSizeOptions (native)",
+    "layer": "client -> store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SRC",
+    "setting": "Recommendations (rules)",
+    "whereItLives": "CatalogSettings.ProductsAlsoPurchasedEnabled / Number, RecentlyViewedProductsEnabled / Number, NewProductsEnabled; ShoppingCartSettings.CrossSellsNumber (native)",
+    "layer": "client -> store",
+    "ktda": "Not stated",
+    "mpc": "Recently viewed (FR-087)"
+  },
+  {
+    "area": "SRC",
+    "setting": "Personalisation service and consent",
+    "whereItLives": "AI-007 connection settings (owner AI; credentials flagged secret, BR-PLT-013); SRC consent and timeout settings (new); GdprConsent (native)",
+    "layer": "client instance",
+    "ktda": "—",
+    "mpc": "Where consented (FR-081)"
+  },
+  {
+    "area": "SRC",
+    "setting": "Wish list",
+    "whereItLives": "ShoppingCartSettings.EmailWishlistEnabled, MoveItemsFromWishlistToCart, AllowMultipleWishlist, MaximumNumberOfCustomWishlist, MaximumWishlistItems (native)",
+    "layer": "client -> store",
+    "ktda": "Not stated",
+    "mpc": "Required (FR-086)"
+  },
+  {
+    "area": "SRC",
+    "setting": "Comparison",
+    "whereItLives": "CatalogSettings.CompareProductsEnabled, CompareProductsNumber, IncludeShortDescriptionInCompareProducts, IncludeFullDescriptionInCompareProducts (native)",
+    "layer": "client -> store",
+    "ktda": "Required (CAT-003)",
+    "mpc": "Required (FR-085)"
+  },
+  {
+    "area": "SRC",
+    "setting": "Synonyms, boosting, typing distance, unit mapping",
+    "whereItLives": "SynonymGroup, BoostingRule, UnitAttributeMapping, SRC settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Boosting by category, featured, location (FR-090)"
+  },
+  {
+    "area": "SRC",
+    "setting": "Eligibility rules",
+    "whereItLives": "SRC settings: hide out-of-stock in search, apply to category lists (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-098)"
+  },
+  {
+    "area": "SRC",
+    "setting": "District field, distance radius options",
+    "whereItLives": "SRC settings (new); pickup-point links are LOG-003 configuration",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "District / outlet (FR-084)"
+  },
+  {
+    "area": "SRC",
+    "setting": "Saved searches, history, trending",
+    "whereItLives": "SRC settings: limits, alert frequency, trending windows and refresh (new); history size is native (Search history row)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SRC",
+    "setting": "Analytics",
+    "whereItLives": "GoogleAnalyticsSettings.GoogleId, EnableEcommerce, ApiSecret (bundled plugin); Facebook Pixel (bundled)",
+    "layer": "client instance",
+    "ktda": "Analytics dashboard (ANL-001)",
+    "mpc": "Search and category analytics (FR-091)"
+  },
+  {
+    "area": "SRC",
+    "setting": "Low-connectivity timeout and retries",
+    "whereItLives": "SRC settings (new)",
+    "layer": "global -> client",
+    "ktda": "—",
+    "mpc": "Required (FR-096); values not stated"
+  },
+  {
+    "area": "SRC",
+    "setting": "Feature state per store",
+    "whereItLives": "productfeature.<prd-id> (IC-PLT-02) for SRC-001 to SRC-027",
+    "layer": "store -> shared",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SRC",
+    "setting": "Search API clients and rate limit",
+    "whereItLives": "INT-001 API client registry (scope search.read, BR-INT-006)",
+    "layer": "client instance",
+    "ktda": "—",
+    "mpc": "Where implemented (FR-097)"
+  },
+  {
+    "area": "SVC",
+    "setting": "Pricing model and unit labels per service",
+    "whereItLives": "ServicePricing (new)",
+    "layer": "vertical (Services pack) → client",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "SVC",
+    "setting": "Resources, qualifications, hours, coverage, capacity",
+    "whereItLives": "ServiceResource (new)",
+    "layer": "client (vendor data)",
+    "ktda": "—",
+    "mpc": "—"
+  },
+  {
+    "area": "SVC",
+    "setting": "Cancellation, reschedule, no-show policy per service",
+    "whereItLives": "ServicePolicy (new)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SVC",
+    "setting": "Payment plan per service; balance due point; overdue action",
+    "whereItLives": "ServicePolicy (new)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SVC",
+    "setting": "Service stage set and transitions",
+    "whereItLives": "ORD-002 line stage set (owner ORD; read and checked through IC-ORD-10)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SVC",
+    "setting": "Action for OrderCompleted.CustomerNotification on service-only orders (send, suppress, substitute)",
+    "whereItLives": "TRK settings (owner TRK-005, BR-TRK-024)",
+    "layer": "vertical (Services pack) → client",
+    "ktda": "Not stated (open item)",
+    "mpc": "Not stated (open item)"
+  },
+  {
+    "area": "SVC",
+    "setting": "Sign-off window",
+    "whereItLives": "ServicePolicy (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SVC",
+    "setting": "Location types per service",
+    "whereItLives": "ServicePricing / product settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SVC",
+    "setting": "Downloadable products",
+    "whereItLives": "Product download fields; CustomerSettings.DownloadableProductsValidateUser, HideDownloadableProductsTab (native)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SVC",
+    "setting": "Rental units and hold time",
+    "whereItLives": "RentalCapacity (new); ServicesSettings (new): servicessettings.rentalholdminutes (key name Proposed; SVC key catalogue, BR-SVC-101)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SVC",
+    "setting": "Feature state per client and store",
+    "whereItLives": "productfeature.<prd-id> for PRD-SVC-001 to PRD-SVC-012 (PLT-022, IC-PLT-02)",
+    "layer": "client → store",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SVC",
+    "setting": "Voucher validity and uses per service",
+    "whereItLives": "ServicePolicy (new, per service; not setting keys)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SVC",
+    "setting": "Reminder lead times; follow-up delay",
+    "whereItLives": "ServicePolicy (new); TRK-005 templates",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "SVC",
+    "setting": "SLA targets, at-risk threshold, escalation levels and recipients",
+    "whereItLives": "ServicePolicy (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-311, FR-165); values not stated"
+  },
+  {
+    "area": "SVC",
+    "setting": "Service products not returnable",
+    "whereItLives": "Product.NotReturnable (native)",
+    "layer": "client",
+    "ktda": "Proposed on",
+    "mpc": "Proposed on"
+  },
+  {
+    "area": "TRK",
+    "setting": "Email templates (per event, language, store)",
+    "whereItLives": "MessageTemplate (native) with LocalizedProperty and StoreMapping",
+    "layer": "global → vertical → client → store",
+    "ktda": "Not stated",
+    "mpc": "Configurable content per event (FR-212, FR-310)"
+  },
+  {
+    "area": "TRK",
+    "setting": "Show tracking events on native shipment pages",
+    "whereItLives": "ShippingSettings.DisplayShipmentEventsToCustomers, DisplayShipmentEventsToStoreOwner (native)",
+    "layer": "client → store",
+    "ktda": "Not stated (Proposed: on)",
+    "mpc": "On (FR-208, FR-218)"
+  },
+  {
+    "area": "TRK",
+    "setting": "Notification definitions, channels per event, fallback order",
+    "whereItLives": "NotificationDefinition (new)",
+    "layer": "global → vertical → client",
+    "ktda": "Not stated",
+    "mpc": "SMS, email, in-app where enabled (FR-214)"
+  },
+  {
+    "area": "TRK",
+    "setting": "Enabled channels and providers",
+    "whereItLives": "Channel adapter settings (CHN-005, CHN-006, CHN-013) (new)",
+    "layer": "country → client",
+    "ktda": "Not stated (WhatsApp KG-24)",
+    "mpc": "SMS, email, in-app (FR-214)"
+  },
+  {
+    "area": "TRK",
+    "setting": "Preference categories, mandatory and urgent categories, default opt-ins",
+    "whereItLives": "TRK settings (new)",
+    "layer": "vertical → client",
+    "ktda": "Not stated",
+    "mpc": "Opt-in/out per channel and type (FR-009)"
+  },
+  {
+    "area": "TRK",
+    "setting": "Categories for messages outside the engine (Conversation replies, Security codes) and whether each is mandatory",
+    "whereItLives": "TRK settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated (MSG-ROUTE; BR-TRK-026)"
+  },
+  {
+    "area": "TRK",
+    "setting": "Default quiet hours and message limits",
+    "whereItLives": "TRK settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Configurable (FR-219, FR-310); values not stated"
+  },
+  {
+    "area": "TRK",
+    "setting": "Event dictionary display names and source mappings",
+    "whereItLives": "EventCode, SourceCodeMapping (new)",
+    "layer": "global → client",
+    "ktda": "Carrier codes per adapter",
+    "mpc": "IPS, PostGlobal mappings (FR-221)"
+  },
+  {
+    "area": "TRK",
+    "setting": "Expected-scan rules, limits, long-stuck limits",
+    "whereItLives": "ScanExpectationRule (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Required (FR-209); values not stated"
+  },
+  {
+    "area": "TRK",
+    "setting": "Tracking-event and notification-log retention",
+    "whereItLives": "PLT-020 retention policy",
+    "layer": "country → client",
+    "ktda": "Not stated (KG-18)",
+    "mpc": "Required (FR-225); values not stated (MG-13)"
+  },
+  {
+    "area": "TRK",
+    "setting": "Public tracking: refresh interval, share-link expiry, lookup limit before CAPTCHA",
+    "whereItLives": "TRK settings (new); captchasettings.* (native, SEC-013)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "TRK",
+    "setting": "Source stall limits for automatic outage banner",
+    "whereItLives": "TrackingSource.StallLimit (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "TRK",
+    "setting": "Pickup reminder lead times; identification text",
+    "whereItLives": "TRK settings (new)",
+    "layer": "client",
+    "ktda": "—",
+    "mpc": "Required (FR-206, FR-216); values not stated"
+  },
+  {
+    "area": "TRK",
+    "setting": "Bounce feed provider",
+    "whereItLives": "IC-TRK-03 settings (new)",
+    "layer": "client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "TRK",
+    "setting": "Upload context \"tracking scan media\" (allowed types, size, scan)",
+    "whereItLives": "ADM-008 UploadPolicySettings per context (owner ADM-008, decision SINGLE-FILTER)",
+    "layer": "global → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated"
+  },
+  {
+    "area": "TRK",
+    "setting": "Action per order kind for OrderCompleted.CustomerNotification (send, suppress, substitute) and the substitute definitions",
+    "whereItLives": "TRK settings (new)",
+    "layer": "vertical (e-Government, Services packs) → client",
+    "ktda": "Not stated",
+    "mpc": "Not stated (EGV, SVC)"
+  },
+  {
+    "area": "TRK",
+    "setting": "SMS variants of native email-only templates",
+    "whereItLives": "NotificationDefinition / ChannelContent (new)",
+    "layer": "global → client",
+    "ktda": "Not stated",
+    "mpc": "Accounts without email (FR-001)"
+  },
+  {
+    "area": "TRK",
+    "setting": "Source and provider credentials",
+    "whereItLives": "Encrypted settings (new), flagged secret in the TRK key catalogue (BR-TRK-040)",
+    "layer": "client instance only",
+    "ktda": "Entered at deployment",
+    "mpc": "Entered at deployment"
+  }
+]

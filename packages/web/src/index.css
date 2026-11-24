@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/* Design tokens.
+   The storefront reproduces the nopCommerce DefaultClean theme; the admin area reproduces the
+   nopCommerce admin (AdminLTE-derived) look. --brand and --brand-accent come from the active
+   client pack at runtime (PLT-006 branding and look), so switching the pack re-skins the
+   storefront with no code change. */
+@theme {
+  --color-nop-blue: #3c8dbc;
+  --color-nop-blue-dark: #367fa9;
+  --color-nop-sidebar: #222d32;
+  --color-nop-sidebar-dark: #1a2226;
+  --color-nop-sidebar-hover: #1e282c;
+  --color-nop-canvas: #ecf0f5;
+  --color-nop-border: #d2d6de;
+  --color-nop-head: #f9fafb;
+  --color-nop-green: #00a65a;
+  --color-nop-amber: #f39c12;
+  --color-nop-red: #dd4b39;
+  --color-nop-ink: #333333;
+  --color-nop-muted: #6b7280;
+  --font-sans: "Segoe UI", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+}
+
+:root {
+  --brand: #0f6b45;
+  --brand-accent: #d4a015;
+  --brand-ink: #ffffff;
+  color-scheme: light;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--color-nop-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* nopCommerce-style focus ring, kept visible for WCAG 2.1 AA (PLT-018) */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-nop-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.brand-bg { background-color: var(--brand); color: var(--brand-ink); }
+.brand-text { color: var(--brand); }
+.brand-border { border-color: var(--brand); }
+.accent-bg { background-color: var(--brand-accent); }
+
+/* storefront page title, as DefaultClean renders it */
+.nop-page-title {
+  border-bottom: 1px solid var(--color-nop-border);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+
+/* admin grid */
+.nop-grid th {
+  background: var(--color-nop-head);
+  border-bottom: 1px solid var(--color-nop-border);
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 12.5px;
+  color: #4b5563;
+  white-space: nowrap;
+}
+.nop-grid td {
+  border-bottom: 1px solid #eef1f4;
+  padding: 8px 10px;
+  vertical-align: top;
+}
+.nop-grid tbody tr:hover { background: #f8fafc; }
+
+@media print {
+  .no-print { display: none !important; }
+}

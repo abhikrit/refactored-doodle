@@ -1,0 +1,22 @@
+{
+  "_source": "Shaped like the documented 3-D Secure card authorisation through an acquiring bank payload. Recorded sample for the prototype - no credentials, no real transaction, nothing sent (decision P-3).",
+  "feature": "PRD-PAY-002 / PRD-PAY-031",
+  "pciNote": "SEC-003 keeps card data out of scope: the prototype never holds a card number. Only the gateway token and the result are stored.",
+  "request": {
+    "merchantId": "MERCHANT-0001",
+    "amount": 0,
+    "currency": "USD",
+    "orderReference": "CHK-REFERENCE",
+    "paymentToken": "tok_XXXXXXXXXXXX",
+    "threeDS": {
+      "required": true
+    }
+  },
+  "response": {
+    "result": "APPROVED",
+    "authCode": "A12345",
+    "transactionId": "TXN-000000",
+    "maskedCard": "************4242",
+    "scheme": "VISA"
+  }
+}

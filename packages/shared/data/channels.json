@@ -1,0 +1,26 @@
+[
+  {
+    "channel": "B2B + B2C",
+    "features": 233
+  },
+  {
+    "channel": "Platform / back-office",
+    "features": 111
+  },
+  {
+    "channel": "Seller / back-office",
+    "features": 38
+  },
+  {
+    "channel": "B2B",
+    "features": 34
+  },
+  {
+    "channel": "G2C / G2B",
+    "features": 12
+  },
+  {
+    "channel": "B2C",
+    "features": 6
+  }
+]

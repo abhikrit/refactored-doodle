@@ -1,0 +1,903 @@
+{
+  "decisions": [
+    {
+      "id": "D-01",
+      "item": "Reuse tiers: Platform core / Common core / Product option (named packs) / Client-specific extension; Platform core is always on irrespective of client demand.",
+      "source": "User instruction 2026-11-18 (fix)",
+      "status": "Approved",
+      "open": false
+    },
+    {
+      "id": "D-02",
+      "item": "Tender, auction and bid management excluded; RFQ, contracts, scheme payouts, group buying and template engine retained.",
+      "source": "User 2026-11-18",
+      "status": "Approved",
+      "open": false
+    },
+    {
+      "id": "K-01",
+      "item": "KTDA OFR-002 'receive buyer bids' vs bid exclusion. Mapped to quote negotiation; not sized for bid mechanics.",
+      "source": "KTDA RFP; D-02",
+      "status": "Open — user",
+      "open": true
+    },
+    {
+      "id": "K-02",
+      "item": "KTDA LEG-004/PRJ-011 and MPC PRJ-005: client ownership / source handover vs reusable product IP. Blocks product strategy.",
+      "source": "KTDA RFP; MPC ToR",
+      "status": "Deferred by user 2026-11-18",
+      "open": true
+    },
+    {
+      "id": "C-FX",
+      "item": "KTDA LOC-002 USD base currency vs M-Pesa settlement in KES (PAY-004). Settlement currency per method not stated.",
+      "source": "KTDA RFP",
+      "status": "Open — ask KTDA",
+      "open": true
+    },
+    {
+      "id": "C-SIZE",
+      "item": "MPC HST-002 sizing (4 cores/8 GB/2 TB) vs co-hosting data warehouse, search engine, API gateway.",
+      "source": "MPC ToR",
+      "status": "Open — ask MPC (floor or ceiling)",
+      "open": true
+    },
+    {
+      "id": "FG-07",
+      "item": "Delivery windows (KTDA 8 weeks, MPC 183 days) vs build volume; phasing needed.",
+      "source": "KTDA RFP; MPC ToR; fit-gap",
+      "status": "Deferred by user 2026-11-18",
+      "open": true
+    },
+    {
+      "id": "FG-06",
+      "item": "Postal operations (LOG-011, LOG-022–024, LOG-032, TRK-003) in product vs via PostGlobal. Also decides whether e-Government services (EGV-001..007, RPT-012) and MPC/financial/private-sector services (FIN-005, PAY-009, SRC-020) are in product scope (fit-gap O-2; 24 FRs). Holds also PRD-CAT-027: it is P1 only because EGV-003 (FG-06) needs a booking calendar (L1 Product PRD Part 1 §10.3).",
+      "source": "Fit-gap",
+      "status": "Open — MPC",
+      "open": true
+    },
+    {
+      "id": "FG-05",
+      "item": "AFR extension source code availability; drives reuse vs rebuild for features with route 'AFR extension reuse'.",
+      "source": "Fit-gap; PG",
+      "status": "Open — AFRICOM/Ethiopost",
+      "open": true
+    },
+    {
+      "id": "F-CAT-B",
+      "item": "Tenancy: one instance per client (PLT-002) vs shared multi-store; event sourcing proposed as append-only audit store (SEC-004).",
+      "source": "Catalog",
+      "status": "Open — architecture",
+      "open": true
+    },
+    {
+      "id": "WF-ENG",
+      "item": "Workflow engine build vs embeddable product; decide before specifying any feature depending on ADM-002.",
+      "source": "",
+      "status": "Open — architecture",
+      "open": true
+    },
+    {
+      "id": "E-INV",
+      "item": "Statutory e-invoicing (KRA eTIMS, MRA EIS) not in client sources; added as PAY-025–027.",
+      "source": "External law; KG-06; MG-05",
+      "status": "Open — confirm with both clients",
+      "open": true
+    },
+    {
+      "id": "DP-01",
+      "item": "Hosting region and cross-border transfer under Kenya DPA 2019 / Malawi DPA 2024; ODPC registration and DPIA are services.",
+      "source": "KTDA LEG-001, HST-001",
+      "status": "Open — both clients",
+      "open": true
+    },
+    {
+      "id": "T-MISS",
+      "item": "MPC Tables 8, 10, 13 and Complaints & ADR policy not provided; FIN-005, RET-003, EGV-*, CRM-004 content pending.",
+      "source": "MPC FRs",
+      "status": "Open — request from MPC",
+      "open": true
+    },
+    {
+      "id": "M-19",
+      "item": "Native mobile apps (CHN-001) an MPC deliverable or not.",
+      "source": "MPC ToR",
+      "status": "Open — MPC",
+      "open": true
+    },
+    {
+      "id": "G-ORG",
+      "item": "KTDA organisational structure (factories, regions) not described.",
+      "source": "KTDA PRJ-001",
+      "status": "Open — KTDA",
+      "open": true
+    },
+    {
+      "id": "V-01",
+      "item": "Platform-knowledge claims to verify in 4.90 (release-4.90.8) source: ECB currency coverage, MFA role enforcement, tier-price keys, vendor discounts, order-ID timing, vendor multi-user, recurring products, affiliates. Includes plugin installation and compatibility tests on 4.90 (release-4.90.8) for the candidates in the Plugin evaluation column (PE-01). Includes 4.90 availability of the licensed plugins evidenced only on Post Gebeya 4.70.5 (PLT-006, SRC-007, SRC-027, LOG-006, TRK-011, CRM-001, CRM-008), and hands-on tests of the plugin candidates.",
+      "source": "",
+      "status": "Version part superseded by VER-500 (2026-11-24); third-party plugin 5.00 builds remain OPEN — vendors to confirm (VENDOR-500)",
+      "open": false
+    },
+    {
+      "id": "ORG-SVC",
+      "item": "ODPC registration, pen-test programme, certifications, translation work, content production, training, hosting are services, outside product features.",
+      "source": "Coverage sheet",
+      "status": "Recorded",
+      "open": false
+    },
+    {
+      "id": "PE-01",
+      "item": "Plugin desk evaluation done 2026-11-18 from vendor listings (Plugin evaluation column). Hands-on test on a 5.00 (release-5.00.1) instance (VER-500) is part of V-01.",
+      "source": "Vendor listings",
+      "status": "Recorded; test in V-01",
+      "open": false
+    },
+    {
+      "id": "F-MVP-P2",
+      "item": "INV-011 (Must/MVP) depends on INV-009 (Must/P2): dependency uplifts INV-009 to the same phase as INV-011.",
+      "source": "Catalog M26 rows (FC-M26-009 P2, FC-M26-011 MVP)",
+      "status": "Carried; product phase uplifted",
+      "open": false
+    },
+    {
+      "id": "PH-01",
+      "item": "'Client-priority phase' reflects source priority, not a release plan. Release waves are pending FG-07.",
+      "source": "",
+      "status": "Open — phasing decision",
+      "open": true
+    },
+    {
+      "id": "K-08",
+      "item": "KTDA requires payment gateways operated by a CBK-regulated bank (PAY-001) and also asks for PayPal (PAY-003) and global payment processing (PAY-007); whether PayPal/global processors satisfy the CBK-bank rule is not stated.",
+      "source": "KTDA RFP; ktda-rfp-extraction.md K-08",
+      "status": "Open — KTDA",
+      "open": true
+    },
+    {
+      "id": "M-18",
+      "item": "MPC source-code handover (PRJ-005) and compatibility with a licensed reusable product.",
+      "source": "MPC ToR; mpc-rfp-extraction.md M-18",
+      "status": "Open — commercial (with K-02)",
+      "open": true
+    },
+    {
+      "id": "PH-INF",
+      "item": "13 P1 features are placed in P1 by inference. KTDA (B2B trade and export): IAM-022, IAM-023, CHK-015, CHK-016, CHK-017, CHK-018, ORD-025, ORD-026, CAT-039, CAT-041, CAT-042; KTDA: PAY-025 fiscal e-invoicing framework (from ORD-002/TAX-001; also required by PAY-026/027); Malawi Post: PAY-034 outlet receipts and cash-up (from HW-005 with FR-112/FR-131). Confirm with the client; if not confirmed, move to P2 (PAY-025 stays if E-INV confirms e-invoicing). DOC-006 left this list because it delivers REQ-KTDA-LEG-001.",
+      "source": "",
+      "status": "Open — Product Owner / KTDA / Malawi Post",
+      "open": true
+    },
+    {
+      "id": "LIC-01",
+      "item": "Inference (not stated in any source): collecting and splitting funds for sellers (MPC FR-133, FR-042, FR-145), escrow (KTDA PAY-008) and stored-value wallets (MPC FR-130) may require payment-service or e-money licensing in Kenya and Malawi. Confirm the legal position.",
+      "source": "",
+      "status": "Open — legal",
+      "open": true
+    },
+    {
+      "id": "P1-SPLIT",
+      "item": "Split P1 (337 features in) into P1-core (go-live) and P1-extended, as recommended. The earlier estimate (about 216 / 106) was made on 322 P1 features and must be recomputed when the user decides.",
+      "source": "",
+      "status": "Open — user",
+      "open": true
+    },
+    {
+      "id": "VER-490",
+      "item": "The target version is nopCommerce 4.90 (source verified against release-4.90.8). The project brief still states 4.70.5.",
+      "source": "User 2026-11-18",
+      "status": "Superseded by VER-500 (2026-11-24)",
+      "open": false
+    },
+    {
+      "id": "PAY-DIRECT",
+      "item": "Direct-to-seller payment model (PRD-PAY-035/036, SEL-025): interaction with Malawi Post FR-133 (split payments) and FR-042/FR-145 (settlements), KTDA PAY-008 (escrow or LC for bulk buyers); payment-service licensing under each country's rules — confirm before enabling.",
+      "source": "Decision log; owner from L1 §3.3",
+      "status": "Open — Product Owner / legal",
+      "open": true
+    },
+    {
+      "id": "PO-REC-v8",
+      "item": "Features with no client source (PO recommendation) awaiting Product Owner acceptance: SVC-003, SVC-004, SVC-007, SVC-010, SVC-012, PAY-035, PAY-036, SEL-025 and the PO-recommended parts of SVC-001, SVC-006, SVC-009 (see Feature sources, Basis).",
+      "source": "Decision log; owner from L1 §3.3",
+      "status": "Open — Product Owner",
+      "open": true
+    },
+    {
+      "id": "PAID-STUB",
+      "item": "Paid-plugin stubs in 5.00.1 (Search.Lucene, WebApi.Frontend, PowerBI, Dynamics365, NopMobileApp, OmnibusDirective; still stubs, verified 2026-11-24): license the paid plugin or build, decided per feature; availability under V-01. The Search.Lucene stub implements IMiscPlugin, not ISearchProvider; installing it changes nothing in search.",
+      "source": "claude/nopcommerce-490-fit.md",
+      "status": "Open — tech lead / Product Owner",
+      "open": true
+    },
+    {
+      "id": "CFG-01",
+      "item": "Inference — product design, Product Owner to confirm. Configuration layers: global, country, vertical, client, store. Merge order at apply time (PLT-003 pack loader): global → country → vertical → client → store; override order store > client > vertical > country > global (a higher layer overrides only the keys it states). One country pack per pack set, versioned like the other packs; it carries the rows of the Config pack schema whose layer is 'country' (tax, fiscal adapter, payment routing and fee schedules, carrier adapters, law profile, data retention, SMS, integration adapters, countries and districts). A third-country client is onboarded by adding a country pack. Secrets (credentials, keys) are never stored in configuration packs.",
+      "source": "PRD Config pack schema; (country layer); L2 PLT (BR-PLT-010, AC-PLT-003-01-10, Proposed)",
+      "status": "Open — Product Owner",
+      "open": true
+    },
+    {
+      "id": "UOM-01",
+      "item": "Whether fractional quantities (for example 2.5 kg) must be sold. If yes, PRD-CAT-041 needs a core modification (int → decimal quantities across cart, order, shipment and stock); if no, it sells in integer base units. Not stated in client sources.",
+      "source": "",
+      "status": "Open — KTDA / Product Owner",
+      "open": true
+    },
+    {
+      "id": "API-01",
+      "item": "Which nopCommerce Web API product is the base for PRD-CAT-011 and PRD-INT-001. The 5.00.1 source (as 4.90.8) contains only the Web API Frontend (storefront) stub; a backend (admin / catalog write) API product, its 4.90 build and licence are not found in source. Confirm with nopCommerce before licensing.",
+      "source": "",
+      "status": "Open — tech lead",
+      "open": true
+    },
+    {
+      "id": "LIC-PI",
+      "item": "Whether licensed plugins are priced per installation. With one installation per client (PRD-PLT-002), per-installation pricing multiplies licence cost per client. Not stated in source.",
+      "source": "open items",
+      "status": "Open — commercial",
+      "open": true
+    },
+    {
+      "id": "WAL-01",
+      "item": "Wallet spend model for PRD-PAY-009: (a) wallet as a payment method, full-order payment only; or (b) partial spend applied as an order-total deduction through an IOrderTotalCalculationService override. nopCommerce allows one payment method per order. Not stated in source.",
+      "source": "",
+      "status": "Open — Malawi Post / Product Owner",
+      "open": true
+    },
+    {
+      "id": "INV-HOLD",
+      "item": "Role of PRD-INV-004 after (stock is taken natively at order placement). Proposed resolution (b): keep the PAY-004 → INV-004 dependency, because INV-004 releases the stock of unpaid orders automatically when the payment window expires (cancelling the order through IOrderProcessingService.CancelOrderAsync); no separate PAY stock hold. The cart-level hold in INV-004 stays optional per client.",
+      "source": "",
+      "status": "Proposed — Product Owner to confirm",
+      "open": false
+    },
+    {
+      "id": "OVR-REG",
+      "item": "Proposed owner of each overridden nopCommerce service (one plugin per interface; other modules plug in as providers). (decision D-01): hosts of always-on behaviour are core features. IOrderProcessingService → CHK-003 (core; CHK-004 Marketplace pack is the IC-CHK-11 order-splitter provider; ORD hooks IC-CHK-06/07); IShipmentService.InsertShipmentAsync → ORD-010 shipment-guard host (core; IC-ORD-11 guard providers PAY-006 letters of credit, ORD-010 holds, EGV-004; IC-PAY-04 withdrawn); IProductService → CAT-002 Product master record (core;,: moved from CAT-022, which is held by WF-ENG and is now the IC-CAT-04 publish-gate provider; INV-009/011, SRC and SEL-007 providers; replaces PS-OVR); IPdfService → DOC-001; IOrderTotalCalculationService and IPriceCalculationService → CAT-042; IShoppingCartService → CHK-003; IWorkflowMessageService → TRK-005; ISettingService → PLT-004; ICustomerRegistrationService, IAuthenticationService, IPermissionService, IGdprService → IAM; IWidgetPluginManager → SEC-007; IReturnRequestService → RET; IExportManager → SEC-014; IDownloadService / IPictureService → ADM-008. Full register: BR-ADM-001 to BR-ADM-008 (L2 ADM), generated into L1 §6.3.",
+      "source": "(CAT, INV, SRC, CHK, ORD, PLT, ADM, DOC, MKT, TRK); L2 host moves (CHK, ORD, PAY, CAT, ADM)",
+      "status": "Proposed — tech lead / Product Owner",
+      "open": false
+    },
+    {
+      "id": "API-GW",
+      "item": "Which API gateway product to use (PRD-INT-002), its hosting and licence, and who runs the OAuth 2.0 / OpenID Connect authorization server for partners (PRD-INT-001). Not stated in source. Holds PRD-INT-002 and PRD-INT-001 (L1 §3.3).",
+      "source": "L2 INT 2026-11-19",
+      "status": "Open — tech lead",
+      "open": true
+    },
+    {
+      "id": "DOC-LIB",
+      "item": "Which document rendering library (HTML to PDF, DOCX, images) and QR library to use for DOC-001 and PAY-025. Neither is in nopCommerce. Not stated in source. Holds PRD-DOC-001 and PRD-PAY-025 (L1 §3.3).",
+      "source": "L2 DOC 2026-11-19",
+      "status": "Open — tech lead",
+      "open": true
+    },
+    {
+      "id": "C-SELLER",
+      "item": "Conflict: gap MG-02 says the Malawi Post seller model is not stated, while MPC FR-026 to FR-050 (fit-gap report copy, M-01) describe seller onboarding in detail. Both stand until Malawi Post confirms; the Marketplace pack applies only if confirmed (KG-01 / MG-02).",
+      "source": "L2 SEL 2026-11-19; mpc-rfp-extraction G-02; MPC FR register",
+      "status": "Open — Malawi Post",
+      "open": true
+    },
+    {
+      "id": "ANL-002-OWN",
+      "item": "KTDA ANL-002 fast and slow movers and stock levels: both RPT-001 (native Bestsellers and Low-stock reports) and INV-013 deliver parts. Proposed: RPT-001 owns the reports; INV-013 supplies stock-movement data.",
+      "source": "L2 RPT and INV 2026-11-19",
+      "status": "Proposed — Product Owner",
+      "open": false
+    },
+    {
+      "id": "SINGLE-FILTER",
+      "item": "Proposed: one owner per intercepted native action. Admin CustomerController.Impersonate → IAM-026 filter (Administrators; Agents for their outlet customers; account managers for assigned customers via CRM-015 rule provider). Download ownership (DownloadController.GetFileUpload, admin DownloadFile) → SEC-002 filter with rule providers. Server-side upload policy → ADM-008 (modules register upload contexts).",
+      "source": "L2 mismatches (IAM, CRM, SEC, EGV, ADM) 2026-11-19",
+      "status": "Proposed — tech lead",
+      "open": false
+    },
+    {
+      "id": "ONE-RECORD",
+      "item": "Proposed: IAM (IC-IAM-05) owns terms acceptance and consent records; MKT-008 owns policy versions and the re-acceptance flag; IC-IAM-02 identity results (Verified / NotVerified / Inconclusive / Unavailable) are the product standard (SEL maps Inconclusive to manual review).",
+      "source": "L2 mismatches (IAM, SEL, MKT) 2026-11-19",
+      "status": "Proposed — Product Owner",
+      "open": false
+    },
+    {
+      "id": "MSG-ROUTE",
+      "item": "Proposed: TRK-005 sends all notifications. Conversational replies (CHN channels, CRM agents, AI-003) and IAM one-time codes via CHN-005 may go outside TRK-005 but respect TRK-006 opt-outs; TRK-006 keeps opt-outs for phone numbers without accounts. Order-completed email on service-only and e-Government orders is a per-client choice (BR-TRK-024), default not stated.",
+      "source": "L2 mismatches (TRK, CHN, CRM, IAM) 2026-11-19",
+      "status": "Proposed — Product Owner; client choice",
+      "open": false
+    },
+    {
+      "id": "FIELD-APP",
+      "item": "Proposed: one field app; TRK-003 owns scanning, CHN-010 owns agent functions.",
+      "source": "L2 (CHN, TRK) 2026-11-19",
+      "status": "Proposed — Product Owner",
+      "open": false
+    },
+    {
+      "id": "CALLOFF-PLACE",
+      "item": "Placement path for contract call-off orders created by a scheduled task (ORD-022) without touching the buyer's live cart. Not designed; open for the tech lead. Holds PRD-ORD-022 (L1 §3.3; AC-ORD-022-01-01 and -04-01 are held by it in L2).",
+      "source": "L2 (ORD, CHK) 2026-11-19",
+      "status": "Open — tech lead",
+      "open": true
+    },
+    {
+      "id": "SPLIT-PAY",
+      "item": "Proposed: in P1 a multi-seller cart is limited to one seller per order until group payment (BR-PAY-014, Proposed) exists; CHK-004 then splits through IC-CHK-11. Affects CHK-004, PAY-010, PAY-011 and Malawi Post FR-133 (split payments). Cited in L2 as 'product decision CHK-004' before (AC-CHK-004-01-07, BR-CHK-022).",
+      "source": "L2 CHK, CAT, PAY, SEL (2026-11-19)",
+      "status": "Proposed — Product Owner / tech lead",
+      "open": false
+    },
+    {
+      "id": "RURAL-SRC",
+      "item": "Source of the rural / urban location type: LOG-004 coverage area (BR-LOG-021, Proposed) or MKT-011 customer attribute (AC-MKT-011-01-02). Owning record: LOG-004 open item.",
+      "source": "L2 LOG, MKT",
+      "status": "Open — Product Owner / Malawi Post",
+      "open": true
+    },
+    {
+      "id": "ORDER-MAIL",
+      "item": "Default for the native order-completed email on e-Government and service-only orders (per-client choice, BR-TRK-024; default not stated). Owning record: TRK-005 open item.",
+      "source": "L2 TRK, EGV, SVC, ORD",
+      "status": "Open — Product Owner / client",
+      "open": true
+    },
+    {
+      "id": "CUTOFF",
+      "item": "Per-origin cut-off times and per-outlet pickup deadlines; values not stated in source. Owning record: ORD-011 open item (LOG-005, LOG-017 point to it).",
+      "source": "L2 ORD, LOG",
+      "status": "Open — Malawi Post",
+      "open": true
+    },
+    {
+      "id": "SIGN-SVC",
+      "item": "One signing service for ORD-017 and DOC-003 (tech lead); provider-sent signing requests as a MSG-ROUTE exception (Product Owner). Owning record: ORD-017 open items.",
+      "source": "L2 ORD, DOC",
+      "status": "Open — tech lead / Product Owner",
+      "open": true
+    },
+    {
+      "id": "OTP-OPTOUT",
+      "item": "Whether one-time security codes are sent to numbers that opted out (whether the 'Security codes' category is mandatory). Owning record: TRK-006 open item (BR-TRK-031).",
+      "source": "L2 TRK, IAM",
+      "status": "Open — Product Owner",
+      "open": true
+    },
+    {
+      "id": "GA-EVENTS",
+      "item": "Google Analytics server-side events and consent (BR-SEC-021 against MKT-010 Events.cs). Owning record: SEC-007 open item.",
+      "source": "L2 SEC, MKT",
+      "status": "Open — Product Owner",
+      "open": true
+    },
+    {
+      "id": "GC-CONC",
+      "item": "Gift-card concurrency: accept the native per-customer lock, or add an IC-CHK-06 participant. Owning record: MKT-004 open item.",
+      "source": "L2 MKT, CHK",
+      "status": "Open — Product Owner / tech lead",
+      "open": true
+    },
+    {
+      "id": "AGENT-XOUTLET",
+      "item": "Whether agents may serve customers registered at another outlet. Owning record: IAM-026 open item.",
+      "source": "L2 IAM",
+      "status": "Open — Product Owner / Malawi Post",
+      "open": true
+    },
+    {
+      "id": "OPTOUT-SCOPE",
+      "item": "Whether TRK-006 opt-outs also suppress campaigns and Omnisend reminders. Owning record: MKT-005 open item.",
+      "source": "L2 MKT, TRK",
+      "status": "Open — Product Owner",
+      "open": true
+    },
+    {
+      "id": "PAYEX-ADM",
+      "item": "Whether payment exceptions are also raised into the ADM-009 exception queue. Owning record: PAY-019 open item.",
+      "source": "L2 PAY, ADM",
+      "status": "Open — Product Owner",
+      "open": true
+    },
+    {
+      "id": "HOLD-BILL",
+      "item": "How the parcel holding charge is billed and paid (order adjustment or separate outlet receipt, PAY-034). Owning record: LOG-017 open item.",
+      "source": "L2 LOG, PAY",
+      "status": "Open — Malawi Post",
+      "open": true
+    },
+    {
+      "id": "ORD-UNAVAIL",
+      "item": "Treatment of an order line whose whole quantity is unavailable, and the related cart warnings. Owning record: ORD-006 open item.",
+      "source": "L2 ORD, CHK",
+      "status": "Open — tech lead",
+      "open": true
+    },
+    {
+      "id": "FEE-CTRL",
+      "item": "Whether fee schedules and payment routing rules are PLT-004 controlled configuration. Owning record: PAY-015 / PAY-001 open items.",
+      "source": "L2 PAY, PLT",
+      "status": "Open — Product Owner",
+      "open": true
+    },
+    {
+      "id": "CART-FAILCLOSE",
+      "item": "Fail-closed behaviour when a cart-check provider (IC-CHK-01) returns an error. Owning record: CHK-003 open item.",
+      "source": "L2 CHK",
+      "status": "Open — Product Owner",
+      "open": true
+    },
+    {
+      "id": "PACK-FMT",
+      "item": "Configuration-pack file format, and the installer approach (posting the install form or restoring a baseline database). Owning record: PLT-003 / PLT-001 open items.",
+      "source": "L2 PLT",
+      "status": "Open — tech lead",
+      "open": true
+    },
+    {
+      "id": "DEP-BAL",
+      "item": "Deposit and balance as separate linked orders. Owning record: SVC-004 open item.",
+      "source": "L2 SVC",
+      "status": "Open — Product Owner",
+      "open": true
+    },
+    {
+      "id": "ORD-INTERV",
+      "item": "Approval of order interventions in P1 (catalog FC-M03-024 is Should/P2). Owning record: ORD-003 open item.",
+      "source": "L2 ORD; catalog FC-M03-024",
+      "status": "Open — Product Owner",
+      "open": true
+    },
+    {
+      "id": "K-SELLER",
+      "item": "KTDA seller model: KTDA only, or factories and subsidiaries as sellers (gap KG-01). Decides whether the Marketplace pack applies to KTDA. Counterpart of C-SELLER (Malawi Post).",
+      "source": "ktda-rfp-extraction.md KG-01",
+      "status": "Open — KTDA",
+      "open": true
+    },
+    {
+      "id": "KG-03",
+      "item": "KTDA ERP(s) not named (REQ-KTDA-INT-001). Holds the KTDA ERP adapter criteria of INT-005 (L2, 'held by KG-03'); no KTDA ERP adapter feature exists (see KTDA-ADP).",
+      "source": "ktda-rfp-extraction.md KG-03",
+      "status": "Open — KTDA",
+      "open": true
+    },
+    {
+      "id": "KG-04",
+      "item": "KTDA bank not named (REQ-KTDA-PAY-001, INT-002). Holds PRD-PAY-031 (KTDA bank card gateway adapter) and the KTDA bank-systems criteria of INT-008 (L2, 'held by KG-04').",
+      "source": "ktda-rfp-extraction.md KG-04",
+      "status": "Open — KTDA",
+      "open": true
+    },
+    {
+      "id": "MG-03",
+      "item": "Malawi Post card gateway and mobile-money APIs not named (REQ-MPC-FR-129). Holds PRD-PAY-032 (MPC card gateway adapter).",
+      "source": "mpc-rfp-extraction.md MG-03",
+      "status": "Open — Malawi Post",
+      "open": true
+    },
+    {
+      "id": "KTDA-ADP",
+      "item": "Whether the KTDA ERP adapter and the KTDA bank-systems adapter become separate client-extension features (Pack 'Client: KTDA'), as INT-006, INT-007 and INT-013 are for Malawi Post. Not decidable until KG-03 and KG-04 name the systems; until then they are criteria of INT-005 and INT-008 held by KG-03 / KG-04.",
+      "source": "",
+      "status": "Open — Product Owner",
+      "open": true
+    },
+    {
+      "id": "COMP-R5",
+      "item": "compliance reclassification: requirements marked 'Compliant' whose L3 coverage is Partial on every row, or whose criteria are all held by missing client content (T-MISS) or by the scope decision FG-06, are restated as 'Partially compliant', 'Compliant subject to client content' or 'Compliant subject to decision'. The list and the reason per requirement are in the compliance sheets (note 'COMP-R5') and phasing_v9.py (COMP_R5). Requirements whose criteria are all held by an architecture or licensing decision (WF-ENG, PAID-STUB, API-01, API-GW, DOC-LIB) stay 'Compliant'; L1 §4.1 states that they have no binding criterion until that decision is taken.",
+      "source": "L3 coverage 2026-11-19",
+      "status": "Proposed — Product Owner to ratify",
+      "open": false
+    },
+    {
+      "id": "SINGLE-NODE",
+      "item": "Proposed: P1 serves checkout from one web node until PLT-027 idempotency keys (P2) are delivered; the go-live checklist fails with more than one checkout node (BR-PLT-004, AC-CHK-008-03-04).",
+      "source": "L2 CHK, PLT, PAY",
+      "status": "Proposed — Product Owner / tech lead",
+      "open": false
+    },
+    {
+      "id": "MG-09",
+      "item": "Malawi Post interface content not stated: MANEPS purpose and data (REQ-MPC-INT-001) and the SAGE 200 summary and posting rules (REQ-MPC-FR-138, FR-328). Holds PRD-INT-013 (MANEPS adapter) under L1 §3.3 rule (c), as MG-03 holds PAY-032: the adapter's only substantive criterion (AC-INT-013-01-01) is held by MG-09, so the feature cannot be built until the interface is stated. INT-006 (SAGE 200) is not held: its posting and reconciliation criteria are buildable and only the summary-rule criterion is held by MG-09 (criterion-level hold).",
+      "source": "mpc-rfp-extraction.md MG-09; L2 INT (AC-INT-013-01-01, AC-INT-006 held criteria); compare MG-03 (PAY-032)",
+      "status": "Open — Malawi Post",
+      "open": true
+    },
+    {
+      "id": "VER-500",
+      "item": "Target platform is nopCommerce 5.00.1 on .NET 10 (source tag release-5.00.1). Replaces 4.90.8: .NET 9 reached end of Microsoft support on 10 Nov 2026. Fit re-verified for all 434 features (70 out of the box / 11 licensed plugin / 308 code-level / 45 external). Supersedes the version items V-490 and V-01 (4.70.5 in the project brief and Post Gebeya; 4.90 decision of 2026-11-18).",
+      "source": "User decision 2026-11-24; fit re-check work500/fit_G1-G3.csv; mechanisms_500_summary.md; Microsoft .NET support policy",
+      "status": "Approved — user 2026-11-24",
+      "open": false
+    },
+    {
+      "id": "CART-500",
+      "item": "Keep the product single cart that splits order and payment across sellers (CHK-004, SPLIT-PAY). The 5.00 native separate-cart-per-vendor setting stays off, because when on it blocks mixed-vendor checkout before the splitter runs.",
+      "source": "User decision 2026-11-24; mechanisms_500_summary.md §7",
+      "status": "Approved — user 2026-11-24",
+      "open": false
+    },
+    {
+      "id": "PRICE-500",
+      "item": "Customer and company pricing (CAT-039, CAT-042) use the native 5.00 price lists. Per-currency fixed prices remain a build (price lists have no currency field). Natively a tier price replaces the price-list price: a configuration rule is needed where both apply.",
+      "source": "User decision 2026-11-24; fit_G1_summary.md (PriceCalculationService.cs:77-140,454-462)",
+      "status": "Approved — user 2026-11-24",
+      "open": false
+    }
+  ],
+  "gaps": [
+    {
+      "id": "KG-01",
+      "topic": "Seller model",
+      "question": "Is KTDA the only seller, or do the 71 factories / subsidiaries sell (multi-vendor)?",
+      "source": "1.1 (p3) mentions 71 factories and subsidiaries; ToR silent",
+      "affects": [
+        "SEL-* (Marketplace pack)"
+      ]
+    },
+    {
+      "id": "KG-02",
+      "topic": "Volumes",
+      "question": "SKU count, users, orders/day, concurrency, peak load.",
+      "source": "Not stated",
+      "affects": [
+        "PLT-014",
+        "PLT-016",
+        "PLT-026"
+      ]
+    },
+    {
+      "id": "KG-03",
+      "topic": "ERP",
+      "question": "Which ERP(s) and integration direction/data?",
+      "source": "c.xv",
+      "affects": [
+        "INT-005"
+      ]
+    },
+    {
+      "id": "KG-04",
+      "topic": "Bank / gateway",
+      "question": "Which CBK-regulated bank(s) and gateway(s)?",
+      "source": "a.ii, c.xv",
+      "affects": [
+        "PAY-002",
+        "PAY-031"
+      ]
+    },
+    {
+      "id": "KG-05",
+      "topic": "Mobile money",
+      "question": "M-Pesa API (e.g. STK push / C2B) and other providers (Airtel Money etc.)?",
+      "source": "c.ix 'e.g.'",
+      "affects": [
+        "PAY-004",
+        "PAY-028"
+      ]
+    },
+    {
+      "id": "KG-06",
+      "topic": "Tax & invoicing",
+      "question": "VAT rates, export zero-rating, KRA e-invoicing (eTIMS) — inference: Kenyan e-invoicing rules may apply; confirm.",
+      "source": "c.viii",
+      "affects": [
+        "PAY-020",
+        "PAY-025",
+        "PAY-026"
+      ]
+    },
+    {
+      "id": "KG-07",
+      "topic": "Escrow & LC",
+      "question": "Escrow provider/mechanism; LC issuance, verification steps and actor before shipping.",
+      "source": "e.iii, Additional viii",
+      "affects": [
+        "PAY-006",
+        "PAY-007"
+      ]
+    },
+    {
+      "id": "KG-08",
+      "topic": "Pricing",
+      "question": "Bulk vs retail pricing, MOQ, tier pricing, link to auction prices.",
+      "source": "Not stated",
+      "affects": []
+    },
+    {
+      "id": "KG-09",
+      "topic": "Requisition workflows",
+      "question": "Steps, roles, approvals, outputs for blends, contract packaging, forward contracts.",
+      "source": "c.ii",
+      "affects": []
+    },
+    {
+      "id": "KG-10",
+      "topic": "Offer management",
+      "question": "Offer posting rules, bid/offer mechanics, award of offers, purchase cycle definition.",
+      "source": "c.vii",
+      "affects": [
+        "ORD-012",
+        "ORD-013",
+        "ORD-014"
+      ]
+    },
+    {
+      "id": "KG-11",
+      "topic": "Loyalty",
+      "question": "Meaning of 'banding'; points/tiers rules.",
+      "source": "c.xiii",
+      "affects": [
+        "MKT-002",
+        "MKT-003"
+      ]
+    },
+    {
+      "id": "KG-12",
+      "topic": "Returns policy",
+      "question": "Policy content (to be developed).",
+      "source": "c.iii, d.ii",
+      "affects": [
+        "RET-001",
+        "PAY-016"
+      ]
+    },
+    {
+      "id": "KG-13",
+      "topic": "Delivery",
+      "question": "Delivery methods list; charge rules (weight, zone, carrier rates, international).",
+      "source": "c.vi",
+      "affects": []
+    },
+    {
+      "id": "KG-14",
+      "topic": "Languages",
+      "question": "RTL Arabic; who translates content; Mandarin script.",
+      "source": "c.iv",
+      "affects": [
+        "PLT-009",
+        "PLT-025",
+        "CAT-017"
+      ]
+    },
+    {
+      "id": "KG-15",
+      "topic": "Currencies",
+      "question": "Currencies beyond USD; exchange-rate source; settlement currency.",
+      "source": "c.v",
+      "affects": [
+        "CAT-042",
+        "PAY-023",
+        "PLT-010",
+        "PLT-024"
+      ]
+    },
+    {
+      "id": "KG-16",
+      "topic": "Roles",
+      "question": "KTDA organisational structure and user roles.",
+      "source": "1.2",
+      "affects": [
+        "IAM-007",
+        "IAM-008"
+      ]
+    },
+    {
+      "id": "KG-17",
+      "topic": "AI / analytics",
+      "question": "Which AI and advanced analytics platforms.",
+      "source": "h.i",
+      "affects": []
+    },
+    {
+      "id": "KG-18",
+      "topic": "NFRs",
+      "question": "Availability, performance, backup/DR, data residency, retention.",
+      "source": "Not stated",
+      "affects": [
+        "PLT-016",
+        "SEC-006",
+        "PLT-020"
+      ]
+    },
+    {
+      "id": "KG-19",
+      "topic": "Support SLA",
+      "question": "Response/resolution times, support hours, channels.",
+      "source": "k.ii",
+      "affects": []
+    },
+    {
+      "id": "KG-20",
+      "topic": "Hosting cost",
+      "question": "Who pays cloud hosting (hardware borne by KTDA — does cloud count?).",
+      "source": "1.11 h, Additional ii",
+      "affects": [
+        "PLT-015",
+        "SEC-002"
+      ]
+    },
+    {
+      "id": "KG-21",
+      "topic": "Marketing",
+      "question": "Ad spend budget and ownership; marketing duration.",
+      "source": "a.ii",
+      "affects": []
+    },
+    {
+      "id": "KG-22",
+      "topic": "Licences",
+      "question": "Which e-commerce licences/approvals are needed.",
+      "source": "d.iii",
+      "affects": []
+    },
+    {
+      "id": "KG-23",
+      "topic": "Export compliance",
+      "question": "Tea export documentation/regulatory steps for international buyers — not stated; inference that export rules apply.",
+      "source": "b.ii",
+      "affects": []
+    },
+    {
+      "id": "KG-24",
+      "topic": "Chat",
+      "question": "WhatsApp/WeChat: chat widget only, or order/notification flows; accounts owned by KTDA?",
+      "source": "c.xiv",
+      "affects": []
+    },
+    {
+      "id": "KG-25",
+      "topic": "Consent",
+      "question": "Consent capture for 'legal data harvesting'.",
+      "source": "Additional vi",
+      "affects": []
+    },
+    {
+      "id": "MG-01",
+      "topic": "Functional scope",
+      "question": "Full content of FR-001–FR-350 / Annex 1 user requirements document.",
+      "source": "M-01",
+      "affects": []
+    },
+    {
+      "id": "MG-02",
+      "topic": "Business model",
+      "question": "Seller model: MPC sells, or SMEs/merchants sell through MPC (marketplace)? DFIC objectives cite SMEs, women, youth and market access (inference that a marketplace may be intended).",
+      "source": "Sec VII §1",
+      "affects": [
+        "SEL-* (Marketplace pack)"
+      ]
+    },
+    {
+      "id": "MG-03",
+      "topic": "Payments",
+      "question": "Which gateways and mobile money providers; card acquirer; settlement currency.",
+      "source": "§3",
+      "affects": [
+        "PAY-002",
+        "PAY-004",
+        "PAY-029",
+        "PAY-030",
+        "PAY-032"
+      ]
+    },
+    {
+      "id": "MG-04",
+      "topic": "Localisation",
+      "question": "Languages (English, Chichewa?), currency (MWK?), time zone — not stated.",
+      "source": "Not stated",
+      "affects": [
+        "PLT-009",
+        "PLT-010"
+      ]
+    },
+    {
+      "id": "MG-05",
+      "topic": "Tax & invoicing",
+      "question": "VAT rules, fiscal device / e-invoicing obligations — not stated; inference that Malawi tax rules apply.",
+      "source": "Not stated",
+      "affects": [
+        "PAY-020",
+        "PAY-025",
+        "PAY-027"
+      ]
+    },
+    {
+      "id": "MG-06",
+      "topic": "Delivery & tracking",
+      "question": "Which delivery network and tracking system the order dashboard links to (MPC postal tracking? couriers?); post-office pickup? — not stated.",
+      "source": "§3",
+      "affects": []
+    },
+    {
+      "id": "MG-07",
+      "topic": "Counter operations",
+      "question": "Use of thermal receipt printers and tablets (Lot 2) — counter sales, field pickup, agents? Not stated.",
+      "source": "Lot 2",
+      "affects": [
+        "PAY-034",
+        "CHK-013",
+        "TRK-003"
+      ]
+    },
+    {
+      "id": "MG-08",
+      "topic": "Users & roles",
+      "question": "User types, roles, MPC branches (Blantyre, Lilongwe, Mzuzu) and access model.",
+      "source": "§8",
+      "affects": [
+        "IAM-007",
+        "IAM-008"
+      ]
+    },
+    {
+      "id": "MG-09",
+      "topic": "MANEPS & other systems",
+      "question": "Purpose/data of MANEPS integration; other systems to integrate (ERP, finance, postal systems).",
+      "source": "§4, §5",
+      "affects": [
+        "INT-013",
+        "INT-006",
+        "INT-009",
+        "INT-011",
+        "LOG-016"
+      ]
+    },
+    {
+      "id": "MG-10",
+      "topic": "USSD",
+      "question": "USSD use cases, MNO/aggregator.",
+      "source": "§5",
+      "affects": [
+        "CHN-003"
+      ]
+    },
+    {
+      "id": "MG-11",
+      "topic": "AI/ML",
+      "question": "Chatbot and help-desk 'machine learning' expectations, languages, channels.",
+      "source": "§4, §5",
+      "affects": [
+        "AI-003"
+      ]
+    },
+    {
+      "id": "MG-12",
+      "topic": "Data warehouse",
+      "question": "Scope of data warehouse and analytics.",
+      "source": "§5",
+      "affects": [
+        "RPT-003"
+      ]
+    },
+    {
+      "id": "MG-13",
+      "topic": "NFRs",
+      "question": "Uptime, RTO/RPO, performance, volumes, data residency, retention.",
+      "source": "§5",
+      "affects": [
+        "PLT-014",
+        "PLT-016",
+        "PLT-026",
+        "SEC-006",
+        "PLT-020"
+      ]
+    },
+    {
+      "id": "MG-14",
+      "topic": "Hosting after 6 months",
+      "question": "Who hosts and pays after the initial 6 months; cloud provider; data location.",
+      "source": "List of Goods",
+      "affects": [
+        "PLT-026"
+      ]
+    },
+    {
+      "id": "MG-15",
+      "topic": "Learning visit",
+      "question": "Destination, participants, costs.",
+      "source": "§3, §6",
+      "affects": []
+    }
+  ]
+}

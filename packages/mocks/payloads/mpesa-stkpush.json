@@ -1,0 +1,41 @@
+{
+  "_source": "Shaped like the Safaricom Daraja STK push (M-Pesa) request and callback. Recorded sample for the prototype - no credentials, no real transaction, nothing sent (decision P-3).",
+  "feature": "PRD-PAY-028",
+  "request": {
+    "BusinessShortCode": "174379",
+    "Password": "<base64 shortcode+passkey+timestamp - never stored in a pack, BR-PLT-013>",
+    "Timestamp": "20261124093000",
+    "TransactionType": "CustomerPayBillOnline",
+    "Amount": 0,
+    "PartyA": "2547XXXXXXXX",
+    "PartyB": "174379",
+    "PhoneNumber": "2547XXXXXXXX",
+    "CallBackURL": "https://example.invalid/api/payments/callback",
+    "AccountReference": "CHK-REFERENCE",
+    "TransactionDesc": "Order payment"
+  },
+  "response": {
+    "MerchantRequestID": "29115-34620561-1",
+    "CheckoutRequestID": "ws_CO_191220191020363925",
+    "ResponseCode": "0",
+    "ResponseDescription": "Success. Request accepted for processing",
+    "CustomerMessage": "Success. Request accepted for processing"
+  },
+  "callback": {
+    "Body": { "stkCallback": {
+      "MerchantRequestID": "29115-34620561-1",
+      "CheckoutRequestID": "ws_CO_191220191020363925",
+      "ResultCode": 0,
+      "ResultDesc": "The service request is processed successfully.",
+      "CallbackMetadata": { "Item": [
+        { "Name": "Amount", "Value": 0 },
+        { "Name": "MpesaReceiptNumber", "Value": "QK12AB34CD" },
+        { "Name": "TransactionDate", "Value": 20261124093215 },
+        { "Name": "PhoneNumber", "Value": "2547XXXXXXXX" }
+      ] }
+    } }
+  },
+  "callbackCancelled": {
+    "Body": { "stkCallback": { "ResultCode": 1032, "ResultDesc": "Request cancelled by user" } }
+  }
+}

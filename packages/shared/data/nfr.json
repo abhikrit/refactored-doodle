@@ -1,0 +1,65 @@
+[
+  {
+    "id": "NFR-X-001",
+    "ID": "NFR-X-001",
+    "Requirement": "Security: no high or critical vulnerability in the dependency scan of any Increment; card data never stored; access limited by role.",
+    "Basis type": "Proposed (DoD 5, to be adopted by the Scrum Team); card-data part client-stated",
+    "Basis": "DoD 5; PRD-SEC-001, SEC-003, SEC-011; REQ-KTDA-SEC-002; REQ-MPC-FR-148, FR-012, FR-013, FR-015, FR-021. The card-data part is native in 5.00.1: card storage was removed from the platform (§6.1)"
+  },
+  {
+    "id": "NFR-X-002",
+    "ID": "NFR-X-002",
+    "Requirement": "Privacy: personal data handled under the country data-protection profile, with consent, export, deletion, retention and breach handling. Law names (Kenya DPA 2019; Malawi DPA 2024) are inference (DP-01).",
+    "Basis type": "Client-stated (KTDA LEG-001, ANL-008; MPC FRs); law names inference",
+    "Basis": "PRD-SEC-007, SEC-008, SEC-012, SEC-014; REQ-MPC-FR-010, FR-017, FR-018, FR-293, FR-225, FR-248, FR-322"
+  },
+  {
+    "id": "NFR-X-003",
+    "ID": "NFR-X-003",
+    "Requirement": "Audit: important actions logged to the platform audit trail with before/after values.",
+    "Basis type": "Client-stated",
+    "Basis": "PRD-SEC-004, implemented by an IRepository<> decorator, not entity events (EntityUpdatedEvent carries only the new entity; some writes bypass events); REQ-MPC-FR-175, FR-274, FR-287, FR-298, FR-318"
+  },
+  {
+    "id": "NFR-X-004",
+    "ID": "NFR-X-004",
+    "Requirement": "Localisation: all user-facing text in language resources; right-to-left layout required for Arabic (KTDA LOC-001; inference, gap KG-14).",
+    "Basis type": "Client-stated (languages); right-to-left inference",
+    "Basis": "DoD 8; PRD-PLT-009, PLT-025"
+  },
+  {
+    "id": "NFR-X-005",
+    "ID": "NFR-X-005",
+    "Requirement": "Accessibility: WCAG 2.1 AA is proposed; the client states keyboard navigation and screen-reader support only (FR-092).",
+    "Basis type": "Proposed (DoD 9); client-stated in part",
+    "Basis": "DoD 9; PRD-PLT-018; REQ-MPC-FR-092"
+  },
+  {
+    "id": "NFR-X-006",
+    "ID": "NFR-X-006",
+    "Requirement": "Devices and networks: phone, tablet and desktop; low-bandwidth behaviour. Page-weight / load-time target: Not stated in source — requires confirmation.",
+    "Basis type": "Proposed (DoD 10); low-bandwidth client-stated",
+    "Basis": "DoD 10; PRD-PLT-017, CHN-002; REQ-MPC-FR-019, FR-096"
+  },
+  {
+    "id": "NFR-X-007",
+    "ID": "NFR-X-007",
+    "Requirement": "Data consistency: state-changing requests are idempotent; key tables use optimistic concurrency.",
+    "Basis type": "Proposed; idempotency client-stated (FR-135)",
+    "Basis": "PRD-PLT-027 (row-version columns on core tables are a registered core modification; idempotency keys are plugin middleware), CHK-008; REQ-MPC-FR-114, FR-135, FR-297"
+  },
+  {
+    "id": "NFR-X-008",
+    "ID": "NFR-X-008",
+    "Requirement": "Configuration: no client-specific code in core; new settings added to the configuration-pack schema.",
+    "Basis type": "Proposed (DoD 2)",
+    "Basis": "DoD 2; §6.5"
+  },
+  {
+    "id": "NFR-X-009",
+    "ID": "NFR-X-009",
+    "Requirement": "Service levels: response-time SLA stated by Malawi Post SUP-002 (1 h critical, 4 h high, 8 h medium; response or resolution not stated). Performance, availability, recovery time and recovery point: Not stated in source — requires confirmation (gaps KG-18, KG-02 volumes, MG-13). The catalog states search latency three different ways (FCAT-10); none is adopted.",
+    "Basis type": "Client-stated (SUP-002); rest gap",
+    "Basis": "REQ-MPC-SUP-002; REQ-MPC-FR-290, FR-299, FR-342"
+  }
+]

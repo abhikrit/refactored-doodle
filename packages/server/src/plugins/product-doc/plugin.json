@@ -1,0 +1,74 @@
+{
+  "systemName": "Product.DOC",
+  "friendlyName": "Product - Documents and records",
+  "area": "DOC",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 17,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.DOC",
+    "projectName": "Nop.Plugin.Product.DOC"
+  },
+  "wave": 4,
+  "waveName": "Fulfil",
+  "dependsOnAreas": [],
+  "counts": {
+    "features": 6,
+    "p1": 3,
+    "p2": 3,
+    "p3": 0,
+    "held": 2,
+    "criteria": 45,
+    "screens": 9,
+    "rules": 10,
+    "contracts": 6,
+    "messages": 6,
+    "auditEvents": 6
+  },
+  "fit": {
+    "configuration": 0,
+    "licensedPlugin": 0,
+    "codeLevel": 5,
+    "externalSystem": 1
+  },
+  "features": [
+    "PRD-DOC-001",
+    "PRD-DOC-002",
+    "PRD-DOC-003",
+    "PRD-DOC-004",
+    "PRD-DOC-005",
+    "PRD-DOC-006"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-DOC-001",
+      "decisions": [
+        "DOC-LIB"
+      ]
+    },
+    {
+      "id": "PRD-DOC-006",
+      "decisions": [
+        "DOC-LIB"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "DOC-LIB"
+  ],
+  "contracts": [
+    "IC-DOC-01",
+    "IC-DOC-02",
+    "IC-DOC-03",
+    "IC-DOC-04",
+    "IC-DOC-05",
+    "IC-DOC-06"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-DOC.md"
+}

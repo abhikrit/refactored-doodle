@@ -1,0 +1,138 @@
+{
+  "systemName": "Product.LOG",
+  "friendlyName": "Product - Shipping, logistics and fulfilment",
+  "area": "LOG",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 10,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.LOG",
+    "projectName": "Nop.Plugin.Product.LOG"
+  },
+  "wave": 4,
+  "waveName": "Fulfil",
+  "dependsOnAreas": [
+    "TRK"
+  ],
+  "counts": {
+    "features": 32,
+    "p1": 31,
+    "p2": 0,
+    "p3": 1,
+    "held": 6,
+    "criteria": 187,
+    "screens": 10,
+    "rules": 33,
+    "contracts": 14,
+    "messages": 23,
+    "auditEvents": 13
+  },
+  "fit": {
+    "configuration": 2,
+    "licensedPlugin": 1,
+    "codeLevel": 25,
+    "externalSystem": 4
+  },
+  "features": [
+    "PRD-LOG-001",
+    "PRD-LOG-002",
+    "PRD-LOG-003",
+    "PRD-LOG-004",
+    "PRD-LOG-005",
+    "PRD-LOG-006",
+    "PRD-LOG-007",
+    "PRD-LOG-008",
+    "PRD-LOG-009",
+    "PRD-LOG-010",
+    "PRD-LOG-011",
+    "PRD-LOG-012",
+    "PRD-LOG-013",
+    "PRD-LOG-014",
+    "PRD-LOG-015",
+    "PRD-LOG-016",
+    "PRD-LOG-017",
+    "PRD-LOG-018",
+    "PRD-LOG-019",
+    "PRD-LOG-020",
+    "PRD-LOG-021",
+    "PRD-LOG-022",
+    "PRD-LOG-023",
+    "PRD-LOG-024",
+    "PRD-LOG-025",
+    "PRD-LOG-026",
+    "PRD-LOG-027",
+    "PRD-LOG-028",
+    "PRD-LOG-029",
+    "PRD-LOG-030",
+    "PRD-LOG-031",
+    "PRD-LOG-032"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-LOG-011",
+      "decisions": [
+        "FG-06"
+      ]
+    },
+    {
+      "id": "PRD-LOG-018",
+      "decisions": [
+        "PAID-STUB"
+      ]
+    },
+    {
+      "id": "PRD-LOG-022",
+      "decisions": [
+        "FG-06"
+      ]
+    },
+    {
+      "id": "PRD-LOG-023",
+      "decisions": [
+        "FG-06"
+      ]
+    },
+    {
+      "id": "PRD-LOG-024",
+      "decisions": [
+        "FG-06"
+      ]
+    },
+    {
+      "id": "PRD-LOG-032",
+      "decisions": [
+        "FG-06, PAID-STUB",
+        "FG-06",
+        "PAID-STUB"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "FG-06",
+    "FG-06, PAID-STUB",
+    "PAID-STUB"
+  ],
+  "contracts": [
+    "IC-LOG-01",
+    "IC-LOG-01",
+    "IC-LOG-01",
+    "IC-LOG-01",
+    "IC-LOG-01",
+    "IC-LOG-01",
+    "IC-LOG-01",
+    "IC-LOG-02",
+    "IC-LOG-02",
+    "IC-LOG-03",
+    "IC-LOG-05",
+    "IC-LOG-06",
+    "IC-LOG-07",
+    "IC-LOG-04"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-LOG.md"
+}

@@ -1,0 +1,169 @@
+{
+  "systemName": "Product.ORD",
+  "friendlyName": "Product - Orders and B2B transactions (RFQ, contracts, requisitions, offers, group buying)",
+  "area": "ORD",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 9,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.ORD",
+    "projectName": "Nop.Plugin.Product.ORD"
+  },
+  "wave": 3,
+  "waveName": "Buy",
+  "dependsOnAreas": [
+    "ADM",
+    "DOC",
+    "SEC"
+  ],
+  "counts": {
+    "features": 28,
+    "p1": 19,
+    "p2": 7,
+    "p3": 2,
+    "held": 11,
+    "criteria": 152,
+    "screens": 7,
+    "rules": 26,
+    "contracts": 11,
+    "messages": 15,
+    "auditEvents": 8
+  },
+  "fit": {
+    "configuration": 2,
+    "licensedPlugin": 0,
+    "codeLevel": 25,
+    "externalSystem": 1
+  },
+  "features": [
+    "PRD-ORD-001",
+    "PRD-ORD-002",
+    "PRD-ORD-003",
+    "PRD-ORD-004",
+    "PRD-ORD-005",
+    "PRD-ORD-006",
+    "PRD-ORD-007",
+    "PRD-ORD-008",
+    "PRD-ORD-009",
+    "PRD-ORD-010",
+    "PRD-ORD-011",
+    "PRD-ORD-012",
+    "PRD-ORD-013",
+    "PRD-ORD-014",
+    "PRD-ORD-015",
+    "PRD-ORD-016",
+    "PRD-ORD-017",
+    "PRD-ORD-018",
+    "PRD-ORD-019",
+    "PRD-ORD-020",
+    "PRD-ORD-021",
+    "PRD-ORD-022",
+    "PRD-ORD-023",
+    "PRD-ORD-024",
+    "PRD-ORD-025",
+    "PRD-ORD-026",
+    "PRD-ORD-027",
+    "PRD-ORD-028"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-ORD-009",
+      "decisions": [
+        "DOC-LIB"
+      ]
+    },
+    {
+      "id": "PRD-ORD-014",
+      "decisions": [
+        "K-01"
+      ]
+    },
+    {
+      "id": "PRD-ORD-015",
+      "decisions": [
+        "WF-ENG"
+      ]
+    },
+    {
+      "id": "PRD-ORD-016",
+      "decisions": [
+        "DOC-LIB"
+      ]
+    },
+    {
+      "id": "PRD-ORD-017",
+      "decisions": [
+        "DOC-LIB"
+      ]
+    },
+    {
+      "id": "PRD-ORD-018",
+      "decisions": [
+        "WF-ENG"
+      ]
+    },
+    {
+      "id": "PRD-ORD-020",
+      "decisions": [
+        "DOC-LIB"
+      ]
+    },
+    {
+      "id": "PRD-ORD-022",
+      "decisions": [
+        "CALLOFF-PLACE, DOC-LIB",
+        "CALLOFF-PLACE",
+        "DOC-LIB"
+      ]
+    },
+    {
+      "id": "PRD-ORD-024",
+      "decisions": [
+        "WF-ENG"
+      ]
+    },
+    {
+      "id": "PRD-ORD-025",
+      "decisions": [
+        "PH-INF, DOC-LIB",
+        "PH-INF",
+        "DOC-LIB"
+      ]
+    },
+    {
+      "id": "PRD-ORD-026",
+      "decisions": [
+        "PH-INF"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "CALLOFF-PLACE",
+    "CALLOFF-PLACE, DOC-LIB",
+    "DOC-LIB",
+    "K-01",
+    "PH-INF",
+    "PH-INF, DOC-LIB",
+    "WF-ENG"
+  ],
+  "contracts": [
+    "IC-ORD-01",
+    "IC-ORD-02",
+    "IC-ORD-03",
+    "IC-ORD-04",
+    "IC-ORD-05",
+    "IC-ORD-06",
+    "IC-ORD-07",
+    "IC-ORD-08",
+    "IC-ORD-09",
+    "IC-ORD-10",
+    "IC-ORD-11"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-ORD.md"
+}

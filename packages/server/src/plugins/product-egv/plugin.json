@@ -1,0 +1,127 @@
+{
+  "systemName": "Product.EGV",
+  "friendlyName": "Product - e-Government and service catalogue (optional pack)",
+  "area": "EGV",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 23,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.EGV",
+    "projectName": "Nop.Plugin.Product.EGV"
+  },
+  "wave": 7,
+  "waveName": "Verticals",
+  "dependsOnAreas": [
+    "ADM",
+    "CAT",
+    "ORD"
+  ],
+  "counts": {
+    "features": 7,
+    "p1": 7,
+    "p2": 0,
+    "p3": 0,
+    "held": 7,
+    "criteria": 57,
+    "screens": 6,
+    "rules": 16,
+    "contracts": 4,
+    "messages": 7,
+    "auditEvents": 3
+  },
+  "fit": {
+    "configuration": 1,
+    "licensedPlugin": 0,
+    "codeLevel": 6,
+    "externalSystem": 0
+  },
+  "features": [
+    "PRD-EGV-001",
+    "PRD-EGV-002",
+    "PRD-EGV-003",
+    "PRD-EGV-004",
+    "PRD-EGV-005",
+    "PRD-EGV-006",
+    "PRD-EGV-007"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-EGV-001",
+      "decisions": [
+        "FG-06, T-MISS",
+        "FG-06",
+        "T-MISS"
+      ]
+    },
+    {
+      "id": "PRD-EGV-002",
+      "decisions": [
+        "FG-06, WF-ENG, T-MISS",
+        "FG-06",
+        "WF-ENG",
+        "T-MISS"
+      ]
+    },
+    {
+      "id": "PRD-EGV-003",
+      "decisions": [
+        "FG-06, T-MISS",
+        "FG-06",
+        "T-MISS"
+      ]
+    },
+    {
+      "id": "PRD-EGV-004",
+      "decisions": [
+        "FG-06, T-MISS",
+        "FG-06",
+        "T-MISS"
+      ]
+    },
+    {
+      "id": "PRD-EGV-005",
+      "decisions": [
+        "FG-06, T-MISS",
+        "FG-06",
+        "T-MISS"
+      ]
+    },
+    {
+      "id": "PRD-EGV-006",
+      "decisions": [
+        "FG-06, T-MISS",
+        "FG-06",
+        "T-MISS"
+      ]
+    },
+    {
+      "id": "PRD-EGV-007",
+      "decisions": [
+        "FG-06, WF-ENG, T-MISS",
+        "FG-06",
+        "WF-ENG",
+        "T-MISS"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "FG-06",
+    "FG-06, T-MISS",
+    "FG-06, WF-ENG, T-MISS",
+    "T-MISS",
+    "WF-ENG"
+  ],
+  "contracts": [
+    "IC-EGV-01",
+    "IC-EGV-01",
+    "IC-EGV-01",
+    "IC-EGV-02"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-EGV.md"
+}

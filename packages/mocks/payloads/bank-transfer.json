@@ -1,0 +1,13 @@
+{
+  "_source": "An offline instruction, not an API call: the buyer is given the account details and a reference, finance confirms the credit later (PAY-005, PAY-036).",
+  "feature": "PRD-PAY-005",
+  "request": {
+    "reference": "CHK-REFERENCE",
+    "amount": 0,
+    "currency": "USD"
+  },
+  "response": {
+    "status": "AWAITING_CREDIT",
+    "instructions": "Quote the reference on the transfer. Finance confirms the credit against the bank statement feed (INT-008)."
+  }
+}

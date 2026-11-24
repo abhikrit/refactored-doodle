@@ -1,0 +1,57 @@
+[
+  {
+    "PRD ID": "PRD-PLT-006",
+    "Feature": "Branding and theme",
+    "Candidate and condition": "Colours/fonts/layout per client without code: Nop-Templates Pavilion theme (PG PLT-02) — 5.00 version to confirm with vendor. Native alternative: per-client DefaultClean child theme (Theme/view override). Availability of this licensed plugin for 5.00 is not verifiable from source (evidence is Post Gebeya on 4.70.5); decision V-01."
+  },
+  {
+    "PRD ID": "PRD-CAT-011",
+    "Feature": "Catalogue API",
+    "Candidate and condition": "Licence the official nopCommerce Web API plugin (separate download, by nopCommerce team; stub (plugin.json SupportedVersions 5.00, Plugins/Nop.Plugin.Misc.WebApi.Frontend/plugin.json) confirms only that nopCommerce markets the paid plugin for 5.00; the paid plugin's 5.00 build, licence terms and scope are V-01 items to confirm with nopCommerce). The source contains only the Web API Frontend stub (storefront API); a backend (admin / catalog write) API product is not found in source — decision API-01. Do not assume the frontend API covers catalog write or ERP integration. (NOP-920)"
+  },
+  {
+    "PRD ID": "PRD-SRC-007",
+    "Feature": "Merchandising widgets and landing pages",
+    "Candidate and condition": "Product carousels, curated collections, ribbons ('New'/'Sale' labels on pictures), HTML widgets and date-scheduled widget display are not native → Nop-Templates JCarousel (STF-08), Smart Product Collections (STF-09), Product Ribbons (STF-11), Html Widgets (CNT-03), NT framework scheduling (NT-01). Built for 4.70.5: needs 5.00 version from vendor (5.00 support not verifiable from source; confirm with vendor). Availability of this licensed plugin for 5.00 is not verifiable from source (evidence is Post Gebeya on 4.70.5); decision V-01."
+  },
+  {
+    "PRD ID": "PRD-SRC-027",
+    "Feature": "Storefront conveniences",
+    "Candidate and condition": "Quick view, 'Buy now' and previous/next product links are not in source (grep 'BuyNow' returns nothing) → Nop-Templates Quick View (STF-12), Buy now (STF-20, NT part), Prev/Next Product (STF-19). Built for 4.70.5: 5.00 support not verifiable from source; confirm with vendor. Availability of this licensed plugin for 5.00 is not verifiable from source (evidence is Post Gebeya on 4.70.5); decision V-01."
+  },
+  {
+    "PRD ID": "PRD-CHK-017",
+    "Feature": "B2B quick order and bulk add",
+    "Candidate and condition": "SKU entry, paste and spreadsheet upload to cart → nopStation Bulk Order plugin (v4 candidate; version not stated on listing; 5.00 support not verifiable from source; confirm with vendor). Build fallback if not available."
+  },
+  {
+    "PRD ID": "PRD-LOG-006",
+    "Feature": "DHL adapter",
+    "Candidate and condition": "DHL rates/booking/labels/tracking → v4 candidates nopStation DHL Shipping Integration (lists 4.70) or FoxNetSoft DHL Connector 2 (lists 4.70). 5.00 support not verifiable from source; confirm with vendor; build fallback. Availability of this licensed plugin for 5.00 is not verifiable from source (evidence is Post Gebeya on 4.70.5); decision V-01."
+  },
+  {
+    "PRD ID": "PRD-TRK-011",
+    "Feature": "Guest order-status lookup",
+    "Candidate and condition": "FoxNetSoft guest order-status plugin as used on PG. Availability of a 5.00 build of this licensed vendor plugin is not verifiable from source (decision V-01). Fallback custom plugin can reuse the 5.00 order-number + email + CAPTCHA + token pattern of ReturnRequestController.Find."
+  },
+  {
+    "PRD ID": "PRD-CRM-001",
+    "Feature": "Help desk ticketing",
+    "Candidate and condition": "Nop-Templates Nop Help Desk (in use on PG) or nopStation Helpdesk Ticket. Availability of a 5.00 build of this licensed vendor plugin is not verifiable from source (decision V-01)."
+  },
+  {
+    "PRD ID": "PRD-CRM-008",
+    "Feature": "Live web chat",
+    "Candidate and condition": "Tawk.to via Nop-Plus plugin as on PG. Availability of a 5.00 build of this licensed vendor plugin is not verifiable from source (decision V-01). Inference (not verified in a running store): a chat provider's script could be placed in CustomHeadTags or the Jotform EmbedCode field without the vendor plugin."
+  },
+  {
+    "PRD ID": "PRD-RPT-008",
+    "Feature": "External BI connectivity",
+    "Candidate and condition": "Official nopCommerce Power BI plugin (paid) or BI reading the DW (RPT-003). The 5.00 stub confirms only that nopCommerce markets the paid plugin for 5.00; build, licence and scope are V-01 items."
+  },
+  {
+    "PRD ID": "PRD-CHN-001",
+    "Feature": "Native mobile apps",
+    "Candidate and condition": "Licensed official nopCommerce mobile app (or NS app per PG INT-02). The 5.00 stub confirms only that nopCommerce markets the paid app for 5.00; build, licence and scope are V-01 items; app-store publishing outside nopCommerce."
+  }
+]

@@ -1,0 +1,87 @@
+{
+  "systemName": "Product.SEC",
+  "friendlyName": "Product - Security, audit and compliance",
+  "area": "SEC",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 18,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.SEC",
+    "projectName": "Nop.Plugin.Product.SEC"
+  },
+  "wave": 1,
+  "waveName": "Foundation",
+  "dependsOnAreas": [
+    "PLT"
+  ],
+  "counts": {
+    "features": 15,
+    "p1": 10,
+    "p2": 5,
+    "p3": 0,
+    "held": 2,
+    "criteria": 103,
+    "screens": 9,
+    "rules": 24,
+    "contracts": 8,
+    "messages": 10,
+    "auditEvents": 12
+  },
+  "fit": {
+    "configuration": 4,
+    "licensedPlugin": 0,
+    "codeLevel": 5,
+    "externalSystem": 6
+  },
+  "features": [
+    "PRD-SEC-001",
+    "PRD-SEC-002",
+    "PRD-SEC-003",
+    "PRD-SEC-004",
+    "PRD-SEC-005",
+    "PRD-SEC-006",
+    "PRD-SEC-007",
+    "PRD-SEC-008",
+    "PRD-SEC-009",
+    "PRD-SEC-010",
+    "PRD-SEC-011",
+    "PRD-SEC-012",
+    "PRD-SEC-013",
+    "PRD-SEC-014",
+    "PRD-SEC-015"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-SEC-006",
+      "decisions": [
+        "DP-01"
+      ]
+    },
+    {
+      "id": "PRD-SEC-014",
+      "decisions": [
+        "DP-01"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "DP-01"
+  ],
+  "contracts": [
+    "IC-SEC-01",
+    "IC-SEC-01",
+    "IC-SEC-01",
+    "IC-SEC-01",
+    "IC-SEC-02",
+    "IC-SEC-03",
+    "IC-SEC-05",
+    "IC-SEC-04"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-SEC.md"
+}

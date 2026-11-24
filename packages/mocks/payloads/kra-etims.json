@@ -1,0 +1,26 @@
+{
+  "_source": "Shaped like the documented KRA eTIMS invoice submission payload. Recorded sample for the prototype - no credentials, no real transaction, nothing sent (decision P-3).",
+  "feature": "PRD-PAY-026",
+  "decision": "E-INV - not in the KTDA source; inferred from external law",
+  "request": {
+    "tin": "PXXXXXXXXXX",
+    "bhfId": "00",
+    "invcNo": 1,
+    "salesTyCd": "N",
+    "rcptTyCd": "S",
+    "totAmt": 0,
+    "taxblAmtB": 0,
+    "taxAmtB": 0,
+    "itemList": []
+  },
+  "response": {
+    "resultCd": "000",
+    "resultMsg": "Successful",
+    "data": {
+      "curRcptNo": 1,
+      "intrlData": "XXXXXXXXXXXX",
+      "rcptSign": "XXXXXXXXXXXX",
+      "sdcDateTime": "2026-11-24T09:35:00"
+    }
+  }
+}

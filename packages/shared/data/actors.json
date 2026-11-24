@@ -1,0 +1,1661 @@
+[
+  {
+    "area": "ADM",
+    "actor": "Client administrator",
+    "doesWhat": "Runs the back office; designs workflows, rules, transaction types, eligibility rules, queues, alerts and templates",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "ADM",
+    "actor": "Approver",
+    "doesWhat": "Acts on approval items assigned by role, authority and delegation",
+    "nopRole": "Any role named on an approval step (IAM-007)",
+    "system": false
+  },
+  {
+    "area": "ADM",
+    "actor": "Operations staff",
+    "doesWhat": "Work queues, operational order view, exceptions, alerts, personal dashboard",
+    "nopRole": "Role system name \"Operations\" (Proposed; IAM role catalogue BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "ADM",
+    "actor": "Catalogue manager",
+    "doesWhat": "Bulk edits and archives products",
+    "nopRole": "Administrators or a role holding Catalog.ProductsCreateEditDelete (native)",
+    "system": false
+  },
+  {
+    "area": "ADM",
+    "actor": "Programme or compliance staff",
+    "doesWhat": "Eligibility, quota and sanctions-screening rules and reviews",
+    "nopRole": "Role system name \"Compliance\" (Proposed; IAM role catalogue BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "ADM",
+    "actor": "Auditor",
+    "doesWhat": "Replays workflow cases, reads rule evaluation logs and resolution history",
+    "nopRole": "Role system name \"Auditor\" (IAM role catalogue BR-IAM-050; SEC-010)",
+    "system": false
+  },
+  {
+    "area": "ADM",
+    "actor": "Platform team",
+    "doesWhat": "Maintains the extension register, rule pattern library and shared template library",
+    "nopRole": "Role system name \"PlatformOperator\" (Proposed by PLT; IAM role catalogue BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "ADM",
+    "actor": "Owning modules (system)",
+    "doesWhat": "Start workflow cases, evaluate rules, submit approval items, raise exceptions through ADM contracts",
+    "nopRole": "Product plugins",
+    "system": true
+  },
+  {
+    "area": "ADM",
+    "actor": "Antivirus engine; sanctions-list source (systems)",
+    "doesWhat": "Scan uploaded files; supply sanctions lists",
+    "nopRole": "External systems (not named in source)",
+    "system": false
+  },
+  {
+    "area": "AI",
+    "actor": "Shopper",
+    "doesWhat": "Chats with the bot on the website or WhatsApp; asks for a person; sees disclosures",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "AI",
+    "actor": "Support agent",
+    "doesWhat": "Takes over handed-off conversations; uses reply drafts",
+    "nopRole": "CRM-008 / CRM-001 roles (licensed plugins, V-01)",
+    "system": false
+  },
+  {
+    "area": "AI",
+    "actor": "Content and catalogue staff",
+    "doesWhat": "Use translation, description, meta-tag, price and image help; approve AI translations",
+    "nopRole": "Administrators or roles holding the native catalogue and content permissions",
+    "system": false
+  },
+  {
+    "area": "AI",
+    "actor": "Seller",
+    "doesWhat": "Uses listing help for own products",
+    "nopRole": "Vendors (native) + IAM-007",
+    "system": false
+  },
+  {
+    "area": "AI",
+    "actor": "Fraud staff",
+    "doesWhat": "Review payments with a high fraud score",
+    "nopRole": "Role system name \"Risk\" (product role catalogue BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "AI",
+    "actor": "Client administrator",
+    "doesWhat": "Configures AI providers, the chatbot, disclosures and the AI use register",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "AI",
+    "actor": "AI, OCR and ML services (system)",
+    "doesWhat": "Return generated text, translations, extracted data, scores and predictions",
+    "nopRole": "External systems via adapters",
+    "system": true
+  },
+  {
+    "area": "CAT",
+    "actor": "Shopper (guest or registered)",
+    "doesWhat": "Browses categories and product pages, asks questions, writes reviews, reports listings, books service slots, requests quotes",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "CAT",
+    "actor": "Business buyer",
+    "doesWhat": "Sees the catalogue segment, price list and assortment of the company; requests quotes for call-for-price items",
+    "nopRole": "Registered + B2B role (IAM-022)",
+    "system": false
+  },
+  {
+    "area": "CAT",
+    "actor": "Seller",
+    "doesWhat": "Creates and edits own listings (wizard, form, import), submits them for approval, answers questions, requests promoted placements",
+    "nopRole": "Vendors (native role; native Catalog.ProductsCreateEditDelete and Catalog.ProductsImportExport are granted to Vendors by default)",
+    "system": false
+  },
+  {
+    "area": "CAT",
+    "actor": "Catalogue staff",
+    "doesWhat": "Maintains the category tree, products, attribute schemas, imports and templates",
+    "nopRole": "Custom role per client (IAM-007); role name not stated in source (KG-16, MG-08)",
+    "system": false
+  },
+  {
+    "area": "CAT",
+    "actor": "Approver (moderator)",
+    "doesWhat": "Works the moderation queue: approves, rejects or returns listings with reasons",
+    "nopRole": "Holder of Misc.Catalogue.Listings.Approve; role names not stated (KG-16, MG-08)",
+    "system": false
+  },
+  {
+    "area": "CAT",
+    "actor": "Compliance staff",
+    "doesWhat": "Maintains regulatory metadata and certificates, decides on listing reports and takedowns, sets prohibited items",
+    "nopRole": "Custom role per client; not stated",
+    "system": false
+  },
+  {
+    "area": "CAT",
+    "actor": "Marketing staff",
+    "doesWhat": "Approves promoted placements, configures feeds, reads catalogue analytics",
+    "nopRole": "Custom role per client; not stated",
+    "system": false
+  },
+  {
+    "area": "CAT",
+    "actor": "Client administrator",
+    "doesWhat": "Sets catalogue settings, moderation queues, assignment rules, SKU patterns, upload limits",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "CAT",
+    "actor": "Service provider",
+    "doesWhat": "Publishes service listings and booking slots (as a seller or as client staff)",
+    "nopRole": "Vendors or staff role (SVC-002 owns providers)",
+    "system": false
+  },
+  {
+    "area": "CAT",
+    "actor": "External system",
+    "doesWhat": "ERP or partner system using the catalogue API; comparison sites and marketplaces receiving feeds; web analytics",
+    "nopRole": "External, via API-01 / CAT-035 / SRC-021",
+    "system": false
+  },
+  {
+    "area": "CAT",
+    "actor": "Other product modules",
+    "doesWhat": "SEL (eligibility, vendor pauses), INV (sellable stock), SRC (search filters and ordering), PAY (order-total deduction), SVC and EGV (bookings), ADM-006 (approval callbacks), DOC (tokens) call CAT contracts or register as providers",
+    "nopRole": "System (no user role)",
+    "system": false
+  },
+  {
+    "area": "CHK",
+    "actor": "Shopper (guest or registered)",
+    "doesWhat": "Fills the cart, checks out, chooses delivery or pickup per line, picks a slot, acknowledges notices, receives the confirmation and pickup code",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "CHK",
+    "actor": "Business buyer",
+    "doesWhat": "Buys on account within a credit limit, enters purchase-order numbers, uses quick order, submits orders for approval",
+    "nopRole": "Registered + B2B company role (IAM-022)",
+    "system": false
+  },
+  {
+    "area": "CHK",
+    "actor": "Company approver",
+    "doesWhat": "Approves or rejects colleague orders above the company threshold",
+    "nopRole": "Company role \"approver\" (IAM-022; name to match IAM-022)",
+    "system": false
+  },
+  {
+    "area": "CHK",
+    "actor": "Seller",
+    "doesWhat": "Receives a separate sub-order and task list for own items",
+    "nopRole": "Vendors (native) + IAM-007",
+    "system": false
+  },
+  {
+    "area": "CHK",
+    "actor": "Agent (outlet staff)",
+    "doesWhat": "Places orders for walk-in customers in an acting session (IAM-026); pickup codes are checked by CHK-012 and parcels handed over in the LOG-012 step",
+    "nopRole": "Role system name \"Agent\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "CHK",
+    "actor": "Finance staff",
+    "doesWhat": "Approves and maintains credit accounts, limits and payment terms",
+    "nopRole": "Role system name \"Finance\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "CHK",
+    "actor": "Client administrator",
+    "doesWhat": "Sets checkout settings, cart rules, delivery slots, legal notices, address fields and checkout attributes",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "CHK",
+    "actor": "Courier",
+    "doesWhat": "Reads delivery instructions, slot and address pin (through LOG screens)",
+    "nopRole": "LOG module",
+    "system": false
+  },
+  {
+    "area": "CHK",
+    "actor": "Payment, logistics and notification modules (system)",
+    "doesWhat": "PAY executes payment; LOG supplies delivery estimates; TRK sends messages",
+    "nopRole": "Internal services",
+    "system": true
+  },
+  {
+    "area": "CHK",
+    "actor": "Provider modules (system)",
+    "doesWhat": "Add cart checks (CAT, INV-004, ADM-005, SVC, ORD-027), a line subtotal adjuster (MKT-002), placement participants (ADM-005, MKT-001, CHK-006, CHK-016, CAT-042, FIN-004, PAY-011, ORD-005) and order-action guards (ORD-010) to the CHK overrides",
+    "nopRole": "Internal services (contracts IC-CHK-01, 05, 06, 07, 08)",
+    "system": true
+  },
+  {
+    "area": "CHN",
+    "actor": "Shopper",
+    "doesWhat": "Uses the app, the installed website, USSD, IVR, SMS, WhatsApp, WeChat, Telegram; opts in or out",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "CHN",
+    "actor": "International buyer",
+    "doesWhat": "Chats on WeChat or WhatsApp",
+    "nopRole": "Registered (native)",
+    "system": false
+  },
+  {
+    "area": "CHN",
+    "actor": "Client administrator",
+    "doesWhat": "Connects channel accounts and providers, sets sender ID, keywords, menus, manifest and social settings",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "CHN",
+    "actor": "Marketing staff",
+    "doesWhat": "Manages app home content and social links",
+    "nopRole": "Role not stated (KG-16, MG-08)",
+    "system": false
+  },
+  {
+    "area": "CHN",
+    "actor": "Support agent",
+    "doesWhat": "Answers WhatsApp and WeChat conversations in the live chat console",
+    "nopRole": "CRM-008 role (licensed plugin)",
+    "system": false
+  },
+  {
+    "area": "CHN",
+    "actor": "Agent (outlet or correspondent)",
+    "doesWhat": "Serves walk-in customers and places orders for them; belongs to an agent network",
+    "nopRole": "Role system name \"Agent\" (product role catalogue BR-IAM-050); account and outlets in IAM-026",
+    "system": false
+  },
+  {
+    "area": "CHN",
+    "actor": "Field agent",
+    "doesWhat": "Captures data offline in the field app",
+    "nopRole": "External app user authenticated through INT-001",
+    "system": false
+  },
+  {
+    "area": "CHN",
+    "actor": "Channel providers (system)",
+    "doesWhat": "USSD gateway, IVR platform, SMS aggregator, WhatsApp Business Platform, WeChat, Telegram, push services",
+    "nopRole": "External systems via adapters",
+    "system": true
+  },
+  {
+    "area": "CRM",
+    "actor": "Shopper (guest or registered)",
+    "doesWhat": "Asks questions and complains by any channel; registered shoppers see their tickets, report order problems, rate the service, give feedback",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "CRM",
+    "actor": "Business buyer",
+    "doesWhat": "Has a named account manager",
+    "nopRole": "Registered + B2B role (IAM-022)",
+    "system": false
+  },
+  {
+    "area": "CRM",
+    "actor": "Seller",
+    "doesWhat": "Receives contact-the-seller messages",
+    "nopRole": "Vendors (native)",
+    "system": false
+  },
+  {
+    "area": "CRM",
+    "actor": "Member of support staff",
+    "doesWhat": "Works tickets, logs calls, merges duplicates, writes internal notes, opens cases, refers fraud, uses ready-made answers",
+    "nopRole": "Role system name \"Support\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "CRM",
+    "actor": "Support manager",
+    "doesWhat": "Sets categories, routing, time limits, escalation and early warnings; approves ready-made answers; reads dashboards; may see unmasked data",
+    "nopRole": "Role system name \"SupportManager\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "CRM",
+    "actor": "Member of outlet staff (agent)",
+    "doesWhat": "Records questions from walk-in customers",
+    "nopRole": "Role system name \"Agent\" (BR-IAM-050, IAM-026)",
+    "system": false
+  },
+  {
+    "area": "CRM",
+    "actor": "Member of fraud staff",
+    "doesWhat": "Reviews fraud referrals and records outcomes",
+    "nopRole": "Role system name \"Risk\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "CRM",
+    "actor": "Account manager",
+    "doesWhat": "Serves assigned business customers and places orders for them",
+    "nopRole": "Role system name \"AccountManager\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "CRM",
+    "actor": "Forum moderator",
+    "doesWhat": "Moderates forum posts",
+    "nopRole": "ForumModerators (created by the bundled Misc.Forums plugin, ForumDefaults.ForumModeratorsRoleName; Plugins/Nop.Plugin.Misc.Forums/ForumDefaults.cs:23)",
+    "system": false
+  },
+  {
+    "area": "CRM",
+    "actor": "Client administrator",
+    "doesWhat": "Configures intake channels, help desk, knowledge base, directory, forums",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "CRM",
+    "actor": "Help-desk plugin (system)",
+    "doesWhat": "Stores tickets, departments and messages",
+    "nopRole": "Licensed plugin (Nop-Templates Nop Help Desk or nopStation Helpdesk Ticket, V-01)",
+    "system": true
+  },
+  {
+    "area": "CRM",
+    "actor": "Mail server, WhatsApp, WeChat, chat provider (systems)",
+    "doesWhat": "Deliver inbound and outbound messages",
+    "nopRole": "External systems via CRM-002, CHN-006, CHN-007, CRM-008",
+    "system": false
+  },
+  {
+    "area": "DOC",
+    "actor": "Client staff (finance, sales, export)",
+    "doesWhat": "Generate, view and send documents; record certificate references",
+    "nopRole": "Administrators or roles holding the DOC permissions (IAM-007)",
+    "system": false
+  },
+  {
+    "area": "DOC",
+    "actor": "Template designer",
+    "doesWhat": "Creates and changes document templates per type, language and store",
+    "nopRole": "Administrators",
+    "system": false
+  },
+  {
+    "area": "DOC",
+    "actor": "Shopper / business buyer / seller",
+    "doesWhat": "Downloads own invoices and documents; keeps documents in the vault; uploads required documents",
+    "nopRole": "Registered (native); Vendors (native) for own documents",
+    "system": false
+  },
+  {
+    "area": "DOC",
+    "actor": "Reviewer",
+    "doesWhat": "Reviews and approves draft documents",
+    "nopRole": "Roles named on the review chain (ADM-006)",
+    "system": false
+  },
+  {
+    "area": "DOC",
+    "actor": "Compliance staff / auditor",
+    "doesWhat": "Places legal holds, runs compliance exports, verifies documents",
+    "nopRole": "Role system names \"Compliance\" and \"Auditor\" (Proposed; IAM role catalogue BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "DOC",
+    "actor": "Any third party",
+    "doesWhat": "Checks a document through its QR code on the verification page",
+    "nopRole": "Anonymous (public page, no personal data)",
+    "system": false
+  },
+  {
+    "area": "DOC",
+    "actor": "Signing service; OCR service (systems)",
+    "doesWhat": "Sign documents; read text from scans",
+    "nopRole": "External systems (not named in source)",
+    "system": false
+  },
+  {
+    "area": "EGV",
+    "actor": "Citizen (shopper)",
+    "doesWhat": "Finds a service, applies, uploads documents, pays the fee, books an appointment, follows status, receives or collects the document",
+    "nopRole": "Guests / Registered (native); registration required to apply (Proposed)",
+    "system": false
+  },
+  {
+    "area": "EGV",
+    "actor": "Agency officer",
+    "doesWhat": "Reviews documents, requests resubmission, approves or rejects, records issue, hands documents to the delivery network",
+    "nopRole": "Role system name \"AgencyOfficer\" (BR-IAM-050) + Customer.VendorId = agency",
+    "system": false
+  },
+  {
+    "area": "EGV",
+    "actor": "Agency administrator",
+    "doesWhat": "Maintains the agency services, users, their EGV roles and the workflow of each service",
+    "nopRole": "Role system name \"AgencyAdmin\" (BR-IAM-050) + Customer.VendorId = agency",
+    "system": false
+  },
+  {
+    "area": "EGV",
+    "actor": "Member of finance staff",
+    "doesWhat": "Runs remittance batches, records remittance references, reviews fee reports",
+    "nopRole": "Role system name \"Finance\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "EGV",
+    "actor": "Outlet staff (agent)",
+    "doesWhat": "Checks in appointments, hands over documents for collection",
+    "nopRole": "Role system name \"Agent\" (BR-IAM-050; IAM-026)",
+    "system": false
+  },
+  {
+    "area": "EGV",
+    "actor": "Client administrator",
+    "doesWhat": "Creates agencies (vendors), the first agency administrator, categories, delivery options and connectors",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "EGV",
+    "actor": "Agency system (system)",
+    "doesWhat": "Receives fee notifications and remittance reports; returns confirmations; may receive applications",
+    "nopRole": "External system via EGV connector (not named)",
+    "system": true
+  },
+  {
+    "area": "EGV",
+    "actor": "Identity system (system)",
+    "doesWhat": "Verifies identity data or registers an ID application where a workflow step calls it",
+    "nopRole": "External system via EGV connector (not named)",
+    "system": true
+  },
+  {
+    "area": "FIN",
+    "actor": "Seller",
+    "doesWhat": "Sees credit offers, consents to data sharing, applies through the lender, offers open invoices for discounting, sees repayment deductions",
+    "nopRole": "Vendors (native) + IAM-007",
+    "system": false
+  },
+  {
+    "area": "FIN",
+    "actor": "Buyer (shopper or business buyer)",
+    "doesWhat": "Sees credit and insurance offers, buys transit insurance at checkout, opens insurance claims, receives subsidies",
+    "nopRole": "Registered (native); B2B role (IAM-022)",
+    "system": false
+  },
+  {
+    "area": "FIN",
+    "actor": "Member of finance staff",
+    "doesWhat": "Registers partners and partner products, monitors referrals, repayments, invoice financing and policies",
+    "nopRole": "Role system name \"Finance\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "FIN",
+    "actor": "Programme staff",
+    "doesWhat": "Define subsidy schemes, budgets and eligibility sources; run subsidy claim reports",
+    "nopRole": "Role system name \"Programme\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "FIN",
+    "actor": "Client administrator",
+    "doesWhat": "Lists partner services, sets fulfilment mode, enters partner credentials, switches services on or off per store",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "FIN",
+    "actor": "Partner lender (system)",
+    "doesWhat": "Receives consented data and applications; returns decisions, loan status and repayment instructions",
+    "nopRole": "External system via FIN connector",
+    "system": true
+  },
+  {
+    "area": "FIN",
+    "actor": "Partner insurer (system)",
+    "doesWhat": "Returns premium quotes, policy numbers and claim status",
+    "nopRole": "External system via FIN connector",
+    "system": true
+  },
+  {
+    "area": "FIN",
+    "actor": "Partner service provider (system)",
+    "doesWhat": "Validates customer account references and fulfils paid partner services (for example a bill payment)",
+    "nopRole": "External system via FIN connector",
+    "system": true
+  },
+  {
+    "area": "FIN",
+    "actor": "Programme registry (system)",
+    "doesWhat": "Confirms whether a customer is eligible for a subsidy scheme",
+    "nopRole": "External system (not named) via FIN connector",
+    "system": true
+  },
+  {
+    "area": "IAM",
+    "actor": "Shopper (guest or registered)",
+    "doesWhat": "Registers by email or mobile number, logs in, manages profile, addresses, preferences, consents and privacy requests, sees activity and order history",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "Business buyer (company member)",
+    "doesWhat": "Applies for a trade account, buys for a company with a company role (buyer, approver, company administrator)",
+    "nopRole": "Registered + TradeBuyer (Proposed; IAM-023) + company role in the company record (IAM-022)",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "Seller user",
+    "doesWhat": "Logs in to the seller portal; password, MFA and session rules apply as for staff",
+    "nopRole": "Vendors (native)",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "Client administrator",
+    "doesWhat": "Configures registration, password, MFA and session policy; manages roles, permissions, scopes, invitations, access reviews",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "User administrator",
+    "doesWhat": "Finds users, views details, activates and deactivates accounts; members of Administrators also act as the customer with a record kept (IAM-010; the impersonation filter allows no other user administrator, BR-IAM-130)",
+    "nopRole": "Administrators, or a client role holding native Customers.* permissions (role name not stated in source, KG-16, MG-08)",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "Account manager",
+    "doesWhat": "Acts for assigned business customers through the native impersonation action (CRM-015 rule provider to the IAM impersonation filter, BR-IAM-130)",
+    "nopRole": "Role system name \"AccountManager\" (Proposed by CRM; BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "Support staff",
+    "doesWhat": "Sees customer details only through the CRM-003 360-degree view and the consent trail (IAM-016); does not use the native admin customer page",
+    "nopRole": "Role system names \"Support\", \"SupportManager\" (Proposed by CRM; BR-IAM-050); never hold native Customers.CustomersView (BR-CRM-030, BR-IAM-054)",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "Outlet agent",
+    "doesWhat": "Logs in with a named account, registers walk-in customers and acts for them at an outlet",
+    "nopRole": "Role system name \"Agent\" (Proposed; BR-IAM-050; used by PAY-034, CHK-013, CHN, CRM, EGV, LOG, RET, SVC, TRK)",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "Staff of other modules",
+    "doesWhat": "Not IAM users of their own; their roles are part of the IAM-007 role catalogue (for example finance, fraud, compliance, warehouse, marketing staff)",
+    "nopRole": "Role system names in BR-IAM-050 (Proposed by the owning modules)",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "Security officer",
+    "doesWhat": "Reviews authentication events and suspicious-login flags, ends sessions",
+    "nopRole": "Role system name \"SecurityOfficer\" (Proposed)",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "Privacy officer",
+    "doesWhat": "Handles correction and deletion requests within the country deadlines",
+    "nopRole": "Role system name \"PrivacyOfficer\" (Proposed; also SEC-008, SEC-012)",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "Auditor",
+    "doesWhat": "Reads access reports and authentication events",
+    "nopRole": "Role system name \"Auditor\" (Proposed; time-boxed by SEC-010)",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "Approver / manager",
+    "doesWhat": "Delegates approval rights (P2), confirms access in reviews",
+    "nopRole": "Any role that holds a delegable permission",
+    "system": false
+  },
+  {
+    "area": "IAM",
+    "actor": "Identity provider (system)",
+    "doesWhat": "Authenticates staff and business buyers, sends join/leave events (P2)",
+    "nopRole": "External system, not named in source",
+    "system": true
+  },
+  {
+    "area": "IAM",
+    "actor": "Client core systems (system)",
+    "doesWhat": "Exchange customer account data with the platform (Malawi Post)",
+    "nopRole": "External systems through the Integration Layer (PRD-INT-002); not named (MG-09)",
+    "system": true
+  },
+  {
+    "area": "IAM",
+    "actor": "Identity registry or mobile-network KYC service (system)",
+    "doesWhat": "Confirms identity details",
+    "nopRole": "External systems, not named in source",
+    "system": true
+  },
+  {
+    "area": "IAM",
+    "actor": "SMS gateway (system)",
+    "doesWhat": "Delivers one-time codes",
+    "nopRole": "PRD-CHN-005",
+    "system": true
+  },
+  {
+    "area": "INT",
+    "actor": "Partner system (ERP, bank, shipping system, MPC or government system)",
+    "doesWhat": "Calls the API, receives webhooks, exchanges data through adapters",
+    "nopRole": "API client (new entity), authenticated per INT-001",
+    "system": false
+  },
+  {
+    "area": "INT",
+    "actor": "Partner developer",
+    "doesWhat": "Reads the developer portal, tests in the sandbox, requests credentials",
+    "nopRole": "External user of the gateway portal (INT-002)",
+    "system": false
+  },
+  {
+    "area": "INT",
+    "actor": "Client administrator",
+    "doesWhat": "Registers API clients, webhook subscriptions and connector adapters; sets master-of-record per entity; installs plugins",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "INT",
+    "actor": "Seller",
+    "doesWhat": "Subscribes to webhooks for the own orders",
+    "nopRole": "Vendors (native) + IAM-007",
+    "system": false
+  },
+  {
+    "area": "INT",
+    "actor": "Finance staff",
+    "doesWhat": "Monitors ERP and SAGE 200 postings and resolves reconciliation exceptions",
+    "nopRole": "Role system name \"Finance\" (product role catalogue BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "INT",
+    "actor": "Approver of government submissions",
+    "doesWhat": "Approves or declines a submission to a regulator or government system before it is sent",
+    "nopRole": "Administrators (a second person; Proposed)",
+    "system": false
+  },
+  {
+    "area": "INT",
+    "actor": "Malawi Post operations",
+    "doesWhat": "Hands orders and shipments to PostGlobal and follows its tracking events",
+    "nopRole": "Role not stated (MG-08)",
+    "system": false
+  },
+  {
+    "area": "INT",
+    "actor": "Business buyer (punch-out)",
+    "doesWhat": "Shops from inside an own procurement system",
+    "nopRole": "Registered + B2B role (IAM-022)",
+    "system": false
+  },
+  {
+    "area": "INT",
+    "actor": "Platform team",
+    "doesWhat": "Builds and certifies adapters with the connector kit",
+    "nopRole": "Not a runtime role",
+    "system": false
+  },
+  {
+    "area": "INT",
+    "actor": "API gateway (system)",
+    "doesWhat": "Authenticates, throttles, transforms and routes API traffic",
+    "nopRole": "External system (INT-002)",
+    "system": true
+  },
+  {
+    "area": "INV",
+    "actor": "Shopper (guest or registered)",
+    "doesWhat": "Sees availability; has stock held in cart or checkout; receives unpaid-order reminders",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "INV",
+    "actor": "Seller",
+    "doesWhat": "Sets low-stock thresholds and alerts on own products; requests stock adjustments for own products; sees own low-stock report",
+    "nopRole": "Vendors (native)",
+    "system": false
+  },
+  {
+    "area": "INV",
+    "actor": "Stock staff",
+    "doesWhat": "Approves adjustments above the threshold; plans cycle counts; reviews holds and analytics",
+    "nopRole": "Role system name \"Stock\" (in BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "INV",
+    "actor": "Warehouse staff",
+    "doesWhat": "Receives goods, transfers stock between warehouses, counts stock, records lots and serial numbers at receipt and shipment",
+    "nopRole": "Role system name \"Warehouse\" (in BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "INV",
+    "actor": "Quality staff",
+    "doesWhat": "Records batch quality results and custody, releases, blocks and recalls batches",
+    "nopRole": "Role system name \"Quality\" (in BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "INV",
+    "actor": "Finance staff",
+    "doesWhat": "Follows up flagged unpaid orders",
+    "nopRole": "Role system name \"Finance\" (in BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "INV",
+    "actor": "Support staff",
+    "doesWhat": "Looks up serial numbers for warranty questions",
+    "nopRole": "Role system name \"Support\" (in BR-IAM-050); serial look-up needs Inventory.Core.Stock.View, which is not a Support default: the client grants it (Proposed)",
+    "system": false
+  },
+  {
+    "area": "INV",
+    "actor": "Auditor",
+    "doesWhat": "Reads stock history and adjustment records",
+    "nopRole": "Role system name \"Auditor\" (in BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "INV",
+    "actor": "Management and stock planners",
+    "doesWhat": "Read inventory analytics",
+    "nopRole": "Role not named in BR-IAM-050 (not stated); default Administrators, Stock",
+    "system": false
+  },
+  {
+    "area": "INV",
+    "actor": "Client administrator",
+    "doesWhat": "Configures warehouses, hold windows, payment windows and actions per payment method, reason codes, thresholds, synchronisation",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "INV",
+    "actor": "Client WMS / ERP (system)",
+    "doesWhat": "Exchanges stock levels and movements; receives valuation and purchase triggers; sends purchase orders",
+    "nopRole": "External system via the INV-012 connector",
+    "system": true
+  },
+  {
+    "area": "INV",
+    "actor": "Scheduled tasks (system)",
+    "doesWhat": "Release expired holds, apply unpaid-order actions, expire lots, create due counts, synchronise, take the daily stock snapshot",
+    "nopRole": "IScheduleTask (native mechanism)",
+    "system": true
+  },
+  {
+    "area": "LOG",
+    "actor": "Shopper (guest or registered)",
+    "doesWhat": "Chooses a delivery method or pickup point, sees fees, breakdown and expected dates, changes the address before dispatch, collects parcels",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "LOG",
+    "actor": "Business buyer",
+    "doesWhat": "Same as shopper; international and bulk orders (KTDA)",
+    "nopRole": "Registered; company accounts IAM-022; role TradeBuyer (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "LOG",
+    "actor": "Seller",
+    "doesWhat": "Sets delivery coverage, prints pick and packing lists and labels for own orders, hands parcels over (pickup or drop-off)",
+    "nopRole": "Vendors (native)",
+    "system": false
+  },
+  {
+    "area": "LOG",
+    "actor": "Warehouse staff",
+    "doesWhat": "Pick, pack, stage, dispatch, print labels and manifests",
+    "nopRole": "Role system name \"Warehouse\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "LOG",
+    "actor": "Logistics operations staff",
+    "doesWhat": "Allocation overrides, carrier bookings, delivery exceptions, seller pickups, logistics tasks, customs declarations, outlet status",
+    "nopRole": "Role system name \"LogisticsOps\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "LOG",
+    "actor": "Outlet / post-office staff (agent)",
+    "doesWhat": "Accepts drop-offs, hands parcels to collectors, verifies pickup codes, collects holding charges",
+    "nopRole": "Role system name \"Agent\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "LOG",
+    "actor": "Courier (own fleet)",
+    "doesWhat": "Works the daily route list, records attempts, captures proof of delivery, collects COD cash",
+    "nopRole": "Role system name \"Courier\" (BR-IAM-050); app external (LOG-032)",
+    "system": false
+  },
+  {
+    "area": "LOG",
+    "actor": "Finance staff",
+    "doesWhat": "Reconciles courier COD cash",
+    "nopRole": "Role system name \"Finance\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "LOG",
+    "actor": "Logistics manager",
+    "doesWhat": "Reads the logistics KPI dashboard",
+    "nopRole": "Role system name \"LogisticsOps\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "LOG",
+    "actor": "Client administrator",
+    "doesWhat": "Configures service levels, fee tables, coverage areas, delivery standards, outlets, carriers, label templates, proof methods, postal-pack settings",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "LOG",
+    "actor": "Platform team",
+    "doesWhat": "Builds and certifies carrier adapters against the connector framework",
+    "nopRole": "Not a runtime role",
+    "system": false
+  },
+  {
+    "area": "LOG",
+    "actor": "Carrier / delivery partner (system)",
+    "doesWhat": "Returns rates, bookings, labels and tracking events",
+    "nopRole": "External system via adapter",
+    "system": true
+  },
+  {
+    "area": "LOG",
+    "actor": "UPU and postal systems (CDS, IPS, GMS), PostGlobal (system)",
+    "doesWhat": "Receive and send customs and tracking data",
+    "nopRole": "External systems via integration plugin / INT-007",
+    "system": true
+  },
+  {
+    "area": "MKT",
+    "actor": "Shopper (guest or registered)",
+    "doesWhat": "Uses promo codes, gift cards and reward points, subscribes to newsletters, sees pop-ups and content, shares products",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "MKT",
+    "actor": "Marketing staff",
+    "doesWhat": "Creates discounts, promotions, campaigns, pop-ups, segments, affiliates, referral rules; configures tags",
+    "nopRole": "Role system name \"Marketing\" (BR-IAM-050); native permissions mapped to it by the configuration pack",
+    "system": false
+  },
+  {
+    "area": "MKT",
+    "actor": "Content staff",
+    "doesWhat": "Creates and edits pages, blog posts, news, polls, menus and banners",
+    "nopRole": "Role system name \"Content\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "MKT",
+    "actor": "Content approver (for example legal staff)",
+    "doesWhat": "Approves content and policy changes; reads policy version history",
+    "nopRole": "Role system name \"ContentApprover\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "MKT",
+    "actor": "Seller",
+    "doesWhat": "Sets own prices, tier prices and vendor discounts",
+    "nopRole": "Vendors (native)",
+    "system": false
+  },
+  {
+    "area": "MKT",
+    "actor": "Affiliate or referring customer",
+    "doesWhat": "Shares a tracked link and earns commission or points",
+    "nopRole": "Affiliate record (native, no login) / Registered customer",
+    "system": false
+  },
+  {
+    "area": "MKT",
+    "actor": "Client administrator",
+    "doesWhat": "Configures SEO, reward points, gift card, newsletter and plugin settings",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "MKT",
+    "actor": "Marketing SaaS (Omnisend, optional), Google, Meta (systems)",
+    "doesWhat": "Receive contacts, cart events and tag data",
+    "nopRole": "External systems via bundled plugins",
+    "system": false
+  },
+  {
+    "area": "ORD",
+    "actor": "Shopper / business buyer",
+    "doesWhat": "Follows order stages, cancels within policy, accepts delivered orders and partial supply, reorders, requests quotes, negotiates and accepts, responds to offers, submits requisitions, signs contracts, joins group deals",
+    "nopRole": "Registered (native) + B2B role (IAM-022)",
+    "system": false
+  },
+  {
+    "area": "ORD",
+    "actor": "Seller",
+    "doesWhat": "Accepts, packs and hands over own sub-orders, rejects with reason, proposes partial supply, answers RFQs and counter-offers, posts offers",
+    "nopRole": "Vendors (native) + IAM-007",
+    "system": false
+  },
+  {
+    "area": "ORD",
+    "actor": "Client order staff",
+    "doesWhat": "Use the order console, record interventions with reasons, cancel, export",
+    "nopRole": "Client-specific role with native Orders.* permissions (configuration only, BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "ORD",
+    "actor": "Approver (client manager)",
+    "doesWhat": "Approves interventions that need a second person",
+    "nopRole": "Administrators by default; client roles get Orders.Core.Interventions.Approve through the configuration pack",
+    "system": false
+  },
+  {
+    "area": "ORD",
+    "actor": "Fraud and compliance staff",
+    "doesWhat": "Place and release order holds",
+    "nopRole": "Role system name \"Risk\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "ORD",
+    "actor": "KTDA sales, export and legal staff",
+    "doesWhat": "Process requisitions, draft and review contracts, issue proformas, award letters, manage contract execution",
+    "nopRole": "Client-specific roles mapped in the configuration pack (BR-IAM-050: client-specific roles are configuration only); role list to confirm (KG-16)",
+    "system": false
+  },
+  {
+    "area": "ORD",
+    "actor": "Programme staff (P3)",
+    "doesWhat": "Review and approve scheme applications",
+    "nopRole": "Client-specific role mapped in the configuration pack; to confirm",
+    "system": false
+  },
+  {
+    "area": "ORD",
+    "actor": "Client administrator",
+    "doesWhat": "Configures stages, reason codes, cancellation policy, numbering, service levels, invoice fields, Incoterms",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "ORD",
+    "actor": "E-signature provider (system, P2)",
+    "doesWhat": "Collects signatures and returns signature evidence",
+    "nopRole": "External system via adapter (provider not named)",
+    "system": false
+  },
+  {
+    "area": "ORD",
+    "actor": "PAY, LOG, TRK, RET, CHK, DOC (system)",
+    "doesWhat": "Consume order events (acceptance, holds, cancellations), host the overrides ORD plugs into (CHK-003, ORD-010, DOC-001), raise refunds (RET-005) and send messages (TRK-005)",
+    "nopRole": "Internal services",
+    "system": true
+  },
+  {
+    "area": "PAY",
+    "actor": "Shopper (guest or registered)",
+    "doesWhat": "Pays, retries, sees payment status and receipts, requests refunds through returns",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "PAY",
+    "actor": "Business buyer",
+    "doesWhat": "Pays by bank transfer, letter of credit, escrow or on account; confirms offline direct payments",
+    "nopRole": "Registered + TradeBuyer (IAM-023; BR-IAM-050); company role in the IAM-022 company record (BR-IAM-120)",
+    "system": false
+  },
+  {
+    "area": "PAY",
+    "actor": "Seller",
+    "doesWhat": "Sees split amounts; with direct payment, connects own payment account, marks offline payments paid, issues refunds — through PAY plugin endpoints (native admin payment actions are blocked for vendors)",
+    "nopRole": "Vendors (native) + IAM-007",
+    "system": false
+  },
+  {
+    "area": "PAY",
+    "actor": "Finance staff",
+    "doesWhat": "Reconciles, approves large refunds, manages fees, chargebacks, letters of credit, escrow releases, cash-up review, tax reports",
+    "nopRole": "Role system name \"Finance\" (Proposed; product role catalogue BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "PAY",
+    "actor": "Outlet staff (agent)",
+    "doesWhat": "Takes cash at outlets, records the payment method on assisted orders, prints receipts, closes the shift cash-up",
+    "nopRole": "Role system name \"Agent\" (IAM-026; BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "PAY",
+    "actor": "Fraud staff",
+    "doesWhat": "Configures risk rules, reviews flagged payments",
+    "nopRole": "Role system name \"Risk\" (Proposed; BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "PAY",
+    "actor": "Client administrator",
+    "doesWhat": "Activates payment methods, sets routing rules, enters provider credentials",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "PAY",
+    "actor": "Platform team",
+    "doesWhat": "Builds and certifies payment adapters against the connector SDK",
+    "nopRole": "Not a runtime role",
+    "system": false
+  },
+  {
+    "area": "PAY",
+    "actor": "Payment provider / bank (system)",
+    "doesWhat": "Sends payment results, reversals and statements",
+    "nopRole": "External system via adapter",
+    "system": true
+  },
+  {
+    "area": "PAY",
+    "actor": "Tax authority system (KRA eTIMS, MRA EIS)",
+    "doesWhat": "Receives invoices and credit notes, returns fiscal number / QR",
+    "nopRole": "External system via adapter",
+    "system": false
+  },
+  {
+    "area": "PLT",
+    "actor": "Platform team",
+    "doesWhat": "Builds and certifies the product release, maintains global and vertical packs, provisions client instances, runs upgrades and data migrations",
+    "nopRole": "Role system name \"PlatformOperator\" in each instance (Proposed; IAM role catalogue BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "PLT",
+    "actor": "Client administrator",
+    "doesWhat": "Maintains client and store settings, branding, languages, currencies, feature switches; requests changes to controlled settings",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "PLT",
+    "actor": "Configuration approver",
+    "doesWhat": "Approves or rejects changes to controlled settings; cannot approve own changes",
+    "nopRole": "Administrators (native), a different person from the requester",
+    "system": false
+  },
+  {
+    "area": "PLT",
+    "actor": "Auditor",
+    "doesWhat": "Reads configuration history and change reports",
+    "nopRole": "Role system name \"Auditor\" (IAM role catalogue BR-IAM-050; SEC-010)",
+    "system": false
+  },
+  {
+    "area": "PLT",
+    "actor": "Content staff / translator",
+    "doesWhat": "Exports text for translation, imports translations, marks translations checked",
+    "nopRole": "Administrators or a client role holding Configuration.ManageLanguages",
+    "system": false
+  },
+  {
+    "area": "PLT",
+    "actor": "Shopper / staff user",
+    "doesWhat": "Uses the storefront or admin in their language, on any device, with accessibility options, help tips and tours",
+    "nopRole": "Guests / Registered / any admin role (native)",
+    "system": false
+  },
+  {
+    "area": "PLT",
+    "actor": "Provisioning pipeline (system)",
+    "doesWhat": "Creates databases, applications, appsettings and plugin folders; drives installation; applies packs; reports instance status",
+    "nopRole": "External system (CI/CD and infrastructure tooling, not named in source)",
+    "system": true
+  },
+  {
+    "area": "PLT",
+    "actor": "Monitoring platform (system)",
+    "doesWhat": "Collects health, metrics and logs; raises alerts; holds the operator cross-client view",
+    "nopRole": "External system (not named in source)",
+    "system": true
+  },
+  {
+    "area": "PLT",
+    "actor": "Exchange-rate source (system)",
+    "doesWhat": "Supplies exchange rates",
+    "nopRole": "External system (not named in source, KG-15)",
+    "system": true
+  },
+  {
+    "area": "RET",
+    "actor": "Shopper (registered)",
+    "doesWhat": "Requests returns, uploads evidence, chooses pickup or drop-off, follows status, raises issues and disputes, accepts or rejects remedies, messages the seller in a case",
+    "nopRole": "Registered (native); the native return pages require a registered customer who owns the order",
+    "system": false
+  },
+  {
+    "area": "RET",
+    "actor": "Seller",
+    "doesWhat": "Reviews and answers return requests for own products, inspects returns where the client allows, replies in dispute cases — through RET seller endpoints only",
+    "nopRole": "Vendors (native); no native return-request permission is granted to Vendors",
+    "system": false
+  },
+  {
+    "area": "RET",
+    "actor": "Member of support staff",
+    "doesWhat": "Works return requests and cases, records decisions, moderates case messages, escalates",
+    "nopRole": "Role system name \"Support\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "RET",
+    "actor": "Support manager",
+    "doesWhat": "Sets time limits, triage rules and escalation, decides escalated cases, exports case files, reads reports",
+    "nopRole": "Role system name \"SupportManager\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "RET",
+    "actor": "Member of warehouse or outlet staff",
+    "doesWhat": "Receives returned items and records the inspection",
+    "nopRole": "Role system names \"Warehouse\" and \"Agent\" (BR-IAM-050; Agent from IAM-026)",
+    "system": false
+  },
+  {
+    "area": "RET",
+    "actor": "Member of finance staff",
+    "doesWhat": "Approves refunds above the PAY threshold (in PAY-016); sees the refund state on the return",
+    "nopRole": "Role system name \"Finance\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "RET",
+    "actor": "Client administrator",
+    "doesWhat": "Configures return window, reasons, actions, eligibility rules, shipping models, fees, issue types, policies",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "RET",
+    "actor": "Carrier (system)",
+    "doesWhat": "Books return pickups, issues labels and tracking events",
+    "nopRole": "External system via LOG-021 adapter",
+    "system": true
+  },
+  {
+    "area": "RET",
+    "actor": "External dispute body",
+    "doesWhat": "Receives the exported case file when a case is escalated outside the client (for example MACRA, named as an example in REQ-MPC-FR-247)",
+    "nopRole": "External; no system integration stated",
+    "system": false
+  },
+  {
+    "area": "RPT",
+    "actor": "Manager (client management)",
+    "doesWhat": "Reads the dashboard, executive dashboards and reports",
+    "nopRole": "Administrators or a management role (role names from BR-IAM-050; a management role is not in the catalogue — client configuration)",
+    "system": false
+  },
+  {
+    "area": "RPT",
+    "actor": "Analyst",
+    "doesWhat": "Maintains the KPI catalogue, queries data views, builds dashboards in the BI platform",
+    "nopRole": "Role system name \"Analyst\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "RPT",
+    "actor": "Marketing staff",
+    "doesWhat": "Imports advertising and campaign spend; reads marketing analytics",
+    "nopRole": "Role system name \"Marketing\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "RPT",
+    "actor": "Operations manager",
+    "doesWhat": "Reads operational dashboards and operator metrics",
+    "nopRole": "Role system name \"OperationsManager\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "RPT",
+    "actor": "Compliance staff and auditors",
+    "doesWhat": "Read audit, compliance and regulatory reports",
+    "nopRole": "Role system name \"Auditor\" (BR-IAM-050, SEC-010); BI group",
+    "system": false
+  },
+  {
+    "area": "RPT",
+    "actor": "Client administrator",
+    "doesWhat": "Configures extracts, pseudonymisation, BI connections, public metrics, report permissions",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "RPT",
+    "actor": "Data warehouse and ETL (system)",
+    "doesWhat": "Receives extracts, runs quality checks, stores history",
+    "nopRole": "External system (not named, MG-12)",
+    "system": true
+  },
+  {
+    "area": "RPT",
+    "actor": "BI platform (system)",
+    "doesWhat": "Dashboards, drill-down, schedules, self-service, row and field security",
+    "nopRole": "External system (not named, KG-17); Power BI plugin option (PAID-STUB)",
+    "system": true
+  },
+  {
+    "area": "RPT",
+    "actor": "Other government or Malawi Post systems",
+    "doesWhat": "Receive report data by API or batch file as authorised",
+    "nopRole": "External; not named",
+    "system": false
+  },
+  {
+    "area": "RPT",
+    "actor": "The public",
+    "doesWhat": "Reads the public transparency page without signing in",
+    "nopRole": "Guests (native)",
+    "system": false
+  },
+  {
+    "area": "SEC",
+    "actor": "Shopper / visitor",
+    "doesWhat": "Chooses cookie categories; receives breach notices when affected",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "SEC",
+    "actor": "Client administrator",
+    "doesWhat": "Configures security, captcha, GDPR and cookie settings; grants auditor access",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "SEC",
+    "actor": "Auditor",
+    "doesWhat": "Searches, replays and exports the audit trail with read-only access for a set period",
+    "nopRole": "Role system name \"Auditor\" (Proposed; BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "SEC",
+    "actor": "Security officer",
+    "doesWhat": "Receives chain-break and export-failure alerts; links incidents",
+    "nopRole": "Role system name \"SecurityOfficer\" (Proposed; BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "SEC",
+    "actor": "Privacy officer",
+    "doesWhat": "Maintains the country profile, processing register, transfer and impact-assessment records; runs breach cases",
+    "nopRole": "Role system name \"PrivacyOfficer\" (Proposed; BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "SEC",
+    "actor": "Module services (system)",
+    "doesWhat": "Write business audit events (AUD-<AREA>-nnn) through IC-SEC-01",
+    "nopRole": "All product plugins",
+    "system": true
+  },
+  {
+    "area": "SEC",
+    "actor": "Platform team",
+    "doesWhat": "Runs dependency scans, fixes findings, keeps the interception register",
+    "nopRole": "Not a runtime role",
+    "system": false
+  },
+  {
+    "area": "SEC",
+    "actor": "Hosting provider (external)",
+    "doesWhat": "TLS termination, WAF and DDoS protection, encryption at rest, region",
+    "nopRole": "Project service; not named in source",
+    "system": false
+  },
+  {
+    "area": "SEC",
+    "actor": "Security-monitoring system (external)",
+    "doesWhat": "Receives event exports, correlates, alerts",
+    "nopRole": "Not named in source",
+    "system": false
+  },
+  {
+    "area": "SEC",
+    "actor": "Data-protection regulator (external)",
+    "doesWhat": "Receives breach notifications",
+    "nopRole": "Kenya: ODPC (named in decision DP-01 text); Malawi: Not stated in source",
+    "system": false
+  },
+  {
+    "area": "SEL",
+    "actor": "Applicant (registered customer applying to sell)",
+    "doesWhat": "Applies, accepts the seller terms, uploads documents, follows the status of the application in My account (no admin access until approved)",
+    "nopRole": "Registered (native)",
+    "system": false
+  },
+  {
+    "area": "SEL",
+    "actor": "Seller (owner user)",
+    "doesWhat": "Manages profile, documents, payout accounts, staff, locations, vacation, sees dashboard, statements and ratings",
+    "nopRole": "Vendors (native); Customer.VendorId set",
+    "system": false
+  },
+  {
+    "area": "SEL",
+    "actor": "Seller staff user",
+    "doesWhat": "Works in the seller portal within the limits of a staff profile set by the seller owner",
+    "nopRole": "Vendors (native) + SEL staff profile (BR-SEL-010)",
+    "system": false
+  },
+  {
+    "area": "SEL",
+    "actor": "Compliance staff",
+    "doesWhat": "Reviews applications and documents, decides verification and tiers, handles appeals, manages seller block and watch lists",
+    "nopRole": "Role system name \"Compliance\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "SEL",
+    "actor": "Finance staff",
+    "doesWhat": "Maintains commission and fee rules, approves payout account changes, releases settlements, issues commission invoices",
+    "nopRole": "Role system name \"Finance\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "SEL",
+    "actor": "Fraud staff",
+    "doesWhat": "Manages platform block, watch and allow lists",
+    "nopRole": "Role system name \"Risk\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "SEL",
+    "actor": "Procurement staff",
+    "doesWhat": "Maintains approved supplier panels per category",
+    "nopRole": "Role system name \"Procurement\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "SEL",
+    "actor": "Client administrator",
+    "doesWhat": "Switches the marketplace on, configures tiers, document types, rules, thresholds, staff profiles, notifications",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "SEL",
+    "actor": "Buyer (shopper or business buyer)",
+    "doesWhat": "Rates the seller after a completed order; sees vacation messages",
+    "nopRole": "Registered (native)",
+    "system": false
+  },
+  {
+    "area": "SEL",
+    "actor": "Client management",
+    "doesWhat": "Reads the onboarding funnel, performance and diversity reports",
+    "nopRole": "Role with Marketplace.Core.Reports.View",
+    "system": false
+  },
+  {
+    "area": "SEL",
+    "actor": "Identity and registry services (system)",
+    "doesWhat": "Answer identity, tax, business-registry and mobile-money KYC checks",
+    "nopRole": "External system via IAM-020 adapter",
+    "system": true
+  },
+  {
+    "area": "SEL",
+    "actor": "Payment provider (system)",
+    "doesWhat": "Executes seller payouts and reports results",
+    "nopRole": "External system via PAY-024 adapter",
+    "system": true
+  },
+  {
+    "area": "SRC",
+    "actor": "Shopper (guest or registered)",
+    "doesWhat": "Searches, browses, filters, sorts, compares, saves wish lists and searches, receives alerts",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "SRC",
+    "actor": "Business buyer",
+    "doesWhat": "Same as shopper; searches own orders and quotes (SRC-025)",
+    "nopRole": "Registered + B2B role (IAM-022)",
+    "system": false
+  },
+  {
+    "area": "SRC",
+    "actor": "Seller",
+    "doesWhat": "Shown with badges; featured for set dates",
+    "nopRole": "Vendors (native)",
+    "system": false
+  },
+  {
+    "area": "SRC",
+    "actor": "Marketing staff",
+    "doesWhat": "Builds menus, sliders, collections, campaign pages, featured placements; reads analytics",
+    "nopRole": "Role system name \"Marketing\" (in BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "SRC",
+    "actor": "Catalogue manager",
+    "doesWhat": "Proposes, approves and retires categories; manages synonyms and boosting rules",
+    "nopRole": "Role system name \"Catalogue\" (in BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "SRC",
+    "actor": "Client administrator",
+    "doesWhat": "Sets search, catalog, wish-list and analytics settings; selects the search provider; registers channel systems as INT-001 API clients",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "SRC",
+    "actor": "Channel system (USSD, SMS, kiosk)",
+    "doesWhat": "Calls the search API",
+    "nopRole": "External system registered as an INT-001 API client",
+    "system": false
+  },
+  {
+    "area": "SRC",
+    "actor": "External recommendation service",
+    "doesWhat": "Receives consented behaviour events; returns recommendations through AI-007 when installed",
+    "nopRole": "External system (connection owned by AI-007; optional)",
+    "system": false
+  },
+  {
+    "area": "SRC",
+    "actor": "Web analytics property",
+    "doesWhat": "Receives page and e-commerce events",
+    "nopRole": "External (Google Analytics, Facebook Pixel)",
+    "system": false
+  },
+  {
+    "area": "SVC",
+    "actor": "Shopper (guest or registered)",
+    "doesWhat": "Books, pays, reschedules, cancels, signs off or reports a service not delivered, downloads digital items, hires items, holds vouchers",
+    "nopRole": "Guests / Registered (native)",
+    "system": false
+  },
+  {
+    "area": "SVC",
+    "actor": "Business buyer",
+    "doesWhat": "As shopper; requests quotes for price-on-request services",
+    "nopRole": "Registered + B2B role (IAM-022)",
+    "system": false
+  },
+  {
+    "area": "SVC",
+    "actor": "Service provider (seller)",
+    "doesWhat": "Maintains resources and availability, confirms, schedules, starts and completes service orders, records no-shows, redeems vouchers",
+    "nopRole": "Vendors (native) + IAM-007",
+    "system": false
+  },
+  {
+    "area": "SVC",
+    "actor": "Client operations staff",
+    "doesWhat": "Sets service policies and service-level targets, handles escalations and disputed completions, acts on bookings for customers",
+    "nopRole": "Role system name \"Operations\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "SVC",
+    "actor": "Outlet staff (agent)",
+    "doesWhat": "Redeems vouchers at outlets; takes balance payments at the counter (PAY-034)",
+    "nopRole": "Role system name \"Agent\" (BR-IAM-050; IAM-026)",
+    "system": false
+  },
+  {
+    "area": "SVC",
+    "actor": "Member of finance staff",
+    "doesWhat": "Sees deposits, balances and refunds raised by service rules",
+    "nopRole": "Role system name \"Finance\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "SVC",
+    "actor": "Client administrator",
+    "doesWhat": "Configures service products, pricing models, downloadable products, rental products",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "TRK",
+    "actor": "Shopper (registered)",
+    "doesWhat": "Tracks own orders, shares a tracking link, sets notification preferences, subscribes to one order's updates, reads the in-app feed",
+    "nopRole": "Registered (native)",
+    "system": false
+  },
+  {
+    "area": "TRK",
+    "actor": "Guest or third party (for example the recipient)",
+    "doesWhat": "Tracks by tracking number or share link; guest looks up an order with order number and phone or email",
+    "nopRole": "Guests (native) / anonymous",
+    "system": false
+  },
+  {
+    "area": "TRK",
+    "actor": "Seller",
+    "doesWhat": "Sees hand-over and delivery events for own shipments",
+    "nopRole": "Vendors (native)",
+    "system": false
+  },
+  {
+    "area": "TRK",
+    "actor": "Logistics operations staff",
+    "doesWhat": "Searches track and trace, reviews missed scans and rejected events, enters manual events, registers devices",
+    "nopRole": "Role system name \"LogisticsOps\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "TRK",
+    "actor": "Field and hub staff",
+    "doesWhat": "Scan parcels with the external app; their staff and device identifiers are recorded",
+    "nopRole": "Role system names \"Courier\" / \"Agent\" (BR-IAM-050)",
+    "system": false
+  },
+  {
+    "area": "TRK",
+    "actor": "Support staff",
+    "doesWhat": "Reads the notification log, sends proactive notices, manages outage banners",
+    "nopRole": "Role system name \"Support\" (BR-IAM-050; also used by CRM and RET)",
+    "system": false
+  },
+  {
+    "area": "TRK",
+    "actor": "Client administrator",
+    "doesWhat": "Edits templates, notification definitions, channels, preference defaults, event mappings and scan rules",
+    "nopRole": "Administrators (native)",
+    "system": false
+  },
+  {
+    "area": "TRK",
+    "actor": "Carrier, postal system, scanning app (system)",
+    "doesWhat": "Send tracking events through the ingestion interface",
+    "nopRole": "External systems via IC-TRK-01",
+    "system": true
+  },
+  {
+    "area": "TRK",
+    "actor": "Channel provider (system)",
+    "doesWhat": "Sends messages and returns delivery receipts and bounces",
+    "nopRole": "External systems via CHN adapters (IC-TRK-02, IC-TRK-03)",
+    "system": true
+  },
+  {
+    "area": "TRK",
+    "actor": "Senders outside the engine (system)",
+    "doesWhat": "CHN-012 keyword handling and CHN opt-in pages update preferences; CHN reply adapters and CHN-005 command replies (CRM agents, AI-003), CRM ticket e-mail replies and IAM one-time codes check opt-outs before sending",
+    "nopRole": "CHN, CRM, AI, IAM services via IC-TRK-06 (decision MSG-ROUTE)",
+    "system": true
+  }
+]

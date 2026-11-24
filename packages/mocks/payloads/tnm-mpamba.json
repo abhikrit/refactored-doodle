@@ -1,0 +1,28 @@
+{
+  "_source": "Shaped like the documented TNM Mpamba collection request payload. Recorded sample for the prototype - no credentials, no real transaction, nothing sent (decision P-3).",
+  "feature": "PRD-PAY-029",
+  "request": {
+    "msisdn": "265XXXXXXXXX",
+    "amount": 0,
+    "currency": "MWK",
+    "reference": "CHK-REFERENCE",
+    "narration": "Order payment",
+    "callbackUrl": "https://example.invalid/api/payments/callback"
+  },
+  "response": {
+    "status": "PENDING",
+    "transactionId": "TNM-PENDING-0000",
+    "message": "Customer prompted to authorise on handset"
+  },
+  "callback": {
+    "status": "SUCCESS",
+    "transactionId": "TNM-PENDING-0000",
+    "receipt": "MP000000",
+    "completedAt": "2026-11-24T09:33:00Z"
+  },
+  "callbackCancelled": {
+    "status": "CANCELLED",
+    "transactionId": "TNM-PENDING-0000",
+    "reason": "Request cancelled by user"
+  }
+}

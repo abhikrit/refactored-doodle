@@ -1,0 +1,2192 @@
+[
+  {
+    "id": "IC-ADM-01",
+    "area": "ADM",
+    "Contract": "IC-ADM-01",
+    "Operation": "StartCase",
+    "Inputs": "Definition code, business key (entity type, id), variables, idempotency key",
+    "Outputs": "Case ID",
+    "Errors": "Unknown or retired definition; duplicate key",
+    "nopCommerce mapping": "Workflow engine service (engine choice WF-ENG); requests queued by event consumers and processed by a scheduled task"
+  },
+  {
+    "id": "IC-ADM-01",
+    "area": "ADM",
+    "Contract": "IC-ADM-01",
+    "Operation": "CompleteTask / Signal",
+    "Inputs": "Case ID, step ID, outcome, data",
+    "Outputs": "Case state",
+    "Errors": "Step not waiting",
+    "nopCommerce mapping": "Called by ADM-006 on decision, by modules on external events"
+  },
+  {
+    "id": "IC-ADM-01",
+    "area": "ADM",
+    "Contract": "IC-ADM-01",
+    "Operation": "RegisterStepOperation",
+    "Inputs": "Owning module, operation code, input and output schema, default timeout and retry count",
+    "Outputs": "Registered (operation appears in the step-operation catalogue)",
+    "Errors": "Duplicate code",
+    "nopCommerce mapping": "Called by modules at installation for connector operations used in call-to-another-system steps (for example EGV IC-EGV-02 VerifyOrRegister); INT-005 adapter operations are listed by INT the same way"
+  },
+  {
+    "id": "IC-ADM-01",
+    "area": "ADM",
+    "Contract": "IC-ADM-01",
+    "Operation": "Simulate",
+    "Inputs": "Definition (draft), sample data",
+    "Outputs": "Path, waits, outputs",
+    "Errors": "Invalid definition",
+    "nopCommerce mapping": "No side effects (BR-ADM-012)"
+  },
+  {
+    "id": "IC-ADM-01",
+    "area": "ADM",
+    "Contract": "IC-ADM-01",
+    "Operation": "GetHistory (replay)",
+    "Inputs": "Case ID",
+    "Outputs": "Ordered step executions with inputs, outputs, decisions",
+    "Errors": "Unknown case",
+    "nopCommerce mapping": "Read-only"
+  },
+  {
+    "id": "IC-ADM-02",
+    "area": "ADM",
+    "Contract": "IC-ADM-02",
+    "Operation": "Evaluate",
+    "Inputs": "Rule-set code, facts, caller reference",
+    "Outputs": "Outcome(s), matched rule IDs and versions",
+    "Errors": "Unknown rule set; missing fact",
+    "nopCommerce mapping": "Rules engine service; writes the evaluation log"
+  },
+  {
+    "id": "IC-ADM-02",
+    "area": "ADM",
+    "Contract": "IC-ADM-02",
+    "Operation": "Test",
+    "Inputs": "Draft rules, sample facts",
+    "Outputs": "Pass/fail per input with matched conditions",
+    "Errors": "Invalid rule",
+    "nopCommerce mapping": "No production log entry"
+  },
+  {
+    "id": "IC-ADM-03",
+    "area": "ADM",
+    "Contract": "IC-ADM-03",
+    "Operation": "Submit",
+    "Inputs": "Object type, object ID, requester, summary, amount",
+    "Outputs": "Approval item ID",
+    "Errors": "No chain for object type",
+    "nopCommerce mapping": "Owning module calls; ADM-006 routes. Object types named by modules so far: Document (DOC-004), ChangeSet (PLT-004), PayoutAccountChange (SEL-005), SellerApplication and VerificationRequest (SEL-003), Listing (CAT-022, CAT-043), OverMaxRequest (CAT-037), TransactionTemplate (ADM-011), ScreeningMatch (ADM-005)"
+  },
+  {
+    "id": "IC-ADM-03",
+    "area": "ADM",
+    "Contract": "IC-ADM-03",
+    "Operation": "CanDecide (pre-decision guard, optional)",
+    "Inputs": "Item ID, object type, object ID, intended decision",
+    "Outputs": "Allowed / Refused with the module message",
+    "Errors": "—",
+    "nopCommerce mapping": "Implemented by the owning module (for example SEL for SellerApplication guards, Sel.ApprovalBlocked); called by ADM-006 before an approval is recorded (BR-ADM-031)"
+  },
+  {
+    "id": "IC-ADM-03",
+    "area": "ADM",
+    "Contract": "IC-ADM-03",
+    "Operation": "OnApproved / OnRejected / OnConditionsMet (callbacks)",
+    "Inputs": "Item ID, decision, conditions",
+    "Outputs": "Effect applied by the module",
+    "Errors": "Module error (item stays decided; exception raised to ADM-009)",
+    "nopCommerce mapping": "Implemented by the owning module's service (for object type Document: the DOC-004 review service)"
+  },
+  {
+    "id": "IC-ADM-04",
+    "area": "ADM",
+    "Contract": "IC-ADM-04",
+    "Operation": "Raise exception",
+    "Inputs": "Type, severity, reason code, entity reference, details, allowed actions (batch-safe flags)",
+    "Outputs": "Exception ID",
+    "Errors": "—",
+    "nopCommerce mapping": "Called by any module"
+  },
+  {
+    "id": "IC-ADM-04",
+    "area": "ADM",
+    "Contract": "IC-ADM-04",
+    "Operation": "Handle action",
+    "Inputs": "Exception ID, action",
+    "Outputs": "Result",
+    "Errors": "Action not allowed",
+    "nopCommerce mapping": "Implemented by the owning module per exception type"
+  },
+  {
+    "id": "IC-ADM-05",
+    "area": "ADM",
+    "Contract": "IC-ADM-05",
+    "Operation": "Scan",
+    "Inputs": "File bytes, file name, content type",
+    "Outputs": "Clean / Infected (signature name) / Error",
+    "Errors": "Engine unavailable, timeout",
+    "nopCommerce mapping": "External antivirus engine adapter (engine not named)"
+  },
+  {
+    "id": "IC-ADM-06",
+    "area": "ADM",
+    "Contract": "IC-ADM-06",
+    "Operation": "Screen party",
+    "Inputs": "Name, country, identifiers, date of birth or registration",
+    "Outputs": "No match / Possible match (list, score)",
+    "Errors": "Provider unavailable",
+    "nopCommerce mapping": "External sanctions-list provider adapter (not named)"
+  },
+  {
+    "id": "IC-ADM-07",
+    "area": "ADM",
+    "Contract": "IC-ADM-07",
+    "Operation": "Get type schema / Validate parameters",
+    "Inputs": "Type code, parameter values",
+    "Outputs": "Schema; validation errors",
+    "Errors": "Unknown type",
+    "nopCommerce mapping": "Transaction type registry service"
+  },
+  {
+    "id": "IC-ADM-08",
+    "area": "ADM",
+    "Contract": "IC-ADM-08",
+    "Operation": "RegisterUploadContext",
+    "Inputs": "Context code, owning feature, covered native upload actions with a resolver (route values to yes or no), or own endpoint; default allowed extensions, maximum size, scan flag",
+    "Outputs": "Registered (context shown on the upload policy page)",
+    "Errors": "Duplicate code; action not an upload action",
+    "nopCommerce mapping": "Called by modules at installation; values are then edited only on the ADM-008 page (BR-ADM-060). Module contexts named so far: e-Government application document (EGV-002, resolver on UploadFileProductAttribute); trade application document (IAM-023); return evidence and case attachment (RET); ticket attachment (CRM-001); RFQ attachment and other ORD attachments (ORD); seller document (SEL-002, through IC-DOC-03); document vault, requirement documents and repository upload (DOC); proof-of-delivery media, delivery exception evidence and carrier label (LOG); tracking scan media (TRK-003); channel inbound media and field record photo (CHN); offline payment proof (PAY-036, own endpoint); product picture is an ADM context (ProductController.ProductPictureAdd), and the CAT admin upload actions use admin picture, admin download and data imports (BR-CAT-003)"
+  },
+  {
+    "id": "IC-ADM-08",
+    "area": "ADM",
+    "Contract": "IC-ADM-08",
+    "Operation": "CheckUpload",
+    "Inputs": "Context code, file name, content type, bytes",
+    "Outputs": "Accepted (scan result) / refused with Adm.UploadTypeNotAllowed, Adm.UploadTooLarge, Adm.UploadInfected or Adm.UploadScanUnavailable",
+    "Errors": "Unknown context",
+    "nopCommerce mapping": "Called by a module's own upload endpoint before it stores the file (for example DOC-005 requirement uploads)"
+  },
+  {
+    "id": "IC-AI-01",
+    "area": "AI",
+    "Contract": "IC-AI-01",
+    "Operation": "Language-model query",
+    "Inputs": "Prompt built by the plugin (question, approved content excerpts, instructions, language)",
+    "Outputs": "Answer text",
+    "Errors": "Provider error (NopException), timeout (RequestTimeout)",
+    "nopCommerce mapping": "Native ArtificialIntelligenceHttpClient.SendQueryAsync(string) with the provider from ArtificialIntelligenceSettings, or a plugin client if conversation features are needed (decision at build)"
+  },
+  {
+    "id": "IC-AI-02",
+    "area": "AI",
+    "Contract": "IC-AI-02",
+    "Operation": "Chat channel",
+    "Inputs": "Web widget message; CHN-006 inbound WhatsApp message routed by CHN (BR-CHN-014); hand-off request",
+    "Outputs": "Bot reply (web widget, or WhatsApp through IC-CHN-04 SendReply); hand-off to CRM-008 or ticket through IC-CRM-04",
+    "Errors": "Channel refused, live chat unavailable",
+    "nopCommerce mapping": "IWidgetPlugin view component; CHN IC-CHN-04; approved answers through IC-CRM-02; CRM-008 interface (V-01); IC-CRM-04"
+  },
+  {
+    "id": "IC-AI-03",
+    "area": "AI",
+    "Contract": "IC-AI-03",
+    "Operation": "External ML service",
+    "Inputs": "Score(transaction); Recommend(customer, surface); SendEvents(pseudonymous key, events: view, add to cart, purchase); DeleteSubjectData(pseudonymous key); Forecast(history); Inspect(photo)",
+    "Outputs": "Score with reasons and model version; ranked product ids with model version; accepted; deletion requested; forecast rows; findings with confidence",
+    "Errors": "Unavailable, timeout (fall back per feature)",
+    "nopCommerce mapping": "Integration plugins; results stored in plugin tables. Score is called by PAY-018 (BR-PAY-090); Recommend, SendEvents and DeleteSubjectData are called by AI-007 as the IC-SRC-04 provider of SRC-009, which checks consent and product eligibility"
+  },
+  {
+    "id": "IC-AI-04",
+    "area": "AI",
+    "Contract": "IC-AI-04",
+    "Operation": "Document service",
+    "Inputs": "OCR(image); CheckId(image, document type); Extract fields(file, document type) = IC-DOC-06",
+    "Outputs": "Text and fields with confidence; Verified / NotVerified / Inconclusive / Unavailable with reasons (IC-IAM-02 values, decision ONE-RECORD); field values with confidence",
+    "Errors": "Unavailable, unsupported document, unreadable",
+    "nopCommerce mapping": "Integration plugin; implements IC-DOC-06 for DOC-005; used by IAM flows"
+  },
+  {
+    "id": "IC-AI-05",
+    "area": "AI",
+    "Contract": "IC-AI-05",
+    "Operation": "Translation",
+    "Inputs": "Source language, text, target language, HTML flag",
+    "Outputs": "Translated text",
+    "Errors": "Service error, unsupported language",
+    "nopCommerce mapping": "Native TranslationModelFactory (Google Cloud Translation, DeepL clients); AI pack reuses it for further entity types"
+  },
+  {
+    "id": "IC-CAT-01",
+    "area": "CAT",
+    "Contract": "IC-CAT-01",
+    "Operation": "Catalogue API — read",
+    "Inputs": "API client token with scope products.read (and products.read.unpublished for unpublished listings; BR-INT-006) and store limits; version; filters (changed since, category, store, language)",
+    "Outputs": "Products with price, stock availability, categories, attributes; categories",
+    "Errors": "401, 403 outside scope or store (BR-INT-002), 429 rate limit (BR-INT-004), 400 invalid filter",
+    "nopCommerce mapping": "Same API-01 base and rules as IC-INT-01 (licensed or built Web API product, API-01, PAID-STUB); versioning BR-INT-003"
+  },
+  {
+    "id": "IC-CAT-01",
+    "area": "CAT",
+    "Contract": "IC-CAT-01",
+    "Operation": "Catalogue API — create / update product",
+    "Inputs": "API client token with scope products.write; product payload",
+    "Outputs": "Product id, SKU, listing state (always Draft for new)",
+    "Errors": "400 validation (BR-CAT-002 at submit), prohibited content (BR-CAT-011), 409 duplicate SKU; 401, 403, 429 as above",
+    "nopCommerce mapping": "Calls IProductService (CAT host applies BR-CAT-004, BR-CAT-005); never sets Published (BR-INT-001)"
+  },
+  {
+    "id": "IC-CAT-02",
+    "area": "CAT",
+    "Contract": "IC-CAT-02",
+    "Operation": "Feed adapter — BuildFeed",
+    "Inputs": "Feed target, product filter, language, currency",
+    "Outputs": "Feed file or payload",
+    "Errors": "Target unavailable, format error",
+    "nopCommerce mapping": "IScheduleTask per target; adapter per target format"
+  },
+  {
+    "id": "IC-CAT-03",
+    "area": "CAT",
+    "Contract": "IC-CAT-03",
+    "Operation": "Listing lifecycle service — Submit / Decide / Publish / Pause / Resume / Withdraw / Archive",
+    "Inputs": "Product id, actor, reason (where required)",
+    "Outputs": "New state (SM-CAT-01), audit id",
+    "Errors": "Transition not allowed, reason missing, own listing, seller listings paused (Cat.SellerListingsPaused), publish guard failed",
+    "nopCommerce mapping": "CAT service used by admin pages, wizard, CAT-019/021/025 tasks, the ADM-006 callbacks (IC-ADM-03 OnApproved / OnRejected) and other modules; the only code that sets Product.Published = true"
+  },
+  {
+    "id": "IC-CAT-03",
+    "area": "CAT",
+    "Contract": "IC-CAT-03",
+    "Operation": "PauseListings / ResumeListings (SEL to CAT)",
+    "Inputs": "Vendor id, reason code (Vacation, SellerSuspended, SellerBlacklisted, DocumentExpired, CommissionOverdue, PerformanceIntervention), actor",
+    "Outputs": "Number of listings paused or resumed",
+    "Errors": "Unknown reason",
+    "nopCommerce mapping": "Runs under ILocker key 'cat-vendor-listings-{VendorId}' and, per listing, 'cat-listing-{ProductId}' (BR-CAT-030); called by SEL through IC-SEL-01"
+  },
+  {
+    "id": "IC-CAT-04",
+    "area": "CAT",
+    "Contract": "IC-CAT-04",
+    "Operation": "Product service host (CAT-002) — publish-gate provider",
+    "Inputs": "Product, requested Published value, path",
+    "Outputs": "Published value to save (false unless the listing state is Published, BR-CAT-005)",
+    "Errors": "—",
+    "nopCommerce mapping": "Provided by CAT-022 (listing lifecycle) when delivered; without it the host keeps the value the caller set (AC-CAT-002-05-05)"
+  },
+  {
+    "id": "IC-CAT-04",
+    "area": "CAT",
+    "Contract": "IC-CAT-04",
+    "Operation": "Product service host — submission and publish guard provider",
+    "Inputs": "Product, vendor, stage (Submit or Publish), path (lifecycle, form, wizard, bulk edit, import, API, low-stock re-publish)",
+    "Outputs": "Pass, or Fail with rule IDs and texts",
+    "Errors": "—",
+    "nopCommerce mapping": "Called by IC-CAT-03 Submit, Publish and Resume and by the IProductService host when an update would set Published true; provider: SEL CheckEligibility (IC-SEL-01), called at submission and at publish on every path"
+  },
+  {
+    "id": "IC-CAT-04",
+    "area": "CAT",
+    "Contract": "IC-CAT-04",
+    "Operation": "Product service host — sellable-stock adjuster",
+    "Inputs": "Product, warehouse id, useReservedQuantity, native total",
+    "Outputs": "Adjusted total stock quantity (not below zero)",
+    "Errors": "—",
+    "nopCommerce mapping": "IProductService.GetTotalStockQuantityAsync override (CAT-002 host, INopStartup Order >= 3000) calls base, then each adjuster in declared order; providers: INV-009, INV-011 lot statuses (BR-INV-071)"
+  },
+  {
+    "id": "IC-CAT-04",
+    "area": "CAT",
+    "Contract": "IC-CAT-04",
+    "Operation": "Product service host — search filter / ordering contributor",
+    "Inputs": "Scoped search context (from the request), the product query before ordering and paging, showHidden",
+    "Outputs": "Filtered or ordered product query",
+    "Errors": "—",
+    "nopCommerce mapping": "IProductService.SearchProductsAsync override reproduces the native 5.00.1 query composition (including the AI-provider path that returns early and the search-provider fallback CatalogSettings.UseStandardSearchWhenNoResults) and applies contributors before ordering and paging and before the AI-provider join; not applied when showHidden is true; providers: SRC (IC-SRC-02)"
+  },
+  {
+    "id": "IC-CAT-05",
+    "area": "CAT",
+    "Contract": "IC-CAT-05",
+    "Operation": "Price host — unit price provider",
+    "Inputs": "Product, customer, store, quantity, working currency, native result (priceWithoutDiscounts, finalPrice, discounts)",
+    "Outputs": "A price that replaces the result, or none",
+    "Errors": "—",
+    "nopCommerce mapping": "IPriceCalculationService.GetFinalPriceAsync override (CAT-042 plugin) calls the cached base, which already applies native price lists (5.00), then providers in precedence order outside the cached block (BR-CAT-020); provider: CAT-042 fixed currency prices. CAT-039 is no longer a provider (VER-500, PRICE-500)."
+  },
+  {
+    "id": "IC-CAT-06",
+    "area": "CAT",
+    "Contract": "IC-CAT-06",
+    "Operation": "Order total host — Adjust (provider operation)",
+    "Inputs": "Cart, customer, store, running total after native discounts, gift cards and reward points",
+    "Outputs": "Kind (Deduction or Charge), amount, label, provider reference; or none",
+    "Errors": "Provider error fails the total calculation (BR-CAT-031)",
+    "nopCommerce mapping": "Called by the IOrderTotalCalculationService.GetShoppingCartTotalAsync override (CAT-042 plugin) after the native result; side-effect free (it is called on every cart, checkout and payment-fee calculation); providers: PAY-009 wallet Deduction (WAL-01 option (b) only), FIN-003 premium Charge (only if confirmed)"
+  },
+  {
+    "id": "IC-CAT-06",
+    "area": "CAT",
+    "Contract": "IC-CAT-06",
+    "Operation": "Order total host — Reserve / Confirm / Release (provider operations)",
+    "Inputs": "Reserve: customer, store, CheckoutSession, the amount used in the order total, provider reference; Confirm: reservation, saved order ID; Release: reservation, reason",
+    "Outputs": "Reserve: reservation reference, or refusal with message key; Confirm, Release: done",
+    "Errors": "Reserve refusal refuses the placement; Confirm error raises a placement exception (CHK-004, AUD-CHK-007); Release error is logged",
+    "nopCommerce mapping": "Called by the CAT-042 placement participant registered with the CHK-003 IOrderProcessingService host (IC-CHK-06, BR-CHK-020); Confirm runs per saved sub-order before OrderPlacedEvent; PAY-009 debits the wallet and writes its ledger entry against the order in Confirm (BR-CAT-033)"
+  },
+  {
+    "id": "IC-CAT-06",
+    "area": "CAT",
+    "Contract": "IC-CAT-06",
+    "Operation": "Order total host — GetOrderAdjustments (read)",
+    "Inputs": "Order ID",
+    "Outputs": "Confirmed adjustments: provider, kind, amount, label, reference",
+    "Errors": "Unknown order",
+    "nopCommerce mapping": "CAT service over OrderTotalAdjustment; used by PAY, DOC (token %Order.TotalAdjustments% through IC-DOC-02, name Proposed) and RPT"
+  },
+  {
+    "id": "IC-CAT-07",
+    "area": "CAT",
+    "Contract": "IC-CAT-07",
+    "Operation": "Booking service — Hold / Confirm / Book / Move / RecordOutcome / Release / WriteSlots",
+    "Inputs": "Slot id or booking id; cart item, order item or customer; target slot; outcome (SM-SVC-02); generated slots (resource, outlet, start, end, capacity)",
+    "Outputs": "Booking id and state (SM-CAT-05); slots written and slots listed for staff",
+    "Errors": "Slot full (Cat.SlotFull), hold expired (Cat.SlotHoldExpired), transition not allowed, capacity below confirmed bookings",
+    "nopCommerce mapping": "CAT-027 service under ILocker key 'cat-slot-{SlotId}' (BR-CAT-021); callers: CAT checkout step, SVC-002 (GenerateSlots), SVC-003 (Move, RecordOutcome), EGV-003 (Book, Release)"
+  },
+  {
+    "id": "IC-CHK-01",
+    "area": "CHK",
+    "Contract": "IC-CHK-01",
+    "Operation": "Cart check provider (CHK-003 hosts)",
+    "Inputs": "Cart lines, or the candidate item at add to cart or update (product, quantity, attributes XML, customer-entered price, rental start and end dates, shopping cart item ID if any), customer, store, cart type, fulfilment choices, the native warnings produced so far with their resource keys",
+    "Outputs": "Warnings to add (message key + text); for a registered replacer only, the native warning it replaces and its replacement",
+    "Errors": "Provider error (item refused, Chk.CartCheckUnavailable)",
+    "nopCommerce mapping": "Called by the single CHK-003 IShoppingCartService override from GetShoppingCartItemWarningsAsync, GetShoppingCartWarningsAsync, GetStandardWarningsAsync and GetRentalProductWarningsAsync. Providers: CAT (quantity multiples, call-for-price quote exemption, over-maximum approval, slot hold, service area), INV-004 (holds; replacer of the stock warning), ADM-005 (eligibility, quota), SVC (rental availability), EGV-001 (service workflow check), CHK-011 (cart rules, including LOG-004 delivery constraints), ORD-027 (sample limits), CHK-004 (single-seller rule BR-CHK-022). Registration order fixes the call order."
+  },
+  {
+    "id": "IC-CHK-02",
+    "area": "CHK",
+    "Contract": "IC-CHK-02",
+    "Operation": "Placement validator (CHK-003 hosts)",
+    "Inputs": "PlaceOrderContainer details, ProcessPaymentRequest, CheckoutSession",
+    "Outputs": "Pass, or refusal with message key",
+    "Errors": "—",
+    "nopCommerce mapping": "Called in order by the IOrderProcessingService.PlaceOrderAsync override before payment (BR-CHK-005); PAY-001 routing and PAY-018 risk (PAY side IC-PAY-03), LOG-004 serviceability and seller coverage, CHK-011 restrictions and CHK-018 approval are validators"
+  },
+  {
+    "id": "IC-CHK-03",
+    "area": "CHK",
+    "Contract": "IC-CHK-03",
+    "Operation": "Delivery estimate",
+    "Inputs": "Shipping option or pickup point, address, cart, placement time",
+    "Outputs": "Earliest and latest date, or none",
+    "Errors": "No estimate (CHK-014 falls back)",
+    "nopCommerce mapping": "Supplied by LOG-005 (BR-LOG-030); displayed by CHK-014 with message Log.EdtRange"
+  },
+  {
+    "id": "IC-CHK-04",
+    "area": "CHK",
+    "Contract": "IC-CHK-04",
+    "Operation": "Checkout payment (group)",
+    "Inputs": "CheckoutSession reference, total, share per seller, payment method (called once, before any sub-order is saved, BR-CHK-006)",
+    "Outputs": "One payment result for the checkout, applied by native placement to every sub-order saved; each sub-order is linked to the group transaction when the PAY participant Confirm (IC-CHK-06) runs after its save",
+    "Errors": "Payment failed (all sub-orders stay Pending)",
+    "nopCommerce mapping": "Supplied by PAY as IC-PAY-02 (BR-PAY-014, Proposed); CHK-004 calls it once per checkout; adapters declare group support"
+  },
+  {
+    "id": "IC-CHK-05",
+    "area": "CHK",
+    "Contract": "IC-CHK-05",
+    "Operation": "Line subtotal adjuster (CHK-003 hosts)",
+    "Inputs": "ShoppingCartItem, includeDiscounts, the native result (subTotal, discountAmount, appliedDiscounts, maximumDiscountQty)",
+    "Outputs": "Adjusted subTotal, discountAmount, appliedDiscounts, maximumDiscountQty",
+    "Errors": "—",
+    "nopCommerce mapping": "Called by the CHK-003 override of IShoppingCartService.GetSubTotalAsync after the native method; one adjuster for the product: MKT-002 buy-X-get-Y (IC-MKT-01)"
+  },
+  {
+    "id": "IC-CHK-06",
+    "area": "CHK",
+    "Contract": "IC-CHK-06",
+    "Operation": "Placement participant (CHK-003 hosts): Reserve / Confirm / Release",
+    "Inputs": "Reserve: PlaceOrderContainer details, CheckoutSession; Confirm: reservation, saved sub-order; Release: reservation, reason",
+    "Outputs": "Reserve: reservation reference, or refusal with message key; Confirm and Release: done",
+    "Errors": "Participant error (Reserve: placement refused; Confirm: placement exception, AUD-CHK-007; Release: logged, reservation ends at expiry)",
+    "nopCommerce mapping": "Called by the CHK-003 PlaceOrderAsync override (BR-CHK-020). Participants: ADM-005 quota ('adm-quota-{quotaId}'); MKT-001 limited-use discounts (IC-MKT-04, 'mkt-discount-{DiscountId}'); CHK-006 delivery window ('chk-slot-{SlotId}-{Date}'); CHK-016 credit ('chk-credit-{CreditAccountId}'); CAT-042 order-total adjustments (BR-CAT-033), the only participant for IC-CAT-06 providers (PAY-009 wallet under WAL-01 option (b) under 'pay-wallet-{WalletId}'; FIN-003 premium if confirmed); FIN-004 subsidy budget (BR-FIN-007, 'fin-scheme-{SchemeId}'); PAY-011 group payment, Confirm only (links the sub-order, BR-PAY-014); ORD-005 seller task creation, Confirm only (IC-ORD-09)"
+  },
+  {
+    "id": "IC-CHK-07",
+    "area": "CHK",
+    "Contract": "IC-CHK-07",
+    "Operation": "Order-action guard (CHK-003 hosts)",
+    "Inputs": "Action (Ship, ReadyForPickup, Deliver), shipment, order, acting user",
+    "Outputs": "Allow, or refuse with message key",
+    "Errors": "—",
+    "nopCommerce mapping": "Called by the CHK-003 override of IOrderProcessingService.ShipAsync, ReadyForPickupAsync and DeliverAsync before the native method (BR-CHK-021); ORD-010 hold is a guard. Shipment insert is guarded by the ORD-010 shipment-guard host, not here"
+  },
+  {
+    "id": "IC-CHK-08",
+    "area": "CHK",
+    "Contract": "IC-CHK-08",
+    "Operation": "Cancellation participant (CHK-003 hosts)",
+    "Inputs": "Cancelled order, previous order status",
+    "Outputs": "Done",
+    "Errors": "Participant error (listed as checkout exception; cancellation stands)",
+    "nopCommerce mapping": "Called by the CHK-003 override of IOrderProcessingService.CancelOrderAsync after the native method (BR-CHK-021); participants: CHK-006 window release, CHK-012 code revocation"
+  },
+  {
+    "id": "IC-CHK-09",
+    "area": "CHK",
+    "Contract": "IC-CHK-09",
+    "Operation": "Pickup code check (CHK-012 provides, LOG-012 calls)",
+    "Inputs": "Verify: shipment, outlet, entered or scanned code; MarkUsed: shipment, verifying user",
+    "Outputs": "Verify: Valid / Invalid / Used / Locked with message key (Chk.PickupCodeInvalid, Chk.PickupCodeUsed, Chk.PickupCodeLocked); MarkUsed: done",
+    "Errors": "Unknown shipment",
+    "nopCommerce mapping": "CHK-012 service; called by the LOG-012 handover step inside its shipment lock, ILocker key 'shipment-{ShipmentId}' (BR-LOG-001); Verify also counts attempts inside that lock"
+  },
+  {
+    "id": "IC-CHK-10",
+    "area": "CHK",
+    "Contract": "IC-CHK-10",
+    "Operation": "Assisted order read (CHK-013 provides; CHN-009, IAM-008, RPT call)",
+    "Inputs": "GetAssistedOrder: order ID; ListAssistedOrders: agent, outlet, period",
+    "Outputs": "Agent customer ID, outlet ID, placed on (UTC); or \"not assisted\"; a list for the filter",
+    "Errors": "—",
+    "nopCommerce mapping": "CHK-013 read service over AssistedOrder (Proposed); read only"
+  },
+  {
+    "id": "IC-CHK-11",
+    "area": "CHK",
+    "Contract": "IC-CHK-11",
+    "Operation": "Order splitter (CHK-004 provides; the CHK-003 placement host calls it)",
+    "Inputs": "Cart lines with seller and fulfilment choice, order-level amounts, CheckoutSession",
+    "Outputs": "Groups of cart lines, one per sub-order, with the order-level amounts allocated by BR-CHK-007",
+    "Errors": "Splitter error (placement refused, nothing saved)",
+    "nopCommerce mapping": "Registered only when the Marketplace pack is on; at most one splitter; without it the host places one order (BR-CHK-006)"
+  },
+  {
+    "id": "IC-CHN-01",
+    "area": "CHN",
+    "Contract": "IC-CHN-01",
+    "Operation": "SMS provider adapter",
+    "Inputs": "Send(to, text, sender ID, idempotency key); ParseDeliveryReceipt(callback); ParseInbound(callback)",
+    "Outputs": "Provider message id; Delivered / Failed; inbound sender and text",
+    "Errors": "Transient, permanent, sender ID rejected, verification failed",
+    "nopCommerce mapping": "Adapter registered by a CHN-005 plugin; the SMS channel implements IC-TRK-02 for TRK-005 and serves IC-IAM-01 for IAM-002; called by the SMS task; callbacks on a plugin controller deriving from Microsoft.AspNetCore.Mvc.Controller on its own route (IRouteProvider)"
+  },
+  {
+    "id": "IC-CHN-02",
+    "area": "CHN",
+    "Contract": "IC-CHN-02",
+    "Operation": "USSD session endpoint",
+    "Inputs": "Session id, phone number, service code, input",
+    "Outputs": "Menu text, continue or end flag",
+    "Errors": "Gateway not verified, unknown session",
+    "nopCommerce mapping": "CHN-003 plugin controller on its own route; orders through native order placement"
+  },
+  {
+    "id": "IC-CHN-03",
+    "area": "CHN",
+    "Contract": "IC-CHN-03",
+    "Operation": "IVR endpoint and voice send",
+    "Inputs": "Call id, calling number, key input; voice notification (to, language, text or recording)",
+    "Outputs": "Prompt to play; call result",
+    "Errors": "Platform error",
+    "nopCommerce mapping": "CHN-004 plugin controller; voice channel adapter implementing IC-TRK-02 for TRK-005"
+  },
+  {
+    "id": "IC-CHN-04",
+    "area": "CHN",
+    "Contract": "IC-CHN-04",
+    "Operation": "Messaging channel adapter",
+    "Inputs": "SendTemplate, SendText, SendMedia (notifications, through IC-TRK-02); SendReply(conversation or ticket ref, text, attachments) for CRM-008, CRM tickets and AI-003; ParseInbound; ParseStatus",
+    "Outputs": "Provider message id; status; inbound message (channel, channel message ID, sender, text, attachments) published as Channel.MessageReceived and routed to AI-003, CRM-008 or IC-CRM-04",
+    "Errors": "Refused by provider (reason), refused by TRK-006 (opted out), attachment refused by ADM-008, verification failed, duplicate channel message ID",
+    "nopCommerce mapping": "One adapter each for WhatsApp, WeChat, Telegram; hand-over to CRM-008 through its integration interface (to be confirmed with the licensed plugin, V-01); tickets through IC-CRM-04"
+  },
+  {
+    "id": "IC-CHN-05",
+    "area": "CHN",
+    "Contract": "IC-CHN-05",
+    "Operation": "Push adapter",
+    "Inputs": "Register(customer, platform, token or endpoint); Send(subscription, title, text, link)",
+    "Outputs": "Sent; invalid token",
+    "Errors": "Invalid token (subscription removed), provider error",
+    "nopCommerce mapping": "FCM / APNs / Web Push adapter implementing IC-TRK-02 for the TRK-005 push channel"
+  },
+  {
+    "id": "IC-CHN-06",
+    "area": "CHN",
+    "Contract": "IC-CHN-06",
+    "Operation": "Field app sync",
+    "Inputs": "Records with client id, location, time, photos; reference data request",
+    "Outputs": "Applied / Conflict (409) per record",
+    "Errors": "Validation, conflict",
+    "nopCommerce mapping": "INT-001 endpoints with PLT-027 idempotency keys; scan events from the same app go to IC-TRK-01 (TRK-003)"
+  },
+  {
+    "id": "IC-CRM-01",
+    "area": "CRM",
+    "Contract": "IC-CRM-01",
+    "Operation": "CreateTicket",
+    "Inputs": "Channel, customer (ID or e-mail / phone), category or issue type, subject, body, attachments, order ID, order snapshot, outlet and agent",
+    "Outputs": "Ticket ID and number",
+    "Errors": "Validation, attachment refused, help desk unavailable",
+    "nopCommerce mapping": "Adapter over the licensed plugin services (V-01); one adapter per supported plugin"
+  },
+  {
+    "id": "IC-CRM-01",
+    "area": "CRM",
+    "Contract": "IC-CRM-01",
+    "Operation": "AddMessage / AddInternalNote / LogCall",
+    "Inputs": "Ticket ID, author, channel, text, attachments, visibility",
+    "Outputs": "Message ID",
+    "Errors": "Ticket closed or merged",
+    "nopCommerce mapping": "Adapter"
+  },
+  {
+    "id": "IC-CRM-01",
+    "area": "CRM",
+    "Contract": "IC-CRM-01",
+    "Operation": "Assign / ChangeStatus / Escalate / Merge",
+    "Inputs": "Ticket ID, target, reason",
+    "Outputs": "New state",
+    "Errors": "Transition not allowed (SM-CRM-01)",
+    "nopCommerce mapping": "Adapter; audit through SEC-004"
+  },
+  {
+    "id": "IC-CRM-01",
+    "area": "CRM",
+    "Contract": "IC-CRM-01",
+    "Operation": "GetTickets / GetTicket / Link",
+    "Inputs": "Customer ID or ticket ID; linked object (case, return, order)",
+    "Outputs": "Tickets with status and history; link stored",
+    "Errors": "—",
+    "nopCommerce mapping": "Adapter + CRM link table"
+  },
+  {
+    "id": "IC-CRM-02",
+    "area": "CRM",
+    "Contract": "IC-CRM-02",
+    "Operation": "GetApprovedAnswers",
+    "Inputs": "Language, category, keyword",
+    "Outputs": "Approved answer versions with ID, title and placeholders; never drafts",
+    "Errors": "—",
+    "nopCommerce mapping": "CRM service used by CRM-008, CHN-006 replies and AI-003"
+  },
+  {
+    "id": "IC-CRM-03",
+    "area": "CRM",
+    "Contract": "IC-CRM-03",
+    "Operation": "StartTimer / Pause / Resume / Stop",
+    "Inputs": "Subject type and ID, policy key",
+    "Outputs": "Timer ID and due time",
+    "Errors": "No policy",
+    "nopCommerce mapping": "CRM-014 SLA component service; IScheduleTask raises Sla.Breached"
+  },
+  {
+    "id": "IC-CRM-05",
+    "area": "CRM",
+    "Contract": "IC-CRM-05",
+    "Operation": "GetExtractViews",
+    "Inputs": "Dataset name (Tickets, TicketMessagesMeta, TicketStatusHistory, TicketRatings, FraudReferrals, CallLogs), watermark",
+    "Outputs": "Read-only rows with stable columns independent of the licensed plugin",
+    "Errors": "Unknown dataset",
+    "nopCommerce mapping": "Read-only database views or adapter query per supported plugin; consumed by RPT-003 (IC-RPT-01)"
+  },
+  {
+    "id": "IC-CRM-05",
+    "area": "CRM",
+    "Contract": "IC-CRM-05",
+    "Operation": "GetComplaintCounts (SEL-011 → CRM)",
+    "Inputs": "Vendor, period",
+    "Outputs": "Number of complaint tickets naming the seller in the period, by category",
+    "Errors": "Unknown vendor",
+    "nopCommerce mapping": "CRM read service over the complaint tickets (seller stored on the ticket, CRM-004); used by the SEL-011 KPI calculation (one read path; Complaint.Created serves the SEL-020 notification only)"
+  },
+  {
+    "id": "IC-CRM-04",
+    "area": "CRM",
+    "Contract": "IC-CRM-04",
+    "Operation": "ReceiveInbound",
+    "Inputs": "Channel, channel message ID, sender, content, attachments",
+    "Outputs": "Ticket ID and message ID",
+    "Errors": "Duplicate (BR-CRM-003)",
+    "nopCommerce mapping": "Intake service used by the mailbox task, CHN-006, CHN-007 and the chat transcript handler"
+  },
+  {
+    "id": "IC-DOC-01",
+    "area": "DOC",
+    "Contract": "IC-DOC-01",
+    "Operation": "Generate",
+    "Inputs": "Template code (or document type), source entity reference, language, store, format",
+    "Outputs": "DocumentRecord and version ID",
+    "Errors": "Template missing; required data missing; render error",
+    "nopCommerce mapping": "DOC service; IPdfService override calls it for invoices and packing slips"
+  },
+  {
+    "id": "IC-DOC-02",
+    "area": "DOC",
+    "Contract": "IC-DOC-02",
+    "Operation": "Register token provider",
+    "Inputs": "Provider name, entity type, token list, value callback",
+    "Outputs": "—",
+    "Errors": "Duplicate token name",
+    "nopCommerce mapping": "Module providers: PAY-025 fiscal fields; CAT-042 order-total adjustments, including the PAY-009 wallet deduction under WAL-01 option (b) (%Order.TotalAdjustments%, IC-CAT-06); ORD IC-ORD-07 invoice, receipt, proforma, contract, letter and Incoterm fields (ORD-026); CAT-015 HS code, country of origin and duty note; native IMessageTokenProvider groups are available by default (5.00: return-request tokens now also take the order)"
+  },
+  {
+    "id": "IC-DOC-03",
+    "area": "DOC",
+    "Contract": "IC-DOC-03",
+    "Operation": "Store",
+    "Inputs": "Bytes or Download ID, metadata (type, owner, entity, language, retention class), ADM-008 upload context code of the caller (for example SEL seller document; DOC contexts by default)",
+    "Outputs": "DocumentRecord and version ID",
+    "Errors": "Upload policy refusal (ADM-008 message returned)",
+    "nopCommerce mapping": "Native Download plus DOC tables; new bytes are checked through IC-ADM-08 CheckUpload with the given context before they are stored (BR-DOC-060)"
+  },
+  {
+    "id": "IC-DOC-04",
+    "area": "DOC",
+    "Contract": "IC-DOC-04",
+    "Operation": "Sign / VerifySignature",
+    "Inputs": "Document version",
+    "Outputs": "Signed file and signature details / validity result",
+    "Errors": "Service unavailable; certificate expired",
+    "nopCommerce mapping": "External signing service adapter (not named)"
+  },
+  {
+    "id": "IC-DOC-05",
+    "area": "DOC",
+    "Contract": "IC-DOC-05",
+    "Operation": "VerifyHash",
+    "Inputs": "Document version ID",
+    "Outputs": "Match / Mismatch",
+    "Errors": "Unknown version",
+    "nopCommerce mapping": "DOC service; verification page"
+  },
+  {
+    "id": "IC-DOC-06",
+    "area": "DOC",
+    "Contract": "IC-DOC-06",
+    "Operation": "Extract fields",
+    "Inputs": "File, document type",
+    "Outputs": "Field values with confidence",
+    "Errors": "Unreadable; service unavailable",
+    "nopCommerce mapping": "Optional provider: AI-005 OCR service adapter (external, AI pack); results are suggestions (BR-DOC-040); with no provider DOC sends each document to manual review"
+  },
+  {
+    "id": "IC-EGV-01",
+    "area": "EGV",
+    "Contract": "IC-EGV-01",
+    "Operation": "NotifyFeePaid",
+    "Inputs": "Agency, service, application reference, amount, currency, paid date",
+    "Outputs": "Acknowledged",
+    "Errors": "Agency unavailable (retried by task)",
+    "nopCommerce mapping": "EGV agency connector (new interface); queued record sent by an IScheduleTask"
+  },
+  {
+    "id": "IC-EGV-01",
+    "area": "EGV",
+    "Contract": "IC-EGV-01",
+    "Operation": "RemittanceReport",
+    "Inputs": "Agency, period, lines in the configured format",
+    "Outputs": "Acknowledged or file reference",
+    "Errors": "Agency unavailable; format rejected",
+    "nopCommerce mapping": "EGV agency connector; file generated by the EGV report service"
+  },
+  {
+    "id": "IC-EGV-01",
+    "area": "EGV",
+    "Contract": "IC-EGV-01",
+    "Operation": "RemittanceConfirmation",
+    "Inputs": "Agency payload on the EGV callback route",
+    "Outputs": "Batch confirmed",
+    "Errors": "Signature invalid (rejected, audited)",
+    "nopCommerce mapping": "Plugin controller deriving from Microsoft.AspNetCore.Mvc.Controller on its own route (IRouteProvider), no antiforgery attribute (PayPalCommerceWebhookController pattern)"
+  },
+  {
+    "id": "IC-EGV-02",
+    "area": "EGV",
+    "Contract": "IC-EGV-02",
+    "Operation": "VerifyOrRegister",
+    "Inputs": "Application reference, identity data required by the step",
+    "Outputs": "Result (IC-IAM-02 values: Verified / NotVerified / Inconclusive / Unavailable), external reference",
+    "Errors": "Not found; system unavailable (returned as Unavailable)",
+    "nopCommerce mapping": "EGV identity connector (system not named); called by an ADM-002 External check step (AC-ADM-002-07-03)"
+  },
+  {
+    "id": "IC-FIN-01",
+    "area": "FIN",
+    "Contract": "IC-FIN-01",
+    "Operation": "SubmitApplication",
+    "Inputs": "Partner, loan product, consented data set, consent reference, customer reference",
+    "Outputs": "Partner application reference",
+    "Errors": "Partner unavailable; validation error",
+    "nopCommerce mapping": "FIN lender connector interface (new); called from the FIN service, not from an event consumer"
+  },
+  {
+    "id": "IC-FIN-01",
+    "area": "FIN",
+    "Contract": "IC-FIN-01",
+    "Operation": "WithdrawConsent",
+    "Inputs": "Consent reference",
+    "Outputs": "Acknowledged",
+    "Errors": "Partner unavailable (retried by task)",
+    "nopCommerce mapping": "FIN lender connector"
+  },
+  {
+    "id": "IC-FIN-01",
+    "area": "FIN",
+    "Contract": "IC-FIN-01",
+    "Operation": "StatusCallback",
+    "Inputs": "Partner payload on the FIN callback route",
+    "Outputs": "Verified status mapped to SM-FIN-01 / SM-FIN-02; repayment instruction",
+    "Errors": "Signature invalid (rejected, AUD-FIN-005)",
+    "nopCommerce mapping": "Plugin controller deriving from Microsoft.AspNetCore.Mvc.Controller on its own route (IRouteProvider), no antiforgery attribute (pattern: PayPalCommerceWebhookController)"
+  },
+  {
+    "id": "IC-FIN-01",
+    "area": "FIN",
+    "Contract": "IC-FIN-01",
+    "Operation": "ReportRepayment",
+    "Inputs": "Loan reference, settlement reference, amount",
+    "Outputs": "Acknowledged",
+    "Errors": "Partner unavailable (retried)",
+    "nopCommerce mapping": "FIN lender connector; called by a FIN task enqueued by the consumer of Seller.SettlementPaid (SEL-017)"
+  },
+  {
+    "id": "IC-FIN-01",
+    "area": "FIN",
+    "Contract": "IC-FIN-01",
+    "Operation": "ShareInvoice",
+    "Inputs": "Invoice data, invoice PDF, buyer and seller references, consent reference",
+    "Outputs": "Partner request reference",
+    "Errors": "Partner unavailable",
+    "nopCommerce mapping": "FIN lender connector; PDF from IPdfService (owner DOC-001 under OVR-REG; ORD-009 supplies the layout)"
+  },
+  {
+    "id": "IC-FIN-02",
+    "area": "FIN",
+    "Contract": "IC-FIN-02",
+    "Operation": "IssuePolicy / CancelPolicy",
+    "Inputs": "Order reference, insured value, goods category, route",
+    "Outputs": "Policy number; cancellation result",
+    "Errors": "Partner unavailable; declined",
+    "nopCommerce mapping": "FIN insurer connector; IssuePolicy runs in an IScheduleTask job"
+  },
+  {
+    "id": "IC-FIN-02",
+    "area": "FIN",
+    "Contract": "IC-FIN-02",
+    "Operation": "SubmitClaim / ClaimStatus",
+    "Inputs": "Policy number, description, evidence files",
+    "Outputs": "Claim reference; status",
+    "Errors": "Partner unavailable",
+    "nopCommerce mapping": "FIN insurer connector; status by callback route"
+  },
+  {
+    "id": "IC-FIN-03",
+    "area": "FIN",
+    "Contract": "IC-FIN-03",
+    "Operation": "ValidateAccount / Fulfil",
+    "Inputs": "Service, account reference, amount, order reference",
+    "Outputs": "Valid or invalid; receipt reference",
+    "Errors": "Invalid reference; partner unavailable",
+    "nopCommerce mapping": "FIN partner-service connector; Fulfil runs in an IScheduleTask job"
+  },
+  {
+    "id": "IC-FIN-04",
+    "area": "FIN",
+    "Contract": "IC-FIN-04",
+    "Operation": "CheckEligibility",
+    "Inputs": "Scheme, customer identifiers required by the registry",
+    "Outputs": "Eligible / Not eligible, expiry date",
+    "Errors": "Registry unavailable",
+    "nopCommerce mapping": "FIN registry connector (registry not named)"
+  },
+  {
+    "id": "IC-IAM-01",
+    "area": "IAM",
+    "Contract": "IC-IAM-01",
+    "Operation": "SendCode",
+    "Inputs": "Mobile number (international format), purpose, language, store",
+    "Outputs": "Message id, accepted / rejected",
+    "Errors": "Gateway unavailable, number invalid, send limit reached, blocked by TRK-006 (IC-TRK-06 CheckAllowed answered Blocked)",
+    "nopCommerce mapping": "Call to the PRD-CHN-005 SMS service from the IAM plugin after IC-TRK-06 CheckAllowed (BR-IAM-150); the code itself is generated and hashed by IAM, never by the gateway"
+  },
+  {
+    "id": "IC-IAM-02",
+    "area": "IAM",
+    "Contract": "IC-IAM-02",
+    "Operation": "Verify",
+    "Inputs": "Country, subject type (person / organisation), identity type, identity number, name, date of birth or mobile number as the adapter declares",
+    "Outputs": "Verified / NotVerified / Inconclusive / Unavailable, adapter reference, matched fields",
+    "Errors": "Unsupported identity type, registry unavailable, timeout",
+    "nopCommerce mapping": "IAM adapter interface (new, not a nopCommerce interface); adapters are plugins registered for one or more countries. The four result values are the product standard (owner decision); SEL-004 calls Verify directly and maps Inconclusive to manual review (BR-SEL-007)"
+  },
+  {
+    "id": "IC-IAM-02",
+    "area": "IAM",
+    "Contract": "IC-IAM-02",
+    "Operation": "GetCapabilities",
+    "Inputs": "—",
+    "Outputs": "Countries and identity types supported, mobile-money KYC support flag",
+    "Errors": "—",
+    "nopCommerce mapping": "Same adapter interface"
+  },
+  {
+    "id": "IC-IAM-03",
+    "area": "IAM",
+    "Contract": "IC-IAM-03",
+    "Operation": "PublishAccountChange",
+    "Inputs": "Customer GUID, change type (created / updated / deactivated / deleted), changed fields, version",
+    "Outputs": "Acknowledged / rejected with reason",
+    "Errors": "Integration Layer unavailable, validation error",
+    "nopCommerce mapping": "Called by the INT-004 delivery task for IntegrationMessage records of channel \"account sync\" (BR-IAM-100); the adapter reaches the client core systems through the INT-002 Integration Layer"
+  },
+  {
+    "id": "IC-IAM-03",
+    "area": "IAM",
+    "Contract": "IC-IAM-03",
+    "Operation": "ReceiveAccountChange",
+    "Inputs": "Customer GUID or external id, fields, version, source system",
+    "Outputs": "Applied / ignored / conflict",
+    "Errors": "Unknown customer, field not configured",
+    "nopCommerce mapping": "Plugin endpoint behind the Integration Layer; updates through ICustomerService"
+  },
+  {
+    "id": "IC-IAM-04",
+    "area": "IAM",
+    "Contract": "IC-IAM-04",
+    "Operation": "Provision (P2)",
+    "Inputs": "Create, update, deactivate user; group membership",
+    "Outputs": "Customer id, status",
+    "Errors": "Unknown group, duplicate email",
+    "nopCommerce mapping": "Plugin endpoint (protocol Proposed, for example SCIM); updates through ICustomerService and ICustomerRegistrationService"
+  },
+  {
+    "id": "IC-IAM-05",
+    "area": "IAM",
+    "Contract": "IC-IAM-05",
+    "Operation": "RecordAcceptance (IAM-016, SEL-006, IAM-026, CHK-009, FIN-001 → IAM)",
+    "Inputs": "Customer, vendor (seller terms only), policy system name, version (from IC-MKT-03, or \"unversioned\"), decision (accepted / declined / withdrawn), channel, IP address, agent; for a partner data-sharing consent (FIN-001) also partner, purpose and data categories",
+    "Outputs": "Acceptance id",
+    "Errors": "Unknown policy; version not Effective; withdrawal without an earlier acceptance of the same scope",
+    "nopCommerce mapping": "IAM service; writes PolicyAcceptance and AUD-IAM-012; the caller keeps only the returned id (CHK-009 order link, FIN referral); consent scope Proposed (decision ONE-RECORD)"
+  },
+  {
+    "id": "IC-IAM-05",
+    "area": "IAM",
+    "Contract": "IC-IAM-05",
+    "Operation": "GetActiveConsent (FIN-001 → IAM)",
+    "Inputs": "Customer, policy system name, partner, purpose",
+    "Outputs": "The latest accepted and not withdrawn consent of that scope with its data categories, or none",
+    "Errors": "—",
+    "nopCommerce mapping": "IAM read service over PolicyAcceptance; FIN sends data only under an active consent (BR-FIN-002)"
+  },
+  {
+    "id": "IC-IAM-05",
+    "area": "IAM",
+    "Contract": "IC-IAM-05",
+    "Operation": "HasAcceptedCurrent",
+    "Inputs": "Customer or vendor, policy system name",
+    "Outputs": "true / false, accepted version",
+    "Errors": "—",
+    "nopCommerce mapping": "IAM service; used by SEL-006 activation checks and the re-acceptance filter"
+  },
+  {
+    "id": "IC-IAM-05",
+    "area": "IAM",
+    "Contract": "IC-IAM-05",
+    "Operation": "GetConsentTrail (CRM-003 → IAM)",
+    "Inputs": "Customer, period",
+    "Outputs": "PolicyAcceptance rows and GDPR log consent entries (ConsentAgree, ConsentDisagree), time ordered, read-only",
+    "Errors": "Caller lacks Identity.Core.ConsentTrail.View",
+    "nopCommerce mapping": "IAM read service over PolicyAcceptance and native GdprLog"
+  },
+  {
+    "id": "IC-IAM-06",
+    "area": "IAM",
+    "Contract": "IC-IAM-06",
+    "Operation": "GetApprovalAuthority (ADM-006 → IAM)",
+    "Inputs": "User, permission system name, time",
+    "Outputs": "Roles, value-band limit (IAM-008 scope) and active delegations received (delegator, permission, end)",
+    "Errors": "—",
+    "nopCommerce mapping": "IAM read service over ScopeAssignment and Delegation"
+  },
+  {
+    "id": "IC-IAM-07",
+    "area": "IAM",
+    "Contract": "IC-IAM-07",
+    "Operation": "GetCompanyOfCustomer (CAT, CHK → IAM)",
+    "Inputs": "Customer",
+    "Outputs": "CompanyId, company status, company role, or no company",
+    "Errors": "—",
+    "nopCommerce mapping": "IAM read service (B2B pack)"
+  },
+  {
+    "id": "IC-IAM-07",
+    "area": "IAM",
+    "Contract": "IC-IAM-07",
+    "Operation": "OnMembershipChanged (IAM → registered providers, for example CAT-040)",
+    "Inputs": "CompanyId, customer, change (added / removed / role changed)",
+    "Outputs": "Done / failed",
+    "Errors": "Provider failure (the membership change is not saved)",
+    "nopCommerce mapping": "Provider interface defined by IAM; providers registered in DI; called inside the membership save"
+  },
+  {
+    "id": "IC-IAM-09",
+    "area": "IAM",
+    "Contract": "IC-IAM-09",
+    "Operation": "EvaluateImpersonation (IAM impersonation filter → registered rule providers: IAM-026 agent rule, CRM-015 account-manager rule)",
+    "Inputs": "Acting user, customer, store, posted form values (customer code)",
+    "Outputs": "Allow / NotApplicable / Deny with message key and reason",
+    "Errors": "Provider exception (treated as Deny, logged)",
+    "nopCommerce mapping": "Provider interface defined by IAM; providers registered in DI and resolved as a list; called only by the single IAM global action filter on Admin CustomerController.Impersonate (BR-IAM-130); a provider never adds its own filter to the action"
+  },
+  {
+    "id": "IC-IAM-08",
+    "area": "IAM",
+    "Contract": "IC-IAM-08",
+    "Operation": "ErasePersonalData / ConsentWithdrawn (IAM → registered providers, for example SRC)",
+    "Inputs": "Customer id and GUID; or customer and consent system name",
+    "Outputs": "Erased / failed with reason; acknowledged",
+    "Errors": "Provider failure (request stays InProgress)",
+    "nopCommerce mapping": "Provider interface defined by IAM; called inside the IGdprService.PermanentDeleteCustomerAsync override and on consent withdrawal"
+  },
+  {
+    "id": "IC-INT-01",
+    "area": "INT",
+    "Contract": "IC-INT-01",
+    "Operation": "Public API resource call",
+    "Inputs": "API client token, version, resource, query or body",
+    "Outputs": "JSON resource or page; status codes 200, 201, 204",
+    "Errors": "400 validation, 401, 403, 404, 409 conflict, 410 retired, 429 limited",
+    "nopCommerce mapping": "Licensed Web API plugin endpoints (API-01) plus product controllers in INT plugins; writes via native services (BR-INT-001)"
+  },
+  {
+    "id": "IC-INT-02",
+    "area": "INT",
+    "Contract": "IC-INT-02",
+    "Operation": "Webhook delivery",
+    "Inputs": "IntegrationMessage",
+    "Outputs": "HTTP POST with body {messageId, type, occurredOnUtc, entity, entityId, status, link}; headers with signature and timestamp",
+    "Errors": "non-2xx, timeout (retry); 410 from receiver (pause subscription, Proposed)",
+    "nopCommerce mapping": "IScheduleTask delivery task reading the outbox"
+  },
+  {
+    "id": "IC-INT-03",
+    "area": "INT",
+    "Contract": "IC-INT-03",
+    "Operation": "ERP connector",
+    "Inputs": "PostDocument(document, idempotency key); GetPostingStatus(reference); PullChanges(entity type, since); PushChanges(entity type, records); GetTotals(period, posting type)",
+    "Outputs": "Posted / Failed with external reference; changed records; totals for reconciliation",
+    "Errors": "NotSupported, rejected, unavailable",
+    "nopCommerce mapping": "Adapter class registered by an INT-005 plugin; called from scheduled tasks; master data applied through native services"
+  },
+  {
+    "id": "IC-INT-04",
+    "area": "INT",
+    "Contract": "IC-INT-04",
+    "Operation": "Bank account verification — VerifyAccount(bank, account number, holder name)",
+    "Inputs": "Bank, account number, holder name",
+    "Outputs": "Match / Mismatch / NotSupported, bank reference",
+    "Errors": "Unavailable",
+    "nopCommerce mapping": "Bank adapter (INT-008) alongside its IC-PAY-01 operations (PAY-024); called by SEL-005 and PAY-022"
+  },
+  {
+    "id": "IC-INT-05",
+    "area": "INT",
+    "Contract": "IC-INT-05",
+    "Operation": "Government connector",
+    "Inputs": "Submit(submission type, payload); GetStatus(reference)",
+    "Outputs": "Sent / Acknowledged / Rejected, reference, response",
+    "Errors": "NotSupported, rejected, unavailable",
+    "nopCommerce mapping": "Adapter registered by an INT-009 plugin; called only for Approved submissions"
+  },
+  {
+    "id": "IC-INT-06",
+    "area": "INT",
+    "Contract": "IC-INT-06",
+    "Operation": "PostGlobal adapter",
+    "Inputs": "SendOrder / SendShipment (per specification); ReceiveEvent (callback or poll)",
+    "Outputs": "PostGlobal reference; tracking identifier; events submitted to TRK-002 through IC-TRK-01",
+    "Errors": "Specification errors; unmapped code (rejected by TRK-002)",
+    "nopCommerce mapping": "INT-007 plugin; further operations if FG-06 keeps postal operations in PostGlobal (LOG-011, LOG-022 to LOG-024)"
+  },
+  {
+    "id": "IC-INT-09",
+    "area": "INT",
+    "Contract": "IC-INT-09",
+    "Operation": "Outbound message enqueue",
+    "Inputs": "Enqueue(channel, event type, entity name and id, payload, correlation id); GetStatus(message id)",
+    "Outputs": "Message id; status (SM-INT-01)",
+    "Errors": "Unknown channel",
+    "nopCommerce mapping": "INT service writing IntegrationMessage through IRepository<>; sent by the INT delivery task under the INT-004 policy (BR-INT-015)"
+  },
+  {
+    "id": "IC-INT-07",
+    "area": "INT",
+    "Contract": "IC-INT-07",
+    "Operation": "Punch-out",
+    "Inputs": "Setup request (cXML or OCI), cart return, purchase order",
+    "Outputs": "Session start URL; cart message; order reference",
+    "Errors": "Bad secret, unknown session",
+    "nopCommerce mapping": "cXML setup, start and cart return: native Misc.PunchOut PunchOutController on route punchout/setup, punchout/start, punchout/return (5.00); OCI and the purchase order: INT-012 plugin controller deriving from Microsoft.AspNetCore.Mvc.Controller on its own route (IRouteProvider), built only if required"
+  },
+  {
+    "id": "IC-INV-01",
+    "area": "INV",
+    "Contract": "IC-INV-01",
+    "Operation": "PostMovement",
+    "Inputs": "Product, combination (optional), warehouse (optional), quantity change, reason code, document type and reference, actor, external message ID (optional)",
+    "Outputs": "Applied / Requested / Refused with reason, adjustment ID",
+    "Errors": "Reason missing, below zero, product not managed, duplicate external ID",
+    "nopCommerce mapping": "INV service; calls AdjustInventoryAsync (single warehouse, combinations) or UpdateProductWarehouseInventoryAsync + AddStockQuantityHistoryEntryAsync (multiple warehouses), then BR-INV-032. Callers: INV-005 to INV-012, RET-004 (reason Return, lot or serial where tracked)"
+  },
+  {
+    "id": "IC-INV-02",
+    "area": "INV",
+    "Contract": "IC-INV-02",
+    "Operation": "HasSuccessfulOrAuthorizedTransaction",
+    "Inputs": "OrderId",
+    "Outputs": "true / false",
+    "Errors": "—",
+    "nopCommerce mapping": "Read service provided by PAY over PaymentTransaction (PRD-PAY-011); called by INV-004 inside the ILocker key 'pay-order-{OrderId}'"
+  },
+  {
+    "id": "IC-INV-03",
+    "area": "INV",
+    "Contract": "IC-INV-03",
+    "Operation": "PullPurchaseOrders / PullStockLevels / PullMovements",
+    "Inputs": "Since (timestamp or cursor), warehouse codes",
+    "Outputs": "Lines with external message ID",
+    "Errors": "Unavailable, authentication, mapping (unknown SKU or warehouse code)",
+    "nopCommerce mapping": "INV data types carried by the INT-005 ERP connector (IC-INT-03 PullChanges); IScheduleTask polling or inbound endpoint; BR-INT-020, BR-INT-021"
+  },
+  {
+    "id": "IC-INV-03",
+    "area": "INV",
+    "Contract": "IC-INV-03",
+    "Operation": "PushMovements / PushValuation / PushPurchaseTrigger / Acknowledge",
+    "Inputs": "Movement, valuation or trigger records with message IDs",
+    "Outputs": "Acknowledged / Failed with reason",
+    "Errors": "Unavailable, rejected",
+    "nopCommerce mapping": "INT-005 ERP connector (IC-INT-03 PushChanges); outbound queue processed by an IScheduleTask"
+  },
+  {
+    "id": "IC-INV-04",
+    "area": "INV",
+    "Contract": "IC-INV-04",
+    "Operation": "Sellable-stock adjuster (INV side of IC-CAT-04)",
+    "Inputs": "Product, warehouse id, useReservedQuantity, native total from GetTotalStockQuantityAsync",
+    "Outputs": "Adjusted total stock quantity: native total minus the quantity of unsellable lots (BR-INV-071), not below zero",
+    "Errors": "—",
+    "nopCommerce mapping": "Implemented by INV-009 / INV-011 as an IC-CAT-04 sellable-stock adjuster; called by the CAT-002 IProductService.GetTotalStockQuantityAsync override after the native method (decision OVR-REG, BR-CAT-031); INV does not override IProductService"
+  },
+  {
+    "id": "IC-INV-05",
+    "area": "INV",
+    "Contract": "IC-INV-05",
+    "Operation": "GetWarehouseLocation",
+    "Inputs": "Warehouse ID or code",
+    "Outputs": "Code, latitude, longitude, facility type, address ID",
+    "Errors": "Unknown warehouse",
+    "nopCommerce mapping": "INV read service over WarehouseExtension; used by SRC-004, LOG-002 (BR-LOG-011) and LOG-008 (BR-LOG-061)"
+  },
+  {
+    "id": "IC-INV-07",
+    "area": "INV",
+    "Contract": "IC-INV-07",
+    "Operation": "Lot and serial capture for shipments: Capture / Confirm / Cancel",
+    "Inputs": "Capture: order, warehouse, lines (order item, quantity, chosen lots or serial numbers; lots pre-filled by FEFO when not given); Confirm: capture reference, saved shipment items; Cancel: capture reference, reason",
+    "Outputs": "Capture: capture reference, or refusal with message key (Inv.LotRequired, Inv.LotNotSellable, Inv.SerialCountMismatch, Inv.SerialNotAvailable); Confirm and Cancel: done",
+    "Errors": "Capture refused; Confirm on a capture that is not Open (refused, listed as a capture exception)",
+    "nopCommerce mapping": "INV service (BR-INV-070, BR-INV-080, SM-INV-10); called by the INV action filter on Admin OrderController.AddShipment [POST] and by LOG on every LOG shipment path (AC-LOG-009-03-03, BR-LOG-003); lines of products that are neither lot- nor serial-tracked are accepted unchanged"
+  },
+  {
+    "id": "IC-INV-06",
+    "area": "INV",
+    "Contract": "IC-INV-06",
+    "Operation": "GetStockMovementData",
+    "Inputs": "Period, store, vendor (optional), product and warehouse filter",
+    "Outputs": "Daily sellable-stock snapshots, movements by reason and document type, current sellable stock per product and warehouse",
+    "Errors": "Period too long (limit is a setting, default not stated)",
+    "nopCommerce mapping": "INV read service over StockSnapshot, StockQuantityHistory and INV records; used by RPT-001 (decision ANL-002-OWN)"
+  },
+  {
+    "id": "IC-LOG-01",
+    "area": "LOG",
+    "Contract": "IC-LOG-01",
+    "Operation": "GetRates",
+    "Inputs": "Origin, destination, packages (weight, dimensions), service levels, idempotency not needed",
+    "Outputs": "Quotes per service level (amount, currency, transit days)",
+    "Errors": "Carrier unavailable, NotSupported, timeout",
+    "nopCommerce mapping": "IShippingRateComputationMethod.GetShippingOptionsAsync / GetFixedRateAsync when used at checkout; framework call when used for rate shopping"
+  },
+  {
+    "id": "IC-LOG-01",
+    "area": "LOG",
+    "Contract": "IC-LOG-01",
+    "Operation": "Book",
+    "Inputs": "Shipment, packages, service level, sender, recipient, idempotency key (ShipmentId + attempt)",
+    "Outputs": "Booked / Failed, carrier reference (waybill)",
+    "Errors": "Validation, rejected, NotSupported, timeout",
+    "nopCommerce mapping": "New framework operation; waybill written through IShipmentService.UpdateShipmentAsync + ShipmentTrackingNumberSetEvent"
+  },
+  {
+    "id": "IC-LOG-01",
+    "area": "LOG",
+    "Contract": "IC-LOG-01",
+    "Operation": "GetLabel",
+    "Inputs": "Carrier reference, format (PDF, PNG, ZPL)",
+    "Outputs": "Label document",
+    "Errors": "NotSupported (upload label)",
+    "nopCommerce mapping": "New framework operation; stored as a Download linked to the shipment"
+  },
+  {
+    "id": "IC-LOG-01",
+    "area": "LOG",
+    "Contract": "IC-LOG-01",
+    "Operation": "Track",
+    "Inputs": "Carrier reference",
+    "Outputs": "Carrier events (code, time, location)",
+    "Errors": "Unknown reference, NotSupported",
+    "nopCommerce mapping": "IScheduleTask polling; events passed to TRK-002 ingestion (IC-TRK-01); IShipmentTracker returned to nopCommerce is the TRK-002 hub tracker"
+  },
+  {
+    "id": "IC-LOG-01",
+    "area": "LOG",
+    "Contract": "IC-LOG-01",
+    "Operation": "HandleCallback",
+    "Inputs": "Carrier payload on the adapter route",
+    "Outputs": "Verified events",
+    "Errors": "Authentication failed (rejected, audited)",
+    "nopCommerce mapping": "Plugin controller deriving from Microsoft.AspNetCore.Mvc.Controller (pattern: PayPalCommerceWebhookController) on its own route (IRouteProvider); passes to TRK-002"
+  },
+  {
+    "id": "IC-LOG-01",
+    "area": "LOG",
+    "Contract": "IC-LOG-01",
+    "Operation": "Cancel",
+    "Inputs": "Carrier reference",
+    "Outputs": "Cancelled",
+    "Errors": "Not cancellable, NotSupported",
+    "nopCommerce mapping": "New framework operation"
+  },
+  {
+    "id": "IC-LOG-01",
+    "area": "LOG",
+    "Contract": "IC-LOG-01",
+    "Operation": "BookReturn",
+    "Inputs": "Return reference (RET ReturnShipment id), pickup address or drop-off outlet, destination (seller location, warehouse or outlet), parcels, idempotency key (ReturnShipmentId + attempt)",
+    "Outputs": "Booked / Failed, booking reference, tracking reference, label if supplied",
+    "Errors": "NotSupported (no reverse-booking capability), no slot, rejected",
+    "nopCommerce mapping": "New framework operation called by RET-003 (implements IC-RET-03); the booking is linked to the ReturnShipment, not to a native Shipment; RET-003 registers the returned tracking reference with TRK-002 (IC-TRK-01 RegisterExternalReference), so tracking events go to TRK-002 against the return reference"
+  },
+  {
+    "id": "IC-LOG-02",
+    "area": "LOG",
+    "Contract": "IC-LOG-02",
+    "Operation": "SubmitCustomsDeclaration / ReceiveResponse (CDS)",
+    "Inputs": "Declaration",
+    "Outputs": "Accepted / Rejected, reasons",
+    "Errors": "Specification not stated",
+    "nopCommerce mapping": "Integration plugin; transport and format per CDS specification (not stated)"
+  },
+  {
+    "id": "IC-LOG-02",
+    "area": "LOG",
+    "Contract": "IC-LOG-02",
+    "Operation": "ReceiveEvents (IPS) / ExchangeData (GMS)",
+    "Inputs": "Item identifier (S10), events or monitoring data",
+    "Outputs": "Events into TRK-002; exchange log",
+    "Errors": "Specification not stated",
+    "nopCommerce mapping": "Integration plugin; IPS events mapped to the TRK-002 dictionary"
+  },
+  {
+    "id": "IC-LOG-03",
+    "area": "LOG",
+    "Contract": "IC-LOG-03",
+    "Operation": "Validate / Geocode / ResolveDigitalPostcode",
+    "Inputs": "Address fields",
+    "Outputs": "Validity, suggestion, coordinates, digital postcode",
+    "Errors": "Not found, provider unavailable (address saved unvalidated)",
+    "nopCommerce mapping": "Address saved through native forms; result stored in plugin table (BR-LOG-140)"
+  },
+  {
+    "id": "IC-LOG-05",
+    "area": "LOG",
+    "Contract": "IC-LOG-05",
+    "Operation": "Module events (published)",
+    "Inputs": "DeliveryOutcomeRecorded: OrderId, ShipmentId, Outcome (Lost, Damaged, ReturnedToSender); ProofOfDeliveryRecorded: OrderId, ShipmentId, RecordId",
+    "Outputs": "—",
+    "Errors": "—",
+    "nopCommerce mapping": "Plugin event classes published with IEventPublisher after the save; consumers (RET-007) only enqueue"
+  },
+  {
+    "id": "IC-LOG-06",
+    "area": "LOG",
+    "Contract": "IC-LOG-06",
+    "Operation": "Delivery data for other modules",
+    "Inputs": "GetDeliveryEstimate (shipping option or pickup point, address, cart, time); GetOutlets (store, area, item list, date, returns filter); IsServiceable (item, area or address, service level); GetDeliveryWindow (product, district or store default)",
+    "Outputs": "Earliest and latest date or none; outlets with availability; true or false with reason; stored window",
+    "Errors": "No estimate, unknown area",
+    "nopCommerce mapping": "LOG service registered by the LOG plugin; implements IC-CHK-03 for CHK-014; used by CHK-005, CHK-011, SRC-004, SRC-018, SVC-006, RET-003; GetDeliveryWindow reads DeliveryWindowCache only"
+  },
+  {
+    "id": "IC-LOG-07",
+    "area": "LOG",
+    "Contract": "IC-LOG-07",
+    "Operation": "Fulfilment service",
+    "Inputs": "Allocate, StartPick, ConfirmPick, ConfirmPack, Stage, Dispatch, MarkReadyAtOutlet (task, data, acting user); GetOperationalStage (shipment)",
+    "Outputs": "Result with new state, or refusal with message key; stage of BR-LOG-170",
+    "Errors": "Transition not allowed (SM-LOG-01), guard refusal (BR-LOG-003)",
+    "nopCommerce mapping": "LOG service; called by LOG screens, ADM-002 workflow steps and ADM-007; applies BR-LOG-001, BR-LOG-003 and BR-LOG-070"
+  },
+  {
+    "id": "IC-LOG-04",
+    "area": "LOG",
+    "Contract": "IC-LOG-04",
+    "Operation": "SubmitProofOfDelivery",
+    "Inputs": "Device id, courier id, shipment reference, capture time, coordinates, method, recipient name, media",
+    "Outputs": "Accepted / Rejected",
+    "Errors": "Unknown device or shipment, duplicate",
+    "nopCommerce mapping": "Authenticated plugin API endpoint (device register of TRK-003); media checked through IC-ADM-08 CheckUpload (BR-LOG-082); creates LOG-012 record and calls DeliverAsync once"
+  },
+  {
+    "id": "IC-MKT-01",
+    "area": "MKT",
+    "Contract": "IC-MKT-01",
+    "Operation": "Discount requirement rules (SpendBand, BundleSet)",
+    "Inputs": "DiscountRequirementValidationRequest (DiscountRequirementId, Customer, Store); rule settings",
+    "Outputs": "Valid / not valid",
+    "Errors": "—",
+    "nopCommerce mapping": "IDiscountRequirementRule plugin (pattern: bundled DiscountRules.CustomerRoles)"
+  },
+  {
+    "id": "IC-MKT-01",
+    "area": "MKT",
+    "Contract": "IC-MKT-01",
+    "Operation": "Buy-X-get-Y subtotal (MKT provider → called by CHK-003)",
+    "Inputs": "ShoppingCartItem, includeDiscounts",
+    "Outputs": "subTotal, discountAmount, appliedDiscounts, maximumDiscountQty",
+    "Errors": "—",
+    "nopCommerce mapping": "Implements the CHK-003 line subtotal adjuster IC-CHK-05, called by the CHK-003 IShoppingCartService override after the native GetSubTotalAsync with the native result (decision OVR-REG); MKT registers no override"
+  },
+  {
+    "id": "IC-MKT-02",
+    "area": "MKT",
+    "Contract": "IC-MKT-02",
+    "Operation": "Content revision handler per type (Topic, NewsItem, BlogPost)",
+    "Inputs": "Posted admin model",
+    "Outputs": "Revision stored; on approval applied",
+    "Errors": "Concurrent change of the live item (revision based on an old version is refused)",
+    "nopCommerce mapping": "Action filter on Admin TopicController / NewsController / BlogController create and edit POST; apply through ITopicService / the Misc.News plugin NewsService (INewsService was removed from core in 5.00; Plugins/Nop.Plugin.Misc.News/Services/NewsService.cs:17) / IBlogService and ILocalizedEntityService"
+  },
+  {
+    "id": "IC-MKT-04",
+    "area": "MKT",
+    "Contract": "IC-MKT-04",
+    "Operation": "Limited-use discount participant: Reserve / Confirm / Release (MKT provider → called by CHK-003)",
+    "Inputs": "Reserve: applied discounts of the checkout with limitation \"N times only\", customer, checkout session; Confirm: reservation, saved order; Release: reservation, reason",
+    "Outputs": "Reserve: reservation reference, or refusal with message Mkt.DiscountLimitReached; Confirm and Release: done",
+    "Errors": "—",
+    "nopCommerce mapping": "Implements the CHK-003 placement participant contract IC-CHK-06 (BR-CHK-020); Reserve runs under ILocker key 'mkt-discount-{DiscountId}'; the native placement writes DiscountUsageHistory"
+  },
+  {
+    "id": "IC-MKT-03",
+    "area": "MKT",
+    "Contract": "IC-MKT-03",
+    "Operation": "GetEffectivePolicyVersion (IAM-016, SEL-006, CHK-009 → MKT)",
+    "Inputs": "Topic system name, time",
+    "Outputs": "Policy system name, version number, effective date, re-acceptance required flag, content",
+    "Errors": "No version (policy not under versioning)",
+    "nopCommerce mapping": "MKT service"
+  },
+  {
+    "id": "IC-MKT-03",
+    "area": "MKT",
+    "Contract": "IC-MKT-03",
+    "Operation": "Policy.VersionPublished (published)",
+    "Inputs": "Policy system name, version number, effective date, re-acceptance required flag",
+    "Outputs": "—",
+    "Errors": "—",
+    "nopCommerce mapping": "Plugin event class published with IEventPublisher when a PolicyVersion becomes Effective; IAM-016 consumer only refreshes the current version for its re-acceptance filter"
+  },
+  {
+    "id": "IC-ORD-01",
+    "area": "ORD",
+    "Contract": "IC-ORD-01",
+    "Operation": "OrderAcceptedEvent (published)",
+    "Inputs": "OrderId, AcceptedOnUtc, AcceptedBy, Deemed",
+    "Outputs": "—",
+    "Errors": "—",
+    "nopCommerce mapping": "Plugin event class published with IEventPublisher by the ORD acceptance service; PAY-007 consumer only enqueues the release job"
+  },
+  {
+    "id": "IC-ORD-02",
+    "area": "ORD",
+    "Contract": "IC-ORD-02",
+    "Operation": "ORD-010 hold guard (ORD implements IC-ORD-11 and IC-CHK-07)",
+    "Inputs": "Order, shipment items or shipment, action, acting user",
+    "Outputs": "Allow, or refuse with message key Ord.OrderOnHold",
+    "Errors": "Provider error = refuse (fail closed, as IC-ORD-11)",
+    "nopCommerce mapping": "Registered with the ORD-010 shipment-guard host as an IC-ORD-11 provider (IShipmentService.InsertShipmentAsync override and Admin AddShipment action filter) and with the CHK-003 IOrderProcessingService override as an IC-CHK-07 order-action guard (ShipAsync, ReadyForPickupAsync, DeliverAsync). ORD-010 owns no override (OVR-REG)"
+  },
+  {
+    "id": "IC-ORD-03",
+    "area": "ORD",
+    "Contract": "IC-ORD-03",
+    "Operation": "Withdrawn in 0.2",
+    "Inputs": "—",
+    "Outputs": "—",
+    "Errors": "—",
+    "nopCommerce mapping": "Was the fiscal data provider read by an ORD IPdfService override. Under OVR-REG DOC-001 owns IPdfService; ORD supplies document fields through its token provider IC-ORD-07 (via IC-DOC-02), and PAY-025 prints fiscal data through its own DOC token provider (IC-DOC-02, BR-DOC-001)"
+  },
+  {
+    "id": "IC-ORD-04",
+    "area": "ORD",
+    "Contract": "IC-ORD-04",
+    "Operation": "Invoice.Issued (published)",
+    "Inputs": "InvoiceDocumentId, OrderId, VendorId, Type",
+    "Outputs": "—",
+    "Errors": "—",
+    "nopCommerce mapping": "Plugin event; PAY-025 consumes it to queue fiscal submission"
+  },
+  {
+    "id": "IC-ORD-05",
+    "area": "ORD",
+    "Contract": "IC-ORD-05",
+    "Operation": "Refund trigger (called; RET contract IC-RET-04 RaiseRefundTrigger)",
+    "Inputs": "Source module ORD, source type PartialSupply, source ID (PartialSupplyProposal), order ID, lines (OrderItem ID, quantity, amount), reason",
+    "Outputs": "RefundTrigger ID and state",
+    "Errors": "Unregistered source type; amount above refundable; duplicate key",
+    "nopCommerce mapping": "RET-005 service; called by ORD-006 only. Cancellation refunds of ORD-004 are raised by RET-005 itself from OrderStatusChangedEvent; ORD never calls PAY-016 directly"
+  },
+  {
+    "id": "IC-ORD-06",
+    "area": "ORD",
+    "Contract": "IC-ORD-06",
+    "Operation": "E-signature adapter",
+    "Inputs": "Contract PDF, signers, order (sequential / parallel)",
+    "Outputs": "Envelope reference; callbacks with signer evidence",
+    "Errors": "Provider error",
+    "nopCommerce mapping": "ORD-017 adapter (provider not named); callback controller pattern as IC-PAY-01 HandleCallback; the returned signed PDF is verified through IC-DOC-04 VerifySignature"
+  },
+  {
+    "id": "IC-ORD-07",
+    "area": "ORD",
+    "Contract": "IC-ORD-07",
+    "Operation": "ORD document token provider (ORD provides; DOC-001 calls)",
+    "Inputs": "Document type (Invoice, ConsolidatedReceipt, Proforma, commercial invoice, contract, award letter), source record",
+    "Outputs": "Token values: invoice number, checkout reference, sub-order list, seller name and tax number, company tax fields, fee lines, Incoterm code and named place, contract parties, value and terms, letter deadline and reference",
+    "Errors": "Required token without value (DOC refuses generation, Doc.GenerationDataMissing)",
+    "nopCommerce mapping": "Registered with DOC through IC-DOC-02; documents are rendered by DOC-001 through IC-DOC-01"
+  },
+  {
+    "id": "IC-ORD-08",
+    "area": "ORD",
+    "Contract": "IC-ORD-08",
+    "Operation": "Create quote request from a product (ORD provides; CAT-013 and SVC-001 call)",
+    "Inputs": "Customer, store, product, quantity, attributes XML, notes",
+    "Outputs": "RequestQuote ID",
+    "Errors": "Misc.RFQ not installed; access denied (Misc.RFQ.AccessRFQ.PublicStore.AccessRFQ); product not quotable",
+    "nopCommerce mapping": "ORD service: inserts RequestQuote (status Submitted) through IRepository<RequestQuote>, the item through RfqService.InsertRequestQuoteItemAsync, then RfqMessageService.CustomerSentNewRequestQuoteAsync; the cart is not used"
+  },
+  {
+    "id": "IC-ORD-09",
+    "area": "ORD",
+    "Contract": "IC-ORD-09",
+    "Operation": "Seller task creation (ORD participant of IC-CHK-06)",
+    "Inputs": "Saved sub-order (Confirm phase)",
+    "Outputs": "SellerTask in state New",
+    "Errors": "Error (CHK lists a placement exception, AUD-CHK-007)",
+    "nopCommerce mapping": "Registered with the CHK-003 IOrderProcessingService override; Reserve and Release are no-ops"
+  },
+  {
+    "id": "IC-ORD-10",
+    "area": "ORD",
+    "Contract": "IC-ORD-10",
+    "Operation": "ValidateLineTransition / GetLineStageSet (ORD provides; SVC-005 calls)",
+    "Inputs": "Product type or stage-set code; from stage, to stage",
+    "Outputs": "Allowed or refused; the ordered stage list with localised names",
+    "Errors": "Unknown stage set",
+    "nopCommerce mapping": "ORD stage configuration service; the line state and its event stay in the calling module (BR-ORD-014)"
+  },
+  {
+    "id": "IC-ORD-11",
+    "area": "ORD",
+    "Contract": "IC-ORD-11",
+    "Operation": "Shipment guard provider (defined by the core host ORD-010)",
+    "Inputs": "Order, shipment and its items, acting user",
+    "Outputs": "Allow, or refuse with message key",
+    "Errors": "Provider error = refuse (fail closed)",
+    "nopCommerce mapping": "Implemented by ORD-010 (hold, IC-ORD-02), PAY-006 (letter of credit, BR-PAY-030) and EGV-004 (application Issued, BR-EGV-008); registered in DI and called by the ORD-010 IShipmentService.InsertShipmentAsync override and the AddShipment action filter (BR-ORD-055)"
+  },
+  {
+    "id": "IC-PAY-01",
+    "area": "PAY",
+    "Contract": "IC-PAY-01",
+    "Operation": "InitiatePayment",
+    "Inputs": "Order, amount, currency, customer phone or card token, idempotency key",
+    "Outputs": "Pending / Authorized / Successful / Failed, provider reference, AuthorizationTransactionId, CaptureTransactionId",
+    "Errors": "Validation, provider unavailable, duplicate",
+    "nopCommerce mapping": "IPaymentMethod.ProcessPaymentAsync (+ PostProcessPaymentAsync for Redirection)"
+  },
+  {
+    "id": "IC-PAY-01",
+    "area": "PAY",
+    "Contract": "IC-PAY-01",
+    "Operation": "HandleCallback",
+    "Inputs": "Provider payload on the adapter route",
+    "Outputs": "Verified result mapped to SM-PAY-01",
+    "Errors": "Signature invalid (rejected, audited)",
+    "nopCommerce mapping": "Plugin controller deriving from Microsoft.AspNetCore.Mvc.Controller (pattern: PayPalCommerceWebhookController), on its own route (IRouteProvider), with no antiforgery attribute; verifies the signature, then calls IOrderProcessingService"
+  },
+  {
+    "id": "IC-PAY-01",
+    "area": "PAY",
+    "Contract": "IC-PAY-01",
+    "Operation": "QueryStatus",
+    "Inputs": "Provider reference",
+    "Outputs": "Current provider status",
+    "Errors": "Unknown, timeout",
+    "nopCommerce mapping": "IScheduleTask polling Pending transactions"
+  },
+  {
+    "id": "IC-PAY-01",
+    "area": "PAY",
+    "Contract": "IC-PAY-01",
+    "Operation": "Reverse",
+    "Inputs": "Transaction",
+    "Outputs": "Voided (if Authorized) or refunded",
+    "Errors": "NotSupported",
+    "nopCommerce mapping": "VoidAsync when Authorized, otherwise RefundAsync"
+  },
+  {
+    "id": "IC-PAY-01",
+    "area": "PAY",
+    "Contract": "IC-PAY-01",
+    "Operation": "Refund",
+    "Inputs": "Transaction, amount, lines",
+    "Outputs": "Processing / Completed / Failed, provider reference",
+    "Errors": "NotSupported, exceeds limit",
+    "nopCommerce mapping": "RefundAsync (SupportRefund / SupportPartiallyRefund) or offline methods"
+  },
+  {
+    "id": "IC-PAY-01",
+    "area": "PAY",
+    "Contract": "IC-PAY-01",
+    "Operation": "GetStatement",
+    "Inputs": "Provider, date",
+    "Outputs": "Statement lines",
+    "Errors": "NotSupported (use upload)",
+    "nopCommerce mapping": "IPaymentConnector (PAY-024), not IPaymentMethod"
+  },
+  {
+    "id": "IC-PAY-01",
+    "area": "PAY",
+    "Contract": "IC-PAY-01",
+    "Operation": "Payout",
+    "Inputs": "Recipient, account, amount, idempotency key",
+    "Outputs": "Sent / Succeeded / Failed, reason",
+    "Errors": "NotSupported, rejected",
+    "nopCommerce mapping": "IPaymentConnector (PAY-024), not IPaymentMethod"
+  },
+  {
+    "id": "IC-PAY-02",
+    "area": "PAY",
+    "Contract": "IC-PAY-02",
+    "Operation": "Group payment (provided to CHK-004; CHK names it IC-CHK-04)",
+    "Inputs": "Pay: CheckoutSession reference, total, share per seller, payment method (called before any sub-order is saved, BR-CHK-006); Confirm (as IC-CHK-06 participant): CheckoutSession reference, saved sub-order",
+    "Outputs": "Pay: one PaymentTransaction and one ProcessPaymentResult for the checkout; Confirm: PaymentTransactionOrder link written; each linked sub-order paid once (BR-PAY-014)",
+    "Errors": "Method without group support; payment failed (all sub-orders stay Pending); Confirm error (CHK placement exception)",
+    "nopCommerce mapping": "PAY service called once per checkout by the CHK-003 PlaceOrderAsync override, plus the PAY Confirm participant after each sub-order save; adapters declare a group-support flag; CheckoutSession reference passed in ProcessPaymentRequest.CustomValues (Proposed)"
+  },
+  {
+    "id": "IC-PAY-03",
+    "area": "PAY",
+    "Contract": "IC-PAY-03",
+    "Operation": "Placement validators (provided to CHK-004; CHK names it IC-CHK-02)",
+    "Inputs": "PlaceOrderContainer details, ProcessPaymentRequest, CheckoutSession",
+    "Outputs": "Pass, or refusal with message key (Pay.MethodNotAllowed, Pay.CheckoutRestricted); risk Flag results recorded after placement",
+    "Errors": "—",
+    "nopCommerce mapping": "Two PAY validators, called synchronously by the CHK-003 override before payment in the order of BR-CHK-005: routing (BR-PAY-001) and risk (BR-PAY-090)"
+  },
+  {
+    "id": "IC-PAY-04",
+    "area": "PAY",
+    "Contract": "IC-PAY-04",
+    "Operation": "Shipment guard provider — withdrawn",
+    "Inputs": "—",
+    "Outputs": "—",
+    "Errors": "—",
+    "nopCommerce mapping": "Replaced by IC-ORD-11, defined by the core host ORD-010 (BR-ORD-055); PAY-006 implements IC-ORD-11 for the LC check"
+  },
+  {
+    "id": "IC-PAY-05",
+    "area": "PAY",
+    "Contract": "IC-PAY-05",
+    "Operation": "RequestRefund (provided to RET-005; RET names it IC-RET-02)",
+    "Inputs": "Order ID (none for source type PlacementFailure), lines (OrderItem ID, quantity, amount), order-level parts (component Shipping, PaymentFee or CheckoutAttribute; amount), for PlacementFailure the CheckoutSession reference and the group PaymentTransaction ID, amount, reason, source type and source ID, idempotency key",
+    "Outputs": "PAY Refund ID and state (Initiated / awaiting approval); later module events Refund.Completed / Refund.Failed with the source reference",
+    "Errors": "Exceeds refundable amount (BR-PAY-081, BR-PAY-085), duplicate key (returns the first Refund), caller not RET (BR-PAY-084), order ID missing for a source type other than PlacementFailure",
+    "nopCommerce mapping": "PAY-016 refund service (DI); order-level parts and orderless requests Proposed (BR-PAY-085)"
+  },
+  {
+    "id": "IC-PAY-06",
+    "area": "PAY",
+    "Contract": "IC-PAY-06",
+    "Operation": "ReleaseEscrowStage (provided to ADM-002)",
+    "Inputs": "Order ID, stage, workflow case reference",
+    "Outputs": "Released / Refused with reason / Failed",
+    "Errors": "Open dispute, stage out of order, provider error",
+    "nopCommerce mapping": "PAY-007 service; same lock and checks as the release task (BR-PAY-031)"
+  },
+  {
+    "id": "IC-PAY-07",
+    "area": "PAY",
+    "Contract": "IC-PAY-07",
+    "Operation": "HasSuccessfulOrAuthorizedTransaction (provided to INV-004; INV names it IC-INV-02)",
+    "Inputs": "Order ID",
+    "Outputs": "true / false",
+    "Errors": "—",
+    "nopCommerce mapping": "Read service over PaymentTransaction and PaymentTransactionOrder; called inside ILocker key 'pay-order-{OrderId}'"
+  },
+  {
+    "id": "IC-PAY-08",
+    "area": "PAY",
+    "Contract": "IC-PAY-08",
+    "Operation": "Receivables (provided to CHK-016, FIN-002, SEL-025; SEL names PostReceivable IC-SEL-03)",
+    "Inputs": "PostReceivable: debtor, invoice, amount, due date; GetOpenReceivables: buyer (debtor) or payee (seller whose receivables FIN-002 lists, Proposed); LockForOffer / ReleaseLock / Assign: receivable, lender and remit-to details; AllocateExternal: Assigned receivable, amount, lender reference",
+    "Outputs": "Receivable ID; open receivables with open amounts; new receivable state (SM-PAY-09)",
+    "Errors": "Not open, already offered or assigned, disputed; AllocateExternal on a receivable that is not Assigned or above the open amount",
+    "nopCommerce mapping": "PAY-033 service (DI)"
+  },
+  {
+    "id": "IC-PAY-09",
+    "area": "PAY",
+    "Contract": "IC-PAY-09",
+    "Operation": "SubmitFiscal (provided to SEL-025; part of IC-SEL-03)",
+    "Inputs": "Commission invoice reference, country",
+    "Outputs": "FiscalSubmission ID and status (SM-PAY-07)",
+    "Errors": "E-invoicing not enabled; rejected by authority",
+    "nopCommerce mapping": "PAY-025 service; same queue and adapters as order invoices"
+  },
+  {
+    "id": "IC-PAY-10",
+    "area": "PAY",
+    "Contract": "IC-PAY-10",
+    "Operation": "GetWalletDeduction (provided to RPT and PAY-019 for wallet reconciliation; documents and order totals read the CAT-042 record, IC-CAT-06 GetOrderAdjustments)",
+    "Inputs": "Order ID",
+    "Outputs": "Wallet amount deducted from the order (sum of its Spend ledger entries), ledger references",
+    "Errors": "—",
+    "nopCommerce mapping": "PAY-009 read service over WalletLedgerEntry (WAL-01 option (b) only)"
+  },
+  {
+    "id": "IC-PLT-01",
+    "area": "PLT",
+    "Contract": "IC-PLT-01",
+    "Operation": "Validate",
+    "Inputs": "Pack set (codes, versions, files)",
+    "Outputs": "Validation report (errors and warnings per artefact)",
+    "Errors": "Unknown key, permission or store; secret present; release mismatch; a cross-key rule declared by a module fails (for example BR-IAM-054 permission exclusions; nopCommerce 5.00 rules BR-CAT-034 price caching with customer price lists and BR-INV-023 native unpaid-order functions off)",
+    "nopCommerce mapping": "PLT pack loader service"
+  },
+  {
+    "id": "IC-PLT-01",
+    "area": "PLT",
+    "Contract": "IC-PLT-01",
+    "Operation": "Apply",
+    "Inputs": "Validated pack set, decisions for conflicting keys",
+    "Outputs": "PackApplyRun (status, stamp, restart flag)",
+    "Errors": "Lock busy, write failure (rolled back)",
+    "nopCommerce mapping": "ISettingService (clearCache false), ILocalizationService.ImportResourcesFromXmlAsync, IMessageTemplateService, IPermissionService, ICategoryService, IPluginService.PreparePluginToInstallAsync, PluginDescriptor.Save, ADM-002/ADM-003 contracts"
+  },
+  {
+    "id": "IC-PLT-01",
+    "area": "PLT",
+    "Contract": "IC-PLT-01",
+    "Operation": "Export",
+    "Inputs": "Scope (client, stores), options (for promotion or clone)",
+    "Outputs": "Pack file with manifest",
+    "Errors": "—",
+    "nopCommerce mapping": "Reads Setting rows by StoreId; omits BR-PLT-013 and BR-PLT-014 items"
+  },
+  {
+    "id": "IC-PLT-01",
+    "area": "PLT",
+    "Contract": "IC-PLT-01",
+    "Operation": "Diff",
+    "Inputs": "Two snapshots or a pack and the instance",
+    "Outputs": "List of keys with values on both sides",
+    "Errors": "—",
+    "nopCommerce mapping": "Used by PLT-004 compare and PLT-005 promotion"
+  },
+  {
+    "id": "IC-PLT-02",
+    "area": "PLT",
+    "Contract": "IC-PLT-02",
+    "Operation": "IsEnabled",
+    "Inputs": "Feature ID, store ID",
+    "Outputs": "true / false",
+    "Errors": "Unknown feature",
+    "nopCommerce mapping": "ISettingService.GetSettingByKeyAsync<bool>(productfeature.<id>, storeId, loadSharedValueIfNotFound: true)"
+  },
+  {
+    "id": "IC-PLT-02",
+    "area": "PLT",
+    "Contract": "IC-PLT-02",
+    "Operation": "SetState",
+    "Inputs": "Feature ID, store ID or client, on/off",
+    "Outputs": "Result (applied, restart required)",
+    "Errors": "Dependency off; always-on feature",
+    "nopCommerce mapping": "Writes setting; may call IPluginService.PreparePluginToInstallAsync"
+  },
+  {
+    "id": "IC-PLT-03",
+    "area": "PLT",
+    "Contract": "IC-PLT-03",
+    "Operation": "Register controlled configuration type",
+    "Inputs": "Type code, owning module, impact level, validator, preview and apply handlers",
+    "Outputs": "—",
+    "Errors": "Duplicate type code",
+    "nopCommerce mapping": "Module registers at start; used by PLT-004 for non-setting configuration such as PAY risk rules"
+  },
+  {
+    "id": "IC-PLT-03",
+    "area": "PLT",
+    "Contract": "IC-PLT-03",
+    "Operation": "Validate / Preview / Apply / ReadCurrent",
+    "Inputs": "Change item",
+    "Outputs": "Errors; impact counts; applied; current value",
+    "Errors": "Validation error",
+    "nopCommerce mapping": "Called by PLT-004 for registered types; Setting keys are handled by PLT itself"
+  },
+  {
+    "id": "IC-PLT-04",
+    "area": "PLT",
+    "Contract": "IC-PLT-04",
+    "Operation": "Health",
+    "Inputs": "Token or allow-listed caller",
+    "Outputs": "Status per component, release version",
+    "Errors": "Unauthorised",
+    "nopCommerce mapping": "New plugin route (IRouteProvider) on a controller deriving from Microsoft.AspNetCore.Mvc.Controller, like the native KeepAliveController, so no customer-session filters run"
+  },
+  {
+    "id": "IC-PLT-05",
+    "area": "PLT",
+    "Contract": "IC-PLT-05",
+    "Operation": "Provisioning hooks",
+    "Inputs": "Instance code, role (Live/Test), pack set, release",
+    "Outputs": "Instance status",
+    "Errors": "Step failure",
+    "nopCommerce mapping": "Pipeline calls the PLT admin API or drops the pack set in a watched App_Data folder applied at start (choice Proposed)"
+  },
+  {
+    "id": "IC-PLT-06",
+    "area": "PLT",
+    "Contract": "IC-PLT-06",
+    "Operation": "GetCurrencyLiveRates",
+    "Inputs": "Primary exchange-rate currency code",
+    "Outputs": "List of ExchangeRate (code, rate)",
+    "Errors": "Source unavailable",
+    "nopCommerce mapping": "Native IExchangeRateProvider implemented by PLT rate-provider plugins"
+  },
+  {
+    "id": "IC-PLT-07",
+    "area": "PLT",
+    "Contract": "IC-PLT-07",
+    "Operation": "Idempotent request",
+    "Inputs": "Idempotency key header, customer, route, body hash",
+    "Outputs": "Stored response on repeat",
+    "Errors": "Key reused with different body; key missing on an API write (Plt.IdempotencyKeyRequired)",
+    "nopCommerce mapping": "Plugin middleware with ILocker; IdempotencyRecord table; applies to every state-changing storefront action that sends a key and to every IC-INT-01 write"
+  },
+  {
+    "id": "IC-PLT-08",
+    "area": "PLT",
+    "Contract": "IC-PLT-08",
+    "Operation": "Register record type",
+    "Inputs": "Record type code, owning module, entity, date field, allowed actions (Archive / Anonymise / Delete), hold check callback",
+    "Outputs": "—",
+    "Errors": "Duplicate code",
+    "nopCommerce mapping": "Called by modules at start (DOC, CRM, IAM, RET, TRK, SEC, AI, ADM); read by the PLT-020 retention task"
+  },
+  {
+    "id": "IC-PLT-09",
+    "area": "PLT",
+    "Contract": "IC-PLT-09",
+    "Operation": "SetStatus (translation)",
+    "Inputs": "Entity name or resource key, entity ID, key group, language, status, user",
+    "Outputs": "TranslationStatus",
+    "Errors": "Unknown entity or language",
+    "nopCommerce mapping": "Called by AI-001 on draft approval; PLT-025 is the only writer of TranslationStatus"
+  },
+  {
+    "id": "IC-RET-01",
+    "area": "RET",
+    "Contract": "IC-RET-01",
+    "Operation": "OpenCase",
+    "Inputs": "Type (OrderIssue, ReturnDispute, BuyerSellerDispute, PaymentDispute), order ID, item IDs, source module and reference, raised-by, description, evidence Download IDs",
+    "Outputs": "Case ID and number",
+    "Errors": "Order not found, not allowed for the caller",
+    "nopCommerce mapping": "RET service (DI), called by PAY-007, PAY-035, PAY-036, CRM-006, CRM-014 (Report a problem) and the RET storefront pages"
+  },
+  {
+    "id": "IC-RET-01",
+    "area": "RET",
+    "Contract": "IC-RET-01",
+    "Operation": "HasOpenCase / GetCases",
+    "Inputs": "Order ID",
+    "Outputs": "True or false; list of cases with status",
+    "Errors": "—",
+    "nopCommerce mapping": "RET service; used synchronously by PAY before escrow release or payment confirmation and by ORD-002 before order acceptance (BR-RET-062)"
+  },
+  {
+    "id": "IC-RET-01",
+    "area": "RET",
+    "Contract": "IC-RET-01",
+    "Operation": "Case events",
+    "Inputs": "—",
+    "Outputs": "DisputeCase.Opened, RemedyProposed, Closed (with source reference); Return.Completed (BR-RET-064)",
+    "Errors": "—",
+    "nopCommerce mapping": "RET module events published through IEventPublisher; consumers notify or enqueue only"
+  },
+  {
+    "id": "IC-RET-02",
+    "area": "RET",
+    "Contract": "IC-RET-02",
+    "Operation": "RequestRefund (RET to PAY-016)",
+    "Inputs": "Order ID (none for PlacementFailure), lines (OrderItem ID, quantity, amount), order-level parts (component, amount), for PlacementFailure the CheckoutSession reference and PaymentTransaction ID, reason, source type and ID, idempotency key (BR-RET-041)",
+    "Outputs": "PAY Refund ID and state (Initiated / awaiting approval)",
+    "Errors": "Exceeds refundable amount (BR-PAY-081), duplicate key",
+    "nopCommerce mapping": "PAY-016 refund request operation IC-PAY-05 (BR-PAY-085 for order-level parts and PlacementFailure), consumed by RET as IC-RET-02; PAY accepts it only from RET-005 and returns the first Refund for a repeated idempotency key (BR-PAY-084); PAY then raises Refund.Completed or Refund.Failed carrying the RET source type and source ID"
+  },
+  {
+    "id": "IC-RET-04",
+    "area": "RET",
+    "Contract": "IC-RET-04",
+    "Operation": "RaiseRefundTrigger (other modules to RET)",
+    "Inputs": "Source module, source type registered for that module (BR-RET-042), source ID, order ID (none for PlacementFailure), lines (OrderItem ID, quantity, amount), order-level parts (component Shipping, PaymentFee or CheckoutAttribute; amount), for PlacementFailure the CheckoutSession ID, PaymentTransaction ID and amount, reason",
+    "Outputs": "RefundTrigger ID and state",
+    "Errors": "Unregistered source type or wrong module, amount above refundable, duplicate key (returns the first trigger)",
+    "nopCommerce mapping": "RET service; the only path from SVC, FIN, EGV, ORD (IC-ORD-05), CHK and any other module to PAY-016 (refund-trigger decision: RET-005 single owner). Order-level parts and PlacementFailure are passed to PAY in IC-PAY-05 (BR-PAY-085, Proposed)"
+  },
+  {
+    "id": "IC-RET-03",
+    "area": "RET",
+    "Contract": "IC-RET-03",
+    "Operation": "BookReturn (RET to LOG-021)",
+    "Inputs": "Pickup address or drop-off outlet, destination, parcel data, return reference",
+    "Outputs": "Booking reference, tracking reference, label (if any)",
+    "Errors": "Not supported by adapter, no slot",
+    "nopCommerce mapping": "LOG-021 carrier connector operation BookReturn (IC-LOG-01, reverse-booking capability per adapter); cancellation through IC-LOG-01 Cancel"
+  },
+  {
+    "id": "IC-RPT-01",
+    "area": "RPT",
+    "Contract": "IC-RPT-01",
+    "Operation": "Extract (nopCommerce to warehouse staging)",
+    "Inputs": "Dataset definition, mode, watermark",
+    "Outputs": "Data files and manifest (dataset, run ID, row count, checksum, treated fields); data-dictionary file",
+    "Errors": "Source unavailable, staging unavailable",
+    "nopCommerce mapping": "RPT export plugin IScheduleTask; reads replica or primary; ChangeFeed from SEC-004"
+  },
+  {
+    "id": "IC-RPT-02",
+    "area": "RPT",
+    "Contract": "IC-RPT-02",
+    "Operation": "Advertising spend file",
+    "Inputs": "CSV rows: date, source, campaign, channel, amount, currency",
+    "Outputs": "Import result: loaded and rejected rows with reasons",
+    "Errors": "Unknown currency, bad date, negative amount",
+    "nopCommerce mapping": "RPT plugin upload page; stored rows go out with the next extract"
+  },
+  {
+    "id": "IC-RPT-03",
+    "area": "RPT",
+    "Contract": "IC-RPT-03",
+    "Operation": "KPI catalogue export",
+    "Inputs": "Active KPI definitions",
+    "Outputs": "File or API payload in the format of the chosen BI platform (not stated)",
+    "Errors": "—",
+    "nopCommerce mapping": "RPT plugin; consumed by the BI semantic layer"
+  },
+  {
+    "id": "IC-RPT-04",
+    "area": "RPT",
+    "Contract": "IC-RPT-04",
+    "Operation": "Report delivery to other systems",
+    "Inputs": "Registered consumer, authorised datasets, schedule",
+    "Outputs": "Batch file with manifest, or API response through INT-001",
+    "Errors": "Not authorised",
+    "nopCommerce mapping": "RPT plugin + INT-001; logged (AUD-RPT-008)"
+  },
+  {
+    "id": "IC-SEC-01",
+    "area": "SEC",
+    "Contract": "IC-SEC-01",
+    "Operation": "WriteAsync",
+    "Inputs": "Event id (AUD-<AREA>-nnn), entity name, entity id, old values, new values, reason, correlation id",
+    "Outputs": "Sequence number",
+    "Errors": "Validation error (unknown event id, missing actor); store unavailable (the calling operation fails, BR-SEC-015)",
+    "nopCommerce mapping": "IAuditTrail service registered by the SEC plugin; the IRepository<> decorator uses the same store for entity changes"
+  },
+  {
+    "id": "IC-SEC-01",
+    "area": "SEC",
+    "Contract": "IC-SEC-01",
+    "Operation": "QueryAsync",
+    "Inputs": "Filters (actor, entity name, entity id, event id, store, date range, amount, sequence greater than a watermark), page size",
+    "Outputs": "Events with old and new values in sequence order; last sequence number of the page",
+    "Errors": "Filter not allowed for the caller scope (SEC-010)",
+    "nopCommerce mapping": "Read service; used by admin screens, IAM-018, RPT-006 and the RPT-003 change feed"
+  },
+  {
+    "id": "IC-SEC-01",
+    "area": "SEC",
+    "Contract": "IC-SEC-01",
+    "Operation": "ReplayAsync",
+    "Inputs": "Entity name and id, or customer id, and a point in time",
+    "Outputs": "Entity field values, or roles, permissions, ACL, store mappings, scopes and delegations at that time",
+    "Errors": "No events before the time",
+    "nopCommerce mapping": "Read service"
+  },
+  {
+    "id": "IC-SEC-01",
+    "area": "SEC",
+    "Contract": "IC-SEC-01",
+    "Operation": "VerifyAsync",
+    "Inputs": "Sequence range",
+    "Outputs": "Verified / Broken at sequence n",
+    "Errors": "—",
+    "nopCommerce mapping": "Scheduled task and on-demand action"
+  },
+  {
+    "id": "IC-SEC-02",
+    "area": "SEC",
+    "Contract": "IC-SEC-02",
+    "Operation": "PushBatch",
+    "Inputs": "Events in sequence order (audit, authentication, risk flags, system-log errors), batch id",
+    "Outputs": "Acknowledged up to sequence n",
+    "Errors": "Endpoint unavailable, rejected batch",
+    "nopCommerce mapping": "IScheduleTask; transport Not stated in source (Proposed: HTTPS with JSON lines)"
+  },
+  {
+    "id": "IC-SEC-03",
+    "area": "SEC",
+    "Contract": "IC-SEC-03",
+    "Operation": "GetProfile",
+    "Inputs": "Country code",
+    "Outputs": "Profile values (deadlines, response times, consent texts per purpose, transfer conditions, external AI and translation transfer rule, SMS opt-out duties and essential message types, whether server-side analytics events need consent, retention per record type) or \"not configured\"",
+    "Errors": "Unknown country",
+    "nopCommerce mapping": "Read service used by IAM-017, SEC-008, CHK-009, PLT-020, AI, CHN and FIN"
+  },
+  {
+    "id": "IC-SEC-05",
+    "area": "SEC",
+    "Contract": "IC-SEC-05",
+    "Operation": "EvaluateDownloadAccess (SEC download-ownership filter → registered rule providers: EGV-002, RET, CRM-001, ORD, SEL-002, DOC-002, LOG-012, TRK-003)",
+    "Inputs": "Download GUID and id, requesting user (customer, roles, vendor), area (storefront GetFileUpload or Admin DownloadFile)",
+    "Outputs": "NotClaimed / Allow / Deny with reason",
+    "Errors": "Provider exception (treated as Deny, logged)",
+    "nopCommerce mapping": "Provider interface defined by SEC; providers registered in DI and resolved as a list; called only by the single SEC filter (BR-SEC-005); a provider never adds its own filter to GetFileUpload or DownloadFile"
+  },
+  {
+    "id": "IC-SEC-04",
+    "area": "SEC",
+    "Contract": "IC-SEC-04",
+    "Operation": "GetFieldClass / Mask",
+    "Inputs": "Entity name, field name, value, user",
+    "Outputs": "Class and masking rule; masked or full value",
+    "Errors": "Masking error (value hidden, BR-SEC-060)",
+    "nopCommerce mapping": "SEC-014 service; used by the SEC result filter, the IExportManager override and CRM-003"
+  },
+  {
+    "id": "IC-SEL-01",
+    "area": "SEL",
+    "Contract": "IC-SEL-01",
+    "Operation": "CheckEligibility (SEL provider → called by the CAT-002 IProductService override and lifecycle service)",
+    "Inputs": "Product, vendor",
+    "Outputs": "Pass, or Fail with failed rule IDs and texts",
+    "Errors": "—",
+    "nopCommerce mapping": "SEL provider registered as the IC-CAT-04 publish guard provider of the CAT-002 host (decision OVR-REG: CAT-002 owns IProductService; SEL registers no override); called at submission (IC-CAT-04 stage Submit) and at publish (stage Publish: IC-CAT-03 Publish / Resume and the host when an update would set Published true), BR-CAT-030"
+  },
+  {
+    "id": "IC-SEL-01",
+    "area": "SEL",
+    "Contract": "IC-SEL-01",
+    "Operation": "PauseListings / ResumeListings (SEL → CAT-022)",
+    "Inputs": "Vendor, reason code (Vacation, SellerSuspended, SellerBlacklisted, DocumentExpired, CommissionOverdue, PerformanceIntervention)",
+    "Outputs": "Number of listings paused or resumed",
+    "Errors": "Unknown reason",
+    "nopCommerce mapping": "Implemented by the CAT lifecycle service IC-CAT-03 PauseListings / ResumeListings (vendor id, reason code, actor); CAT keeps the vendor reason set (VendorListingPause) under ILocker key 'cat-vendor-listings-{VendorId}' and resumes a listing only when no reason remains (BR-CAT-030, BR-SEL-005); Product.Published changes only in CAT-022"
+  },
+  {
+    "id": "IC-SEL-02",
+    "area": "SEL",
+    "Contract": "IC-SEL-02",
+    "Operation": "GetRulesInForce (PAY-010 → SEL)",
+    "Inputs": "Order line (product, category, vendor, logistics service), order placement time",
+    "Outputs": "Commission and fee amounts, rule version IDs",
+    "Errors": "No rule (exception)",
+    "nopCommerce mapping": "SEL service called by the PAY split service"
+  },
+  {
+    "id": "IC-SEL-02",
+    "area": "SEL",
+    "Contract": "IC-SEL-02",
+    "Operation": "GetEligibleSplits (SEL → PAY-010)",
+    "Inputs": "Vendor, cut-off time, eligibility event",
+    "Outputs": "PaymentSplit rows not yet settled, reversals; splits of payments flagged as assigned to a lender (BR-PAY-131) are excluded",
+    "Errors": "—",
+    "nopCommerce mapping": "Read of PAY PaymentSplit; each split marked with SettlementBatchId (BR-PAY-053)"
+  },
+  {
+    "id": "IC-SEL-03",
+    "area": "SEL",
+    "Contract": "IC-SEL-03",
+    "Operation": "PostReceivable / SubmitFiscal (SEL → PAY-033, PAY-025)",
+    "Inputs": "Commission invoice",
+    "Outputs": "Receivable ID; fiscal status",
+    "Errors": "Rejected by authority",
+    "nopCommerce mapping": "PAY services IC-PAY-08 PostReceivable and IC-PAY-09 SubmitFiscal; debtor = vendor (BR-PAY-130)"
+  },
+  {
+    "id": "IC-SEL-04",
+    "area": "SEL",
+    "Contract": "IC-SEL-04",
+    "Operation": "VerifyIdentity — withdrawn",
+    "Inputs": "—",
+    "Outputs": "—",
+    "Errors": "—",
+    "nopCommerce mapping": "SEL calls the IAM contract IC-IAM-02 Verify / GetCapabilities directly; ID kept for traceability"
+  },
+  {
+    "id": "IC-SEL-05",
+    "area": "SEL",
+    "Contract": "IC-SEL-05",
+    "Operation": "AddSellerCharge (FIN-001, ORD-004, RET → SEL)",
+    "Inputs": "Vendor, source module, source type (RepaymentDeduction, Penalty, ReturnShipping, SellerFaultRemedy), source reference, amount or (RepaymentDeduction with basis Share only) a share of the batch net, cap rule (FIN: instructed amount or share, and outstanding balance), lender or order reference",
+    "Outputs": "Charge ID; later the batch ID in which it was deducted",
+    "Errors": "Unknown vendor, duplicate source reference (idempotent: same charge returned)",
+    "nopCommerce mapping": "SEL service; ORD-004 passes each SellerPenalty through this operation (BR-ORD-031); RET passes merchant-paid return shipping and, if the client confirms seller-fault charging, seller-fault remedies; the charge is shown on the seller statement"
+  },
+  {
+    "id": "IC-SEL-06",
+    "area": "SEL",
+    "Contract": "IC-SEL-06",
+    "Operation": "OnApproved / OnRejected (ADM-006 → SEL, implementing IC-ADM-03 callbacks)",
+    "Inputs": "Approval item ID, object type (SellerApplication, VerificationRequest, PayoutAccountChange), decision, approver, reason",
+    "Outputs": "Effect applied (SM-SEL-01, SM-SEL-02, SM-SEL-04 transition) or module error with message key",
+    "Errors": "Guard unmet (Sel.ApprovalBlocked), self-approval (Sel.SelfApprovalNotAllowed)",
+    "nopCommerce mapping": "SEL service registered as the IC-ADM-03 handler for its object types"
+  },
+  {
+    "id": "IC-SEL-07",
+    "area": "SEL",
+    "Contract": "IC-SEL-07",
+    "Operation": "Seller.SettlementPaid (published)",
+    "Inputs": "VendorId, SettlementBatchId, PaidOnUtc, Net, deduction lines (source, reference, amount)",
+    "Outputs": "—",
+    "Errors": "—",
+    "nopCommerce mapping": "Plugin event class published with IEventPublisher by the SEL settlement service when a batch becomes Paid; FIN consumer only enqueues IC-FIN-01 ReportRepayment"
+  },
+  {
+    "id": "IC-SRC-01",
+    "area": "SRC",
+    "Contract": "IC-SRC-01",
+    "Operation": "SearchProductsAsync (ISearchProvider)",
+    "Inputs": "Keywords, isLocalized flag; language and store read from IWorkContext / IStoreContext",
+    "Outputs": "Ordered list of product IDs",
+    "Errors": "Exception or empty result → native search if CatalogSettings.UseStandardSearchWhenNoResults",
+    "nopCommerce mapping": "SRC provider plugin implementing ISearchProvider, selected in CatalogSettings.ActiveSearchProviderSystemName; in 5.00 reached only when no AI recommendation provider answers first (BR-SRC-150)"
+  },
+  {
+    "id": "IC-SRC-02",
+    "area": "SRC",
+    "Contract": "IC-SRC-02",
+    "Operation": "Search filter / ordering provider (SRC to the CAT-002 host)",
+    "Inputs": "Scoped search context (seller, in stock, district, distance, delivery option, sort value), the product query before ordering and paging, showHidden",
+    "Outputs": "Filtered or ordered product query",
+    "Errors": "—",
+    "nopCommerce mapping": "SRC implementation of the IC-CAT-04 search filter / ordering contributor, called by the CAT-002 IProductService.SearchProductsAsync override; not called when showHidden is true (admin searches); SRC does not override IProductService"
+  },
+  {
+    "id": "IC-SRC-03",
+    "area": "SRC",
+    "Contract": "IC-SRC-03",
+    "Operation": "Search API GET",
+    "Inputs": "INT-001 token with scope search.read, keywords, page, page size, language, format (full / compact)",
+    "Outputs": "Product ID, name, price, availability text, URL; total count",
+    "Errors": "401, 429, 400 (validation)",
+    "nopCommerce mapping": "SRC plugin route (IRouteProvider) calling SearchProductsAsync"
+  },
+  {
+    "id": "IC-SRC-04",
+    "area": "SRC",
+    "Contract": "IC-SRC-04",
+    "Operation": "Recommendation provider (defined by SRC-009; optional; implemented by AI-007)",
+    "Inputs": "Recommend(customer, surface); SendEvents(pseudonymous key, consented events: view, add to cart, purchase); DeleteSubjectData(pseudonymous key)",
+    "Outputs": "Ordered product IDs; accepted; deletion requested",
+    "Errors": "Timeout or unavailable → native related, cross-sell or bestseller fallback (AC-SRC-009-01-04); no provider registered → same fallback, no events sent",
+    "nopCommerce mapping": "SRC widget in public widget zones; at most one provider; SRC gates events by consent (BR-SRC-080) and applies BR-SRC-050 to every result"
+  },
+  {
+    "id": "IC-SVC-01",
+    "area": "SVC",
+    "Contract": "IC-SVC-01",
+    "Operation": "GetEligibleResources",
+    "Inputs": "Service product, period, location",
+    "Outputs": "Resources meeting BR-SVC-010",
+    "Errors": "No resource; location not covered",
+    "nopCommerce mapping": "SVC availability service (new interface) consumed by the CAT-027 slot calendar"
+  },
+  {
+    "id": "IC-SVC-01",
+    "area": "SVC",
+    "Contract": "IC-SVC-01",
+    "Operation": "GenerateSlots",
+    "Inputs": "Resource, period",
+    "Outputs": "CAT BookingSlot rows (ResourceId, StartUtc, EndUtc, Capacity) created or updated",
+    "Errors": "Capacity below confirmed bookings (listed, not reduced)",
+    "nopCommerce mapping": "SVC task writing through IC-CAT-07 WriteSlots; hold, confirm, move, outcome and release stay in CAT-027 (BR-CAT-021)"
+  },
+  {
+    "id": "IC-SVC-02",
+    "area": "SVC",
+    "Contract": "IC-SVC-02",
+    "Operation": "ValidateVoucher / RedeemVoucher",
+    "Inputs": "Code, redeeming vendor or outlet, user",
+    "Outputs": "Valid / invalid; remaining uses",
+    "Errors": "VoucherInvalid",
+    "nopCommerce mapping": "SVC seller-portal and outlet endpoints; callable by the CHN mobile channel"
+  },
+  {
+    "id": "IC-TRK-01",
+    "area": "TRK",
+    "Contract": "IC-TRK-01",
+    "Operation": "SubmitEvents",
+    "Inputs": "Source id and credentials (system key or registered device token); batch of events: source event id, reference (tracking number, S10, waybill, bill of lading), source code, event time with offset, location text and coordinates, staff id, device id, reason code, attachment references",
+    "Outputs": "Per event: Received with id, or rejected with reason",
+    "Errors": "Authentication failed (batch rejected, AUD-TRK-003), payload invalid",
+    "nopCommerce mapping": "Plugin API controller deriving from Microsoft.AspNetCore.Mvc.Controller on its own route (IRouteProvider), no customer-session filters; events stored, then processed by a queue worker or IScheduleTask under 'shipment-{ShipmentId}'"
+  },
+  {
+    "id": "IC-TRK-01",
+    "area": "TRK",
+    "Contract": "IC-TRK-01",
+    "Operation": "RegisterDevice / RevokeDevice",
+    "Inputs": "Device id, staff id",
+    "Outputs": "Device token",
+    "Errors": "Unknown staff",
+    "nopCommerce mapping": "Admin page (Tracking.Core.Devices.CreateEditDelete)"
+  },
+  {
+    "id": "IC-TRK-01",
+    "area": "TRK",
+    "Contract": "IC-TRK-01",
+    "Operation": "RegisterExternalReference",
+    "Inputs": "Owning module, entity type (for example ReturnShipment), entity id, reference value",
+    "Outputs": "Registered",
+    "Errors": "Reference already registered for another entity",
+    "nopCommerce mapping": "Service called by RET-003 for every return tracking reference it assigns (carrier reference returned by LOG IC-LOG-01 BookReturn, or RET-generated); registering the same reference again for the same entity returns Registered; TRK-002 matches incoming events against shipments and registered references"
+  },
+  {
+    "id": "IC-TRK-01",
+    "area": "TRK",
+    "Contract": "IC-TRK-01",
+    "Operation": "GetWorkList",
+    "Inputs": "Device token",
+    "Outputs": "Route list (LOG-024) or pickup list (LOG-011) of the staff member",
+    "Errors": "Not authorised",
+    "nopCommerce mapping": "Same API controller"
+  },
+  {
+    "id": "IC-TRK-02",
+    "area": "TRK",
+    "Contract": "IC-TRK-02",
+    "Operation": "Send",
+    "Inputs": "Channel content, recipient address, language, idempotency key (message id)",
+    "Outputs": "Accepted with provider message id, or error",
+    "Errors": "Provider unavailable, invalid recipient",
+    "nopCommerce mapping": "Implemented by channel adapters, which only deliver and report Sent / Delivered / Failed / Refused (BR-CHN-010): email = native QueuedEmail; SMS = CHN-005 (IC-CHN-01); WhatsApp and Telegram = CHN-006 and the CHN messaging adapters (IC-CHN-04); push = CHN-013 (IC-CHN-05); voice = CHN-004 (IC-CHN-03); in-app = TRK-008"
+  },
+  {
+    "id": "IC-TRK-02",
+    "area": "TRK",
+    "Contract": "IC-TRK-02",
+    "Operation": "DeliveryReceipt",
+    "Inputs": "Provider message id, status, time",
+    "Outputs": "Log row updated",
+    "Errors": "Unknown id (kept for retry matching)",
+    "nopCommerce mapping": "Adapter callback route; authenticated per provider"
+  },
+  {
+    "id": "IC-TRK-03",
+    "area": "TRK",
+    "Contract": "IC-TRK-03",
+    "Operation": "ReceiveBounce",
+    "Inputs": "Address, bounce type (hard / soft), time",
+    "Outputs": "Bounce flag updated",
+    "Errors": "Unknown address (logged)",
+    "nopCommerce mapping": "Webhook route or mailbox polling task, per provider (not stated)"
+  },
+  {
+    "id": "IC-TRK-04",
+    "area": "TRK",
+    "Contract": "IC-TRK-04",
+    "Operation": "SendEvent",
+    "Inputs": "Product event code, entity references (order, shipment, customer, or a recipient list), sender reference, extra tokens",
+    "Outputs": "Message ids per channel and recipient",
+    "Errors": "Unknown (unregistered) event code",
+    "nopCommerce mapping": "Engine service used by LOG, PAY, ORD and other modules for events without a native template"
+  },
+  {
+    "id": "IC-TRK-04",
+    "area": "TRK",
+    "Contract": "IC-TRK-04",
+    "Operation": "RegisterEventCode",
+    "Inputs": "Event code, owning module, category, default channels, default content per channel (localised), mandatory and urgent flags",
+    "Outputs": "Registered",
+    "Errors": "Duplicate code",
+    "nopCommerce mapping": "Called by each product plugin at installation; codes listed in BR-TRK-023"
+  },
+  {
+    "id": "IC-TRK-05",
+    "area": "TRK",
+    "Contract": "IC-TRK-05",
+    "Operation": "Order-kind provider",
+    "Inputs": "Order (id, lines)",
+    "Outputs": "Order kind code or none",
+    "Errors": "—",
+    "nopCommerce mapping": "Implemented by EGV (order kind e-Government) and SVC (order kind Service); called by the engine for OrderCompleted.CustomerNotification (BR-TRK-024); a provider never sends messages itself"
+  },
+  {
+    "id": "IC-TRK-06",
+    "area": "TRK",
+    "Contract": "IC-TRK-06",
+    "Operation": "UpdatePreference",
+    "Inputs": "Subject (customer id, or phone number in international format for a number without an account), channel, category or all non-mandatory categories, allowed or opted out, source (My account, keyword, channel opt-in, staff), time",
+    "Outputs": "Updated; for a phone number the ContactOptOut status",
+    "Errors": "Invalid number, unknown customer, unknown channel",
+    "nopCommerce mapping": "TRK-006 service (DI) called by CHN-012 (SMS keywords), CHN-006, CHN-013, CHN-004 (channel opt-in) and the TRK My account pages; audited (AUD-TRK-005); BR-TRK-031, BR-TRK-033 (decision MSG-ROUTE)"
+  },
+  {
+    "id": "IC-TRK-06",
+    "area": "TRK",
+    "Contract": "IC-TRK-06",
+    "Operation": "CheckAllowed",
+    "Inputs": "Recipient (customer id, or phone number or channel address), channel, category, sender module",
+    "Outputs": "Allowed, or Blocked with reason (opted out, not opted in, category off)",
+    "Errors": "Unknown channel (Blocked)",
+    "nopCommerce mapping": "TRK-006 service (DI) called synchronously by senders outside the engine before each send (BR-TRK-026): CHN IC-CHN-04 SendReply (CRM agents, AI-003), CHN-005 SMS command replies, CRM ticket e-mail replies, IAM-002 before IC-IAM-01 one-time codes; the engine applies the same rules internally"
+  }
+]

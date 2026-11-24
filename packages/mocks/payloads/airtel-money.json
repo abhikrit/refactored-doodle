@@ -1,0 +1,46 @@
+{
+  "_source": "Shaped like the documented Airtel Money collection (USSD push) payload. Recorded sample for the prototype - no credentials, no real transaction, nothing sent (decision P-3).",
+  "feature": "PRD-PAY-030",
+  "request": {
+    "reference": "CHK-REFERENCE",
+    "subscriber": {
+      "country": "MW",
+      "currency": "MWK",
+      "msisdn": "XXXXXXXXX"
+    },
+    "transaction": {
+      "amount": 0,
+      "country": "MW",
+      "currency": "MWK",
+      "id": "CHK-REFERENCE"
+    }
+  },
+  "response": {
+    "data": {
+      "transaction": {
+        "id": "CHK-REFERENCE",
+        "status": "TIP"
+      }
+    },
+    "status": {
+      "code": "200",
+      "message": "SUCCESS",
+      "success": true
+    }
+  },
+  "callback": {
+    "transaction": {
+      "id": "CHK-REFERENCE",
+      "message": "Transaction successful",
+      "status_code": "TS",
+      "airtel_money_id": "AM000000"
+    }
+  },
+  "callbackCancelled": {
+    "transaction": {
+      "id": "CHK-REFERENCE",
+      "message": "Transaction cancelled by subscriber",
+      "status_code": "TF"
+    }
+  }
+}

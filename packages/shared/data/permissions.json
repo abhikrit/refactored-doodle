@@ -1,0 +1,3498 @@
+[
+  {
+    "area": "ADM",
+    "systemName": "Security.AccessAdminPanel",
+    "raw": "Security.AccessAdminPanel (native)",
+    "native": true,
+    "category": "Security",
+    "allows": "Open the admin area",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors  and roles granted by IAM-007"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "System.ManageScheduleTasks",
+    "raw": "System.ManageScheduleTasks (native)",
+    "native": true,
+    "category": "System",
+    "allows": "Edit scheduled tasks and run them now",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Catalog.ProductsCreateEditDelete",
+    "raw": "Catalog.ProductsCreateEditDelete (native)",
+    "native": true,
+    "category": "Catalog",
+    "allows": "Bulk edit, unpublish and delete products",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Configuration.ManageSettings",
+    "raw": "Configuration.ManageSettings (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Edit the upload policy settings (ADM-008)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Extensions.View",
+    "raw": "Administration.Core.Extensions.View",
+    "native": false,
+    "category": "System",
+    "allows": "View the product extension register and its start-up check",
+    "defaultRoles": [
+      "Administrators",
+      "PlatformOperator"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Workflows.View",
+    "raw": "Administration.Core.Workflows.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View workflow definitions, cases and replays",
+    "defaultRoles": [
+      "Administrators",
+      "Auditor"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Workflows.CreateEditDelete",
+    "raw": "Administration.Core.Workflows.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Design, simulate, publish and retire workflow definitions",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Rules.View",
+    "raw": "Administration.Core.Rules.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View rule sets, rules, test results and evaluation logs",
+    "defaultRoles": [
+      "Administrators",
+      "Auditor"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Rules.CreateEditDelete",
+    "raw": "Administration.Core.Rules.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Write, test, set precedence, activate and retire rules",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.TransactionTypes.CreateEditDelete",
+    "raw": "Administration.Core.TransactionTypes.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Define transaction types, parameter schemas and chains",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Eligibility.CreateEditDelete",
+    "raw": "Administration.Core.Eligibility.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Define eligibility rules, quotas and screening settings; review screening matches",
+    "defaultRoles": [
+      "Compliance"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Approvals.Act",
+    "raw": "Administration.Core.Approvals.Act",
+    "native": false,
+    "category": "Orders",
+    "allows": "Open and decide approval items assigned to the user",
+    "defaultRoles": [
+      "Administrators",
+      "roles named on approval steps"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Approvals.Configure",
+    "raw": "Administration.Core.Approvals.Configure",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Define approval chains, moderation queues, assignment rules and reason codes",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.WorkQueues.View",
+    "raw": "Administration.Core.WorkQueues.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "Open the operations console, work queues, operational order view and personal dashboard",
+    "defaultRoles": [
+      "Administrators",
+      "Operations"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Exceptions.CreateEditDelete",
+    "raw": "Administration.Core.Exceptions.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Act on exceptions, including bulk actions, and edit reason codes",
+    "defaultRoles": [
+      "Administrators",
+      "Operations"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Alerts.CreateEditDelete",
+    "raw": "Administration.Core.Alerts.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Define alert rules and acknowledge alerts",
+    "defaultRoles": [
+      "Administrators",
+      "Operations"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Templates.View",
+    "raw": "Administration.Core.Templates.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View the template library, versions and usage analytics",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Templates.CreateEditDelete",
+    "raw": "Administration.Core.Templates.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Create, clone and change templates",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ADM",
+    "systemName": "Administration.Core.Templates.Approve",
+    "raw": "Administration.Core.Templates.Approve",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Approve template changes (never own changes)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "AI",
+    "systemName": "Configuration.ManageSettings",
+    "raw": "Configuration.ManageSettings (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Edit ArtificialIntelligenceSettings (provider, keys, allowed generations, prompts) and TranslationSettings (pre-translation, service, keys)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "AI",
+    "systemName": "Catalog.ProductsCreateEditDelete",
+    "raw": "Catalog.ProductsCreateEditDelete (native)",
+    "native": true,
+    "category": "Catalog",
+    "allows": "Use the native product description generator (Admin ProductController.FullDescriptionGeneratorPopup)",
+    "defaultRoles": [
+      "Roles holding it"
+    ]
+  },
+  {
+    "area": "AI",
+    "systemName": "AI.Core.Chatbot.View",
+    "raw": "AI.Core.Chatbot.View",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "View chatbot conversations, hand-offs and unanswered questions",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "AI",
+    "systemName": "AI.Core.Chatbot.CreateEditDelete",
+    "raw": "AI.Core.Chatbot.CreateEditDelete",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "Configure the chatbot: channels, knowledge sources, languages, hand-off rules",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "AI",
+    "systemName": "AI.Core.Translation.Approve",
+    "raw": "AI.Core.Translation.Approve",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "Approve or reject AI translations held for approval",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "AI",
+    "systemName": "AI.Core.Assist.Use",
+    "raw": "AI.Core.Assist.Use",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Use price suggestions, attribute quality checks and image generation",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "AI",
+    "systemName": "AI.Core.Drafting.Use",
+    "raw": "AI.Core.Drafting.Use",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "Generate reply drafts, document summaries, contract and letter drafts",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "AI",
+    "systemName": "AI.Core.Governance.View",
+    "raw": "AI.Core.Governance.View",
+    "native": false,
+    "category": "Security",
+    "allows": "View the AI use register, AI use log, explanations and bias-report links",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "AI",
+    "systemName": "AI.Core.Governance.CreateEditDelete",
+    "raw": "AI.Core.Governance.CreateEditDelete",
+    "native": false,
+    "category": "Security",
+    "allows": "Maintain the AI use register and disclosure texts",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Catalog.ProductsView / Catalog.ProductsCreateEditDelete",
+    "raw": "Catalog.ProductsView / Catalog.ProductsCreateEditDelete (native)",
+    "native": true,
+    "category": "Catalog",
+    "allows": "View; create, edit, delete products (vendors: own products only, native)",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Catalog.ProductsImportExport",
+    "raw": "Catalog.ProductsImportExport (native)",
+    "native": true,
+    "category": "Catalog",
+    "allows": "Import and export products, PDF catalogue; with CAT installed the import first runs the CAT-010 validation",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Catalog.CategoriesCreateEditDelete",
+    "raw": "Catalog.CategoriesCreateEditDelete (native)",
+    "native": true,
+    "category": "Catalog",
+    "allows": "Maintain the category tree",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Catalog.ProductReviewsCreateEditDelete",
+    "raw": "Catalog.ProductReviewsCreateEditDelete (native)",
+    "native": true,
+    "category": "Catalog",
+    "allows": "Approve, edit, reply to and delete reviews",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Listings.Approve",
+    "raw": "Misc.Catalogue.Listings.Approve",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Decide a moderation step: approve, reject, request changes (never on a listing the user submitted)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Listings.Manage",
+    "raw": "Misc.Catalogue.Listings.Manage",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Publish an approved listing, pause, resume, withdraw with reason, archive, restore a version",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Moderation.CreateEditDelete",
+    "raw": "Misc.Catalogue.Moderation.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Configure moderation queues, approval steps and assignment rules",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Schema.CreateEditDelete",
+    "raw": "Misc.Catalogue.Schema.CreateEditDelete",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Draft category attribute schemas and required listing fields",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Schema.Approve",
+    "raw": "Misc.Catalogue.Schema.Approve",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Approve a schema change (second person)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Policy.CreateEditDelete",
+    "raw": "Misc.Catalogue.Policy.CreateEditDelete",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Maintain prohibited categories, items and terms; decide listing reports and takedown requests",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Compliance.CreateEditDelete",
+    "raw": "Misc.Catalogue.Compliance.CreateEditDelete",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Maintain regulatory metadata, certificates and compliance status",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Promotions.CreateEditDelete",
+    "raw": "Misc.Catalogue.Promotions.CreateEditDelete",
+    "native": false,
+    "category": "Promotions",
+    "allows": "Approve promoted placements, set placement rules and fees",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Pricing.CreateEditDelete",
+    "raw": "Misc.Catalogue.Pricing.CreateEditDelete",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Maintain company assortments, units of measure and fixed currency prices, and view the pricing-conflicts list; price lists themselves use the native 5.00 permissions Catalog.PriceListsView, Catalog.PriceListsCreateEditDelete and Catalog.PriceListsImportExport",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Questions.CreateEditDelete",
+    "raw": "Misc.Catalogue.Questions.CreateEditDelete",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Moderate product questions and answers",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Bookings.CreateEditDelete",
+    "raw": "Misc.Catalogue.Bookings.CreateEditDelete",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Maintain booking slots and capacity of service listings",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Feeds.CreateEditDelete",
+    "raw": "Misc.Catalogue.Feeds.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Configure feed targets and run feeds",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Audit.View",
+    "raw": "Misc.Catalogue.Audit.View",
+    "native": false,
+    "category": "Catalog",
+    "allows": "View the catalogue audit log per listing",
+    "defaultRoles": [
+      "Administrators",
+      "Auditor"
+    ]
+  },
+  {
+    "area": "CAT",
+    "systemName": "Misc.Catalogue.Analytics.View",
+    "raw": "Misc.Catalogue.Analytics.View",
+    "native": false,
+    "category": "Reports",
+    "allows": "View catalogue analytics",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHK",
+    "systemName": "Configuration.ManageSettings",
+    "raw": "Configuration.ManageSettings (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Edit checkout, cart, order and address settings (CHK-001, 002, 007, 008, 010, 019)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHK",
+    "systemName": "Catalog.CheckoutAttributesView / Catalog.CheckoutAttributesCreateEditDelete",
+    "raw": "Catalog.CheckoutAttributesView / Catalog.CheckoutAttributesCreateEditDelete (native)",
+    "native": true,
+    "category": "Catalog",
+    "allows": "View and edit checkout attributes (CHK-006 instructions, CHK-015)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHK",
+    "systemName": "Customers.CustomersImpersonation",
+    "raw": "Customers.CustomersImpersonation (native)",
+    "native": true,
+    "category": "Customers",
+    "allows": "Start Place order for customer (acting session) for a customer (CHK-013); the single impersonation filter owned by IAM-026 (BR-IAM-130, decision SINGLE-FILTER) allows Agents only for customers of their own outlet",
+    "defaultRoles": [
+      "Administrators",
+      "Agent"
+    ]
+  },
+  {
+    "area": "CHK",
+    "systemName": "Checkout.Core.Rules.View",
+    "raw": "Checkout.Core.Rules.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View cart restriction rules, delivery slot definitions and legal notice profiles",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHK",
+    "systemName": "Checkout.Core.Rules.CreateEditDelete",
+    "raw": "Checkout.Core.Rules.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Create, change, enable and disable cart restriction rules, delivery slot definitions and legal notices (audited)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHK",
+    "systemName": "Checkout.Core.AssistedOrders.View",
+    "raw": "Checkout.Core.AssistedOrders.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "View assisted orders filtered by agent and outlet",
+    "defaultRoles": [
+      "Administrators",
+      "Agent"
+    ]
+  },
+  {
+    "area": "CHK",
+    "systemName": "Checkout.Core.Credit.View",
+    "raw": "Checkout.Core.Credit.View",
+    "native": false,
+    "category": "Customers",
+    "allows": "View credit accounts, limits, terms and credit used",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "CHK",
+    "systemName": "Checkout.Core.Credit.CreateEditDelete",
+    "raw": "Checkout.Core.Credit.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Approve, change, suspend and close credit accounts (audited)",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "CHK",
+    "systemName": "Checkout.Core.Exceptions.View",
+    "raw": "Checkout.Core.Exceptions.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "View checkout exceptions (split placement failures, unsent confirmations)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHN",
+    "systemName": "Configuration.ManageSettings",
+    "raw": "Configuration.ManageSettings (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Edit share button, page share code, social links, favicon and app icons (manifest link) and PWA settings",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHN",
+    "systemName": "Configuration.ManageExternalAuthenticationMethods",
+    "raw": "Configuration.ManageExternalAuthenticationMethods (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Activate and configure social sign-in (Facebook)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHN",
+    "systemName": "Channels.Core.Sms.View",
+    "raw": "Channels.Core.Sms.View",
+    "native": false,
+    "category": "System",
+    "allows": "View the SMS log, delivery receipts, inbound commands and opt-outs",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHN",
+    "systemName": "Channels.Core.Sms.CreateEditDelete",
+    "raw": "Channels.Core.Sms.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Configure SMS providers, sender IDs, command and opt-out keywords",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHN",
+    "systemName": "Channels.Core.Messaging.CreateEditDelete",
+    "raw": "Channels.Core.Messaging.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Connect WhatsApp, WeChat and Telegram accounts; manage provider templates and routing",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHN",
+    "systemName": "Channels.Core.Voice.CreateEditDelete",
+    "raw": "Channels.Core.Voice.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Configure USSD and IVR menus and gateway connections",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHN",
+    "systemName": "Channels.Core.Push.CreateEditDelete",
+    "raw": "Channels.Core.Push.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Configure push providers and keys",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CHN",
+    "systemName": "Channels.Core.Agents.View",
+    "raw": "Channels.Core.Agents.View",
+    "native": false,
+    "category": "Customers",
+    "allows": "View agent networks, network members and commissions",
+    "defaultRoles": [
+      "Administrators",
+      "Finance"
+    ]
+  },
+  {
+    "area": "CHN",
+    "systemName": "Channels.Core.Agents.CreateEditDelete",
+    "raw": "Channels.Core.Agents.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Create agent networks; add IAM-026 agents to a network, suspend or deactivate their membership; set commission rules",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.Tickets.View",
+    "raw": "Support.Core.Tickets.View",
+    "native": false,
+    "category": "Customers",
+    "allows": "View tickets, queues and ticket history",
+    "defaultRoles": [
+      "Support",
+      "SupportManager",
+      "Agent"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.Tickets.CreateEditDelete",
+    "raw": "Support.Core.Tickets.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Create, reply, assign, change status, log calls, merge, add internal notes, link cases",
+    "defaultRoles": [
+      "Support",
+      "SupportManager",
+      "Agent"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.Customer360.View",
+    "raw": "Support.Core.Customer360.View",
+    "native": false,
+    "category": "Customers",
+    "allows": "Open the agent 360-degree view with sensitive fields masked",
+    "defaultRoles": [
+      "Support",
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.Customer360.ViewSensitive",
+    "raw": "Support.Core.Customer360.ViewSensitive",
+    "native": false,
+    "category": "Customers",
+    "allows": "Reveal masked fields in the 360-degree view (audited)",
+    "defaultRoles": [
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.Routing.CreateEditDelete",
+    "raw": "Support.Core.Routing.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Edit categories, issue types, routing rules, SLA policies, escalation levels and matrix, intake channels, channel directory, early-warning rules",
+    "defaultRoles": [
+      "Administrators",
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.Knowledge.CreateEditDelete",
+    "raw": "Support.Core.Knowledge.CreateEditDelete",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "Write knowledge-base articles and ready-made answers (drafts)",
+    "defaultRoles": [
+      "Support",
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.Knowledge.Approve",
+    "raw": "Support.Core.Knowledge.Approve",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "Approve or reject ready-made answer versions (not own drafts)",
+    "defaultRoles": [
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.Analytics.View",
+    "raw": "Support.Core.Analytics.View",
+    "native": false,
+    "category": "Reports",
+    "allows": "Support dashboards, ratings, complaint trends",
+    "defaultRoles": [
+      "SupportManager",
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.Fraud.Refer",
+    "raw": "Support.Core.Fraud.Refer",
+    "native": false,
+    "category": "Customers",
+    "allows": "Refer a ticket, case or customer as suspected fraud",
+    "defaultRoles": [
+      "Support",
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.Fraud.CreateEditDelete",
+    "raw": "Support.Core.Fraud.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Review fraud referrals and record outcomes",
+    "defaultRoles": [
+      "Risk"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.Feedback.CreateEditDelete",
+    "raw": "Support.Core.Feedback.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Review experience feedback and record actions",
+    "defaultRoles": [
+      "SupportManager",
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.AccountManagers.CreateEditDelete",
+    "raw": "Support.Core.AccountManagers.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Assign account managers to business customers",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Support.Core.PublicStore.Tickets",
+    "raw": "Support.Core.PublicStore.Tickets",
+    "native": false,
+    "category": "PublicStore",
+    "allows": "My tickets, Report a problem, ratings and feedback in My account",
+    "defaultRoles": [
+      "Registered"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "ContentManagement.TopicsCreateEditDelete",
+    "raw": "ContentManagement.TopicsCreateEditDelete (native)",
+    "native": true,
+    "category": "ContentManagement",
+    "allows": "Edit topics used as knowledge-base articles (publishing goes through MKT-008 approval)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Forums.Manage (bundled Misc.Forums plugin; replaces ContentManagement.ForumsCreateEditDelete in 5.00)",
+    "raw": "Forums.Manage (bundled Misc.Forums plugin; replaces ContentManagement.ForumsCreateEditDelete in 5.00)",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "Manage forum groups and forums",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "CRM",
+    "systemName": "Customers.CustomersImpersonation",
+    "raw": "Customers.CustomersImpersonation (native)",
+    "native": true,
+    "category": "Customers",
+    "allows": "Place orders on behalf of a customer; for account managers the single IAM-026 impersonation filter allows only assigned customers, through the CRM-015 rule provider (BR-CRM-070)",
+    "defaultRoles": [
+      "Administrators",
+      "AccountManager"
+    ]
+  },
+  {
+    "area": "DOC",
+    "systemName": "Orders.OrdersView",
+    "raw": "Orders.OrdersView (native)",
+    "native": true,
+    "category": "Orders",
+    "allows": "Print invoices and packing slips from admin order pages (now rendered by DOC-001 templates)",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "DOC",
+    "systemName": "Documents.Core.Templates.View",
+    "raw": "Documents.Core.Templates.View",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "View document templates and versions",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "DOC",
+    "systemName": "Documents.Core.Templates.CreateEditDelete",
+    "raw": "Documents.Core.Templates.CreateEditDelete",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "Create, change, activate and retire document templates",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "DOC",
+    "systemName": "Documents.Core.Documents.View",
+    "raw": "Documents.Core.Documents.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "Search and open stored documents of all owners",
+    "defaultRoles": [
+      "Administrators",
+      "Compliance",
+      "Auditor"
+    ]
+  },
+  {
+    "area": "DOC",
+    "systemName": "Documents.Core.Documents.CreateEditDelete",
+    "raw": "Documents.Core.Documents.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Generate, upload, supersede and delete documents (deletion blocked by legal hold)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "DOC",
+    "systemName": "Documents.Core.LegalHold.CreateEditDelete",
+    "raw": "Documents.Core.LegalHold.CreateEditDelete",
+    "native": false,
+    "category": "System",
+    "allows": "Place and release legal holds",
+    "defaultRoles": [
+      "Compliance"
+    ]
+  },
+  {
+    "area": "DOC",
+    "systemName": "Documents.Core.Export.Create",
+    "raw": "Documents.Core.Export.Create",
+    "native": false,
+    "category": "System",
+    "allows": "Run compliance export packages",
+    "defaultRoles": [
+      "Compliance",
+      "Auditor"
+    ]
+  },
+  {
+    "area": "DOC",
+    "systemName": "Documents.Core.Requirements.CreateEditDelete",
+    "raw": "Documents.Core.Requirements.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Define document requirements per process",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "DOC",
+    "systemName": "Documents.Core.ExportSet.CreateEditDelete",
+    "raw": "Documents.Core.ExportSet.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Produce the export document set and record certificate references",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "EGV",
+    "systemName": "EGov.Applications.View",
+    "raw": "EGov.Applications.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "View applications, documents and status history of the own agency (all agencies for administrators)",
+    "defaultRoles": [
+      "Administrators",
+      "AgencyOfficer",
+      "AgencyAdmin"
+    ]
+  },
+  {
+    "area": "EGV",
+    "systemName": "EGov.Applications.CreateEditDelete",
+    "raw": "EGov.Applications.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Accept or reject documents, request resubmission, approve, reject, record issue, hand over for delivery (always with a reason where stated, audited)",
+    "defaultRoles": [
+      "AgencyOfficer"
+    ]
+  },
+  {
+    "area": "EGV",
+    "systemName": "EGov.AgencyUsers.CreateEditDelete",
+    "raw": "EGov.AgencyUsers.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Create, deactivate and assign EGV roles to users of the own agency only",
+    "defaultRoles": [
+      "AgencyAdmin",
+      "Administrators"
+    ]
+  },
+  {
+    "area": "EGV",
+    "systemName": "EGov.Workflows.CreateEditDelete",
+    "raw": "EGov.Workflows.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Assign an ADM-002 workflow definition and its version to each service of the own agency",
+    "defaultRoles": [
+      "AgencyAdmin"
+    ]
+  },
+  {
+    "area": "EGV",
+    "systemName": "EGov.Appointments.CreateEditDelete",
+    "raw": "EGov.Appointments.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Check in an appointment linked to an application",
+    "defaultRoles": [
+      "Agent",
+      "AgencyOfficer"
+    ]
+  },
+  {
+    "area": "EGV",
+    "systemName": "EGov.Remittance.View",
+    "raw": "EGov.Remittance.View",
+    "native": false,
+    "category": "Reports",
+    "allows": "View fee collection and remittance reports (own agency for agency roles)",
+    "defaultRoles": [
+      "Finance",
+      "AgencyAdmin"
+    ]
+  },
+  {
+    "area": "EGV",
+    "systemName": "EGov.Remittance.CreateEditDelete",
+    "raw": "EGov.Remittance.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Create remittance batches, record remittance references, record agency confirmation",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "FIN",
+    "systemName": "FinancialServices.Partners.View",
+    "raw": "FinancialServices.Partners.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View partners, partner products, connector status and consent records",
+    "defaultRoles": [
+      "Administrators",
+      "Finance"
+    ]
+  },
+  {
+    "area": "FIN",
+    "systemName": "FinancialServices.Partners.CreateEditDelete",
+    "raw": "FinancialServices.Partners.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Create and edit partners, partner products, fulfilment modes and data-sharing scopes; enter partner credentials",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "FIN",
+    "systemName": "FinancialServices.Referrals.View",
+    "raw": "FinancialServices.Referrals.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "View credit referrals, invoice-financing records, insurance policies and claims, partner fulfilments",
+    "defaultRoles": [
+      "Administrators",
+      "Finance"
+    ]
+  },
+  {
+    "area": "FIN",
+    "systemName": "FinancialServices.Repayments.CreateEditDelete",
+    "raw": "FinancialServices.Repayments.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Record, suspend or correct repayment instructions and deductions (always with a reason, audited)",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "FIN",
+    "systemName": "FinancialServices.Subsidies.View",
+    "raw": "FinancialServices.Subsidies.View",
+    "native": false,
+    "category": "Promotions",
+    "allows": "View subsidy schemes, budgets and the claim report",
+    "defaultRoles": [
+      "Administrators",
+      "Programme",
+      "Finance"
+    ]
+  },
+  {
+    "area": "FIN",
+    "systemName": "FinancialServices.Subsidies.CreateEditDelete",
+    "raw": "FinancialServices.Subsidies.CreateEditDelete",
+    "native": false,
+    "category": "Promotions",
+    "allows": "Create and change subsidy schemes, budgets and eligibility sources",
+    "defaultRoles": [
+      "Programme"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Customers.CustomersView",
+    "raw": "Customers.CustomersView (native)",
+    "native": true,
+    "category": "Customers",
+    "allows": "Search and view customers in the user administration console (IAM-010)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Customers.CustomersCreateEditDelete",
+    "raw": "Customers.CustomersCreateEditDelete (native)",
+    "native": true,
+    "category": "Customers",
+    "allows": "Create and edit customers, activate and deactivate, assign roles, remove an MFA binding (IAM-007, IAM-010)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Customers.CustomersImpersonation",
+    "raw": "Customers.CustomersImpersonation (native)",
+    "native": true,
+    "category": "Customers",
+    "allows": "Act as a customer from the admin console (IAM-010); start an acting session at an outlet (IAM-026, CHK-013) or for an assigned business customer (CRM-015); every request also passes the single IAM impersonation filter (BR-IAM-130)",
+    "defaultRoles": [
+      "Administrators",
+      "Agent",
+      "AccountManager"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Customers.CustomerRolesView",
+    "raw": "Customers.CustomerRolesView (native)",
+    "native": true,
+    "category": "Customers",
+    "allows": "View customer roles (IAM-007)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Customers.CustomerRolesCreateEditDelete",
+    "raw": "Customers.CustomerRolesCreateEditDelete (native)",
+    "native": true,
+    "category": "Customers",
+    "allows": "Create, edit and delete customer roles; the native role Create, Edit and Delete POST actions also require Configuration.ManageACL (IAM-007)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Configuration.ManageACL",
+    "raw": "Configuration.ManageACL (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Change the permission-to-role mappings (native SecurityController.PermissionEditPopup) and restrict products, categories, manufacturers, topics and menus to roles (IAM-007)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Customers.GDPRManage",
+    "raw": "Customers.GDPRManage (native)",
+    "native": true,
+    "category": "Customers",
+    "allows": "GDPR log, staff-initiated export and deletion; with IAM installed also the correction-request queue (IAM-017)",
+    "defaultRoles": [
+      "Administrators",
+      "PrivacyOfficer"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Configuration.ManageMultifactorAuthenticationMethods",
+    "raw": "Configuration.ManageMultifactorAuthenticationMethods (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Activate and configure MFA providers (IAM-004)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Security.EnableMultiFactorAuthentication",
+    "raw": "Security.EnableMultiFactorAuthentication (native)",
+    "native": true,
+    "category": "Security",
+    "allows": "Use multi-factor authentication on the own account (IAM-004)",
+    "defaultRoles": [
+      "Administrators",
+      "Registered"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Configuration.ManageExternalAuthenticationMethods",
+    "raw": "Configuration.ManageExternalAuthenticationMethods (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Activate and configure single sign-on providers (IAM-005)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Identity.Core.Sessions.View",
+    "raw": "Identity.Core.Sessions.View",
+    "native": false,
+    "category": "Customers",
+    "allows": "View the active sessions of a user (IAM-006)",
+    "defaultRoles": [
+      "Administrators",
+      "SecurityOfficer"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Identity.Core.Sessions.CreateEditDelete",
+    "raw": "Identity.Core.Sessions.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "End one session or force a user off the system (IAM-006)",
+    "defaultRoles": [
+      "Administrators",
+      "SecurityOfficer"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Identity.Core.AccessGovernance.CreateEditDelete",
+    "raw": "Identity.Core.AccessGovernance.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Manage scoped permissions, staff invitations and access-review campaigns (IAM-008, IAM-011)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Identity.Core.AccessReports.View",
+    "raw": "Identity.Core.AccessReports.View",
+    "native": false,
+    "category": "Reports",
+    "allows": "Run and export the access audit report (IAM-011)",
+    "defaultRoles": [
+      "Administrators",
+      "Auditor"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Identity.Core.AuthEvents.View",
+    "raw": "Identity.Core.AuthEvents.View",
+    "native": false,
+    "category": "Customers",
+    "allows": "View authentication events and suspicious-login flags (IAM-012)",
+    "defaultRoles": [
+      "Administrators",
+      "SecurityOfficer",
+      "Auditor"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Identity.Core.ConsentTrail.View",
+    "raw": "Identity.Core.ConsentTrail.View",
+    "native": false,
+    "category": "Customers",
+    "allows": "View the consent and terms-acceptance trail of a customer (IAM-016, IAM-017; read by CRM-003 through IC-IAM-05)",
+    "defaultRoles": [
+      "Administrators",
+      "PrivacyOfficer",
+      "Support",
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Identity.Core.TradeAccounts.CreateEditDelete",
+    "raw": "Identity.Core.TradeAccounts.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Review trade-account applications and manage company accounts (IAM-022, IAM-023)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Identity.Core.Agents.CreateEditDelete",
+    "raw": "Identity.Core.Agents.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Register outlet agents and assign them to outlets (IAM-026)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Identity.Core.AssistedService.Access",
+    "raw": "Identity.Core.AssistedService.Access",
+    "native": false,
+    "category": "PublicStore",
+    "allows": "Register walk-in customers at an outlet; marks the holder as an agent for the IAM acting-session checks (IAM-026, BR-IAM-130)",
+    "defaultRoles": [
+      "Agent"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Identity.Core.Verification.CreateEditDelete",
+    "raw": "Identity.Core.Verification.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Configure identity verification adapters and decide inconclusive results (IAM-020)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Identity.Core.Delegations.CreateEditDelete",
+    "raw": "Identity.Core.Delegations.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Create or revoke a delegation between two other users (IAM-009); users delegate their own rights without this permission (BR-IAM-070)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "IAM",
+    "systemName": "Configuration.ManageSmsSettings (native, 5.00)",
+    "raw": "Configuration.ManageSmsSettings (native, 5.00)",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Install SMS provider plugins and mark the primary SMS provider used for one-time codes (IAM-002; StandardPermission.Configuration.MANAGE_SMS_SETTINGS)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "INT",
+    "systemName": "Configuration.ManagePlugins",
+    "raw": "Configuration.ManagePlugins (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Install, uninstall and configure plugins, including every INT adapter plugin; set plugin store and role limits (INT-011)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "INT",
+    "systemName": "System.ManageScheduleTasks",
+    "raw": "System.ManageScheduleTasks (native)",
+    "native": true,
+    "category": "System",
+    "allows": "Change the interval of, or run, the sync, posting and delivery tasks",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "INT",
+    "systemName": "Integrations.Core.ApiClients.View",
+    "raw": "Integrations.Core.ApiClients.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View API clients, scopes, store limits and versions in use",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "INT",
+    "systemName": "Integrations.Core.ApiClients.CreateEditDelete",
+    "raw": "Integrations.Core.ApiClients.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Register, change or revoke an API client; assign scopes and store limits; rotate keys",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "INT",
+    "systemName": "Integrations.Core.Webhooks.View",
+    "raw": "Integrations.Core.Webhooks.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View webhook subscriptions and their delivery history",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "INT",
+    "systemName": "Integrations.Core.Webhooks.CreateEditDelete",
+    "raw": "Integrations.Core.Webhooks.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Create, change, pause, resume and delete webhook subscriptions",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "INT",
+    "systemName": "Integrations.Core.Messages.View",
+    "raw": "Integrations.Core.Messages.View",
+    "native": false,
+    "category": "System",
+    "allows": "View the integration message log, failures and the dead-letter list",
+    "defaultRoles": [
+      "Administrators",
+      "Finance"
+    ]
+  },
+  {
+    "area": "INT",
+    "systemName": "Integrations.Core.Messages.Replay",
+    "raw": "Integrations.Core.Messages.Replay",
+    "native": false,
+    "category": "System",
+    "allows": "Replay or discard a dead-lettered message, always with a reason",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "INT",
+    "systemName": "Integrations.Core.Connectors.CreateEditDelete",
+    "raw": "Integrations.Core.Connectors.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Configure connector adapters (ERP, SAGE 200, PostGlobal, bank, government, MANEPS, master-data sync, punch-out), mappings and master-of-record per entity type",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "INT",
+    "systemName": "Integrations.Core.Posting.View",
+    "raw": "Integrations.Core.Posting.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "View ERP and SAGE 200 posting batches and reconciliation exceptions",
+    "defaultRoles": [
+      "Administrators",
+      "Finance"
+    ]
+  },
+  {
+    "area": "INT",
+    "systemName": "Integrations.Core.Posting.CreateEditDelete",
+    "raw": "Integrations.Core.Posting.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Re-post a failed batch; resolve a reconciliation exception with a note",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "INT",
+    "systemName": "Integrations.Core.GovSubmissions.Approve",
+    "raw": "Integrations.Core.GovSubmissions.Approve",
+    "native": false,
+    "category": "Reports",
+    "allows": "Approve or decline a submission to a regulator or government system; cannot approve an own submission",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Catalog.ProductsCreateEditDelete",
+    "raw": "Catalog.ProductsCreateEditDelete (native)",
+    "native": true,
+    "category": "Catalog",
+    "allows": "Edit product inventory settings (inventory method, thresholds, backorders, display, warehouses used). With INV installed, a direct change of a stock quantity through the native product pages is refused (BR-INV-030)",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Reports.LowStock",
+    "raw": "Reports.LowStock (native)",
+    "native": true,
+    "category": "Reports",
+    "allows": "Low-stock report; a vendor sees own products only",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Configuration.ManageShippingSettings",
+    "raw": "Configuration.ManageShippingSettings (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Create and edit warehouses, including the INV-002 code and coordinates",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Configuration.ManageSettings",
+    "raw": "Configuration.ManageSettings (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "INV settings: hold windows, payment windows and actions per payment method, reason codes, thresholds, analytics parameters",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Inventory.Core.Stock.View",
+    "raw": "Inventory.Core.Stock.View",
+    "native": false,
+    "category": "Catalog",
+    "allows": "View stock by warehouse, stock history with reasons, holds, lots, serial numbers, transfers and counts",
+    "defaultRoles": [
+      "Administrators",
+      "Stock",
+      "Warehouse",
+      "Quality",
+      "Auditor",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Inventory.Core.Adjustments.Request",
+    "raw": "Inventory.Core.Adjustments.Request",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Request a stock adjustment with a reason code",
+    "defaultRoles": [
+      "Stock",
+      "Warehouse",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Inventory.Core.Adjustments.Approve",
+    "raw": "Inventory.Core.Adjustments.Approve",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Approve or reject adjustments above the threshold (not own requests); run a product import that changes stock",
+    "defaultRoles": [
+      "Stock"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Inventory.Core.Receiving.CreateEditDelete",
+    "raw": "Inventory.Core.Receiving.CreateEditDelete",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Record purchase orders (when not received from the ERP), goods receipts, discrepancies and bin locations",
+    "defaultRoles": [
+      "Warehouse"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Inventory.Core.Transfers.CreateEditDelete",
+    "raw": "Inventory.Core.Transfers.CreateEditDelete",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Create, dispatch, receive and cancel warehouse transfers",
+    "defaultRoles": [
+      "Warehouse"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Inventory.Core.Counts.CreateEditDelete",
+    "raw": "Inventory.Core.Counts.CreateEditDelete",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Plan, enter and submit cycle counts",
+    "defaultRoles": [
+      "Stock",
+      "Warehouse"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Inventory.Core.Lots.CreateEditDelete",
+    "raw": "Inventory.Core.Lots.CreateEditDelete",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Create lots, record quality results and custody, release, block or recall a lot",
+    "defaultRoles": [
+      "Quality",
+      "Warehouse"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Inventory.Core.Serials.CreateEditDelete",
+    "raw": "Inventory.Core.Serials.CreateEditDelete",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Record and correct serial numbers",
+    "defaultRoles": [
+      "Warehouse"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Inventory.Core.UnpaidOrders.CreateEditDelete",
+    "raw": "Inventory.Core.UnpaidOrders.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "View the unpaid-order list, dismiss a flag with a reason, release (cancel) a flagged unpaid order under BR-INV-020",
+    "defaultRoles": [
+      "Administrators",
+      "Finance"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Inventory.Core.Sync.CreateEditDelete",
+    "raw": "Inventory.Core.Sync.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Configure the WMS/ERP connector and resolve conflicts (failed outbound messages are replayed in the INT-004 message log with Integrations.Core.Messages.Replay)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "INV",
+    "systemName": "Inventory.Core.Analytics.View",
+    "raw": "Inventory.Core.Analytics.View",
+    "native": false,
+    "category": "Reports",
+    "allows": "Inventory analytics reports",
+    "defaultRoles": [
+      "Administrators",
+      "Stock"
+    ]
+  },
+  {
+    "area": "LOG",
+    "systemName": "Configuration.ManageShippingSettings",
+    "raw": "Configuration.ManageShippingSettings (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Shipping methods, rate tables, warehouses, pickup points; with LOG installed also fee tables, coverage areas, delivery standards, outlet status, carrier adapters and rules, label templates, proof methods and postal-pack settings",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "LOG",
+    "systemName": "Orders.ShipmentsView",
+    "raw": "Orders.ShipmentsView (native)",
+    "native": true,
+    "category": "Orders",
+    "allows": "View shipments and packaging slips; with LOG also labels, manifests and proof-of-delivery summary",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "LOG",
+    "systemName": "Orders.ShipmentsCreateEditDelete",
+    "raw": "Orders.ShipmentsCreateEditDelete (native)",
+    "native": true,
+    "category": "Orders",
+    "allows": "Create shipments, set tracking numbers, mark shipped, ready for pickup and delivered (native actions intercepted per BR-LOG-160)",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "LOG",
+    "systemName": "Logistics.Core.Fulfilment.View",
+    "raw": "Logistics.Core.Fulfilment.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "View allocation, pick lists, packing and dispatch queues and manifests",
+    "defaultRoles": [
+      "Warehouse",
+      "LogisticsOps"
+    ]
+  },
+  {
+    "area": "LOG",
+    "systemName": "Logistics.Core.Fulfilment.CreateEditDelete",
+    "raw": "Logistics.Core.Fulfilment.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Confirm pick, pack, stage and dispatch; override allocation with a reason; book and cancel carriers; print labels",
+    "defaultRoles": [
+      "Warehouse",
+      "LogisticsOps"
+    ]
+  },
+  {
+    "area": "LOG",
+    "systemName": "Logistics.Core.Operations.CreateEditDelete",
+    "raw": "Logistics.Core.Operations.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Logistics tasks, seller pickup schedules, drop-off acceptance, route lists and attempts, customs declarations",
+    "defaultRoles": [
+      "LogisticsOps",
+      "Agent",
+      "Courier"
+    ]
+  },
+  {
+    "area": "LOG",
+    "systemName": "Logistics.Core.Exceptions.CreateEditDelete",
+    "raw": "Logistics.Core.Exceptions.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Record and resolve delivery exceptions and incidents; schedule redelivery; return to sender; waive holding charges",
+    "defaultRoles": [
+      "LogisticsOps"
+    ]
+  },
+  {
+    "area": "LOG",
+    "systemName": "Logistics.Core.ProofOfDelivery.View",
+    "raw": "Logistics.Core.ProofOfDelivery.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "View proof-of-delivery media, signatures and coordinates",
+    "defaultRoles": [
+      "LogisticsOps"
+    ]
+  },
+  {
+    "area": "LOG",
+    "systemName": "Logistics.Core.CashReconciliation.CreateEditDelete",
+    "raw": "Logistics.Core.CashReconciliation.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Record courier COD remittances and resolve discrepancies",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "LOG",
+    "systemName": "Logistics.Core.Reports.View",
+    "raw": "Logistics.Core.Reports.View",
+    "native": false,
+    "category": "Reports",
+    "allows": "Logistics KPI dashboard",
+    "defaultRoles": [
+      "LogisticsOps",
+      "Administrators"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Promotions.DiscountsView / Promotions.DiscountsCreateEditDelete",
+    "raw": "Promotions.DiscountsView / Promotions.DiscountsCreateEditDelete (native)",
+    "native": true,
+    "category": "Promotions",
+    "allows": "Discounts, coupons, requirement rules (incl. MKT-002 rules); vendors see only their own",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors",
+      "Marketing"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Orders.GiftCardsView / Orders.GiftCardsCreateEditDelete",
+    "raw": "Orders.GiftCardsView / Orders.GiftCardsCreateEditDelete (native)",
+    "native": true,
+    "category": "Orders",
+    "allows": "Gift cards and vouchers",
+    "defaultRoles": [
+      "Administrators",
+      "Marketing"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Promotions.SubscribersView / SubscribersCreateEditDelete / SubscribersImportExport; Promotions.SubscriptionTypeView / SubscriptionTypeCreateEditDelete",
+    "raw": "Promotions.SubscribersView / SubscribersCreateEditDelete / SubscribersImportExport; Promotions.SubscriptionTypeView / SubscriptionTypeCreateEditDelete (native)",
+    "native": true,
+    "category": "Promotions",
+    "allows": "Newsletter subscribers and subscription types",
+    "defaultRoles": [
+      "Administrators",
+      "Marketing"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Promotions.CampaignsView / CampaignsCreateEdit / CampaignsDelete / CampaignsSendEmails",
+    "raw": "Promotions.CampaignsView / CampaignsCreateEdit / CampaignsDelete / CampaignsSendEmails (native)",
+    "native": true,
+    "category": "Promotions",
+    "allows": "Email campaigns",
+    "defaultRoles": [
+      "Administrators",
+      "Marketing"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "ContentManagement.TopicsView / TopicsCreateEditDelete; BlogView / BlogCreateEditDelete; MenusView / MenusCreateEditDelete; News.View / News.Manage (bundled Misc.News plugin, Plugins/Nop.Plugin.Misc.News/NewsDefaults.cs:139-140); Polls.View / Polls.Manage (bundled Misc.Polls plugin, Plugins/Nop.Plugin.Misc.Polls/PollsDefaults.cs:58-59) — the ContentManagement.News* and Polls* names were removed from core in 5.00",
+    "raw": "ContentManagement.TopicsView / TopicsCreateEditDelete; BlogView / BlogCreateEditDelete; MenusView / MenusCreateEditDelete (native); News.View / News.Manage (bundled Misc.News plugin, Plugins/Nop.Plugin.Misc.News/NewsDefaults.cs:139-140); Polls.View / Polls.Manage (bundled Misc.Polls plugin, Plugins/Nop.Plugin.Misc.Polls/PollsDefaults.cs:58-59) — the ContentManagement.News* and Polls* names were removed from core in 5.00",
+    "native": true,
+    "category": "ContentManagement",
+    "allows": "Pages, news, blog, polls, menus",
+    "defaultRoles": [
+      "Administrators",
+      "Content"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Promotions.AffiliatesView / AffiliatesCreateEditDelete",
+    "raw": "Promotions.AffiliatesView / AffiliatesCreateEditDelete (native)",
+    "native": true,
+    "category": "Promotions",
+    "allows": "Affiliates",
+    "defaultRoles": [
+      "Administrators",
+      "Marketing"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Configuration.ManageWidgets",
+    "raw": "Configuration.ManageWidgets (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Widget plugins: Swiper banners, Google Analytics, Facebook Pixel, MKT pop-up widget activation",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Configuration.ManageSettings",
+    "raw": "Configuration.ManageSettings (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "SEO, sitemap, reward points, customer settings and customer attributes",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Configuration.ManagePlugins",
+    "raw": "Configuration.ManagePlugins (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Required for the Omnisend configuration page (natively since 5.00, BR-MKT-013)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Marketing.Core.Content.Approve",
+    "raw": "Marketing.Core.Content.Approve",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "Approve or reject content revisions and policy versions",
+    "defaultRoles": [
+      "ContentApprover"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Marketing.Core.PolicyVersions.View",
+    "raw": "Marketing.Core.PolicyVersions.View",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "Read policy version history and old versions",
+    "defaultRoles": [
+      "Administrators",
+      "ContentApprover",
+      "Content"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Marketing.Core.Segments.CreateEditDelete",
+    "raw": "Marketing.Core.Segments.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Segment rules that maintain segment customer roles",
+    "defaultRoles": [
+      "Marketing"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Marketing.Engagement.Popups.View",
+    "raw": "Marketing.Engagement.Popups.View",
+    "native": false,
+    "category": "Promotions",
+    "allows": "View pop-ups and their statistics",
+    "defaultRoles": [
+      "Marketing"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Marketing.Engagement.Popups.CreateEditDelete",
+    "raw": "Marketing.Engagement.Popups.CreateEditDelete",
+    "native": false,
+    "category": "Promotions",
+    "allows": "Create, schedule, activate pop-ups",
+    "defaultRoles": [
+      "Marketing"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Marketing.Engagement.Referrals.View",
+    "raw": "Marketing.Engagement.Referrals.View",
+    "native": false,
+    "category": "Promotions",
+    "allows": "View referrals, affiliate commissions",
+    "defaultRoles": [
+      "Marketing",
+      "Finance"
+    ]
+  },
+  {
+    "area": "MKT",
+    "systemName": "Marketing.Engagement.Referrals.CreateEditDelete",
+    "raw": "Marketing.Engagement.Referrals.CreateEditDelete",
+    "native": false,
+    "category": "Promotions",
+    "allows": "Referral reward rules, affiliate commission rules, mark commissions payable",
+    "defaultRoles": [
+      "Marketing"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.OrdersView / Orders.OrdersCreateEditDelete / Orders.OrdersImportExport",
+    "raw": "Orders.OrdersView / Orders.OrdersCreateEditDelete / Orders.OrdersImportExport (native)",
+    "native": true,
+    "category": "Orders",
+    "allows": "View, edit (with ORD-003 reason capture) and export or import orders",
+    "defaultRoles": [
+      "Administrators",
+      "client order-staff roles through the configuration pack"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.CurrentCartsManage",
+    "raw": "Orders.CurrentCartsManage (native)",
+    "native": true,
+    "category": "Orders",
+    "allows": "View customers' current carts and wishlists",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.ShipmentsView / Orders.ShipmentsCreateEditDelete",
+    "raw": "Orders.ShipmentsView / Orders.ShipmentsCreateEditDelete (native)",
+    "native": true,
+    "category": "Orders",
+    "allows": "View and create shipments (blocked by holds, ORD-010)",
+    "defaultRoles": [
+      "Administrators",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Misc.RFQ.AccessRFQ.Admin.AccessRFQ / Misc.RFQ.AccessRFQ.PublicStore.AccessRFQ (native, bundled Misc.RFQ)",
+    "raw": "Misc.RFQ.AccessRFQ.Admin.AccessRFQ / Misc.RFQ.AccessRFQ.PublicStore.AccessRFQ (native, bundled Misc.RFQ)",
+    "native": false,
+    "category": "Orders",
+    "allows": "Admin and storefront access to requests and quotes",
+    "defaultRoles": [
+      "Administrators / Administrators",
+      "Registered"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.Core.Configuration.View",
+    "raw": "Orders.Core.Configuration.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View stage model, reason codes, cancellation policy, service levels, invoice fields, Incoterms",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.Core.Configuration.CreateEditDelete",
+    "raw": "Orders.Core.Configuration.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Edit the items above (audited)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.Core.Status.Override",
+    "raw": "Orders.Core.Status.Override",
+    "native": false,
+    "category": "Orders",
+    "allows": "Use the native order-status change with a reason, and correct stages",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.Core.Interventions.Approve",
+    "raw": "Orders.Core.Interventions.Approve",
+    "native": false,
+    "category": "Orders",
+    "allows": "Approve interventions that need a second person; cannot approve own",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.Core.Holds.CreateEditDelete",
+    "raw": "Orders.Core.Holds.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Place and release order holds",
+    "defaultRoles": [
+      "Risk"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.Core.SellerOrders.Process",
+    "raw": "Orders.Core.SellerOrders.Process",
+    "native": false,
+    "category": "Orders",
+    "allows": "Accept, pack, hand over, reject and propose partial supply for own sub-orders; respond to RFQ invitations and counter-offers; post offers",
+    "defaultRoles": [
+      "Vendors"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.Core.Offers.Approve",
+    "raw": "Orders.Core.Offers.Approve",
+    "native": false,
+    "category": "Orders",
+    "allows": "Review and approve offers before publication",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.Core.Contracts.View",
+    "raw": "Orders.Core.Contracts.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "View requisitions, contracts, letters, securities and the repository",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.Core.Contracts.CreateEditDelete",
+    "raw": "Orders.Core.Contracts.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Process requisitions, draft, amend and issue contracts, letters and proformas, manage call-offs and securities",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "ORD",
+    "systemName": "Orders.Core.Programmes.CreateEditDelete",
+    "raw": "Orders.Core.Programmes.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Configure group deals and schemes; review scheme applications",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "PAY",
+    "systemName": "Configuration.ManagePaymentMethods",
+    "raw": "Configuration.ManagePaymentMethods (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Activate payment methods, edit restrictions and credentials; with PAY installed also edit routing rules",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "PAY",
+    "systemName": "Payments.Core.Transactions.View",
+    "raw": "Payments.Core.Transactions.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "View payment transactions, logs and the exceptions list",
+    "defaultRoles": [
+      "Administrators",
+      "Finance",
+      "Risk"
+    ]
+  },
+  {
+    "area": "PAY",
+    "systemName": "Payments.Core.Transactions.CreateEditDelete",
+    "raw": "Payments.Core.Transactions.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Manual actions on a payment: re-query status, mark paid with evidence, capture, void (always with a reason, audited)",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "PAY",
+    "systemName": "Payments.Core.Refunds.Request",
+    "raw": "Payments.Core.Refunds.Request",
+    "native": false,
+    "category": "Orders",
+    "allows": "Raise a refund (native refund buttons are intercepted and routed here)",
+    "defaultRoles": [
+      "Finance",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "PAY",
+    "systemName": "Payments.Core.Refunds.Approve",
+    "raw": "Payments.Core.Refunds.Approve",
+    "native": false,
+    "category": "Orders",
+    "allows": "Approve refunds above the threshold; cannot approve own request",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "PAY",
+    "systemName": "Payments.Core.Fees.CreateEditDelete",
+    "raw": "Payments.Core.Fees.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Edit fee schedules",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "PAY",
+    "systemName": "Payments.Core.Reconciliation.CreateEditDelete",
+    "raw": "Payments.Core.Reconciliation.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Import statements, resolve exceptions, export the daily file",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "PAY",
+    "systemName": "Payments.Core.Risk.CreateEditDelete",
+    "raw": "Payments.Core.Risk.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Create, enable and disable risk rules",
+    "defaultRoles": [
+      "Risk"
+    ]
+  },
+  {
+    "area": "PAY",
+    "systemName": "Payments.Core.TradeFinance.CreateEditDelete",
+    "raw": "Payments.Core.TradeFinance.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Record and verify letters of credit; approve escrow releases",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "PAY",
+    "systemName": "Payments.Core.CashUp.CreateEditDelete",
+    "raw": "Payments.Core.CashUp.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Open and close an outlet shift",
+    "defaultRoles": [
+      "Agent",
+      "review: Finance"
+    ]
+  },
+  {
+    "area": "PAY",
+    "systemName": "Payments.Core.Tax.View",
+    "raw": "Payments.Core.Tax.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "Run tax reports, filing files and e-invoicing submission lists",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "PAY",
+    "systemName": "Payments.Core.Disbursement.Approve",
+    "raw": "Payments.Core.Disbursement.Approve",
+    "native": false,
+    "category": "Orders",
+    "allows": "Approve a bulk disbursement batch",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Configuration.ManageSettings",
+    "raw": "Configuration.ManageSettings (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Edit settings pages and All settings; with PLT installed, edits to controlled keys create a change set instead of saving directly; also edit the fiscal calendar and retention settings",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Configuration.ManageStores",
+    "raw": "Configuration.ManageStores (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Edit stores, store URL, hosts and SSL flag (PLT-007, PLT-013)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Configuration.ManageLanguages",
+    "raw": "Configuration.ManageLanguages (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Edit languages, import and export resources, run translation export/import and mark translations checked (PLT-009, PLT-025)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Configuration.ManageCurrencies",
+    "raw": "Configuration.ManageCurrencies (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Edit currencies, rates, primary currencies and the rate provider (PLT-010, PLT-024)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Configuration.ManageEmailAccounts",
+    "raw": "Configuration.ManageEmailAccounts (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Edit email accounts and the default sender (PLT-008)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Configuration.ManagePlugins",
+    "raw": "Configuration.ManagePlugins (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Install and uninstall plugins and edit store and role limits; plugin changes made outside a pack are reported as pack deviations",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Platform.Core.ChangeControl.View",
+    "raw": "Platform.Core.ChangeControl.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View change sets, configuration history, version compare and the configuration-change report",
+    "defaultRoles": [
+      "Administrators",
+      "Auditor"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Platform.Core.ChangeControl.Approve",
+    "raw": "Platform.Core.ChangeControl.Approve",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Approve or reject change sets (never own change sets, BR-PLT-020)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Platform.Core.Packs.View",
+    "raw": "Platform.Core.Packs.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View packs, apply runs, deviations and the applied pack set",
+    "defaultRoles": [
+      "Administrators",
+      "PlatformOperator"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Platform.Core.Packs.CreateEditDelete",
+    "raw": "Platform.Core.Packs.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Import, validate, apply, export, promote and clone configuration",
+    "defaultRoles": [
+      "PlatformOperator"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Platform.Core.Features.View",
+    "raw": "Platform.Core.Features.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View the feature registry and the state per client and store",
+    "defaultRoles": [
+      "Administrators",
+      "PlatformOperator"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Platform.Core.Features.CreateEditDelete",
+    "raw": "Platform.Core.Features.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Switch product features on or off per client and store",
+    "defaultRoles": [
+      "PlatformOperator"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Platform.Core.Instance.CreateEditDelete",
+    "raw": "Platform.Core.Instance.CreateEditDelete",
+    "native": false,
+    "category": "System",
+    "allows": "Record UAT sign-off and change the instance lifecycle status (normally called by the provisioning pipeline)",
+    "defaultRoles": [
+      "PlatformOperator"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Platform.Core.Migration.CreateEditDelete",
+    "raw": "Platform.Core.Migration.CreateEditDelete",
+    "native": false,
+    "category": "System",
+    "allows": "Upload migration files, run dry runs and imports, view reconciliation reports",
+    "defaultRoles": [
+      "PlatformOperator"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Platform.Core.Retention.CreateEditDelete",
+    "raw": "Platform.Core.Retention.CreateEditDelete",
+    "native": false,
+    "category": "System",
+    "allows": "Create and change retention rules and view retention runs",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Platform.Core.Releases.View",
+    "raw": "Platform.Core.Releases.View",
+    "native": false,
+    "category": "System",
+    "allows": "View the instance release version, upgrade runs and post-upgrade checks",
+    "defaultRoles": [
+      "Administrators",
+      "PlatformOperator"
+    ]
+  },
+  {
+    "area": "PLT",
+    "systemName": "Platform.Core.Help.CreateEditDelete",
+    "raw": "Platform.Core.Help.CreateEditDelete",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "Create and edit help tips and guided tours",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "RET",
+    "systemName": "Orders.ReturnRequestsView",
+    "raw": "Orders.ReturnRequestsView (native)",
+    "native": true,
+    "category": "Orders",
+    "allows": "See the admin return-request list and details",
+    "defaultRoles": [
+      "Administrators",
+      "Support",
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "RET",
+    "systemName": "Orders.ReturnRequestsCreateEditDelete",
+    "raw": "Orders.ReturnRequestsCreateEditDelete (native)",
+    "native": true,
+    "category": "Orders",
+    "allows": "Edit return requests in admin; with RET installed every status change is checked against SM-RET-01 (BR-RET-001)",
+    "defaultRoles": [
+      "Administrators",
+      "Support",
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "RET",
+    "systemName": "Configuration.ManageSettings",
+    "raw": "Configuration.ManageSettings (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Maintain return reasons and actions (native lists) and the native return settings",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "RET",
+    "systemName": "Returns.Core.Rules.CreateEditDelete",
+    "raw": "Returns.Core.Rules.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Edit eligibility rules, shipping models, destination rules, fee rules, issue types, condition grades, triage rules",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "RET",
+    "systemName": "Returns.Core.Inspection.CreateEditDelete",
+    "raw": "Returns.Core.Inspection.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Record receipt and inspection of returned items",
+    "defaultRoles": [
+      "Warehouse",
+      "Agent",
+      "Support"
+    ]
+  },
+  {
+    "area": "RET",
+    "systemName": "Returns.Core.Cases.View",
+    "raw": "Returns.Core.Cases.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "See dispute and issue cases, evidence and case log",
+    "defaultRoles": [
+      "Support",
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "RET",
+    "systemName": "Returns.Core.Cases.CreateEditDelete",
+    "raw": "Returns.Core.Cases.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Open cases, add evidence, propose remedies, record decisions, escalate internally",
+    "defaultRoles": [
+      "Support",
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "RET",
+    "systemName": "Returns.Core.Cases.Moderate",
+    "raw": "Returns.Core.Cases.Moderate",
+    "native": false,
+    "category": "Orders",
+    "allows": "Hide or release case messages; join a case as mediator",
+    "defaultRoles": [
+      "Support",
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "RET",
+    "systemName": "Returns.Core.Cases.ExternalEscalation",
+    "raw": "Returns.Core.Cases.ExternalEscalation",
+    "native": false,
+    "category": "Orders",
+    "allows": "Escalate a case to an external body and export the case file",
+    "defaultRoles": [
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "RET",
+    "systemName": "Returns.Core.Seller.Review",
+    "raw": "Returns.Core.Seller.Review",
+    "native": false,
+    "category": "Orders",
+    "allows": "Seller list and actions for returns and cases of own products (vendor-scoped endpoints)",
+    "defaultRoles": [
+      "Vendors"
+    ]
+  },
+  {
+    "area": "RET",
+    "systemName": "Returns.Core.Reports.View",
+    "raw": "Returns.Core.Reports.View",
+    "native": false,
+    "category": "Reports",
+    "allows": "Run and download return and dispute reports",
+    "defaultRoles": [
+      "SupportManager",
+      "Administrators"
+    ]
+  },
+  {
+    "area": "RET",
+    "systemName": "Returns.Core.PublicStore.Cases",
+    "raw": "Returns.Core.PublicStore.Cases",
+    "native": false,
+    "category": "PublicStore",
+    "allows": "Raise order issues and disputes, accept or reject remedies, post case messages from My account",
+    "defaultRoles": [
+      "Registered"
+    ]
+  },
+  {
+    "area": "RPT",
+    "systemName": "Reports.SalesSummary, Reports.CountrySales, Reports.LowStock, Reports.Bestsellers, Reports.ProductsNeverPurchased, Reports.RegisteredCustomers, Reports.CustomersByOrderTotal, Reports.CustomersByNumberOfOrders",
+    "raw": "Reports.SalesSummary, Reports.CountrySales, Reports.LowStock, Reports.Bestsellers, Reports.ProductsNeverPurchased, Reports.RegisteredCustomers, Reports.CustomersByOrderTotal, Reports.CustomersByNumberOfOrders (native)",
+    "native": true,
+    "category": "Reports",
+    "allows": "Each native report (together with Orders.OrdersView, Catalog.ProductsView or Customers.CustomersView as the native action requires)",
+    "defaultRoles": [
+      "Administrators",
+      "others per client"
+    ]
+  },
+  {
+    "area": "RPT",
+    "systemName": "Analytics.Core.StockReports.View",
+    "raw": "Analytics.Core.StockReports.View",
+    "native": false,
+    "category": "Reports",
+    "allows": "Run the fast and slow movers and stock-level report (RPT-001, data from INV-013)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "RPT",
+    "systemName": "Analytics.Core.Extract.CreateEditDelete",
+    "raw": "Analytics.Core.Extract.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Configure extract datasets, schedules, pseudonymisation rules; rerun extracts",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "RPT",
+    "systemName": "Analytics.Core.Extract.View",
+    "raw": "Analytics.Core.Extract.View",
+    "native": false,
+    "category": "Reports",
+    "allows": "See extract runs, manifests and the data dictionary",
+    "defaultRoles": [
+      "Administrators",
+      "Analyst"
+    ]
+  },
+  {
+    "area": "RPT",
+    "systemName": "Analytics.Core.KpiCatalogue.CreateEditDelete",
+    "raw": "Analytics.Core.KpiCatalogue.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Create and version KPI definitions",
+    "defaultRoles": [
+      "Analyst",
+      "Administrators"
+    ]
+  },
+  {
+    "area": "RPT",
+    "systemName": "Analytics.Core.AdSpend.CreateEditDelete",
+    "raw": "Analytics.Core.AdSpend.CreateEditDelete",
+    "native": false,
+    "category": "Reports",
+    "allows": "Upload and replace advertising and campaign spend files",
+    "defaultRoles": [
+      "Marketing",
+      "Administrators"
+    ]
+  },
+  {
+    "area": "RPT",
+    "systemName": "Analytics.Core.BiConnection.CreateEditDelete",
+    "raw": "Analytics.Core.BiConnection.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Configure read-only BI and external-system connections and batch report deliveries",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "RPT",
+    "systemName": "Analytics.Core.OperatorMetrics.View",
+    "raw": "Analytics.Core.OperatorMetrics.View",
+    "native": false,
+    "category": "Reports",
+    "allows": "See operator metrics of the team",
+    "defaultRoles": [
+      "OperationsManager",
+      "SupportManager"
+    ]
+  },
+  {
+    "area": "RPT",
+    "systemName": "Analytics.Core.OperatorMetrics.ViewOwn",
+    "raw": "Analytics.Core.OperatorMetrics.ViewOwn",
+    "native": false,
+    "category": "Reports",
+    "allows": "See own operator metrics",
+    "defaultRoles": [
+      "Support",
+      "Agent",
+      "Warehouse",
+      "Finance"
+    ]
+  },
+  {
+    "area": "RPT",
+    "systemName": "Analytics.Core.PublicDashboard.CreateEditDelete",
+    "raw": "Analytics.Core.PublicDashboard.CreateEditDelete",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "Choose public metrics and publish the public page",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "Security.Core.AuditTrail.View",
+    "raw": "Security.Core.AuditTrail.View",
+    "native": false,
+    "category": "Security",
+    "allows": "Search the audit trail, view entity history, run replay and integrity verification (SEC-004, SEC-010)",
+    "defaultRoles": [
+      "Administrators",
+      "Auditor"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "Security.Core.AuditTrail.Export",
+    "raw": "Security.Core.AuditTrail.Export",
+    "native": false,
+    "category": "Security",
+    "allows": "Export audit records with an integrity manifest (SEC-004, SEC-009)",
+    "defaultRoles": [
+      "Administrators",
+      "Auditor"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "Security.Core.AuditorAccess.CreateEditDelete",
+    "raw": "Security.Core.AuditorAccess.CreateEditDelete",
+    "native": false,
+    "category": "Security",
+    "allows": "Grant, change and revoke time-boxed auditor access (SEC-010)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "Security.Core.Breaches.View",
+    "raw": "Security.Core.Breaches.View",
+    "native": false,
+    "category": "Security",
+    "allows": "View breach cases (SEC-008)",
+    "defaultRoles": [
+      "Administrators",
+      "PrivacyOfficer"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "Security.Core.Breaches.CreateEditDelete",
+    "raw": "Security.Core.Breaches.CreateEditDelete",
+    "native": false,
+    "category": "Security",
+    "allows": "Create and run breach cases, generate affected lists, send notices (SEC-008)",
+    "defaultRoles": [
+      "PrivacyOfficer"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "Security.Core.PrivacyProfile.View",
+    "raw": "Security.Core.PrivacyProfile.View",
+    "native": false,
+    "category": "Security",
+    "allows": "View the country profile, processing register, transfers and impact assessments (SEC-012)",
+    "defaultRoles": [
+      "Administrators",
+      "PrivacyOfficer",
+      "Auditor"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "Security.Core.PrivacyProfile.CreateEditDelete",
+    "raw": "Security.Core.PrivacyProfile.CreateEditDelete",
+    "native": false,
+    "category": "Security",
+    "allows": "Maintain the country profile, processing register, transfers and impact assessments (SEC-012, SEC-006)",
+    "defaultRoles": [
+      "PrivacyOfficer"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "Security.Core.DataClassification.CreateEditDelete",
+    "raw": "Security.Core.DataClassification.CreateEditDelete",
+    "native": false,
+    "category": "Security",
+    "allows": "Classify fields and set masking rules (SEC-014)",
+    "defaultRoles": [
+      "Administrators",
+      "PrivacyOfficer"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "Security.Core.UnmaskedData.View",
+    "raw": "Security.Core.UnmaskedData.View",
+    "native": false,
+    "category": "Security",
+    "allows": "See masked values in full, each reveal being logged (SEC-014)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "Security.Core.SecurityExport.CreateEditDelete",
+    "raw": "Security.Core.SecurityExport.CreateEditDelete",
+    "native": false,
+    "category": "Security",
+    "allows": "Configure the security-monitoring export and view its queue (SEC-005, SEC-015)",
+    "defaultRoles": [
+      "Administrators",
+      "SecurityOfficer"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "Configuration.ManageSettings",
+    "raw": "Configuration.ManageSettings (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Edit security, captcha, GDPR and store-information settings, including cookie categories (SEC-001, SEC-007, SEC-013)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "Customers.ActivityLogView",
+    "raw": "Customers.ActivityLogView (native)",
+    "native": true,
+    "category": "Customers",
+    "allows": "View the native activity log (SEC-010 read-only role)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SEC",
+    "systemName": "System.ManageSystemLog",
+    "raw": "System.ManageSystemLog (native)",
+    "native": true,
+    "category": "System",
+    "allows": "View and clear the native system log",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Customers.VendorsView / Customers.VendorsCreateEditDelete",
+    "raw": "Customers.VendorsView / Customers.VendorsCreateEditDelete (native)",
+    "native": true,
+    "category": "Customers",
+    "allows": "Native vendor list and edit pages; with SEL installed, activation through the edit page is gated (BR-SEL-002)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.SellerPortal.Access",
+    "raw": "Marketplace.Core.SellerPortal.Access",
+    "native": false,
+    "category": "Customers",
+    "allows": "Seller portal pages of the plugin: dashboard, documents, payout accounts, staff, locations, vacation, statements, ratings (own vendor only)",
+    "defaultRoles": [
+      "Vendors"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.Applications.View",
+    "raw": "Marketplace.Core.Applications.View",
+    "native": false,
+    "category": "Customers",
+    "allows": "View seller applications, documents and history",
+    "defaultRoles": [
+      "Administrators",
+      "Compliance"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.Applications.Decide",
+    "raw": "Marketplace.Core.Applications.Decide",
+    "native": false,
+    "category": "Customers",
+    "allows": "Assign, approve, reject, suspend and reinstate sellers; decide upgrade and appeal requests",
+    "defaultRoles": [
+      "Compliance"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.Documents.Review",
+    "raw": "Marketplace.Core.Documents.Review",
+    "native": false,
+    "category": "Customers",
+    "allows": "Accept, request resubmission of or reject seller documents",
+    "defaultRoles": [
+      "Compliance"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.Rules.CreateEditDelete",
+    "raw": "Marketplace.Core.Rules.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Edit tiers, document types, marketplace rules, KPI thresholds, staff profiles, settlement cycles",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.Commission.View",
+    "raw": "Marketplace.Core.Commission.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View commission and fee rules and their versions",
+    "defaultRoles": [
+      "Administrators",
+      "Finance"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.Commission.CreateEditDelete",
+    "raw": "Marketplace.Core.Commission.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Create and edit commission and fee rules with effective dates",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.PayoutAccounts.Approve",
+    "raw": "Marketplace.Core.PayoutAccounts.Approve",
+    "native": false,
+    "category": "Customers",
+    "allows": "Approve or reject payout account changes (not own requests)",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.Settlements.View",
+    "raw": "Marketplace.Core.Settlements.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "View settlement batches, payouts and statements of all sellers",
+    "defaultRoles": [
+      "Administrators",
+      "Finance"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.Settlements.Release",
+    "raw": "Marketplace.Core.Settlements.Release",
+    "native": false,
+    "category": "Orders",
+    "allows": "Release a calculated settlement batch for payout; retry failed payouts",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.CommissionInvoices.CreateEditDelete",
+    "raw": "Marketplace.Core.CommissionInvoices.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Issue and correct commission invoices to sellers paid directly",
+    "defaultRoles": [
+      "Finance"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.Ratings.Moderate",
+    "raw": "Marketplace.Core.Ratings.Moderate",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Publish, reject or hide seller ratings",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.Panels.CreateEditDelete",
+    "raw": "Marketplace.Core.Panels.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Maintain approved supplier panels",
+    "defaultRoles": [
+      "Procurement"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.Import.CreateEditDelete",
+    "raw": "Marketplace.Core.Import.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Run bulk participant imports and send invitations",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Marketplace.Core.Reports.View",
+    "raw": "Marketplace.Core.Reports.View",
+    "native": false,
+    "category": "Reports",
+    "allows": "Onboarding funnel, performance and diversity reports",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Platform.Core.Lists.View",
+    "raw": "Platform.Core.Lists.View",
+    "native": false,
+    "category": "Customers",
+    "allows": "View block, watch and allow lists and appeals",
+    "defaultRoles": [
+      "Administrators",
+      "Risk",
+      "Compliance"
+    ]
+  },
+  {
+    "area": "SEL",
+    "systemName": "Platform.Core.Lists.CreateEditDelete",
+    "raw": "Platform.Core.Lists.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Create, change, revoke list entries; decide appeals",
+    "defaultRoles": [
+      "Risk",
+      "Compliance"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "Configuration.ManageSettings",
+    "raw": "Configuration.ManageSettings (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Catalog and search settings, search-provider selection, SRC settings",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "Configuration.ManageWidgets",
+    "raw": "Configuration.ManageWidgets (native)",
+    "native": true,
+    "category": "Configuration",
+    "allows": "Widgets: slider, analytics, recommendation, badge and delivery-promise widgets",
+    "defaultRoles": [
+      "Administrators",
+      "Marketing"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "ContentManagement.MenusCreateEditDelete",
+    "raw": "ContentManagement.MenusCreateEditDelete (native)",
+    "native": true,
+    "category": "ContentManagement",
+    "allows": "Main and footer menus",
+    "defaultRoles": [
+      "Administrators",
+      "Marketing"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "ContentManagement.TopicsCreateEditDelete",
+    "raw": "ContentManagement.TopicsCreateEditDelete (native)",
+    "native": true,
+    "category": "ContentManagement",
+    "allows": "Topic pages used for campaign and services landing pages",
+    "defaultRoles": [
+      "Administrators",
+      "Marketing"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "Catalog.ProductTagsCreateEditDelete",
+    "raw": "Catalog.ProductTagsCreateEditDelete (native)",
+    "native": true,
+    "category": "Catalog",
+    "allows": "Product tags and tag pages",
+    "defaultRoles": [
+      "Administrators",
+      "Catalogue"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "Catalog.CategoriesCreateEditDelete",
+    "raw": "Catalog.CategoriesCreateEditDelete (native)",
+    "native": true,
+    "category": "Catalog",
+    "allows": "Direct category create, edit and delete; with SRC-016 active these posts are intercepted (BR-SRC-060)",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "Search.Core.Merchandising.CreateEditDelete",
+    "raw": "Search.Core.Merchandising.CreateEditDelete",
+    "native": false,
+    "category": "ContentManagement",
+    "allows": "Dated placements, collections, ribbons, featured sellers",
+    "defaultRoles": [
+      "Marketing"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "Search.Core.Badges.CreateEditDelete",
+    "raw": "Search.Core.Badges.CreateEditDelete",
+    "native": false,
+    "category": "Customers",
+    "allows": "Seller badge types and assignment to sellers",
+    "defaultRoles": [
+      "Administrators",
+      "Marketing"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "Search.Core.Relevance.View",
+    "raw": "Search.Core.Relevance.View",
+    "native": false,
+    "category": "Configuration",
+    "allows": "View synonyms and boosting rules with their change history",
+    "defaultRoles": [
+      "Administrators",
+      "Catalogue",
+      "Marketing"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "Search.Core.Relevance.CreateEditDelete",
+    "raw": "Search.Core.Relevance.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Create, change, enable and disable synonyms and boosting rules (audited)",
+    "defaultRoles": [
+      "Catalogue"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "Search.Core.Taxonomy.Propose",
+    "raw": "Search.Core.Taxonomy.Propose",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Propose a new, changed or retired category",
+    "defaultRoles": [
+      "Catalogue"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "Search.Core.Taxonomy.Approve",
+    "raw": "Search.Core.Taxonomy.Approve",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Approve or reject a category proposal (not own)",
+    "defaultRoles": [
+      "Administrators",
+      "Catalogue"
+    ]
+  },
+  {
+    "area": "SRC",
+    "systemName": "Search.Core.SavedSearches.Use",
+    "raw": "Search.Core.SavedSearches.Use",
+    "native": false,
+    "category": "PublicStore",
+    "allows": "Save searches and watch products in the storefront",
+    "defaultRoles": [
+      "Registered"
+    ]
+  },
+  {
+    "area": "SVC",
+    "systemName": "Services.Resources.View",
+    "raw": "Services.Resources.View",
+    "native": false,
+    "category": "Catalog",
+    "allows": "View providers, resources, qualifications, working hours and capacity (vendors: own only)",
+    "defaultRoles": [
+      "Administrators",
+      "Operations",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "SVC",
+    "systemName": "Services.Resources.CreateEditDelete",
+    "raw": "Services.Resources.CreateEditDelete",
+    "native": false,
+    "category": "Catalog",
+    "allows": "Create and change resources, qualifications, working hours, coverage and capacity (vendors: own only)",
+    "defaultRoles": [
+      "Administrators",
+      "Operations",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "SVC",
+    "systemName": "Services.Bookings.View",
+    "raw": "Services.Bookings.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "View bookings, service stages, payment plans, no-shows and SLA clocks (vendors: own only)",
+    "defaultRoles": [
+      "Administrators",
+      "Operations",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "SVC",
+    "systemName": "Services.Bookings.CreateEditDelete",
+    "raw": "Services.Bookings.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Change service stages, reschedule or cancel for a customer, record no-shows, decide disputed completions (always with a reason, audited)",
+    "defaultRoles": [
+      "Operations",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "SVC",
+    "systemName": "Services.Policies.CreateEditDelete",
+    "raw": "Services.Policies.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Edit cancellation, no-show, deposit, sign-off, reminder and service-level policies",
+    "defaultRoles": [
+      "Administrators",
+      "Operations"
+    ]
+  },
+  {
+    "area": "SVC",
+    "systemName": "Services.Vouchers.Redeem",
+    "raw": "Services.Vouchers.Redeem",
+    "native": false,
+    "category": "Orders",
+    "allows": "Validate and redeem vouchers and e-tickets (vendors: own services only)",
+    "defaultRoles": [
+      "Vendors",
+      "Agent"
+    ]
+  },
+  {
+    "area": "SVC",
+    "systemName": "Services.Reports.View",
+    "raw": "Services.Reports.View",
+    "native": false,
+    "category": "Reports",
+    "allows": "Run service reports (vendors: own only)",
+    "defaultRoles": [
+      "Administrators",
+      "Operations",
+      "Vendors"
+    ]
+  },
+  {
+    "area": "TRK",
+    "systemName": "ContentManagement.MessageTemplatesView",
+    "raw": "ContentManagement.MessageTemplatesView (native)",
+    "native": true,
+    "category": "ContentManagement",
+    "allows": "View message templates; with TRK also notification definitions and channel content",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "TRK",
+    "systemName": "ContentManagement.MessageTemplatesCreateEditDelete",
+    "raw": "ContentManagement.MessageTemplatesCreateEditDelete (native)",
+    "native": true,
+    "category": "ContentManagement",
+    "allows": "Edit message templates; with TRK also notification definitions and channel content per event",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "TRK",
+    "systemName": "System.ManageMessageQueue",
+    "raw": "System.ManageMessageQueue (native)",
+    "native": true,
+    "category": "System",
+    "allows": "Native queued-email list",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "TRK",
+    "systemName": "Tracking.Core.Events.View",
+    "raw": "Tracking.Core.Events.View",
+    "native": false,
+    "category": "Orders",
+    "allows": "Track-and-trace search, shipment timelines, missed-scan alerts and rejected events",
+    "defaultRoles": [
+      "LogisticsOps",
+      "Support"
+    ]
+  },
+  {
+    "area": "TRK",
+    "systemName": "Tracking.Core.Events.CreateEditDelete",
+    "raw": "Tracking.Core.Events.CreateEditDelete",
+    "native": false,
+    "category": "Orders",
+    "allows": "Enter manual events, reprocess rejected events, resolve missed-scan alerts",
+    "defaultRoles": [
+      "LogisticsOps"
+    ]
+  },
+  {
+    "area": "TRK",
+    "systemName": "Tracking.Core.Configuration.CreateEditDelete",
+    "raw": "Tracking.Core.Configuration.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Event list, source mappings, expected-scan rules, tracking sources and their credentials",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "TRK",
+    "systemName": "Tracking.Core.Devices.CreateEditDelete",
+    "raw": "Tracking.Core.Devices.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Register and revoke scanning devices and link staff identifiers",
+    "defaultRoles": [
+      "LogisticsOps",
+      "Administrators"
+    ]
+  },
+  {
+    "area": "TRK",
+    "systemName": "Tracking.Core.Notifications.View",
+    "raw": "Tracking.Core.Notifications.View",
+    "native": false,
+    "category": "System",
+    "allows": "Notification log and delivery reports",
+    "defaultRoles": [
+      "Support",
+      "Administrators"
+    ]
+  },
+  {
+    "area": "TRK",
+    "systemName": "Tracking.Core.NotificationSettings.CreateEditDelete",
+    "raw": "Tracking.Core.NotificationSettings.CreateEditDelete",
+    "native": false,
+    "category": "Configuration",
+    "allows": "Channels, fallback order, preference defaults, mandatory categories, quiet hours and limits",
+    "defaultRoles": [
+      "Administrators"
+    ]
+  },
+  {
+    "area": "TRK",
+    "systemName": "Tracking.Core.Outreach.CreateEditDelete",
+    "raw": "Tracking.Core.Outreach.CreateEditDelete",
+    "native": false,
+    "category": "Promotions",
+    "allows": "Create proactive notices and service banners",
+    "defaultRoles": [
+      "Support"
+    ]
+  },
+  {
+    "area": "TRK",
+    "systemName": "Tracking.Core.Outreach.Send",
+    "raw": "Tracking.Core.Outreach.Send",
+    "native": false,
+    "category": "Promotions",
+    "allows": "Send or schedule a proactive notice; activate a banner",
+    "defaultRoles": [
+      "Support",
+      "Administrators"
+    ]
+  }
+]

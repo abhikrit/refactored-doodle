@@ -1,0 +1,79 @@
+{
+  "systemName": "Product.INV",
+  "friendlyName": "Product - Inventory and warehouses",
+  "area": "INV",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 5,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.INV",
+    "projectName": "Nop.Plugin.Product.INV"
+  },
+  "wave": 2,
+  "waveName": "Catalogue",
+  "dependsOnAreas": [
+    "CAT"
+  ],
+  "counts": {
+    "features": 13,
+    "p1": 8,
+    "p2": 5,
+    "p3": 0,
+    "held": 1,
+    "criteria": 110,
+    "screens": 15,
+    "rules": 21,
+    "contracts": 8,
+    "messages": 16,
+    "auditEvents": 12
+  },
+  "fit": {
+    "configuration": 2,
+    "licensedPlugin": 0,
+    "codeLevel": 11,
+    "externalSystem": 0
+  },
+  "features": [
+    "PRD-INV-001",
+    "PRD-INV-002",
+    "PRD-INV-003",
+    "PRD-INV-004",
+    "PRD-INV-005",
+    "PRD-INV-006",
+    "PRD-INV-007",
+    "PRD-INV-008",
+    "PRD-INV-009",
+    "PRD-INV-010",
+    "PRD-INV-011",
+    "PRD-INV-012",
+    "PRD-INV-013"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-INV-012",
+      "decisions": [
+        "PAID-STUB"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "PAID-STUB"
+  ],
+  "contracts": [
+    "IC-INV-01",
+    "IC-INV-02",
+    "IC-INV-03",
+    "IC-INV-03",
+    "IC-INV-04",
+    "IC-INV-05",
+    "IC-INV-07",
+    "IC-INV-06"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-INV.md"
+}

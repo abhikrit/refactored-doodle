@@ -1,0 +1,227 @@
+[
+  {
+    "PRD ID": "PRD-PLT-001",
+    "Feature": "Client instance provisioning",
+    "External element and integration": "Provisioning of live + test instances with lifecycle status belongs in DevOps/IaC pipeline (infra templates, DB create, appsettings). nopCommerce side: load client config pack (see PRD-PLT-003)."
+  },
+  {
+    "PRD ID": "PRD-PLT-014",
+    "Feature": "Instance health and SLA monitoring",
+    "External element and integration": "Uptime/APM/SLA dashboards and alerting and cross-instance operator view need an external monitoring platform; nopCommerce exposes logs and a health endpoint (health endpoint to be added via small plugin)."
+  },
+  {
+    "PRD ID": "PRD-PLT-016",
+    "Feature": "Backup and disaster recovery",
+    "External element and integration": "Scheduled backups, tested restores, DR site and RTO/RPO are hosting/DB-platform capabilities."
+  },
+  {
+    "PRD ID": "PRD-PLT-021",
+    "Feature": "Product release and upgrade management",
+    "External element and integration": "Release pipeline, per-client upgrade orchestration and regression checks are CI/CD tooling outside nopCommerce. Every custom and third-party plugin must be rebuilt for 5.00 / .NET 10."
+  },
+  {
+    "PRD ID": "PRD-PLT-026",
+    "Feature": "Hosting profile and sizing NFR",
+    "External element and integration": "Hosting profile (MPC: 4 cores, 8 GB, 2 TB) is an infrastructure deliverable."
+  },
+  {
+    "PRD ID": "PRD-IAM-020",
+    "Feature": "Identity verification adapter framework",
+    "External element and integration": "External registries (national ID, tax authority, MNO KYC) perform verification; nopCommerce needs an adapter-framework plugin calling them."
+  },
+  {
+    "PRD ID": "PRD-SEL-004",
+    "Feature": "Identity and registry verification adapters",
+    "External element and integration": "External ID/tax/business-registry/MNO checks via the PRD-IAM-020 adapter framework."
+  },
+  {
+    "PRD ID": "PRD-SRC-009",
+    "Feature": "Personalised recommendations and ranking",
+    "External element and integration": "External ML recommendation service (v4 candidates: nopStation Amazon Personalize — lists 4.70, 5.00 support not verifiable from source; confirm with vendor; Google Recommendations AI plugin — version not stated). nopCommerce needs an integration plugin: consent-gated event export, recommendation widget; keyword-search ranking via ISearchProvider (returns ordered product IDs); category/listing ranking needs an IProductService or catalog model factory override. (NOP-923) 5.00 delta: the bundled Google AI plugin can serve as the keyword-search ranking part; consent-gated event export, recommendation widgets and category/listing ranking remain."
+  },
+  {
+    "PRD ID": "PRD-PAY-007",
+    "Feature": "Escrow and staged release",
+    "External element and integration": "Holding buyer funds is a regulated service of a bank/PSP escrow or trust account. nopCommerce needs an integration plugin that triggers staged releases on dispatch/delivery/acceptance events."
+  },
+  {
+    "PRD ID": "PRD-PAY-026",
+    "Feature": "KRA eTIMS adapter",
+    "External element and integration": "External: KRA eTIMS (government e-invoicing system). nopCommerce needs an adapter plugin on the PAY-025 framework (submit invoice/credit note, receive fiscal number/QR)."
+  },
+  {
+    "PRD ID": "PRD-PAY-027",
+    "Feature": "MRA EIS adapter",
+    "External element and integration": "External: MRA EIS (government e-invoicing system). Adapter plugin on the PAY-025 framework."
+  },
+  {
+    "PRD ID": "PRD-ORD-017",
+    "Feature": "Contract e-signature",
+    "External element and integration": "External e-signature provider (signing, signer evidence, quorum rules such as 3 of 5). nopCommerce needs an integration plugin to send contracts and record signatures."
+  },
+  {
+    "PRD ID": "PRD-LOG-016",
+    "Feature": "Cross-border shipping",
+    "External element and integration": "External UPU CDS (customs declarations) and IPS (international tracking). nopCommerce needs an integration plugin (customs data on items/shipments, EDI exchange, duties display). Post Gebeya CHK-05/INT-03 are AFR: AFR port required. v9 scope: UPU GMS (Global Monitoring System) data exchange in addition to CDS and IPS."
+  },
+  {
+    "PRD ID": "PRD-LOG-019",
+    "Feature": "Specialised logistics",
+    "External element and integration": "Temperature recording through the journey and out-of-range alerts require external IoT/telematics; certified carriers and documents are carrier-side. nopCommerce needs an integration plugin (receive telemetry/alerts, attach documents, restrict carriers)."
+  },
+  {
+    "PRD ID": "PRD-LOG-023",
+    "Feature": "Hub-and-spoke sorting",
+    "External element and integration": "Hub sorting and handover scans belong to the postal operations / track-and-trace system (e.g. IPS or the operator's sorting system — not named in source). nopCommerce needs an integration (IShipmentTracker events in, status updates)."
+  },
+  {
+    "PRD ID": "PRD-LOG-032",
+    "Feature": "Own-fleet POD capture",
+    "External element and integration": "Phone app for own-fleet staff capturing signature, photo, GPS — native mobile app build is outside nopCommerce. nopCommerce needs an API plugin receiving POD and attaching it to the shipment."
+  },
+  {
+    "PRD ID": "PRD-TRK-003",
+    "Feature": "Scanning and field operations app",
+    "External element and integration": "Native or cross-platform field scanning app (offline, device ID, GPS, photo/voice/video evidence) outside nopCommerce; nopCommerce needs an authenticated API/plugin to receive scan events into TRK-002."
+  },
+  {
+    "PRD ID": "PRD-RPT-002",
+    "Feature": "KPI framework and executive dashboards",
+    "External element and integration": "BI platform for KPI definition, executive dashboards, drill-down, self-built dashboards and monthly report; nopCommerce supplies data (DW feed RPT-003 or Power BI plugin)."
+  },
+  {
+    "PRD ID": "PRD-RPT-003",
+    "Feature": "Data warehouse and ETL",
+    "External element and integration": "Data warehouse + ETL (data dictionary, quality checks, anonymisation); nopCommerce exposes DB/API extracts."
+  },
+  {
+    "PRD ID": "PRD-RPT-004",
+    "Feature": "Report delivery and self-service",
+    "External element and integration": "BI/reporting tool for scheduling, self-service queries, sharing and versioning. PG ADM-04 NopStation SQL manager is a partial in-nop alternative (5.00 support to confirm with vendor)."
+  },
+  {
+    "PRD ID": "PRD-RPT-005",
+    "Feature": "Report access control",
+    "External element and integration": "Field/row-level security in the BI platform for RPT-002/003 reports."
+  },
+  {
+    "PRD ID": "PRD-RPT-006",
+    "Feature": "Compliance and audit reports",
+    "External element and integration": "Regulator/audit reports in BI over the SEC-004 audit store."
+  },
+  {
+    "PRD ID": "PRD-RPT-010",
+    "Feature": "Operational dashboards",
+    "External element and integration": "Operational dashboards in BI fed by DW (delivery, payments, sellers, fraud, case load, SLA)."
+  },
+  {
+    "PRD ID": "PRD-RPT-011",
+    "Feature": "Commerce and marketing analytics",
+    "External element and integration": "BI analytics (cost, cohorts, campaigns, segments, trends) over DW. v9 scope: Import of advertising and campaign spend (sources to be confirmed with the client)."
+  },
+  {
+    "PRD ID": "PRD-RPT-012",
+    "Feature": "e-Government and engagement reports",
+    "External element and integration": "BI reports on e-government usage by agency and engagement, fed by EGV data in DW."
+  },
+  {
+    "PRD ID": "PRD-DOC-005",
+    "Feature": "Document requirements and validation",
+    "External element and integration": "OCR / document-verification and signature-validation service; nopCommerce needs a plugin defining required documents per process and calling the service. Round 5: works without AI-005; with no IC-DOC-06 provider every document goes to manual review (AC-DOC-005-03-02)."
+  },
+  {
+    "PRD ID": "PRD-SEC-002",
+    "Feature": "Edge protection",
+    "External element and integration": "WAF and DDoS protection at hosting/CDN level; no nopCommerce integration needed beyond proxy settings (ProxySettings/hosting config)."
+  },
+  {
+    "PRD ID": "PRD-SEC-005",
+    "Feature": "Anomaly and correlation detection",
+    "External element and integration": "SIEM / anomaly-correlation platform; nopCommerce needs log export (plugin) to it."
+  },
+  {
+    "PRD ID": "PRD-SEC-006",
+    "Feature": "Data residency",
+    "External element and integration": "Hosting region selection per client deployment (separate instance per client)."
+  },
+  {
+    "PRD ID": "PRD-SEC-009",
+    "Feature": "Compliance reports and certificates",
+    "External element and integration": "GRC/compliance tooling for SOC 2/ISO 27001 evidence and certification; nopCommerce supplies logs/audit exports."
+  },
+  {
+    "PRD ID": "PRD-SEC-011",
+    "Feature": "Vulnerability management",
+    "External element and integration": "SCA/DAST/container scanning in CI/CD and runtime, pen-test tracking with remediation deadlines (DevSecOps tools)."
+  },
+  {
+    "PRD ID": "PRD-SEC-015",
+    "Feature": "Security incident management",
+    "External element and integration": "Security incident management/ITSM tool (records, playbooks, timeline, lessons learned); nopCommerce supplies log exports."
+  },
+  {
+    "PRD ID": "PRD-INT-002",
+    "Feature": "Integration layer (API gateway)",
+    "External element and integration": "API gateway product (partner registry, rate limits, transformation, developer portal, sandbox) in front of nopCommerce APIs."
+  },
+  {
+    "PRD ID": "PRD-INT-004",
+    "Feature": "Integration health and retries",
+    "External element and integration": "Integration monitoring, retry and dead-letter handling in the integration layer (INT-002)."
+  },
+  {
+    "PRD ID": "PRD-CHN-003",
+    "Feature": "USSD channel",
+    "External element and integration": "USSD gateway (mobile network operator/aggregator) running the menus; nopCommerce needs an API plugin for order lookup, simple order and payment."
+  },
+  {
+    "PRD ID": "PRD-CHN-004",
+    "Feature": "IVR channel",
+    "External element and integration": "IVR / voice platform; nopCommerce needs an API/notification plugin."
+  },
+  {
+    "PRD ID": "PRD-CHN-010",
+    "Feature": "Field agent app",
+    "External element and integration": "Native/cross-platform offline field agent app; nopCommerce needs API endpoints (INT-001)."
+  },
+  {
+    "PRD ID": "PRD-AI-005",
+    "Feature": "OCR and ID document checks",
+    "External element and integration": "OCR and ID-document verification service; nopCommerce integration plugin."
+  },
+  {
+    "PRD ID": "PRD-AI-006",
+    "Feature": "ML fraud detection",
+    "External element and integration": "ML fraud-scoring service; plugin calls it at checkout/payment."
+  },
+  {
+    "PRD ID": "PRD-AI-007",
+    "Feature": "ML recommendation engine",
+    "External element and integration": "ML recommendation service and widget rendering still required. Inference: the bundled Google Retail integration (catalogue sync, visitor ID) can be extended to call the same service's recommendation API, reducing integration effort."
+  },
+  {
+    "PRD ID": "PRD-AI-008",
+    "Feature": "Forecasting and image inspection",
+    "External element and integration": "Demand forecasting and image-inspection ML services; integration plugin."
+  },
+  {
+    "PRD ID": "PRD-AI-010",
+    "Feature": "AI governance",
+    "External element and integration": "AI disclosure notices (plugin/view) plus explainability and bias monitoring in the ML/LLM operations platform."
+  },
+  {
+    "PRD ID": "PRD-FIN-001",
+    "Feature": "Credit marketplace",
+    "External element and integration": "Lender loan-origination/credit-scoring systems; nopCommerce needs data-sharing API, offer display and repayment deduction from vendor settlement."
+  },
+  {
+    "PRD ID": "PRD-FIN-002",
+    "Feature": "Invoice discounting",
+    "External element and integration": "Lender/factoring platform; nopCommerce shares invoice data and records early-payment status."
+  },
+  {
+    "PRD ID": "PRD-FIN-003",
+    "Feature": "Insurance",
+    "External element and integration": "Insurer systems for policy issuance and claims; integration plugin."
+  }
+]

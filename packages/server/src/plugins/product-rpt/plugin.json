@@ -1,0 +1,100 @@
+{
+  "systemName": "Product.RPT",
+  "friendlyName": "Product - Reporting and analytics",
+  "area": "RPT",
+  "group": "Product",
+  "version": "0.1.0",
+  "supportedVersions": [
+    "5.00"
+  ],
+  "author": "Product team",
+  "displayOrder": 15,
+  "limitedToStores": [],
+  "limitedToCustomerRoles": [],
+  "realBuild": {
+    "note": "In the .NET build this is src/Plugins/Nop.Plugin.Product.RPT",
+    "projectName": "Nop.Plugin.Product.RPT"
+  },
+  "wave": 5,
+  "waveName": "Engage and run",
+  "dependsOnAreas": [],
+  "counts": {
+    "features": 12,
+    "p1": 9,
+    "p2": 2,
+    "p3": 1,
+    "held": 5,
+    "criteria": 74,
+    "screens": 10,
+    "rules": 10,
+    "contracts": 4,
+    "messages": 3,
+    "auditEvents": 8
+  },
+  "fit": {
+    "configuration": 0,
+    "licensedPlugin": 1,
+    "codeLevel": 3,
+    "externalSystem": 8
+  },
+  "features": [
+    "PRD-RPT-001",
+    "PRD-RPT-002",
+    "PRD-RPT-003",
+    "PRD-RPT-004",
+    "PRD-RPT-005",
+    "PRD-RPT-006",
+    "PRD-RPT-007",
+    "PRD-RPT-008",
+    "PRD-RPT-009",
+    "PRD-RPT-010",
+    "PRD-RPT-011",
+    "PRD-RPT-012"
+  ],
+  "heldFeatures": [
+    {
+      "id": "PRD-RPT-002",
+      "decisions": [
+        "PAID-STUB"
+      ]
+    },
+    {
+      "id": "PRD-RPT-008",
+      "decisions": [
+        "PAID-STUB"
+      ]
+    },
+    {
+      "id": "PRD-RPT-010",
+      "decisions": [
+        "PAID-STUB"
+      ]
+    },
+    {
+      "id": "PRD-RPT-011",
+      "decisions": [
+        "PAID-STUB"
+      ]
+    },
+    {
+      "id": "PRD-RPT-012",
+      "decisions": [
+        "FG-06, PAID-STUB",
+        "FG-06",
+        "PAID-STUB"
+      ]
+    }
+  ],
+  "holdingDecisions": [
+    "FG-06",
+    "FG-06, PAID-STUB",
+    "PAID-STUB"
+  ],
+  "contracts": [
+    "IC-RPT-01",
+    "IC-RPT-02",
+    "IC-RPT-03",
+    "IC-RPT-04"
+  ],
+  "modulePrd": "docs/prd/modules/PRD-RPT.md"
+}

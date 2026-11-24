@@ -1,0 +1,680 @@
+{
+  "artefacts": [
+    {
+      "artefact": "Core settings (catalog, orders, customers, shopping cart, shipping, tax, media, SEO, security)",
+      "source": "Setting table keys: catalogsettings.*, ordersettings.*, customersettings.*, shoppingcartsettings.*, shippingsettings.*, taxsettings.*, mediasettings.*, seosettings.*, securitysettings.*, returnrequestsettings.* (5.00 moved the return-request settings out of ordersettings: Libraries/Nop.Core/Domain/Orders/ReturnRequestSettings.cs) (key = lower-case <SettingsClassName>.<PropertyName>; verified in release-4.90.8, NOP_Review_L1 table c; re-verified in release-5.00.1)",
+      "layers": [
+        "global",
+        "vertical",
+        "client",
+        "store"
+      ],
+      "owningPrd": "PLT-003",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Store definitions and store mapping",
+      "source": "Store, StoreMapping entities",
+      "layers": [
+        "client",
+        "store"
+      ],
+      "owningPrd": "PLT-013",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Theme and branding",
+      "source": "storeinformationsettings.defaultstoretheme, .logopictureid, .allowcustomertoselecttheme; theme plugin configuration",
+      "layers": [
+        "client",
+        "store"
+      ],
+      "owningPrd": "PLT-006",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Languages and locale resources",
+      "source": "Language, LocaleStringResource (XML packs)",
+      "layers": [
+        "global",
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "PLT-009 / PLT-025",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Currencies and rate provider",
+      "source": "Currency, currencysettings.*, rate-provider plugin config",
+      "layers": [
+        "client",
+        "store"
+      ],
+      "owningPrd": "PLT-010 / PLT-024",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Time zone, formats, fiscal calendar",
+      "source": "datetimesettings.defaultstoretimezoneid, .allowcustomerstosettimezone (class in Nop.Services/Helpers); date and number formats = Language.LanguageCulture; fiscal-calendar settings (new)",
+      "layers": [
+        "client"
+      ],
+      "owningPrd": "PLT-011 / PLT-012",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Message templates (email)",
+      "source": "MessageTemplate entities with tokens; per language via LocalizedProperty; per store by separate template rows with StoreMapping",
+      "layers": [
+        "global",
+        "vertical",
+        "client",
+        "store"
+      ],
+      "owningPrd": "TRK-004",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Multi-channel notification templates and routing",
+      "source": "Notification engine templates per event/channel (new)",
+      "layers": [
+        "global",
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "TRK-005",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Customer roles, permissions, ACL",
+      "source": "CustomerRole, PermissionRecord + PermissionRecordCustomerRoleMapping (definitions from IPermissionConfigManager / StandardPermission string system names, view/edit split since 4.90, unchanged in 5.00.1), AclRecord. Packs use 5.00.1 system names (for example Catalog.ProductsView; news, polls and forums use the plugin names News.Manage, Polls.Manage, Forums.Manage); 4.70 names (for example ManageProducts) are invalid and grant nothing.",
+      "layers": [
+        "global",
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "IAM-007 / IAM-008",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Feature/module toggles",
+      "source": "Feature registry (new): feature ID, on/off, per store",
+      "layers": [
+        "vertical (pack default)",
+        "client",
+        "store"
+      ],
+      "owningPrd": "PLT-022",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Plugin enablement",
+      "source": "Installed list: App_Data/plugins.json (file). Store/role limits: LimitedToStores / LimitedToCustomerRoles persisted in each plugin's plugin.json (file). Active providers: settings paymentsettings.activepaymentmethodsystemnames, shippingsettings.activeshippingratecomputationmethodsystemnames, shippingsettings.activepickuppointprovidersystemnames, taxsettings.activetaxprovidersystemname, widgetsettings.activewidgetsystemnames, catalogsettings.activesearchprovidersystemname, and since 5.00 artificialintelligencesettings.activeairecommendationprovidersystemname and messagessettings.activesmsprovidersystemname (database, store-overridable). The pack loader writes both the files and the settings; deployment must not overwrite plugin.json limits.",
+      "layers": [
+        "vertical",
+        "client",
+        "store"
+      ],
+      "owningPrd": "PLT-022",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Category taxonomy and specification attributes",
+      "source": "Category, SpecificationAttribute(Group), ProductAttribute",
+      "layers": [
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "CAT-001 / CAT-004",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Category attribute schemas and listing rules",
+      "source": "Required-attribute sets (new)",
+      "layers": [
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "CAT-005",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Tax categories and rates",
+      "source": "TaxCategory, tax-provider config",
+      "layers": [
+        "global",
+        "country",
+        "client"
+      ],
+      "owningPrd": "PAY-020",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Fiscal e-invoicing adapter selection",
+      "source": "Fiscal adapter config (new)",
+      "layers": [
+        "country",
+        "client"
+      ],
+      "owningPrd": "PAY-025",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Payment methods and routing rules",
+      "source": "Payment plugin activation, restrictions, routing rules (new)",
+      "layers": [
+        "country",
+        "client",
+        "store"
+      ],
+      "owningPrd": "PAY-001 / PAY-024",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Shipping methods, rates, delivery dates",
+      "source": "ShippingMethod, rate tables, DeliveryDate",
+      "layers": [
+        "client",
+        "store"
+      ],
+      "owningPrd": "LOG-001 / LOG-002",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Carrier adapter selection",
+      "source": "Carrier adapter config (new)",
+      "layers": [
+        "country",
+        "client"
+      ],
+      "owningPrd": "LOG-021",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Pickup points and outlets",
+      "source": "StorePickupPoint (bundled Pickup.PickupInStore plugin) + outlet extensions such as capacity and closures (new)",
+      "layers": [
+        "client"
+      ],
+      "owningPrd": "LOG-003",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Order status model and reason codes",
+      "source": "Status/transition tables (new), reason codes",
+      "layers": [
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "ORD-002 / ORD-003",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Return reasons and actions",
+      "source": "ReturnRequestReason, ReturnRequestAction",
+      "layers": [
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "RET-001",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Workflow definitions",
+      "source": "Workflow engine definitions (new)",
+      "layers": [
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "ADM-002",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Business rules",
+      "source": "Rules engine library (new)",
+      "layers": [
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "ADM-003",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Transaction types and templates",
+      "source": "Transaction type schemas, template library (new)",
+      "layers": [
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "ADM-004 / ADM-011",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Content pages, policies, topics",
+      "source": "Topic, BlogPost, NewsItem (in 5.00 an entity of the Misc.News plugin); policy versions",
+      "layers": [
+        "vertical",
+        "client",
+        "store"
+      ],
+      "owningPrd": "MKT-007 / MKT-008",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Country law profile (e-transactions, data protection)",
+      "source": "Law profile (new): consent texts, timelines, DSAR SLAs, breach deadlines",
+      "layers": [
+        "country"
+      ],
+      "owningPrd": "CHK-009 / SEC-012",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Scheduled tasks",
+      "source": "ScheduleTask entries and intervals (installation-wide; no store scope)",
+      "layers": [
+        "installation only (no store scope)"
+      ],
+      "owningPrd": "ADM-001",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Discount and promotion defaults",
+      "source": "Discount templates",
+      "layers": [
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "MKT-001",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Marketplace pack settings",
+      "source": "vendorsettings.*, commission rules, seller tiers; shoppingcartsettings.vendorenabled and .vendorrequired = false (decision CART-500)",
+      "layers": [
+        "vertical (Marketplace pack)",
+        "client"
+      ],
+      "owningPrd": "SEL-003 / SEL-016",
+      "pack": "Marketplace pack"
+    },
+    {
+      "artefact": "B2B pack settings",
+      "source": "Company account roles, credit terms, price lists (native in 5.00: PriceList entities, catalogsettings.priceliststrategy; decision PRICE-500), approval limits",
+      "layers": [
+        "vertical (B2B pack)",
+        "client"
+      ],
+      "owningPrd": "IAM-022 / CHK-016 / CAT-039",
+      "pack": "B2B trade pack"
+    },
+    {
+      "artefact": "Postal pack settings",
+      "source": "S10 series, hubs, routes, holding charges",
+      "layers": [
+        "vertical (Postal pack)",
+        "client"
+      ],
+      "owningPrd": "LOG-020 / LOG-023 / LOG-017",
+      "pack": "Postal and logistics pack"
+    },
+    {
+      "artefact": "e-Government pack settings",
+      "source": "Agency, service catalogue, fee schedules",
+      "layers": [
+        "vertical (e-Gov pack)",
+        "client"
+      ],
+      "owningPrd": "EGV-001 / EGV-005",
+      "pack": "e-Government pack"
+    },
+    {
+      "artefact": "Countries, states/provinces, districts (Kenya counties, Malawi districts)",
+      "source": "Country, StateProvince; addresssettings.countyenabled / .countyrequired (free-text County); district list (new) only if a controlled list is required",
+      "layers": [
+        "global",
+        "country",
+        "client"
+      ],
+      "owningPrd": "CHK-007 / LOG-002 / PAY-020",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Data retention rules",
+      "source": "Retention policy per data type (new); maintenance tasks",
+      "layers": [
+        "country",
+        "client"
+      ],
+      "owningPrd": "PLT-020",
+      "pack": "Core"
+    },
+    {
+      "artefact": "SMS gateway and sender ID",
+      "source": "SMS provider plugin settings (5.00: ISmsProvider plugin selected by messagessettings.activesmsprovidersystemname); sender ID; opt-out keywords; quiet hours",
+      "layers": [
+        "country",
+        "client"
+      ],
+      "owningPrd": "CHN-005 / CHN-012",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Customer attributes and checkout attributes",
+      "source": "CustomerAttribute, CheckoutAttribute",
+      "layers": [
+        "vertical",
+        "client",
+        "store"
+      ],
+      "owningPrd": "MKT-011 / CHK-015",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Measures and units of measure",
+      "source": "MeasureWeight, MeasureDimension, measuresettings.*; UoM list (new)",
+      "layers": [
+        "global",
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "CAT-002 / CAT-041",
+      "pack": "Core / B2B trade pack"
+    },
+    {
+      "artefact": "Payment fee schedules",
+      "source": "Payment-method additional fee settings; provider/platform fee schedules (new)",
+      "layers": [
+        "country",
+        "client"
+      ],
+      "owningPrd": "PAY-015",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Serviceability rules",
+      "source": "Coverage areas per outlet/seller (new)",
+      "layers": [
+        "client"
+      ],
+      "owningPrd": "LOG-004",
+      "pack": "Core"
+    },
+    {
+      "artefact": "KPI catalogue",
+      "source": "KPI definitions and formulas (new)",
+      "layers": [
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "RPT-002",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Further core setting groups",
+      "source": "captchasettings.*, gdprsettings.*, multifactorauthenticationsettings.*, rewardpointssettings.*, localizationsettings.*, storeinformationsettings.*",
+      "layers": [
+        "global",
+        "client",
+        "store"
+      ],
+      "owningPrd": "SEC-013 / SEC-007 / IAM-004 / MKT-003 / PLT-009 / PLT-006",
+      "pack": "Core"
+    },
+    {
+      "artefact": "Warehouse pack settings",
+      "source": "Warehouse entities; batch/lot, serial, expiry and cycle-count settings (new); WMS/ERP sync config",
+      "layers": [
+        "vertical (Warehouse pack)",
+        "client"
+      ],
+      "owningPrd": "INV-002 / INV-009 / INV-011 / INV-012",
+      "pack": "Warehouse pack"
+    },
+    {
+      "artefact": "Channels pack settings",
+      "source": "Mobile app branding and API client; USSD menus; IVR menus; WhatsApp/WeChat/Telegram accounts; push provider",
+      "layers": [
+        "vertical (Channels pack)",
+        "client"
+      ],
+      "owningPrd": "CHN-001 / CHN-003 / CHN-004 / CHN-006 / CHN-013",
+      "pack": "Channels pack"
+    },
+    {
+      "artefact": "AI pack settings",
+      "source": "AI provider, model and feature toggles per use; translation languages; governance disclosures",
+      "layers": [
+        "vertical (AI pack)",
+        "client"
+      ],
+      "owningPrd": "AI-001 – AI-010",
+      "pack": "AI pack"
+    },
+    {
+      "artefact": "Analytics pack settings",
+      "source": "Data warehouse sources, BI connection, dashboard sets, public metrics",
+      "layers": [
+        "vertical (Analytics pack)",
+        "client"
+      ],
+      "owningPrd": "RPT-010 / RPT-011 / RPT-007 / RPT-008",
+      "pack": "Analytics pack"
+    },
+    {
+      "artefact": "Agri-finance and schemes pack settings",
+      "source": "Scheme definitions, eligibility rules, budgets, partner credit/insurance products, disbursement rails",
+      "layers": [
+        "vertical (Schemes pack)",
+        "client"
+      ],
+      "owningPrd": "ORD-024 / PAY-022 / FIN-001 – FIN-004",
+      "pack": "Agri-finance and schemes pack"
+    },
+    {
+      "artefact": "Assisted service pack settings",
+      "source": "Agent roles, outlet assignment, receipt printer profile, cash-up rules",
+      "layers": [
+        "vertical (Assisted pack)",
+        "client"
+      ],
+      "owningPrd": "IAM-026 / CHK-013 / PAY-034",
+      "pack": "Assisted service pack"
+    },
+    {
+      "artefact": "Services and bookings pack settings",
+      "source": "Service product templates, coverage areas, booking slots",
+      "layers": [
+        "vertical (Services pack)",
+        "client"
+      ],
+      "owningPrd": "CAT-026 / CAT-027",
+      "pack": "Services and bookings pack"
+    },
+    {
+      "artefact": "Engagement and loyalty pack settings",
+      "source": "Reward-point rules, promotion types, pop-ups, abandoned-cart timing (5.00: remindersettings.*, native e-mail reminders), affiliates, recurring cycles",
+      "layers": [
+        "vertical (Engagement pack)",
+        "client",
+        "store"
+      ],
+      "owningPrd": "MKT-002 / MKT-003 / MKT-012 / ORD-028",
+      "pack": "Engagement and loyalty pack"
+    },
+    {
+      "artefact": "Service desk extensions pack settings",
+      "source": "Complaint categories and ADR escalation matrix, support channel directory",
+      "layers": [
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "CRM-004 / CRM-012",
+      "pack": "Service desk extensions pack"
+    },
+    {
+      "artefact": "Commerce extensions pack settings",
+      "source": "Cart restriction rules, return fees, feed/syndication targets, PayPal method enablement and options (credentials entered per client instance, not stored in the pack)",
+      "layers": [
+        "vertical",
+        "client",
+        "store"
+      ],
+      "owningPrd": "CHK-011 / RET-006 / CAT-035 / PAY-003",
+      "pack": "Commerce extensions pack"
+    },
+    {
+      "artefact": "Access and admin extensions pack settings",
+      "source": "Delegation rules, passwordless/biometric options, guided-tour content",
+      "layers": [
+        "vertical",
+        "client"
+      ],
+      "owningPrd": "IAM-009 / IAM-013 / PLT-019",
+      "pack": "Access and admin extensions pack"
+    },
+    {
+      "artefact": "Integration adapters, API clients and scopes",
+      "source": "API client registry and scopes (new, BR-INT-006); adapter endpoint settings; outbox (IC-INT-09)",
+      "layers": [
+        "country",
+        "client"
+      ],
+      "owningPrd": "INT-001 / INT-004 / INT-005",
+      "pack": "Core"
+    }
+  ],
+  "tiers": [
+    {
+      "tier": "Platform core",
+      "features": 216
+    },
+    {
+      "tier": "Product option",
+      "features": 196
+    },
+    {
+      "tier": "Client-specific extension",
+      "features": 19
+    },
+    {
+      "tier": "Common core",
+      "features": 3
+    }
+  ],
+  "packs": [
+    {
+      "pack": "Core (always on)",
+      "features": 216
+    },
+    {
+      "pack": "Marketplace pack",
+      "features": 42
+    },
+    {
+      "pack": "B2B trade pack",
+      "features": 34
+    },
+    {
+      "pack": "Postal and logistics pack",
+      "features": 19
+    },
+    {
+      "pack": "Services and bookings pack",
+      "features": 15
+    },
+    {
+      "pack": "Engagement and loyalty pack",
+      "features": 13
+    },
+    {
+      "pack": "Commerce extensions pack",
+      "features": 10
+    },
+    {
+      "pack": "e-Government pack",
+      "features": 10
+    },
+    {
+      "pack": "AI pack",
+      "features": 10
+    },
+    {
+      "pack": "Analytics pack",
+      "features": 8
+    },
+    {
+      "pack": "Warehouse pack",
+      "features": 8
+    },
+    {
+      "pack": "Channels pack",
+      "features": 8
+    },
+    {
+      "pack": "Client: MPC",
+      "features": 6
+    },
+    {
+      "pack": "Agri-finance and schemes pack",
+      "features": 6
+    },
+    {
+      "pack": "Assisted service pack",
+      "features": 5
+    },
+    {
+      "pack": "Service desk extensions pack",
+      "features": 5
+    },
+    {
+      "pack": "Carrier adapter (reusable, Kenya)",
+      "features": 4
+    },
+    {
+      "pack": "Access and admin extensions pack",
+      "features": 3
+    },
+    {
+      "pack": "Core (both clients)",
+      "features": 3
+    },
+    {
+      "pack": "Carrier adapter (reusable)",
+      "features": 3
+    },
+    {
+      "pack": "Country: Kenya",
+      "features": 2
+    },
+    {
+      "pack": "Country: Malawi",
+      "features": 2
+    },
+    {
+      "pack": "Country: Kenya/Malawi",
+      "features": 1
+    },
+    {
+      "pack": "Client: KTDA",
+      "features": 1
+    }
+  ],
+  "configurationRules": [
+    {
+      "decision": "VER-500",
+      "rule": "Every client installation runs nopCommerce 5.00.1 on .NET 10; packs use 5.00.1 setting keys and permission names (for example returnrequestsettings.*, News.Manage); plugin.json SupportedVersions is 5.00.",
+      "mechanism": "Libraries/Nop.Core/NopVersion.cs:11,16; Directory.Build.props:3"
+    },
+    {
+      "decision": "CART-500",
+      "rule": "The native separate cart per vendor stays off in every client pack: shoppingcartsettings.vendorenabled = false and shoppingcartsettings.vendorrequired = false (the installation default). With vendorenabled on, the cart page shows one chosen vendor's items (admin label \"Vendor filtering\"); with both on, checkout of a cart with more than one vendor is blocked until one vendor is chosen. The product keeps one cart whose order and payment are split across sellers (CHK-004 order splitter, SPLIT-PAY).",
+      "mechanism": "ShoppingCartSettings.VendorEnabled / VendorRequired (Libraries/Nop.Core/Domain/Orders/ShoppingCartSettings.cs:131,136; defaults Libraries/Nop.Services/Installation/InstallRequiredData.cs:1856-1857); cart filter Presentation/Nop.Web/Factories/ShoppingCartModelFactory.cs:997-1000; warning ShoppingCart.SelectVendorToCheckout (Libraries/Nop.Services/Orders/ShoppingCartService.cs:1220-1226)"
+    },
+    {
+      "decision": "PRICE-500",
+      "rule": "Customer and company prices (CAT-039, CAT-042) are native price lists (catalogsettings.priceliststrategy chooses MinimalPrice or UseByPriority). Per-currency fixed prices remain a build. Natively a tier price replaces the price-list price, so a rule is required wherever a product carries both; the rule text is owned by the CAT chapter (column 4).",
+      "mechanism": "PriceList, PriceListItem.ManualPrice, PriceListCustomer, PriceListCustomerRole; PriceCalculationService.GetFinalPriceAsync (Libraries/Nop.Services/Catalog/PriceCalculationService.cs:77-140,454-462)"
+    }
+  ]
+}
