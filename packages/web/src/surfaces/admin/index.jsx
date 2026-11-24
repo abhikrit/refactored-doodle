@@ -6,6 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import { api } from '../../lib/api.js';
 import { useProduct, money } from '../../lib/store.jsx';
 import { AdminPage } from '../../ui/nop/shells.jsx';
+import { CustomerActions } from './adm001.jsx';
 import {
   Alert, Badge, Breadcrumb, Button, ButtonBar, Citation, Field, Grid, Input, KeyValue, NotBuilt,
   Panel, ProductPicture, SearchPanel, Select, Spinner, StatTile, Tabs,
@@ -637,8 +638,10 @@ export function AdminCheckoutExceptions() {
 
 export function AdminCustomers() {
   const [rows, setRows] = useState(null);
+  const [open, setOpen] = useState(null);
   const { content } = useProduct();
-  useEffect(() => { api.get('/identity/customers').then(setRows).catch(() => {}); }, [content?.clientName]);
+  const load = () => api.get('/identity/customers').then(setRows).catch(() => {});
+  useEffect(() => { load(); }, [content?.clientName]);
   return (
     <AdminPage title="Customers" breadcrumb={crumb({ label: 'Customers' }, { label: 'Customers' })} intro="IAM-010 user administration console. All accounts are synthetic (P-5).">
       <Panel bodyClass="p-0">
@@ -652,12 +655,23 @@ export function AdminCustomers() {
               { key: 'roles', header: 'Customer roles', render: (c) => <span className="flex flex-wrap gap-1">{c.roles.map((r) => <Badge key={r} tone="slate">{r}</Badge>)}</span> },
               { key: 'outlet', header: 'Outlet', render: (c) => c.outlet ?? '-' },
               { key: 'active', header: 'Active', render: (c) => <Badge tone={c.active ? 'green' : 'red'}>{c.active ? 'Yes' : 'No'}</Badge> },
+              {
+                key: 'edit',
+                header: '',
+                align: 'right',
+                render: (c) => <Button size="sm" onClick={() => setOpen(open === c.email ? null : c.email)}>{open === c.email ? 'Close' : 'Edit'}</Button>,
+              },
             ]}
             rows={rows}
             rowKey={(c) => c.email}
           />
         )}
       </Panel>
+      {open && rows && (
+        <Panel title={`Customer — ${open}`} subtitle="PRD-ADM-001 US-ADM-001-03: suspend, reactivate and process a deletion request">
+          <CustomerActions customer={rows.find((c) => c.email === open)} onDone={load} />
+        </Panel>
+      )}
     </AdminPage>
   );
 }

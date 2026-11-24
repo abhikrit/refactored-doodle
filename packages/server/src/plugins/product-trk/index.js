@@ -12,10 +12,14 @@ export default definePlugin({
   area: 'TRK',
   startupOrder: 3310,
   async install(ctx) {
-    ctx.providers.claimOverride('INotificationService', {
+    // BR-ADM-003 entry (8): the overridden nopCommerce service is IWorkflowMessageService
+    // (SendNotificationAsync, signature unchanged in 5.00); owner TRK-005 under OVR-REG. Other
+    // modules send their own event codes through IC-TRK-04 instead of overriding it.
+    ctx.providers.claimOverride('IWorkflowMessageService', {
       owner: 'Product.TRK',
       feature: 'PRD-TRK-005',
       startupOrder: 3310,
+      rule: 'BR-ADM-003',
       note: 'Multi-channel messaging host (TRK-005). Routing per event and channel comes from the pack (decision MSG-ROUTE).',
     });
     // event consumers only notify (L1 section 6.2 principle 8)

@@ -1,6 +1,6 @@
 # Trace report
 
-Generated 2026-11-24T13:52:48.467Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
+Generated 2026-11-24T14:15:49.627Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
 
 ## 1. Reconciliation
 
@@ -10,20 +10,20 @@ its own has a passing test named by that AC ID (prototype decision P-6).
 
 | State | Features | Meaning |
 |---|---|---|
-| Built and passing | 15 | At least one AC has a passing test named by the AC ID |
+| Built and passing | 16 | At least one AC has a passing test named by the AC ID |
 | Held, prototype default | 99 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
 | Mocked externally | 30 | External-system feature standing behind a mock adapter (P-3) |
-| Not built | 290 | Scaffolded in Session 0, built in its own session |
+| Not built | 289 | Scaffolded in Session 0, built in its own session |
 | **Total** | **434** | reconciles: yes |
 
 Acceptance criteria in the product: 2850. Criteria with a test in this repository:
-30 (30 passing, 0 failing).
+42 (42 passing, 0 failing).
 
 ## 2. Coverage by area and wave
 
 | Wave | Area | Name | Features | Built | Held | Mocked | Not built |
 |---|---|---|---|---|---|---|---|
-| 1 Foundation | ADM | Administration, workflow and operations console | 12 | 0 | 2 | 0 | 10 |
+| 1 Foundation | ADM | Administration, workflow and operations console | 12 | 1 | 2 | 0 | 9 |
 | 1 Foundation | IAM | Identity, access and accounts | 27 | 0 | 3 | 1 | 23 |
 | 1 Foundation | PLT | Platform foundation and multi-client configuration | 27 | 2 | 3 | 4 | 18 |
 | 1 Foundation | SEC | Security, audit and compliance | 15 | 1 | 2 | 5 | 7 |
@@ -53,7 +53,7 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 | Client | Requirements | Mapped to a feature | Demonstrated in the prototype | Project service |
 |---|---|---|---|---|
 | KTDA | 95 | 80 | 7 | 17 |
-| Malawi Post | 411 | 374 | 30 | 38 |
+| Malawi Post | 411 | 374 | 31 | 38 |
 
 "Demonstrated in the prototype" means at least one feature that delivers the requirement has a
 passing AC-named test here. It is not a compliance statement: the compliance status of each
@@ -63,6 +63,18 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 
 | AC ID | Feature | Suite | Result |
 |---|---|---|---|
+| AC-ADM-001-01-01 | PRD-ADM-001 | node (API and rules) | pass |
+| AC-ADM-001-01-02 | PRD-ADM-001 | node (API and rules) | pass |
+| AC-ADM-001-02-01 | PRD-ADM-001 | node (API and rules) | pass |
+| AC-ADM-001-02-02 | PRD-ADM-001 | node (API and rules) | pass |
+| AC-ADM-001-03-01 | PRD-ADM-001 | node (API and rules) | pass |
+| AC-ADM-001-03-02 | PRD-ADM-001 | node (API and rules) | pass |
+| AC-ADM-001-04-01 | PRD-ADM-001 | node (API and rules) | pass |
+| AC-ADM-001-04-02 | PRD-ADM-001 | node (API and rules) | pass |
+| AC-ADM-001-04-03 | PRD-ADM-001 | node (API and rules) | pass |
+| AC-ADM-001-04-04 | PRD-ADM-001 | node (API and rules) | pass |
+| AC-ADM-001-04-05 | PRD-ADM-001 | node (API and rules) | pass |
+| AC-ADM-001-04-06 | PRD-ADM-001 | node (API and rules) | pass |
 | AC-CHK-001-01-01 | PRD-CHK-001 | node (API and rules) | pass |
 | AC-CHK-001-01-02 | PRD-CHK-001 | node (API and rules) | pass |
 | AC-CHK-001-03-01 | PRD-CHK-001 | node (API and rules) | pass |
@@ -471,7 +483,7 @@ in the user interface and here.
 | PRD-RPT-010 | Operational dashboards | RPT | P1 | 5 | held-default | 5 | 0 | PAID-STUB |
 | PRD-RPT-011 | Commerce and marketing analytics | RPT | P1 | 5 | held-default | 9 | 0 | PAID-STUB |
 | PRD-RPT-012 | e-Government and engagement reports | RPT | P1 | 5 | held-default | 2 | 0 | FG-06, PAID-STUB / FG-06 / PAID-STUB |
-| PRD-ADM-001 | Administration console | ADM | P1 | 1 | not-built | 12 | 0 | - |
+| PRD-ADM-001 | Administration console | ADM | P1 | 1 | built | 12 | 12 | - |
 | PRD-ADM-002 | Workflow engine | ADM | P1 | 1 | held-default | 20 | 0 | WF-ENG |
 | PRD-ADM-003 | Business rules engine | ADM | P1 | 1 | not-built | 9 | 0 | - |
 | PRD-ADM-004 | Transaction types and parameter schema | ADM | P2 | 1 | not-built | 6 | 0 | - |

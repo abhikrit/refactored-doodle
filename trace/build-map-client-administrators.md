@@ -1,6 +1,6 @@
 # Build map — Client administrators
 
-Generated 2026-11-24T13:52:48.638Z by `scripts/build-group-map.mjs`.
+Generated 2026-11-24T14:15:49.852Z by `scripts/build-group-map.mjs`.
 
 The product mapping diagram counts **137** features for this group and the registry reproduces it exactly.
 
@@ -74,7 +74,7 @@ workbook directly.
 
 | # | Feature ID | Roadmap row | Name | Module | Phase | Priority | Implementation | ACs | Screens | State | Held by |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | PRD-ADM-001 | 390 | Administration console | ADM | P1 | Must Have | Configuration | 12 | 2 | not built | — |
+| 1 | PRD-ADM-001 | 390 | Administration console | ADM | P1 | Must Have | Configuration | 12 | 2 | built | — |
 | 2 | PRD-ADM-002 | 391 | Workflow engine | ADM | P1 | Must Have | Code-level | 20 | 1 | held, prototype default | WF-ENG |
 | 3 | PRD-ADM-003 | 392 | Business rules engine | ADM | P1 | Must Have | Code-level | 9 | 1 | not built | — |
 | 4 | PRD-ADM-006 | 395 | Approval queues | ADM | P1 | Must Have | Code-level | 14 | 1 | held, prototype default | WF-ENG |

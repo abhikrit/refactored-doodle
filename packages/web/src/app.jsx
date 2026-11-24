@@ -25,6 +25,9 @@ import {
   AdminTracking,
 } from './surfaces/admin/system.jsx';
 
+import {
+  AdminConsole, BulkEdit, ExtensionRegister, Maintenance, ScheduleTasks, SystemLog, Widgets,
+} from './surfaces/admin/adm001.jsx';
 import { SellerDashboard, SellerList } from './surfaces/seller/index.jsx';
 import { OutletCounter } from './surfaces/outlet/index.jsx';
 import {
@@ -77,7 +80,9 @@ export default function App() {
 
               {/* administration */}
               <Route path="/admin" element={<Dashboard />} />
+              <Route path="/admin/console" element={<AdminConsole />} />
               <Route path="/admin/catalog/products" element={<AdminProducts />} />
+              <Route path="/admin/catalog/bulk-edit" element={<BulkEdit />} />
               <Route path="/admin/catalog/products/:id" element={<AdminProductEdit />} />
               <Route path="/admin/catalog/categories" element={<AdminCategories />} />
               <Route path="/admin/catalog/price-lists" element={<AdminPriceLists />} />
@@ -97,8 +102,13 @@ export default function App() {
               <Route path="/admin/configuration/currencies" element={<AdminCurrencies />} />
               <Route path="/admin/configuration/payment-methods" element={<AdminPaymentMethods />} />
               <Route path="/admin/configuration/shipping-methods" element={<AdminShippingMethods />} />
+              <Route path="/admin/configuration/widgets" element={<Widgets />} />
               <Route path="/admin/configuration/acl" element={<AdminAcl />} />
               <Route path="/admin/configuration/message-templates" element={<AdminMessageTemplates />} />
+              <Route path="/admin/system/schedule-tasks" element={<ScheduleTasks />} />
+              <Route path="/admin/system/log" element={<SystemLog />} />
+              <Route path="/admin/system/maintenance" element={<Maintenance />} />
+              <Route path="/admin/system/extension-register" element={<ExtensionRegister />} />
               <Route path="/admin/system/audit" element={<AdminAudit />} />
               <Route path="/admin/system/messages" element={<AdminMessages />} />
               <Route path="/admin/system/tracking" element={<AdminTracking />} />

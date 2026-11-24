@@ -22,6 +22,26 @@ export async function customersAsync() {
 
 export async function signInAsync({ sessionId, email, password = 'demo' }) {
   const customer = await repository('Customer').getOneAsync((c) => c.email === email);
+  // AC-ADM-001-03-01: a deactivated account cannot sign in; AC-ADM-001-03-02: a deleted one is gone
+  if (customer && (customer.active === false || customer.deleted)) {
+    await auditAsync({
+      event: 'AUD-IAM-012-02',
+      area: 'IAM',
+      feature: 'PRD-IAM-012',
+      entity: 'Customer',
+      entityId: customer.id,
+      actor: email,
+      outcome: 'rejected',
+      note: customer.deleted ? 'sign-in refused: the account was deleted' : `sign-in refused: the account is deactivated (${customer.deactivationReason ?? 'no reason recorded'})`,
+    });
+    return {
+      ok: false,
+      deactivated: true,
+      message: customer.deleted
+        ? 'This account no longer exists.'
+        : 'This account has been deactivated. Please contact us.',
+    };
+  }
   if (!customer || customer.password !== password) {
     await auditAsync({
       event: 'AUD-IAM-012-02', area: 'IAM', feature: 'PRD-IAM-012', entity: 'Customer', entityId: email, actor: email, outcome: 'rejected', note: 'failed sign-in (prototype)',

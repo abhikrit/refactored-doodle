@@ -284,10 +284,12 @@ export function StorefrontShell({ children }) {
 
 const ADMIN_NAV = [
   { label: 'Dashboard', to: '/admin' },
+  { label: 'Administration console', to: '/admin/console' },
   {
     label: 'Catalog',
     children: [
       { label: 'Products', to: '/admin/catalog/products' },
+      { label: 'Bulk edit', to: '/admin/catalog/bulk-edit' },
       { label: 'Categories', to: '/admin/catalog/categories' },
       { label: 'Price lists', to: '/admin/catalog/price-lists' },
     ],
@@ -313,6 +315,7 @@ const ADMIN_NAV = [
     label: 'Configuration',
     children: [
       { label: 'Settings (all settings)', to: '/admin/configuration/settings' },
+      { label: 'Widgets', to: '/admin/configuration/widgets' },
       { label: 'Configuration packs', to: '/admin/configuration/packs' },
       { label: 'Feature registry', to: '/admin/configuration/features' },
       { label: 'Stores', to: '/admin/configuration/stores' },
@@ -327,6 +330,10 @@ const ADMIN_NAV = [
   {
     label: 'System',
     children: [
+      { label: 'Schedule tasks', to: '/admin/system/schedule-tasks' },
+      { label: 'Log', to: '/admin/system/log' },
+      { label: 'Maintenance', to: '/admin/system/maintenance' },
+      { label: 'Extension register', to: '/admin/system/extension-register' },
       { label: 'Audit trail', to: '/admin/system/audit' },
       { label: 'Message queue', to: '/admin/system/messages' },
       { label: 'Tracking hub', to: '/admin/system/tracking' },
@@ -338,8 +345,54 @@ const ADMIN_NAV = [
   { label: 'Screens (274)', to: '/admin/screens' },
 ];
 
+/**
+ * The signed-in staff account, and a way to sign in as another one.
+ *
+ * nopCommerce shows the account and a Logout link in the admin navbar. The picker beside it is
+ * prototype chrome: the console areas are gated by the native permission of the signed-in role
+ * (AC-ADM-001-01-01), so the only way to see the gate work is to change role. Roles are the
+ * IAM-007 staff roles from the seed, not invented ones.
+ */
+function StaffAccount() {
+  const { customer, refreshCustomer } = useProduct();
+  const [staff, setStaff] = useState([]);
+
+  useEffect(() => {
+    api.get('/identity/customers')
+      .then((all) => setStaff(all.filter((c) => !(c.roles ?? []).includes('Registered'))))
+      .catch(() => setStaff([]));
+  }, []);
+
+  const signInAs = async (email) => {
+    if (!email) await api.post('/identity/sign-out');
+    else await api.post('/identity/sign-in', { email, password: 'demo' });
+    await refreshCustomer();
+  };
+
+  return (
+    <label className="flex items-center gap-1.5">
+      <span className="text-nop-muted hidden lg:inline">Signed in as</span>
+      <select
+        className="border border-nop-border bg-white px-1.5 py-1 text-[12.5px] max-w-[18rem]"
+        value={customer?.email ?? ''}
+        onChange={(e) => signInAs(e.target.value)}
+        title="Prototype staff sign-in - the console areas are gated by the role's native permissions"
+      >
+        <option value="">not signed in</option>
+        {staff.map((c) => (
+          <option key={c.id} value={c.email}>
+            {c.email}
+            {' - '}
+            {(c.roles ?? []).join(', ') || 'no role'}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
 export function AdminShell({ children, breadcrumb }) {
-  const { content, client, customer } = useProduct();
+  const { content, client } = useProduct();
   const { pathname } = useLocation();
   const [openGroups, setOpenGroups] = useState(() => ADMIN_NAV
     .filter((g) => g.children?.some((c) => pathname.startsWith(c.to)))
@@ -404,7 +457,7 @@ export function AdminShell({ children, breadcrumb }) {
           </div>
           <div className="ml-auto flex items-center gap-3 text-[12.5px]">
             <Button as="link" to="/" size="sm">Public store</Button>
-            <span className="text-nop-muted hidden sm:inline">{customer?.email ?? 'not signed in'}</span>
+            <StaffAccount />
           </div>
         </header>
         <main className="flex-1 p-4 min-w-0">{children}</main>

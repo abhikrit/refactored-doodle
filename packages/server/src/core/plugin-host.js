@@ -58,6 +58,7 @@ export async function loadPluginsAsync({ root, mocks = {} }) {
   const routers = [];
   const declarations = [];
 
+  let installSequence = 0;
   for (const d of descriptors) {
     const area = d.area;
     const ctx = {
@@ -87,7 +88,16 @@ export async function loadPluginsAsync({ root, mocks = {} }) {
       declare: (what) => declarations.push({ area, ...what }),
     };
     if (d.plugin?.install) await d.plugin.install(ctx);
-    loaded.set(d.systemName, { ...d, plugin: undefined, installed: true });
+    // AC-ADM-001-04-01: the register's reader must run after every other product plugin, so the
+    // INopStartup order each plugin declares and the order it actually installed in are both
+    // reported on the Local plugins screen.
+    loaded.set(d.systemName, {
+      ...d,
+      plugin: undefined,
+      installed: true,
+      startupOrder: d.plugin?.startupOrder ?? 3000,
+      installSequence: ++installSequence,
+    });
   }
 
   return {

@@ -58,6 +58,32 @@ async function seedSecurityAsync() {
     }
   }
 
+  // AC-ADM-001-01-01 gates the Maintenance area on its native permission. System.ManageMaintenance
+  // is a real 5.00.1 permission but it is not in the ADM chapter's permission table, so it is added
+  // here and flagged rather than left out, which would leave the area ungated.
+  await addPermissionAsync({
+    systemName: 'System.ManageMaintenance',
+    name: 'System.ManageMaintenance',
+    category: 'System',
+    area: 'ADM',
+    native: true,
+    allows: 'Open System > Maintenance and run maintenance actions',
+    defaultRoles: ['Administrators'],
+    notInChapterTable: 'native 5.00.1 permission; AC-ADM-001-01-01 names the Maintenance area but the ADM chapter permission table does not list it',
+  });
+  await grantAsync('System.ManageMaintenance', 'Administrators');
+
+  // Security.AccessAdminPanel: "Administrators, Vendors and roles granted by IAM-007" (ADM
+  // chapter section 4). The staff roles below are the IAM-007 grant for this prototype; Auditor
+  // is deliberately left out, because SEC-010 gives an auditor a read-only surface of its own.
+  for (const role of ['Catalogue', 'Finance', 'Logistics', 'Warehouse', 'Support', 'Compliance', 'Agent', 'PlatformTeam']) {
+    try { await grantAsync('Security.AccessAdminPanel', role); } catch { /* role not seeded */ }
+  }
+  // the catalogue role runs the bulk edit (AC-ADM-001-02-01)
+  for (const p2 of ['Catalog.ProductsView', 'Catalog.ProductsCreateEditDelete']) {
+    try { await grantAsync(p2, 'Catalogue'); } catch { /* permission not in the chapter tables */ }
+  }
+
   const roleBySpokenName = {
     administrators: 'Administrators',
     administrator: 'Administrators',
@@ -153,10 +179,14 @@ async function seedCustomersAsync(clientId) {
     {
       email: 'approver@example.com', firstName: 'Grace', lastName: 'Banda', roles: ['Registered', 'CompanyApprover'], phone: '+265880000003', password: 'demo', company: 'Phiri Wholesale Ltd',
     },
+    // IAM-007: not every staff member is an Administrator. Each role carries only the
+    // permissions its chapter grants it, which is what AC-ADM-001-01-01 is about - an area whose
+    // native permission the user lacks is denied.
     { email: 'admin@example.com', firstName: 'Platform', lastName: 'Administrator', roles: ['Administrators', 'PlatformTeam'], password: 'demo' },
-    { email: 'finance@example.com', firstName: 'Finance', lastName: 'Officer', roles: ['Administrators', 'Finance'], password: 'demo' },
-    { email: 'logistics@example.com', firstName: 'Logistics', lastName: 'Officer', roles: ['Administrators', 'Logistics'], password: 'demo' },
-    { email: 'support@example.com', firstName: 'Support', lastName: 'Agent', roles: ['Administrators', 'Support'], password: 'demo' },
+    { email: 'catalogue@example.com', firstName: 'Catalogue', lastName: 'Manager', roles: ['Catalogue'], password: 'demo' },
+    { email: 'finance@example.com', firstName: 'Finance', lastName: 'Officer', roles: ['Finance'], password: 'demo' },
+    { email: 'logistics@example.com', firstName: 'Logistics', lastName: 'Officer', roles: ['Logistics'], password: 'demo' },
+    { email: 'support@example.com', firstName: 'Support', lastName: 'Agent', roles: ['Support'], password: 'demo' },
     { email: 'auditor@example.com', firstName: 'External', lastName: 'Auditor', roles: ['Auditor'], password: 'demo' },
   ];
   const clientSpecific = clientId === 'MPC'
@@ -164,7 +194,7 @@ async function seedCustomersAsync(clientId) {
       email: 'agent.lilongwe@example.com', firstName: 'Tadala', lastName: 'Mvula', roles: ['Administrators', 'Agent'], password: 'demo', outlet: 'Lilongwe Post Office',
     }]
     : [{
-      email: 'depot.nairobi@example.com', firstName: 'Joseph', lastName: 'Kariuki', roles: ['Administrators', 'Logistics'], password: 'demo', outlet: 'KTDA Nairobi Depot',
+      email: 'depot.nairobi@example.com', firstName: 'Joseph', lastName: 'Kariuki', roles: ['Logistics'], password: 'demo', outlet: 'KTDA Nairobi Depot',
     }];
 
   for (const c of [...common, ...clientSpecific]) {
@@ -179,6 +209,46 @@ export async function seedAsync({ clientId, report }) {
   await seedSecurityAsync();
   await seedPackEntitiesAsync(report);
   await seedCustomersAsync(clientId);
+
+  // PRD-ADM-001: the console's own data - scheduled tasks, the system log and page widgets.
+  // Names and intervals are the nopCommerce 5.00.1 defaults; ScheduleTask has no store scope.
+  for (const t of [
+    { name: 'Send emails', seconds: 60, type: 'Nop.Services.Messages.QueuedMessagesSendTask' },
+    { name: 'Keep alive', seconds: 300, type: 'Nop.Services.Common.KeepAliveTask' },
+    { name: 'Delete guests', seconds: 600, type: 'Nop.Services.Customers.DeleteGuestsTask' },
+    { name: 'Clear cache', seconds: 600, type: 'Nop.Services.Caching.ClearCacheTask' },
+    { name: 'Clear log', seconds: 3600, type: 'Nop.Services.Logging.ClearLogTask' },
+    { name: 'Update currency exchange rates', seconds: 3600, type: 'Nop.Services.Directory.UpdateExchangeRateTask' },
+    { name: 'Pack loader: apply pending configuration pack', seconds: 1800, type: 'Product.PLT.ApplyPackTask', productTask: 'PRD-PLT-003' },
+    { name: 'Tracking: poll carrier events', seconds: 900, type: 'Product.TRK.PollCarrierEventsTask', productTask: 'PRD-TRK-002' },
+  ]) {
+    await repository('ScheduleTask').insertAsync({
+      ...t,
+      enabled: true,
+      stopOnError: false,
+      lastStartUtc: null,
+      lastEndUtc: null,
+      lastSuccessUtc: null,
+      lastError: null,
+      synthetic: true,
+    });
+  }
+  for (const l of [
+    { logLevel: 'Information', shortMessage: 'Application started', fullMessage: 'The prototype started and applied the client configuration pack.' },
+    { logLevel: 'Information', shortMessage: 'Configuration pack applied', fullMessage: 'global -> country -> vertical -> client -> store merged (BR-PLT-010).' },
+    { logLevel: 'Warning', shortMessage: 'Mock adapter not configured for a real sandbox', fullMessage: 'Every external system is a mock (decision P-3).' },
+    { logLevel: 'Error', shortMessage: 'Payment callback for an unknown reference', fullMessage: 'A callback arrived for a provider reference with no transaction. Synthetic sample.' },
+  ]) {
+    await repository('Log').insertAsync({ ...l, ipAddress: '127.0.0.1', pageUrl: '/', customerId: null, createdOnUtc: new Date().toISOString(), synthetic: true });
+  }
+  for (const w of [
+    { systemName: 'Widgets.NivoSlider', friendlyName: 'Nivo slider', widgetZones: ['home_page_top'], displayOrder: 1, isActive: true },
+    { systemName: 'Product.MKT.PolicyNotice', friendlyName: 'Policy notice (MKT-008)', widgetZones: ['checkout_confirm_bottom'], displayOrder: 2, isActive: true, feature: 'PRD-MKT-008' },
+    { systemName: 'Product.CRM.CustomerBlock', friendlyName: 'Support block on the customer page (CRM-003)', widgetZones: ['admin_customer_details_block'], displayOrder: 3, isActive: true, feature: 'PRD-CRM-003' },
+    { systemName: 'Product.TRK.OrderTracking', friendlyName: 'Tracking on the order page (TRK-001)', widgetZones: ['orderdetails_page_overview'], displayOrder: 4, isActive: false, feature: 'PRD-TRK-001' },
+  ]) {
+    await repository('Widget').insertAsync({ ...w, synthetic: true });
+  }
 
   const catalogue = clientId === 'KTDA' ? ktdaCatalogue : mpcCatalogue;
   for (const vendor of catalogue.vendors) {
@@ -216,6 +286,9 @@ export async function seedAsync({ clientId, report }) {
       pickupPoints: (await repository('StorePickupPoint').getAllAsync()).length,
       languages: (await repository('Language').getAllAsync()).length,
       currencies: (await repository('Currency').getAllAsync()).length,
+      scheduleTasks: (await repository('ScheduleTask').getAllAsync()).length,
+      logEntries: (await repository('Log').getAllAsync()).length,
+      widgets: (await repository('Widget').getAllAsync()).length,
     },
     placeholders: catalogue.placeholders ?? [],
   };
