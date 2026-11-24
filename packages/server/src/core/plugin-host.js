@@ -13,6 +13,7 @@
 
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { registry, featuresByArea, screensByArea } from '@product/shared';
 import { repository } from './repository.js';
 import { saveSettingAsync, getSettingAsync, getSettingGroupAsync } from './settings.js';
@@ -46,7 +47,8 @@ export async function loadPluginsAsync({ root, mocks = {} }) {
     const descriptorPath = join(dir, name, 'plugin.json');
     if (!existsSync(descriptorPath)) continue;
     const descriptor = JSON.parse(readFileSync(descriptorPath, 'utf8'));
-    const mod = await import(join(dir, name, 'index.js'));
+    // pathToFileURL: bare "D:\..." paths are rejected by Node's ESM loader on Windows
+    const mod = await import(pathToFileURL(join(dir, name, 'index.js')).href);
     descriptors.push({ ...descriptor, directory: `packages/server/src/plugins/${name}`, plugin: mod.default });
   }
 
