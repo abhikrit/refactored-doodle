@@ -14,6 +14,7 @@ import {
 import { registry } from '@product/shared';
 import { ktdaCatalogue } from './catalogue-ktda.js';
 import { mpcCatalogue } from './catalogue-mpc.js';
+import { seedAdmAsync } from './adm.js';
 
 // The product role catalogue, BR-IAM-050. System names are the ones the permission tables use.
 const ROLES = [
@@ -29,6 +30,7 @@ const ROLES = [
   { name: 'Warehouse', systemName: 'Warehouse' },
   { name: 'Support', systemName: 'Support' },
   { name: 'Compliance', systemName: 'Compliance' },
+  { name: 'Operations', systemName: 'Operations' },
   { name: 'Agent', systemName: 'Agent' },
   { name: 'Auditor', systemName: 'Auditor' },
   { name: 'Business buyer', systemName: 'BusinessBuyer' },
@@ -76,9 +78,16 @@ async function seedSecurityAsync() {
   // Security.AccessAdminPanel: "Administrators, Vendors and roles granted by IAM-007" (ADM
   // chapter section 4). The staff roles below are the IAM-007 grant for this prototype; Auditor
   // is deliberately left out, because SEC-010 gives an auditor a read-only surface of its own.
-  for (const role of ['Catalogue', 'Finance', 'Logistics', 'Warehouse', 'Support', 'Compliance', 'Agent', 'PlatformTeam']) {
+  for (const role of ['Catalogue', 'Finance', 'Logistics', 'Warehouse', 'Support', 'Compliance', 'Agent', 'PlatformTeam', 'Operations']) {
     try { await grantAsync('Security.AccessAdminPanel', role); } catch { /* role not seeded */ }
   }
+  // "Administration.Core.Approvals.Act: Administrators and the roles named on approval steps"
+  // (ADM chapter section 4). The roles named on the seeded chains are these, so they are granted
+  // here rather than left ungranted, which would empty every approval queue (AC-ADM-006-01-01).
+  for (const role of ['Finance', 'Compliance', 'Catalogue', 'Operations']) {
+    try { await grantAsync('Administration.Core.Approvals.Act', role); } catch { /* role not seeded */ }
+  }
+
   // the catalogue role runs the bulk edit (AC-ADM-001-02-01)
   for (const p2 of ['Catalog.ProductsView', 'Catalog.ProductsCreateEditDelete']) {
     try { await grantAsync(p2, 'Catalogue'); } catch { /* permission not in the chapter tables */ }
@@ -99,6 +108,10 @@ async function seedSecurityAsync() {
     warehouse: 'Warehouse',
     support: 'Support',
     compliance: 'Compliance',
+    operations: 'Operations',
+    'operations staff': 'Operations',
+    'platform operator': 'PlatformTeam',
+    platformoperator: 'PlatformTeam',
     catalogue: 'Catalogue',
     auditor: 'Auditor',
     auditors: 'Auditor',
@@ -183,11 +196,22 @@ async function seedCustomersAsync(clientId) {
     // permissions its chapter grants it, which is what AC-ADM-001-01-01 is about - an area whose
     // native permission the user lacks is denied.
     { email: 'admin@example.com', firstName: 'Platform', lastName: 'Administrator', roles: ['Administrators', 'PlatformTeam'], password: 'demo' },
+    // a second administrator: AC-ADM-011-04-01 needs an approver other than the author, and
+    // BR-ADM-030 keeps one user to one step of an item, so the role needs two people in it
+    { email: 'config.approver@example.com', firstName: 'Configuration', lastName: 'Approver', roles: ['Administrators'], password: 'demo' },
     { email: 'catalogue@example.com', firstName: 'Catalogue', lastName: 'Manager', roles: ['Catalogue'], password: 'demo' },
-    { email: 'finance@example.com', firstName: 'Finance', lastName: 'Officer', roles: ['Finance'], password: 'demo' },
+    {
+      email: 'finance@example.com', firstName: 'Finance', lastName: 'Officer', roles: ['Finance'], password: 'demo', authorityLimits: { approval: 500000 },
+    },
     { email: 'logistics@example.com', firstName: 'Logistics', lastName: 'Officer', roles: ['Logistics'], password: 'demo' },
     { email: 'support@example.com', firstName: 'Support', lastName: 'Agent', roles: ['Support'], password: 'demo' },
     { email: 'auditor@example.com', firstName: 'External', lastName: 'Auditor', roles: ['Auditor'], password: 'demo' },
+    {
+      email: 'operations@example.com', firstName: 'Operations', lastName: 'Supervisor', roles: ['Operations'], password: 'demo', authorityLimits: { approval: 250000 },
+    },
+    {
+      email: 'compliance@example.com', firstName: 'Compliance', lastName: 'Officer', roles: ['Compliance'], password: 'demo', authorityLimits: { approval: 1000000 },
+    },
   ];
   const clientSpecific = clientId === 'MPC'
     ? [{
@@ -273,6 +297,11 @@ export async function seedAsync({ clientId, report }) {
     await repository('DeliverySlotDefinition').insertAsync({ ...slot, synthetic: true });
   }
 
+  // PRD-ADM-002 to PRD-ADM-012: rule sets, transaction types, eligibility, approval chains,
+  // workflow definitions, exceptions, alert rules and the template library. Last, because the
+  // quota and the template analytics are seeded against the catalogue above.
+  const adm = await seedAdmAsync({ clientId });
+
   return {
     clientId,
     counts: {
@@ -289,6 +318,7 @@ export async function seedAsync({ clientId, report }) {
       scheduleTasks: (await repository('ScheduleTask').getAllAsync()).length,
       logEntries: (await repository('Log').getAllAsync()).length,
       widgets: (await repository('Widget').getAllAsync()).length,
+      ...adm,
     },
     placeholders: catalogue.placeholders ?? [],
   };

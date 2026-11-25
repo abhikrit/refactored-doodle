@@ -1,6 +1,6 @@
 # Trace report
 
-Generated 2026-11-24T14:15:49.627Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
+Generated 2026-11-25T07:22:21.745Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
 
 ## 1. Reconciliation
 
@@ -10,20 +10,20 @@ its own has a passing test named by that AC ID (prototype decision P-6).
 
 | State | Features | Meaning |
 |---|---|---|
-| Built and passing | 16 | At least one AC has a passing test named by the AC ID |
-| Held, prototype default | 99 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
+| Built and passing | 27 | At least one AC has a passing test named by the AC ID |
+| Held, prototype default | 97 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
 | Mocked externally | 30 | External-system feature standing behind a mock adapter (P-3) |
-| Not built | 289 | Scaffolded in Session 0, built in its own session |
+| Not built | 280 | Scaffolded in Session 0, built in its own session |
 | **Total** | **434** | reconciles: yes |
 
 Acceptance criteria in the product: 2850. Criteria with a test in this repository:
-42 (42 passing, 0 failing).
+133 (133 passing, 0 failing).
 
 ## 2. Coverage by area and wave
 
 | Wave | Area | Name | Features | Built | Held | Mocked | Not built |
 |---|---|---|---|---|---|---|---|
-| 1 Foundation | ADM | Administration, workflow and operations console | 12 | 1 | 2 | 0 | 9 |
+| 1 Foundation | ADM | Administration, workflow and operations console | 12 | 12 | 0 | 0 | 0 |
 | 1 Foundation | IAM | Identity, access and accounts | 27 | 0 | 3 | 1 | 23 |
 | 1 Foundation | PLT | Platform foundation and multi-client configuration | 27 | 2 | 3 | 4 | 18 |
 | 1 Foundation | SEC | Security, audit and compliance | 15 | 1 | 2 | 5 | 7 |
@@ -52,8 +52,8 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 
 | Client | Requirements | Mapped to a feature | Demonstrated in the prototype | Project service |
 |---|---|---|---|---|
-| KTDA | 95 | 80 | 7 | 17 |
-| Malawi Post | 411 | 374 | 31 | 38 |
+| KTDA | 95 | 80 | 10 | 17 |
+| Malawi Post | 411 | 374 | 35 | 38 |
 
 "Demonstrated in the prototype" means at least one feature that delivers the requirement has a
 passing AC-named test here. It is not a compliance statement: the compliance status of each
@@ -75,6 +75,97 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-ADM-001-04-04 | PRD-ADM-001 | node (API and rules) | pass |
 | AC-ADM-001-04-05 | PRD-ADM-001 | node (API and rules) | pass |
 | AC-ADM-001-04-06 | PRD-ADM-001 | node (API and rules) | pass |
+| AC-ADM-002-01-01 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-01-02 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-01-03 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-01-04 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-01-05 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-02-01 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-02-02 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-02-03 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-02-04 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-02-05 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-02-06 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-03-01 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-04-01 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-05-01 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-06-01 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-06-02 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-06-03 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-07-01 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-07-02 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-002-07-03 | PRD-ADM-002 | node (API and rules) | pass |
+| AC-ADM-003-01-01 | PRD-ADM-003 | node (API and rules) | pass |
+| AC-ADM-003-01-02 | PRD-ADM-003 | node (API and rules) | pass |
+| AC-ADM-003-01-03 | PRD-ADM-003 | node (API and rules) | pass |
+| AC-ADM-003-02-01 | PRD-ADM-003 | node (API and rules) | pass |
+| AC-ADM-003-03-01 | PRD-ADM-003 | node (API and rules) | pass |
+| AC-ADM-003-04-01 | PRD-ADM-003 | node (API and rules) | pass |
+| AC-ADM-003-04-02 | PRD-ADM-003 | node (API and rules) | pass |
+| AC-ADM-003-05-01 | PRD-ADM-003 | node (API and rules) | pass |
+| AC-ADM-003-06-01 | PRD-ADM-003 | node (API and rules) | pass |
+| AC-ADM-004-01-01 | PRD-ADM-004 | node (API and rules) | pass |
+| AC-ADM-004-01-02 | PRD-ADM-004 | node (API and rules) | pass |
+| AC-ADM-004-01-03 | PRD-ADM-004 | node (API and rules) | pass |
+| AC-ADM-004-02-01 | PRD-ADM-004 | node (API and rules) | pass |
+| AC-ADM-004-02-02 | PRD-ADM-004 | node (API and rules) | pass |
+| AC-ADM-004-03-01 | PRD-ADM-004 | node (API and rules) | pass |
+| AC-ADM-005-01-01 | PRD-ADM-005 | node (API and rules) | pass |
+| AC-ADM-005-01-02 | PRD-ADM-005 | node (API and rules) | pass |
+| AC-ADM-005-02-01 | PRD-ADM-005 | node (API and rules) | pass |
+| AC-ADM-005-02-02 | PRD-ADM-005 | node (API and rules) | pass |
+| AC-ADM-005-03-01 | PRD-ADM-005 | node (API and rules) | pass |
+| AC-ADM-005-03-02 | PRD-ADM-005 | node (API and rules) | pass |
+| AC-ADM-006-01-01 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-01-02 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-01-03 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-01-04 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-02-01 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-02-02 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-02-03 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-03-01 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-04-01 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-04-02 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-04-03 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-05-01 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-05-02 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-006-06-01 | PRD-ADM-006 | node (API and rules) | pass |
+| AC-ADM-007-01-01 | PRD-ADM-007 | node (API and rules) | pass |
+| AC-ADM-007-01-02 | PRD-ADM-007 | node (API and rules) | pass |
+| AC-ADM-007-02-01 | PRD-ADM-007 | node (API and rules) | pass |
+| AC-ADM-007-03-01 | PRD-ADM-007 | node (API and rules) | pass |
+| AC-ADM-007-04-01 | PRD-ADM-007 | node (API and rules) | pass |
+| AC-ADM-007-05-01 | PRD-ADM-007 | node (API and rules) | pass |
+| AC-ADM-007-06-01 | PRD-ADM-007 | node (API and rules) | pass |
+| AC-ADM-007-07-01 | PRD-ADM-007 | node (API and rules) | pass |
+| AC-ADM-007-08-01 | PRD-ADM-007 | playwright (browser) | pass |
+| AC-ADM-008-01-01 | PRD-ADM-008 | node (API and rules) | pass |
+| AC-ADM-008-01-02 | PRD-ADM-008 | node (API and rules) | pass |
+| AC-ADM-008-01-03 | PRD-ADM-008 | node (API and rules) | pass |
+| AC-ADM-008-01-04 | PRD-ADM-008 | node (API and rules) | pass |
+| AC-ADM-008-01-05 | PRD-ADM-008 | node (API and rules) | pass |
+| AC-ADM-008-01-06 | PRD-ADM-008 | node (API and rules) | pass |
+| AC-ADM-008-01-07 | PRD-ADM-008 | node (API and rules) | pass |
+| AC-ADM-008-01-08 | PRD-ADM-008 | node (API and rules) | pass |
+| AC-ADM-008-02-01 | PRD-ADM-008 | node (API and rules) | pass |
+| AC-ADM-008-02-02 | PRD-ADM-008 | node (API and rules) | pass |
+| AC-ADM-009-01-01 | PRD-ADM-009 | node (API and rules) | pass |
+| AC-ADM-009-02-01 | PRD-ADM-009 | node (API and rules) | pass |
+| AC-ADM-009-03-01 | PRD-ADM-009 | node (API and rules) | pass |
+| AC-ADM-009-03-02 | PRD-ADM-009 | node (API and rules) | pass |
+| AC-ADM-009-04-01 | PRD-ADM-009 | node (API and rules) | pass |
+| AC-ADM-010-01-01 | PRD-ADM-010 | node (API and rules) | pass |
+| AC-ADM-010-01-02 | PRD-ADM-010 | node (API and rules) | pass |
+| AC-ADM-010-01-03 | PRD-ADM-010 | node (API and rules) | pass |
+| AC-ADM-011-01-01 | PRD-ADM-011 | node (API and rules) | pass |
+| AC-ADM-011-02-01 | PRD-ADM-011 | node (API and rules) | pass |
+| AC-ADM-011-03-01 | PRD-ADM-011 | node (API and rules) | pass |
+| AC-ADM-011-03-02 | PRD-ADM-011 | node (API and rules) | pass |
+| AC-ADM-011-04-01 | PRD-ADM-011 | node (API and rules) | pass |
+| AC-ADM-011-05-01 | PRD-ADM-011 | node (API and rules) | pass |
+| AC-ADM-012-01-01 | PRD-ADM-012 | node (API and rules) | pass |
+| AC-ADM-012-02-01 | PRD-ADM-012 | node (API and rules) | pass |
+| AC-ADM-012-02-02 | PRD-ADM-012 | node (API and rules) | pass |
 | AC-CHK-001-01-01 | PRD-CHK-001 | node (API and rules) | pass |
 | AC-CHK-001-01-02 | PRD-CHK-001 | node (API and rules) | pass |
 | AC-CHK-001-03-01 | PRD-CHK-001 | node (API and rules) | pass |
@@ -106,7 +197,7 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-TRK-001-01-02 | PRD-TRK-001 | node (API and rules) | pass |
 | AC-TRK-011-01-02 | PRD-TRK-011 | node (API and rules) | pass |
 
-## 5. Features held by an open decision (99)
+## 5. Features held by an open decision (97)
 
 Each is built as the PRD's Proposed option and labelled "Prototype default - decision <ID> pending"
 in the user interface and here.
@@ -484,17 +575,17 @@ in the user interface and here.
 | PRD-RPT-011 | Commerce and marketing analytics | RPT | P1 | 5 | held-default | 9 | 0 | PAID-STUB |
 | PRD-RPT-012 | e-Government and engagement reports | RPT | P1 | 5 | held-default | 2 | 0 | FG-06, PAID-STUB / FG-06 / PAID-STUB |
 | PRD-ADM-001 | Administration console | ADM | P1 | 1 | built | 12 | 12 | - |
-| PRD-ADM-002 | Workflow engine | ADM | P1 | 1 | held-default | 20 | 0 | WF-ENG |
-| PRD-ADM-003 | Business rules engine | ADM | P1 | 1 | not-built | 9 | 0 | - |
-| PRD-ADM-004 | Transaction types and parameter schema | ADM | P2 | 1 | not-built | 6 | 0 | - |
-| PRD-ADM-005 | Eligibility and quota rules | ADM | P2 | 1 | not-built | 6 | 0 | - |
-| PRD-ADM-006 | Approval queues | ADM | P1 | 1 | held-default | 14 | 0 | WF-ENG |
-| PRD-ADM-007 | Operations console and work queues | ADM | P1 | 1 | not-built | 9 | 0 | - |
-| PRD-ADM-008 | Upload and content scanning controls | ADM | P1 | 1 | not-built | 10 | 0 | - |
-| PRD-ADM-009 | Exception management | ADM | P2 | 1 | not-built | 5 | 0 | - |
-| PRD-ADM-010 | Operational alerts | ADM | P2 | 1 | not-built | 3 | 0 | - |
-| PRD-ADM-011 | Template library | ADM | P2 | 1 | not-built | 6 | 0 | - |
-| PRD-ADM-012 | Template analytics and shared marketplace | ADM | P3 | 1 | not-built | 3 | 0 | - |
+| PRD-ADM-002 | Workflow engine | ADM | P1 | 1 | built | 20 | 20 | WF-ENG |
+| PRD-ADM-003 | Business rules engine | ADM | P1 | 1 | built | 9 | 9 | - |
+| PRD-ADM-004 | Transaction types and parameter schema | ADM | P2 | 1 | built | 6 | 6 | - |
+| PRD-ADM-005 | Eligibility and quota rules | ADM | P2 | 1 | built | 6 | 6 | - |
+| PRD-ADM-006 | Approval queues | ADM | P1 | 1 | built | 14 | 14 | WF-ENG |
+| PRD-ADM-007 | Operations console and work queues | ADM | P1 | 1 | built | 9 | 9 | - |
+| PRD-ADM-008 | Upload and content scanning controls | ADM | P1 | 1 | built | 10 | 10 | - |
+| PRD-ADM-009 | Exception management | ADM | P2 | 1 | built | 5 | 5 | - |
+| PRD-ADM-010 | Operational alerts | ADM | P2 | 1 | built | 3 | 3 | - |
+| PRD-ADM-011 | Template library | ADM | P2 | 1 | built | 6 | 6 | - |
+| PRD-ADM-012 | Template analytics and shared marketplace | ADM | P3 | 1 | built | 3 | 3 | - |
 | PRD-DOC-001 | Document generation | DOC | P1 | 4 | held-default | 15 | 0 | DOC-LIB |
 | PRD-DOC-002 | Document storage | DOC | P1 | 4 | not-built | 9 | 0 | - |
 | PRD-DOC-003 | Document integrity | DOC | P2 | 4 | not-built | 6 | 0 | - |

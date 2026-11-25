@@ -1,6 +1,6 @@
 # Build map — Client administrators
 
-Generated 2026-11-24T14:15:49.852Z by `scripts/build-group-map.mjs`.
+Generated 2026-11-25T07:21:46.469Z by `scripts/build-group-map.mjs`.
 
 The product mapping diagram counts **137** features for this group and the registry reproduces it exactly.
 
@@ -75,9 +75,9 @@ workbook directly.
 | # | Feature ID | Roadmap row | Name | Module | Phase | Priority | Implementation | ACs | Screens | State | Held by |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | PRD-ADM-001 | 390 | Administration console | ADM | P1 | Must Have | Configuration | 12 | 2 | built | — |
-| 2 | PRD-ADM-002 | 391 | Workflow engine | ADM | P1 | Must Have | Code-level | 20 | 1 | held, prototype default | WF-ENG |
-| 3 | PRD-ADM-003 | 392 | Business rules engine | ADM | P1 | Must Have | Code-level | 9 | 1 | not built | — |
-| 4 | PRD-ADM-006 | 395 | Approval queues | ADM | P1 | Must Have | Code-level | 14 | 1 | held, prototype default | WF-ENG |
+| 2 | PRD-ADM-002 | 391 | Workflow engine | ADM | P1 | Must Have | Code-level | 20 | 1 | built | WF-ENG |
+| 3 | PRD-ADM-003 | 392 | Business rules engine | ADM | P1 | Must Have | Code-level | 9 | 1 | built | — |
+| 4 | PRD-ADM-006 | 395 | Approval queues | ADM | P1 | Must Have | Code-level | 14 | 1 | built | WF-ENG |
 | 5 | PRD-IAM-001 | 34 | Customer registration and login | IAM | P1 | Must Have | Configuration | 11 | 2 | not built | — |
 | 6 | PRD-IAM-002 | 35 | Mobile-number identity with OTP | IAM | P1 | Must Have | Code-level | 20 | 3 | not built | — |
 | 7 | PRD-IAM-003 | 36 | Password policy, lockout and recovery | IAM | P1 | Must Have | Code-level | 10 | 1 | not built | — |
@@ -102,14 +102,14 @@ workbook directly.
 | 26 | PRD-SEC-012 | 425 | Country data-protection pack | SEC | P1 | Must Have | Code-level | 9 | 1 | not built | — |
 | 27 | PRD-SEC-007 | 420 | Consent and privacy tools | SEC | P1 | Must Have | Configuration | 10 | 2 | not built | — |
 | 28 | PRD-SEC-011 | 424 | Vulnerability management | SEC | P1 | Must Have | External system | 4 | 0 | mocked | — |
-| 29 | PRD-ADM-008 | 397 | Upload and content scanning controls | ADM | P1 | Should Have | Code-level | 10 | 1 | not built | — |
+| 29 | PRD-ADM-008 | 397 | Upload and content scanning controls | ADM | P1 | Should Have | Code-level | 10 | 1 | built | — |
 | 30 | PRD-PLT-019 | 22 | Contextual help and guided tours | PLT | P1 | Should Have | Code-level | 4 | 2 | not built | — |
 | 31 | PRD-SEC-013 | 426 | Bot protection | SEC | P1 | Should Have | Configuration | 5 | 1 | not built | — |
-| 32 | PRD-ADM-004 | 393 | Transaction types and parameter schema | ADM | P2 | Must Have | Code-level | 6 | 1 | not built | — |
-| 33 | PRD-ADM-011 | 400 | Template library | ADM | P2 | Must Have | Code-level | 6 | 1 | not built | — |
+| 32 | PRD-ADM-004 | 393 | Transaction types and parameter schema | ADM | P2 | Must Have | Code-level | 6 | 1 | built | — |
+| 33 | PRD-ADM-011 | 400 | Template library | ADM | P2 | Must Have | Code-level | 6 | 1 | built | — |
 | 34 | PRD-IAM-005 | 38 | Single sign-on for staff and B2B buyers | IAM | P2 | Must Have | Code-level | 6 | 0 | not built | — |
 | 35 | PRD-SEC-010 | 423 | Auditor read-only access | SEC | P2 | Must Have | Code-level | 5 | 2 | not built | — |
-| 36 | PRD-ADM-012 | 401 | Template analytics and shared marketplace | ADM | P3 | Could Have | Code-level | 3 | 1 | not built | — |
+| 36 | PRD-ADM-012 | 401 | Template analytics and shared marketplace | ADM | P3 | Could Have | Code-level | 3 | 1 | built | — |
 
 ### Wave 2 — Catalogue (23 features)
 

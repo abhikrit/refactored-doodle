@@ -21,7 +21,7 @@
     "check": "node scripts/check-consistency.mjs",
     "trace": "node scripts/build-trace.mjs",
     "test": "node --test \"tests/unit/*.test.js\"",
-    "test:ui": "node --test \"tests/ui/*.test.js\"",
+    "test:ui": "node --test --test-concurrency=1 \"tests/ui/*.test.js\"",
     "verify": "npm run check && npm test && npm run trace && npm run map && npm run map:mpc",
     "map": "node scripts/build-group-map.mjs",
     "map:mpc": "node scripts/build-mpc-map.mjs && node scripts/build-mpc-gaps.mjs"

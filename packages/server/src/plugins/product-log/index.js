@@ -19,6 +19,19 @@ export default definePlugin({
       startupOrder: 3300,
       note: 'Delivery fee rules and the rate method (LOG-001, LOG-002).',
     });
+    // IC-LOG-07 GetOperationalStage (BR-LOG-170): LOG supplies the stage of an open shipment.
+    // The ADM-007 operations console reads it and derives no stage of its own (AC-ADM-007-02-01).
+    ctx.providers.registerProvider('IC-LOG-07', {
+      name: 'shipment operational stage',
+      area: 'LOG',
+      feature: 'PRD-LOG-011',
+      fn: async ({ shipment }) => {
+        if (!shipment || shipment.deliveredDateUtc) return { stage: null };
+        if (shipment.shippedDateUtc) return { stage: 'OutForLastMile' };
+        if (shipment.readyForPickupDateUtc) return { stage: 'AwaitingDispatch' };
+        return { stage: 'AwaitingSorting' };
+      },
+    });
     const r = Router();
     r.get('/methods', async (req, res, next) => {
       try { res.json(await shippingMethodsAsync()); } catch (err) { next(err); }

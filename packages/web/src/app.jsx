@@ -28,6 +28,12 @@ import {
 import {
   AdminConsole, BulkEdit, ExtensionRegister, Maintenance, ScheduleTasks, SystemLog, Widgets,
 } from './surfaces/admin/adm001.jsx';
+import {
+  Eligibility, Rules, Templates, TransactionTypes, UploadPolicy, Workflows,
+} from './surfaces/admin/adm-config.jsx';
+import {
+  Alerts, Approvals, Exceptions, OperationsConsole,
+} from './surfaces/admin/adm-operations.jsx';
 import { SellerDashboard, SellerList } from './surfaces/seller/index.jsx';
 import { OutletCounter } from './surfaces/outlet/index.jsx';
 import {
@@ -109,6 +115,17 @@ export default function App() {
               <Route path="/admin/system/log" element={<SystemLog />} />
               <Route path="/admin/system/maintenance" element={<Maintenance />} />
               <Route path="/admin/system/extension-register" element={<ExtensionRegister />} />
+              {/* PRD-ADM-002 to PRD-ADM-012 */}
+              <Route path="/admin/configuration/workflows" element={<Workflows />} />
+              <Route path="/admin/configuration/rules" element={<Rules />} />
+              <Route path="/admin/configuration/transaction-types" element={<TransactionTypes />} />
+              <Route path="/admin/configuration/eligibility" element={<Eligibility />} />
+              <Route path="/admin/configuration/upload-policy" element={<UploadPolicy />} />
+              <Route path="/admin/configuration/templates" element={<Templates />} />
+              <Route path="/admin/operations" element={<OperationsConsole />} />
+              <Route path="/admin/operations/approvals" element={<Approvals />} />
+              <Route path="/admin/operations/exceptions" element={<Exceptions />} />
+              <Route path="/admin/operations/alerts" element={<Alerts />} />
               <Route path="/admin/system/audit" element={<AdminAudit />} />
               <Route path="/admin/system/messages" element={<AdminMessages />} />
               <Route path="/admin/system/tracking" element={<AdminTracking />} />

@@ -13,14 +13,31 @@ import { runProviders } from '../../../core/providers.js';
 
 const orderRepo = () => repository('Order');
 
+// BR-ORD-015: each stage of the configurable model carries the operational stage the operations
+// console groups by (OrderStageDefinition.OperationalStage). ADM-007 reads it and derives none
+// of its own (AC-ADM-007-02-01); a closed stage has none.
 export const STAGES = [
-  { stage: 'Placed', orderStatus: 'Pending', next: ['Accepted', 'Cancelled'] },
-  { stage: 'Accepted', orderStatus: 'Processing', next: ['Packed', 'Cancelled'] },
-  { stage: 'Packed', orderStatus: 'Processing', next: ['Dispatched', 'ReadyForPickup', 'Cancelled'] },
-  { stage: 'Dispatched', orderStatus: 'Processing', next: ['Delivered'] },
-  { stage: 'ReadyForPickup', orderStatus: 'Processing', next: ['Delivered'] },
-  { stage: 'Delivered', orderStatus: 'Complete', next: [] },
-  { stage: 'Cancelled', orderStatus: 'Cancelled', next: [] },
+  {
+    stage: 'Placed', orderStatus: 'Pending', next: ['Accepted', 'Cancelled'], operationalStage: 'AwaitingPickup',
+  },
+  {
+    stage: 'Accepted', orderStatus: 'Processing', next: ['Packed', 'Cancelled'], operationalStage: 'AwaitingPickup',
+  },
+  {
+    stage: 'Packed', orderStatus: 'Processing', next: ['Dispatched', 'ReadyForPickup', 'Cancelled'], operationalStage: 'AwaitingSorting',
+  },
+  {
+    stage: 'Dispatched', orderStatus: 'Processing', next: ['Delivered'], operationalStage: 'OutForLastMile',
+  },
+  {
+    stage: 'ReadyForPickup', orderStatus: 'Processing', next: ['Delivered'], operationalStage: 'AwaitingDispatch',
+  },
+  {
+    stage: 'Delivered', orderStatus: 'Complete', next: [], operationalStage: null,
+  },
+  {
+    stage: 'Cancelled', orderStatus: 'Cancelled', next: [], operationalStage: null,
+  },
 ];
 
 export async function initialStageAsync() {

@@ -318,6 +318,12 @@ const ADMIN_NAV = [
     children: [
       { label: 'Settings (all settings)', to: '/admin/configuration/settings' },
       { label: 'Widgets', to: '/admin/configuration/widgets' },
+      { label: 'Workflows', to: '/admin/configuration/workflows' },
+      { label: 'Business rules', to: '/admin/configuration/rules' },
+      { label: 'Transaction types', to: '/admin/configuration/transaction-types' },
+      { label: 'Eligibility and quotas', to: '/admin/configuration/eligibility' },
+      { label: 'Upload policy', to: '/admin/configuration/upload-policy' },
+      { label: 'Template library', to: '/admin/configuration/templates' },
       { label: 'Configuration packs', to: '/admin/configuration/packs' },
       { label: 'Feature registry', to: '/admin/configuration/features' },
       { label: 'Stores', to: '/admin/configuration/stores' },
@@ -327,6 +333,15 @@ const ADMIN_NAV = [
       { label: 'Shipping methods', to: '/admin/configuration/shipping-methods' },
       { label: 'Access control list', to: '/admin/configuration/acl' },
       { label: 'Message templates', to: '/admin/configuration/message-templates' },
+    ],
+  },
+  {
+    label: 'Operations',
+    children: [
+      { label: 'Console', to: '/admin/operations' },
+      { label: 'Approvals', to: '/admin/operations/approvals' },
+      { label: 'Exceptions', to: '/admin/operations/exceptions' },
+      { label: 'Alerts', to: '/admin/operations/alerts' },
     ],
   },
   {

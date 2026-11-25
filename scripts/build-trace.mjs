@@ -28,11 +28,13 @@ const requirements = load('requirements.json');
 const { holds } = load('holds.json');
 const meta = load('meta.json');
 
-function runSuite(glob, label) {
+function runSuite(glob, label, { serial = false } = {}) {
   const results = [];
   let raw = '';
   try {
-    raw = execFileSync(process.execPath, ['--test', glob], {
+    // the browser suites drive one running prototype, and one of them switches the client pack,
+    // which re-seeds the store - so they run one file at a time
+    raw = execFileSync(process.execPath, ['--test', ...(serial ? ['--test-concurrency=1'] : []), glob], {
       cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 600000,
     });
   } catch (err) {
@@ -46,7 +48,7 @@ function runSuite(glob, label) {
 }
 
 const unit = runSuite('tests/unit/*.test.js', 'node (API and rules)');
-const ui = runSuite('tests/ui/*.test.js', 'playwright (browser)');
+const ui = runSuite('tests/ui/*.test.js', 'playwright (browser)', { serial: true });
 const tests = [...unit.results, ...ui.results];
 const byCriterion = new Map();
 for (const t of tests) {

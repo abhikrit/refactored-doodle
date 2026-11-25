@@ -198,6 +198,55 @@ function channelAdapter({
   return adapter;
 }
 
+/**
+ * Antivirus engine (IC-ADM-05 Scan) - PRD-ADM-008. The engine is not named in the source, so the
+ * adapter is the contract only. The industry EICAR test string is what a real engine is tested
+ * with, so a file whose name or bytes carry it comes back infected.
+ */
+function antivirusAdapter({ systemName, name, feature }) {
+  return {
+    systemName,
+    name,
+    category: 'security',
+    feature,
+    interfaceName: 'IAntivirusEngine (IC-ADM-05)',
+    async scanAsync({ fileName, contentType, bytes }) {
+      return guarded(systemName, 'Scan', { fileName, contentType, size: bytes?.length ?? 0 }, async () => {
+        const text = Buffer.from(bytes ?? []).toString('latin1');
+        const infected = /eicar/i.test(String(fileName)) || text.includes('EICAR-STANDARD-ANTIVIRUS-TEST-FILE');
+        return infected
+          ? { result: 'Infected', signature: 'EICAR-Test-File', engine: systemName }
+          : { result: 'Clean', engine: systemName };
+      });
+    },
+  };
+}
+
+/**
+ * Sanctions-list provider (IC-ADM-06 Screen party) - PRD-ADM-005. Not named in the source.
+ * The watch list here is synthetic (P-5) and matches on a surname, as a real list does.
+ */
+function sanctionsAdapter({ systemName, name, feature }) {
+  const list = ['Redlist', 'Sanctioned', 'Blocked Trading Co'];
+  return {
+    systemName,
+    name,
+    category: 'compliance',
+    feature,
+    interfaceName: 'ISanctionsProvider (IC-ADM-06)',
+    async screenAsync({ name: party, country, identifiers = [] }) {
+      return guarded(systemName, 'ScreenParty', { party, country, identifiers }, async () => {
+        const hit = list.find((entry) => String(party ?? '').toLowerCase().includes(entry.toLowerCase()));
+        return hit
+          ? {
+            result: 'PossibleMatch', score: 0.92, listVersion: '2026-11-01', matches: [{ name: hit, list: 'synthetic watch list (P-5)' }],
+          }
+          : { result: 'NoMatch', score: 0, listVersion: '2026-11-01' };
+      });
+    },
+  };
+}
+
 function fiscalAdapter({
   systemName, name, country, feature, decision,
 }) {
@@ -321,6 +370,9 @@ const adapters = [
   channelAdapter({
     systemName: 'Google.Services', name: 'Google services (maps, analytics, translate)', category: 'google', feature: 'PRD-LOG-015', interfaceName: 'IGeocodingAdapter', operations: ['Geocode'],
   }),
+  // Administration (ADM-008 upload scanning, ADM-005 sanctions screening)
+  antivirusAdapter({ systemName: 'Antivirus.Engine', name: 'Antivirus engine', feature: 'PRD-ADM-008' }),
+  sanctionsAdapter({ systemName: 'Sanctions.Provider', name: 'Sanctions-list provider', feature: 'PRD-ADM-005' }),
 ];
 
 export const mockRegistry = Object.fromEntries(adapters.map((a) => [a.systemName, a]));

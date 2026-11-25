@@ -15,6 +15,11 @@ export const lockKey = {
   credit: (creditAccountId) => `chk-credit-${creditAccountId}`,
   wallet: (walletId) => `pay-wallet-${walletId}`,
   quota: (quotaId) => `adm-quota-${quotaId}`,
+  approval: (itemId) => `adm-approval-${itemId}`,
+  exception: (exceptionId) => `adm-exception-${exceptionId}`,
+  // Proposed: section 12.4 names the approval, quota and exception keys; a case advances under
+  // its own key so two signals never interleave.
+  workflowCase: (caseId) => `adm-workflow-case-${caseId}`,
   discount: (discountId) => `mkt-discount-${discountId}`,
   scheme: (schemeId) => `fin-scheme-${schemeId}`,
   inventory: (productId, warehouseId) => `inv-stock-${productId}-${warehouseId ?? 0}`,

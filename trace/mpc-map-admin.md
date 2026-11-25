@@ -1,6 +1,6 @@
 # Malawi Post requirement map — actor "Admin"
 
-Generated 2026-11-24T14:15:50.027Z by `scripts/build-mpc-map.mjs`.
+Generated 2026-11-25T07:21:46.596Z by `scripts/build-mpc-map.mjs`.
 
 Source: `docs/client/MPC-Lot1-FR-Catalogue.md`, the client's own annex
 (MPC Requirements Catalogue Annex, Deliverable 2 — Lot 1, FR-001…FR-350). The FR numbering is the
@@ -219,9 +219,9 @@ Wave, then the client's priority, then the product's phase.
 | Feature ID | Roadmap row | Name | Module | Phase | In the user group | State | Client requirements |
 |---|---|---|---|---|---|---|---|
 | PRD-ADM-001 | 390 | Administration console | ADM | P1 | yes | built | FR-301 |
-| PRD-ADM-002 | 391 | Workflow engine | ADM | P1 | yes | held-default | FR-307 |
-| PRD-ADM-006 | 395 | Approval queues | ADM | P1 | yes | held-default | FR-039, FR-319 |
-| PRD-ADM-008 | 397 | Upload and content scanning controls | ADM | P1 | yes | not-built | FR-324 |
+| PRD-ADM-002 | 391 | Workflow engine | ADM | P1 | yes | built | FR-307 |
+| PRD-ADM-006 | 395 | Approval queues | ADM | P1 | yes | built | FR-039, FR-319 |
+| PRD-ADM-008 | 397 | Upload and content scanning controls | ADM | P1 | yes | built | FR-324 |
 | PRD-IAM-003 | 36 | Password policy, lockout and recovery | IAM | P1 | yes | not-built | FR-021 |
 | PRD-IAM-004 | 37 | Multi-factor authentication by role | IAM | P1 | yes | not-built | FR-012, FR-021 |
 | PRD-IAM-006 | 39 | Session management | IAM | P1 | yes | not-built | FR-013 |
