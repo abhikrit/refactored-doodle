@@ -76,16 +76,47 @@ export class Repository {
 
 const repositories = new Map();
 
+/**
+ * PRD-SEC-004: the SEC plugin registers a decorator of IRepository<> in its INopStartup, after
+ * NopDbStartup has registered the plain repository. Here the decorator is a factory the SEC
+ * plugin installs; `repository()` resolves through it, so every caller gets the decorated
+ * instance without knowing it exists.
+ */
+let decorator = null;
+
+export function registerRepositoryDecorator(factory) {
+  decorator = factory;
+  repositories.clear();
+  return { registered: true, order: 11, note: 'after NopDbStartup at order 10' };
+}
+
+export function repositoryDecoratorRegistered() {
+  return decorator !== null;
+}
+
+export function clearRepositoryDecorator() {
+  decorator = null;
+  repositories.clear();
+}
+
 /** Resolve the repository for an entity, the way DI resolves IRepository<TEntity>. */
 export function repository(entityName) {
-  if (!repositories.has(entityName)) repositories.set(entityName, new Repository(entityName));
+  if (!repositories.has(entityName)) {
+    const plain = new Repository(entityName);
+    repositories.set(entityName, decorator ? decorator(plain, entityName) : plain);
+  }
   return repositories.get(entityName);
+}
+
+/** The undecorated repository: the audit trail itself writes through this one. */
+export function plainRepository(entityName) {
+  return new Repository(entityName);
 }
 
 /** Reset the whole in-memory store (used by the seeder and by tests). */
 export async function resetStore() {
   tables.clear();
-  repositories.clear();
+  repositories.clear(); // the decorator stands: the pack loader re-seeds after the plugins install
   nextId = 1;
 }
 

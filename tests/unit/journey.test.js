@@ -353,12 +353,14 @@ describe('PRD-CHK-004 Multi-seller split checkout', () => {
 
   test('AC-SEC-004-03-01', async () => {
     // "matching events are listed with old and new values" - searchable by entity and actor.
-    const trail = await get('/api/security/audit?area=CHK');
+    // The trail needs Security.Core.AuditTrail.View, so it is read as an administrator.
+    await post('/api/identity/sign-in', { email: 'admin@example.com', password: 'demo' }, 'journey-auditor');
+    const trail = await get('/api/security/audit?area=CHK', 'journey-auditor');
     assert.ok(trail.length >= placed.orders.length);
     const entry = trail.find((e) => e.event === 'AUD-CHK-004-01');
     assert.ok(entry, 'placing a sub-order writes an audit event');
     assert.ok(entry.actor && entry.entity === 'Order' && entry.after);
-    const byActor = await get(`/api/security/audit?actor=${encodeURIComponent(entry.actor)}`);
+    const byActor = await get(`/api/security/audit?actor=${encodeURIComponent(entry.actor)}`, 'journey-auditor');
     assert.ok(byActor.every((e) => e.actor === entry.actor));
   });
 
@@ -371,7 +373,8 @@ describe('PRD-CHK-004 Multi-seller split checkout', () => {
     assert.equal(refused.ok, false);
     const after = await get(`/api/orders/${number}`);
     assert.equal(after.stage, before.stage, 'the stage is unchanged');
-    const trail = await get('/api/security/audit?event=AUD-ORD-002-02');
+    await post('/api/identity/sign-in', { email: 'admin@example.com', password: 'demo' }, 'journey-auditor');
+    const trail = await get('/api/security/audit?event=AUD-ORD-002-02', 'journey-auditor');
     assert.ok(trail.some((e) => e.entityId === String(before.id) && e.outcome === 'rejected'));
   });
 

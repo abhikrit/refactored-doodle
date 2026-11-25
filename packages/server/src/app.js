@@ -13,6 +13,7 @@ import { loadPluginsAsync } from './core/plugin-host.js';
 import { storeSnapshot } from './core/repository.js';
 import { lockHistory } from './core/locker.js';
 import { publishedEvents } from './core/events.js';
+import { withAuditContextAsync, newCorrelationId } from './core/audit-context.js';
 import { applyClientAsync, currentState, repoRoot } from './plugins/product-plt/services/platform.js';
 import { currentCustomerAsync } from './plugins/product-iam/services/identity.js';
 
@@ -35,8 +36,18 @@ export async function createApiApp({ defaultClient = 'MPC' } = {}) {
       const customer = await currentCustomerAsync(req.sessionId);
       req.actor = customer ?? null;
       req.actorEmail = customer?.email ?? null;
-      next();
-    } catch { next(); }
+    } catch { /* an unsigned-in visitor is still an actor: the session id */ }
+    // PRD-SEC-004: every write inside this request carries the actor, the original customer
+    // when someone is acting for them, the IP address, the store and one correlation id.
+    req.correlationId = newCorrelationId();
+    withAuditContextAsync({
+      actor: req.actorEmail ?? `guest:${req.sessionId}`,
+      actorRole: (req.actor?.roles ?? [])[0] ?? 'Guest',
+      originalActor: req.actor?.acting ? req.actor.acting.agentEmail ?? req.actor.acting.agentId ?? null : null,
+      ipAddress: req.ip ?? null,
+      storeId: req.storeId,
+      correlationId: req.correlationId,
+    }, () => next());
   });
 
   const host = await loadPluginsAsync({ root: repoRoot(), mocks: mockRegistry });

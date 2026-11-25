@@ -50,6 +50,14 @@ export async function signInAsync({
     await auditAsync({
       event: 'AUD-IAM-012-02', area: 'IAM', feature: 'PRD-IAM-012', entity: 'Customer', entityId: customer.id, actor: email, outcome: 'rejected', note: `failed sign-in (attempt ${failed.attempts})`,
     });
+    // AC-IAM-012-01-02: the failure is an authentication event too, which is what the
+    // failed-login detection rule of AC-IAM-012-02-01 counts
+    const { recordAuthEventAsync: recordFailure } = await import('./auth-events.js').catch(() => ({ recordAuthEventAsync: null }));
+    if (recordFailure) {
+      await recordFailure({
+        customerId: customer.id, identifierTried: email, type: 'login', outcome: 'failed', channel: 'password', ipAddress, userAgent, storeId,
+      });
+    }
     return {
       ok: false,
       messageKey: failed.lockedOut ? 'Account.Login.WrongCredentials.LockedOut' : 'Account.Login.WrongCredentials',

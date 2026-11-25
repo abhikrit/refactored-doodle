@@ -8,6 +8,7 @@
 // or marked as a placeholder - no client data, no real names, no real prices.
 
 import { repository, resetStore } from '../../core/repository.js';
+import { withAuditContextAsync } from '../../core/audit-context.js';
 import {
   addRoleAsync, addPermissionAsync, grantAsync,
 } from '../../core/permissions.js';
@@ -278,6 +279,10 @@ async function seedCustomersAsync(clientId) {
 }
 
 export async function seedAsync({ clientId, report }) {
+  return withAuditContextAsync({ installing: true, actor: 'installation', actorRole: 'System' }, () => seedInnerAsync({ clientId, report }));
+}
+
+async function seedInnerAsync({ clientId, report }) {
   await resetStore();
   await seedSecurityAsync();
   await seedPackEntitiesAsync(report);
