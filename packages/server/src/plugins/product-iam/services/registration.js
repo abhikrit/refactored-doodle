@@ -12,6 +12,7 @@ import { getSettingAsync } from '../../../core/settings.js';
 import { auditAsync } from '../../../core/audit.js';
 import { sendAsync, resource } from '../../../core/messages.js';
 import { runActionFilters } from '../../../core/providers.js';
+import { publishAsync } from '../../../core/events.js';
 import { messageGateways } from '@product/mocks';
 import { normalisePhoneAsync, identityForPhoneAsync, savePhoneIdentityAsync } from './phone.js';
 import { requestCodeAsync, verifyCodeAsync } from './otp.js';
@@ -122,6 +123,7 @@ export async function registerAsync({
   await setPasswordAsync({
     customer, password, storeId, reason: 'set at registration',
   });
+  await publishAsync('CustomerRegisteredEvent', { customer, storeId });
   if (normalisedPhone) {
     await savePhoneIdentityAsync({ customerId: customer.id, normalisedPhone, verified: false });
   }
@@ -236,6 +238,7 @@ export async function completeMobileRegistrationAsync({
     ? await customerRepo().updateAsync({ ...guest, ...base })
     : await customerRepo().insertAsync(base);
   await savePhoneIdentityAsync({ customerId: customer.id, normalisedPhone: normalised, verified: true });
+  await publishAsync('CustomerRegisteredEvent', { customer, storeId });
 
   // terms acceptance is recorded by IAM-016
   const { recordAcceptanceAsync } = await import('./privacy.js').catch(() => ({ recordAcceptanceAsync: null }));

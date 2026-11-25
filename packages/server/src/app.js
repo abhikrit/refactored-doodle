@@ -33,6 +33,7 @@ export async function createApiApp({ defaultClient = 'MPC' } = {}) {
   app.use(async (req, res, next) => {
     try {
       const customer = await currentCustomerAsync(req.sessionId);
+      req.actor = customer ?? null;
       req.actorEmail = customer?.email ?? null;
       next();
     } catch { next(); }

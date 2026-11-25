@@ -59,15 +59,17 @@ export async function signInAsync({
     };
   }
 
-  // AC-IAM-001-04-01 and 04-02: an account awaiting validation or approval cannot sign in
+  // AC-IAM-001-04-01 and 04-02: an account awaiting validation or approval cannot sign in.
+  // AC-IAM-010-02-01 and 04-01: a deactivated account gets the same native NotActive result; the
+  // extra fields only tell the storefront whether self-reactivation is open (AC-IAM-010-04-02).
   if (customer.active === false) {
     const deactivated = String(customer.accountState ?? '').startsWith('Deactivated');
     return {
       ok: false,
       notActive: true,
       deactivated,
-      messageKey: customer.accountState === 'DeactivatedByUser' || customer.accountState === 'DeactivatedByStaff'
-        ? 'Iam.AccountDeactivated' : 'Account.Login.WrongCredentials.NotActive',
+      selfReactivationAllowed: customer.accountState === 'DeactivatedByUser',
+      messageKey: 'Account.Login.WrongCredentials.NotActive',
       message: deactivated
         ? resource('Iam.AccountDeactivated')
         : 'The account is not active',
@@ -218,6 +220,12 @@ export async function currentCustomerAsync(sessionId) {
   if (!entry) return null;
   const customer = await repository('Customer').getByIdAsync(entry.customerId);
   if (!customer) return null;
+  // AC-IAM-010-02-01 and AC-IAM-006-*: an account that was deactivated or forced off keeps no
+  // open session - the next request finds none, exactly as the native cookie check does.
+  if (customer.active === false || customer.requireReLogin === true) {
+    sessions.delete(sessionId);
+    return null;
+  }
   return { ...publicCustomer(customer), acting: entry.actingFor ? { agentId: entry.agentId, outlet: entry.agentOutlet } : null };
 }
 

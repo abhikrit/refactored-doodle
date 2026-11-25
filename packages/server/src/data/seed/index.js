@@ -79,6 +79,21 @@ async function seedSecurityAsync() {
   });
   await grantAsync('System.ManageMaintenance', 'Administrators');
 
+  // Customers.ActivityLogDelete is the native 5.00.1 permission AC-IAM-012-01-03 names, and the
+  // IAM chapter permission table does not list it either; it is added and flagged rather than
+  // left out, which would leave the activity-log clear ungated.
+  await addPermissionAsync({
+    systemName: 'Customers.ActivityLogDelete',
+    name: 'Customers.ActivityLogDelete',
+    category: 'Customers',
+    area: 'IAM',
+    native: true,
+    allows: 'Clear the native customer activity log',
+    defaultRoles: ['Administrators'],
+    notInChapterTable: 'native 5.00.1 permission named by AC-IAM-012-01-03; the IAM chapter permission table does not list it',
+  });
+  await grantAsync('Customers.ActivityLogDelete', 'Administrators');
+
   // Security.AccessAdminPanel: "Administrators, Vendors and roles granted by IAM-007" (ADM
   // chapter section 4). The staff roles below are the IAM-007 grant for this prototype; Auditor
   // is deliberately left out, because SEC-010 gives an auditor a read-only surface of its own.

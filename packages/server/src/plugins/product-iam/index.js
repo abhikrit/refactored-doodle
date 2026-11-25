@@ -42,6 +42,17 @@ import {
   invitationsAsync, openCampaignAsync, reviewItemsForAsync, decideReviewItemAsync,
   runCampaignDeadlineTaskAsync, campaignsAsync, accessReportAsync,
 } from './services/access.js';
+import {
+  applyAuthLoggingConfigurationAsync, recordAuthEventAsync, authEventsAsync, exportToMonitoringAsync,
+  detectionRulesAsync, flagsAsync, decideFlagAsync, accountActivityAsync, maskIp,
+  syncFieldsAsync, enqueueAccountChangeAsync, applyInboundChangeAsync, notifyErasureAsync,
+  verificationAdaptersAsync, verifyIdentityAsync, decideVerificationAsync, verificationCasesAsync,
+} from './services/auth-events.js';
+import {
+  searchCustomersAsync, setActiveByStaffAsync, selfDeactivateAsync, requestSelfReactivationAsync,
+  completeSelfReactivationAsync, impersonateAsync, impersonationProviders, staffEditCustomerAsync,
+  openCustomerAsync, activityLogAsync,
+} from './services/users.js';
 import { mockRegistry } from '@product/mocks';
 
 export default definePlugin({
@@ -56,6 +67,33 @@ export default definePlugin({
     });
 
     await ensureProductRolesAsync();
+    await applyAuthLoggingConfigurationAsync();
+
+    // IC-IAM-09: the agent rule of IAM-026. Other modules register their own providers; one
+    // Allow is enough and the filter itself stays IAM-026's (BR-IAM-130).
+    ctx.providers.registerProvider('IC-IAM-09', {
+      name: 'agents for customers of their own outlet',
+      area: 'IAM',
+      feature: 'PRD-IAM-026',
+      fn: async ({ actor, target, customerCode, storeId }) => {
+        if (!await ctx.security.authorizeAsync('Identity.Core.AssistedService.Access', actor)) {
+          return { decision: 'NotApplicable', reason: 'the user is not an assisted-service agent' };
+        }
+        if (!actor?.outlet) {
+          return { decision: 'Deny', messageKey: 'Iam.AgentNotAssigned', message: 'You are not assigned to an outlet. Contact your administrator.' };
+        }
+        // the rule is the outlet, nothing else: AC-IAM-010-03-03 requires the native checks to
+        // still refuse an administrator target, so the filter does not pre-empt them here
+        if (target.outlet !== actor.outlet) {
+          return { decision: 'Deny', messageKey: 'Iam.ImpersonationNotAllowed', message: 'You cannot act for this customer.' };
+        }
+        const codeRequired = await ctx.settings.getSettingAsync('iam.customercoderequiredforacting', storeId ?? 1, false);
+        if (codeRequired === true && !customerCode) {
+          return { decision: 'Deny', messageKey: 'Iam.ImpersonationNotAllowed', message: 'Ask the customer for their customer code.' };
+        }
+        return { decision: 'Allow', reason: 'the customer is registered at an outlet of this agent' };
+      },
+    });
 
     const r = Router();
     r.get('/me', async (req, res, next) => {
@@ -386,11 +424,112 @@ export default definePlugin({
       privilegedOnly: req.query.privilegedOnly === 'true', storeId: req.storeId,
     })));
 
+
+    /* ---------------------------- PRD-IAM-010, 012, 018, 019 and 020 ------------------- */
+    const meOr = async (req, email) => (email
+      ? ctx.repository('Customer').getOneAsync((c) => c.email === email && !c.deleted)
+      : currentCustomerAsync(req.sessionId));
+
+    r.get('/users', gate('Customers.CustomersView'), send(async (req) => searchCustomersAsync({ ...req.query, staff: req.actorEmail })));
+    r.post('/users/active', send(async (req) => setActiveByStaffAsync({
+      ...req.body, staff: await currentCustomerAsync(req.sessionId),
+    })));
+    r.post('/users/edit', send(async (req) => staffEditCustomerAsync({
+      ...req.body, staff: await currentCustomerAsync(req.sessionId),
+    })));
+    r.post('/users/open', send(async (req) => openCustomerAsync({
+      ...req.body, staff: await currentCustomerAsync(req.sessionId),
+    })));
+    r.post('/users/impersonate', send(async (req) => impersonateAsync({
+      actor: await currentCustomerAsync(req.sessionId), ...req.body, storeId: req.storeId,
+    })));
+    r.get('/users/impersonation-providers', send(() => impersonationProviders()));
+    r.post('/account/deactivate', send(async (req) => selfDeactivateAsync({
+      customer: await currentCustomerAsync(req.sessionId), ...req.body, storeId: req.storeId,
+    })));
+    r.post('/account/reactivate/start', send((req) => requestSelfReactivationAsync({
+      ...req.body, storeId: req.storeId, smsProvider: sms(),
+    })));
+    r.post('/account/reactivate/complete', send((req) => completeSelfReactivationAsync({ ...req.body, storeId: req.storeId })));
+    r.get('/activity-log', send((req) => activityLogAsync(req.query.customerId ? Number(req.query.customerId) : null)));
+    // AC-IAM-012-01-03: the native activity log can be cleared; the AUD-IAM-018 copy cannot
+    r.delete('/activity-log', gate('Customers.ActivityLogDelete'), send(async () => {
+      const rows = await ctx.repository('ActivityLog').getAllAsync();
+      for (const row of rows) await ctx.repository('ActivityLog').deleteAsync(row.id);
+      return { cleared: rows.length, auditTrailCopyKept: true };
+    }));
+
+    r.get('/auth-events', gate('Identity.Core.AuthEvents.View'), send((req) => authEventsAsync(req.query)));
+    r.get('/auth-events/configuration', send((req) => applyAuthLoggingConfigurationAsync(req.storeId)));
+    r.get('/auth-events/monitoring-export', gate('Identity.Core.AuthEvents.View'), send((req) => exportToMonitoringAsync({ storeId: req.storeId })));
+    r.post('/auth-events', send((req) => recordAuthEventAsync({ ...req.body, storeId: req.storeId })));
+    r.get('/suspicious-logins', send(async () => ({ rules: await detectionRulesAsync(), flags: await flagsAsync() })));
+    r.post('/suspicious-logins/:id', send((req) => decideFlagAsync({
+      flagId: Number(req.params.id), ...req.body, by: req.actorEmail,
+    })));
+
+    r.get('/account/activity', async (req, res, next) => {
+      // AC-IAM-018-03-01: the staff tab needs Customers.CustomersView; a shopper sees only their own
+      if (!req.query.email) return next();
+      return gate('Customers.CustomersView')(req, res, next);
+    }, send(async (req) => {
+      const customer = await meOr(req, req.query.email);
+      if (!customer) return { entries: [] };
+      return accountActivityAsync({ customerId: customer.id, storeId: req.storeId, forStaff: req.query.forStaff === 'true' });
+    }));
+
+    r.get('/sync/configuration', send((req) => syncFieldsAsync(req.storeId)));
+    r.post('/sync/enqueue', send((req) => enqueueAccountChangeAsync({ ...req.body, storeId: req.storeId })));
+    r.post('/sync/inbound', send((req) => applyInboundChangeAsync({ ...req.body, storeId: req.storeId })));
+    r.post('/sync/erasure-notice', send((req) => notifyErasureAsync({ ...req.body, storeId: req.storeId })));
+
+    r.get('/verification', send(async (req) => ({
+      adapters: await verificationAdaptersAsync(req.storeId), cases: await verificationCasesAsync(),
+    })));
+    r.post('/verification', send((req) => verifyIdentityAsync({
+      ...req.body, storeId: req.storeId, adapter: mockRegistry['Identity.Registry'] && {
+        verifyAsync: async ({ country, identityType, identifier, name }) => {
+          const r2 = await mockRegistry['Identity.Registry'].verifyAsync({
+            country, identityType, identifier, name,
+          });
+          if (req.body.forceResult) return { result: req.body.forceResult, reference: r2?.providerRef ?? null, matchedFields: [] };
+          return {
+            result: 'Verified', reference: r2?.providerRef ?? `VER-${Date.now()}`, matchedFields: ['name', 'identifier'],
+          };
+        },
+      },
+    })));
+    r.post('/verification/:id/decide', gate('Identity.Core.Verification.CreateEditDelete'), send((req) => decideVerificationAsync({
+      caseId: Number(req.params.id), ...req.body, by: req.actorEmail,
+    })));
+
+    // AC-IAM-019-01-01: the IAM consumers only enqueue into the INT-004 outbox (BR-INT-010).
+    ctx.events.subscribe('CustomerRegisteredEvent', {
+      area: 'IAM',
+      feature: 'PRD-IAM-019',
+      name: 'enqueue the account-sync message',
+      fn: async ({ customer, storeId }) => {
+        await enqueueAccountChangeAsync({ customerId: customer.id, changeType: 'registered', storeId: storeId ?? 1 });
+      },
+    });
+    for (const eventName of ['EntityInsertedEvent', 'EntityUpdatedEvent']) {
+      ctx.events.subscribe(eventName, {
+        area: 'IAM',
+        feature: 'PRD-IAM-019',
+        name: 'enqueue the account-sync message',
+        fn: async ({ entity, id, changeType }) => {
+          if (entity !== 'Customer') return;
+          await enqueueAccountChangeAsync({ customerId: id, changeType: changeType ?? 'updated' });
+        },
+      });
+    }
+
     ctx.addRouter('/api/identity', r);
     ctx.declare({
       built: true,
       owns: ['PRD-IAM-001', 'PRD-IAM-002', 'PRD-IAM-003', 'PRD-IAM-004', 'PRD-IAM-005', 'PRD-IAM-006',
-        'PRD-IAM-007', 'PRD-IAM-008', 'PRD-IAM-009', 'PRD-IAM-011', 'PRD-IAM-013', 'PRD-IAM-026'],
+        'PRD-IAM-007', 'PRD-IAM-008', 'PRD-IAM-009', 'PRD-IAM-010', 'PRD-IAM-011', 'PRD-IAM-012',
+        'PRD-IAM-013', 'PRD-IAM-018', 'PRD-IAM-019', 'PRD-IAM-020', 'PRD-IAM-026'],
       note: 'registration and login, mobile-number identity, password policy and recovery, second factors, single sign-on, sessions and passkeys.',
     });
   },
