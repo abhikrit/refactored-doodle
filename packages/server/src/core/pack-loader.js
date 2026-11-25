@@ -11,7 +11,8 @@
 // BR-PLT-013 / decision CFG-01: a secret never travels in a pack. A pack carrying one is refused.
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
-import { join, sep } from 'node:path';
+import { join, sep, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { featureById, registry } from '@product/shared';
 import {
@@ -32,10 +33,14 @@ export const WRITE_LOCK_KEY = 'plt-config-write';
  * 5.00.1 settings this prototype exercises, with the keys 5.00 removed or moved listed so a pack
  * written for 4.90 fails with the name of its replacement (AC-PLT-003-01-11).
  */
+// the repository root, worked out from this file rather than from the process directory: the dev
+// server runs with packages/web as its working directory
+const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', '..');
+
 let catalogue = null;
 export function settingsCatalogue(root) {
   if (catalogue) return catalogue;
-  const file = join(root ?? '.', 'platform', 'settings-catalogue.json');
+  const file = join(root ?? REPO_ROOT, 'platform', 'settings-catalogue.json');
   catalogue = existsSync(file)
     ? JSON.parse(readFileSync(file, 'utf8'))
     : {
@@ -57,6 +62,21 @@ export const declaredSettingKeys = () => [...pluginKeys.values()];
 const declaredByPlugin = (key) => [...pluginKeys.values()].some(
   (d) => d.keys.includes(key) || d.prefixes.some((prefix) => key.startsWith(prefix)),
 );
+
+/**
+ * The permission system names this instance holds a PermissionRecord for. AC-PLT-003-01-05
+ * refuses a permission the instance does not know, and the instance knows the PRD-declared
+ * names plus every native 5.00.1 record installed at seed time, so the permission service
+ * declares each record here as it inserts it.
+ */
+const installedPermissions = new Set();
+
+export function declarePermissionNames(names) {
+  for (const name of names) installedPermissions.add(String(name));
+  return installedPermissions.size;
+}
+
+export const declaredPermissionNames = () => [...installedPermissions];
 
 const typeOfValue = (value) => (Array.isArray(value) ? 'array' : value === null ? 'string' : typeof value);
 
@@ -93,7 +113,7 @@ const SECRET_SUFFIX = /(secret|password|passkey|apikey|api_key|privatekey|access
 const isSecretKey = (key) => SECRET_SUFFIX.test(String(key).split('.').pop());
 
 function packsRoot(root) {
-  return join(root, 'packs');
+  return join(root ?? REPO_ROOT, 'packs');
 }
 
 function readPack(file) {
@@ -169,7 +189,10 @@ export function validatePack(pack, { root = null, stores = null } = {}) {
   }
 
   // AC-PLT-003-01-05: the permission names must be the 5.00 ones
-  const known = new Set(registry.permissions.flatMap((p) => String(p.systemName).split('/').map((x) => x.trim())));
+  const known = new Set([
+    ...registry.permissions.flatMap((p) => String(p.systemName).split('/').map((x) => x.trim())),
+    ...installedPermissions,
+  ]);
   for (const [permission, roles] of Object.entries(pack.permissions ?? {})) {
     if ((cat.removedPermissionsIn500 ?? []).includes(permission)) {
       refuse(permission, 'VER-500', 'Plt.PackPermissionUnknown', `${resource('Plt.PackPermissionUnknown')} (${permission}: ${cat.removedPermissionsNote ?? 'removed in 5.00'})`);

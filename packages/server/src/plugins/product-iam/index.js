@@ -794,6 +794,37 @@ export default definePlugin({
     }
 
     ctx.addRouter('/api/identity', r);
+    // IC-PLT-08: IAM registers its own record types with the PLT-020 retention engine; every
+    // period is "Not stated in source" (BR-PLT-051), so IAM names no period here.
+    ctx.providers.registerProvider('IC-PLT-08', {
+      area: 'IAM',
+      feature: 'PRD-IAM-001',
+      name: 'iam record types',
+      fn: async () => [
+        {
+          code: 'iam.authevents', owningModule: 'Product.IAM', entity: 'AuthEvent', dateField: 'createdOnUtc', allowedActions: ['Archive', 'Anonymise', 'Delete'], personalData: true, anonymiseFields: ['email', 'ipAddress', 'userAgent'],
+        },
+        {
+          code: 'iam.usersessions', owningModule: 'Product.IAM', entity: 'UserSession', dateField: 'createdOnUtc', allowedActions: ['Archive', 'Delete'], personalData: true,
+        },
+        {
+          code: 'iam.policyacceptances', owningModule: 'Product.IAM', entity: 'PolicyAcceptance', dateField: 'createdOnUtc', allowedActions: ['Archive'], personalData: true, note: 'a policy acceptance is evidence: archive only',
+        },
+        {
+          code: 'iam.privacyrequests', owningModule: 'Product.IAM', entity: 'PrivacyRequest', dateField: 'createdOnUtc', allowedActions: ['Archive', 'Delete'], personalData: true, holdCheckName: 'an open privacy request', holdCheck: async (row) => !['Completed', 'Refused', 'Closed'].includes(row?.status),
+        },
+        {
+          code: 'iam.verificationcases', owningModule: 'Product.IAM', entity: 'VerificationCase', dateField: 'createdOnUtc', allowedActions: ['Archive', 'Delete'], personalData: true, holdCheckName: 'an open verification case', holdCheck: async (row) => !['Verified', 'Rejected', 'Closed'].includes(row?.status),
+        },
+        {
+          code: 'iam.otpchallenges', owningModule: 'Product.IAM', entity: 'OtpChallenge', dateField: 'createdOnUtc', allowedActions: ['Delete'], personalData: true,
+        },
+        {
+          code: 'iam.inactivecustomers', owningModule: 'Product.IAM', entity: 'Customer', dateField: 'lastActivityOnUtc', allowedActions: ['Anonymise', 'Delete'], personalData: true, anonymiseFields: ['email', 'firstName', 'lastName', 'phone'], note: 'the native DeleteInactiveCustomersTask reads GdprSettings.DeleteInactiveCustomersAfterMonths, which the rule sets',
+        },
+      ],
+    });
+
     ctx.declare({
       built: true,
       owns: ['PRD-IAM-001', 'PRD-IAM-002', 'PRD-IAM-003', 'PRD-IAM-004', 'PRD-IAM-005', 'PRD-IAM-006',

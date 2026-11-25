@@ -62,21 +62,25 @@ export function registerDecoratorAsync() {
       if (auditContext().installing === true) return null;
       const isSetting = entityName === 'Setting';
       let name = after?.name ?? before?.name ?? null;
-      if (isSetting && !name) {
+      // a Setting row belongs to one store (0 = the shared value), which the key alone does not
+      // say; the configuration history lists it per key, so the event carries it
+      let settingStoreId = after?.storeId ?? before?.storeId ?? null;
+      if (isSetting && (!name || settingStoreId === null)) {
         const row = await plainRepository('Setting').getByIdAsync(entityId);
-        name = row?.name ?? null;
+        name = name ?? row?.name ?? null;
+        settingStoreId = settingStoreId ?? row?.storeId ?? null;
       }
       const secret = isSetting && SECRET_SETTING_KEYS.some((k) => String(name ?? '').toLowerCase().includes(k));
       // AC-SEC-004-05-03: the event records the key even when only the value changed
-      const withKey = (values) => (isSetting && values ? { name, ...values } : values);
+      const withKey = (values) => (isSetting && values ? { name, storeId: settingStoreId, ...values } : values);
       return auditAsync({
         event: eventFor(),
         area: 'SEC',
         feature: 'PRD-SEC-004',
         entity: entityName,
         entityId,
-        before: secret ? (before ? { name, value: '[redacted]' } : null) : withKey(before),
-        after: secret ? (after ? { name, value: '[redacted]' } : null) : withKey(after),
+        before: secret ? (before ? { name, storeId: settingStoreId, value: '[redacted]' } : null) : withKey(before),
+        after: secret ? (after ? { name, storeId: settingStoreId, value: '[redacted]' } : null) : withKey(after),
         fields,
         amount: after?.orderTotal ?? after?.amount ?? before?.orderTotal ?? before?.amount ?? null,
         note: `${entityName} ${action}`,
@@ -478,3 +482,137 @@ export const chainStateAsync = async () => {
 export {
   auditAsync, queryAsync, replayEntityAsync, auditTrailAsync, auditContext, createHash,
 };
+
+/* ===================================== closed segments and signed checkpoints =========== */
+
+/**
+ * BR-SEC-016: audit events are kept for the retention period; after it, whole closed segments are
+ * archived or removed with a signed checkpoint that keeps the chain verifiable. PRD-SEC-004 owns
+ * the segment and the checkpoint; PRD-PLT-020 runs the retention rule over them
+ * (AC-PLT-020-01-09) and never touches a single event.
+ */
+const segmentRepo = () => plainRepository('AuditSegment');
+
+export async function segmentsAsync() {
+  const rows = await segmentRepo().getAllAsync();
+  return rows.slice().sort((a, b) => a.number - b.number);
+}
+
+/** Close the open end of the trail into a segment and sign its checkpoint. */
+export async function closeSegmentAsync({ actor = null } = {}) {
+  const segments = await segmentsAsync();
+  const last = segments[segments.length - 1] ?? null;
+  const from = (last?.lastSequence ?? 0) + 1;
+  const events = (await auditEventsAsync())
+    .filter((e) => e.sequence >= from)
+    .sort((a, b) => a.sequence - b.sequence);
+  if (events.length === 0) return { ok: false, message: 'there is nothing to close' };
+  const first = events[0];
+  const lastEvent = events[events.length - 1];
+  const checkpoint = {
+    segment: (last?.number ?? 0) + 1,
+    firstSequence: first.sequence,
+    lastSequence: lastEvent.sequence,
+    count: events.length,
+    firstHash: first.hash,
+    lastHash: lastEvent.hash,
+    previousSegmentLastHash: last?.lastHash ?? null,
+    closedOnUtc: new Date().toISOString(),
+  };
+  const row = await segmentRepo().insertAsync({
+    number: checkpoint.segment,
+    status: 'Closed',
+    ...checkpoint,
+    signature: signManifest(checkpoint),
+    closedBy: actor,
+  });
+  await auditAsync({
+    event: 'AUD-SEC-001',
+    area: 'SEC',
+    feature: 'PRD-SEC-004',
+    entity: 'AuditSegment',
+    entityId: row.id,
+    actor,
+    after: { segment: row.number, firstSequence: row.firstSequence, lastSequence: row.lastSequence },
+    note: 'audit segment closed with a signed checkpoint',
+  });
+  return { ok: true, segment: row, rule: 'BR-SEC-016' };
+}
+
+/** The events of one closed segment, for the verified archive copy PLT-020 writes. */
+export async function segmentEventsAsync(number) {
+  const segment = (await segmentsAsync()).find((s) => s.number === Number(number));
+  if (!segment) return { ok: false, message: 'no such segment' };
+  const events = (await auditEventsAsync())
+    .filter((e) => e.sequence >= segment.firstSequence && e.sequence <= segment.lastSequence)
+    .sort((a, b) => a.sequence - b.sequence);
+  return {
+    ok: true,
+    segment,
+    events,
+    signatureValid: segment.signature === signManifest({
+      segment: segment.segment,
+      firstSequence: segment.firstSequence,
+      lastSequence: segment.lastSequence,
+      count: segment.count,
+      firstHash: segment.firstHash,
+      lastHash: segment.lastHash,
+      previousSegmentLastHash: segment.previousSegmentLastHash,
+      closedOnUtc: segment.closedOnUtc,
+    }),
+  };
+}
+
+/**
+ * Remove a whole closed segment, keeping its signed checkpoint. Nothing else is touched, so the
+ * chain of the remaining events still verifies from the checkpoint.
+ */
+export async function removeSegmentAsync({ number, actor = null, archived = false }) {
+  const found = await segmentEventsAsync(number);
+  if (found.ok !== true) return found;
+  const { segment } = found;
+  if (segment.status === 'Removed') return { ok: false, message: 'that segment is already removed' };
+  await plainRepository('AuditEntry').deleteManyAsync(
+    (e) => e.sequence >= segment.firstSequence && e.sequence <= segment.lastSequence,
+  );
+  const updated = await segmentRepo().updateAsync({
+    ...segment,
+    status: 'Removed',
+    removedOnUtc: new Date().toISOString(),
+    removedBy: actor,
+    archivedBeforeRemoval: archived === true,
+    eventsRemoved: found.events.length,
+  });
+  return {
+    ok: true,
+    segment: updated,
+    eventsRemoved: found.events.length,
+    checkpointKept: true,
+    rule: 'BR-SEC-016',
+  };
+}
+
+/** The chain still verifies from the latest checkpoint after a segment has gone. */
+export async function verifyFromCheckpointAsync() {
+  const segments = await segmentsAsync();
+  const removed = segments.filter((s) => s.status === 'Removed');
+  const anchor = removed[removed.length - 1] ?? null;
+  const fromSequence = anchor ? anchor.lastSequence + 1 : 1;
+  const result = await verifyAsync({ fromSequence });
+  const events = (await auditEventsAsync()).filter((e) => e.sequence >= fromSequence)
+    .sort((a, b) => a.sequence - b.sequence);
+  const anchored = anchor
+    ? (events.length === 0 || events[0].previousHash === anchor.lastHash)
+    : true;
+  return {
+    ...result,
+    checkpoint: anchor
+      ? {
+        segment: anchor.number, lastSequence: anchor.lastSequence, lastHash: anchor.lastHash, signature: anchor.signature,
+      }
+      : null,
+    anchoredToCheckpoint: anchored,
+    result: result.result === 'Verified' && anchored ? 'Verified' : result.result,
+    rule: 'BR-SEC-016',
+  };
+}

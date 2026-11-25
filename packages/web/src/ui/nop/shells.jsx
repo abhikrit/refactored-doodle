@@ -204,6 +204,141 @@ export function StorefrontShell({ children }) {
           </div>
         </div>
       </footer>
+      <HelpWidget />
+    </div>
+  );
+}
+
+/**
+ * The help widget: the tips of this page and the guided tour for the kind of user who is signed
+ * in. The tour starts once by itself; afterwards it can be replayed from here.
+ */
+function HelpWidget() {
+  const { customer } = useProduct();
+  const { pathname } = useLocation();
+  const [open, setOpen] = useState(false);
+  const [help, setHelp] = useState(null);
+  const [tour, setTour] = useState(null);
+  const [replayLabel, setReplayLabel] = useState('Replay the tour');
+  // the cookie bar sits across the foot of the page; the help button sits above it while it shows
+  const [cookieBarHeight, setCookieBarHeight] = useState(0);
+
+  useEffect(() => {
+    const measure = () => {
+      const bar = document.querySelector('[data-cookie-bar]');
+      setCookieBarHeight(bar ? bar.getBoundingClientRect().height : 0);
+    };
+    measure();
+    const timer = setInterval(measure, 500);
+    window.addEventListener('resize', measure);
+    return () => { clearInterval(timer); window.removeEventListener('resize', measure); };
+  }, [pathname]);
+
+  const offset = { bottom: `${cookieBarHeight + 16}px` };
+
+  const role = (customer?.roles ?? []).some((r) => ['Administrators', 'PlatformTeam', 'Support', 'Operations'].includes(r))
+    ? 'staff'
+    : ((customer?.roles ?? []).includes('Vendors') ? 'seller' : 'buyer');
+
+  useEffect(() => {
+    let live = true;
+    api.get(`/platform/help/tips?route=${encodeURIComponent(pathname)}&role=${role}`)
+      .then((r) => live && setHelp(r))
+      .catch(() => live && setHelp(null));
+    return () => { live = false; };
+  }, [pathname, role]);
+
+  useEffect(() => {
+    if (!customer) return undefined;
+    let live = true;
+    api.get(`/platform/help/tour?role=${role}&customerId=${customer.id}`)
+      .then((r) => {
+        if (!live || !r?.tour) return;
+        setReplayLabel(r.replayLabel ?? 'Replay the tour');
+        if (r.startsNow) { setTour(r.tour); setOpen(true); }
+      })
+      .catch(() => {});
+    return () => { live = false; };
+  }, [customer?.id, role]);
+
+  const replay = async () => {
+    if (!customer) return;
+    try {
+      const r = await api.get(`/platform/help/tour?role=${role}&customerId=${customer.id}`);
+      if (r?.tour) {
+        const played = await api.post('/platform/help/tour/replay', { tourId: r.tour.id, customerId: customer.id });
+        setTour(played.tour ?? r.tour);
+        setOpen(true);
+      }
+    } catch { /* the page stands without the tour */ }
+  };
+
+  const skip = async () => {
+    setTour(null);
+    setOpen(false);
+    if (!customer || !tour) return;
+    try { await api.post('/platform/help/tour/finish', { tourId: tour.id, customerId: customer.id, status: 'Skipped' }); } catch { /* nothing to do */ }
+  };
+
+  const tips = help?.tips ?? [];
+  if (tips.length === 0 && !tour) {
+    return (
+      <div className="fixed right-4 z-[60]" style={offset}>
+        <button
+          type="button"
+          onClick={replay}
+          className="rounded-full size-10 bg-store-text text-white text-[15px] font-semibold shadow-lg"
+          title={replayLabel}
+          aria-label={replayLabel}
+        >
+          ?
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="fixed right-4 z-[60] w-[min(22rem,calc(100vw-2rem))]" style={offset}>
+      {open && (
+        <div className="mb-2 bg-white border border-nop-border rounded-sm shadow-lg">
+          <div className="px-3 py-2 border-b border-nop-border flex items-center justify-between">
+            <span className="text-[13px] font-semibold">{tour ? tour.name : 'Help for this page'}</span>
+            <button type="button" onClick={() => (tour ? skip() : setOpen(false))} className="text-nop-muted text-[12px]">Close</button>
+          </div>
+          <div className="p-3 space-y-2 max-h-[60vh] overflow-y-auto">
+            {tour
+              ? (tour.steps ?? []).map((step, i) => (
+                <p key={step.target ?? i} className="text-[12.5px] text-store-text">
+                  <span className="font-semibold">{`${i + 1}. `}</span>
+                  {step.text}
+                </p>
+              ))
+              : tips.map((tip) => (
+                <div key={tip.id}>
+                  <p className="text-[13px] font-semibold text-store-text">{tip.title}</p>
+                  <p className="text-[12.5px] text-nop-muted">{tip.body}</p>
+                  {tip.materialLink?.reference && <p className="text-[11.5px] text-nop-muted mt-0.5">{`More: ${tip.materialLink.reference}`}</p>}
+                </div>
+              ))}
+          </div>
+          <div className="px-3 py-2 border-t border-nop-border flex gap-2">
+            {tour
+              ? <Button size="sm" onClick={skip}>Skip</Button>
+              : <Button size="sm" onClick={replay}>{replayLabel}</Button>}
+          </div>
+        </div>
+      )}
+      <div className="flex justify-end">
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          className="rounded-full size-10 bg-store-text text-white text-[15px] font-semibold shadow-lg"
+          title="Help for this page"
+          aria-label="Help for this page"
+        >
+          ?
+        </button>
+      </div>
     </div>
   );
 }
@@ -234,6 +369,17 @@ const ADMIN_NAV = [
     label: 'Configuration',
     children: [
       { label: 'Settings', to: '/admin/configuration/settings' },
+      { label: 'Configuration packs', to: '/admin/configuration/packs' },
+      { label: 'Change sets', to: '/admin/configuration/change-sets' },
+      { label: 'Feature registry', to: '/admin/configuration/feature-registry' },
+      { label: 'Stores', to: '/admin/configuration/stores' },
+      { label: 'Languages', to: '/admin/configuration/languages' },
+      { label: 'Currencies', to: '/admin/configuration/currencies' },
+      { label: 'Countries', to: '/admin/configuration/countries' },
+      { label: 'Payment methods', to: '/admin/configuration/payment-methods' },
+      { label: 'Shipping methods', to: '/admin/configuration/shipping-methods' },
+      { label: 'Access control list', to: '/admin/configuration/acl' },
+      { label: 'Retention rules and runs', to: '/admin/configuration/retention' },
       { label: 'Widgets', to: '/admin/configuration/widgets' },
       { label: 'Workflows', to: '/admin/configuration/workflows' },
       { label: 'Business rules', to: '/admin/configuration/rules' },
@@ -241,6 +387,13 @@ const ADMIN_NAV = [
       { label: 'Eligibility and quotas', to: '/admin/configuration/eligibility' },
       { label: 'Upload policy', to: '/admin/configuration/upload-policy' },
       { label: 'Template library', to: '/admin/configuration/templates' },
+    ],
+  },
+  {
+    label: 'Content management',
+    children: [
+      { label: 'Help tips and tours', to: '/admin/content/help' },
+      { label: 'Message templates', to: '/admin/content/message-templates' },
     ],
   },
   {
@@ -356,8 +509,8 @@ function AdminGate({ children }) {
             .
           </p>
           <p className="text-nop-muted">
-            IAM-007 grants the permission to the staff roles. Sign in as an account that holds it -
-            admin@example.com opens all eight console areas, catalogue@example.com only Products.
+            Sign in as an account that holds it - admin@example.com opens all eight console areas,
+            catalogue@example.com only Products.
           </p>
           <div className="flex gap-2">
             <Button as="link" to={`/login?returnUrl=${encodeURIComponent(pathname + search)}`} variant="brand">Sign in as another user</Button>

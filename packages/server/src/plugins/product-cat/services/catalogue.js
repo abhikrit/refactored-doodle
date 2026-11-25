@@ -7,6 +7,7 @@
 // the order reproduced below - the conflict rule is owned by the CAT chapter.
 
 import { repository } from '../../../core/repository.js';
+import { filterForStoreAsync } from '../../../core/store-mapping.js';
 
 export async function categoriesAsync() {
   const rows = await repository('Category').getAllAsync();
@@ -24,8 +25,23 @@ export async function vendorsAsync() {
   return repository('Vendor').getAllAsync();
 }
 
-export async function productsAsync() {
-  return repository('Product').getAllAsync((p) => p.published);
+/**
+ * The published products of a store. PRD-PLT-013 owns the store-mapping check
+ * (StoreMappingService.AuthorizeAsync): a product mapped to stores is listed and searchable only
+ * in those stores (AC-PLT-013-01-01).
+ */
+export async function productsAsync({ storeId = null } = {}) {
+  const published = await repository('Product').getAllAsync((p) => p.published);
+  if (storeId === null) return published;
+  return filterForStoreAsync('Product', published, Number(storeId));
+}
+
+/** The product search of one store: the same store scope applies. */
+export async function searchProductsAsync({ term = '', storeId = null } = {}) {
+  const rows = await productsAsync({ storeId });
+  const needle = String(term).trim().toLowerCase();
+  if (!needle) return rows;
+  return rows.filter((p) => `${p.name ?? ''} ${p.sku ?? ''} ${p.shortDescription ?? ''}`.toLowerCase().includes(needle));
 }
 
 export async function productAsync(id) {
@@ -38,7 +54,7 @@ export async function productAsync(id) {
  * 2. a tier price for the quantity, which REPLACES the price-list price (native behaviour)
  * Returns the parts so the UI can show why a price is what it is.
  */
-export async function finalPriceAsync(product, { quantity = 1, customer = null } = {}) {
+export async function finalPriceAsync(product, { quantity = 1, customer = null, storeId = null } = {}) {
   const parts = { base: product.price, applied: 'base', priceList: null, tierPrice: null };
   if (product.callForPrice) {
     return {
@@ -63,8 +79,12 @@ export async function finalPriceAsync(product, { quantity = 1, customer = null }
     parts.applied = 'price-list';
   }
 
+  // TierPrice.StoreId and TierPrice.CustomerRoleId: a tier price with a store applies only in
+  // that store, one with a role only to that role (AC-PLT-013-01-03)
   const tier = (product.tierPrices ?? [])
     .filter((t) => quantity >= t.quantity)
+    .filter((t) => storeId === null || t.storeId === undefined || Number(t.storeId) === 0 || Number(t.storeId) === Number(storeId))
+    .filter((t) => !t.customerRole || roles.includes(t.customerRole))
     .sort((a, b) => b.quantity - a.quantity)[0];
   if (tier) {
     parts.tierPrice = tier;
@@ -81,10 +101,10 @@ export async function finalPriceAsync(product, { quantity = 1, customer = null }
 }
 
 /** A product shaped for a list card or a details page, prices already resolved. */
-export async function viewProductAsync(product, { customer, quantity = 1 } = {}) {
+export async function viewProductAsync(product, { customer, quantity = 1, storeId = null } = {}) {
   const [vendor, price] = await Promise.all([
     product.vendorId ? repository('Vendor').getByIdAsync(product.vendorId) : null,
-    finalPriceAsync(product, { customer, quantity }),
+    finalPriceAsync(product, { customer, quantity, storeId }),
   ]);
   const categories = await repository('Category').getAllAsync((c) => (product.categoryIds ?? []).includes(c.id));
   return {

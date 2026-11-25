@@ -41,6 +41,7 @@ export async function createCustomerAsync({ password = 'demo', ...row }) {
 export const SESSIONS = {
   admin: 'adm-admin',
   approver: 'adm-approver',
+  approver2: 'adm-approver-2',
   catalogue: 'adm-catalogue',
   finance: 'adm-finance',
   operations: 'adm-operations',
@@ -54,6 +55,7 @@ export const SESSIONS = {
 const EMAILS = {
   'adm-admin': 'admin@example.com',
   'adm-approver': 'config.approver@example.com',
+  'adm-approver-2': 'config.approver2@example.com',
   'adm-catalogue': 'catalogue@example.com',
   'adm-finance': 'finance@example.com',
   'adm-operations': 'operations@example.com',

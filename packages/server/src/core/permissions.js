@@ -20,7 +20,11 @@ export async function addRoleAsync(role) {
 }
 
 export async function addPermissionAsync(permission) {
-  return permissionRepo().insertAsync(permission);
+  const record = await permissionRepo().insertAsync(permission);
+  // AC-PLT-003-01-05: a pack may name any permission this instance holds a record for
+  const { declarePermissionNames } = await import('./pack-loader.js');
+  declarePermissionNames([record.systemName]);
+  return record;
 }
 
 export async function grantAsync(systemName, roleSystemName, scope = null) {

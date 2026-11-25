@@ -10,6 +10,7 @@ import { definePlugin } from '../../core/plugin-host.js';
 import { trailAsync, auditEventCatalogue } from './services/audit-read.js';
 import {
   registerDecoratorAsync, searchAsync, exportTrailAsync, verifyChainAsync, chainStateAsync,
+  segmentsAsync, closeSegmentAsync, segmentEventsAsync, verifyFromCheckpointAsync,
   writeRightsAsync, replayAccessAsync, complianceReportAsync, saveAclAsync,
   saveStoreMappingsAsync, failAuditWrites,
 } from './services/audit-trail.js';
@@ -123,6 +124,14 @@ export default definePlugin({
     })));
     r.get('/audit/catalogue', (req, res) => res.json(auditEventCatalogue()));
     r.get('/audit/chain', gate('Security.Core.AuditTrail.View'), send(() => chainStateAsync()));
+    // BR-SEC-016: whole closed segments with a signed checkpoint, which PRD-PLT-020 retains
+    r.get('/audit/segments', gate('Security.Core.AuditTrail.View'), send(() => segmentsAsync()));
+    r.post('/audit/segments/close', gate('Security.Core.AuditTrail.Export'), send((req) => closeSegmentAsync({ actor: req.actorEmail })));
+    r.get('/audit/segments/:number', gate('Security.Core.AuditTrail.View'), send(async (req) => {
+      const found = await segmentEventsAsync(Number(req.params.number));
+      return found.ok === true ? { ...found, events: found.events.length } : found;
+    }));
+    r.get('/audit/verify-from-checkpoint', gate('Security.Core.AuditTrail.View'), send(() => verifyFromCheckpointAsync()));
     r.get('/audit/write-rights', send(() => writeRightsAsync()));
     r.get('/audit/decorator', send(() => ({ ...registration, auditedEntities: undefined })));
     r.post('/audit/verify', gate('Security.Core.AuditTrail.View'), send((req) => verifyChainAsync({
@@ -407,6 +416,23 @@ export default definePlugin({
     r.get('/event-codes', send(() => secEventCodesAsync()));
 
     ctx.addRouter('/api/security', r);
+    // IC-PLT-08: the audit trail is retained by whole closed segments only (BR-SEC-016), never
+    // event by event, which is what the descriptor tells the PLT-020 engine.
+    ctx.providers.registerProvider('IC-PLT-08', {
+      area: 'SEC',
+      feature: 'PRD-SEC-004',
+      name: 'audit trail segments',
+      fn: async () => ({
+        code: 'sec.audittrail',
+        owningModule: 'Product.SEC',
+        entity: 'AuditEntry',
+        dateField: 'occurredOnUtc',
+        allowedActions: ['Archive', 'Delete'],
+        segmentsOnly: true,
+        note: 'BR-SEC-016: whole closed segments past the period, by verified archive copy or removal with the signed checkpoint; single events are never deleted or anonymised',
+      }),
+    });
+
     ctx.declare({
       built: true,
       owns: [

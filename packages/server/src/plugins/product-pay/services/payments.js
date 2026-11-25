@@ -40,7 +40,12 @@ export async function paymentMethodsForStoreAsync({ storeId = 1, multiSeller = f
       additionalFee: FEES[a.systemName] ?? 0,
     };
     if (multiSeller && !a.supportsGroupPayment) {
-      excluded.push({ ...entry, reason: 'no-group-support', citation: 'BR-CHK-022 / decision SPLIT-PAY: paying once for several sub-orders needs group support (IC-CHK-04 = IC-PAY-02)' });
+      excluded.push({
+        ...entry,
+        reason: 'no-group-support',
+        explanation: 'This method cannot take one payment for a cart that is split between sellers.',
+        citation: 'BR-CHK-022 / decision SPLIT-PAY: paying once for several sub-orders needs group support (IC-CHK-04 = IC-PAY-02)',
+      });
       continue;
     }
     available.push(entry);

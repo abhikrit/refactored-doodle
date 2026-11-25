@@ -83,6 +83,21 @@ async function seedSecurityAsync() {
   // Customers.ActivityLogDelete is the native 5.00.1 permission AC-IAM-012-01-03 names, and the
   // IAM chapter permission table does not list it either; it is added and flagged rather than
   // left out, which would leave the activity-log clear ungated.
+  // Configuration.ManageCountries is the native 5.00.1 permission of the countries and regions
+  // screen, which PRD-PLT section 11.1 lists as native for PLT-009 while the PLT permission table
+  // does not name it; added and flagged, rather than leaving the region import ungated.
+  await addPermissionAsync({
+    systemName: 'Configuration.ManageCountries',
+    name: 'Configuration.ManageCountries',
+    category: 'Configuration',
+    area: 'PLT',
+    native: true,
+    allows: 'Edit countries and import the regions or districts of a country (PLT-009)',
+    defaultRoles: ['Administrators'],
+    notInChapterTable: 'native 5.00.1 permission of a screen PRD-PLT section 11.1 lists as native; the PLT chapter permission table does not list it',
+  });
+  await grantAsync('Configuration.ManageCountries', 'Administrators');
+
   await addPermissionAsync({
     systemName: 'Customers.ActivityLogDelete',
     name: 'Customers.ActivityLogDelete',
@@ -249,6 +264,9 @@ async function seedCustomersAsync(clientId) {
     // a second administrator: AC-ADM-011-04-01 needs an approver other than the author, and
     // BR-ADM-030 keeps one user to one step of an item, so the role needs two people in it
     { email: 'config.approver@example.com', firstName: 'Configuration', lastName: 'Approver', roles: ['Administrators'], password: 'demo' },
+    // BR-PLT-020: a High-impact configuration change needs two approvers, neither of them the
+    // requester, so the role needs a third person in it
+    { email: 'config.approver2@example.com', firstName: 'Second', lastName: 'Approver', roles: ['Administrators'], password: 'demo' },
     { email: 'catalogue@example.com', firstName: 'Catalogue', lastName: 'Manager', roles: ['Catalogue'], password: 'demo' },
     {
       email: 'finance@example.com', firstName: 'Finance', lastName: 'Officer', roles: ['Finance'], password: 'demo', authorityLimits: { approval: 500000 },

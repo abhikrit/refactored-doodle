@@ -25,7 +25,9 @@ export function currentState() {
 
 export async function applyClientAsync({ clientId, storeId = 1, actor = 'platform' }) {
   const chain = buildChain(ROOT, clientId, storeId);
-  const report = await applyPackChainAsync(chain, { storeId, replace: true, actor });
+  const report = await applyPackChainAsync(chain, {
+    storeId, replace: true, actor, root: ROOT,
+  });
   const seed = await seedAsync({ clientId, report });
   // the seed resets the in-memory store, so the merged settings are written again after it
   const report2 = await applyPackChainAsync(chain, { storeId, replace: true, actor });

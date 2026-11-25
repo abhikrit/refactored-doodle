@@ -6,8 +6,10 @@
 import { Router } from 'express';
 import { definePlugin } from '../../core/plugin-host.js';
 import {
-  categoriesAsync, categoryTreeAsync, productsAsync, productAsync, viewProductAsync, vendorsAsync,
+  categoriesAsync, categoryTreeAsync, productsAsync, searchProductsAsync, productAsync,
+  viewProductAsync, vendorsAsync,
 } from './services/catalogue.js';
+import { authorizedForStoreAsync } from '../../core/store-mapping.js';
 import { currentCustomerAsync } from '../product-iam/services/identity.js';
 
 export default definePlugin({
@@ -49,18 +51,28 @@ export default definePlugin({
     r.get('/products', async (req, res, next) => {
       try {
         const customer = await currentCustomerAsync(req.sessionId);
-        const all = await productsAsync();
+        const storeId = Number(req.query.storeId ?? req.storeId);
+        const all = req.query.q
+          ? await searchProductsAsync({ term: req.query.q, storeId })
+          : await productsAsync({ storeId });
         const out = [];
-        for (const p of all) out.push(await viewProductAsync(p, { customer }));
+        for (const p of all) out.push(await viewProductAsync(p, { customer, storeId }));
         res.json(out);
       } catch (err) { next(err); }
     });
     r.get('/products/:id', async (req, res, next) => {
       try {
         const customer = await currentCustomerAsync(req.sessionId);
+        const storeId = Number(req.query.storeId ?? req.storeId);
         const product = await productAsync(req.params.id);
         if (!product) return res.status(404).json({ message: 'product not found' });
-        return res.json(await viewProductAsync(product, { customer, quantity: Number(req.query.quantity ?? 1) }));
+        // AC-PLT-013-01-01: a product of another store is not reachable in this one
+        if (!await authorizedForStoreAsync('Product', product, storeId)) {
+          return res.status(404).json({ message: 'product not found in this store', storeId });
+        }
+        return res.json(await viewProductAsync(product, {
+          customer, quantity: Number(req.query.quantity ?? 1), storeId,
+        }));
       } catch (err) { return next(err); }
     });
     ctx.addRouter('/api/catalogue', r);

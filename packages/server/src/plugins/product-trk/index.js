@@ -56,6 +56,22 @@ export default definePlugin({
       try { res.json(await trackAsync(req.params.trackingNumber)); } catch (err) { next(err); }
     });
     ctx.addRouter('/api/tracking', r);
+    // IC-PLT-08: tracking events have an active period and then an archive period; the
+    // notification log follows its own rule (AC-PLT-020-02-01, AC-PLT-020-02-02).
+    ctx.providers.registerProvider('IC-PLT-08', {
+      area: 'TRK',
+      feature: 'PRD-TRK-002',
+      name: 'tracking record types',
+      fn: async () => [
+        {
+          code: 'trk.trackingevents', owningModule: 'Product.TRK', entity: 'TrackingEvent', dateField: 'occurredOnUtc', allowedActions: ['Archive', 'Delete'], activeAndArchivePeriods: true,
+        },
+        {
+          code: 'trk.notificationlog', owningModule: 'Product.TRK', entity: 'MessageDelivery', dateField: 'createdOnUtc', allowedActions: ['Archive', 'Delete'], personalData: true, anonymiseFields: ['to'],
+        },
+      ],
+    });
+
     ctx.declare({ built: true, owns: ['PRD-TRK-001', 'PRD-TRK-005', 'PRD-TRK-007', 'PRD-TRK-011'], note: 'tracking page, hub, message log and guest status are built in Session 0' });
   },
 });

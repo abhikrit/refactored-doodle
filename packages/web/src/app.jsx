@@ -25,7 +25,13 @@ import {
 import {
   AdminAuditTrail, AdminBreaches, AdminDataProtection, AdminSecurityOperations,
 } from './surfaces/admin/sec.jsx';
-import { AdminSettings } from './surfaces/admin/configuration.jsx';
+import {
+  AdminAcl, AdminCurrencies, AdminFeatureRegistry, AdminLanguages, AdminMessageTemplates,
+  AdminPacks, AdminPaymentMethods, AdminSettings, AdminShippingMethods, AdminStores,
+} from './surfaces/admin/configuration.jsx';
+import {
+  AdminChangeSets, AdminCountries, AdminHelpContent, AdminRetention,
+} from './surfaces/admin/plt.jsx';
 import { AdminPlugins } from './surfaces/admin/system.jsx';
 import {
   AdminConsole, BulkEdit, ExtensionRegister, Maintenance, ScheduleTasks, SystemLog, Widgets,
@@ -100,6 +106,19 @@ export default function App() {
               <Route path="/admin/customers/privacy" element={<AdminPrivacy />} />
               <Route path="/admin/customers/business" element={<AdminAccounts />} />
               <Route path="/admin/configuration/settings" element={<AdminSettings />} />
+              <Route path="/admin/configuration/packs" element={<AdminPacks />} />
+              <Route path="/admin/configuration/change-sets" element={<AdminChangeSets />} />
+              <Route path="/admin/configuration/feature-registry" element={<AdminFeatureRegistry />} />
+              <Route path="/admin/configuration/stores" element={<AdminStores />} />
+              <Route path="/admin/configuration/languages" element={<AdminLanguages />} />
+              <Route path="/admin/configuration/currencies" element={<AdminCurrencies />} />
+              <Route path="/admin/configuration/countries" element={<AdminCountries />} />
+              <Route path="/admin/configuration/payment-methods" element={<AdminPaymentMethods />} />
+              <Route path="/admin/configuration/shipping-methods" element={<AdminShippingMethods />} />
+              <Route path="/admin/configuration/acl" element={<AdminAcl />} />
+              <Route path="/admin/configuration/retention" element={<AdminRetention />} />
+              <Route path="/admin/content/help" element={<AdminHelpContent />} />
+              <Route path="/admin/content/message-templates" element={<AdminMessageTemplates />} />
               <Route path="/admin/configuration/widgets" element={<Widgets />} />
               <Route path="/admin/system/schedule-tasks" element={<ScheduleTasks />} />
               <Route path="/admin/system/log" element={<SystemLog />} />

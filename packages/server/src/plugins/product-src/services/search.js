@@ -40,10 +40,11 @@ function score(product, terms) {
 export async function searchAsync({
   q = '', categoryId = null, vendorId = null, minPrice = null, maxPrice = null,
   inStockOnly = false, pickupOnly = false, sort = 'relevance', page = 1, pageSize = 12,
-  specs = {}, customer = null,
+  specs = {}, customer = null, storeId = null,
 } = {}) {
   const terms = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
-  const all = await productsAsync();
+  // the store scope of PRD-PLT-013: search finds only what this store carries
+  const all = await productsAsync({ storeId });
   const categories = await repository('Category').getAllAsync();
 
   const descendants = (id) => {
@@ -133,10 +134,10 @@ export async function searchAsync({
 }
 
 /** SRC-002 suggestions while typing. */
-export async function suggestAsync(q, limit = 6) {
+export async function suggestAsync(q, limit = 6, storeId = null) {
   const terms = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
   if (!terms.length) return [];
-  const all = await productsAsync();
+  const all = await productsAsync({ storeId });
   return all
     .map((p) => ({ p, s: score(p, terms) }))
     .filter((x) => x.s > 0)

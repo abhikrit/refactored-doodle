@@ -65,6 +65,26 @@ export class Repository {
     tableOf(this.entityName).delete(Number(entity.id ?? entity));
   }
 
+  /**
+   * IRepository.DeleteAsync(Expression<Func<TEntity, bool>>) - the predicate overload, which
+   * removes the rows physically. The per-entity DeleteAsync of a soft-deletable entity only sets
+   * Deleted, so retention uses this one (BR-PLT-050, AC-PLT-020-01-02).
+   */
+  async deleteManyAsync(predicate) {
+    const rows = await this.getAllAsync(predicate);
+    for (const row of rows) tableOf(this.entityName).delete(Number(row.id));
+    return { removed: rows.length, physical: true };
+  }
+
+  /** The soft delete of entities that have a Deleted flag (Order, Customer, Product, ...). */
+  async softDeleteAsync(entity) {
+    const current = tableOf(this.entityName).get(Number(entity.id ?? entity));
+    if (!current) return null;
+    const merged = { ...current, deleted: true, updatedOnUtc: new Date().toISOString() };
+    tableOf(this.entityName).set(Number(current.id), merged);
+    return merged;
+  }
+
   async countAsync(predicate) {
     return (await this.getAllAsync(predicate)).length;
   }

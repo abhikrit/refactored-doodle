@@ -3,12 +3,13 @@
 // That is the mechanism the Product Goal rests on, so it is shown rather than hidden.
 
 import React, { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { api } from '../../lib/api.js';
 import { useProduct, money } from '../../lib/store.jsx';
 import { AdminPage } from '../../ui/nop/shells.jsx';
 import {
   Alert, Badge, Breadcrumb, Button, Field, Grid, Input, KeyValue, Panel, SearchPanel,
-  Select, Spinner, Tabs,
+  Select, Spinner, Tabs, Textarea,
 } from '../../ui/nop/kit.jsx';
 
 const crumb = (...items) => <Breadcrumb items={[{ label: 'Dashboard', to: '/admin' }, { label: 'Configuration' }, ...items]} />;
@@ -21,10 +22,18 @@ export function AdminSettings() {
   const [rows, setRows] = useState(null);
   const [q, setQ] = useState('');
   const [layer, setLayer] = useState('');
+  const [control, setControl] = useState(null);
+  const [pending, setPending] = useState([]);
   const { content } = useProduct();
 
-  useEffect(() => { api.get('/platform/settings').then(setRows).catch(() => {}); }, [content?.clientName]);
+  useEffect(() => {
+    api.get('/platform/settings').then(setRows).catch(() => {});
+    api.get('/platform/change-control').then(setControl).catch(() => {});
+    api.get('/platform/change-control/sets?status=PendingApproval').then(setPending).catch(() => {});
+  }, [content?.clientName]);
 
+  const controlledKeys = new Set((control?.controlledItems ?? []).map((i) => i.key));
+  const pendingFor = (name) => pending.filter((set) => (set.items ?? []).some((i) => i.key === name));
   const filtered = (rows ?? []).filter((r) => (!q || r.name.includes(q.toLowerCase())) && (!layer || r.layer === layer));
 
   return (
@@ -42,12 +51,30 @@ export function AdminSettings() {
           </Select>
         </Field>
       </SearchPanel>
+      {pending.length > 0 && (
+        <Alert tone="warning" title="Changes waiting for approval">
+          {pending.length === 1 ? 'One change to a controlled setting is waiting for approval.' : `${pending.length} changes to controlled settings are waiting for approval.`}
+          {' '}
+          <Link to="/admin/configuration/change-sets" className="underline">Open the change sets</Link>
+          .
+        </Alert>
+      )}
       <Panel bodyClass="p-0" subtitle={rows ? `${filtered.length} of ${rows.length} rows` : undefined}>
         {!rows ? <Spinner /> : (
           <Grid
             dense
             columns={[
-              { key: 'name', header: 'Setting name', render: (r) => <span className="font-mono text-[12px]">{r.name}</span> },
+              {
+                key: 'name',
+                header: 'Setting name',
+                render: (r) => (
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="font-mono text-[12px]">{r.name}</span>
+                    {pendingFor(r.name).length > 0 && <Badge tone="amber" title="a change to this setting is waiting for approval">Pending change</Badge>}
+                    {pendingFor(r.name).length === 0 && controlledKeys.has(r.name) && <Badge tone="slate" title="a change to this setting needs approval">Needs approval</Badge>}
+                  </span>
+                ),
+              },
               { key: 'value', header: 'Value', render: (r) => <span className="font-mono text-[12px] break-all">{JSON.stringify(r.value)}</span> },
               { key: 'storeId', header: 'Store', align: 'right', render: (r) => (r.storeId === 0 ? <span title="shared value">0 (shared)</span> : r.storeId) },
               { key: 'layer', header: 'From layer', render: (r) => <Badge tone={LAYER_TONE[r.layer]}>{r.layer}</Badge> },
@@ -239,7 +266,7 @@ export function AdminFeatureRegistry() {
       intro="Every feature is a switch. It is read before a page, a widget, a provider or a scheduled task does anything for this store."
     >
       <SearchPanel onClear={() => setFilter({ q: '', area: '', phase: '', held: '', enabled: '' })}>
-        <Field label="Feature ID or name"><Input value={filter.q} onChange={(e) => setFilter({ ...filter, q: e.target.value })} /></Field>
+        <Field label="Feature name or code"><Input value={filter.q} onChange={(e) => setFilter({ ...filter, q: e.target.value })} /></Field>
         <Field label="Area">
           <Select value={filter.area} onChange={(e) => setFilter({ ...filter, area: e.target.value })}>
             <option value="">All</option>
@@ -265,8 +292,8 @@ export function AdminFeatureRegistry() {
           <Grid
             dense
             columns={[
-              { key: 'id', header: 'Feature', render: (r) => <span className="font-mono text-[12px]">{r.id}</span> },
-              { key: 'name', header: 'Name' },
+              { key: 'name', header: 'Feature' },
+              { key: 'id', header: 'Code', render: (r) => <span className="font-mono text-[12px]">{String(r.id).replace(/^PRD-/, '')}</span> },
               { key: 'area', header: 'Area', render: (r) => <Badge tone="slate">{r.area}</Badge> },
               { key: 'phase', header: 'Phase' },
               { key: 'pack', header: 'Pack' },
@@ -290,19 +317,47 @@ export function AdminFeatureRegistry() {
 
 export function AdminStores() {
   const { entities, settings, content } = useProduct();
+  const [stores, setStores] = useState(null);
+  const [themes, setThemes] = useState(null);
+  const [lookup, setLookup] = useState({ key: 'shippingsettings.allowpickupinstore', rows: null });
+
+  useEffect(() => {
+    api.get('/platform/stores').then(setStores).catch(() => setStores([]));
+    api.get('/platform/branding/themes').then(setThemes).catch(() => {});
+  }, [content?.clientName]);
+
+  const look = async (key) => {
+    const r = await api.get(`/platform/stores/setting?key=${encodeURIComponent(key)}&allStores=true`);
+    setLookup({ key, rows: r.rows });
+  };
+  useEffect(() => { look(lookup.key).catch(() => {}); }, []);
+
   return (
-    <AdminPage title="Stores" breadcrumb={crumb({ label: 'Stores' })} intro="PLT-013 multi-store: one client can run a trade storefront and a retail storefront from one installation.">
+    <AdminPage title="Stores" breadcrumb={crumb({ label: 'Stores' })} intro="One installation can run several storefronts - a trade shop and a retail shop, each with its own address, look, catalogue and settings.">
       <Panel bodyClass="p-0">
-        <Grid
-          columns={[
-            { key: 'name', header: 'Store name' },
-            { key: 'channel', header: 'Channel' },
-            { key: 'sslEnabled', header: 'SSL enabled', render: () => <Badge tone="green">Yes</Badge> },
-            { key: 'company', header: 'Company', render: () => content?.clientName },
-          ]}
-          rows={content?.storefronts ?? []}
-          rowKey={(s) => s.id}
-        />
+        {!stores ? <Spinner /> : (
+          <Grid
+            columns={[
+              { key: 'name', header: 'Store name' },
+              { key: 'code', header: 'Code', render: (r) => <span className="font-mono text-[12px]">{r.code}</span> },
+              { key: 'channel', header: 'Channel', render: (r) => <Badge tone={r.channel === 'B2B' ? 'purple' : 'blue'}>{r.channel}</Badge> },
+              { key: 'url', header: 'Address', render: (r) => <span className="font-mono text-[12px]">{r.url}</span> },
+              { key: 'theme', header: 'Theme', render: (r) => (themes?.rows ?? []).find((t) => t.storeId === r.id)?.theme ?? '-' },
+              {
+                key: 'logo',
+                header: 'Own logo',
+                render: (r) => {
+                  const row = (themes?.rows ?? []).find((t) => t.storeId === r.id);
+                  return row?.logoPictureId ? <Badge tone="green">Yes</Badge> : <Badge tone="slate">Shared</Badge>;
+                },
+              },
+              { key: 'sslEnabled', header: 'SSL', render: (r) => <Badge tone={r.sslEnabled ? 'green' : 'red'}>{r.sslEnabled ? 'Yes' : 'No'}</Badge> },
+              { key: 'companyName', header: 'Company', render: (r) => r.companyName ?? content?.clientName },
+            ]}
+            rows={stores}
+            rowKey={(r) => r.id}
+          />
+        )}
       </Panel>
       <Panel title="Store information">
         <KeyValue rows={[
@@ -313,25 +368,128 @@ export function AdminStores() {
         ]}
         />
       </Panel>
+      <Panel
+        title="A setting across the stores"
+        subtitle="A store uses its own value where it has one, and the shared value where it does not."
+      >
+        <div className="flex flex-wrap items-end gap-2 mb-3">
+          <Field label="Setting">
+            <Input
+              value={lookup.key}
+              onChange={(e) => setLookup({ ...lookup, key: e.target.value })}
+              className="md:w-96"
+            />
+          </Field>
+          <Button variant="primary" onClick={() => look(lookup.key)}>Show</Button>
+        </div>
+        {lookup.rows && (
+          <Grid
+            dense
+            rows={lookup.rows}
+            rowKey={(r) => r.storeId}
+            columns={[
+              { key: 'store', header: 'Store' },
+              { key: 'value', header: 'Value in use', render: (r) => JSON.stringify(r.value) },
+              { key: 'level', header: 'Taken from' },
+              { key: 'storeValue', header: 'Own value', render: (r) => (r.storeValue === null ? '-' : JSON.stringify(r.storeValue)) },
+              { key: 'sharedValue', header: 'Shared value', render: (r) => (r.sharedValue === null ? '-' : JSON.stringify(r.sharedValue)) },
+            ]}
+          />
+        )}
+      </Panel>
     </AdminPage>
   );
 }
 
 export function AdminLanguages() {
-  const { entities } = useProduct();
+  const [languages, setLanguages] = useState(null);
+  const [selector, setSelector] = useState(null);
+  const [coverage, setCoverage] = useState(null);
+  const [upload, setUpload] = useState({ languageId: '', xml: '' });
+  const [notice, setNotice] = useState(null);
+
+  const load = () => {
+    api.get('/platform/languages').then(setLanguages).catch(() => setLanguages([]));
+    api.get('/platform/languages/selector').then(setSelector).catch(() => {});
+    api.get('/platform/languages/coverage').then(setCoverage).catch(() => {});
+  };
+  useEffect(() => { load(); }, []);
+
+  const importXml = async () => {
+    try {
+      const r = await api.post(`/platform/languages/${upload.languageId}/import-xml`, { xml: upload.xml, fileName: 'language.xml' });
+      setNotice(r.ok === false
+        ? { tone: 'error', text: r.message ?? 'The file was not accepted.' }
+        : { tone: 'success', text: `${r.imported} resources imported into ${r.language}.` });
+      setUpload({ languageId: '', xml: '' });
+      load();
+    } catch (err) { setNotice({ tone: 'error', text: err.message }); }
+  };
+
   return (
-    <AdminPage title="Languages" breadcrumb={crumb({ label: 'Languages' })} intro="PLT-009 languages and language packs; PLT-025 translation management. Right-to-left layout is supported where the language needs it.">
+    <AdminPage title="Languages" breadcrumb={crumb({ label: 'Languages' })} intro="The languages a shopper can choose, their resources, and the right-to-left layout where a language needs it.">
+      {notice && <Alert tone={notice.tone}>{notice.text}</Alert>}
       <Panel bodyClass="p-0">
-        <Grid
-          columns={[
-            { key: 'name', header: 'Name' },
-            { key: 'culture', header: 'Language culture', render: (l) => <span className="font-mono text-[12px]">{l.culture}</span> },
-            { key: 'rtl', header: 'Right-to-left', render: (l) => <Badge tone={l.rtl ? 'amber' : 'slate'}>{l.rtl ? 'Yes' : 'No'}</Badge> },
-            { key: 'published', header: 'Published', render: (l) => <Badge tone={l.published ? 'green' : 'red'}>{l.published ? 'Yes' : 'No'}</Badge> },
+        {!languages ? <Spinner /> : (
+          <Grid
+            columns={[
+              { key: 'name', header: 'Name' },
+              { key: 'culture', header: 'Language culture', render: (l) => <span className="font-mono text-[12px]">{l.culture}</span> },
+              { key: 'rtl', header: 'Right-to-left', render: (l) => <Badge tone={l.rtl ? 'amber' : 'slate'}>{l.rtl ? 'Yes' : 'No'}</Badge> },
+              { key: 'published', header: 'Published', render: (l) => <Badge tone={l.published ? 'green' : 'red'}>{l.published ? 'Yes' : 'No'}</Badge> },
+              { key: 'limitedToStores', header: 'Limited to stores', render: (l) => (l.limitedToStores ? <Badge tone="amber">Yes</Badge> : 'No') },
+              {
+                key: 'translated',
+                header: 'Resources translated',
+                align: 'right',
+                render: (l) => {
+                  const row = (coverage?.rows ?? []).find((c) => c.languageId === l.id);
+                  return row ? `${row.translated} of ${row.total}` : '-';
+                },
+              },
+            ]}
+            rows={languages}
+            rowKey={(l) => l.id}
+          />
+        )}
+      </Panel>
+      <Panel title="The language selector of this store" subtitle="Only the published languages of the store are offered to a shopper.">
+        {!selector ? <Spinner /> : (
+          <KeyValue rows={[
+            ['Offered', (selector.languages ?? []).map((l) => l.name).join(', ') || 'none'],
+            ['Default', (selector.languages ?? []).find((l) => l.id === selector.defaultLanguageId)?.name ?? '-'],
           ]}
-          rows={entities.languages ?? []}
-          rowKey={(l) => l.culture}
-        />
+          />
+        )}
+      </Panel>
+      <Panel title="Untranslated text" subtitle="Where a language has no text of its own, the default language is shown instead.">
+        {!coverage ? <Spinner /> : (
+          <Grid
+            dense
+            rows={coverage.rows}
+            rowKey={(r) => r.languageId}
+            columns={[
+              { key: 'language', header: 'Language' },
+              { key: 'translated', header: 'Translated', align: 'right' },
+              { key: 'total', header: 'Of', align: 'right' },
+              { key: 'missing', header: 'Missing', render: (r) => (r.missing.length ? r.missing.slice(0, 4).join(', ') + (r.missing.length > 4 ? ` and ${r.missing.length - 4} more` : '') : '-') },
+            ]}
+          />
+        )}
+      </Panel>
+      <Panel title="Import a language pack" subtitle="A resource file replaces or adds the text of one language.">
+        <div className="grid gap-3 md:grid-cols-3">
+          <Field label="Language">
+            <Select value={upload.languageId} onChange={(e) => setUpload({ ...upload, languageId: e.target.value })}>
+              <option value="">Choose a language</option>
+              {(languages ?? []).map((l) => <option key={l.id} value={l.id}>{l.name}</option>)}
+            </Select>
+          </Field>
+        </div>
+        <Field label="Resource file">
+          <Textarea rows={4} value={upload.xml} onChange={(e) => setUpload({ ...upload, xml: e.target.value })} placeholder={'<Language Name="Chichewa" SupportedVersion="5.00">\n  <LocaleResource Name="..."><Value>...</Value></LocaleResource>\n</Language>'} />
+        </Field>
+        <div className="mt-3"><Button variant="primary" onClick={importXml} disabled={!upload.languageId || !upload.xml.trim()}>Import</Button></div>
       </Panel>
     </AdminPage>
   );
@@ -340,7 +498,7 @@ export function AdminLanguages() {
 export function AdminCurrencies() {
   const { entities } = useProduct();
   return (
-    <AdminPage title="Currencies" breadcrumb={crumb({ label: 'Currencies' })} intro="PLT-010 currencies and exchange rates; PLT-024 the rate-provider framework.">
+    <AdminPage title="Currencies" breadcrumb={crumb({ label: 'Currencies' })} intro="The currencies this store prices in, and their exchange rates.">
       <Panel bodyClass="p-0">
         <Grid
           columns={[
@@ -379,7 +537,6 @@ export function AdminPaymentMethods() {
                 { key: 'capture', header: 'Capture' },
                 { key: 'supportsGroupPayment', header: 'Group payment', render: (m) => <Badge tone={m.supportsGroupPayment ? 'green' : 'slate'}>{m.supportsGroupPayment ? 'Yes' : 'No'}</Badge> },
                 { key: 'additionalFee', header: 'Additional fee', align: 'right', render: (m) => (m.additionalFee ? money(m.additionalFee, 'USD') : '-') },
-                { key: 'feature', header: 'Feature', render: (m) => <span className="font-mono text-[12px]">{m.feature}</span> },
               ]}
               rows={methods.available}
               rowKey={(m) => m.systemName}
@@ -391,7 +548,7 @@ export function AdminPaymentMethods() {
                 dense
                 columns={[
                   { key: 'name', header: 'Payment method' },
-                  { key: 'reason', header: 'Why', render: (m) => m.citation },
+                  { key: 'reason', header: 'Why', render: (m) => m.explanation ?? '-' },
                 ]}
                 rows={methods.excluded}
                 rowKey={(m) => m.systemName}
@@ -510,7 +667,11 @@ export function AdminMessageTemplates() {
   const [messages, setMessages] = useState(null);
   const [q, setQ] = useState('');
   useEffect(() => { api.get('/registry/messages').then(setMessages).catch(() => {}); }, []);
-  const rows = (messages ?? []).filter((m) => !q || m.key.toLowerCase().includes(q.toLowerCase()) || m.text.toLowerCase().includes(q.toLowerCase()));
+  const rows = (messages ?? [])
+    // a key the release withdrew carries a note instead of wording: it is not a resource the
+    // store uses, so it is not listed here
+    .filter((m) => !String(m.text ?? '').startsWith('Withdrawn'))
+    .filter((m) => !q || m.key.toLowerCase().includes(q.toLowerCase()) || m.text.toLowerCase().includes(q.toLowerCase()));
   return (
     <AdminPage
       title="Message templates and locale resources"
@@ -525,8 +686,7 @@ export function AdminMessageTemplates() {
             columns={[
               { key: 'key', header: 'Resource key', render: (m) => <span className="font-mono text-[12px]">{m.key}</span> },
               { key: 'area', header: 'Area', render: (m) => <Badge tone="slate">{m.area}</Badge> },
-              { key: 'text', header: 'Default English text (Proposed)' },
-              { key: 'usedBy', header: 'Used by', render: (m) => <span className="font-mono text-[11.5px] text-nop-muted">{m.usedBy.slice(0, 3).join(', ')}</span> },
+              { key: 'text', header: 'Text' },
             ]}
             rows={rows.slice(0, 400)}
             rowKey={(m) => m.key}

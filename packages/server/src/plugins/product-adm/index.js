@@ -278,6 +278,21 @@ export default definePlugin({
     for (const w of check.warnings) {
       await ctx.events.publishAsync('SystemWarningCreatedEvent', w);
     }
+    // IC-PLT-08: the ADM-003 rule evaluation log and the ADM-007 work drafts.
+    ctx.providers.registerProvider('IC-PLT-08', {
+      area: 'ADM',
+      feature: 'PRD-ADM-003',
+      name: 'adm record types',
+      fn: async () => [
+        {
+          code: 'adm.ruleevaluationlog', owningModule: 'Product.ADM', entity: 'RuleEvaluationLog', dateField: 'createdOnUtc', allowedActions: ['Archive', 'Delete'],
+        },
+        {
+          code: 'adm.workdrafts', owningModule: 'Product.ADM', entity: 'WorkDraft', dateField: 'createdOnUtc', allowedActions: ['Delete'], note: 'PRD-ADM-007 work drafts',
+        },
+      ],
+    });
+
     ctx.declare({
       built: true,
       owns: ['PRD-ADM-001', 'PRD-ADM-002', 'PRD-ADM-003', 'PRD-ADM-004', 'PRD-ADM-005', 'PRD-ADM-006',

@@ -6,7 +6,9 @@
       "defaultstoretheme": "string",
       "displayeucookielawwarning": "boolean",
       "defaultcountrytwoletterisocode": "string",
-      "storeowneremail": "string"
+      "storeowneremail": "string",
+      "logopictureid": "number",
+      "allowcustomertoselecttheme": "boolean"
     },
     "ordersettings": {
       "anonymouscheckoutallowed": "boolean",
@@ -40,7 +42,8 @@
       "primarystorecurrencyid": "number"
     },
     "localizationsettings": {
-      "defaultlanguageid": "number"
+      "defaultlanguageid": "number",
+      "ignorertlpropertyforadminarea": "boolean"
     },
     "datetimesettings": {
       "defaultstoretimezoneid": "string"
@@ -100,7 +103,7 @@
       "logprivacypolicyconsent": "boolean",
       "lognewsletterconsent": "boolean",
       "loguserprofilechanges": "boolean",
-      "deleteinactivecustomersaftermonths": "string"
+      "deleteinactivecustomersaftermonths": "number"
     },
     "securitysettings": {
       "useaesencryptionalgorithm": "boolean",
@@ -173,6 +176,17 @@
       "returnrequestsfilemaximumsize": "number",
       "returnrequestnumbermask": "string",
       "numberofdaysreturnrequestavailable": "number"
+    },
+    "pdfsettings": {
+      "logopictureid": "number",
+      "letterpagesizeenabled": "boolean"
+    },
+    "adminareasettings": {
+      "showdocumentationreferencelinks": "boolean",
+      "defaultgridpagesize": "number"
+    },
+    "commonsettings": {
+      "clearlogolderthandays": "number"
     }
   },
   "productKeys": {

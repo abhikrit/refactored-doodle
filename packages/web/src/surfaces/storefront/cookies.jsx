@@ -29,7 +29,7 @@ export function CookieBanner() {
   if (!banner?.show || done) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-store-border bg-white shadow-[0_-2px_8px_rgba(0,0,0,0.08)]">
+    <div data-cookie-bar className="fixed inset-x-0 bottom-0 z-50 border-t border-store-border bg-white shadow-[0_-2px_8px_rgba(0,0,0,0.08)]">
       <div className="mx-auto max-w-[1280px] px-4 py-4 space-y-3">
         <p className="text-[13px] text-gray-700">{banner.message}</p>
 

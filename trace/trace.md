@@ -1,6 +1,6 @@
 # Trace report
 
-Generated 2026-11-25T11:35:20.424Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
+Generated 2026-11-25T13:01:04.013Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
 
 ## 1. Reconciliation
 
@@ -11,15 +11,15 @@ its criteria tested and the rest not is partial, and is never counted as built.
 
 | State | Features | Meaning |
 |---|---|---|
-| Built and passing | 54 | Every AC of the feature has a passing test named by the AC ID |
-| Partly covered | 14 | Some ACs have passing tests, the rest have none yet |
-| Held, prototype default | 92 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
+| Built and passing | 63 | Every AC of the feature has a passing test named by the AC ID |
+| Partly covered | 12 | Some ACs have passing tests, the rest have none yet |
+| Held, prototype default | 91 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
 | Mocked externally | 24 | External-system feature standing behind a mock adapter (P-3) |
-| Not built | 250 | Scaffolded in Session 0, built in its own session |
+| Not built | 244 | Scaffolded in Session 0, built in its own session |
 | **Total** | **434** | reconciles: yes |
 
 Acceptance criteria in the product: 2850. Criteria with a test in this repository:
-440 (440 passing, 0 failing).
+515 (515 passing, 0 failing).
 
 ## 2. Coverage by area and wave
 
@@ -27,7 +27,7 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 |---|---|---|---|---|---|---|---|---|
 | 1 Foundation | ADM | Administration, workflow and operations console | 12 | 12 | 0 | 0 | 0 | 0 |
 | 1 Foundation | IAM | Identity, access and accounts | 27 | 27 | 0 | 0 | 0 | 0 |
-| 1 Foundation | PLT | Platform foundation and multi-client configuration | 27 | 0 | 2 | 3 | 4 | 18 |
+| 1 Foundation | PLT | Platform foundation and multi-client configuration | 27 | 9 | 0 | 2 | 4 | 12 |
 | 1 Foundation | SEC | Security, audit and compliance | 15 | 15 | 0 | 0 | 0 | 0 |
 | 2 Catalogue | CAT | Catalogue and listings | 43 | 0 | 0 | 9 | 0 | 34 |
 | 2 Catalogue | INV | Inventory and warehouses | 13 | 0 | 0 | 1 | 0 | 12 |
@@ -54,8 +54,8 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 
 | Client | Requirements | Mapped to a feature | Demonstrated in the prototype | Project service |
 |---|---|---|---|---|
-| KTDA | 95 | 80 | 15 | 17 |
-| Malawi Post | 411 | 374 | 38 | 38 |
+| KTDA | 95 | 80 | 18 | 17 |
+| Malawi Post | 411 | 374 | 45 | 38 |
 
 "Demonstrated in the prototype" means at least one feature that delivers the requirement has a
 passing AC-named test here. It is not a compliance statement: the compliance status of each
@@ -398,7 +398,82 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-PAY-004-01-02 | PRD-PAY-004 | node (API and rules) | pass |
 | AC-PLT-003-01-01 | PRD-PLT-003 | node (API and rules) | pass |
 | AC-PLT-003-01-02 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-01-03 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-01-04 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-01-05 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-01-06 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-01-07 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-01-08 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-01-09 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-01-10 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-01-11 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-02-01 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-02-02 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-02-03 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-02-04 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-02-05 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-03-01 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-03-02 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-003-03-03 | PRD-PLT-003 | node (API and rules) | pass |
+| AC-PLT-004-01-01 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-01-02 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-01-03 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-01-04 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-02-01 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-03-01 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-03-02 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-03-03 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-03-04 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-03-05 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-04-01 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-04-02 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-04-03 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-05-01 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-05-02 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-05-03 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-004-06-01 | PRD-PLT-004 | node (API and rules) | pass |
+| AC-PLT-005-01-01 | PRD-PLT-005 | node (API and rules) | pass |
+| AC-PLT-005-01-02 | PRD-PLT-005 | node (API and rules) | pass |
+| AC-PLT-005-02-01 | PRD-PLT-005 | node (API and rules) | pass |
+| AC-PLT-005-02-02 | PRD-PLT-005 | node (API and rules) | pass |
+| AC-PLT-005-03-01 | PRD-PLT-005 | node (API and rules) | pass |
+| AC-PLT-005-04-01 | PRD-PLT-005 | node (API and rules) | pass |
+| AC-PLT-005-04-02 | PRD-PLT-005 | node (API and rules) | pass |
+| AC-PLT-006-01-01 | PRD-PLT-006 | node (API and rules) | pass |
+| AC-PLT-006-01-02 | PRD-PLT-006 | node (API and rules) | pass |
+| AC-PLT-006-01-03 | PRD-PLT-006 | node (API and rules) | pass |
+| AC-PLT-006-02-01 | PRD-PLT-006 | node (API and rules) | pass |
+| AC-PLT-009-01-01 | PRD-PLT-009 | node (API and rules) | pass |
+| AC-PLT-009-01-02 | PRD-PLT-009 | node (API and rules) | pass |
+| AC-PLT-009-01-03 | PRD-PLT-009 | node (API and rules) | pass |
+| AC-PLT-009-02-01 | PRD-PLT-009 | node (API and rules) | pass |
+| AC-PLT-009-03-01 | PRD-PLT-009 | node (API and rules) | pass |
+| AC-PLT-013-01-01 | PRD-PLT-013 | node (API and rules) | pass |
+| AC-PLT-013-01-02 | PRD-PLT-013 | node (API and rules) | pass |
+| AC-PLT-013-01-03 | PRD-PLT-013 | node (API and rules) | pass |
+| AC-PLT-013-01-04 | PRD-PLT-013 | node (API and rules) | pass |
+| AC-PLT-013-01-05 | PRD-PLT-013 | node (API and rules) | pass |
+| AC-PLT-019-01-01 | PRD-PLT-019 | node (API and rules) | pass |
+| AC-PLT-019-01-02 | PRD-PLT-019 | node (API and rules) | pass |
+| AC-PLT-019-01-03 | PRD-PLT-019 | node (API and rules) | pass |
+| AC-PLT-019-02-01 | PRD-PLT-019 | node (API and rules) | pass |
+| AC-PLT-020-01-01 | PRD-PLT-020 | node (API and rules) | pass |
+| AC-PLT-020-01-02 | PRD-PLT-020 | node (API and rules) | pass |
+| AC-PLT-020-01-03 | PRD-PLT-020 | node (API and rules) | pass |
+| AC-PLT-020-01-04 | PRD-PLT-020 | node (API and rules) | pass |
+| AC-PLT-020-01-05 | PRD-PLT-020 | node (API and rules) | pass |
+| AC-PLT-020-01-06 | PRD-PLT-020 | node (API and rules) | pass |
+| AC-PLT-020-01-07 | PRD-PLT-020 | node (API and rules) | pass |
+| AC-PLT-020-01-08 | PRD-PLT-020 | node (API and rules) | pass |
+| AC-PLT-020-01-09 | PRD-PLT-020 | node (API and rules) | pass |
+| AC-PLT-020-02-01 | PRD-PLT-020 | node (API and rules) | pass |
+| AC-PLT-020-02-02 | PRD-PLT-020 | node (API and rules) | pass |
+| AC-PLT-022-01-01 | PRD-PLT-022 | node (API and rules) | pass |
 | AC-PLT-022-01-02 | PRD-PLT-022 | node (API and rules) | pass |
+| AC-PLT-022-01-03 | PRD-PLT-022 | node (API and rules) | pass |
+| AC-PLT-022-01-04 | PRD-PLT-022 | node (API and rules) | pass |
+| AC-PLT-022-01-05 | PRD-PLT-022 | node (API and rules) | pass |
+| AC-PLT-022-02-01 | PRD-PLT-022 | node (API and rules) | pass |
 | AC-SEC-001-01-01 | PRD-SEC-001 | node (API and rules) | pass |
 | AC-SEC-001-01-02 | PRD-SEC-001 | node (API and rules) | pass |
 | AC-SEC-001-01-03 | PRD-SEC-001 | node (API and rules) | pass |
@@ -506,7 +581,7 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-TRK-001-01-02 | PRD-TRK-001 | node (API and rules) | pass |
 | AC-TRK-011-01-02 | PRD-TRK-011 | node (API and rules) | pass |
 
-## 5. Features held by an open decision (92)
+## 5. Features held by an open decision (91)
 
 Each is built as the PRD's Proposed option and labelled "Prototype default - decision <ID> pending"
 in the user interface and here.
@@ -544,26 +619,26 @@ in the user interface and here.
 |---|---|---|---|---|---|---|---|---|
 | PRD-PLT-001 | Client instance provisioning | PLT | P1 | 1 | mocked | 10 | 0 | - |
 | PRD-PLT-002 | Client data isolation | PLT | P1 | 1 | held-default | 5 | 0 | F-CAT-B |
-| PRD-PLT-003 | Configuration packs | PLT | P1 | 1 | partial | 19 | 2 | - |
-| PRD-PLT-004 | Settings change control | PLT | P1 | 1 | held-default | 17 | 0 | WF-ENG |
-| PRD-PLT-005 | Configuration export, import and promotion | PLT | P1 | 1 | not-built | 7 | 0 | - |
-| PRD-PLT-006 | Branding and theme | PLT | P1 | 1 | not-built | 4 | 0 | - |
+| PRD-PLT-003 | Configuration packs | PLT | P1 | 1 | built | 19 | 19 | - |
+| PRD-PLT-004 | Settings change control | PLT | P1 | 1 | built | 17 | 17 | WF-ENG |
+| PRD-PLT-005 | Configuration export, import and promotion | PLT | P1 | 1 | built | 7 | 7 | - |
+| PRD-PLT-006 | Branding and theme | PLT | P1 | 1 | built | 4 | 4 | - |
 | PRD-PLT-007 | Custom domain and SSL | PLT | P1 | 1 | not-built | 3 | 0 | - |
 | PRD-PLT-008 | Email sender identity | PLT | P1 | 1 | not-built | 3 | 0 | - |
-| PRD-PLT-009 | Languages and language packs | PLT | P1 | 1 | not-built | 5 | 0 | - |
+| PRD-PLT-009 | Languages and language packs | PLT | P1 | 1 | built | 5 | 5 | - |
 | PRD-PLT-010 | Currencies and exchange rates | PLT | P1 | 1 | not-built | 4 | 0 | - |
 | PRD-PLT-011 | Time zone and formats | PLT | P1 | 1 | not-built | 2 | 0 | - |
 | PRD-PLT-012 | Fiscal calendar for reporting | PLT | P2 | 1 | not-built | 2 | 0 | - |
-| PRD-PLT-013 | Multi-store (B2B and B2C storefronts) | PLT | P1 | 1 | not-built | 5 | 0 | - |
+| PRD-PLT-013 | Multi-store (B2B and B2C storefronts) | PLT | P1 | 1 | built | 5 | 5 | - |
 | PRD-PLT-014 | Instance health and SLA monitoring | PLT | P1 | 1 | mocked | 5 | 0 | - |
 | PRD-PLT-015 | Scalable, open architecture | PLT | P1 | 1 | not-built | 6 | 0 | - |
 | PRD-PLT-016 | Backup and disaster recovery | PLT | P1 | 1 | mocked | 4 | 0 | - |
 | PRD-PLT-017 | Responsive storefront | PLT | P1 | 1 | not-built | 3 | 0 | - |
 | PRD-PLT-018 | Accessibility | PLT | P1 | 1 | not-built | 3 | 0 | - |
-| PRD-PLT-019 | Contextual help and guided tours | PLT | P1 | 1 | not-built | 4 | 0 | - |
-| PRD-PLT-020 | Data retention and archival | PLT | P1 | 1 | not-built | 11 | 0 | - |
+| PRD-PLT-019 | Contextual help and guided tours | PLT | P1 | 1 | built | 4 | 4 | - |
+| PRD-PLT-020 | Data retention and archival | PLT | P1 | 1 | built | 11 | 11 | - |
 | PRD-PLT-021 | Product release and upgrade management | PLT | P1 | 1 | mocked | 7 | 0 | - |
-| PRD-PLT-022 | Feature and module registry | PLT | P1 | 1 | partial | 6 | 1 | - |
+| PRD-PLT-022 | Feature and module registry | PLT | P1 | 1 | built | 6 | 6 | - |
 | PRD-PLT-023 | Client data migration toolkit | PLT | P1 | 1 | not-built | 6 | 0 | - |
 | PRD-PLT-024 | Exchange-rate provider framework | PLT | P1 | 1 | not-built | 3 | 0 | - |
 | PRD-PLT-025 | Translation management | PLT | P1 | 1 | not-built | 7 | 0 | - |

@@ -69,11 +69,14 @@ export default definePlugin({
           pageSize: Number(req.query.pageSize ?? 12),
           specs,
           customer,
+          storeId: Number(req.query.storeId ?? req.storeId),
         }));
       } catch (err) { next(err); }
     });
     r.get('/suggest', async (req, res, next) => {
-      try { res.json(await suggestAsync(req.query.q ?? '')); } catch (err) { next(err); }
+      try {
+        res.json(await suggestAsync(req.query.q ?? '', Number(req.query.limit ?? 6), Number(req.query.storeId ?? req.storeId)));
+      } catch (err) { next(err); }
     });
     ctx.addRouter('/api/search', r);
     ctx.declare({ built: true, owns: ['PRD-SRC-001', 'PRD-SRC-002', 'PRD-SRC-003', 'PRD-SRC-005'], note: 'keyword search, suggestions, facets and sorting are built in Session 0' });
