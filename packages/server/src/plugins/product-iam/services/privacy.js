@@ -77,7 +77,6 @@ export async function hasAcceptedEffectiveAsync({ customerId, policySystemName, 
 const requestRepo = () => repository('PrivacyRequest');
 const consentRepo = () => repository('GdprConsent');
 const consentStateRepo = () => repository('CustomerConsent');
-const cookieRepo = () => repository('CookieChoice');
 
 /** The pages that stay reachable while a re-acceptance is pending (BR-IAM-091). */
 export const ALWAYS_REACHABLE = ['/logout', '/customer/terms', '/privacy-policy', '/conditions-of-use', '/customer/accept-terms'];
@@ -239,47 +238,37 @@ export async function setConsentAsync({
 
 export const consentProviders = () => providers('IC-IAM-08').map((p) => ({ feature: p.feature, name: p.name }));
 
-/** AC-IAM-017-01-02 and 06-01: the SEC-007 cookie categories. */
-export const cookieCategoriesAsync = (storeId = 1) => getSettingAsync('sec.cookiecategories', storeId, [
-  { systemName: 'required', name: 'Strictly necessary', alwaysOn: true },
-  { systemName: 'analytics', name: 'Analytics', alwaysOn: false },
-  { systemName: 'marketing', name: 'Marketing', alwaysOn: false },
-]);
+/**
+ * AC-IAM-017-01-02 and 06-01: the cookie categories and the choice belong to PRD-SEC-007
+ * ("see SEC-007 (REQ-MPC-FR-010)"), so IAM only offers them on the account page and calls in.
+ */
+const sec007 = () => import('../../product-sec/services/consent.js');
+
+export const cookieCategoriesAsync = async (storeId = 1) => (await sec007()).categoriesAsync(storeId);
 
 export async function setCookieChoicesAsync({
   customerId = null, visitorId, accepted, storeId = 1,
 }) {
-  const categories = await cookieCategoriesAsync(storeId);
-  const names = categories.map((c) => c.systemName);
-  const unknown = accepted.filter((a) => !names.includes(a));
-  const stored = categories
-    .filter((c) => c.alwaysOn === true || accepted.includes(c.systemName))
-    .map((c) => c.systemName);
-  const existing = await cookieRepo().getOneAsync((r) => r.visitorId === visitorId);
-  const row = existing
-    ? await cookieRepo().updateAsync({ ...existing, customerId, accepted: stored })
-    : await cookieRepo().insertAsync({
-      visitorId, customerId, accepted: stored, createdOnUtc: new Date().toISOString(),
-    });
-  return {
-    ok: true, choice: row, appliesFrom: 'the next page', unknownCategories: unknown, ownedBy: 'PRD-SEC-007',
-  };
+  const result = await (await sec007()).saveChoiceAsync({
+    visitorId, customerId, accepted, storeId,
+  });
+  return { ...result, ownedBy: 'PRD-SEC-007' };
 }
 
-export async function cookieChoiceAsync({ visitorId, storeId = 1 }) {
-  const categories = await cookieCategoriesAsync(storeId);
-  const row = await cookieRepo().getOneAsync((r) => r.visitorId === visitorId);
-  const accepted = row?.accepted ?? categories.filter((c) => c.alwaysOn === true).map((c) => c.systemName);
-  return { accepted, categories, asked: Boolean(row) };
+export async function cookieChoiceAsync({ visitorId, customerId = null, storeId = 1 }) {
+  return (await sec007()).choiceAsync({ visitorId, customerId, storeId });
 }
 
 /** AC-IAM-017-06-01: no analytics widget and no profile without the analytics category. */
-export async function analyticsAllowedAsync({ visitorId, storeId = 1 }) {
-  const { accepted } = await cookieChoiceAsync({ visitorId, storeId });
-  const allowed = accepted.includes('analytics');
+export async function analyticsAllowedAsync({ visitorId, customerId = null, storeId = 1 }) {
+  const { active, withheld } = await (await sec007()).loadActiveWidgetsAsync({
+    visitorId, customerId, storeId,
+  });
+  const allowed = active.some((w) => w.systemName === 'Widgets.GoogleAnalytics');
   return {
     allowed,
-    widgetsRendered: allowed ? ['Widgets.GoogleAnalytics'] : [],
+    widgetsRendered: active.filter((w) => w.category === 'analytics').map((w) => w.systemName),
+    widgetsWithheld: withheld.map((w) => w.systemName),
     profileBuilt: allowed,
     gatedBy: 'PRD-SEC-007',
   };
@@ -322,19 +311,23 @@ export async function exportMyDataAsync({ customer, storeId = 1 }) {
   return { ok: true, files, gdprLogged: 'ExportData' };
 }
 
-/** SEC-012: the due date comes from the country profile, never from a figure typed here. */
+/**
+ * SEC-012 supplies the response time; none is coded here (NFR-SEC-005). When the country profile
+ * has no response time the due date is not set and the request shows "not configured"
+ * (AC-SEC-012-01-02).
+ */
 export async function dueDateAsync({ storeId = 1, country = null, type = 'Correction' }) {
-  const profiles = await getSettingAsync('sec.countryprivacyprofiles', storeId, {
-    MW: { correctionDays: 30, deletionDays: 30 },
-    KE: { correctionDays: 30, deletionDays: 30 },
-  });
-  const fallback = await getSettingAsync('sec.privacyrequestdays', storeId, 30);
-  const store = await repository('Store').getByIdAsync(storeId);
-  const iso = country ?? store?.defaultCountry ?? 'MW';
-  const profile = profiles[iso] ?? {};
-  const days = Number(type === 'Deletion' ? (profile.deletionDays ?? fallback) : (profile.correctionDays ?? fallback));
+  const { responseDeadlineAsync, profileAsync } = await import('../../product-sec/services/privacy-profile.js');
+  const deadline = await responseDeadlineAsync({ storeId });
+  const profile = await profileAsync({ storeId, country });
   return {
-    days, country: iso, suppliedBy: 'PRD-SEC-012 country profile', dueOnUtc: new Date(Date.now() + days * 24 * 3600 * 1000).toISOString(),
+    days: deadline.days,
+    country: profile.country,
+    type,
+    configured: deadline.configured,
+    display: deadline.configured ? `${deadline.days} days` : 'not configured',
+    dueOnUtc: deadline.dueOnUtc,
+    suppliedBy: 'PRD-SEC-012 country profile',
   };
 }
 
@@ -355,6 +348,7 @@ export async function requestCorrectionAsync({
     reason,
     dueOnUtc: due.dueOnUtc,
     dueDays: due.days,
+    dueDisplay: due.display,
     dueFrom: due.suppliedBy,
     createdOnUtc: new Date().toISOString(),
   });
@@ -442,6 +436,7 @@ export async function requestDeletionAsync({ customer, storeId = 1 }) {
     status: 'Received',
     dueOnUtc: due.dueOnUtc,
     dueDays: due.days,
+    dueDisplay: due.display,
     dueFrom: due.suppliedBy,
     createdOnUtc: new Date().toISOString(),
   });
@@ -580,6 +575,7 @@ export async function markOverdueAsync({ storeId = 1 } = {}) {
   const now = Date.now();
   const marked = [];
   for (const row of open) {
+    if (!row.dueOnUtc) continue; // "not configured": there is no date to pass
     if (new Date(row.dueOnUtc).getTime() > now) continue;
     const updated = await requestRepo().updateAsync({ ...row, status: 'Overdue', overdueOnUtc: new Date().toISOString() });
     marked.push(updated);

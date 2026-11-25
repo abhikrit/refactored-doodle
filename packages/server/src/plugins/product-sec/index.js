@@ -14,6 +14,21 @@ import {
   saveStoreMappingsAsync, failAuditWrites,
 } from './services/audit-trail.js';
 import { queryAsync, replayEntityAsync, auditAsync } from '../../core/audit.js';
+import {
+  bannerAsync, saveChoiceAsync, choiceAsync, categoriesAsync, widgetMapAsync,
+  loadActiveWidgetsAsync, isWidgetActiveAsync, analyticsEventAsync, personalisationAllowedAsync,
+  setEnableEcommerceAsync, validatePackAnalyticsAsync, logConsentAsync, gdprToolsAsync,
+  gdprSettingsCheckAsync,
+} from './services/consent.js';
+import {
+  profileAsync, saveProfileAsync, responseDeadlineAsync, recordActivityAsync, activitiesAsync,
+  exportActivitiesAsync, recordTransferAsync, transfersAsync, recordAssessmentAsync,
+  assessmentRemindersAsync, goLiveChecklistAsync, instanceCountryAsync,
+} from './services/privacy-profile.js';
+import {
+  classificationAsync, fieldClassAsync, setFieldClassAsync, maskAsync, maskRowsAsync,
+  revealAsync, exportRowsAsync, maskForLogAsync, crmFieldRulesAsync, CLASSES, MASKING_RULES,
+} from './services/classification.js';
 
 export default definePlugin({
   area: 'SEC',
@@ -108,12 +123,105 @@ export default definePlugin({
       return { failing: req.body?.value === true };
     }));
 
+    /* --------------------------------------- PRD-SEC-007 consent and privacy tools ------ */
+    const visitor = (req) => req.query.visitorId ?? req.body?.visitorId ?? req.sessionId;
+    r.get('/cookies/banner', send((req) => bannerAsync({ visitorId: visitor(req), storeId: req.storeId })));
+    r.get('/cookies/categories', send((req) => categoriesAsync(req.storeId)));
+    r.get('/cookies', send((req) => choiceAsync({
+      visitorId: visitor(req), customerId: req.actor?.id ?? null, storeId: req.storeId,
+    })));
+    r.post('/cookies', send((req) => saveChoiceAsync({
+      visitorId: visitor(req),
+      customerId: req.actor?.id ?? null,
+      accepted: req.body?.accepted ?? [],
+      option: req.body?.option ?? 'choose-per-category',
+      storeId: req.storeId,
+      ipAddress: req.ip,
+    })));
+    r.get('/widgets/active', send((req) => loadActiveWidgetsAsync({
+      visitorId: visitor(req), customerId: req.actor?.id ?? null, storeId: req.storeId,
+    })));
+    r.get('/widgets/map', send((req) => widgetMapAsync(req.storeId)));
+    r.get('/widgets/:systemName/active', send((req) => isWidgetActiveAsync({
+      systemName: req.params.systemName, visitorId: visitor(req), customerId: req.actor?.id ?? null, storeId: req.storeId,
+    })));
+    r.post('/analytics/event', send((req) => analyticsEventAsync({
+      event: req.body?.event, visitorId: visitor(req), customerId: req.actor?.id ?? null, storeId: req.storeId,
+    })));
+    r.get('/personalisation', send((req) => personalisationAllowedAsync({
+      visitorId: visitor(req), customerId: req.actor?.id ?? null, storeId: req.storeId,
+    })));
+    r.post('/analytics/enable-ecommerce', send((req) => setEnableEcommerceAsync({
+      value: req.body?.value === true, storeId: req.storeId, actor: req.actorEmail,
+    })));
+    r.post('/analytics/validate-pack', send((req) => validatePackAnalyticsAsync({
+      settings: req.body?.settings ?? {}, storeId: req.storeId,
+    })));
+    r.post('/gdpr/consent-log', send((req) => logConsentAsync({ ...req.body, storeId: req.storeId })));
+    r.get('/gdpr/tools', send((req) => gdprToolsAsync({ storeId: req.storeId })));
+    r.get('/gdpr/settings-check', send((req) => gdprSettingsCheckAsync({ storeId: req.storeId })));
+
+    /* ------------------------------------- PRD-SEC-012 the country data-protection pack -- */
+    r.get('/privacy-profile', gate('Security.Core.PrivacyProfile.View'), send((req) => profileAsync({
+      storeId: req.storeId, country: req.query.country ?? null,
+    })));
+    r.post('/privacy-profile', send(async (req) => saveProfileAsync({
+      country: req.body?.country ?? null, values: req.body?.values ?? {}, actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.get('/privacy-profile/country', send((req) => instanceCountryAsync(req.storeId).then((c) => ({ country: c }))));
+    r.get('/privacy-profile/deadline', send((req) => responseDeadlineAsync({
+      storeId: req.storeId, receivedOnUtc: req.query.receivedOnUtc ?? new Date().toISOString(),
+    })));
+    r.get('/processing-activities', gate('Security.Core.PrivacyProfile.View'), send((req) => activitiesAsync({ current: req.query.all !== 'true' })));
+    r.post('/processing-activities', send(async (req) => recordActivityAsync({
+      ...req.body, actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.get('/processing-activities/export', gate('Security.Core.PrivacyProfile.View'), send((req) => exportActivitiesAsync({ format: req.query.format ?? 'csv' })));
+    r.get('/transfers', gate('Security.Core.PrivacyProfile.View'), send(() => transfersAsync()));
+    r.post('/transfers', send(async (req) => recordTransferAsync({
+      ...req.body, actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/impact-assessments', send(async (req) => recordAssessmentAsync({
+      ...req.body, actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/impact-assessments/reminders', send((req) => assessmentRemindersAsync({ storeId: req.storeId })));
+    r.get('/go-live-checklist', send((req) => goLiveChecklistAsync({ storeId: req.storeId })));
+
+    /* --------------------------------- PRD-SEC-014 data classification and masking ------- */
+    r.get('/classification', send((req) => classificationAsync(req.storeId).then((rows) => ({
+      classification: rows, classes: CLASSES, maskingRules: MASKING_RULES, heldBy: 'DP-01', prototypeDefaultLabel: 'Prototype default - decision DP-01 pending',
+    }))));
+    r.get('/classification/field', send((req) => fieldClassAsync({
+      entity: req.query.entity, field: req.query.field, storeId: req.storeId,
+    })));
+    r.post('/classification', send(async (req) => setFieldClassAsync({
+      ...req.body, actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/classification/mask', send(async (req) => maskAsync({
+      ...req.body, user: req.actor, storeId: req.storeId,
+    })));
+    r.post('/classification/mask-rows', send(async (req) => maskRowsAsync({
+      entity: req.body?.entity, rows: req.body?.rows ?? [], user: req.actor, storeId: req.storeId,
+    })));
+    r.post('/classification/reveal', send(async (req) => revealAsync({
+      ...req.body, user: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/classification/export', send(async (req) => exportRowsAsync({
+      entity: req.body?.entity, rows: req.body?.rows ?? [], purpose: req.body?.purpose ?? 'staff', user: req.actor, storeId: req.storeId,
+    })));
+    r.post('/classification/mask-for-log', send((req) => maskForLogAsync({
+      entity: req.body?.entity, values: req.body?.values ?? {}, storeId: req.storeId,
+    })));
+    r.get('/classification/crm-rules', send((req) => crmFieldRulesAsync({
+      entity: req.query.entity ?? 'Customer', storeId: req.storeId,
+    })));
+
     ctx.addRouter('/api/security', r);
     ctx.declare({
       built: true,
-      owns: ['PRD-SEC-004'],
-      builtFeatures: ['PRD-SEC-004'],
-      note: 'the platform audit trail, its chain, export, replay and compliance report',
+      owns: ['PRD-SEC-004', 'PRD-SEC-007', 'PRD-SEC-012', 'PRD-SEC-014'],
+      builtFeatures: ['PRD-SEC-004', 'PRD-SEC-007', 'PRD-SEC-012', 'PRD-SEC-014'],
+      note: 'the audit trail, the consent and cookie tools, the country data-protection pack and data classification',
     });
   },
 });

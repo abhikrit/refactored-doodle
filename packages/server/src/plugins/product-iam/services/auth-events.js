@@ -228,7 +228,12 @@ export async function decideFlagAsync({
 
 /* ======================================================= PRD-IAM-018 account activity === */
 
-/** AC-IAM-018-01-02: the IP address shown to a shopper is partly masked. */
+/**
+ * AC-IAM-018-01-02: the IP address shown to a shopper is partly masked. "When SEC-014 is
+ * delivered its masking rule applies; until then (P1) the last octet of an IPv4 address, or the
+ * last 80 bits of an IPv6 address, are replaced by zeros (Proposed)." SEC-014 is delivered in
+ * this prototype, and its rule for AuthEvent.ipAddress is that same rule.
+ */
 export function maskIp(ip) {
   if (!ip) return null;
   if (ip.includes(':')) {
@@ -238,6 +243,21 @@ export function maskIp(ip) {
   const octets = String(ip).split('.');
   if (octets.length !== 4) return ip;
   return [...octets.slice(0, 3), '0'].join('.');
+}
+
+/** The same value, taken from the SEC-014 rule for the field (IC-SEC-04 Mask). */
+export async function maskIpAsync(ip, storeId = 1) {
+  if (!ip) return null;
+  try {
+    const { maskAsync } = await import('../../product-sec/services/classification.js');
+    const result = await maskAsync({
+      entity: 'AuthEvent', field: 'ipAddress', value: ip, user: null, storeId,
+    });
+    if (result.shown === false) return null; // fail closed (BR-SEC-060)
+    return result.value;
+  } catch {
+    return maskIp(ip);
+  }
 }
 
 /** BR-IAM-080: a read-access event when staff open a customer's personal data. */
@@ -273,7 +293,8 @@ export async function accountActivityAsync({ customerId, storeId = 1, forStaff =
       kind: e.outcome === 'success' ? 'login' : 'failed login',
       at: e.createdOnUtc,
       channel: e.channel,
-      ipAddress: forStaff ? e.ipAddress : maskIp(e.ipAddress),
+      ipAddress: forStaff ? e.ipAddress : maskIp(e.ipAddress), // the SEC-014 rule for this field
+
       outcome: e.outcome,
     }));
 

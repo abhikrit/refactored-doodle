@@ -29,7 +29,30 @@
       "street",
       "landmark",
       "pin"
-    ]
+    ],
+    "gdprsettings.gdprenabled": true,
+    "gdprsettings.logprivacypolicyconsent": true,
+    "gdprsettings.lognewsletterconsent": true,
+    "gdprsettings.loguserprofilechanges": true,
+    "storeinformationsettings.displayeucookielawwarning": false,
+    "sec.countryprofile.mw": {
+      "country": "MW",
+      "lawNames": "Malawi Data Protection Act 2024",
+      "regulator": null,
+      "dataRequestResponseDays": null,
+      "breachDeadlineToRegulatorHours": null,
+      "breachDeadlineToPeopleHours": null,
+      "transferConditions": null,
+      "consentTexts": null,
+      "externalAiTransfer": null,
+      "externalAiCountries": null,
+      "smsOptOut": null,
+      "essentialMessageTypes": null,
+      "partnerConsentTexts": null,
+      "retention": null,
+      "serverSideAnalyticsConsent": null,
+      "note": "the law name is the one the SEC chapter names; every other value is left for the client to configure, so it reads \"not configured\" until it is set (BR-SEC-040)"
+    }
   },
   "entities": {
     "statesProvinces": [

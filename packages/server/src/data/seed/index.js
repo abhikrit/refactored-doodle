@@ -98,7 +98,7 @@ async function seedSecurityAsync() {
   // Security.AccessAdminPanel: "Administrators, Vendors and roles granted by IAM-007" (ADM
   // chapter section 4). The staff roles below are the IAM-007 grant for this prototype; Auditor
   // is deliberately left out, because SEC-010 gives an auditor a read-only surface of its own.
-  for (const role of ['Catalogue', 'Finance', 'Logistics', 'Warehouse', 'Support', 'Compliance', 'Agent', 'PlatformTeam', 'Operations']) {
+  for (const role of ['Catalogue', 'Finance', 'Logistics', 'Warehouse', 'Support', 'Compliance', 'Agent', 'PlatformTeam', 'Operations', 'PrivacyOfficer', 'SecurityOfficer']) {
     try { await grantAsync('Security.AccessAdminPanel', role); } catch { /* role not seeded */ }
   }
   // "Administration.Core.Approvals.Act: Administrators and the roles named on approval steps"
@@ -262,6 +262,10 @@ async function seedCustomersAsync(clientId) {
     {
       email: 'compliance@example.com', firstName: 'Compliance', lastName: 'Officer', roles: ['Compliance'], password: 'demo', authorityLimits: { approval: 1000000 },
     },
+    // the SEC chapter's own roles: the privacy officer holds the data-protection permissions and
+    // the security officer the sign-in and audit ones
+    { email: 'privacy@example.com', firstName: 'Privacy', lastName: 'Officer', roles: ['PrivacyOfficer'], password: 'demo' },
+    { email: 'security@example.com', firstName: 'Security', lastName: 'Officer', roles: ['SecurityOfficer'], password: 'demo' },
   ];
   const clientSpecific = clientId === 'MPC'
     ? [{

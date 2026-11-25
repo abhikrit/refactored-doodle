@@ -483,20 +483,20 @@ describe('PRD-IAM-017 consent and privacy requests', () => {
     // "the new choice applies from the next page (see SEC-007)"
     const categories = await api.get('/api/identity/cookies/categories', 'iam-e-13');
     assert.ok(categories.some((c) => c.systemName === 'analytics'));
-    assert.ok(categories.find((c) => c.systemName === 'required').alwaysOn, 'the necessary category is always on');
+    assert.ok(categories.find((c) => c.systemName === 'necessary').alwaysOn, 'the necessary category is always on');
 
     const chosen = await api.post('/api/identity/cookies', { visitorId: 'visitor-1', accepted: ['analytics'] }, 'iam-e-13');
     assert.equal(chosen.ok, true);
     assert.equal(chosen.appliesFrom, 'the next page');
     assert.match(chosen.ownedBy, /PRD-SEC-007/);
-    assert.deepEqual(chosen.choice.accepted.sort(), ['analytics', 'required'], 'the necessary category stays');
+    assert.deepEqual(chosen.choice.accepted.sort(), ['analytics', 'necessary'], 'the necessary category stays');
 
     const read = await api.get('/api/identity/cookies?visitorId=visitor-1', 'iam-e-13');
-    assert.deepEqual(read.accepted.sort(), ['analytics', 'required']);
+    assert.deepEqual(read.accepted.sort(), ['analytics', 'necessary']);
     assert.equal(read.asked, true);
 
     const changed = await api.post('/api/identity/cookies', { visitorId: 'visitor-1', accepted: [] }, 'iam-e-13');
-    assert.deepEqual(changed.choice.accepted, ['required'], 'the choice can be changed from the footer link');
+    assert.deepEqual(changed.choice.accepted, ['necessary'], 'the choice can be changed from the footer link');
   });
 
   test('AC-IAM-017-01-03', async () => {
@@ -550,6 +550,17 @@ describe('PRD-IAM-017 consent and privacy requests', () => {
     const incomplete = await api.post('/api/identity/privacy/corrections', { field: 'lastName' }, 'iam-e-15');
     assert.equal(incomplete.ok, false, 'the field, the requested value and a reason are all needed');
 
+    // the country profile has no response time until the client configures one, and the
+    // request then shows "not configured" rather than a figure nobody stated (BR-SEC-040)
+    const unset = await api.post('/api/identity/privacy/corrections', {
+      field: 'company', currentValue: '', requestedValue: 'Mphepo Traders', reason: 'my company name',
+    }, 'iam-e-15');
+    assert.equal(unset.request.dueOnUtc, null);
+    assert.equal(unset.request.dueDisplay, 'not configured');
+
+    // the response time is the privacy officer's to set (Security.Core.PrivacyProfile.CreateEditDelete)
+    await api.post('/api/security/privacy-profile', { values: { dataRequestResponseDays: 30 } }, SESSIONS.privacy);
+
     const created = await api.post('/api/identity/privacy/corrections', {
       field: 'lastName', currentValue: 'Mispelled', requestedValue: 'Mphepo', reason: 'my surname is spelled wrongly',
     }, 'iam-e-15');
@@ -560,6 +571,7 @@ describe('PRD-IAM-017 consent and privacy requests', () => {
 
     const due = await api.get('/api/identity/privacy/due-date?type=Correction', 'iam-e-15');
     assert.equal(created.request.dueDays, due.days);
+    assert.equal(due.days, 30, 'the response time of the profile');
     assert.match(created.request.dueFrom, /PRD-SEC-012/, 'the due date comes from the country profile');
     assert.ok(new Date(created.request.dueOnUtc) > new Date());
   });
@@ -569,7 +581,7 @@ describe('PRD-IAM-017 consent and privacy requests', () => {
     //  records ProfileChanged and AUD-IAM-011 is written; placed orders are not changed"
     const shopper = await byEmail('correction@example.com');
     const open = (await api.get(`/api/identity/privacy/requests?customerId=${shopper.id}`, SESSIONS.admin))
-      .find((r) => r.type === 'Correction' && r.status === 'Received');
+      .find((r) => r.type === 'Correction' && r.status === 'Received' && r.field === 'lastName');
 
     const denied = await api.post(`/api/identity/privacy/corrections/${open.id}/decide`, { decision: 'approve' }, SESSIONS.catalogue);
     assert.equal(denied.permission, 'Customers.GDPRManage');

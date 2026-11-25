@@ -14,6 +14,8 @@ export const SESSIONS = {
   compliance: 'adm-compliance',
   auditor: 'adm-auditor',
   buyer: 'adm-buyer',
+  privacy: 'adm-privacy',
+  security: 'adm-security',
 };
 
 const EMAILS = {
@@ -25,6 +27,8 @@ const EMAILS = {
   'adm-compliance': 'compliance@example.com',
   'adm-auditor': 'auditor@example.com',
   'adm-buyer': 'buyer@example.com',
+  'adm-privacy': 'privacy@example.com',
+  'adm-security': 'security@example.com',
 };
 
 export async function startAsync({ client = 'MPC' } = {}) {
