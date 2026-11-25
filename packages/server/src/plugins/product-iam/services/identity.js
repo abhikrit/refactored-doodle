@@ -10,7 +10,7 @@
 import { repository } from '../../../core/repository.js';
 import { getSettingAsync } from '../../../core/settings.js';
 import { auditAsync } from '../../../core/audit.js';
-import { sendAsync } from '../../../core/messages.js';
+import { sendAsync, resource } from '../../../core/messages.js';
 import { messageGateways } from '@product/mocks';
 
 const sessions = new Map(); // sessionId -> { customerId, actingFor, agentOutlet }
@@ -20,39 +20,119 @@ export async function customersAsync() {
   return repository('Customer').getAllAsync((c) => !c.deleted);
 }
 
-export async function signInAsync({ sessionId, email, password = 'demo' }) {
-  const customer = await repository('Customer').getOneAsync((c) => c.email === email);
-  // AC-ADM-001-03-01: a deactivated account cannot sign in; AC-ADM-001-03-02: a deleted one is gone
-  if (customer && (customer.active === false || customer.deleted)) {
+/**
+ * AC-IAM-001-02-01 / 02-02, AC-IAM-001-04-01 and the IAM-003 lockout.
+ * The native messages are used unchanged: Account.Login.WrongCredentials,
+ * .NotActive and .LockedOut.
+ */
+export async function signInAsync({
+  sessionId, email, password = 'demo', storeId = 1, ipAddress = null, userAgent = null,
+}) {
+  const { lockoutState, recordFailedLoginAsync, passwordExpiredAsync } = await import('./passwords.js');
+  const customer = await repository('Customer').getOneAsync((c) => c.email === email && !c.deleted);
+
+  if (!customer) {
     await auditAsync({
-      event: 'AUD-IAM-012-02',
-      area: 'IAM',
-      feature: 'PRD-IAM-012',
-      entity: 'Customer',
-      entityId: customer.id,
-      actor: email,
-      outcome: 'rejected',
-      note: customer.deleted ? 'sign-in refused: the account was deleted' : `sign-in refused: the account is deactivated (${customer.deactivationReason ?? 'no reason recorded'})`,
+      event: 'AUD-IAM-012-02', area: 'IAM', feature: 'PRD-IAM-012', entity: 'Customer', entityId: email, actor: email, outcome: 'rejected', note: 'failed sign-in: no such account',
+    });
+    return { ok: false, messageKey: 'Account.Login.WrongCredentials', message: 'The credentials provided are incorrect' };
+  }
+
+  const lock = lockoutState(customer);
+  if (lock.lockedOut) {
+    return {
+      ok: false, lockedOut: true, until: lock.until, messageKey: 'Account.Login.WrongCredentials.LockedOut', message: 'The account is locked out',
+    };
+  }
+
+  if (customer.password !== password) {
+    const failed = await recordFailedLoginAsync({ customer, storeId });
+    await auditAsync({
+      event: 'AUD-IAM-012-02', area: 'IAM', feature: 'PRD-IAM-012', entity: 'Customer', entityId: customer.id, actor: email, outcome: 'rejected', note: `failed sign-in (attempt ${failed.attempts})`,
     });
     return {
       ok: false,
-      deactivated: true,
-      message: customer.deleted
-        ? 'This account no longer exists.'
-        : 'This account has been deactivated. Please contact us.',
+      messageKey: failed.lockedOut ? 'Account.Login.WrongCredentials.LockedOut' : 'Account.Login.WrongCredentials',
+      message: failed.lockedOut ? 'The account is locked out' : 'The credentials provided are incorrect',
+      failedLoginAttempts: failed.attempts,
+      lockedOut: failed.lockedOut,
     };
   }
-  if (!customer || customer.password !== password) {
-    await auditAsync({
-      event: 'AUD-IAM-012-02', area: 'IAM', feature: 'PRD-IAM-012', entity: 'Customer', entityId: email, actor: email, outcome: 'rejected', note: 'failed sign-in (prototype)',
-    });
-    return { ok: false, message: 'Sign-in failed. Check the e-mail address and password.' };
+
+  // AC-IAM-001-04-01 and 04-02: an account awaiting validation or approval cannot sign in
+  if (customer.active === false) {
+    return {
+      ok: false,
+      notActive: true,
+      messageKey: customer.accountState === 'DeactivatedByUser' || customer.accountState === 'DeactivatedByStaff'
+        ? 'Iam.AccountDeactivated' : 'Account.Login.WrongCredentials.NotActive',
+      message: customer.accountState?.startsWith('Deactivated')
+        ? resource('Iam.AccountDeactivated')
+        : 'The account is not active',
+      accountState: customer.accountState ?? 'Inactive',
+    };
   }
-  sessions.set(sessionId, { customerId: customer.id });
-  await auditAsync({
-    event: 'AUD-IAM-012-01', area: 'IAM', feature: 'PRD-IAM-012', entity: 'Customer', entityId: customer.id, actor: customer.email, actorRole: customer.roles[0], note: 'sign-in (prototype)',
+
+  const signedIn = await completeSignInAsync({
+    sessionId, customer, storeId, ipAddress, userAgent, channel: 'password',
   });
-  return { ok: true, customer: publicCustomer(customer) };
+  const expired = await passwordExpiredAsync(customer, storeId);
+  return { ...signedIn, passwordExpired: expired.expired, redirectTo: expired.expired ? expired.redirectTo : null };
+}
+
+/**
+ * The part both routes share: the session, LastLoginDateUtc, the authentication event and the
+ * second-factor step when the role requires one (IAM-004, IAM-006, IAM-012).
+ */
+export async function completeSignInAsync({
+  sessionId, customer, storeId = 1, ipAddress = null, userAgent = null, channel = 'password',
+  secondFactorDone = false,
+}) {
+  const { mfaRequiredForAsync } = await import('./mfa.js').catch(() => ({ mfaRequiredForAsync: null }));
+  const { openSessionAsync } = await import('./sessions.js').catch(() => ({ openSessionAsync: null }));
+  const { recordAuthEventAsync } = await import('./auth-events.js').catch(() => ({ recordAuthEventAsync: null }));
+
+  const mfa = mfaRequiredForAsync ? await mfaRequiredForAsync(customer, storeId) : { required: false };
+  if (mfa.required && !secondFactorDone) {
+    return {
+      ok: false,
+      secondFactorRequired: true,
+      messageKey: mfa.providerSelected ? 'Account.MultiFactorAuthentication.Verify' : 'Iam.MfaRequired',
+      message: mfa.providerSelected ? 'Enter the code from your second factor.' : resource('Iam.MfaRequired'),
+      provider: mfa.provider ?? null,
+      setUpRequired: !mfa.providerSelected,
+      customerId: customer.id,
+    };
+  }
+
+  const updated = await repository('Customer').updateAsync({
+    ...customer,
+    lastLoginDateUtc: new Date().toISOString(),
+    lastActivityUtc: new Date().toISOString(),
+    failedLoginAttempts: 0,
+    requireReLogin: false,
+    lastIpAddress: ipAddress ?? customer.lastIpAddress ?? null,
+  });
+
+  let session = null;
+  if (openSessionAsync) {
+    const opened = await openSessionAsync({
+      sessionId, customer: updated, ipAddress, userAgent, storeId,
+    });
+    if (opened.ok === false) return opened;
+    session = opened.session;
+  }
+  sessions.set(sessionId, { customerId: updated.id, userSessionId: session?.sessionId ?? null });
+
+  if (recordAuthEventAsync) {
+    await recordAuthEventAsync({
+      customerId: updated.id, identifierTried: updated.email ?? updated.phone, type: 'login', outcome: 'success', channel, ipAddress, userAgent, storeId,
+    });
+  }
+  await auditAsync({
+    event: 'AUD-IAM-012-01', area: 'IAM', feature: 'PRD-IAM-012', entity: 'Customer', entityId: updated.id, actor: updated.email ?? updated.phone, actorRole: (updated.roles ?? [])[0], note: `sign-in (${channel})`,
+  });
+  return { ok: true, customer: publicCustomer(updated), session };
 }
 
 /** IAM-002: request a one-time code by SMS, through the mock gateway. */

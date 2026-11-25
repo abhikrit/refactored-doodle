@@ -7,12 +7,36 @@ import { Router } from 'express';
 import { definePlugin } from '../../core/plugin-host.js';
 import { sellersAsync, sellerDashboardAsync } from './services/sellers.js';
 import { registerApprovalCallbacks, submitAsync } from '../product-adm/services/approvals.js';
+import { registerActionFilter } from '../../core/providers.js';
 import { repository } from '../../core/repository.js';
 
 export default definePlugin({
   area: 'SEL',
   startupOrder: 3120,
   async install(ctx) {
+    // BR-IAM-003 / BR-SEL-013: the block-list check on the registration and login POSTs is this
+    // filter, owned by SEL-013. IAM keeps no block list and adds no filter of its own.
+    const blocked = async ({ email, phone, ipAddress }) => {
+      const entries = await repository('SellerBlockListEntry').getAllAsync((b) => b.active !== false);
+      const hit = entries.find((b) => ['registration', 'login', 'all'].includes(b.scope ?? 'all')
+        && [b.email, b.phone, b.ipAddress].filter(Boolean).some((v) => [email, phone, ipAddress].includes(v)));
+      if (!hit) return { ok: true };
+      return {
+        ok: false, messageKey: 'Sel.BlockedParty', message: 'We cannot open an account for these details. Please contact us.', entryId: hit.id,
+      };
+    };
+    for (const action of ['Nop.Web CustomerController.Register', 'Nop.Web CustomerController.Login']) {
+      registerActionFilter(action, {
+        owner: 'Product.SEL',
+        feature: 'PRD-SEL-013',
+        order: 50,
+        singleOwner: true,
+        rule: 'BR-ADM-007',
+        note: 'block list: registration and login (scope registration, login or all)',
+        fn: blocked,
+      });
+    }
+
     // IC-ADM-03: SEL owns these object types, so SEL supplies the guard and the callbacks and
     // ADM-006 only decides. ADM never changes a seller object itself (BR-ADM-011).
     registerApprovalCallbacks('PayoutAccountChange', {
