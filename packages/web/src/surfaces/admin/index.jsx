@@ -17,54 +17,47 @@ const crumb = (...items) => <Breadcrumb items={[{ label: 'Dashboard', to: '/admi
 /* ---------------------------------------------------------------- dashboard -- */
 
 export function Dashboard() {
-  const { areas, features, content, meta } = useProduct();
+  const { content, entities } = useProduct();
   const [orders, setOrders] = useState([]);
-  const [tx, setTx] = useState([]);
-  const [audit, setAudit] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const [work, setWork] = useState({ approvals: 0, exceptions: 0, alerts: 0 });
 
   useEffect(() => {
     api.get('/orders').then(setOrders).catch(() => {});
-    api.get('/payments/transactions').then(setTx).catch(() => {});
-    api.get('/security/audit').then(setAudit).catch(() => {});
+    api.get('/catalogue/products').then(setProducts).catch(() => {});
+    api.get('/identity/customers').then(setCustomers).catch(() => {});
+    Promise.all([
+      api.get('/admin-console/approvals/queue').catch(() => []),
+      api.get('/admin-console/exceptions').catch(() => ({ exceptions: [] })),
+      api.get('/admin-console/alerts').catch(() => ({ alerts: [] })),
+    ]).then(([a, e, al]) => setWork({
+      approvals: Array.isArray(a) ? a.length : 0,
+      exceptions: (e.exceptions ?? []).length,
+      alerts: (al.alerts ?? []).filter((x) => x.status === 'Raised').length,
+    }));
   }, [content?.clientName]);
 
-  const built = areas.filter((a) => a.built).length;
   const revenue = orders.reduce((s, o) => s + o.total, 0);
-  const currency = orders[0]?.currency ?? 'USD';
+  const currency = orders[0]?.currency
+    ?? (entities?.currencies ?? []).find((c) => c.primary)?.code
+    ?? 'USD';
 
   return (
-    <AdminPage
-      title="Dashboard"
-      intro={`${content?.clientName ?? ''} - nopCommerce ${meta?.baseline?.tag ?? ''} replicated as a UI/UX prototype. Figures below come from the synthetic seed and anything placed in this session.`}
-      breadcrumb={crumb()}
-    >
+    <AdminPage title="Dashboard" intro={content?.clientName ?? ''} breadcrumb={crumb()}>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <StatTile label="Orders" value={orders.length} tone="blue" to="/admin/sales/orders" hint="Placed in this session" />
-        <StatTile label="Revenue" value={money(revenue, currency)} tone="green" hint="Sum of sub-order totals" />
-        <StatTile label="Payment transactions" value={tx.length} tone="amber" to="/admin/sales/payments" hint="Through the mock rails" />
-        <StatTile label="Audit entries" value={audit.length} tone="slate" to="/admin/system/audit" hint="SEC-004 platform audit trail" />
+        <StatTile label="Orders" value={orders.length} tone="blue" />
+        <StatTile label="Revenue" value={money(revenue, currency)} tone="green" />
+        <StatTile label="Products" value={products.length} tone="amber" />
+        <StatTile label="Customers" value={customers.length} tone="slate" />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <Panel title="Product build status" subtitle="24 area plugins; Session 0 built the foundation and one end-to-end journey">
-          <div className="grid gap-2 sm:grid-cols-2">
-            <StatTile label="Features in the product" value={features.length} tone="slate" to="/explorer/features" />
-            <StatTile label="Areas with behaviour built" value={`${built} of ${areas.length}`} tone="blue" to="/explorer/areas" />
-          </div>
-          <div className="mt-3 space-y-1.5">
-            {[1, 2, 3, 4, 5, 6, 7].map((w) => {
-              const inWave = areas.filter((a) => a.wave === w);
-              const doneInWave = inWave.filter((a) => a.built).length;
-              return (
-                <div key={w} className="flex items-center gap-2 text-[12.5px]">
-                  <span className="w-40 text-nop-muted">Wave {w} {inWave[0]?.waveName}</span>
-                  <div className="flex-1 h-2 bg-gray-100 rounded">
-                    <div className="h-2 bg-nop-blue rounded" style={{ width: `${inWave.length ? (doneInWave / inWave.length) * 100 : 0}%` }} />
-                  </div>
-                  <span className="w-20 text-right">{doneInWave}/{inWave.length} areas</span>
-                </div>
-              );
-            })}
+        <Panel title="Waiting for the back office">
+          <div className="grid gap-2 sm:grid-cols-3">
+            <StatTile label="Approvals waiting for me" value={work.approvals} tone="blue" to="/admin/operations/approvals" />
+            <StatTile label="Open exceptions" value={work.exceptions} tone="amber" to="/admin/operations/exceptions" />
+            <StatTile label="Alerts raised" value={work.alerts} tone="red" to="/admin/operations/alerts" />
           </div>
         </Panel>
 
@@ -72,7 +65,7 @@ export function Dashboard() {
           <Grid
             dense
             columns={[
-              { key: 'orderNumber', header: 'Order', render: (o) => <Link to={`/admin/sales/orders/${o.orderNumber}`} className="font-mono text-nop-blue hover:underline">{o.orderNumber}</Link> },
+              { key: 'orderNumber', header: 'Order', render: (o) => <span className="font-mono text-[12px]">{o.orderNumber}</span> },
               { key: 'customerName', header: 'Customer' },
               { key: 'vendorName', header: 'Seller' },
               { key: 'stage', header: 'Stage', render: (o) => <Badge tone={o.stage === 'Delivered' ? 'green' : 'slate'}>{o.stage}</Badge> },
@@ -80,7 +73,7 @@ export function Dashboard() {
             ]}
             rows={orders.slice(0, 8)}
             rowKey={(o) => o.orderNumber}
-            empty="No order has been placed in this session yet. Walk the buyer journey on the storefront."
+            empty="No orders yet."
           />
         </Panel>
       </div>

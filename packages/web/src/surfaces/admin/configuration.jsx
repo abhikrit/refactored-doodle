@@ -274,7 +274,7 @@ export function AdminFeatureRegistry() {
           <Grid
             dense
             columns={[
-              { key: 'id', header: 'Feature', render: (r) => <a href={`/explorer/features/${r.id}`} className="font-mono text-[12px] text-nop-blue hover:underline">{r.id}</a> },
+              { key: 'id', header: 'Feature', render: (r) => <span className="font-mono text-[12px]">{r.id}</span> },
               { key: 'name', header: 'Name' },
               { key: 'area', header: 'Area', render: (r) => <Badge tone="slate">{r.area}</Badge> },
               { key: 'phase', header: 'Phase' },

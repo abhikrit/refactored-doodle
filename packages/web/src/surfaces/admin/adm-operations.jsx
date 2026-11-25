@@ -11,10 +11,10 @@ import { api } from '../../lib/api.js';
 import { useProduct } from '../../lib/store.jsx';
 import { AdminPage } from '../../ui/nop/shells.jsx';
 import {
-  Alert, Badge, Breadcrumb, Button, Citation, Field, Grid, Input, KeyValue, Panel, Select,
+  Alert, Badge, Breadcrumb, Button, Field, Grid, Input, KeyValue, Panel, Select,
   Spinner, StatTile, Tabs, Textarea,
 } from '../../ui/nop/kit.jsx';
-import { HeldByDecision } from './adm-config.jsx';
+import { HeldByDecision, moduleName } from './adm-config.jsx';
 
 const crumb = (...items) => <Breadcrumb items={[{ label: 'Dashboard', to: '/admin' }, ...items]} />;
 
@@ -37,14 +37,6 @@ const Body = ({ state, children }) => {
     return (
       <Alert tone="error" title="Access denied">
         {state.error.message}
-        {state.error.permission && (
-          <Citation className="mt-1">
-            Sign in as a role that holds
-            {' '}
-            <span className="font-mono">{state.error.permission}</span>
-            .
-          </Citation>
-        )}
       </Alert>
     );
   }
@@ -84,13 +76,13 @@ export function Approvals() {
     <AdminPage
       title="Approvals"
       breadcrumb={crumb({ label: 'Operations' }, { label: 'Approvals' })}
-      intro="PRD-ADM-006 (roadmap row 395) — a queue limited to the approver's role, authority and delegations; several steps, conditional steps, approval with corrections, rejection with a reason and recourse. BR-ADM-030, BR-ADM-031."
+      intro="The items waiting for you, limited to your role, your authority and anything delegated to you. Approvals can have several steps, carry corrections, or be rejected with a reason."
       actions={<Button onClick={queue.reload}>Refresh</Button>}
     >
       <HeldByDecision>
         ADM-006 is held with ADM-002, because an approval step is a workflow step. The behaviour
         below is the PRD&apos;s Proposed option; decisions are applied by the owning module through
-        IC-ADM-03, never by ADM itself (BR-ADM-011).
+        its own service, never by the approval queue itself.
       </HeldByDecision>
 
       <Tabs
@@ -123,7 +115,7 @@ export function Approvals() {
                   rows={rows}
                   rowKey={(i) => i.id}
                 />
-                {rows.length === 0 && <div className="p-3 text-[13px] text-nop-muted">Nothing is waiting for your role, authority limit or delegations (BR-ADM-030).</div>}
+                {rows.length === 0 && <div className="p-3 text-[13px] text-nop-muted">Nothing is waiting for your role, your authority limit or anything delegated to you.</div>}
 
                 {open?.ok && (
                   <div className="p-3 border-t border-nop-border grid gap-3 lg:grid-cols-2">
@@ -181,7 +173,7 @@ export function Approvals() {
                       )}
                     </Panel>
 
-                    <Panel title="Decide" subtitle="AC-ADM-006-04-01 — a rejection needs a reason code; the requester sees the reason and the recourse options">
+                    <Panel title="Decide" subtitle="A rejection needs a reason code; the requester sees the reason and what they can do next">
                       {result && (
                         <Alert tone={result.ok ? 'success' : 'error'} title={result.messageKey ?? (result.ok ? 'Recorded' : 'Refused')}>
                           {result.message
@@ -296,7 +288,7 @@ export function OperationsConsole() {
     <AdminPage
       title="Operations console"
       breadcrumb={crumb({ label: 'Operations' }, { label: 'Console' })}
-      intro="PRD-ADM-007 (roadmap row 396) — queue tabs that keep their place, a personal dashboard, saved views, the operational order view and the live count of customers online. Malawi Post FR-162."
+      intro="Your queues in one place, a dashboard arranged for your role, the orders waiting at each stage of fulfilment, and who is on the site right now."
       actions={(
         <span className="flex items-center gap-2">
           <Badge tone="green">
@@ -326,7 +318,7 @@ export function OperationsConsole() {
                     { id: 'dashboard', label: 'My dashboard', count: dashboard.data?.tiles.length ?? 0 },
                     { id: 'orders', label: 'Operational orders', count: (orders.data?.groups ?? []).reduce((n, g) => n + g.count, 0) },
                     { id: 'shortcuts', label: 'Shortcuts', count: data.shortcuts.length },
-                    { id: 'metrics', label: 'Work items (RPT-009)', count: work.data?.events.length ?? 0 },
+                    { id: 'metrics', label: 'Work items', count: work.data?.events.length ?? 0 },
                   ]}
                   active={tab}
                   onChange={setTab}
@@ -339,11 +331,7 @@ export function OperationsConsole() {
                           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                             {d.tiles.map((t) => <StatTile key={t.code} label={t.name} value={t.value} tone="blue" />)}
                           </div>
-                          <Citation className="mt-3">
-                            AC-ADM-007-03-01: tiles come from those allowed for the role, the arrangement is
-                            kept for the next session, and each tile shows only data the operator may see.
-                          </Citation>
-                        </>
+</>
                       )}
                     </Body>
                   )}
@@ -371,12 +359,7 @@ export function OperationsConsole() {
                               />
                             </Panel>
                           ))}
-                          <Citation>
-                            AC-ADM-007-02-01: the stage of an order is the one ORD supplies
-                            (OrderStageDefinition.OperationalStage) and the stage of an open shipment the one
-                            LOG supplies (IC-LOG-07). ADM derives no stage itself.
-                          </Citation>
-                        </div>
+</div>
                       )}
                     </Body>
                   )}
@@ -410,11 +393,7 @@ export function OperationsConsole() {
                             rows={w.byQueue}
                             rowKey={(q) => q.queueCode}
                           />
-                          <Citation className="mt-2">
-                            BR-ADM-075: assignment, completion and reopen are recorded as WorkItemEvents,
-                            which RPT-009 reads for operator productivity and service-level metrics.
-                          </Citation>
-                        </>
+</>
                       )}
                     </Body>
                   )}
@@ -449,7 +428,7 @@ export function Exceptions() {
     <AdminPage
       title="Exceptions"
       breadcrumb={crumb({ label: 'Operations' }, { label: 'Exceptions' })}
-      intro="PRD-ADM-009 (roadmap row 398) — failed checks, stuck items and integration errors in one queue ranked by severity and age, with reason codes, batch-safe bulk actions and detection of repeated causes. BR-ADM-070."
+      intro="Failed checks, stuck items and errors from other systems in one queue, worst first, with reason codes, bulk actions and repeated causes grouped together."
       actions={(
         <span className="flex gap-2">
           <Button onClick={async () => { await api.post('/admin-console/exceptions/detect-patterns', {}); state.reload(); }}>Detect patterns</Button>
@@ -461,7 +440,7 @@ export function Exceptions() {
         {(data) => (
           <>
             {data.patterns.length > 0 && (
-              <Panel title="Repeated causes" subtitle="AC-ADM-009-04-01 — open exceptions that share a reason code and source inside the window" bodyClass="p-0">
+              <Panel title="Repeated causes" subtitle="Open exceptions that share a reason code and a source inside the window" bodyClass="p-0">
                 <Grid
                   dense
                   columns={[
@@ -485,11 +464,10 @@ export function Exceptions() {
 
             <Panel
               title="Queue"
-              subtitle="AC-ADM-009-01-01 — by severity, then oldest first"
+              subtitle="Worst first, then oldest first"
               bodyClass="p-0"
             >
-              {/* the bulk action bar: a grid, so it stacks at tablet and phone widths
-                  (AC-ADM-007-08-01) */}
+              {/* the bulk action bar: a grid, so it stacks at tablet and phone widths */}
               <div className="grid gap-2 p-3 border-b border-nop-border sm:grid-cols-2 lg:grid-cols-4">
                 <Select value={form.action} onChange={(e) => setForm({ ...form, action: e.target.value })} aria-label="Bulk action">
                   <option value="resolve">resolve</option>
@@ -517,7 +495,7 @@ export function Exceptions() {
                   { key: 'type', header: 'Type' },
                   { key: 'reasonCode', header: 'Reason code', render: (e) => <span className="font-mono text-[12px]">{e.reasonCode}</span> },
                   { key: 'source', header: 'Source' },
-                  { key: 'raisedBy', header: 'Raised by', render: (e) => <span className="font-mono text-[11.5px]">{e.raisedBy ?? '—'}</span> },
+                  { key: 'raisedBy', header: 'Raised by', render: (e) => moduleName(e.raisedBy) },
                   { key: 'attempts', header: 'Attempts', align: 'right' },
                   { key: 'status', header: 'Status' },
                   { key: 'raisedOnUtc', header: 'Raised', render: (e) => e.raisedOnUtc.replace('T', ' ').slice(0, 19) },
@@ -536,12 +514,7 @@ export function Exceptions() {
                 rows={data.exceptions}
                 rowKey={(e) => e.id}
               />
-              <Citation className="p-3">
-                BR-ADM-070: a resolution records operator, action, reason code, comment and outcome
-                (AUD-ADM-007). Only an action the exception type declares batch-safe may be applied to
-                several items at once.
-              </Citation>
-            </Panel>
+</Panel>
           </>
         )}
       </Body>
@@ -557,7 +530,7 @@ export function Alerts() {
     <AdminPage
       title="Alerts"
       breadcrumb={crumb({ label: 'Operations' }, { label: 'Alerts' })}
-      intro="PRD-ADM-010 (roadmap row 399) — alerts when something needs attention, with the thresholds the client sets, sent through TRK-005 and cleared when the measure falls back."
+      intro="Alerts when something needs attention — orders stuck too long, service targets missed — at the thresholds you set, cleared when the measure comes back."
       actions={(
         <span className="flex gap-2">
           <Button onClick={async () => { await api.post('/admin-console/alerts/run', {}); state.reload(); }}>Run the alert task now</Button>
@@ -600,7 +573,7 @@ export function Alerts() {
               </div>
             </Panel>
 
-            <Panel title="Alerts" subtitle="AC-ADM-010-01-02 — an acknowledged alert shows who and when; it clears when the measure falls back below the threshold" bodyClass="p-0">
+            <Panel title="Alerts" subtitle="An acknowledged alert shows who and when; it clears when the measure falls back below the threshold" bodyClass="p-0">
               <Grid
                 dense
                 columns={[

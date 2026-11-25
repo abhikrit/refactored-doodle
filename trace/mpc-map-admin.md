@@ -1,6 +1,6 @@
 # Malawi Post requirement map — actor "Admin"
 
-Generated 2026-11-25T07:21:46.596Z by `scripts/build-mpc-map.mjs`.
+Generated 2026-11-25T07:40:10.870Z by `scripts/build-mpc-map.mjs`.
 
 Source: `docs/client/MPC-Lot1-FR-Catalogue.md`, the client's own annex
 (MPC Requirements Catalogue Annex, Deliverable 2 — Lot 1, FR-001…FR-350). The FR numbering is the

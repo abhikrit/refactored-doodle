@@ -4,8 +4,8 @@
 //   Seller portal- the vendor-scoped admin area (SEL-008)
 //   Outlet/agent - the assisted-service counter screens (IAM-026, CHK-013, PAY-034, LOG-012)
 //
-// Above them sits one bar that belongs to the prototype, not to nopCommerce: it switches surface
-// and client pack. It is labelled as prototype chrome so nobody mistakes it for a product screen.
+// The administration area is authenticated: an unauthenticated request to it is sent to the
+// storefront login with a ReturnUrl, as nopCommerce does.
 
 import React, { useEffect, useState } from 'react';
 import {
@@ -15,7 +15,7 @@ import { useProduct, money } from '../../lib/store.jsx';
 import { api } from '../../lib/api.js';
 import { Badge, Button, Spinner } from './kit.jsx';
 
-/* ------------------------------------------------------- prototype control --- */
+/* ------------------------------------------------------------- storefront --- */
 
 const SURFACES = [
   { to: '/', label: 'Storefront', hint: 'DefaultClean theme' },
@@ -25,81 +25,6 @@ const SURFACES = [
   { to: '/explorer', label: 'Product explorer', hint: '434 features, 274 screens, roles, trace' },
 ];
 
-export function PrototypeBar() {
-  const {
-    clients, client, switchClient, busy, meta, content,
-  } = useProduct();
-  const { pathname } = useLocation();
-  const [open, setOpen] = useState(false);
-  const activeSurface = SURFACES.slice().reverse().find((s) => (s.to === '/' ? pathname === '/' : pathname.startsWith(s.to)));
-
-  return (
-    <div className="bg-nop-sidebar-dark text-gray-300 text-[12px] no-print">
-      <div className="mx-auto max-w-[1600px] px-4 py-1.5 flex flex-wrap items-center gap-x-4 gap-y-1.5">
-        <span className="font-semibold text-white tracking-wide">UI/UX prototype</span>
-        <span className="hidden sm:inline text-gray-500">nopCommerce {meta?.baseline?.tag ?? 'release-5.00.1'} replicated in React + Node + Tailwind - no .NET, no database</span>
-
-        <nav className="flex items-center gap-1 ml-auto order-3 lg:order-none w-full lg:w-auto overflow-x-auto">
-          {SURFACES.map((s) => (
-            <NavLink
-              key={s.to}
-              to={s.to}
-              end={s.to === '/'}
-              title={s.hint}
-              className={({ isActive }) => `px-2 py-1 rounded-sm whitespace-nowrap ${
-                (s.to === '/' ? pathname === '/' : pathname.startsWith(s.to)) || isActive
-                  ? 'bg-nop-blue text-white' : 'hover:bg-nop-sidebar-hover'}`}
-            >
-              {s.label}
-            </NavLink>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <span className="text-gray-500">Client pack</span>
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setOpen((o) => !o)}
-              className="flex items-center gap-2 bg-nop-sidebar px-2.5 py-1 rounded-sm text-white hover:bg-nop-sidebar-hover"
-            >
-              <span className="size-2.5 rounded-full" style={{ background: 'var(--brand)' }} />
-              {content?.clientName ?? client ?? '-'}
-              <span className="text-gray-400">▾</span>
-            </button>
-            {open && (
-              <div className="absolute right-0 z-50 mt-1 w-80 bg-white text-nop-ink border border-nop-border rounded-sm shadow-lg p-2">
-                <p className="text-[11.5px] text-nop-muted px-1 pb-2">
-                  Applying a pack re-merges global → country → vertical → client → store (BR-PLT-010) and re-seeds.
-                  No code path changes - that is the Product Goal.
-                </p>
-                {clients.map((c) => (
-                  <button
-                    key={c.id}
-                    type="button"
-                    disabled={busy}
-                    onClick={async () => { setOpen(false); await switchClient(c.id); }}
-                    className={`w-full text-left px-2 py-2 rounded-sm hover:bg-gray-50 ${c.id === client ? 'bg-sky-50' : ''}`}
-                  >
-                    <span className="font-medium text-[13px]">{c.name}</span>
-                    <span className="block text-[11.5px] text-nop-muted">
-                      country {c.country} · {c.verticals.length} vertical packs
-                      {c.id === client ? ' · active' : ''}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-          {busy && <span className="text-nop-amber">applying…</span>}
-        </div>
-      </div>
-      {activeSurface && (
-        <div className="lg:hidden bg-nop-sidebar px-4 py-1 text-[11px] text-gray-400">{activeSurface.hint}</div>
-      )}
-    </div>
-  );
-}
 
 /* ------------------------------------------------------------- storefront ---- */
 
@@ -267,14 +192,13 @@ export function StorefrontShell({ children }) {
               <button type="button" className="border border-nop-border border-l-0 rounded-r-sm px-3 text-[13px] bg-white">Subscribe</button>
             </div>
             <p className="text-[11.5px] text-nop-muted mt-2">
-              Prototype: no e-mail is sent. Newsletter is MKT-005, built in wave 5.
+              We send one e-mail a month. You can unsubscribe at any time.
             </p>
           </div>
         </div>
         <div className="border-t border-nop-border">
           <div className="mx-auto max-w-[1280px] px-4 py-3 text-[11.5px] text-nop-muted flex flex-wrap gap-x-4 gap-y-1">
-            <span>{content?.clientName} - synthetic demonstration data only (decision P-5).</span>
-            <span className="ml-auto">Powered by the reusable nopCommerce 5.00.1 product (prototype)</span>
+            <span>{`\u00a9 ${new Date().getFullYear()} ${content?.clientName ?? ''}. All rights reserved.`}</span>
           </div>
         </div>
       </footer>
@@ -292,31 +216,13 @@ const ADMIN_NAV = [
     children: [
       { label: 'Products', to: '/admin/catalog/products' },
       { label: 'Bulk edit', to: '/admin/catalog/bulk-edit' },
-      { label: 'Categories', to: '/admin/catalog/categories' },
-      { label: 'Price lists', to: '/admin/catalog/price-lists' },
     ],
   },
-  {
-    label: 'Sales',
-    children: [
-      { label: 'Orders', to: '/admin/sales/orders' },
-      { label: 'Shipments', to: '/admin/sales/shipments' },
-      { label: 'Payment transactions', to: '/admin/sales/payments' },
-      { label: 'Checkout exceptions', to: '/admin/sales/checkout-exceptions' },
-    ],
-  },
-  {
-    label: 'Customers',
-    children: [
-      { label: 'Customers', to: '/admin/customers' },
-      { label: 'Customer roles', to: '/admin/customers/roles' },
-      { label: 'Vendors', to: '/admin/customers/vendors' },
-    ],
-  },
+  { label: 'Customers', to: '/admin/customers' },
   {
     label: 'Configuration',
     children: [
-      { label: 'Settings (all settings)', to: '/admin/configuration/settings' },
+      { label: 'Settings', to: '/admin/configuration/settings' },
       { label: 'Widgets', to: '/admin/configuration/widgets' },
       { label: 'Workflows', to: '/admin/configuration/workflows' },
       { label: 'Business rules', to: '/admin/configuration/rules' },
@@ -324,15 +230,6 @@ const ADMIN_NAV = [
       { label: 'Eligibility and quotas', to: '/admin/configuration/eligibility' },
       { label: 'Upload policy', to: '/admin/configuration/upload-policy' },
       { label: 'Template library', to: '/admin/configuration/templates' },
-      { label: 'Configuration packs', to: '/admin/configuration/packs' },
-      { label: 'Feature registry', to: '/admin/configuration/features' },
-      { label: 'Stores', to: '/admin/configuration/stores' },
-      { label: 'Languages', to: '/admin/configuration/languages' },
-      { label: 'Currencies', to: '/admin/configuration/currencies' },
-      { label: 'Payment methods', to: '/admin/configuration/payment-methods' },
-      { label: 'Shipping methods', to: '/admin/configuration/shipping-methods' },
-      { label: 'Access control list', to: '/admin/configuration/acl' },
-      { label: 'Message templates', to: '/admin/configuration/message-templates' },
     ],
   },
   {
@@ -351,24 +248,18 @@ const ADMIN_NAV = [
       { label: 'Log', to: '/admin/system/log' },
       { label: 'Maintenance', to: '/admin/system/maintenance' },
       { label: 'Extension register', to: '/admin/system/extension-register' },
-      { label: 'Audit trail', to: '/admin/system/audit' },
-      { label: 'Message queue', to: '/admin/system/messages' },
-      { label: 'Tracking hub', to: '/admin/system/tracking' },
-      { label: 'Mocks console', to: '/admin/system/mocks' },
-      { label: 'Diagnostics', to: '/admin/system/diagnostics' },
     ],
   },
-  { label: 'Local plugins', to: '/admin/plugins' },
-  { label: 'Screens (274)', to: '/admin/screens' },
+  { label: 'Plugins', to: '/admin/plugins' },
 ];
+
 
 /**
  * The signed-in staff account, and a way to sign in as another one.
  *
  * nopCommerce shows the account and a Logout link in the admin navbar. The picker beside it is
- * prototype chrome: the console areas are gated by the native permission of the signed-in role
- * (AC-ADM-001-01-01), so the only way to see the gate work is to change role. Roles are the
- * IAM-007 staff roles from the seed, not invented ones.
+ * a convenience of this build: every console area is gated by the permission of the signed-in
+ * role, so the picker is how a reviewer sees the gate work without a second browser.
  */
 function StaffAccount() {
   const { customer, refreshCustomer } = useProduct();
@@ -393,7 +284,7 @@ function StaffAccount() {
         className="border border-nop-border bg-white px-1.5 py-1 text-[12.5px] max-w-[18rem]"
         value={customer?.email ?? ''}
         onChange={(e) => signInAs(e.target.value)}
-        title="Prototype staff sign-in - the console areas are gated by the role's native permissions"
+        title="Each console area is gated by the permissions of the signed-in role"
       >
         <option value="">not signed in</option>
         {staff.map((c) => (

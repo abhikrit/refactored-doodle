@@ -1,6 +1,6 @@
 # Malawi Post — is anything missing from the product?
 
-Generated 2026-11-25T07:21:46.645Z by `scripts/build-mpc-gaps.mjs`.
+Generated 2026-11-25T07:40:10.922Z by `scripts/build-mpc-gaps.mjs`.
 
 Sources: `docs/client/MPC-Lot1-FR-Catalogue.md` (the client's Lot 1 annex, FR-001…FR-350) and
 `docs/compliance/Compliance-Traceability.md` (the requirement → feature mapping and the

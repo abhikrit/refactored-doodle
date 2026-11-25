@@ -12,8 +12,9 @@ import { Link } from 'react-router-dom';
 import { api } from '../../lib/api.js';
 import { useProduct, money } from '../../lib/store.jsx';
 import { AdminPage } from '../../ui/nop/shells.jsx';
+import { moduleName } from './adm-config.jsx';
 import {
-  Alert, Badge, Breadcrumb, Button, Checkbox, Citation, Field, Grid, Input, KeyValue, Panel,
+  Alert, Badge, Breadcrumb, Button, Checkbox, Field, Grid, Input, KeyValue, Panel,
   SearchPanel, Select, Spinner, StatTile, Tabs,
 } from '../../ui/nop/kit.jsx';
 
@@ -24,12 +25,7 @@ function Denied({ result }) {
   return (
     <Alert tone="error" title="Access denied">
       {result.message}
-      <Citation className="mt-1">
-        AC-ADM-001-01-01: an area whose native permission the user lacks is denied, the way the
-        CheckPermission attribute does it. Sign in as a role that holds{' '}
-        <span className="font-mono">{result.permission}</span>.
-      </Citation>
-    </Alert>
+</Alert>
   );
 }
 
@@ -55,7 +51,7 @@ export function AdminConsole() {
     <AdminPage
       title="Administration console"
       breadcrumb={crumb({ label: 'Administration console' })}
-      intro="PRD-ADM-001 (roadmap row 390) — one back office for settings, add-ons, page widgets, scheduled jobs, system logs, maintenance, products and customers. Malawi Post FR-301."
+      intro="One back office for settings, add-ons, page widgets, scheduled jobs, system logs, maintenance, products and customers."
     >
       {!data ? <Spinner /> : (
         <>
@@ -66,7 +62,7 @@ export function AdminConsole() {
             {' '}<Link to="/login" className="underline">Sign in as another role</Link> to see the gate work — admin@example.com opens all eight, catalogue@example.com only Products, finance@example.com none, auditor@example.com not even the panel.
           </Alert>
 
-          <Panel title="Areas of the console" subtitle="AC-ADM-001-01-01 — each area opens on its own native permission" bodyClass="p-0">
+          <Panel title="Areas of the console" subtitle="Each area opens on the permission it needs" bodyClass="p-0">
             <Grid
               columns={[
                 { key: 'group', header: 'Group' },
@@ -84,13 +80,7 @@ export function AdminConsole() {
               rowKey={(a) => a.id}
             />
           </Panel>
-          <Citation>
-            FIT: SettingController, PluginController, WidgetController, ScheduleTaskController,
-            LogController, CommonController.Maintenance. System.ManageMaintenance is a native
-            5.00.1 permission that the ADM chapter's permission table does not list; it is seeded
-            and flagged rather than left out, which would leave the Maintenance area ungated.
-          </Citation>
-        </>
+</>
       )}
     </AdminPage>
   );
@@ -120,7 +110,7 @@ export function ScheduleTasks() {
     <AdminPage
       title="Schedule tasks"
       breadcrumb={crumb({ label: 'System' }, { label: 'Schedule tasks' })}
-      intro="AC-ADM-001-01-02 — editing the interval, Enabled or Stop on error applies to the whole installation: ScheduleTask has no store scope."
+      intro="Scheduled jobs run for the whole installation, not per store. Change the interval, switch one off, or run one now."
     >
       {gate && !gate.ok ? <Denied result={gate} /> : (
         <>
@@ -166,12 +156,7 @@ export function ScheduleTasks() {
               />
             )}
           </Panel>
-          <Citation>
-            L1 section 6.5: scheduled tasks are installation-wide — ScheduleTask has no store
-            scope, so a client pack cannot vary them per store. "Run, fail" shows Stop on error
-            disabling the task, which is why the flag exists.
-          </Citation>
-        </>
+</>
       )}
     </AdminPage>
   );
@@ -257,7 +242,7 @@ export function Widgets() {
   const load = () => api.get('/admin-console/widgets').then(setRows).catch(() => {});
   useEffect(() => { load(); }, []);
   return (
-    <AdminPage title="Widgets" breadcrumb={crumb({ label: 'Configuration' }, { label: 'Widgets' })} intro="Page widgets and the zones they render in. Active widgets are widgetsettings.activewidgetsystemnames.">
+    <AdminPage title="Widgets" breadcrumb={crumb({ label: 'Configuration' }, { label: 'Widgets' })} intro="Page widgets and the zones they render in.">
       {gate && !gate.ok ? <Denied result={gate} /> : (
         <Panel bodyClass="p-0">
           {!rows ? <Spinner /> : (
@@ -266,7 +251,7 @@ export function Widgets() {
                 { key: 'friendlyName', header: 'Widget' },
                 { key: 'systemName', header: 'System name', render: (w) => <span className="font-mono text-[12px]">{w.systemName}</span> },
                 { key: 'widgetZones', header: 'Widget zones', render: (w) => <span className="font-mono text-[11.5px]">{w.widgetZones.join(', ')}</span> },
-                { key: 'feature', header: 'Feature', render: (w) => (w.feature ? <Link to={`/explorer/features/${w.feature}`} className="font-mono text-[12px] text-nop-blue hover:underline">{w.feature}</Link> : <span className="text-nop-muted">native</span>) },
+                { key: 'feature', header: 'Added by', render: (w) => (w.feature ? moduleName(w.feature) : <span className="text-nop-muted">native</span>) },
                 { key: 'displayOrder', header: 'Order', align: 'right' },
                 {
                   key: 'isActive',
@@ -335,7 +320,7 @@ export function BulkEdit() {
     <AdminPage
       title="Bulk edit products"
       breadcrumb={crumb({ label: 'Catalog' }, { label: 'Products', to: '/admin/catalog/products' }, { label: 'Bulk edit' })}
-      intro="AC-ADM-001-02-01 and 02-02 — change Name, SKU, Price, Old price, Quantity or Published on many products and save them in one save; archive unpublishes, delete is a separate soft delete."
+      intro="Change the name, SKU, price, old price, quantity or published state of many products and save them all at once. Archive takes products off the storefront; delete is separate."
       actions={(
         <div className="flex items-center gap-2">
           <Button variant="primary" onClick={save} disabled={selected.size === 0}>Save ({selected.size})</Button>
@@ -365,12 +350,7 @@ export function BulkEdit() {
               />
             )}
           </Panel>
-          <Citation>
-            FIT: Admin ProductController.BulkEdit and BulkEditSave (ProductController.cs:972, 983
-            in 5.00.1). There is no separate archive status in 5.00.1, so archive unpublishes
-            (IsPublished false); DeleteSelected is the separate soft delete (Product.Deleted).
-          </Citation>
-        </>
+</>
       )}
     </AdminPage>
   );
@@ -413,7 +393,7 @@ export function ExtensionRegister() {
     <AdminPage
       title="Product extension register"
       breadcrumb={crumb({ label: 'System' }, { label: 'Extension register' })}
-      intro="SCR-ADM-02 — every DI override, decorator, global filter, middleware and model-factory override the product installs, with its owner. US-ADM-001-04, BR-ADM-001 to BR-ADM-008."
+      intro="Every service the product replaces or extends, with the module that owns it, so two add-ons can never quietly replace the same thing."
       actions={<Button onClick={load}>Re-run the check</Button>}
     >
       <div className="grid gap-3 sm:grid-cols-4">
@@ -432,12 +412,12 @@ export function ExtensionRegister() {
               { key: 'mechanism', header: 'Mechanism', render: (e) => <Badge tone={e.mechanism === 'DI override' ? 'blue' : e.mechanism === 'action filter' ? 'purple' : 'slate'}>{e.mechanism}</Badge> },
               { key: 'target', header: 'Target (interface and method, or controller and action)', render: (e) => <span className="font-mono text-[12px]">{e.target}</span> },
               { key: 'owner', header: 'Owner', render: (e) => <span className="font-mono text-[12px]">{e.owner}</span> },
-              { key: 'feature', header: 'Owning feature', render: (e) => <Link to={`/explorer/features/${e.feature}`} className="font-mono text-[12px] text-nop-blue hover:underline">{e.feature}</Link> },
+              { key: 'feature', header: 'Owned by', render: (e) => moduleName(e.feature) },
               {
                 key: 'providers',
                 header: 'Provider features',
                 render: (e) => (e.providers.length
-                  ? <span className="flex flex-wrap gap-1">{e.providers.map((p) => <Badge key={p.feature} tone="green" title={p.name}>{p.feature}</Badge>)}</span>
+                  ? <span className="flex flex-wrap gap-1">{e.providers.map((p) => <Badge key={p.feature} tone="green" title={p.name}>{moduleName(p.feature)}</Badge>)}</span>
                   : <span className="text-nop-muted">—</span>),
               },
               { key: 'order', header: 'Order', align: 'right' },
@@ -461,7 +441,7 @@ export function ExtensionRegister() {
             {refused.length > 0 && (
               <Panel
                 title="Attempts the host refused at start-up"
-                subtitle="OVR-REG and SINGLE-FILTER: recorded so that no extension attempt is invisible, but nothing was replaced, so the check still passes"
+                subtitle="Recorded so that no attempt is invisible. Nothing was replaced, so the check still passes."
                 bodyClass="p-3 space-y-2"
               >
                 {refused.map((w, i) => (
@@ -471,7 +451,7 @@ export function ExtensionRegister() {
                 ))}
               </Panel>
             )}
-            <Panel title="Bundled nopCommerce plugins that replace a service the product owns" bodyClass="p-0" subtitle="AC-ADM-001-04-05 — install one and the check reports the conflict">
+            <Panel title="Bundled nopCommerce plugins that replace a service the product owns" bodyClass="p-0" subtitle="Install one and the check reports the conflict">
               <Grid
                 dense
                 columns={[
@@ -500,14 +480,7 @@ export function ExtensionRegister() {
                 rowKey={(p) => p.systemName}
               />
             </Panel>
-            <Citation>
-              AC-ADM-001-04-01: the ADM start-up runs after every other product plugin
-              (startupOrder 9000), reads what each registered, and reports a target with more than
-              one product implementation or one from a plugin that is not its owner. Warnings are
-              published as SystemWarningCreatedEvent, the way the admin System &gt; Warnings page
-              collects them.
-            </Citation>
-          </div>
+</div>
         )}
 
         {tab === 'filters' && (
@@ -518,7 +491,7 @@ export function ExtensionRegister() {
                   {list.sort((a, b) => a.order - b.order).map((e) => (
                     <li key={e.feature} className="flex flex-wrap items-center gap-2 text-[13px]">
                       <span className="font-mono text-[11.5px] text-nop-muted w-10">{e.order}</span>
-                      <Link to={`/explorer/features/${e.feature}`} className="font-mono text-[12px] text-nop-blue hover:underline">{e.feature}</Link>
+                      <span className="text-[12px]">{moduleName(e.feature)}</span>
                       <span className="text-nop-muted">{e.note}</span>
                       {e.singleOwner && <Badge tone="amber">single owner — others supply a rule</Badge>}
                     </li>
@@ -548,13 +521,7 @@ export function ExtensionRegister() {
                 )}
               </Panel>
             ))}
-            <Citation>
-              AC-ADM-001-04-04: filters run in the order the register records, each may refuse
-              independently, and a refusal stops the action before it runs (BR-ADM-005).
-              AC-ADM-001-04-06: an action with one owner takes rule providers, not a second filter —
-              registering one is refused, which is what the release check asserts.
-            </Citation>
-          </div>
+</div>
         )}
       </div>
     </AdminPage>
@@ -588,7 +555,7 @@ export function CustomerActions({ customer: row, onDone }) {
       )}
       {row.active ? (
         <div className="flex flex-wrap items-end gap-2">
-          <Field label="Reason" required hint="AC-ADM-001-03-01 — the reason is recorded in the audit trail">
+          <Field label="Reason" required hint="The reason is recorded in the audit trail">
             <Input value={reason} onChange={(e) => setReason(e.target.value)} className="w-72" placeholder="Why is this account being deactivated?" />
           </Field>
           <Button variant="warning" onClick={() => act(false)}>Deactivate</Button>
@@ -600,11 +567,6 @@ export function CustomerActions({ customer: row, onDone }) {
           <Button variant="success" onClick={() => act(true)}>Reactivate</Button>
         </div>
       )}
-      <Citation>
-        AC-ADM-001-03-01: a deactivated customer can no longer sign in; reactivation restores it.
-        AC-ADM-001-03-02: the deletion request runs the native GDPR delete behind
-        Customers.GDPRManage; consent and privacy rules are SEC-007&apos;s.
-      </Citation>
-    </div>
+</div>
   );
 }

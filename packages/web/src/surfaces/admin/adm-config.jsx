@@ -15,9 +15,26 @@ import { api } from '../../lib/api.js';
 import { useProduct } from '../../lib/store.jsx';
 import { AdminPage } from '../../ui/nop/shells.jsx';
 import {
-  Alert, Badge, Breadcrumb, Button, Checkbox, Citation, Field, Grid, Input, KeyValue, Panel,
+  Alert, Badge, Breadcrumb, Button, Checkbox, Field, Grid, Input, KeyValue, Panel,
   Select, Spinner, StatTile, Tabs, Textarea,
 } from '../../ui/nop/kit.jsx';
+
+/**
+ * A screen names the subsystem that owns something, not the specification item: "Payments",
+ * not "PRD-PAY-027".
+ */
+const MODULE_NAMES = {
+  PLT: 'Platform', IAM: 'Identity', CAT: 'Catalogue', SRC: 'Search', SEL: 'Sellers',
+  INV: 'Inventory', CHK: 'Checkout', PAY: 'Payments', ORD: 'Orders', LOG: 'Logistics',
+  TRK: 'Tracking', RET: 'Returns', CRM: 'Customer service', MKT: 'Marketing', DOC: 'Documents',
+  FIN: 'Finance', SVC: 'Services', EGV: 'e-Government', CHN: 'Channels', INT: 'Integrations',
+  SEC: 'Security', RPT: 'Reporting', AI: 'AI', ADM: 'Administration',
+};
+export const moduleName = (ref) => {
+  if (!ref) return '—';
+  const code = String(ref).replace(/^PRD-/, '').split('-')[0].replace(/^Product\./, '');
+  return MODULE_NAMES[code] ?? String(ref);
+};
 
 const crumb = (...items) => <Breadcrumb items={[{ label: 'Dashboard', to: '/admin' }, ...items]} />;
 
@@ -48,14 +65,6 @@ function Denied({ error }) {
   return (
     <Alert tone="error" title="Access denied">
       {error.message}
-      {error.permission && (
-        <Citation className="mt-1">
-          The native CheckPermission attribute refuses this screen without
-          {' '}
-          <span className="font-mono">{error.permission}</span>
-          . Sign in as a role that holds it.
-        </Citation>
-      )}
     </Alert>
   );
 }
@@ -88,13 +97,13 @@ export function Workflows() {
     <AdminPage
       title="Workflows"
       breadcrumb={crumb({ label: 'Configuration' }, { label: 'Workflows' })}
-      intro="PRD-ADM-002 (roadmap row 391) — business processes as steps with branches and parallel paths, built from ready-made steps, simulated before publishing, versioned per case and replayable. BR-ADM-010 to BR-ADM-012."
+      intro="Design a business process as steps with branches and parallel paths, test it with sample data, publish it as a version, and replay how a past case moved through it."
       actions={<Button onClick={() => { state.reload(); cases.reload(); }}>Refresh</Button>}
     >
       <HeldByDecision>
         ADM-002 is held until the workflow engine is chosen (build or embed). What is built here is
-        the PRD&apos;s Proposed option behind IC-ADM-01, which is engine-independent, so the engine
-        choice replaces the implementation and not its callers.
+        the option the specification proposes, behind an engine-independent interface, so the
+        engine choice replaces the implementation and not the screens that use it.
       </HeldByDecision>
 
       <Body state={state}>
@@ -144,7 +153,7 @@ export function Workflows() {
                     rowKey={(d) => d.id}
                   />
                   <div className="p-3 border-t border-nop-border grid gap-3 md:grid-cols-2">
-                    <Panel title="Simulator" subtitle="AC-ADM-002-03-01 — the path, where it would wait, and the outputs. Nothing is sent, stored, called or paid (BR-ADM-012).">
+                    <Panel title="Simulator" subtitle="The path, where the case would wait, and the output of each step. Nothing is sent, stored, called or paid.">
                       <Field label="Sample case data (JSON)">
                         <Textarea rows={5} value={sample} onChange={(e) => setSample(e.target.value)} />
                       </Field>
@@ -166,7 +175,7 @@ export function Workflows() {
                             rowKey={(p, i) => `${p.step}-${i}`}
                           />
                           {simulation.suppressedSideEffects.length > 0 && (
-                            <Alert tone="info" title="Suppressed side effects (BR-ADM-012)">
+                            <Alert tone="info" title="Not executed in a test run">
                               {simulation.suppressedSideEffects.map((s) => `${s.step}: ${s.suppressed}`).join('; ')}
                             </Alert>
                           )}
@@ -205,8 +214,8 @@ export function Workflows() {
                         dense
                         columns={[
                           { key: 'code', header: 'Operation', render: (o) => <span className="font-mono text-[12px]">{o.code}</span> },
-                          { key: 'owningModule', header: 'Owning module', render: (o) => <span className="font-mono text-[12px]">{o.owningModule}</span> },
-                          { key: 'feature', header: 'Feature', render: (o) => <Link to={`/explorer/features/${o.feature}`} className="text-nop-blue hover:underline font-mono text-[12px]">{o.feature}</Link> },
+                          { key: 'owningModule', header: 'Owning module', render: (o) => moduleName(o.owningModule) },
+                          { key: 'feature', header: 'Module', render: (o) => moduleName(o.feature) },
                           { key: 'defaultTimeoutMs', header: 'Timeout (ms)', align: 'right' },
                           { key: 'defaultRetries', header: 'Retries', align: 'right' },
                           { key: 'note', header: 'Note' },
@@ -214,13 +223,7 @@ export function Workflows() {
                         rows={rows}
                         rowKey={(o) => o.code}
                       />
-                      <Citation className="p-3">
-                        IC-ADM-01 RegisterStepOperation: a call-to-another-system step may name only an
-                        operation in this catalogue — an INT-005 adapter operation, or a module connector
-                        operation its owning module registered. BR-ADM-011: the step calls the owning
-                        module&apos;s service and changes no state itself.
-                      </Citation>
-                    </>
+</>
                   )}
                 </Body>
               )}
@@ -277,7 +280,7 @@ function CaseList({ rows, onChange }) {
         <div className="p-3 border-t border-nop-border">
           <Panel
             title={`Replay — case ${replay.case.id} (${replay.case.definitionCode} v${replay.version})`}
-            subtitle="AC-ADM-002-05-01 — read-only: every executed step in order, with time, actor, inputs, outputs and gateway decisions"
+            subtitle="Read-only: every executed step in order, with time, actor, inputs, outputs and the decision taken at each gateway"
             bodyClass="p-0"
           >
             <Grid
@@ -319,7 +322,7 @@ export function Rules() {
     <AdminPage
       title="Business rules"
       breadcrumb={crumb({ label: 'Configuration' }, { label: 'Business rules' })}
-      intro="PRD-ADM-003 (roadmap row 392) — rules in a constrained language over declared facts, started from patterns, tested before activation, with conflict detection, precedence and an evaluation log. BR-ADM-020, BR-ADM-021."
+      intro="Write business rules without code, start them from a pattern, test them against sample data, and see which rule won every time one was applied."
       actions={<Button onClick={() => { state.reload(); log.reload(); }}>Refresh</Button>}
     >
       <Body state={state}>
@@ -340,7 +343,7 @@ export function Rules() {
                 <div key={set.code} className="p-3 border-b border-nop-border last:border-b-0">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <span className="font-mono text-[13px] font-semibold">{set.code}</span>
-                    <Badge tone="slate">{set.owningModule}</Badge>
+                    <Badge tone="slate">{moduleName(set.owningModule)}</Badge>
                     <Badge tone={set.strategy === 'firstMatch' ? 'blue' : 'purple'}>{set.strategy === 'firstMatch' ? 'first match by priority' : 'all matches'}</Badge>
                     <span className="text-[12px] text-nop-muted">
                       default outcome
@@ -376,7 +379,7 @@ export function Rules() {
                       rows={set.rules}
                       rowKey={(r) => r.id}
                     />
-                    <Panel title="Declared facts" subtitle="BR-ADM-020 — the only names a rule may use" bodyClass="p-0">
+                    <Panel title="Declared facts" subtitle="The only names a rule may use" bodyClass="p-0">
                       <Grid
                         dense
                         columns={[
@@ -394,7 +397,7 @@ export function Rules() {
 
               {tab === 'editor' && (
                 <div className="p-3 grid gap-3 md:grid-cols-2">
-                  <Panel title="Rule editor" subtitle="AC-ADM-003-01-01 and 01-02 — the language has no code execution; an error gives its position">
+                  <Panel title="Rule editor" subtitle="The rule language runs no code; an error points at its position">
                     <div className="space-y-3">
                       <Field label="Rule set">
                         <Select value={draft.ruleSetCode} onChange={(e) => setDraft({ ...draft, ruleSetCode: e.target.value })}>
@@ -489,14 +492,7 @@ export function Rules() {
                         rows={rows}
                         rowKey={(r) => r.id}
                       />
-                      <Citation className="p-3">
-                        AC-ADM-003-05-01: inputs classified personal or secret are masked. Retention
-                        follows PLT-020 (record type
-                        {' '}
-                        <span className="font-mono">rule-evaluation-log</span>
-                        ).
-                      </Citation>
-                    </>
+</>
                   )}
                 </Body>
               )}
@@ -520,7 +516,7 @@ export function TransactionTypes() {
     <AdminPage
       title="Transaction types"
       breadcrumb={crumb({ label: 'Configuration' }, { label: 'Transaction types' })}
-      intro="PRD-ADM-004 (roadmap row 393) — the types the platform supports, what each needs, and the chains that join two of them in one transaction. BR-ADM-040."
+      intro="The kinds of transaction the platform supports, the information each one needs, and the chains that join two of them into one deal."
       actions={<Button onClick={() => { state.reload(); transactions.reload(); }}>Refresh</Button>}
     >
       <Body state={state}>
@@ -542,7 +538,7 @@ export function TransactionTypes() {
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <span className="font-mono text-[13px] font-semibold">{t.code}</span>
                     <span className="text-[13px]">{t.name}</span>
-                    <Badge tone="slate">{t.owningModule}</Badge>
+                    <Badge tone="slate">{moduleName(t.owningModule)}</Badge>
                     {t.workflowCode && <Badge tone="purple">{`workflow: ${t.workflowCode}`}</Badge>}
                     {(t.requiredDocuments ?? []).map((d) => <Badge key={d} tone="amber">{`document: ${d}`}</Badge>)}
                   </div>
@@ -575,14 +571,7 @@ export function TransactionTypes() {
                     rows={registry.chains}
                     rowKey={(c) => `${c.fromType}-${c.toType}`}
                   />
-                  <Citation className="p-3">
-                    Decision D-02:
-                    {' '}
-                    {registry.notOffered.map((n) => n.code).join(' and ')}
-                    {' '}
-                    are not offered.
-                  </Citation>
-                </>
+</>
               )}
 
               {tab === 'transactions' && (
@@ -622,11 +611,7 @@ export function TransactionTypes() {
                         rows={rows}
                         rowKey={(d) => d.id}
                       />
-                      <Citation className="p-3">
-                        AC-ADM-004-02-02: an override of a type parameter needs a reason and is recorded
-                        as a PLT deviation (BR-PLT-017). A Fixed parameter cannot be overridden at all.
-                      </Citation>
-                    </>
+</>
                   )}
                 </Body>
               )}
@@ -658,7 +643,7 @@ export function Eligibility() {
     <AdminPage
       title="Eligibility, quotas and screening"
       breadcrumb={crumb({ label: 'Configuration' }, { label: 'Eligibility and quotas' })}
-      intro="PRD-ADM-005 (roadmap row 394) — who may see, buy or take part; quotas reserved for a group; screening against sanctions lists. BR-ADM-050: visibility is native ACL by customer role; quotas are enforced by the ADM cart provider and reserved at placement."
+      intro="Who may see, buy or take part in something; quantities reserved for a group; and the screening of customers against sanctions lists."
       actions={<Button variant="brand" onClick={recompute}>Recompute eligibility now</Button>}
     >
       <Body state={state}>
@@ -692,12 +677,7 @@ export function Eligibility() {
                     rows={data.bindings}
                     rowKey={(b) => b.id}
                   />
-                  <Citation className="p-3">
-                    AC-ADM-005-01-01: a profile change, or the nightly task, adds the customer to or
-                    removes them from the bound role. Native AclRecord by customer role then decides
-                    which products, categories and topics the customer sees.
-                  </Citation>
-                </>
+</>
               )}
               {tab === 'quotas' && (
                 <Grid
@@ -741,12 +721,7 @@ export function Eligibility() {
                     rows={data.screenings}
                     rowKey={(s) => s.id}
                   />
-                  <Citation className="p-3">
-                    AC-ADM-005-03-01 and 03-02: a possible match flags the account, blocks checkout with
-                    Adm.ScreeningHold and creates a review item (ADM-006). Clearing removes the flag;
-                    confirming adds the customer to the SEL-013 block list. Both are audited (AUD-ADM-005).
-                  </Citation>
-                </>
+</>
               )}
             </div>
           </>
@@ -778,7 +753,7 @@ export function UploadPolicy() {
     <AdminPage
       title="Upload policy"
       breadcrumb={crumb({ label: 'Configuration' }, { label: 'Upload policy' })}
-      intro="PRD-ADM-008 (roadmap row 397) — which file types and sizes may be uploaded in each place, and the virus scan before anything is stored. BR-ADM-060: ADM-008 is the single owner of every server-side upload check (decision SINGLE-FILTER)."
+      intro="Which file types and sizes may be uploaded in each place, and the virus check every upload passes before it is stored."
       actions={<Button onClick={() => { state.reload(); scans.reload(); }}>Refresh</Button>}
     >
       <Body state={state}>
@@ -786,16 +761,16 @@ export function UploadPolicy() {
           <>
             <div className="grid gap-3 sm:grid-cols-3">
               <StatTile label="Upload contexts" value={contexts.length} tone="blue" />
-              <StatTile label="Module contexts (IC-ADM-08)" value={contexts.filter((c) => c.owningFeature !== 'PRD-ADM-008').length} tone="amber" />
+              <StatTile label="Added by other modules" value={contexts.filter((c) => c.owningFeature !== 'PRD-ADM-008').length} tone="amber" />
               <StatTile label="Scans recorded" value={scans.data?.length ?? 0} tone="slate" />
             </div>
 
-            <Panel title="Contexts" subtitle="AC-ADM-008-01-07 — every context with its owning feature, covered actions and current values; a module context is edited here, not in the owning module" bodyClass="p-0">
+            <Panel title="Contexts" subtitle="Every place a file can be uploaded, with the module that owns it and the values in force. A module's context is edited here, not in that module." bodyClass="p-0">
               <Grid
                 dense
                 columns={[
                   { key: 'code', header: 'Context', render: (c) => <span className="font-mono text-[12px]">{c.code}</span> },
-                  { key: 'owningFeature', header: 'Owning feature', render: (c) => <Link to={`/explorer/features/${c.owningFeature}`} className="text-nop-blue hover:underline font-mono text-[12px]">{c.owningFeature}</Link> },
+                  { key: 'owningFeature', header: 'Owned by', render: (c) => moduleName(c.owningFeature) },
                   { key: 'coveredActions', header: 'Covered actions', render: (c) => <span className="font-mono text-[11.5px]">{(c.coveredActions ?? []).join(', ') || (c.ownEndpoint ? 'its own endpoint' : '—')}</span> },
                   { key: 'allowedExtensions', header: 'Allowed', render: (c) => c.allowedExtensions.join(', ') },
                   { key: 'maxSizeKb', header: 'Max KB', align: 'right' },
@@ -824,7 +799,7 @@ export function UploadPolicy() {
             </Panel>
 
             {edit && (
-              <Panel title={`Edit ${edit.code}`} subtitle="The stricter of the native per-field limit and this policy applies (AC-ADM-008-01-03)">
+              <Panel title={`Edit ${edit.code}`} subtitle="Where a field has its own limit, the stricter of the two applies">
                 <div className="grid gap-3 md:grid-cols-4">
                   <Field label="Allowed extensions"><Input value={edit.allowedExtensions} onChange={(e) => setEdit({ ...edit, allowedExtensions: e.target.value })} /></Field>
                   <Field label="Maximum size (KB)"><Input type="number" value={edit.maxSizeKb} onChange={(e) => setEdit({ ...edit, maxSizeKb: e.target.value })} /></Field>
@@ -891,7 +866,7 @@ export function Templates() {
     <AdminPage
       title="Template library"
       breadcrumb={crumb({ label: 'Configuration' }, { label: 'Template library' })}
-      intro="PRD-ADM-011 and PRD-ADM-012 (roadmap rows 400 and 401) — reusable transaction templates with versions, inheritance, cloning and approval before use; usage analytics and the shared library. SM-ADM-06."
+      intro="Reusable transaction templates with versions, inheritance and cloning, approved before they are used, with usage figures and a shared library."
       actions={<Button onClick={() => { library.reload(); analytics.reload(); }}>Refresh</Button>}
     >
       {message && <Alert tone="success">{message}</Alert>}
@@ -948,7 +923,7 @@ export function Templates() {
                         rowKey={(t) => t.id}
                       />
                     </Panel>
-                    <Panel title="Inherited or overridden" subtitle="AC-ADM-011-03-01" bodyClass="p-0">
+                    <Panel title="Inherited or overridden" subtitle="Which values come from the parent template and which this one overrides" bodyClass="p-0">
                       {inheritance ? (
                         <Grid
                           dense
@@ -1020,12 +995,7 @@ export function Templates() {
                         rows={rows}
                         rowKey={(p) => p.id}
                       />
-                      <Citation className="p-3">
-                        AC-ADM-012-02-01: publishing removes client identifiers and the package goes to the
-                        central product library outside every client instance (one installation per client,
-                        PLT-002). An adopted package is a draft and follows the ADM-011 approval before use.
-                      </Citation>
-                    </>
+</>
                   )}
                 </Body>
               )}
@@ -1038,17 +1008,13 @@ export function Templates() {
                         dense
                         columns={[
                           { key: 'area', header: 'Area' },
-                          { key: 'feature', header: 'Owning feature', render: (w) => <Link to={`/explorer/features/${w.feature}`} className="text-nop-blue hover:underline font-mono text-[12px]">{w.feature}</Link> },
+                          { key: 'feature', header: 'Owned by', render: (w) => moduleName(w.feature) },
                           { key: 'route', header: 'Opens', render: (w) => <Link to={w.route} className="text-nop-blue hover:underline">{w.route}</Link> },
                         ]}
                         rows={rows}
                         rowKey={(w) => w.area}
                       />
-                      <Citation className="p-3">
-                        AC-ADM-011-05-01: the workspace takes the administrator to the owning screen. No area
-                        is edited in a second place.
-                      </Citation>
-                    </>
+</>
                   )}
                 </Body>
               )}

@@ -1,6 +1,6 @@
 # Build map — Client administrators
 
-Generated 2026-11-25T07:21:46.469Z by `scripts/build-group-map.mjs`.
+Generated 2026-11-25T07:40:10.718Z by `scripts/build-group-map.mjs`.
 
 The product mapping diagram counts **137** features for this group and the registry reproduces it exactly.
 

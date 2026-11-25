@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ProductProvider, useProduct } from './lib/store.jsx';
-import { PrototypeBar, StorefrontShell } from './ui/nop/shells.jsx';
+import { StorefrontShell } from './ui/nop/shells.jsx';
 import { Alert, Spinner } from './ui/nop/kit.jsx';
 
 import { Home, ProductList, ProductDetails } from './surfaces/storefront/catalog.jsx';
@@ -12,19 +12,10 @@ import {
 } from './surfaces/storefront/account.jsx';
 
 import {
-  AdminCategories, AdminCheckoutExceptions, AdminCustomers, AdminOrderDetails, AdminOrders,
-  AdminPayments, AdminPriceLists, AdminProductEdit, AdminProducts, AdminRoles, AdminShipments,
-  AdminVendors, Dashboard,
+  AdminCustomers, AdminProductEdit, AdminProducts, Dashboard,
 } from './surfaces/admin/index.jsx';
-import {
-  AdminAcl, AdminCurrencies, AdminFeatureRegistry, AdminLanguages, AdminMessageTemplates,
-  AdminPacks, AdminPaymentMethods, AdminSettings, AdminShippingMethods, AdminStores,
-} from './surfaces/admin/configuration.jsx';
-import {
-  AdminAudit, AdminDiagnostics, AdminMessages, AdminMocks, AdminPlugins, AdminScreens,
-  AdminTracking,
-} from './surfaces/admin/system.jsx';
-
+import { AdminSettings } from './surfaces/admin/configuration.jsx';
+import { AdminPlugins } from './surfaces/admin/system.jsx';
 import {
   AdminConsole, BulkEdit, ExtensionRegister, Maintenance, ScheduleTasks, SystemLog, Widgets,
 } from './surfaces/admin/adm001.jsx';
@@ -34,12 +25,6 @@ import {
 import {
   Alerts, Approvals, Exceptions, OperationsConsole,
 } from './surfaces/admin/adm-operations.jsx';
-import { SellerDashboard, SellerList } from './surfaces/seller/index.jsx';
-import { OutletCounter } from './surfaces/outlet/index.jsx';
-import {
-  AreaDetail, AreaList, Decisions, FeatureDetail, FeatureList, GroupDetail, GroupList, Journeys,
-  Overview, Requirements, RoleDetail, RoleList, Trace,
-} from './surfaces/explorer/index.jsx';
 
 const store = (el) => <StorefrontShell>{el}</StorefrontShell>;
 
@@ -62,7 +47,6 @@ export default function App() {
   return (
     <ProductProvider>
       <div className="min-h-full flex flex-col">
-        <PrototypeBar />
         <div className="flex-1 min-h-0">
           <Boot>
             <Routes>
@@ -90,27 +74,9 @@ export default function App() {
               <Route path="/admin/catalog/products" element={<AdminProducts />} />
               <Route path="/admin/catalog/bulk-edit" element={<BulkEdit />} />
               <Route path="/admin/catalog/products/:id" element={<AdminProductEdit />} />
-              <Route path="/admin/catalog/categories" element={<AdminCategories />} />
-              <Route path="/admin/catalog/price-lists" element={<AdminPriceLists />} />
-              <Route path="/admin/sales/orders" element={<AdminOrders />} />
-              <Route path="/admin/sales/orders/:orderNumber" element={<AdminOrderDetails />} />
-              <Route path="/admin/sales/shipments" element={<AdminShipments />} />
-              <Route path="/admin/sales/payments" element={<AdminPayments />} />
-              <Route path="/admin/sales/checkout-exceptions" element={<AdminCheckoutExceptions />} />
               <Route path="/admin/customers" element={<AdminCustomers />} />
-              <Route path="/admin/customers/roles" element={<AdminRoles />} />
-              <Route path="/admin/customers/vendors" element={<AdminVendors />} />
               <Route path="/admin/configuration/settings" element={<AdminSettings />} />
-              <Route path="/admin/configuration/packs" element={<AdminPacks />} />
-              <Route path="/admin/configuration/features" element={<AdminFeatureRegistry />} />
-              <Route path="/admin/configuration/stores" element={<AdminStores />} />
-              <Route path="/admin/configuration/languages" element={<AdminLanguages />} />
-              <Route path="/admin/configuration/currencies" element={<AdminCurrencies />} />
-              <Route path="/admin/configuration/payment-methods" element={<AdminPaymentMethods />} />
-              <Route path="/admin/configuration/shipping-methods" element={<AdminShippingMethods />} />
               <Route path="/admin/configuration/widgets" element={<Widgets />} />
-              <Route path="/admin/configuration/acl" element={<AdminAcl />} />
-              <Route path="/admin/configuration/message-templates" element={<AdminMessageTemplates />} />
               <Route path="/admin/system/schedule-tasks" element={<ScheduleTasks />} />
               <Route path="/admin/system/log" element={<SystemLog />} />
               <Route path="/admin/system/maintenance" element={<Maintenance />} />
@@ -126,33 +92,8 @@ export default function App() {
               <Route path="/admin/operations/approvals" element={<Approvals />} />
               <Route path="/admin/operations/exceptions" element={<Exceptions />} />
               <Route path="/admin/operations/alerts" element={<Alerts />} />
-              <Route path="/admin/system/audit" element={<AdminAudit />} />
-              <Route path="/admin/system/messages" element={<AdminMessages />} />
-              <Route path="/admin/system/tracking" element={<AdminTracking />} />
-              <Route path="/admin/system/mocks" element={<AdminMocks />} />
-              <Route path="/admin/system/diagnostics" element={<AdminDiagnostics />} />
               <Route path="/admin/plugins" element={<AdminPlugins />} />
-              <Route path="/admin/screens" element={<AdminScreens />} />
 
-              {/* seller portal and outlet counter */}
-              <Route path="/seller" element={<SellerList />} />
-              <Route path="/seller/:id" element={<SellerDashboard />} />
-              <Route path="/outlet" element={<OutletCounter />} />
-
-              {/* product explorer */}
-              <Route path="/explorer" element={<Overview />} />
-              <Route path="/explorer/features" element={<FeatureList />} />
-              <Route path="/explorer/features/:id" element={<FeatureDetail />} />
-              <Route path="/explorer/areas" element={<AreaList />} />
-              <Route path="/explorer/areas/:code" element={<AreaDetail />} />
-              <Route path="/explorer/groups" element={<GroupList />} />
-              <Route path="/explorer/groups/:id" element={<GroupDetail />} />
-              <Route path="/explorer/roles" element={<RoleList />} />
-              <Route path="/explorer/roles/:id" element={<RoleDetail />} />
-              <Route path="/explorer/journeys" element={<Journeys />} />
-              <Route path="/explorer/requirements" element={<Requirements />} />
-              <Route path="/explorer/decisions" element={<Decisions />} />
-              <Route path="/explorer/trace" element={<Trace />} />
 
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
