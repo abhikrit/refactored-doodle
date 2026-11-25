@@ -48,6 +48,19 @@ async function guarded(systemName, operation, request, handler) {
       err.code = 'MOCK_FAILING';
       throw err;
     }
+    // BR-CHN-010: a channel adapter only delivers and reports Sent / Delivered / Failed /
+    // Refused. A refusal is an answer, not an error: the provider declined this message.
+    if (s.health === 'refusing') {
+      const response = {
+        status: 'refused',
+        providerRef: null,
+        reason: `${systemName} refused the message (mock set to refusing)`,
+      };
+      entry = {
+        systemName, operation, request, response, outcome: 'refused', ms: Date.now() - started, at: new Date().toISOString(),
+      };
+      return response;
+    }
     const response = await handler();
     entry = {
       systemName, operation, request, response, outcome: 'success', ms: Date.now() - started, at: new Date().toISOString(),
@@ -417,7 +430,7 @@ export function mockStatus() {
 
 export function setMockHealth(systemName, health, latencyMs = 1500) {
   if (!mockRegistry[systemName]) throw new Error(`unknown mock ${systemName}`);
-  if (!['healthy', 'slow', 'failing'].includes(health)) throw new Error(`health must be healthy | slow | failing`);
+  if (!['healthy', 'slow', 'failing', 'refusing'].includes(health)) throw new Error('health must be healthy | slow | failing | refusing');
   const s = ensure(systemName);
   s.health = health;
   s.latencyMs = latencyMs;

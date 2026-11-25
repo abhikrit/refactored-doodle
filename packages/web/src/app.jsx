@@ -32,6 +32,9 @@ import {
 import {
   AdminChangeSets, AdminCountries, AdminHelpContent, AdminRetention,
 } from './surfaces/admin/plt.jsx';
+import {
+  AdminEmailTemplates, AdminNotificationDefinitions, AdminNotificationLog,
+} from './surfaces/admin/trk.jsx';
 import { AdminPlugins } from './surfaces/admin/system.jsx';
 import {
   AdminConsole, BulkEdit, ExtensionRegister, Maintenance, ScheduleTasks, SystemLog, Widgets,
@@ -118,7 +121,10 @@ export default function App() {
               <Route path="/admin/configuration/acl" element={<AdminAcl />} />
               <Route path="/admin/configuration/retention" element={<AdminRetention />} />
               <Route path="/admin/content/help" element={<AdminHelpContent />} />
-              <Route path="/admin/content/message-templates" element={<AdminMessageTemplates />} />
+              <Route path="/admin/content/message-templates" element={<AdminEmailTemplates />} />
+              <Route path="/admin/content/notifications" element={<AdminNotificationDefinitions />} />
+              <Route path="/admin/content/locale-resources" element={<AdminMessageTemplates />} />
+              <Route path="/admin/system/notification-log" element={<AdminNotificationLog />} />
               <Route path="/admin/configuration/widgets" element={<Widgets />} />
               <Route path="/admin/system/schedule-tasks" element={<ScheduleTasks />} />
               <Route path="/admin/system/log" element={<SystemLog />} />

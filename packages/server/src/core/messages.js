@@ -32,9 +32,28 @@ export function resourceExists(key) {
  * `gateways` is the mock registry injected by the plugin host, so no real SMS/WhatsApp/e-mail
  * leaves the prototype.
  */
+/**
+ * BR-TRK-020: every notification goes through the PRD-TRK-005 engine. The engine registers
+ * itself here at installation, so a module keeps calling sendAsync and the engine decides the
+ * definition, the channels, the language and the log. Without it (a prototype run with the TRK
+ * plugin switched off) the direct gateway path below still works.
+ */
+let engine = null;
+export function registerNotificationEngine(fn) {
+  engine = fn;
+  return { registered: true, owner: 'PRD-TRK-005' };
+}
+export const notificationEngineRegistered = () => engine !== null;
+
 export async function sendAsync({
   event, to, channels, tokens = {}, storeId = 1, feature = 'PRD-TRK-005', gateways = null,
+  reference = null, order = null, shipment = null, customer = null, languageId = null,
 }) {
+  if (engine) {
+    return engine({
+      event, to, channels, tokens, storeId, feature, gateways, reference, order, shipment, customer, languageId,
+    });
+  }
   const routed = channels ?? (await getSettingAsync(`trk.route.${event}`, storeId, ['email']));
   const list = Array.isArray(routed) ? routed : [routed];
   const out = [];
@@ -72,11 +91,19 @@ export async function sendAsync({
   return out;
 }
 
+/**
+ * The notification log (PRD-TRK-007). The engine writes NotificationMessage rows; a run without
+ * the engine writes the MessageDelivery rows of the direct path, and both are listed here.
+ */
 export async function deliveriesAsync(filter = {}) {
-  const rows = await messageRepo().getAllAsync((r) => (
-    (!filter.channel || r.channel === filter.channel)
+  const match = (r) => (!filter.channel || r.channel === filter.channel)
     && (!filter.event || r.event === filter.event)
     && (!filter.to || r.to === filter.to)
-  ));
-  return rows.slice().sort((a, b) => b.sentOnUtc.localeCompare(a.sentOnUtc) || b.id - a.id);
+    && (!filter.reference || r.reference === filter.reference);
+  const rows = [
+    ...await repository('NotificationMessage').getAllAsync(match),
+    ...await messageRepo().getAllAsync(match),
+  ];
+  const at = (r) => r.sentOnUtc ?? r.createdOnUtc ?? '';
+  return rows.slice().sort((a, b) => at(b).localeCompare(at(a)) || b.id - a.id);
 }

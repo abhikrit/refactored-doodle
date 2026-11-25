@@ -200,11 +200,16 @@ export function StatTile({
   label, value, hint, tone = 'blue', to,
 }) {
   const tones = {
-    blue: 'bg-nop-blue', green: 'bg-nop-green', amber: 'bg-nop-amber', red: 'bg-nop-red', slate: 'bg-slate-600',
+    blue: 'bg-nop-blue',
+    green: 'bg-nop-green',
+    amber: 'bg-nop-amber',
+    red: 'bg-nop-red',
+    purple: 'bg-violet-700',
+    slate: 'bg-slate-600',
   };
   const inner = (
     <div className="bg-white border border-nop-border rounded-sm overflow-hidden h-full">
-      <div className={`${tones[tone]} px-3 py-2 text-white`}>
+      <div className={`${tones[tone] ?? tones.blue} px-3 py-2 text-white`}>
         <div className="text-2xl font-semibold leading-tight">{value}</div>
         <div className="text-[12px] opacity-90">{label}</div>
       </div>

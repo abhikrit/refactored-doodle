@@ -394,6 +394,8 @@ const ADMIN_NAV = [
     children: [
       { label: 'Help tips and tours', to: '/admin/content/help' },
       { label: 'Message templates', to: '/admin/content/message-templates' },
+      { label: 'Notification definitions', to: '/admin/content/notifications' },
+      { label: 'Locale resources', to: '/admin/content/locale-resources' },
     ],
   },
   {
@@ -413,6 +415,7 @@ const ADMIN_NAV = [
       { label: 'Maintenance', to: '/admin/system/maintenance' },
       { label: 'Extension register', to: '/admin/system/extension-register' },
       { label: 'Audit trail', to: '/admin/system/audit-trail' },
+      { label: 'Notification log', to: '/admin/system/notification-log' },
       { label: 'Data protection', to: '/admin/system/data-protection' },
       { label: 'Breach cases', to: '/admin/system/breaches' },
       { label: 'Security operations', to: '/admin/system/security-operations' },

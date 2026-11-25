@@ -48,6 +48,7 @@ export const SESSIONS = {
   compliance: 'adm-compliance',
   auditor: 'adm-auditor',
   buyer: 'adm-buyer',
+  support: 'adm-support',
   privacy: 'adm-privacy',
   security: 'adm-security',
 };
@@ -62,6 +63,7 @@ const EMAILS = {
   'adm-compliance': 'compliance@example.com',
   'adm-auditor': 'auditor@example.com',
   'adm-buyer': 'buyer@example.com',
+  'adm-support': 'support@example.com',
   'adm-privacy': 'privacy@example.com',
   'adm-security': 'security@example.com',
 };
@@ -96,6 +98,9 @@ export async function startAsync({ client = 'MPC' } = {}) {
     post: async (p, b, s) => (await call('POST', p, b ?? {}, s)).body,
     patch: async (p, b, s) => (await call('PATCH', p, b ?? {}, s)).body,
     del: async (p, s) => (await call('DELETE', p, undefined, s)).body,
+    /** The customer record behind a session, for the service calls that take an actor. */
+    actorAsync: async (session = SESSIONS.admin) => repository('Customer')
+      .getOneAsync((c) => c.email === EMAILS[session]),
     stop: () => server.close(),
   };
 }
