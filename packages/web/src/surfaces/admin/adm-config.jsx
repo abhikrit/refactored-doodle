@@ -38,10 +38,13 @@ export const moduleName = (ref) => {
 
 const crumb = (...items) => <Breadcrumb items={[{ label: 'Dashboard', to: '/admin' }, ...items]} />;
 
-/** Held features carry the P-1 label wherever they are shown. */
-export function HeldByDecision({ decision = 'WF-ENG', children }) {
+/**
+ * A capability that is waiting on a client decision. The decision itself is tracked in /trace;
+ * the screen says only what it means for the person using it.
+ */
+export function HeldByDecision({ title = 'Awaiting a decision', children }) {
   return (
-    <Alert tone="warning" title={`Prototype default — decision ${decision} pending`}>
+    <Alert tone="warning" title={title}>
       {children}
     </Alert>
   );
@@ -100,10 +103,9 @@ export function Workflows() {
       intro="Design a business process as steps with branches and parallel paths, test it with sample data, publish it as a version, and replay how a past case moved through it."
       actions={<Button onClick={() => { state.reload(); cases.reload(); }}>Refresh</Button>}
     >
-      <HeldByDecision>
-        ADM-002 is held until the workflow engine is chosen (build or embed). What is built here is
-        the option the specification proposes, behind an engine-independent interface, so the
-        engine choice replaces the implementation and not the screens that use it.
+      <HeldByDecision title="Workflow engine not finalised">
+        The platform&apos;s own engine is in use while the engine for this installation is being
+        chosen. Definitions, cases and replays here are unaffected by that choice.
       </HeldByDecision>
 
       <Body state={state}>
@@ -135,7 +137,6 @@ export function Workflows() {
                       { key: 'name', header: 'Name' },
                       { key: 'version', header: 'Version', align: 'right' },
                       { key: 'status', header: 'Status', render: (d) => <Badge tone={d.status === 'Published' ? 'green' : d.status === 'Retired' ? 'slate' : 'amber'}>{d.status}</Badge> },
-                      { key: 'basis', header: 'Basis', render: (d) => <span className="text-[12px]">{d.basis ?? '—'}</span> },
                       { key: 'steps', header: 'Steps', align: 'right', render: (d) => d.elements.length },
                       {
                         key: 'act',
@@ -820,7 +821,7 @@ export function UploadPolicy() {
 
             <Body state={scans}>
               {(rows) => (
-                <Panel title="Recent uploads" subtitle="AUD-ADM-006 — every refusal is audited with the context, the file hash and the reason" bodyClass="p-0">
+                <Panel title="Recent uploads" subtitle="Every refusal is recorded with the context, the file hash and the reason" bodyClass="p-0">
                   <Grid
                     dense
                     columns={[

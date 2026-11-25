@@ -130,7 +130,7 @@ export function Cart() {
           <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
             <div className="space-y-4">
               {cart.savedForLater.length > 0 && (
-                <Panel title={cart.savedForLaterName} subtitle="AC-CHK-001-03-01: a native CustomWishlist per customer">
+                <Panel title={cart.savedForLaterName} subtitle="Items you saved to buy later">
                   <ul className="divide-y divide-gray-100">
                     {cart.savedForLater.map((item) => (
                       <li key={item.id} className="flex items-center gap-3 py-2">
@@ -454,13 +454,12 @@ export function Checkout() {
                 </div>
               ) : selected?.offlineAtCounter ? (
                 <Alert tone="info">
-                  You will be given a secure reference and pay at the counter. The order waits for the payment to be
-                  confirmed (PAY-008, PAY-036).
+                  You will be given a secure reference and pay at the counter. The order waits until the payment is
+                  confirmed.
                 </Alert>
               ) : (
                 <Alert tone="info">
-                  No card details are collected in the prototype. SEC-003 keeps card data out of scope: in the real
-                  product the gateway collects them and only a token is stored.
+                  Your card details are entered on the payment provider's own page. We never see or store them.
                 </Alert>
               )}
             </Panel>
@@ -495,7 +494,7 @@ export function Checkout() {
                     label="I agree with the terms of service"
                     checked={terms}
                     onChange={(e) => setTerms(e.target.checked)}
-                    hint="AC-CHK-002-05-01; enforced on the server by the CHK-009 action filter (BR-CHK-013)."
+                    hint="You must accept the terms before the order can be placed."
                   />
                 )}
                 <Button
@@ -600,8 +599,7 @@ export function OrderCompleted() {
                   <div className="text-[12px] text-amber-900">Pickup code for this sub-order</div>
                   <div className="font-mono text-[20px] tracking-widest text-amber-950">{o.pickupCode}</div>
                   <div className="text-[11.5px] text-amber-900 mt-0.5">
-                    Single use, bound to this order and outlet, stored only as a hash (CHK-012, BR-CHK-016). It was also
-                    sent by SMS through the mock gateway.
+                    Single use, and valid only at the outlet shown. We have also sent it to you by SMS.
                   </div>
                 </div>
               )}

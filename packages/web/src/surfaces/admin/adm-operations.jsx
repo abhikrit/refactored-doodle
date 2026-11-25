@@ -79,10 +79,9 @@ export function Approvals() {
       intro="The items waiting for you, limited to your role, your authority and anything delegated to you. Approvals can have several steps, carry corrections, or be rejected with a reason."
       actions={<Button onClick={queue.reload}>Refresh</Button>}
     >
-      <HeldByDecision>
-        ADM-006 is held with ADM-002, because an approval step is a workflow step. The behaviour
-        below is the PRD&apos;s Proposed option; decisions are applied by the owning module through
-        its own service, never by the approval queue itself.
+      <HeldByDecision title="Approval rules not finalised">
+        Approval chains and authority limits are still being agreed for this installation. The
+        queue works as configured; a decision is applied by the area that owns the item.
       </HeldByDecision>
 
       <Tabs

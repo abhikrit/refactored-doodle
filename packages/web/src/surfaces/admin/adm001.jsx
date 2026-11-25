@@ -55,25 +55,24 @@ export function AdminConsole() {
     >
       {!data ? <Spinner /> : (
         <>
-          <Alert tone={data.canOpenAdmin ? 'info' : 'error'} title={`Signed in as ${customer?.email ?? 'nobody'}`}>
-            {data.canOpenAdmin
-              ? `Security.AccessAdminPanel is held. ${data.areas.filter((a) => a.granted).length} of ${data.areas.length} areas are open to this user.`
-              : 'Security.AccessAdminPanel is not held, so no area of the admin area opens.'}
-            {' '}<Link to="/login" className="underline">Sign in as another role</Link> to see the gate work — admin@example.com opens all eight, catalogue@example.com only Products, finance@example.com none, auditor@example.com not even the panel.
-          </Alert>
+          {!data.canOpenAdmin && (
+            <Alert tone="error" title="Access denied">
+              This account does not have access to the administration area.
+            </Alert>
+          )}
 
-          <Panel title="Areas of the console" subtitle="Each area opens on the permission it needs" bodyClass="p-0">
+          <Panel title="Areas of the console" bodyClass="p-0">
             <Grid
               columns={[
                 { key: 'group', header: 'Group' },
                 { key: 'name', header: 'Area', render: (a) => (a.granted ? <Link to={a.route} className="text-nop-blue hover:underline">{a.name}</Link> : <span className="text-nop-muted">{a.name}</span>) },
-                { key: 'permission', header: 'Native permission', render: (a) => <span className="font-mono text-[12px]">{a.permission}</span> },
+                { key: 'permission', header: 'Permission required', render: (a) => <span className="font-mono text-[12px]">{a.permission}</span> },
                 {
                   key: 'granted',
                   header: 'This user',
                   render: (a) => (a.granted
                     ? <Badge tone="green">opens</Badge>
-                    : <Badge tone="red">denied — needs {a.deniedBy}</Badge>),
+                    : <Badge tone="red">no access</Badge>),
                 },
               ]}
               rows={data.areas}
@@ -212,7 +211,7 @@ export function Maintenance() {
         <>
           {notice && <Alert tone="success">{notice}</Alert>}
           <Panel title="Delete log entries">
-            <p className="text-[13px] text-nop-muted mb-3">Clears the system log. The action is recorded in the audit trail (AUD-ADM-001).</p>
+            <p className="text-[13px] text-nop-muted mb-3">Clears the system log. The action is recorded in the audit trail.</p>
             <Button
               variant="danger"
               onClick={async () => {
@@ -224,10 +223,9 @@ export function Maintenance() {
             </Button>
           </Panel>
           <Panel title="Other maintenance actions">
-            <Alert tone="warning" title="Not built in Session 0">
-              Delete abandoned carts, delete guests, re-index, backup and restore are native
-              maintenance actions of the real build. The prototype has no database, so they have
-              nothing to act on (CLAUDE.md addendum C-2).
+            <Alert tone="info" title="Not available on this installation">
+              Delete abandoned carts, delete guests, re-index, backup and restore need the database
+              layer, which this installation does not run.
             </Alert>
           </Panel>
         </>

@@ -324,7 +324,7 @@ function AdminGate({ children }) {
   if (!customer) return <Navigate to={`/login?returnUrl=${encodeURIComponent(pathname + search)}`} replace />;
 
   return (
-    <div className="nop-admin min-h-full bg-nop-canvas p-6">
+    <div className="nop-admin min-h-screen bg-nop-canvas p-6">
       <div className="max-w-2xl mx-auto bg-white border border-nop-border">
         <div className="bg-nop-red text-white px-4 py-2.5 text-[15px] font-semibold">Access denied</div>
         <div className="p-4 space-y-3 text-[13.5px] text-nop-ink">
@@ -365,7 +365,7 @@ export function AdminShell({ children, breadcrumb }) {
 
   return (
     <AdminGate>
-      <div className="nop-admin min-h-full flex bg-nop-canvas">
+      <div className="nop-admin min-h-screen flex bg-nop-canvas">
       <aside className="w-60 shrink-0 bg-nop-sidebar text-gray-300 hidden md:flex md:flex-col">
         <div className="px-4 py-3 bg-nop-sidebar-dark">
           <div className="text-white font-semibold text-[14px]">nopCommerce</div>

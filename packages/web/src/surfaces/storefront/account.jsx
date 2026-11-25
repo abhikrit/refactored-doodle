@@ -149,7 +149,7 @@ export function Login() {
               {!otp ? <button type="button" className="nop-button" onClick={requestOtp} disabled={!phone}>Send me a code</button> : (
                 <>
                   <Alert tone="info">
-                    The code was sent through the mock SMS gateway. Prototype code: <span className="font-mono font-semibold">{otp.prototypeCode}</span>
+                    We sent a code by SMS. For this demonstration store the code is <span className="font-mono font-semibold">{otp.prototypeCode}</span>
                   </Alert>
                   <Field label="One-time code"><Input value={code} onChange={(e) => setCode(e.target.value)} /></Field>
                   <button type="button" className="nop-button" onClick={verifyOtp} disabled={!code}>Verify and sign in</button>
@@ -160,7 +160,7 @@ export function Login() {
         </div>
       </div>
 
-      {/* prototype chrome, not a nopCommerce screen */}
+      {/* demonstration accounts */}
       <div className="mt-6 border border-dashed border-store-border bg-store-panel">
         <button
           type="button"
@@ -419,9 +419,8 @@ export function AccountAddresses() {
 export function AccountWishlist() {
   return (
     <AccountLayout title="Wishlist">
-      <Alert tone="warning" title="Not built in Session 0 - wave 2 Catalogue">
-        SRC-010 wish list. The saved-for-later list on the cart page is built, because CHK-001 requires it
-        (AC-CHK-001-03-01 uses a native CustomWishlist).
+      <Alert tone="info" title="Your wishlist is empty">
+        Items you save to your wishlist will appear here. You can also save items for later from the shopping cart.
       </Alert>
     </AccountLayout>
   );
