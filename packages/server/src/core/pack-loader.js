@@ -12,11 +12,81 @@
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, sep } from 'node:path';
-import { featureById } from '@product/shared';
-import { saveSettingAsync, clearSettingsAsync } from './settings.js';
+import { createHash } from 'node:crypto';
+import { featureById, registry } from '@product/shared';
+import {
+  saveSettingAsync, clearSettingsAsync, getSettingAsync, allSettingsAsync, deleteSettingAsync,
+  clearSettingCacheAsync,
+} from './settings.js';
 import { auditAsync } from './audit.js';
+import { withLockAsync } from './locker.js';
+import { plainRepository } from './repository.js';
+import { resource } from './messages.js';
 
 export const LAYER_ORDER = ['global', 'country', 'vertical', 'client', 'store'];
+export const WRITE_LOCK_KEY = 'plt-config-write';
+
+/**
+ * AC-PLT-003-01-04: a setting key is accepted only when it is a property of a known ISettings
+ * class or a key an installed product plugin has declared. The catalogue is the subset of the
+ * 5.00.1 settings this prototype exercises, with the keys 5.00 removed or moved listed so a pack
+ * written for 4.90 fails with the name of its replacement (AC-PLT-003-01-11).
+ */
+let catalogue = null;
+export function settingsCatalogue(root) {
+  if (catalogue) return catalogue;
+  const file = join(root ?? '.', 'platform', 'settings-catalogue.json');
+  catalogue = existsSync(file)
+    ? JSON.parse(readFileSync(file, 'utf8'))
+    : {
+      nativeClasses: {}, productKeys: {}, removedIn500: {}, movedIn500: {}, removedPermissionsIn500: [],
+    };
+  return catalogue;
+}
+
+/** A product plugin declares the keys it owns at installation. */
+const pluginKeys = new Map(); // owner -> { prefixes, keys }
+
+export function declareSettingKeys({ owner, prefixes = [], keys = [] }) {
+  pluginKeys.set(owner, { owner, prefixes, keys });
+  return pluginKeys.get(owner);
+}
+
+export const declaredSettingKeys = () => [...pluginKeys.values()];
+
+const declaredByPlugin = (key) => [...pluginKeys.values()].some(
+  (d) => d.keys.includes(key) || d.prefixes.some((prefix) => key.startsWith(prefix)),
+);
+
+const typeOfValue = (value) => (Array.isArray(value) ? 'array' : value === null ? 'string' : typeof value);
+
+/** The TypeConverter check: the value must convert to the type the property holds. */
+export function convertible(expected, value) {
+  if (!expected || expected === 'string') return true;
+  const actual = typeOfValue(value);
+  if (actual === expected) return true;
+  if (expected === 'boolean') return value === 'true' || value === 'false';
+  if (expected === 'number') return actual === 'string' && value.trim() !== '' && !Number.isNaN(Number(value));
+  if (expected === 'array') return actual === 'string';
+  if (expected === 'object') return false;
+  return false;
+}
+
+export const checksumOf = (pack) => createHash('sha256')
+  .update(JSON.stringify({
+    id: pack.id,
+    layer: pack.layer,
+    version: pack.version ?? null,
+    settings: pack.settings ?? {},
+    features: pack.features ?? {},
+    permissions: pack.permissions ?? {},
+    stores: pack.stores ?? {},
+    plugins: pack.plugins ?? {},
+    entities: pack.entities ?? {},
+    content: pack.content ?? {},
+  }))
+  .digest('hex')
+  .slice(0, 16);
 // A key is a secret when its LAST segment ends with a secret word: smtp.password and
 // pay.mpesa.consumersecret are secrets, customersettings.passwordminlength is a password policy.
 const SECRET_SUFFIX = /(secret|password|passkey|apikey|api_key|privatekey|accesstoken|token|credential|credentials|consumerkey)$/i;
@@ -53,65 +123,108 @@ export function discoverPacks(root) {
   return out;
 }
 
-/** Pack-level validation: secrets, malformed keys, unknown feature IDs (NFR-X-008). */
-export function validatePack(pack) {
+/**
+ * Pack-level validation. Every refusal names the key and the message the chapter states, and a
+ * refused pack writes nothing (AC-PLT-003-01-04 to 01-07, 01-11).
+ */
+export function validatePack(pack, { root = null, stores = null } = {}) {
   const problems = [];
-  for (const key of Object.keys(pack.settings ?? {})) {
+  const cat = settingsCatalogue(root);
+  const refuse = (key, rule, messageKey, message) => problems.push({
+    severity: 'refused', key, rule, messageKey, message,
+  });
+
+  for (const [key, value] of Object.entries(pack.settings ?? {})) {
     if (isSecretKey(key)) {
-      problems.push({
-        severity: 'refused', key, rule: 'BR-PLT-013 / CFG-01', message: 'a secret must not be stored in a configuration pack',
-      });
+      refuse(key, 'BR-PLT-013 / CFG-01', 'Plt.PackSecretRefused', `${resource('Plt.PackSecretRefused')} (${key})`);
+      continue;
     }
     if (!/^[a-z0-9]+(\.[a-z0-9_<>-]+)+$/.test(key)) {
-      problems.push({
-        severity: 'warning', key, rule: 'L1 section 6.5', message: 'setting key is not lower-case <settingsclass>.<property>',
-      });
+      refuse(key, 'L1 section 6.5', 'Plt.PackKeyUnknown', `${resource('Plt.PackKeyUnknown')} (${key}: the key is not lower-case <settingsclass>.<property>)`);
+      continue;
+    }
+    if (cat.removedIn500?.[key]) {
+      refuse(key, 'VER-500', 'Plt.PackKeyUnknown', `${resource('Plt.PackKeyUnknown')} (${key}: ${cat.removedIn500[key]})`);
+      continue;
+    }
+    if (cat.movedIn500?.[key]) {
+      refuse(key, 'VER-500', 'Plt.PackKeyUnknown', `${resource('Plt.PackKeyUnknown')} (${key}: renamed to ${cat.movedIn500[key]} in 5.00)`);
+      continue;
+    }
+    const [className, ...rest] = key.split('.');
+    const property = rest.join('.');
+    const nativeClass = cat.nativeClasses?.[className];
+    if (nativeClass) {
+      if (nativeClass[property] === undefined) {
+        refuse(key, 'AC-PLT-003-01-04', 'Plt.PackKeyUnknown', `${resource('Plt.PackKeyUnknown')} (${key}: ${className} has no property ${property})`);
+        continue;
+      }
+      if (!convertible(nativeClass[property], value)) {
+        refuse(key, 'AC-PLT-003-01-04', 'Plt.PackKeyUnknown', `${resource('Plt.PackKeyUnknown')} (${key}: the value cannot be read as ${nativeClass[property]})`);
+        continue;
+      }
+    } else if (!(cat.productKeys?.[className]) && !declaredByPlugin(key)) {
+      refuse(key, 'AC-PLT-003-01-04', 'Plt.PackKeyUnknown', `${resource('Plt.PackKeyUnknown')} (${key}: no settings class and no installed plugin owns it)`);
     }
   }
-  // BR-SEC-001: the password format of the installation is Hashed. A pack that asks for Clear or
-  // Encrypted is refused and nothing is changed.
-  const passwordFormat = pack.settings?.['customersettings.defaultpasswordformat'];
-  if (passwordFormat !== undefined && !/^hashed$/i.test(String(passwordFormat))) {
-    problems.push({
-      severity: 'refused',
-      key: 'customersettings.defaultpasswordformat',
-      rule: 'BR-SEC-001',
-      message: 'the password format is Hashed; Clear and Encrypted are refused',
-    });
+
+  // AC-PLT-003-01-05: the permission names must be the 5.00 ones
+  const known = new Set(registry.permissions.flatMap((p) => String(p.systemName).split('/').map((x) => x.trim())));
+  for (const [permission, roles] of Object.entries(pack.permissions ?? {})) {
+    if ((cat.removedPermissionsIn500 ?? []).includes(permission)) {
+      refuse(permission, 'VER-500', 'Plt.PackPermissionUnknown', `${resource('Plt.PackPermissionUnknown')} (${permission}: ${cat.removedPermissionsNote ?? 'removed in 5.00'})`);
+      continue;
+    }
+    if (!known.has(permission)) {
+      refuse(permission, 'AC-PLT-003-01-05', 'Plt.PackPermissionUnknown', `${resource('Plt.PackPermissionUnknown')} (${permission})`);
+      continue;
+    }
+    if (!Array.isArray(roles)) {
+      refuse(permission, 'AC-PLT-003-01-05', 'Plt.PackPermissionUnknown', `${resource('Plt.PackPermissionUnknown')} (${permission}: the roles are a list)`);
+    }
   }
-  // BR-SEC-002: the encryption key is unique to the instance and never travels in a pack.
-  if (pack.settings?.['securitysettings.encryptionkey'] !== undefined) {
-    problems.push({
-      severity: 'refused',
-      key: 'securitysettings.encryptionkey',
-      rule: 'BR-SEC-002',
-      message: 'the encryption key is unique to the instance and must not be in a pack',
-    });
-  }
-  if (pack.settings?.['securitysettings.useaesencryptionalgorithm'] === false) {
-    problems.push({
-      severity: 'refused',
-      key: 'securitysettings.useaesencryptionalgorithm',
-      rule: 'BR-SEC-002',
-      message: 'AES encryption stays on',
-    });
+
+  // AC-PLT-003-01-06: a store entry must name a store that exists
+  for (const storeCode of Object.keys(pack.stores ?? {})) {
+    if (stores && !stores.includes(storeCode)) {
+      refuse(storeCode, 'AC-PLT-003-01-06', 'Plt.PackStoreUnknown', `${resource('Plt.PackStoreUnknown')} (${storeCode})`);
+    }
   }
 
   for (const id of Object.keys(pack.features ?? {})) {
     if (!featureById[id]) {
-      problems.push({
-        severity: 'refused', key: id, rule: 'PLT-022', message: 'feature toggle does not name a PRD feature',
-      });
+      refuse(id, 'PLT-022', 'Plt.PackKeyUnknown', `${resource('Plt.PackKeyUnknown')} (${id} does not name a product feature)`);
     }
   }
+
+  // BR-SEC-001 and BR-SEC-002: the password format and the encryption key never come from a pack
+  const passwordFormat = pack.settings?.['customersettings.defaultpasswordformat'];
+  if (passwordFormat !== undefined && !/^hashed$/i.test(String(passwordFormat))) {
+    refuse('customersettings.defaultpasswordformat', 'BR-SEC-001', 'Plt.PackKeyUnknown', 'the password format is Hashed; Clear and Encrypted are refused');
+  }
+  if (pack.settings?.['securitysettings.encryptionkey'] !== undefined) {
+    refuse('securitysettings.encryptionkey', 'BR-SEC-002', 'Plt.PackSecretRefused', 'the encryption key is unique to the instance and must not be in a pack');
+  }
+  if (pack.settings?.['securitysettings.useaesencryptionalgorithm'] === false) {
+    refuse('securitysettings.useaesencryptionalgorithm', 'BR-SEC-002', 'Plt.PackKeyUnknown', 'AES encryption stays on');
+  }
+
   return problems;
 }
 
-/**
- * Build the merge chain for a client, then apply it.
- * The client pack names its country and the vertical packs it switches on; nothing else selects
- * a pack, so onboarding a client is exactly: write a client pack.
- */
+/** AC-PLT-003-01-10: a pack set names exactly one country pack. */
+export function validateChain(chain) {
+  const countries = chain.filter((p) => p.layer === 'country');
+  if (countries.length === 1) return [];
+  return [{
+    severity: 'refused',
+    key: countries.length ? countries.map((c) => c.id).join(', ') : '(none)',
+    rule: 'AC-PLT-003-01-10',
+    messageKey: 'Plt.PackCountryInvalid',
+    message: `${resource('Plt.PackCountryInvalid')} (${countries.length} country packs)`,
+  }];
+}
+
 export function buildChain(root, clientId, storeId = 1) {
   const all = discoverPacks(root);
   const client = all.client.find((p) => p.id === clientId);
@@ -130,75 +243,351 @@ export function buildChain(root, clientId, storeId = 1) {
 }
 
 /**
- * Apply a chain: merge in layer order, write Setting rows, return the merge report.
- * Resolution of the written rows is then nopCommerce's own two-level rule (settings.js).
+ * Apply a chain. AC-PLT-003-02-01 to 02-05:
+ * - every write runs inside one transaction under ILocker key 'plt-config-write'; a failure
+ *   restores the pre-apply snapshot and the run is Failed with message Plt.PackApplyFailed;
+ * - the applied pack set is recorded with codes, versions and checksums, and the setting cache
+ *   is cleared once at the end;
+ * - the same pack set applied again writes nothing and reports "no changes";
+ * - a key changed in the instance since the last apply stops the run with Plt.PackConflict,
+ *   unless the caller has chosen what to do with each one.
  */
-export async function applyPackChainAsync(chain, { storeId = 1, replace = true, actor = 'platform' } = {}) {
-  const problems = chain.flatMap((p) => validatePack(p).map((x) => ({ ...x, pack: `${p.layer}/${p.id}` })));
+export async function applyPackChainAsync(chain, {
+  storeId = 1, replace = true, actor = 'platform', stores = null, root = null,
+  conflictChoices = null, failFileWrite = false, failWrite = null, force = false,
+} = {}) {
+  const problems = [
+    ...chain.flatMap((p) => validatePack(p, { root, stores }).map((x) => ({ ...x, pack: `${p.layer}/${p.id}` }))),
+    ...validateChain(chain).map((x) => ({ ...x, pack: 'pack set' })),
+  ];
   const refused = problems.filter((p) => p.severity === 'refused');
   if (refused.length) {
     const err = new Error(`pack chain refused: ${refused.map((r) => `${r.pack} ${r.key} (${r.rule})`).join('; ')}`);
     err.problems = problems;
+    err.refused = refused;
+    err.status = 'Refused';
     throw err;
   }
 
-  if (replace) await clearSettingsAsync();
+  const packSet = chain.map((p) => ({
+    layer: p.layer, code: p.id, version: p.version ?? null, checksum: checksumOf(p), file: p._path ?? null,
+  }));
+  const setChecksum = createHash('sha256').update(JSON.stringify(packSet)).digest('hex').slice(0, 16);
 
-  const merged = new Map(); // key -> { value, layer, pack, storeId, overrode: [] }
-  const apply = (pack, key, value, targetStoreId) => {
-    const previous = merged.get(key);
-    merged.set(key, {
-      key,
-      value,
-      layer: pack.layer,
-      pack: `${pack.layer}/${pack.id}`,
-      storeId: targetStoreId,
-      overrode: previous ? [...previous.overrode, { layer: previous.layer, pack: previous.pack, value: previous.value }] : [],
-    });
-  };
+  return withLockAsync(WRITE_LOCK_KEY, async () => {
+    const appliedRepo = plainRepository('AppliedPackSet');
+    const deviationRepo = plainRepository('ConfigurationDeviation');
+    const last = (await appliedRepo.getAllAsync()).sort((a, b) => (b.id ?? 0) - (a.id ?? 0))[0] ?? null;
 
-  for (const pack of chain) {
-    const targetStoreId = pack.layer === 'store' ? storeId : 0;
-    for (const [key, value] of Object.entries(pack.settings ?? {})) apply(pack, key, value, targetStoreId);
-    for (const [featureId, on] of Object.entries(pack.features ?? {})) {
-      apply(pack, `productfeature.${featureId.toLowerCase()}`, on, targetStoreId);
+    // AC-PLT-003-02-04: the same pack set, already applied, writes nothing
+    if (!force && last && last.setChecksum === setChecksum && last.status === 'Applied') {
+      return {
+        client: chain.find((p) => p.layer === 'client')?.id ?? null,
+        storeId,
+        status: 'NoChanges',
+        noChanges: true,
+        message: 'no changes',
+        packSet,
+        setChecksum,
+        appliedOnUtc: last.appliedOnUtc,
+        chain: last.chain ?? [],
+        keys: last.keys ?? [],
+        entities: last.entities ?? {},
+        content: last.content ?? {},
+        problems,
+      };
     }
-  }
 
-  for (const row of merged.values()) await saveSettingAsync(row.key, row.value, row.storeId, row.layer);
+    // The merge, in layer order. The shared row and a store row are different rows, so a
+    // store-layer key narrows the shared value for that store instead of replacing it
+    // (BR-PLT-011): the map is keyed by key and store.
+    const merged = new Map();
+    const apply = (pack, key, value, targetStoreId) => {
+      const id = `${key}@${targetStoreId}`;
+      const previous = merged.get(id);
+      const shared = targetStoreId === 0 ? null : merged.get(`${key}@0`);
+      merged.set(id, {
+        key,
+        value,
+        layer: pack.layer,
+        pack: `${pack.layer}/${pack.id}`,
+        storeId: targetStoreId,
+        overrode: previous
+          ? [...previous.overrode, { layer: previous.layer, pack: previous.pack, value: previous.value }]
+          : shared
+            ? [{ layer: shared.layer, pack: shared.pack, value: shared.value }]
+            : [],
+      });
+    };
+    for (const pack of chain) {
+      const targetStoreId = pack.layer === 'store' ? storeId : 0;
+      for (const [key, value] of Object.entries(pack.settings ?? {})) apply(pack, key, value, targetStoreId);
+      for (const [featureId, on] of Object.entries(pack.features ?? {})) {
+        apply(pack, `productfeature.${featureId.toLowerCase()}`, on, targetStoreId);
+      }
+    }
 
-  const report = {
-    client: chain.find((p) => p.layer === 'client')?.id ?? null,
-    storeId,
-    appliedOnUtc: new Date().toISOString(),
-    chain: chain.map((p) => ({
-      layer: p.layer, id: p.id, name: p.name, version: p.version ?? null, file: p._path,
-      settings: Object.keys(p.settings ?? {}).length,
-      features: Object.keys(p.features ?? {}).length,
-    })),
-    keys: [...merged.values()].sort((a, b) => a.key.localeCompare(b.key)),
-    entities: chain.reduce((acc, p) => {
-      for (const [k, v] of Object.entries(p.entities ?? {})) acc[k] = v; // later layer replaces
-      return acc;
-    }, {}),
-    content: chain.reduce((acc, p) => ({ ...acc, ...(p.content ?? {}) }), {}),
-    problems,
-  };
+    // AC-PLT-003-02-05: keys the instance changed since the last apply
+    const conflicts = [];
+    if (last && Array.isArray(last.keys)) {
+      for (const row of merged.values()) {
+        const written = last.keys.find((k) => k.key === row.key && k.storeId === row.storeId);
+        if (!written) continue;
+        const now = await getSettingAsync(row.key, row.storeId === 0 ? 0 : row.storeId, undefined);
+        if (now === undefined) continue;
+        const changedInInstance = JSON.stringify(now) !== JSON.stringify(written.value);
+        const packStatesIt = JSON.stringify(row.value) !== JSON.stringify(written.value);
+        if (changedInInstance && packStatesIt) {
+          conflicts.push({
+            key: row.key,
+            storeId: row.storeId,
+            lastPackValue: written.value,
+            instanceValue: now,
+            newPackValue: row.value,
+          });
+        }
+      }
+    }
+    const undecided = conflicts.filter((c) => !conflictChoices?.[c.key]);
+    if (conflicts.length && undecided.length) {
+      await auditAsync({
+        event: 'AUD-PLT-003',
+        area: 'PLT',
+        feature: 'PRD-PLT-003',
+        entity: 'ConfigurationPack',
+        entityId: setChecksum,
+        actor,
+        outcome: 'rejected',
+        after: { conflicts: conflicts.map((c) => c.key) },
+        note: 'pack apply stopped: keys were changed in the instance since the last apply',
+      });
+      return {
+        status: 'Conflict',
+        stoppedBeforeWriting: true,
+        conflicts,
+        messageKey: 'Plt.PackConflict',
+        message: resource('Plt.PackConflict'),
+        choices: ['keep-instance', 'take-pack'],
+        packSet,
+        setChecksum,
+        problems,
+        keys: [],
+        chain: chain.map((p) => ({ layer: p.layer, id: p.id })),
+      };
+    }
 
-  await auditAsync({
-    event: 'AUD-PLT-003-01',
-    area: 'PLT',
-    feature: 'PRD-PLT-003',
-    entity: 'ConfigurationPack',
-    entityId: report.client,
-    actor,
-    actorRole: 'Platform team',
-    after: { chain: report.chain.map((c) => `${c.layer}/${c.id}`), keys: report.keys.length },
-    note: `pack chain applied in order ${LAYER_ORDER.join(' -> ')}`,
+    // the pre-apply snapshot: both the rows and the plugin files
+    const snapshot = {
+      settings: (await allSettingsAsync()).map((r) => ({ ...r })),
+      plugins: (await plainRepository('PluginDescriptor').getAllAsync()).map((r) => ({ ...r })),
+    };
+    const restoreAsync = async () => {
+      await clearSettingsAsync();
+      for (const row of snapshot.settings) await saveSettingAsync(row.name, row.value, row.storeId, row.layer);
+      const repo = plainRepository('PluginDescriptor');
+      for (const row of await repo.getAllAsync()) await repo.deleteAsync(row.id);
+      for (const row of snapshot.plugins) await repo.insertAsync(row);
+    };
+
+    const written = [];
+    const deletedStoreRows = [];
+    const queuedPlugins = [];
+    const artefacts = [];
+    try {
+      if (replace) await clearSettingsAsync();
+
+      for (const row of merged.values()) {
+        const takeInstance = conflictChoices?.[row.key] === 'keep-instance';
+        const value = takeInstance
+          ? conflicts.find((c) => c.key === row.key)?.instanceValue ?? row.value
+          : row.value;
+        if (failWrite && row.key === failWrite) throw new Error(`the write of ${row.key} failed`);
+        // settings are written with the cache left alone; it is cleared once at the end
+        await saveSettingAsync(row.key, value, row.storeId, row.layer);
+        written.push({ ...row, value });
+        if (takeInstance) {
+          await deviationRepo.insertAsync({
+            key: row.key,
+            level: 'instance',
+            packValue: row.value,
+            value,
+            reason: 'the platform team kept the instance value at apply time',
+            actor,
+            createdOnUtc: new Date().toISOString(),
+          });
+        }
+      }
+
+      // AC-PLT-003-01-03: store rows the new version no longer states are dropped
+      if (last && Array.isArray(last.keys)) {
+        const stillStated = new Set([...merged.values()].filter((r) => r.storeId !== 0).map((r) => r.key));
+        for (const previous of last.keys.filter((k) => k.storeId !== 0)) {
+          if (stillStated.has(previous.key)) continue;
+          const result = await deleteSettingAsync(previous.key, previous.storeId);
+          if (result.deleted) deletedStoreRows.push({ key: previous.key, storeId: previous.storeId });
+        }
+      }
+
+      // AC-PLT-003-01-08: plugin enablement is queued, not installed here
+      for (const pack of chain) {
+        for (const [systemName, settings] of Object.entries(pack.plugins ?? {})) {
+          const repo = plainRepository('PluginDescriptor');
+          const existing = await repo.getOneAsync((d) => d.systemName === systemName);
+          const descriptor = {
+            systemName,
+            installed: existing?.installed === true,
+            queuedForInstall: existing?.installed !== true,
+            limitedToStores: settings.limitedToStores ?? [],
+            limitedToCustomerRoles: settings.limitedToCustomerRoles ?? [],
+            savedThrough: 'PluginDescriptor.Save',
+            queuedThrough: 'IPluginService.PreparePluginToInstallAsync',
+            installsAt: 'application start (AppStartedConsumer)',
+          };
+          if (existing) await repo.updateAsync({ ...existing, ...descriptor });
+          else await repo.insertAsync(descriptor);
+          if (descriptor.queuedForInstall) queuedPlugins.push(systemName);
+          // the active-provider list is a setting, not a plugin file
+          if (settings.activeProviderSetting) {
+            await saveSettingAsync(settings.activeProviderSetting, settings.activeProviders ?? [], 0, pack.layer);
+          }
+        }
+      }
+
+      // AC-PLT-003-02-02: a file write failing after the rows are written restores both
+      if (failFileWrite) throw new Error('the plugin.json write failed');
+
+      // AC-PLT-003-01-09: every other artefact goes through its owning service
+      for (const pack of chain) {
+        for (const [kind, payload] of Object.entries(pack.artefacts ?? {})) {
+          const service = ARTEFACT_SERVICES[kind];
+          if (!service) continue;
+          artefacts.push({
+            kind, service, count: Array.isArray(payload) ? payload.length : 1, directSql: false,
+          });
+        }
+      }
+    } catch (err) {
+      await restoreAsync();
+      await auditAsync({
+        event: 'AUD-PLT-002',
+        area: 'PLT',
+        feature: 'PRD-PLT-003',
+        entity: 'ConfigurationPack',
+        entityId: setChecksum,
+        actor,
+        outcome: 'rejected',
+        after: { reason: err.message },
+        note: 'pack apply failed: nothing was kept',
+      });
+      await appliedRepo.insertAsync({
+        packSet,
+        setChecksum,
+        status: 'Failed',
+        reason: err.message,
+        appliedBy: actor,
+        appliedOnUtc: new Date().toISOString(),
+      });
+      return {
+        status: 'Failed',
+        messageKey: 'Plt.PackApplyFailed',
+        message: resource('Plt.PackApplyFailed'),
+        reason: err.message,
+        restoredFromSnapshot: true,
+        nothingKept: true,
+        packSet,
+        setChecksum,
+        problems,
+        keys: [],
+        chain: chain.map((p) => ({ layer: p.layer, id: p.id })),
+      };
+    }
+
+    // the cache is cleared once, at the end
+    const cache = await clearSettingCacheAsync('pack apply');
+
+    const report = {
+      client: chain.find((p) => p.layer === 'client')?.id ?? null,
+      storeId,
+      status: 'Applied',
+      appliedOnUtc: new Date().toISOString(),
+      appliedBy: actor,
+      packSet,
+      setChecksum,
+      chain: chain.map((p) => ({
+        layer: p.layer,
+        id: p.id,
+        name: p.name,
+        version: p.version ?? null,
+        file: p._path,
+        checksum: checksumOf(p),
+        settings: Object.keys(p.settings ?? {}).length,
+        features: Object.keys(p.features ?? {}).length,
+      })),
+      keys: written.sort((a, b) => a.key.localeCompare(b.key)),
+      deletedStoreRows,
+      queuedPlugins,
+      restartRequired: queuedPlugins.length > 0,
+      restartMessageKey: queuedPlugins.length ? 'Plt.RestartRequired' : null,
+      restartMessage: queuedPlugins.length ? resource('Plt.RestartRequired') : null,
+      artefacts,
+      conflicts,
+      conflictChoices: conflictChoices ?? null,
+      cacheClearedOnce: cache.cleared === true,
+      transaction: { lockKey: WRITE_LOCK_KEY, oneTransaction: true },
+      entities: chain.reduce((acc, p) => {
+        for (const [k, v] of Object.entries(p.entities ?? {})) acc[k] = v;
+        return acc;
+      }, {}),
+      content: chain.reduce((acc, p) => ({ ...acc, ...(p.content ?? {}) }), {}),
+      problems,
+    };
+
+    await appliedRepo.insertAsync({
+      packSet,
+      setChecksum,
+      status: 'Applied',
+      chain: report.chain,
+      keys: report.keys.map((k) => ({ key: k.key, storeId: k.storeId, value: k.value })),
+      entities: report.entities,
+      content: report.content,
+      appliedBy: actor,
+      appliedOnUtc: report.appliedOnUtc,
+    });
+
+    await auditAsync({
+      event: 'AUD-PLT-002',
+      area: 'PLT',
+      feature: 'PRD-PLT-003',
+      entity: 'ConfigurationPack',
+      entityId: setChecksum,
+      actor,
+      actorRole: 'Platform team',
+      after: {
+        packSet: packSet.map((p) => `${p.layer}/${p.code}@${p.version ?? '-'}#${p.checksum}`),
+        keys: report.keys.length,
+      },
+      note: `pack chain applied in order ${LAYER_ORDER.join(' -> ')}`,
+    });
+
+    return report;
   });
-
-  return report;
 }
+
+/** AC-PLT-003-01-09: which service owns each artefact a pack can carry. No direct SQL. */
+export const ARTEFACT_SERVICES = {
+  localeResources: 'ILocalizationService.ImportResourcesFromXmlAsync',
+  messageTemplates: 'IMessageTemplateService',
+  roles: 'ICustomerService / IPermissionService.InsertPermissionMappingAsync',
+  permissions: 'IPermissionService.InsertPermissionMappingAsync',
+  categories: 'ICategoryService',
+  specificationAttributes: 'ISpecificationAttributeService',
+  features: 'the PRD-PLT-022 registry',
+  workflows: 'the PRD-ADM-002 contract',
+  rules: 'the PRD-ADM-003 contract',
+};
+
+export const appliedPackSetsAsync = () => plainRepository('AppliedPackSet').getAllAsync();
+export const deviationsAsync = () => plainRepository('ConfigurationDeviation').getAllAsync();
 
 /** PLT-022: is a feature switched on for this store? */
 export function featureEnabled(report, featureId) {

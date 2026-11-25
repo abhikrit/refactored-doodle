@@ -21,6 +21,7 @@ import {
   claimOverride, registerProvider, providers, runProviders, overrideRegister, providerRegister,
 } from './providers.js';
 import { subscribe, publishAsync, consumerRegister } from './events.js';
+import { declareSettingKeys } from './pack-loader.js';
 import { withLockAsync, lockKey } from './locker.js';
 import { auditAsync, auditTrailAsync } from './audit.js';
 import { sendAsync, resource, resourceExists } from './messages.js';
@@ -74,7 +75,7 @@ export async function loadPluginsAsync({ root, mocks = {} }) {
       messageKeys: registry.messages.filter((m) => m.area === area),
       // core services
       repository,
-      settings: { saveSettingAsync, getSettingAsync, getSettingGroupAsync },
+      settings: { saveSettingAsync, getSettingAsync, getSettingGroupAsync, declareSettingKeys },
       providers: { claimOverride, registerProvider, providers, runProviders },
       events: { subscribe, publishAsync },
       locker: { withLockAsync, lockKey },
@@ -87,6 +88,9 @@ export async function loadPluginsAsync({ root, mocks = {} }) {
       addRouter: (path, router) => routers.push({ area, path, router }),
       declare: (what) => declarations.push({ area, ...what }),
     };
+    // AC-PLT-003-01-04: a plugin owns the keys of its own area prefix; the pack loader accepts a
+    // key only when the native catalogue or an installed plugin knows it.
+    declareSettingKeys({ owner: d.systemName, prefixes: [`${String(area).toLowerCase()}.`], keys: [] });
     if (d.plugin?.install) await d.plugin.install(ctx);
     // AC-ADM-001-04-01: the register's reader must run after every other product plugin, so the
     // INopStartup order each plugin declares and the order it actually installed in are both

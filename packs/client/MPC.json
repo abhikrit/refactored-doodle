@@ -87,8 +87,17 @@
     "storefronts": [
       {
         "id": 1,
+        "code": "main",
         "name": "Malawi Post Online",
-        "channel": "B2B + B2C"
+        "channel": "B2C",
+        "url": "mpc.example.com"
+      },
+      {
+        "id": 2,
+        "code": "business",
+        "name": "Malawi Post Business",
+        "channel": "B2B",
+        "url": "business.mpc.example.com"
       }
     ],
     "tagline": "SME marketplace, postal, financial and e-government services"

@@ -52,6 +52,13 @@ export async function getSettingGroupAsync(group, storeId = 0) {
   return out;
 }
 
+/** The row of one store only - no fallback to the shared value (BR-PLT-030, BR-PLT-011). */
+export async function getStoreSettingAsync(key, storeId) {
+  const name = normalise(key);
+  const row = await settingRepo().getOneAsync((s) => s.name === name && s.storeId === Number(storeId));
+  return row ? row.value : undefined;
+}
+
 export async function allSettingsAsync() {
   const rows = await settingRepo().getAllAsync();
   return rows.slice().sort((a, b) => a.name.localeCompare(b.name) || a.storeId - b.storeId);
@@ -67,3 +74,29 @@ export async function missingKeysAsync(catalogue) {
 export async function clearSettingsAsync() {
   await settingRepo().truncateAsync();
 }
+
+/**
+ * AC-PLT-003-01-03: a store row the new pack version no longer states is deleted, so the store
+ * uses the shared (StoreId 0) value again.
+ */
+export async function deleteSettingAsync(key, storeId) {
+  const name = normalise(key);
+  const row = await settingRepo().getOneAsync((s) => s.name === name && s.storeId === storeId);
+  if (!row) return { deleted: false };
+  await settingRepo().deleteAsync(row.id);
+  return { deleted: true, name, storeId };
+}
+
+/**
+ * ISettingService.ClearCacheAsync. The prototype resolves every read from the store, so there is
+ * no cache to drop; the call is recorded, because AC-PLT-003-02-03 requires it to happen once at
+ * the end of an apply rather than after every write.
+ */
+const cacheClears = [];
+export async function clearSettingCacheAsync(reason = 'pack apply') {
+  cacheClears.push({ reason, at: new Date().toISOString() });
+  if (cacheClears.length > 100) cacheClears.shift();
+  return { cleared: true, reason, clears: cacheClears.length };
+}
+
+export const settingCacheClears = () => cacheClears.slice().reverse();

@@ -1,0 +1,299 @@
+{
+  "note": "The setting keys this prototype exercises, grouped by the ISettings class or product prefix that owns each. It is the subset of the nopCommerce 5.00.1 catalogue the prototype touches, not the whole of it: a product plugin declares its own keys at installation, and the pack loader accepts a key only when this catalogue or an installed plugin knows it (AC-PLT-003-01-04).",
+  "nativeClasses": {
+    "storeinformationsettings": {
+      "storename": "string",
+      "defaultstoretheme": "string",
+      "displayeucookielawwarning": "boolean",
+      "defaultcountrytwoletterisocode": "string",
+      "storeowneremail": "string"
+    },
+    "ordersettings": {
+      "anonymouscheckoutallowed": "boolean",
+      "termsofserviceonorderconfirmpage": "boolean",
+      "customordernumbermask": "string",
+      "isreorderallowed": "boolean",
+      "completeorderwhendelivered": "boolean",
+      "onepagecheckoutenabled": "boolean",
+      "disablebillingaddresscheckoutstep": "boolean",
+      "placeorderwithlock": "boolean",
+      "minimumorderplacementinterval": "number",
+      "allowcustomerscancelorders": "boolean"
+    },
+    "catalogsettings": {
+      "enablespecificationattributefiltering": "boolean",
+      "compareproductsenabled": "boolean",
+      "productreviewsmustbeapproved": "boolean",
+      "productreviewpossibleonlyafterpurchasing": "boolean",
+      "allowviewunpublishedproductpage": "boolean",
+      "compareproductsnumber": "number",
+      "productsearchenabled": "boolean",
+      "productsearchautocompleteenabled": "boolean",
+      "allowproductsorting": "boolean",
+      "enablepricerangefiltering": "boolean",
+      "productsalsopurchasedenabled": "boolean",
+      "recentlyviewedproductsenabled": "boolean",
+      "priceliststrategy": "string",
+      "searchpageproductsperpage": "number"
+    },
+    "currencysettings": {
+      "primarystorecurrencyid": "number"
+    },
+    "localizationsettings": {
+      "defaultlanguageid": "number"
+    },
+    "datetimesettings": {
+      "defaultstoretimezoneid": "string"
+    },
+    "paymentsettings": {
+      "activepaymentmethodsystemnames": "array",
+      "allowrepostingpayments": "boolean"
+    },
+    "shippingsettings": {
+      "activeshippingratecomputationmethodsystemnames": "array",
+      "activepickuppointprovidersystemnames": "array",
+      "allowpickupinstore": "boolean",
+      "allowcustomertochoosedeliverydate": "boolean",
+      "displayshipmenteventstocustomers": "boolean",
+      "deliverydaterangedays": "number",
+      "estimateshippingcartpageenabled": "boolean",
+      "freeshippingoverxvalue": "string"
+    },
+    "shoppingcartsettings": {
+      "allowmultiplewishlist": "boolean",
+      "vendorenabled": "boolean",
+      "vendorrequired": "boolean",
+      "minishoppingcartenabled": "boolean",
+      "allowcartitemediting": "boolean",
+      "displaycartafteraddingproduct": "boolean",
+      "maximumshoppingcartitems": "number"
+    },
+    "vendorsettings": {
+      "showvendoronproductdetailspage": "boolean",
+      "termsofserviceenabled": "boolean"
+    },
+    "otpsettings": {
+      "loginbyphoneenabled": "boolean",
+      "otptimelife": "number",
+      "otplength": "number",
+      "otpfailedallowedattempts": "number",
+      "otpcountattemptstosendcode": "number",
+      "otptimetorepeat": "number"
+    },
+    "countrysettings": {
+      "isocode": "string",
+      "name": "string"
+    },
+    "addresssettings": {
+      "countyenabled": "boolean",
+      "countyrequired": "boolean"
+    },
+    "taxsettings": {
+      "defaulttaxcategoryid": "number",
+      "defaultrate": "number",
+      "euvatenabled": "boolean",
+      "euvatusewebservice": "boolean",
+      "euvatallowvatexemption": "boolean"
+    },
+    "gdprsettings": {
+      "gdprenabled": "boolean",
+      "logprivacypolicyconsent": "boolean",
+      "lognewsletterconsent": "boolean",
+      "loguserprofilechanges": "boolean",
+      "deleteinactivecustomersaftermonths": "string"
+    },
+    "securitysettings": {
+      "useaesencryptionalgorithm": "boolean",
+      "adminareaallowedipaddresses": "array",
+      "honeypotenabled": "boolean",
+      "honeypotinputname": "string",
+      "loghoneypotdetection": "boolean",
+      "encryptionkey": "string",
+      "encryptionkey.layer": "string"
+    },
+    "customersettings": {
+      "passwordminlength": "number",
+      "failedpasswordallowedattempts": "number",
+      "failedpasswordlockoutminutes": "number",
+      "onlinecustomerminutes": "number",
+      "storeipaddresses": "boolean",
+      "passwordmaxlength": "number",
+      "passwordrequirelowercase": "boolean",
+      "passwordrequireuppercase": "boolean",
+      "passwordrequiredigit": "boolean",
+      "passwordrequirenonalphanumeric": "boolean",
+      "unduplicatedpasswordsnumber": "number",
+      "passwordlifetime": "number",
+      "requiredreloginafterpasswordchange": "boolean",
+      "notifyfailedloginattempt": "boolean",
+      "passwordrecoverylinkdaysvalid": "number",
+      "userregistrationtype": "string",
+      "companyrequired": "boolean",
+      "defaultpasswordformat": "string",
+      "hashedpasswordformat": "string",
+      "phonenumbervalidationenabled": "boolean"
+    },
+    "srcsettings": {
+      "lowconnectivitytimeoutseconds": "number",
+      "lowconnectivityretries": "number"
+    },
+    "multifactorauthenticationsettings": {
+      "activeauthenticationmethodsystemnames": "string",
+      "forcemultifactorauthentication": "boolean"
+    },
+    "messagessettings": {
+      "activesmsprovidersystemname": "string"
+    },
+    "rfqsettings": {
+      "allowcustomergeneratequotepdf": "boolean"
+    },
+    "externalauthenticationsettings": {
+      "logerrors": "boolean"
+    },
+    "captchasettings": {
+      "enabled": "boolean",
+      "captchatype": "string",
+      "recaptchapublickey": "string",
+      "recaptchaprivatekey": "string",
+      "recaptchav3scorethreshold": "string"
+    },
+    "googleanalyticssettings": {
+      "enableecommerce": "boolean"
+    },
+    "hostingconfig": {
+      "forwardedforheadername": "string",
+      "knownproxies": "string",
+      "knownnetworks": "string",
+      "useproxy": "string",
+      "forwardedprotoheadername": "string"
+    },
+    "returnrequestsettings": {
+      "returnrequestsenabled": "boolean",
+      "returnrequestsallowfiles": "boolean",
+      "returnrequestsfilemaximumsize": "number",
+      "returnrequestnumbermask": "string",
+      "numberofdaysreturnrequestavailable": "number"
+    }
+  },
+  "productKeys": {
+    "store": {
+      "sslenabled": "boolean"
+    },
+    "pay": {
+      "bulkbuyer.role": "string",
+      "fiscal.adapter": "string",
+      "country.rails": "array"
+    },
+    "sel": {
+      "marketplace.enabled": "boolean"
+    },
+    "chk": {
+      "pickup.identification": "array",
+      "map.pinenabled": "boolean",
+      "address.locatorrule": "array",
+      "pickup.failurelimit": "number"
+    },
+    "iam": {
+      "mfa.requiredroles": "array",
+      "customercoderequiredforacting": "boolean",
+      "delegablepermissions": "array",
+      "invitationvaliditydays": "number",
+      "privilegedpermissions": "array",
+      "actingconsentcoderequired": "boolean",
+      "suspiciousloginrules": "object",
+      "accountactivitylookbackdays": "number",
+      "showstaffnametocustomers": "boolean",
+      "accountsyncfields": "object",
+      "verificationadapters": "array",
+      "overbudgetaction": "string",
+      "mfarequiredroles": "array",
+      "passkeysenabled": "boolean",
+      "otpsendlimitperip": "number",
+      "sensitiveroles": "array",
+      "reacceptancepolicies": "array",
+      "sellertermsreacceptance": "boolean",
+      "registrationpolicies": "array",
+      "buyerloginfactor": "string",
+      "quickactions": "string",
+      "concurrentsessionlimit": "number",
+      "concurrentsessionlimitaction": "string",
+      "identityproviders": "array",
+      "ssogrouprolemap": "object",
+      "tradedocumentextensions": "array",
+      "tradedocumentmaxsizekb": "number",
+      "traderequireddocuments": "array"
+    },
+    "trk": {
+      "channels.enabled": "array",
+      "route.chk.orderplacedgroup": "array",
+      "route.trk.shipmentdispatched": "array",
+      "route.chk.pickupcode": "array",
+      "route.pay.paymentreceived": "array",
+      "channels": "array"
+    },
+    "log": {
+      "country.carriers": "array"
+    },
+    "sec": {
+      "lawprofile": "string",
+      "countryprofile.ke": "object",
+      "countryprofile.mw": "object",
+      "securitymonitoringexport": "object",
+      "privacyofficeremail": "string",
+      "securityofficeremail": "string",
+      "breachdeadlineleadhours": "number",
+      "trklookupsbeforecaptcha": "string",
+      "dataclassification": "string",
+      "dataclassificationenabled": "boolean",
+      "cookiecategories": "string",
+      "widgetcategorymap": "string",
+      "edgeprotection": "object",
+      "applicationacceptstrafficfrom": "string",
+      "tlschecklist": "string",
+      "encryptionatrest": "object",
+      "securityexportwatermark": "number",
+      "datresidencyregion": "string",
+      "dataresidencyregion": "string",
+      "dataresidency": "object",
+      "fixdeadlinedays": "string",
+      "pentestacceptedrisks": "array",
+      "instancecountry": "string",
+      "analyticsinuse": "boolean"
+    },
+    "chn": {
+      "sms.senderidrequired": "boolean",
+      "appchannelactive": "boolean"
+    },
+    "adm": {
+      "workdraftretentiondays": "number"
+    },
+    "productfeature": {
+      "prd-iam-026": "string"
+    },
+    "misc": {
+      "rfq.active": "boolean"
+    },
+    "src": {
+      "recommendationserviceavailable": "boolean"
+    }
+  },
+  "removedIn500": {
+    "customersettings.phonenumbervalidationuseregex": "removed in 5.00: 5.00 validates phone numbers with libphonenumber when CustomerSettings.PhoneNumberValidationEnabled is on",
+    "customersettings.phonenumbervalidationrule": "removed in 5.00: 5.00 validates phone numbers with libphonenumber when CustomerSettings.PhoneNumberValidationEnabled is on"
+  },
+  "movedIn500": {
+    "ordersettings.returnrequestsenabled": "returnrequestsettings.returnrequestsenabled",
+    "ordersettings.returnrequestsallowfiles": "returnrequestsettings.returnrequestsallowfiles",
+    "ordersettings.returnrequestsfilemaximumsize": "returnrequestsettings.returnrequestsfilemaximumsize",
+    "ordersettings.returnrequestnumbermask": "returnrequestsettings.returnrequestnumbermask",
+    "ordersettings.numberofdaysreturnrequestavailable": "returnrequestsettings.numberofdaysreturnrequestavailable"
+  },
+  "removedPermissionsIn500": [
+    "ContentManagement.NewsView",
+    "ContentManagement.NewsCreateEditDelete",
+    "ContentManagement.PollsView",
+    "ContentManagement.PollsCreateEditDelete",
+    "ContentManagement.ForumsCreateEditDelete"
+  ],
+  "removedPermissionsNote": "news, polls and forums are the bundled plugins Misc.News, Misc.Polls and Misc.Forums in 5.00, each with its own permissions"
+}

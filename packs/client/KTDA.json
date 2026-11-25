@@ -56,13 +56,17 @@
     "storefronts": [
       {
         "id": 1,
+        "code": "main",
         "name": "KTDA Trade (B2B)",
-        "channel": "B2B"
+        "channel": "B2C",
+        "url": "ktda.example.com"
       },
       {
         "id": 2,
-        "name": "KTDA Shop (B2C)",
-        "channel": "B2C"
+        "code": "trade",
+        "name": "KTDA Trade",
+        "channel": "B2B",
+        "url": "trade.ktda.example.com"
       }
     ],
     "tagline": "Value-added teas, bulk teas, contract packaging and forward contracts"
