@@ -8,10 +8,12 @@
 // and client pack. It is labelled as prototype chrome so nobody mistakes it for a product screen.
 
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import {
+  Link, NavLink, Navigate, useLocation,
+} from 'react-router-dom';
 import { useProduct, money } from '../../lib/store.jsx';
 import { api } from '../../lib/api.js';
-import { Badge, Button } from './kit.jsx';
+import { Badge, Button, Spinner } from './kit.jsx';
 
 /* ------------------------------------------------------- prototype control --- */
 
@@ -391,6 +393,61 @@ function StaffAccount() {
   );
 }
 
+/**
+ * The administration area is authenticated: Security.AccessAdminPanel.
+ * nopCommerce has no administrator login page of its own - an unauthenticated request to /Admin
+ * is sent to the storefront login with ReturnUrl, and a signed-in customer without the
+ * permission gets Access denied. Both are reproduced here, once, for every admin route.
+ */
+function AdminGate({ children }) {
+  const { customer } = useProduct();
+  const { pathname, search } = useLocation();
+  const [state, setState] = useState({ loading: true, canOpenAdmin: false });
+
+  useEffect(() => {
+    let live = true;
+    setState((s) => ({ ...s, loading: true }));
+    api.get('/admin-console/console')
+      .then((r) => live && setState({ loading: false, canOpenAdmin: r.canOpenAdmin === true }))
+      .catch(() => live && setState({ loading: false, canOpenAdmin: false }));
+    return () => { live = false; };
+  }, [customer?.id]);
+
+  if (state.loading) return <div className="p-10"><Spinner label="Checking permissions" /></div>;
+  if (state.canOpenAdmin) return children;
+  if (!customer) return <Navigate to={`/login?returnUrl=${encodeURIComponent(pathname + search)}`} replace />;
+
+  return (
+    <div className="nop-admin min-h-full bg-nop-canvas p-6">
+      <div className="max-w-2xl mx-auto bg-white border border-nop-border">
+        <div className="bg-nop-red text-white px-4 py-2.5 text-[15px] font-semibold">Access denied</div>
+        <div className="p-4 space-y-3 text-[13.5px] text-nop-ink">
+          <p>
+            You are signed in as
+            {' '}
+            <span className="font-mono">{customer.email}</span>
+            {' '}
+            (
+            {(customer.roles ?? []).join(', ') || 'no role'}
+            ), which does not hold
+            {' '}
+            <span className="font-mono">Security.AccessAdminPanel</span>
+            .
+          </p>
+          <p className="text-nop-muted">
+            IAM-007 grants the permission to the staff roles. Sign in as an account that holds it -
+            admin@example.com opens all eight console areas, catalogue@example.com only Products.
+          </p>
+          <div className="flex gap-2">
+            <Button as="link" to={`/login?returnUrl=${encodeURIComponent(pathname + search)}`} variant="brand">Sign in as another user</Button>
+            <Button as="link" to="/">Public store</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function AdminShell({ children, breadcrumb }) {
   const { content, client } = useProduct();
   const { pathname } = useLocation();
@@ -401,7 +458,8 @@ export function AdminShell({ children, breadcrumb }) {
   const toggle = (label) => setOpenGroups((g) => (g.includes(label) ? g.filter((x) => x !== label) : [...g, label]));
 
   return (
-    <div className="nop-admin min-h-full flex bg-nop-canvas">
+    <AdminGate>
+      <div className="nop-admin min-h-full flex bg-nop-canvas">
       <aside className="w-60 shrink-0 bg-nop-sidebar text-gray-300 hidden md:flex md:flex-col">
         <div className="px-4 py-3 bg-nop-sidebar-dark">
           <div className="text-white font-semibold text-[14px]">nopCommerce</div>
@@ -461,8 +519,9 @@ export function AdminShell({ children, breadcrumb }) {
           </div>
         </header>
         <main className="flex-1 p-4 min-w-0">{children}</main>
+        </div>
       </div>
-    </div>
+    </AdminGate>
   );
 }
 

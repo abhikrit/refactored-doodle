@@ -58,6 +58,20 @@ const reset = async (client) => {
   await page.reload({ waitUntil: 'networkidle' });
 };
 
+/**
+ * The administration area is authenticated (Security.AccessAdminPanel), so a browser test that
+ * opens an admin screen signs in first, the way a person does: nopCommerce sends an
+ * unauthenticated request to /Admin to the storefront login with a ReturnUrl.
+ */
+const signInAsAdmin = async () => {
+  await page.goto(`${BASE}/login`, { waitUntil: 'networkidle' });
+  if ((await page.locator('#login-email').count()) === 0) return; // already signed in
+  await page.fill('#login-email', 'admin@example.com');
+  await page.fill('#login-password', 'demo');
+  await page.getByRole('button', { name: 'Log in', exact: true }).click();
+  await page.waitForURL(/\/(admin|)$/, { timeout: 10000 }).catch(() => {});
+};
+
 describe('Session 0 journey in the browser', { skip }, () => {
   test('AC-CHK-001-01-01', async () => {
     // Adding from the storefront shows the line and a server-calculated total.
@@ -93,6 +107,7 @@ describe('Session 0 journey in the browser', { skip }, () => {
     const mpcStore = await page.locator('body').first().innerText();
     assert.match(mpcStore, /Malawi Post/);
 
+    await signInAsAdmin();
     await page.goto(`${BASE}/admin/configuration/packs`, { waitUntil: 'networkidle' });
     const chain = await page.locator('main').innerText();
     for (const layer of ['global', 'country', 'vertical', 'client', 'store']) {
@@ -186,6 +201,7 @@ describe('Session 0 journey in the browser', { skip }, () => {
 
   test('AC-TRK-001-01-01', async () => {
     // The buyer can follow the shipment after an administrator dispatches it.
+    await signInAsAdmin();
     await page.goto(`${BASE}/admin/sales/orders`, { waitUntil: 'networkidle' });
     const firstOrder = page.locator('table tbody tr a').first();
     await firstOrder.click();
