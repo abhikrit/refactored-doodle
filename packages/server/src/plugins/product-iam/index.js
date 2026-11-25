@@ -23,6 +23,16 @@ import {
   useRecoveryTokenAsync, setSecurityAnswersAsync, answerRecoveryQuestionsAsync, confirmRecoveryAsync,
   rejectRecoveryAsync, recoveryRequestsAsync, lockoutState, sensitiveRolesAsync,
 } from './services/passwords.js';
+import {
+  PROVIDERS, mfaRequiredRolesAsync, activeProvidersAsync, forceSettingAsync, mfaRequiredForAsync,
+  selectProviderAsync, removeProviderAsync, startSecondFactorAsync, verifySecondFactorAsync,
+  registerPasskeyAsync, passkeysAsync, removePasskeyAsync, passkeySupportAsync,
+} from './services/mfa.js';
+import {
+  openSessionAsync, checkSessionAsync, forceLogoutAsync, revokeSessionAsync, rotateSessionAsync,
+  sessionsAsync, logoutSessionAsync, idleTimeoutAsync,
+} from './services/sessions.js';
+import { providersAsync, signInExternalAsync, provisionAsync, externalRecordsAsync } from './services/sso.js';
 import { mockRegistry } from '@product/mocks';
 
 export default definePlugin({
@@ -167,11 +177,113 @@ export default definePlugin({
     r.get('/password/recovery-requests', send(() => recoveryRequestsAsync()));
     r.get('/sensitive-roles', send((req) => sensitiveRolesAsync(req.storeId).then((roles) => ({ roles }))));
 
+
+    /* -------------------------------------------- PRD-IAM-004 and PRD-IAM-013 ---------- */
+    r.get('/mfa/providers', send(async (req) => ({
+      all: PROVIDERS,
+      active: await activeProvidersAsync(req.storeId),
+      requiredRoles: await mfaRequiredRolesAsync(req.storeId),
+      force: await forceSettingAsync(req.storeId),
+    })));
+    r.get('/mfa/state', send(async (req) => {
+      const me = await currentCustomerAsync(req.sessionId);
+      if (!me) return { required: false };
+      return mfaRequiredForAsync(await ctx.repository('Customer').getByIdAsync(me.id), req.storeId);
+    }));
+    r.post('/mfa/select', send(async (req) => selectProviderAsync({
+      customerId: req.body.customerId ?? (await currentCustomerAsync(req.sessionId))?.id,
+      systemName: req.body.systemName,
+      storeId: req.storeId,
+      actor: req.actorEmail,
+    })));
+    r.post('/mfa/remove', send(async (req) => removeProviderAsync({
+      customerId: req.body.customerId ?? (await currentCustomerAsync(req.sessionId))?.id,
+      by: req.actorEmail ?? 'administrator',
+      bySelf: req.body.bySelf === true,
+      storeId: req.storeId,
+    })));
+    r.post('/mfa/start', send((req) => startSecondFactorAsync({
+      customerId: req.body.customerId, storeId: req.storeId, smsProvider: sms(),
+    })));
+    r.post('/mfa/verify', send(async (req) => {
+      const verified = await verifySecondFactorAsync({ ...req.body, storeId: req.storeId });
+      if (!verified.ok) return verified;
+      const customer = await ctx.repository('Customer').getByIdAsync(req.body.customerId);
+      const signedIn = await completeSignInAsync({
+        sessionId: req.sessionId, customer, storeId: req.storeId, ipAddress: req.ip, channel: 'password+mfa', secondFactorDone: true,
+      });
+      return { ...signedIn, secondFactor: verified.verified };
+    }));
+    r.get('/passkeys', send(async (req) => {
+      const me = await currentCustomerAsync(req.sessionId);
+      return me ? passkeysAsync(me.id) : [];
+    }));
+    r.get('/passkeys/support', send((req) => passkeySupportAsync({
+      storeId: req.storeId, deviceSupports: req.query.deviceSupports !== 'false',
+    })));
+    r.post('/passkeys', send(async (req) => registerPasskeyAsync({
+      customerId: req.body.customerId ?? (await currentCustomerAsync(req.sessionId))?.id, ...req.body,
+    })));
+    r.delete('/passkeys/:credentialId', send(async (req) => removePasskeyAsync({
+      customerId: (await currentCustomerAsync(req.sessionId))?.id, credentialId: req.params.credentialId,
+    })));
+    r.post('/passkeys/sign-in', send(async (req) => {
+      const key = await ctx.repository('PasskeyCredential').getOneAsync((k) => k.credentialId === req.body.credentialId);
+      if (!key) return { ok: false, message: 'That passkey is not registered.' };
+      const customer = await ctx.repository('Customer').getByIdAsync(key.customerId);
+      await ctx.repository('PasskeyCredential').updateAsync({
+        ...key, signCount: (key.signCount ?? 0) + 1, lastUsedUtc: new Date().toISOString(),
+      });
+      // AC-IAM-013-01-04: the device verified the user, so this counts as the second factor
+      const signedIn = await completeSignInAsync({
+        sessionId: req.sessionId, customer, storeId: req.storeId, ipAddress: req.ip, channel: 'passkey', secondFactorDone: req.body.userVerified !== false,
+      });
+      return { ...signedIn, withPassword: false, userVerified: req.body.userVerified !== false };
+    }));
+
+    /* ---------------------------------------------------- PRD-IAM-006 sessions --------- */
+    r.get('/sessions', send((req) => sessionsAsync(req.query.customerId ? Number(req.query.customerId) : null)));
+    r.get('/sessions/timeout', send(async (req) => idleTimeoutAsync(await currentCustomerAsync(req.sessionId), req.storeId)));
+    r.post('/sessions/check', send((req) => checkSessionAsync({ sessionId: req.body.sessionId ?? req.sessionId, storeId: req.storeId })));
+    r.post('/sessions/force-logout', send(async (req) => {
+      const officer = await currentCustomerAsync(req.sessionId);
+      if (!await ctx.security.authorizeAsync('Identity.Core.Sessions.CreateEditDelete', officer)) {
+        return { ok: false, denied: true, permission: 'Identity.Core.Sessions.CreateEditDelete' };
+      }
+      return forceLogoutAsync({ customerId: Number(req.body.customerId), by: officer?.email ?? 'security officer', reason: req.body.reason ?? 'forced logout' });
+    }));
+    r.post('/sessions/:sessionId/revoke', send(async (req) => {
+      const officer = await currentCustomerAsync(req.sessionId);
+      if (!await ctx.security.authorizeAsync('Identity.Core.Sessions.CreateEditDelete', officer)) {
+        return { ok: false, denied: true, permission: 'Identity.Core.Sessions.CreateEditDelete' };
+      }
+      return revokeSessionAsync({ sessionId: req.params.sessionId, by: officer?.email ?? 'security officer' });
+    }));
+    r.post('/sessions/rotate', send((req) => rotateSessionAsync({
+      customerId: Number(req.body.customerId), browserSession: req.sessionId, reason: req.body.reason, storeId: req.storeId,
+    })));
+
+    /* --------------------------------------------------------- PRD-IAM-005 SSO -------- */
+    r.get('/sso/providers', send(async (req) => ({
+      providers: await providersAsync(req.storeId), records: await externalRecordsAsync(),
+    })));
+    r.post('/sso/sign-in', send(async (req) => {
+      const result = await signInExternalAsync({ ...req.body, storeId: req.storeId });
+      if (!result.ok) return result;
+      const customer = await ctx.repository('Customer').getByIdAsync(result.customer.id);
+      const signedIn = await completeSignInAsync({
+        sessionId: req.sessionId, customer, storeId: req.storeId, ipAddress: req.ip, channel: 'sso', secondFactorDone: true,
+      });
+      return { ...result, ...signedIn };
+    }));
+    r.post('/sso/provision', send((req) => provisionAsync({ ...req.body, storeId: req.storeId })));
+
     ctx.addRouter('/api/identity', r);
     ctx.declare({
       built: true,
-      owns: ['PRD-IAM-001', 'PRD-IAM-002', 'PRD-IAM-003', 'PRD-IAM-007', 'PRD-IAM-026'],
-      note: 'registration and login, mobile-number identity with one-time codes, password policy, lockout and recovery.',
+      owns: ['PRD-IAM-001', 'PRD-IAM-002', 'PRD-IAM-003', 'PRD-IAM-004', 'PRD-IAM-005', 'PRD-IAM-006',
+        'PRD-IAM-007', 'PRD-IAM-013', 'PRD-IAM-026'],
+      note: 'registration and login, mobile-number identity, password policy and recovery, second factors, single sign-on, sessions and passkeys.',
     });
   },
 });

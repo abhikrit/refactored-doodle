@@ -16,6 +16,7 @@ export const lockKey = {
   wallet: (walletId) => `pay-wallet-${walletId}`,
   quota: (quotaId) => `adm-quota-${quotaId}`,
   approval: (itemId) => `adm-approval-${itemId}`,
+  session: (customerId) => `iam-session-${customerId}`,
   exception: (exceptionId) => `adm-exception-${exceptionId}`,
   // Proposed: section 12.4 names the approval, quota and exception keys; a case advances under
   // its own key so two signals never interleave.

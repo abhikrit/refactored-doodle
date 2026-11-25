@@ -297,6 +297,7 @@ export async function setCustomerActiveAsync({
   const updated = await customerRepo.updateAsync({
     ...customer,
     active,
+    accountState: active ? 'Active' : 'DeactivatedByStaff',
     deactivationReason: active ? null : reason,
     deactivatedOnUtc: active ? null : new Date().toISOString(),
   });

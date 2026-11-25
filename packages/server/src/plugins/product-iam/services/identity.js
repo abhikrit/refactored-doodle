@@ -61,12 +61,14 @@ export async function signInAsync({
 
   // AC-IAM-001-04-01 and 04-02: an account awaiting validation or approval cannot sign in
   if (customer.active === false) {
+    const deactivated = String(customer.accountState ?? '').startsWith('Deactivated');
     return {
       ok: false,
       notActive: true,
+      deactivated,
       messageKey: customer.accountState === 'DeactivatedByUser' || customer.accountState === 'DeactivatedByStaff'
         ? 'Iam.AccountDeactivated' : 'Account.Login.WrongCredentials.NotActive',
-      message: customer.accountState?.startsWith('Deactivated')
+      message: deactivated
         ? resource('Iam.AccountDeactivated')
         : 'The account is not active',
       accountState: customer.accountState ?? 'Inactive',

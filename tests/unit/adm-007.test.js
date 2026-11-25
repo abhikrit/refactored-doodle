@@ -177,6 +177,10 @@ describe('US-ADM-007-03 to 07 dashboard, views, drafts, shortcuts, live count', 
   test('AC-ADM-007-07-01', async () => {
     // "the console header shows the count of online customers (native online-customer data)"
     const customers = await repository('Customer').getAllAsync((c) => !c.deleted);
+    // every sign-in stamps the activity time, so the window starts from a known state
+    for (const c of customers) {
+      await repository('Customer').updateAsync({ ...c, lastActivityUtc: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString() });
+    }
     await repository('Customer').updateAsync({ ...customers[0], lastActivityUtc: new Date().toISOString() });
     await repository('Customer').updateAsync({ ...customers[1], lastActivityUtc: new Date(Date.now() - 60 * 60 * 1000).toISOString() });
 
