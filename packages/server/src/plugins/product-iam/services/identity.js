@@ -28,7 +28,9 @@ export async function customersAsync() {
 export async function signInAsync({
   sessionId, email, password = 'demo', storeId = 1, ipAddress = null, userAgent = null,
 }) {
-  const { lockoutState, recordFailedLoginAsync, passwordExpiredAsync } = await import('./passwords.js');
+  const {
+    lockoutState, recordFailedLoginAsync, passwordExpiredAsync, verifyPasswordAsync,
+  } = await import('./passwords.js');
   const customer = await repository('Customer').getOneAsync((c) => c.email === email && !c.deleted);
 
   if (!customer) {
@@ -45,7 +47,7 @@ export async function signInAsync({
     };
   }
 
-  if (customer.password !== password) {
+  if (!await verifyPasswordAsync(customer, password)) {
     const failed = await recordFailedLoginAsync({ customer, storeId });
     await auditAsync({
       event: 'AUD-IAM-012-02', area: 'IAM', feature: 'PRD-IAM-012', entity: 'Customer', entityId: customer.id, actor: email, outcome: 'rejected', note: `failed sign-in (attempt ${failed.attempts})`,

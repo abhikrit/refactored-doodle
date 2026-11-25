@@ -12,6 +12,7 @@ import { resource } from '../../../core/messages.js';
 import { authorizeAsync } from '../../../core/permissions.js';
 import { providers, runProviders } from '../../../core/providers.js';
 import { requestCodeAsync, verifyCodeAsync } from './otp.js';
+import { verifyPasswordAsync } from './passwords.js';
 import { forceLogoutAsync } from './sessions.js';
 import { recordReadAccessAsync, recordAuthEventAsync } from './auth-events.js';
 import { publishAsync } from '../../../core/events.js';
@@ -92,7 +93,7 @@ export async function selfDeactivateAsync({
   customer, password = null, code = null, storeId = 1,
 }) {
   const row = await customerRepo().getByIdAsync(customer.id);
-  const byPassword = password && row.password === password;
+  const byPassword = Boolean(password) && await verifyPasswordAsync(row, password);
   let byCode = false;
   if (!byPassword && code) {
     const verified = await verifyCodeAsync({

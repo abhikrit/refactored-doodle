@@ -7,7 +7,7 @@ import {
   test, before, after, describe,
 } from 'node:test';
 import assert from 'node:assert/strict';
-import { startAsync, SESSIONS } from './helpers/adm.js';
+import { startAsync, SESSIONS, createCustomerAsync } from './helpers/adm.js';
 import { repository } from '../../packages/server/src/core/repository.js';
 import { saveSettingAsync } from '../../packages/server/src/core/settings.js';
 import { auditTrailAsync } from '../../packages/server/src/core/audit.js';
@@ -27,11 +27,7 @@ async function signInAsync(email, session, password = 'demo') {
 }
 
 async function makeCustomerAsync(row) {
-  const existing = await repository('Customer').getOneAsync((c) => c.email === row.email);
-  if (existing) return repository('Customer').updateAsync({ ...existing, ...row });
-  return repository('Customer').insertAsync({
-    active: true, deleted: false, isSystemAccount: false, password: 'demo', createdOnUtc: new Date().toISOString(), ...row,
-  });
+  return createCustomerAsync({ isSystemAccount: false, ...row });
 }
 
 /* ========================================== PRD-IAM-010 user administration console ===== */

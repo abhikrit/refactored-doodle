@@ -29,6 +29,16 @@ import {
   classificationAsync, fieldClassAsync, setFieldClassAsync, maskAsync, maskRowsAsync,
   revealAsync, exportRowsAsync, maskForLogAsync, crmFieldRulesAsync, CLASSES, MASKING_RULES,
 } from './services/classification.js';
+import {
+  httpsCheckAsync, proxyConfigurationAsync, tlsCheckAsync, saveAdapterEndpointAsync,
+  adapterEndpointsAsync, encryptionAtRestAsync, recordEncryptionAtRestAsync,
+  securitySettingsAsync, passwordStorageAsync, cardDataScanAsync, reviewCardAdapterAsync,
+  recordCardPaymentAsync, CARD_STORAGE_WITHDRAWN, REMOVED_CARD_FIELDS,
+} from './services/hardening.js';
+import {
+  settingsAsync as captchaSettingsAsync, validateAsync as validateCaptchaAsync, lookupAsync,
+  providerTransferCheckAsync, configureAsync as configureCaptchaAsync, resetLookups,
+} from './services/captcha.js';
 
 export default definePlugin({
   area: 'SEC',
@@ -216,11 +226,49 @@ export default definePlugin({
       entity: req.query.entity ?? 'Customer', storeId: req.storeId,
     })));
 
+    /* ------------------- PRD-SEC-001 transport and encryption, PRD-SEC-003 PCI scope ---- */
+    r.get('/transport/https', send((req) => httpsCheckAsync({
+      scheme: req.query.scheme ?? 'https', path: req.query.path ?? '/', storeId: req.storeId,
+    })));
+    r.get('/transport/proxy', send((req) => proxyConfigurationAsync({ storeId: req.storeId })));
+    r.get('/transport/tls', send((req) => tlsCheckAsync({
+      version: req.query.version ?? 'TLS 1.2', cipherSuite: req.query.cipherSuite ?? null, storeId: req.storeId,
+    })));
+    r.get('/transport/adapters', send((req) => adapterEndpointsAsync({ storeId: req.storeId })));
+    r.post('/transport/adapters', send((req) => saveAdapterEndpointAsync({
+      ...req.body, actor: req.actorEmail, storeId: req.storeId,
+    })));
+    r.get('/encryption/at-rest', send((req) => encryptionAtRestAsync({ storeId: req.storeId })));
+    r.post('/encryption/at-rest', gate('Configuration.ManageSettings'), send((req) => recordEncryptionAtRestAsync({
+      ...req.body, actor: req.actorEmail, storeId: req.storeId,
+    })));
+    r.get('/encryption/settings', send((req) => securitySettingsAsync({ storeId: req.storeId })));
+    r.get('/encryption/passwords', send((req) => passwordStorageAsync({ storeId: req.storeId })));
+    r.get('/pci/card-scan', gate('Security.Core.AuditTrail.View'), send(() => cardDataScanAsync()));
+    r.get('/pci/withdrawn', send(() => ({ ...CARD_STORAGE_WITHDRAWN, removedFields: REMOVED_CARD_FIELDS })));
+    r.post('/pci/review-adapter', send((req) => reviewCardAdapterAsync({ ...req.body, storeId: req.storeId })));
+    r.post('/pci/card-payment', send((req) => recordCardPaymentAsync({ ...req.body, storeId: req.storeId })));
+
+    /* --------------------------------------------------- PRD-SEC-013 bot protection ----- */
+    r.get('/captcha', send((req) => captchaSettingsAsync(req.storeId)));
+    r.post('/captcha', gate('Configuration.ManageSettings'), send((req) => configureCaptchaAsync({
+      values: req.body?.values ?? {}, actor: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/captcha/validate', send((req) => validateCaptchaAsync({ ...req.body, storeId: req.storeId })));
+    r.post('/captcha/lookup', send((req) => lookupAsync({
+      session: req.body?.session ?? req.sessionId, response: req.body?.response ?? null, score: req.body?.score ?? null, storeId: req.storeId,
+    })));
+    r.post('/captcha/lookup/reset', send((req) => {
+      resetLookups(req.body?.session ?? null);
+      return { reset: true };
+    }));
+    r.get('/captcha/provider-transfer', send((req) => providerTransferCheckAsync({ storeId: req.storeId })));
+
     ctx.addRouter('/api/security', r);
     ctx.declare({
       built: true,
-      owns: ['PRD-SEC-004', 'PRD-SEC-007', 'PRD-SEC-012', 'PRD-SEC-014'],
-      builtFeatures: ['PRD-SEC-004', 'PRD-SEC-007', 'PRD-SEC-012', 'PRD-SEC-014'],
+      owns: ['PRD-SEC-001', 'PRD-SEC-003', 'PRD-SEC-004', 'PRD-SEC-007', 'PRD-SEC-012', 'PRD-SEC-013', 'PRD-SEC-014'],
+      builtFeatures: ['PRD-SEC-001', 'PRD-SEC-003', 'PRD-SEC-004', 'PRD-SEC-007', 'PRD-SEC-012', 'PRD-SEC-013', 'PRD-SEC-014'],
       note: 'the audit trail, the consent and cookie tools, the country data-protection pack and data classification',
     });
   },

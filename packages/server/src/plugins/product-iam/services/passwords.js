@@ -4,7 +4,7 @@
 // BR-IAM-020: for a role listed as sensitive, a recovery link or an SMS code alone is not enough -
 // a RecoveryRequest is opened and the configured extra check applies (SM-IAM-09).
 
-import { createHash } from 'node:crypto';
+import { createHash, randomBytes } from 'node:crypto';
 import { repository } from '../../../core/repository.js';
 import { getSettingAsync } from '../../../core/settings.js';
 import { auditAsync } from '../../../core/audit.js';
@@ -18,6 +18,30 @@ const requestRepo = () => repository('RecoveryRequest');
 const answerRepo = () => repository('SecurityAnswer');
 
 const sha = (value) => createHash('sha256').update(String(value)).digest('hex');
+
+/**
+ * CustomerSettings.DefaultPasswordFormat is Hashed and HashedPasswordFormat is SHA512 (the
+ * install defaults, AC-SEC-001-03-01), so a password is stored as a salted SHA-512 hash in
+ * CustomerPassword and the clear value is never kept (BR-SEC-001).
+ */
+export const newSalt = () => randomBytes(16).toString('base64');
+export const hashPassword = (password, salt) => createHash('sha512')
+  .update(`${salt}${password}`)
+  .digest('hex');
+
+/** The newest stored password of a customer, which is the one that signs them in. */
+export async function currentPasswordAsync(customerId) {
+  const rows = await passwordRepo().getAllAsync((r) => r.customerId === Number(customerId));
+  return rows.sort((a, b) => (b.id ?? 0) - (a.id ?? 0))[0] ?? null;
+}
+
+/** Verify a password against the stored salted hash. */
+export async function verifyPasswordAsync(customer, password) {
+  if (!customer || password === undefined || password === null) return false;
+  const row = await currentPasswordAsync(customer.id);
+  if (!row) return false;
+  return row.password === hashPassword(password, row.passwordSalt);
+}
 
 export async function sensitiveRolesAsync(storeId = 1) {
   return getSettingAsync('iam.sensitiveroles', storeId, ['Administrators', 'PlatformTeam', 'Finance', 'SecurityOfficer']);
@@ -52,9 +76,12 @@ export async function validatePasswordAsync({ password, customer = null, storeId
 
   if (customer && Number(unduplicated) > 0) {
     const history = (await passwordRepo().getAllAsync((p) => p.customerId === customer.id))
-      .sort((a, b) => new Date(b.createdOnUtc) - new Date(a.createdOnUtc))
+      .sort((a, b) => new Date(b.createdOnUtc) - new Date(a.createdOnUtc) || (b.id ?? 0) - (a.id ?? 0))
       .slice(0, Number(unduplicated));
-    if (history.some((p) => p.passwordHash === sha(value))) {
+    // each stored password has its own salt, so the history is checked hash by hash
+    if (history.some((p) => (p.passwordSalt
+      ? p.password === hashPassword(value, p.passwordSalt)
+      : p.passwordHash === sha(value)))) {
       errors.push({ rule: 'unduplicated', messageKey: 'Account.ChangePassword.Errors.PasswordWasAlreadyUsed', message: `You cannot reuse any of your last ${unduplicated} passwords.` });
     }
   }
@@ -82,11 +109,17 @@ export async function setPasswordAsync({
 }) {
   const check = await validatePasswordAsync({ password, customer, storeId });
   if (!check.ok) return { ok: false, errors: check.errors };
+  const passwordSalt = newSalt();
   await passwordRepo().insertAsync({
-    customerId: customer.id, passwordHash: sha(password), createdOnUtc: new Date().toISOString(),
+    customerId: customer.id,
+    passwordFormat: 'Hashed',
+    hashedPasswordFormat: 'SHA512',
+    passwordSalt,
+    password: hashPassword(password, passwordSalt),
+    createdOnUtc: new Date().toISOString(),
   });
   const updated = await customerRepo().updateAsync({
-    ...customer, password, passwordChangedOnUtc: new Date().toISOString(), failedLoginAttempts: 0, cannotLoginUntilDateUtc: null,
+    ...customer, password: null, passwordChangedOnUtc: new Date().toISOString(), failedLoginAttempts: 0, cannotLoginUntilDateUtc: null,
   });
   const reLogin = await getSettingAsync('customersettings.requiredreloginafterpasswordchange', storeId, false);
   await auditAsync({

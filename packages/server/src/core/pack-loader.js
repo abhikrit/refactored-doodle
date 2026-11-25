@@ -68,6 +68,35 @@ export function validatePack(pack) {
       });
     }
   }
+  // BR-SEC-001: the password format of the installation is Hashed. A pack that asks for Clear or
+  // Encrypted is refused and nothing is changed.
+  const passwordFormat = pack.settings?.['customersettings.defaultpasswordformat'];
+  if (passwordFormat !== undefined && !/^hashed$/i.test(String(passwordFormat))) {
+    problems.push({
+      severity: 'refused',
+      key: 'customersettings.defaultpasswordformat',
+      rule: 'BR-SEC-001',
+      message: 'the password format is Hashed; Clear and Encrypted are refused',
+    });
+  }
+  // BR-SEC-002: the encryption key is unique to the instance and never travels in a pack.
+  if (pack.settings?.['securitysettings.encryptionkey'] !== undefined) {
+    problems.push({
+      severity: 'refused',
+      key: 'securitysettings.encryptionkey',
+      rule: 'BR-SEC-002',
+      message: 'the encryption key is unique to the instance and must not be in a pack',
+    });
+  }
+  if (pack.settings?.['securitysettings.useaesencryptionalgorithm'] === false) {
+    problems.push({
+      severity: 'refused',
+      key: 'securitysettings.useaesencryptionalgorithm',
+      rule: 'BR-SEC-002',
+      message: 'AES encryption stays on',
+    });
+  }
+
   for (const id of Object.keys(pack.features ?? {})) {
     if (!featureById[id]) {
       problems.push({

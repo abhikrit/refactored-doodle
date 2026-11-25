@@ -7,7 +7,7 @@ import {
   test, before, after, describe,
 } from 'node:test';
 import assert from 'node:assert/strict';
-import { startAsync, SESSIONS } from './helpers/adm.js';
+import { startAsync, SESSIONS, createCustomerAsync } from './helpers/adm.js';
 import { repository } from '../../packages/server/src/core/repository.js';
 import { saveSettingAsync } from '../../packages/server/src/core/settings.js';
 import { auditTrailAsync } from '../../packages/server/src/core/audit.js';
@@ -25,12 +25,9 @@ after(() => api?.stop());
 const byEmail = (email) => repository('Customer').getOneAsync((c) => c.email === email && !c.deleted);
 
 async function customerAsync(email, session = null, extra = {}) {
-  const existing = await repository('Customer').getOneAsync((c) => c.email === email);
-  const row = existing
-    ? await repository('Customer').updateAsync({ ...existing, ...extra })
-    : await repository('Customer').insertAsync({
-      email, firstName: 'Company', lastName: 'Member', roles: ['Registered'], password: 'demo', active: true, deleted: false, createdOnUtc: new Date().toISOString(), ...extra,
-    });
+  const row = await createCustomerAsync({
+    email, firstName: 'Company', lastName: 'Member', roles: ['Registered'], ...extra,
+  });
   if (session) await api.post('/api/identity/sign-in', { email, password: 'demo' }, session);
   return row;
 }

@@ -275,10 +275,24 @@ async function seedCustomersAsync(clientId) {
       email: 'depot.nairobi@example.com', firstName: 'Joseph', lastName: 'Kariuki', roles: ['Logistics'], password: 'demo', outlet: 'KTDA Nairobi Depot',
     }];
 
+  const { newSalt, hashPassword } = await import('../../plugins/product-iam/services/passwords.js');
   for (const c of [...common, ...clientSpecific]) {
-    await repository('Customer').insertAsync({
-      ...c, active: true, deleted: false, isSystemAccount: false, synthetic: true,
+    const { password, ...rest } = c;
+    const customer = await repository('Customer').insertAsync({
+      ...rest, password: null, active: true, deleted: false, isSystemAccount: false, synthetic: true,
     });
+    // BR-SEC-001: the password is a salted SHA-512 hash in CustomerPassword, never a clear value
+    if (password) {
+      const passwordSalt = newSalt();
+      await repository('CustomerPassword').insertAsync({
+        customerId: customer.id,
+        passwordFormat: 'Hashed',
+        hashedPasswordFormat: 'SHA512',
+        passwordSalt,
+        password: hashPassword(password, passwordSalt),
+        createdOnUtc: new Date().toISOString(),
+      });
+    }
   }
 }
 

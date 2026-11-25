@@ -4,6 +4,39 @@
 // so the tests sign in as the role the criterion names, not as an administrator by default.
 
 import { createApiApp } from '../../../packages/server/src/app.js';
+import { repository } from '../../../packages/server/src/core/repository.js';
+import { newSalt, hashPassword } from '../../../packages/server/src/plugins/product-iam/services/passwords.js';
+
+/**
+ * Create or update a customer with a password the product can verify: a salted SHA-512 hash in
+ * CustomerPassword, never a clear value on the customer record (BR-SEC-001, AC-SEC-001-03-01).
+ */
+export async function createCustomerAsync({ password = 'demo', ...row }) {
+  const existing = row.email
+    ? await repository('Customer').getOneAsync((c) => c.email === row.email)
+    : null;
+  const customer = existing
+    ? await repository('Customer').updateAsync({ ...existing, ...row, password: null })
+    : await repository('Customer').insertAsync({
+      active: true,
+      deleted: false,
+      createdOnUtc: new Date().toISOString(),
+      ...row,
+      password: null,
+    });
+  if (password) {
+    const passwordSalt = newSalt();
+    await repository('CustomerPassword').insertAsync({
+      customerId: customer.id,
+      passwordFormat: 'Hashed',
+      hashedPasswordFormat: 'SHA512',
+      passwordSalt,
+      password: hashPassword(password, passwordSalt),
+      createdOnUtc: new Date().toISOString(),
+    });
+  }
+  return customer;
+}
 
 export const SESSIONS = {
   admin: 'adm-admin',
