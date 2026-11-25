@@ -33,6 +33,15 @@ import {
   sessionsAsync, logoutSessionAsync, idleTimeoutAsync,
 } from './services/sessions.js';
 import { providersAsync, signInExternalAsync, provisionAsync, externalRecordsAsync } from './services/sso.js';
+import {
+  PRODUCT_ROLES, PERMISSION_EXCLUSIONS, SCOPE_DIMENSIONS, ensureProductRolesAsync, rolesAsync,
+  createRoleAsync, updateRoleAsync, deleteRoleAsync, applyRolePackAsync, savePermissionMappingAsync,
+  assignScopeAsync, scopesForAsync, checkScopeAsync, filterByScopeAsync, approvalAuthorityAsync,
+  delegablePermissionsAsync, delegateAsync, activeDelegationsForAsync, authorizeWithDelegationAsync,
+  revokeDelegationAsync, delegationsAsync, inviteAsync, acceptInvitationAsync, revokeInvitationAsync,
+  invitationsAsync, openCampaignAsync, reviewItemsForAsync, decideReviewItemAsync,
+  runCampaignDeadlineTaskAsync, campaignsAsync, accessReportAsync,
+} from './services/access.js';
 import { mockRegistry } from '@product/mocks';
 
 export default definePlugin({
@@ -45,6 +54,8 @@ export default definePlugin({
       startupOrder: 3010,
       note: 'BR-IAM-130 / decision SINGLE-FILTER: exactly one filter guards Place order for customer.',
     });
+
+    await ensureProductRolesAsync();
 
     const r = Router();
     r.get('/me', async (req, res, next) => {
@@ -278,11 +289,108 @@ export default definePlugin({
     }));
     r.post('/sso/provision', send((req) => provisionAsync({ ...req.body, storeId: req.storeId })));
 
+
+    /* ------------------------------- PRD-IAM-007, 008, 009 and 011: access governance -- */
+    const gate = (permission) => async (req, res, next) => {
+      try {
+        const customer = await currentCustomerAsync(req.sessionId);
+        if (!await ctx.security.authorizeAsync(permission, customer)) {
+          return res.status(403).json({ ok: false, denied: true, permission, message: `Access denied: ${permission} is required.` });
+        }
+        req.customer = customer;
+        return next();
+      } catch (err) { return next(err); }
+    };
+
+    r.get('/roles', send(() => rolesAsync()));
+    r.get('/roles/catalogue', send(() => ({ productRoles: PRODUCT_ROLES, exclusions: PERMISSION_EXCLUSIONS })));
+    r.post('/roles', send(async (req) => createRoleAsync({
+      ...req.body, actor: req.actorEmail, actorCustomer: await currentCustomerAsync(req.sessionId),
+    })));
+    r.patch('/roles/:systemName', send((req) => updateRoleAsync({ systemName: req.params.systemName, ...req.body, actor: req.actorEmail })));
+    r.delete('/roles/:systemName', send((req) => deleteRoleAsync({ systemName: req.params.systemName })));
+    r.post('/roles/pack', send((req) => applyRolePackAsync({ mappings: req.body.mappings ?? [], actor: req.actorEmail })));
+    r.post('/permissions/mapping', send((req) => savePermissionMappingAsync(req.body)));
+
+    r.get('/scopes', send(async (req) => {
+      const customer = req.query.email
+        ? await ctx.repository('Customer').getOneAsync((c) => c.email === req.query.email)
+        : await currentCustomerAsync(req.sessionId);
+      return { dimensions: SCOPE_DIMENSIONS, scopes: await scopesForAsync(customer) };
+    }));
+    r.post('/scopes', send((req) => assignScopeAsync({ ...req.body, actor: req.actorEmail })));
+    r.post('/scopes/check', send(async (req) => {
+      const customer = req.body.email
+        ? await ctx.repository('Customer').getOneAsync((c) => c.email === req.body.email)
+        : await currentCustomerAsync(req.sessionId);
+      return checkScopeAsync({ customer, ...req.body });
+    }));
+    r.get('/scopes/orders', send(async (req) => {
+      const customer = req.query.email
+        ? await ctx.repository('Customer').getOneAsync((c) => c.email === req.query.email)
+        : await currentCustomerAsync(req.sessionId);
+      const orders = await ctx.repository('Order').getAllAsync();
+      return filterByScopeAsync({
+        customer,
+        permissionSystemName: 'Orders.OrdersView',
+        rows: orders,
+        keyOf: (o, dimension) => ({
+          store: o.storeId ?? 1, region: o.region ?? null, outlet: o.pickupPointName ?? null, category: o.category ?? null,
+        })[dimension],
+      });
+    }));
+    r.get('/approval-authority', send(async (req) => {
+      const customer = req.query.email
+        ? await ctx.repository('Customer').getOneAsync((c) => c.email === req.query.email)
+        : await currentCustomerAsync(req.sessionId);
+      return approvalAuthorityAsync(customer);
+    }));
+
+    r.get('/delegations', send(async (req) => ({
+      delegable: await delegablePermissionsAsync(req.storeId), delegations: await delegationsAsync(),
+    })));
+    r.post('/delegations', send(async (req) => delegateAsync({
+      delegator: await currentCustomerAsync(req.sessionId), ...req.body, storeId: req.storeId,
+    })));
+    r.post('/delegations/:id/revoke', send((req) => revokeDelegationAsync({ id: Number(req.params.id), by: req.actorEmail })));
+    r.post('/delegations/authorize', send(async (req) => {
+      const customer = req.body.email
+        ? await ctx.repository('Customer').getOneAsync((c) => c.email === req.body.email)
+        : await currentCustomerAsync(req.sessionId);
+      return authorizeWithDelegationAsync(req.body.permission, customer);
+    }));
+    r.get('/delegations/active', send(async (req) => {
+      const customer = req.query.email
+        ? await ctx.repository('Customer').getOneAsync((c) => c.email === req.query.email)
+        : await currentCustomerAsync(req.sessionId);
+      return activeDelegationsForAsync(customer);
+    }));
+
+    r.get('/invitations', send(() => invitationsAsync()));
+    r.post('/invitations', gate('Identity.Core.AccessGovernance.CreateEditDelete'), send((req) => inviteAsync({
+      ...req.body, invitedBy: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/invitations/accept', send((req) => acceptInvitationAsync({ ...req.body, storeId: req.storeId })));
+    r.post('/invitations/:id/revoke', send((req) => revokeInvitationAsync({ id: Number(req.params.id), by: req.actorEmail })));
+
+    r.get('/access-reviews', send(() => campaignsAsync()));
+    r.post('/access-reviews', gate('Identity.Core.AccessGovernance.CreateEditDelete'), send((req) => openCampaignAsync({
+      ...req.body, openedBy: req.actorEmail,
+    })));
+    r.get('/access-reviews/mine', send((req) => reviewItemsForAsync(req.actorEmail)));
+    r.post('/access-reviews/items/:id', send((req) => decideReviewItemAsync({
+      itemId: Number(req.params.id), decision: req.body.decision, by: req.actorEmail,
+    })));
+    r.post('/access-reviews/deadline-task', send(() => runCampaignDeadlineTaskAsync()));
+    r.get('/access-report', gate('Identity.Core.AccessReports.View'), send((req) => accessReportAsync({
+      privilegedOnly: req.query.privilegedOnly === 'true', storeId: req.storeId,
+    })));
+
     ctx.addRouter('/api/identity', r);
     ctx.declare({
       built: true,
       owns: ['PRD-IAM-001', 'PRD-IAM-002', 'PRD-IAM-003', 'PRD-IAM-004', 'PRD-IAM-005', 'PRD-IAM-006',
-        'PRD-IAM-007', 'PRD-IAM-013', 'PRD-IAM-026'],
+        'PRD-IAM-007', 'PRD-IAM-008', 'PRD-IAM-009', 'PRD-IAM-011', 'PRD-IAM-013', 'PRD-IAM-026'],
       note: 'registration and login, mobile-number identity, password policy and recovery, second factors, single sign-on, sessions and passkeys.',
     });
   },

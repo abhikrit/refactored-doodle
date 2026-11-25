@@ -40,6 +40,10 @@ const ROLES = [
 
 async function seedSecurityAsync() {
   for (const role of ROLES) await addRoleAsync(role);
+  // BR-IAM-050: every role of the product catalogue exists, created by IAM at installation and at
+  // every start; the pack loader resets the store after the plugins install, so it is seeded here
+  const { ensureProductRolesAsync } = await import('../../plugins/product-iam/services/access.js');
+  await ensureProductRolesAsync();
 
   // Permissions come from the module chapters' section 4 permission tables (304 rows),
   // so the ACL screen shows the real 5.00.1 system names, not invented ones.

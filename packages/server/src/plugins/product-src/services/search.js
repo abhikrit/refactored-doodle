@@ -52,6 +52,11 @@ export async function searchAsync({
   };
 
   let rows = all;
+  // native ACL: a product with SubjectToAcl on is shown only to the customer roles allowed on it
+  // (AclRecord by customer role; IAM-007 computes the role membership)
+  const roles = customer?.roles ?? ['Guests'];
+  rows = rows.filter((p) => !(p.subjectToAcl === true && (p.limitedToCustomerRoles ?? []).length)
+    || (p.limitedToCustomerRoles ?? []).some((r) => roles.includes(r)));
   if (terms.length) rows = rows.filter((p) => score(p, terms) > 0);
   if (categoryId) {
     const ids = descendants(Number(categoryId));
