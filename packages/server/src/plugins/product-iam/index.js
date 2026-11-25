@@ -53,6 +53,25 @@ import {
   completeSelfReactivationAsync, impersonateAsync, impersonationProviders, staffEditCustomerAsync,
   openCustomerAsync, activityLogAsync,
 } from './services/users.js';
+import {
+  updateProfileAsync, requestPhoneChangeAsync, confirmPhoneChangeAsync, addressesAsync,
+  addAddressAsync, editAddressAsync, deleteAddressAsync, setDefaultAddressAsync,
+  offeredAddressesAsync, notificationChannelsAsync, setPreferredChannelAsync,
+  setPreferredPickupPointAsync, preferencesAsync, gdprLogAsync,
+} from './services/profile.js';
+import {
+  reacceptanceCheckAsync, declineAsync, consentTrailAsync, customerConsentsAsync, setConsentAsync,
+  consentProviders, cookieCategoriesAsync, setCookieChoicesAsync, cookieChoiceAsync,
+  analyticsAllowedAsync, exportMyDataAsync, requestCorrectionAsync, decideCorrectionAsync,
+  requestDeletionAsync, permanentDeleteCustomerAsync, markOverdueAsync, privacyRequestsAsync,
+  privacyTrailAsync, dueDateAsync, recordAcceptanceAsync, effectiveVersionAsync,
+  acceptancesAsync, hasAcceptedEffectiveAsync,
+} from './services/privacy.js';
+import {
+  myOrdersAsync, myOrderDetailAsync, invoicePdfAsync, quotesAsync, returnRequestsAsync,
+  quotePdfAsync, historyAsync, historyExportAsync, reorderAsync, quickActionsAsync,
+  dashboardAsync, figuresAsync, waitingProviders, WAITING_ITEMS,
+} from './services/self-service.js';
 import { mockRegistry } from '@product/mocks';
 
 export default definePlugin({
@@ -502,6 +521,147 @@ export default definePlugin({
     r.post('/verification/:id/decide', gate('Identity.Core.Verification.CreateEditDelete'), send((req) => decideVerificationAsync({
       caseId: Number(req.params.id), ...req.body, by: req.actorEmail,
     })));
+
+    /* ------------------------- PRD-IAM-014, 015, 016, 017, 021 and 025 ------------------ */
+    const me = async (req) => currentCustomerAsync(req.sessionId);
+    const subject = async (req) => (req.query.email || req.body?.email
+      ? ctx.repository('Customer').getOneAsync((c) => c.email === (req.query.email ?? req.body.email) && !c.deleted)
+      : me(req));
+
+    r.post('/profile', send(async (req) => updateProfileAsync({
+      customer: await me(req), changes: req.body.changes ?? req.body, storeId: req.storeId,
+    })));
+    r.post('/profile/phone/start', send(async (req) => requestPhoneChangeAsync({
+      customer: await me(req), phone: req.body.phone, storeId: req.storeId, smsProvider: sms(),
+    })));
+    r.post('/profile/phone/confirm', send(async (req) => confirmPhoneChangeAsync({
+      customer: await me(req), phone: req.body.phone, code: req.body.code, storeId: req.storeId,
+    })));
+    r.get('/addresses', send(async (req) => addressesAsync({ customerId: (await me(req)).id })));
+    r.post('/addresses', send(async (req) => addAddressAsync({ customerId: (await me(req)).id, address: req.body })));
+    r.patch('/addresses/:id', send(async (req) => editAddressAsync({
+      customerId: (await me(req)).id, addressId: Number(req.params.id), address: req.body,
+    })));
+    r.delete('/addresses/:id', send(async (req) => deleteAddressAsync({
+      customerId: (await me(req)).id, addressId: Number(req.params.id),
+    })));
+    r.post('/addresses/:id/default', send(async (req) => setDefaultAddressAsync({
+      customerId: (await me(req)).id, addressId: Number(req.params.id),
+    })));
+    r.get('/addresses/offered', send(async (req) => offeredAddressesAsync({ customerId: (await me(req)).id })));
+
+    r.get('/preferences', send(async (req) => preferencesAsync({ customerId: (await me(req)).id, storeId: req.storeId })));
+    r.get('/preferences/channels', send((req) => notificationChannelsAsync(req.storeId)));
+    r.post('/preferences/channel', send(async (req) => setPreferredChannelAsync({
+      customerId: (await me(req)).id, channel: req.body.channel, storeId: req.storeId,
+    })));
+    r.post('/preferences/pickup-point', send(async (req) => setPreferredPickupPointAsync({
+      customerId: (await me(req)).id, pickupPointId: Number(req.body.pickupPointId),
+    })));
+
+    r.get('/terms/check', send(async (req) => reacceptanceCheckAsync({
+      customer: await me(req), vendorId: req.query.vendorId ? Number(req.query.vendorId) : null, path: req.query.path ?? '/', storeId: req.storeId,
+    })));
+    r.post('/terms/accept', send(async (req) => recordAcceptanceAsync({
+      customerId: (await me(req)).id,
+      vendorId: req.body.vendorId ?? null,
+      policySystemName: req.body.policySystemName,
+      decision: 'accepted',
+      channel: req.body.channel ?? 'storefront',
+      ipAddress: req.ip,
+      storeId: req.storeId,
+    })));
+    r.post('/terms/decline', send(async (req) => declineAsync({
+      customer: await me(req), policySystemName: req.body.policySystemName, vendorId: req.body.vendorId ?? null, ipAddress: req.ip, storeId: req.storeId,
+    })));
+    r.get('/terms/effective', send((req) => effectiveVersionAsync({
+      policySystemName: req.query.policySystemName, storeId: req.storeId,
+    })));
+    r.get('/terms/acceptances', send(async (req) => acceptancesAsync((await subject(req)).id)));
+    r.get('/terms/accepted', send(async (req) => hasAcceptedEffectiveAsync({
+      customerId: (await me(req)).id, policySystemName: req.query.policySystemName, storeId: req.storeId,
+    })));
+    r.get('/consent-trail', send(async (req) => consentTrailAsync({
+      customerId: (await subject(req)).id, actor: await me(req), requestedBy: req.query.requestedBy ?? 'admin',
+    })));
+
+    r.get('/consents', send(async (req) => customerConsentsAsync({ customerId: (await me(req)).id })));
+    r.post('/consents', send(async (req) => setConsentAsync({
+      customerId: (await me(req)).id, systemName: req.body.systemName, accepted: req.body.accepted === true, storeId: req.storeId,
+    })));
+    r.get('/consents/providers', send(() => consentProviders()));
+    r.get('/cookies', send((req) => cookieChoiceAsync({ visitorId: req.query.visitorId ?? req.sessionId, storeId: req.storeId })));
+    r.get('/cookies/categories', send((req) => cookieCategoriesAsync(req.storeId)));
+    r.post('/cookies', send(async (req) => setCookieChoicesAsync({
+      customerId: (await me(req))?.id ?? null, visitorId: req.body.visitorId ?? req.sessionId, accepted: req.body.accepted ?? [], storeId: req.storeId,
+    })));
+    r.get('/cookies/analytics', send((req) => analyticsAllowedAsync({
+      visitorId: req.query.visitorId ?? req.sessionId, storeId: req.storeId,
+    })));
+
+    r.post('/privacy/export', send(async (req) => exportMyDataAsync({ customer: await me(req), storeId: req.storeId })));
+    r.get('/privacy/gdpr-log', gate('Customers.GDPRManage'), send((req) => gdprLogAsync(req.query.customerId ? Number(req.query.customerId) : null)));
+    r.post('/privacy/corrections', send(async (req) => requestCorrectionAsync({
+      customer: await me(req), ...req.body, storeId: req.storeId,
+    })));
+    r.post('/privacy/corrections/:id/decide', send(async (req) => decideCorrectionAsync({
+      requestId: Number(req.params.id), ...req.body, by: req.actorEmail, actor: await me(req), storeId: req.storeId,
+    })));
+    r.post('/privacy/deletion', send(async (req) => requestDeletionAsync({ customer: await me(req), storeId: req.storeId })));
+    r.post('/privacy/deletion/run', send(async (req) => permanentDeleteCustomerAsync({
+      customerId: Number(req.body.customerId), requestId: req.body.requestId ?? null, actor: await me(req), storeId: req.storeId,
+    })));
+    r.post('/privacy/overdue-task', send((req) => markOverdueAsync({ storeId: req.storeId })));
+    r.get('/privacy/requests', send((req) => privacyRequestsAsync(req.query)));
+    r.get('/privacy/due-date', send((req) => dueDateAsync({ storeId: req.storeId, ...req.query })));
+    r.get('/privacy/trail', send(async (req) => privacyTrailAsync({
+      customerId: (await subject(req)).id, actor: await me(req),
+    })));
+
+    r.get('/my/orders', send(async (req) => myOrdersAsync({ customer: await me(req), storeId: req.storeId })));
+    r.get('/my/orders/:orderNumber', send(async (req) => myOrderDetailAsync({
+      customer: await me(req), orderNumber: req.params.orderNumber,
+    })));
+    r.get('/my/orders/:orderNumber/invoice', send(async (req) => invoicePdfAsync({
+      customer: await me(req), orderNumber: req.params.orderNumber,
+    })));
+    r.post('/my/orders/:orderNumber/reorder', send(async (req) => reorderAsync({
+      customer: await me(req), orderNumber: req.params.orderNumber, sessionId: req.sessionId, storeId: req.storeId,
+    })));
+    r.get('/my/quotes', send(async (req) => quotesAsync({ customer: await me(req), storeId: req.storeId })));
+    r.get('/my/quotes/:quoteNumber/pdf', send(async (req) => quotePdfAsync({
+      customer: await me(req), quoteNumber: req.params.quoteNumber, storeId: req.storeId,
+    })));
+    r.get('/my/return-requests', send(async (req) => returnRequestsAsync({ customer: await me(req) })));
+    r.get('/my/history', send(async (req) => historyAsync({
+      customer: await me(req), ...req.query, storeId: req.storeId,
+    })));
+    r.get('/my/history/export', send(async (req) => historyExportAsync({
+      customer: await me(req), ...req.query, storeId: req.storeId,
+    })));
+    r.get('/my/dashboard', send(async (req) => dashboardAsync({ customer: await me(req), storeId: req.storeId })));
+    r.get('/my/quick-actions', send((req) => quickActionsAsync({ storeId: req.storeId })));
+    r.get('/my/figures', send(async (req) => figuresAsync({
+      customer: await me(req), months: req.query.months ? Number(req.query.months) : 6, storeId: req.storeId,
+    })));
+    r.get('/my/waiting-providers', send(() => waitingProviders()));
+
+    // AC-IAM-025-01-01: the bundled Misc.RFQ plugin owns quotes, so its in-house substitute
+    // (decision P-2) reports the quotes that wait for the customer.
+    ctx.providers.registerProvider(WAITING_ITEMS, {
+      name: 'quotes to answer',
+      area: 'IAM',
+      feature: 'Misc.RFQ',
+      fn: async ({ customerId }) => {
+        const quotes = await ctx.repository('Quote').getAllAsync((q) => q.customerId === customerId
+          && q.status === 'AwaitingCustomer');
+        return {
+          items: quotes.map((q) => ({
+            what: 'a quote to answer', reference: q.quoteNumber, target: `/customer/quotes/${q.quoteNumber}`, since: q.createdOnUtc,
+          })),
+        };
+      },
+    });
 
     // AC-IAM-019-01-01: the IAM consumers only enqueue into the INT-004 outbox (BR-INT-010).
     ctx.events.subscribe('CustomerRegisteredEvent', {

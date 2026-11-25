@@ -600,7 +600,7 @@ describe('PRD-IAM-019 account synchronisation', () => {
   test('AC-IAM-019-01-01', async () => {
     // "an IntegrationMessage with channel 'account sync' is written to the INT-004 outbox through
     //  IC-INT-09 Enqueue (the IAM consumer only enqueues) and the INT delivery task sends it"
-    const registered = await api.post('/api/identity/register', {
+    const registered = await api.post('/api/identity/register', { policyAccepted: true,
       email: 'sync.new@example.com', password: 'Str0ng!pass', firstName: 'Sync', lastName: 'New',
     }, 'iam-d-sync');
     assert.equal(registered.ok, true);

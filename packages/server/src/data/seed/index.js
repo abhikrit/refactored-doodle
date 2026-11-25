@@ -253,6 +253,32 @@ export async function seedAsync({ clientId, report }) {
   await seedPackEntitiesAsync(report);
   await seedCustomersAsync(clientId);
 
+  // PRD-IAM-016 and PRD-IAM-017: the policy versions MKT-008 supplies through IC-MKT-03, the
+  // native GdprConsent rows and the quotes and return requests of the bundled Misc.RFQ plugin.
+  for (const v of [
+    {
+      policySystemName: 'ConditionsOfUse', versionNo: 1, reacceptanceRequired: false, published: true, effectiveFromUtc: '2025-01-01T00:00:00.000Z',
+    },
+    {
+      policySystemName: 'PrivacyPolicy', versionNo: 1, reacceptanceRequired: false, published: true, effectiveFromUtc: '2025-01-01T00:00:00.000Z',
+    },
+    {
+      policySystemName: 'VendorTermsOfService', versionNo: 1, reacceptanceRequired: false, published: true, effectiveFromUtc: '2025-01-01T00:00:00.000Z',
+    },
+  ]) await repository('PolicyVersion').insertAsync({ ...v, storeId: 1, suppliedBy: 'PRD-MKT-008' });
+
+  for (const c of [
+    {
+      systemName: 'MarketingConsent', message: 'I agree to receive offers and news', isRequired: false, displayOnCustomerInfoPage: true, isMarketing: true, displayOrder: 1,
+    },
+    {
+      systemName: 'PersonalisationConsent', message: 'I agree to personalised recommendations', isRequired: false, displayOnCustomerInfoPage: true, isMarketing: false, displayOrder: 2,
+    },
+    {
+      systemName: 'ServiceTermsConsent', message: 'I accept the conditions of use', isRequired: true, displayOnCustomerInfoPage: true, isMarketing: false, displayOrder: 3,
+    },
+  ]) await repository('GdprConsent').insertAsync(c);
+
   // PRD-ADM-001: the console's own data - scheduled tasks, the system log and page widgets.
   // Names and intervals are the nopCommerce 5.00.1 defaults; ScheduleTask has no store scope.
   for (const t of [

@@ -13,6 +13,24 @@ export default definePlugin({
   area: 'LOG',
   startupOrder: 3300,
   async install(ctx) {
+    // AC-IAM-025-01-01: LOG owns the deliveries, so it reports the ones waiting for the customer.
+    ctx.providers.registerProvider('PRD-IAM-025 waiting items', {
+      name: 'deliveries to confirm',
+      area: 'LOG',
+      feature: 'PRD-LOG-012',
+      fn: async ({ customerId }) => {
+        const orders = await ctx.repository('Order').getAllAsync((o) => o.customerId === customerId);
+        const numbers = orders.map((o) => o.orderNumber);
+        const codes = await ctx.repository('PickupCode').getAllAsync((p) => p.status === 'Issued');
+        const waiting = codes.filter((c) => numbers.includes(c.orderNumber));
+        return {
+          items: waiting.map((c) => ({
+            what: 'a parcel to collect', reference: c.orderNumber, target: `/order/details/${c.orderNumber}`, since: c.createdOnUtc,
+          })),
+        };
+      },
+    });
+
     ctx.providers.claimOverride('IShippingService', {
       owner: 'Product.LOG',
       feature: 'PRD-LOG-002',

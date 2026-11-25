@@ -12,6 +12,36 @@ export default definePlugin({
   area: 'SRC',
   startupOrder: 3110,
   async install(ctx) {
+    // IC-IAM-08: PRD-SRC-012 keeps the search history and PRD-SRC-009 sends profiles to the
+    // recommendation service, so both erase on the IAM-017 deletion and stop on a withdrawal.
+    ctx.providers.registerProvider('IC-IAM-08', {
+      name: 'search history (PRD-SRC-012)',
+      area: 'SRC',
+      feature: 'PRD-SRC-012',
+      fn: async ({ operation, customerId }) => {
+        const rows = await ctx.repository('SearchHistory').getAllAsync((r) => r.customerId === customerId);
+        if (operation === 'ConsentWithdrawn') return { stopped: true, dataDeleted: false, rows: rows.length };
+        for (const row of rows) await ctx.repository('SearchHistory').deleteAsync(row.id);
+        return { outcome: 'Erased', detail: `${rows.length} search history rows` };
+      },
+    });
+    ctx.providers.registerProvider('IC-IAM-08', {
+      name: 'recommendation service (PRD-SRC-009)',
+      area: 'SRC',
+      feature: 'PRD-SRC-009',
+      fn: async ({ operation, customerId, storeId }) => {
+        // the profile lives in an external service, so the erasure can fail and must say so
+        const reachable = await ctx.settings.getSettingAsync('src.recommendationserviceavailable', storeId ?? 1, true);
+        if (operation === 'ConsentWithdrawn') {
+          return { stopped: true, dataDeleted: false, detail: 'personalisation stops from the next request' };
+        }
+        if (reachable !== true) {
+          return { outcome: 'Failed', detail: 'the recommendation service did not answer' };
+        }
+        return { outcome: 'Erased', detail: `profile of customer ${customerId} erased at the recommendation service` };
+      },
+    });
+
     ctx.providers.claimOverride('ISearchProvider', {
       owner: 'Product.SRC',
       feature: 'PRD-SRC-001',

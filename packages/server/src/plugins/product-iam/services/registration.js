@@ -52,9 +52,52 @@ export async function ensureGuestAsync({ sessionId }) {
  * AC-IAM-001-01-02 the email is unique. AC-IAM-001-03-01 a guest keeps its basket and orders.
  * AC-IAM-001-05-01 no organisation field is required when CompanyRequired is off.
  */
+
+/**
+ * AC-IAM-016-01-01: with current versions of the terms of use and the privacy policy published,
+ * no registration completes without acceptance - by web, by mobile number or through an agent.
+ * The acceptance rows themselves are written by IAM-016 (IC-IAM-05 RecordAcceptance).
+ */
+export async function registrationPoliciesAsync(storeId = 1) {
+  const configured = await getSettingAsync('iam.registrationpolicies', storeId, ['ConditionsOfUse', 'PrivacyPolicy']);
+  const published = [];
+  for (const policySystemName of configured) {
+    const versions = await repository('PolicyVersion').getAllAsync((v) => v.policySystemName === policySystemName
+      && v.published !== false && (v.storeId ?? storeId) === storeId);
+    if (versions.length) published.push(policySystemName);
+  }
+  return published;
+}
+
+async function acceptanceGateAsync({ policyAccepted, storeId }) {
+  const published = await registrationPoliciesAsync(storeId);
+  if (published.length === 0 || policyAccepted === true) return { ok: true, published };
+  return {
+    ok: false,
+    policyAcceptanceRequired: published,
+    messageKey: 'Account.Fields.AcceptPrivacyPolicy.Required',
+    message: 'Please read and accept the terms of use and the privacy policy to continue.',
+  };
+}
+
+async function recordRegistrationAcceptancesAsync({
+  customerId, published, channel, ipAddress = null, agentId = null, storeId = 1,
+}) {
+  const { recordAcceptanceAsync } = await import('./privacy.js').catch(() => ({ recordAcceptanceAsync: null }));
+  if (!recordAcceptanceAsync) return [];
+  const rows = [];
+  for (const policySystemName of published) {
+    rows.push(await recordAcceptanceAsync({
+      customerId, policySystemName, decision: 'accepted', channel, ipAddress, agentId, storeId,
+    }));
+  }
+  return rows;
+}
+
 export async function registerAsync({
   email, password, firstName = null, lastName = null, company = null, phone = null,
   sessionId = null, storeId = 1, ipAddress = null, gateways = messageGateways,
+  policyAccepted = false, channel = 'web-registration', agentId = null,
 }) {
   const type = await registrationTypeAsync(storeId);
   if (type === 'Disabled') {
@@ -85,6 +128,9 @@ export async function registerAsync({
 
   const policy = await validatePasswordAsync({ password, storeId });
   if (!policy.ok) return { ok: false, passwordErrors: policy.errors };
+
+  const gate = await acceptanceGateAsync({ policyAccepted, storeId });
+  if (!gate.ok) return gate;
 
   let normalisedPhone = null;
   if (phone) {
@@ -123,7 +169,21 @@ export async function registerAsync({
   await setPasswordAsync({
     customer, password, storeId, reason: 'set at registration',
   });
+  const acceptances = await recordRegistrationAcceptancesAsync({
+    customerId: customer.id, published: gate.published, channel, ipAddress, agentId, storeId,
+  });
   await publishAsync('CustomerRegisteredEvent', { customer, storeId });
+
+  // AC-IAM-001-01-01: a Standard registration signs the visitor in; the other types do not
+  let session = null;
+  if (active && sessionId) {
+    const { completeSignInAsync } = await import('./identity.js');
+    const full = await customerRepo().getByIdAsync(customer.id);
+    const signedIn = await completeSignInAsync({
+      sessionId, customer: full, storeId, ipAddress, channel: 'registration',
+    });
+    session = signedIn.session ?? null;
+  }
   if (normalisedPhone) {
     await savePhoneIdentityAsync({ customerId: customer.id, normalisedPhone, verified: false });
   }
@@ -159,8 +219,10 @@ export async function registerAsync({
     registrationType: type,
     active,
     signedIn: active,
+    session,
     emailSent: template,
     convertedGuest: Boolean(guest),
+    policyAcceptances: acceptances.map((a) => ({ policySystemName: a.policySystemName, versionNo: a.versionNo })),
     activationNeededBy: type === 'AdminApproval' ? 'an administrator in the user administration console' : type === 'EmailValidation' ? 'the link in the validation email' : null,
   };
 }
@@ -206,7 +268,8 @@ export async function startMobileRegistrationAsync({
  * number as identifier and no email, records the terms acceptance and signs the visitor in.
  */
 export async function completeMobileRegistrationAsync({
-  phone, code, firstName = null, lastName = null, storeId = 1, sessionId = null, policyAccepted = true,
+  phone, code, firstName = null, lastName = null, storeId = 1, sessionId = null, policyAccepted = false,
+  ipAddress = null, agentId = null,
 }) {
   const normalised = await normalisePhoneAsync(phone, storeId);
   const verified = await verifyCodeAsync({
@@ -220,6 +283,9 @@ export async function completeMobileRegistrationAsync({
       ok: false, blocked: true, refusedBy: filters.refusedBy, message: filters.message,
     };
   }
+
+  const gate = await acceptanceGateAsync({ policyAccepted, storeId });
+  if (!gate.ok) return gate;
 
   const guest = sessionId ? await guestForSessionAsync(sessionId) : null;
   const base = {
@@ -240,14 +306,16 @@ export async function completeMobileRegistrationAsync({
   await savePhoneIdentityAsync({ customerId: customer.id, normalisedPhone: normalised, verified: true });
   await publishAsync('CustomerRegisteredEvent', { customer, storeId });
 
-  // terms acceptance is recorded by IAM-016
-  const { recordAcceptanceAsync } = await import('./privacy.js').catch(() => ({ recordAcceptanceAsync: null }));
-  let acceptance = null;
-  if (policyAccepted && recordAcceptanceAsync) {
-    acceptance = await recordAcceptanceAsync({
-      customerId: customer.id, policySystemName: 'ConditionsOfUse', channel: 'mobile-registration', storeId,
-    });
-  }
+  // terms acceptance is recorded by IAM-016 (IC-IAM-05 RecordAcceptance)
+  const acceptances = await recordRegistrationAcceptancesAsync({
+    customerId: customer.id,
+    published: gate.published,
+    channel: agentId ? 'assisted-service' : 'mobile-registration',
+    ipAddress,
+    agentId,
+    storeId,
+  });
+  const acceptance = acceptances[0] ?? null;
   await auditAsync({
     event: 'AUD-IAM-001', area: 'IAM', feature: 'PRD-IAM-002', entity: 'Customer', entityId: customer.id, actor: normalised, after: { accountState: 'Active' }, note: 'registered by mobile number and one-time code',
   });
@@ -266,7 +334,8 @@ export async function completeMobileRegistrationAsync({
  * native flow verifies the number before the result page.
  */
 export async function registerWithPhoneVerificationAsync({
-  email, password, phone, firstName = null, lastName = null, storeId = 1, smsProvider = null, sessionId = null,
+  email, password, phone, firstName = null, lastName = null, storeId = 1, smsProvider = null,
+  sessionId = null, policyAccepted = false, ipAddress = null,
 }) {
   const normalised = await normalisePhoneAsync(phone, storeId);
   const held = await identityForPhoneAsync(normalised);
@@ -276,7 +345,7 @@ export async function registerWithPhoneVerificationAsync({
     };
   }
   const registered = await registerAsync({
-    email, password, firstName, lastName, phone, sessionId, storeId,
+    email, password, firstName, lastName, phone, sessionId, storeId, policyAccepted, ipAddress,
   });
   if (!registered.ok) return registered;
   const type = await registrationTypeAsync(storeId);

@@ -24,7 +24,7 @@ describe('PRD-IAM-001 registration and login', () => {
     // "a customer record is created in the Registered role, it is active, the visitor is signed in
     //  and the native Customer.WelcomeMessage email is sent"
     await setType('Standard');
-    const result = await api.post('/api/identity/register', {
+    const result = await api.post('/api/identity/register', { policyAccepted: true,
       email: 'new.shopper@example.com', password: 'Str0ng-pass', firstName: 'New', lastName: 'Shopper',
     }, 'reg-1');
     assert.equal(result.ok, true);
@@ -41,7 +41,7 @@ describe('PRD-IAM-001 registration and login', () => {
     // "refused with the native message Account.Register.Errors.EmailAlreadyExists and no second
     //  record is created"
     const before2 = (await repository('Customer').getAllAsync((c) => c.email === 'new.shopper@example.com')).length;
-    const refused = await api.post('/api/identity/register', { email: 'new.shopper@example.com', password: 'Another-pass1' }, 'reg-2');
+    const refused = await api.post('/api/identity/register', { policyAccepted: true, email: 'new.shopper@example.com', password: 'Another-pass1' }, 'reg-2');
     assert.equal(refused.ok, false);
     assert.equal(refused.messageKey, 'Account.Register.Errors.EmailAlreadyExists');
     const after2 = (await repository('Customer').getAllAsync((c) => c.email === 'new.shopper@example.com')).length;
@@ -66,7 +66,7 @@ describe('PRD-IAM-001 registration and login', () => {
     await repository('SellerBlockListEntry').insertAsync({
       email: 'blocked.party@example.com', scope: 'registration', active: true, reason: 'test block', feature: 'PRD-SEL-013',
     });
-    const refused = await api.post('/api/identity/register', { email: 'blocked.party@example.com', password: 'Str0ng-pass' }, 'reg-4');
+    const refused = await api.post('/api/identity/register', { policyAccepted: true, email: 'blocked.party@example.com', password: 'Str0ng-pass' }, 'reg-4');
     assert.equal(refused.ok, false);
     assert.equal(refused.blocked, true);
     assert.equal(refused.refusedBy, 'PRD-SEL-013', 'SEL-013 owns the filter');
@@ -113,7 +113,7 @@ describe('PRD-IAM-001 registration and login', () => {
     const cartBefore = await api.get('/api/checkout-area/cart', session);
     assert.equal(cartBefore.items.length, 1);
 
-    const registered = await api.post('/api/identity/register', {
+    const registered = await api.post('/api/identity/register', { policyAccepted: true,
       email: 'guest.turned.member@example.com', password: 'Str0ng-pass',
     }, session);
     assert.equal(registered.ok, true);
@@ -127,7 +127,7 @@ describe('PRD-IAM-001 registration and login', () => {
     // "the account stays inactive until the validation link is opened; a login before that is
     //  refused with Account.Login.WrongCredentials.NotActive"
     await setType('EmailValidation');
-    const registered = await api.post('/api/identity/register', { email: 'validate.me@example.com', password: 'Str0ng-pass' }, 'reg-7');
+    const registered = await api.post('/api/identity/register', { policyAccepted: true, email: 'validate.me@example.com', password: 'Str0ng-pass' }, 'reg-7');
     assert.equal(registered.ok, true);
     assert.equal(registered.active, false);
     assert.equal(registered.emailSent, 'Customer.EmailValidationMessage');
@@ -147,7 +147,7 @@ describe('PRD-IAM-001 registration and login', () => {
     // "the account stays inactive until an administrator activates it in the user administration
     //  console"
     await setType('AdminApproval');
-    const registered = await api.post('/api/identity/register', { email: 'approve.me@example.com', password: 'Str0ng-pass' }, 'reg-8');
+    const registered = await api.post('/api/identity/register', { policyAccepted: true, email: 'approve.me@example.com', password: 'Str0ng-pass' }, 'reg-8');
     assert.equal(registered.active, false);
     assert.equal(registered.activationNeededBy, 'an administrator in the user administration console');
 
@@ -160,7 +160,7 @@ describe('PRD-IAM-001 registration and login', () => {
   test('AC-IAM-001-04-03', async () => {
     // "registration is not possible and the native registration-disabled result page is shown"
     await setType('Disabled');
-    const refused = await api.post('/api/identity/register', { email: 'nobody@example.com', password: 'Str0ng-pass' }, 'reg-9');
+    const refused = await api.post('/api/identity/register', { policyAccepted: true, email: 'nobody@example.com', password: 'Str0ng-pass' }, 'reg-9');
     assert.equal(refused.ok, false);
     assert.equal(refused.registrationDisabled, true);
     assert.equal(refused.messageKey, 'Account.Register.Result.Disabled');
@@ -170,14 +170,14 @@ describe('PRD-IAM-001 registration and login', () => {
   test('AC-IAM-001-05-01', async () => {
     // "the account is created without any organisation or company field"
     await saveSettingAsync('customersettings.companyrequired', false, 0);
-    const registered = await api.post('/api/identity/register', {
+    const registered = await api.post('/api/identity/register', { policyAccepted: true,
       email: 'public.member@example.com', password: 'Str0ng-pass', firstName: 'Public', lastName: 'Member',
     }, 'reg-10');
     assert.equal(registered.ok, true);
     assert.equal(registered.customer.company, null, 'no company was required or stored');
 
     await saveSettingAsync('customersettings.companyrequired', true, 0);
-    const needsCompany = await api.post('/api/identity/register', { email: 'needs.company@example.com', password: 'Str0ng-pass' }, 'reg-11');
+    const needsCompany = await api.post('/api/identity/register', { policyAccepted: true, email: 'needs.company@example.com', password: 'Str0ng-pass' }, 'reg-11');
     assert.equal(needsCompany.ok, false);
     assert.equal(needsCompany.messageKey, 'Account.Fields.Company.Required');
     await saveSettingAsync('customersettings.companyrequired', false, 0);
@@ -217,7 +217,7 @@ describe('PRD-IAM-002 mobile-number identity', () => {
     // "a customer record is created with the mobile number as identifier and no email, terms
     //  acceptance is recorded and the visitor is signed in"
     const started = await api.post('/api/identity/mobile/register/start', { phone: '+265991112222' }, 'otp-2');
-    const done = await api.post('/api/identity/mobile/register/complete', {
+    const done = await api.post('/api/identity/mobile/register/complete', { policyAccepted: true,
       phone: '+265991112222', code: started.demonstrationCode, firstName: 'Mobile', lastName: 'Member',
     }, 'otp-2');
     assert.equal(done.ok, true);
@@ -251,14 +251,14 @@ describe('PRD-IAM-002 mobile-number identity', () => {
     const started = await api.post('/api/identity/mobile/register/start', { phone: '+265993334444' }, 'otp-4');
     let last;
     for (let i = 0; i < 3; i += 1) {
-      last = await api.post('/api/identity/mobile/register/complete', { phone: '+265993334444', code: '000000' }, 'otp-4');
+      last = await api.post('/api/identity/mobile/register/complete', { policyAccepted: true, phone: '+265993334444', code: '000000' }, 'otp-4');
     }
     assert.equal(last.ok, false);
     assert.equal(last.messageKey, 'Iam.Otp.TooManyAttempts');
     assert.equal(last.status, 'Locked');
     assert.ok(last.resendIntervalSeconds > 0, 'a new code only after the resend interval');
 
-    const correct = await api.post('/api/identity/mobile/register/complete', { phone: '+265993334444', code: started.demonstrationCode }, 'otp-4');
+    const correct = await api.post('/api/identity/mobile/register/complete', { policyAccepted: true, phone: '+265993334444', code: started.demonstrationCode }, 'otp-4');
     assert.equal(correct.ok, false, 'the locked code cannot be used even if it is the right one');
     await saveSettingAsync('otpsettings.otptimetorepeat', 0, 0);
   });
@@ -268,7 +268,7 @@ describe('PRD-IAM-002 mobile-number identity', () => {
     const started = await api.post('/api/identity/mobile/register/start', { phone: '+265995556666' }, 'otp-5');
     const { expireChallengeAsync } = await import('../../packages/server/src/plugins/product-iam/services/otp.js');
     await expireChallengeAsync(started.challengeId);
-    const refused = await api.post('/api/identity/mobile/register/complete', { phone: '+265995556666', code: started.demonstrationCode }, 'otp-5');
+    const refused = await api.post('/api/identity/mobile/register/complete', { policyAccepted: true, phone: '+265995556666', code: started.demonstrationCode }, 'otp-5');
     assert.equal(refused.ok, false);
     assert.equal(refused.messageKey, 'Iam.Otp.Expired');
     assert.equal(refused.message, 'This code has expired. Request a new code.');
@@ -344,7 +344,7 @@ describe('PRD-IAM-002 mobile-number identity', () => {
     // "the native flow sends a code and verifies the number before the result page; a number
     //  already verified on another account is refused"
     await setType('Standard');
-    const registered = await api.post('/api/identity/register/with-phone', {
+    const registered = await api.post('/api/identity/register/with-phone', { policyAccepted: true,
       email: 'native.phone@example.com', password: 'Str0ng-pass', phone: '0994445555',
     }, 'otp-8');
     assert.equal(registered.ok, true);
@@ -356,7 +356,7 @@ describe('PRD-IAM-002 mobile-number identity', () => {
     }, 'otp-8');
     assert.equal(confirmed.phoneVerified, true);
 
-    const taken = await api.post('/api/identity/register/with-phone', {
+    const taken = await api.post('/api/identity/register/with-phone', { policyAccepted: true,
       email: 'second.account@example.com', password: 'Str0ng-pass', phone: '0994445555',
     }, 'otp-9');
     assert.equal(taken.ok, false);
