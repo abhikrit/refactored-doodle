@@ -11,15 +11,14 @@ import {
 import { api } from '../../lib/api.js';
 import { useProduct, money } from '../../lib/store.jsx';
 import {
-  Alert, Badge, Button, Checkbox, Citation, Field, Grid, Input, KeyValue, Panel, Spinner,
+  Alert, Badge, Button, Checkbox, Field, Grid, Input, KeyValue, Panel, Spinner,
 } from '../../ui/nop/kit.jsx';
 
 /**
  * Login - Presentation/Nop.Web/Views/Customer/Login.cshtml in the DefaultClean theme:
  * page title "Welcome, Please Sign In!", then .customer-blocks with the New Customer block
  * beside the Returning Customer fieldset (Email, Password, Remember me?, Forgot password?,
- * LOG IN). The mobile-number block below it is IAM-002, which 5.00 added natively as
- * OtpSettings.LoginByPhoneEnabled.
+ * LOG IN), with the mobile-number block the store adds below it.
  *
  * nopCommerce has no separate administrator login: /Admin is an authenticated area, so an
  * unauthenticated request to it is sent to this same page with ReturnUrl, and the user lands in
@@ -123,7 +122,7 @@ export function Login() {
               <button
                 type="button"
                 className="text-[13px] text-store-accent hover:underline"
-                onClick={() => setError('Password recovery is IAM-020. The prototype seeds accounts instead (P-5); every seeded account uses the password demo.')}
+                onClick={() => setError('Password recovery is not switched on for this store yet. Every demonstration account uses the password demo.')}
               >
                 Forgot password?
               </button>
@@ -135,7 +134,7 @@ export function Login() {
         </form>
       </div>
 
-      {/* The product's own sign-in route, beside the native one: IAM-002 */}
+      {/* sign in with a mobile number and a one-time code */}
       <div className="mt-6 border border-store-border">
         <div className="nop-block-title">Sign in with a mobile number</div>
         <div className="p-5">
@@ -156,11 +155,7 @@ export function Login() {
                   <button type="button" className="nop-button" onClick={verifyOtp} disabled={!code}>Verify and sign in</button>
                 </>
               )}
-              <Citation>
-                IAM-002: an ISmsProvider plugin plus a DI override; messagessettings.activesmsprovidersystemname selects
-                it in 5.00. The gateway here is a mock (P-3) and the code is shown so the journey can be walked.
-              </Citation>
-            </div>
+</div>
           )}
         </div>
       </div>
@@ -174,7 +169,7 @@ export function Login() {
         >
           {showAccounts ? '-' : '+'}
           {' '}
-          Demonstration accounts (synthetic, P-5) - every account uses the password
+          Demonstration accounts - every account uses the password
           {' '}
           <span className="font-mono">demo</span>
         </button>
@@ -212,9 +207,9 @@ export function Register() {
   return (
     <div className="max-w-xl mx-auto space-y-4">
       <h1 className="nop-page-title">Register</h1>
-      <Alert tone="warning" title="Not built in Session 0 - wave 1 Foundation">
-        IAM-001 registration is a configuration feature of the native page. The prototype seeds accounts instead
-        (P-5) and demonstrates mobile-number registration through the one-time code on the sign-in page (IAM-002).
+      <Alert tone="info" title="Registration is not open yet">
+        This store registers customers by mobile number. Use the one-time code on the sign-in page, or ask an
+        outlet agent to open an account for you.
       </Alert>
       <Button as="link" to="/login" variant="brand">Go to sign in</Button>
     </div>
@@ -273,13 +268,10 @@ export function AccountInfo() {
           ['Company', customer?.company ?? '-'],
           ['Roles', customer?.roles?.join(', ')],
           ['Credit limit', customer?.creditLimit ? money(customer.creditLimit, 'MWK') : '-'],
-          customer?.acting && ['Acting session', `an agent at ${customer.acting.outlet} is acting for this customer (IAM-026)`],
+          customer?.acting && ['Acting session', `An agent at ${customer.acting.outlet} is acting for this customer`],
         ]}
         />
-        <Citation className="mt-3">
-          IAM-025 customer home page and IAM-014 profile. Account data here is synthetic (P-5).
-        </Citation>
-      </Panel>
+</Panel>
     </AccountLayout>
   );
 }
@@ -353,11 +345,7 @@ export function AccountOrderDetails() {
                   </li>
                 ))}
               </ul>
-              <Citation className="mt-2">
-                CHK-004: one payment for the checkout, one sub-order per seller and fulfilment choice, all under the one
-                checkout reference.
-              </Citation>
-            </div>
+</div>
           )}
         </Panel>
 
@@ -368,11 +356,7 @@ export function AccountOrderDetails() {
                 ? 'This order has been collected: the pickup code was used at the outlet.'
                 : `Bring your pickup code to ${order.pickupPoint?.name}. It is single use and was sent to you by SMS.`}
             </Alert>
-            <Citation className="mt-2">
-              CHK-012 pickup code / QR; the code itself is stored only as a hash (BR-CHK-016) and is verified in the
-              LOG-012 handover step.
-            </Citation>
-          </Panel>
+</Panel>
         )}
 
         <Panel title="Products" bodyClass="p-0">
@@ -427,10 +411,7 @@ export function AccountAddresses() {
             ))}
           </ul>
         )}
-        <Citation className="mt-3">
-          IAM-014 address book; CHK-007 adds the landmark, address name, PO box and map pin attributes.
-        </Citation>
-      </Panel>
+</Panel>
     </AccountLayout>
   );
 }
@@ -500,11 +481,7 @@ export function PublicTracking() {
               </li>
             ))}
           </ol>
-          <Citation className="mt-3">
-            TRK-001 shipment tracking; TRK-002 normalises carrier codes to the event dictionary. The carrier feed is a
-            mock (P-3).
-          </Citation>
-        </Panel>
+</Panel>
       )}
     </div>
   );

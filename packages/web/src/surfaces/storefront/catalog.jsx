@@ -8,7 +8,7 @@ import { Link, useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import { api, qs } from '../../lib/api.js';
 import { useProduct, money } from '../../lib/store.jsx';
 import {
-  Alert, Badge, Button, Citation, KeyValue, Panel, ProductPicture, Spinner, Tabs,
+  Alert, Badge, Button, KeyValue, Panel, ProductPicture, Spinner, Tabs,
 } from '../../ui/nop/kit.jsx';
 
 function useCurrency() {
@@ -238,11 +238,7 @@ export function ProductList({ mode = 'search' }) {
             <input type="checkbox" checked={query.pickupOnly} onChange={(e) => setParam('pickupOnly', e.target.checked)} className="size-4" />
             Available for pickup only {data && <span className="text-nop-muted">({data.facets.pickupOnly})</span>}
           </label>
-          <Citation>
-            SRC-003 narrowing results; the facet set and counts come from the result set. Filters the client turns on are
-            catalogsettings.enablepricerangefiltering and .enablespecificationattributefiltering.
-          </Citation>
-        </Panel>
+</Panel>
       </aside>
 
       <div>
@@ -397,8 +393,7 @@ export function ProductDetails() {
             {product.callForPrice ? (
               <div>
                 <div className="text-[20px] font-semibold">Call for price</div>
-                <Citation>CAT-013 call for price: the buyer requests a quotation (ORD-012 RFQ), there is no add-to-cart.</Citation>
-                <Button variant="brand" size="lg" className="mt-3" disabled>Request a quote (ORD-012, wave 3)</Button>
+<Button variant="brand" size="lg" className="mt-3" disabled>Request a quote (ORD-012, wave 3)</Button>
               </div>
             ) : (
               <>
@@ -472,20 +467,12 @@ export function ProductDetails() {
                   ? 'Delivery and collection options, fees and the expected delivery date are shown at checkout from the LOG-002 fee engine and LOG-005 expected dates.'
                   : 'This is a service or a digital item: it is not shipped (SVC-007 / CAT-026).'}
               </p>
-              <Citation>
-                CAT-031 delivery promise on the product page is wave 2; the prototype shows the promise at checkout,
-                where LOG-005 provides it.
-              </Citation>
-            </div>
+</div>
           )}
           {tab === 'reviews' && (
             <div className="space-y-2">
               <p className="text-nop-muted">No reviews yet.</p>
-              <Citation>
-                CAT-029 reviews and ratings - wave 2. For Malawi Post the pack requires moderation and purchase first
-                (catalogsettings.productreviewsmustbeapproved and .productreviewpossibleonlyafterpurchasing, REQ-MPC-FR-075).
-              </Citation>
-            </div>
+</div>
           )}
         </div>
       </div>

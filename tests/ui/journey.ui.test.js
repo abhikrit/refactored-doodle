@@ -94,7 +94,15 @@ describe('Session 0 journey in the browser', { skip }, () => {
     await page.goto(`${BASE}/checkout`, { waitUntil: 'networkidle' });
     const text = await page.locator('main').innerText();
     assert.match(text, /Sign in to continue/i);
-    assert.match(text, /anonymouscheckoutallowed/i);
+    assert.match(text, /requires an account before payment/i);
+
+    // the behaviour comes from the pack, not from code: the same screen lets a KTDA guest through
+    const setting = await page.evaluate(async () => {
+      const session = localStorage.getItem('nop-prototype-session') ?? 'default';
+      const report = await (await fetch('/api/platform/packs/report', { headers: { 'x-session': session } })).json();
+      return (report.keys ?? []).find((k) => k.key === 'ordersettings.anonymouscheckoutallowed');
+    });
+    assert.equal(setting?.value, false, 'the pack switched guest checkout off for this client');
   });
 
   test('AC-PLT-003-01-01', async () => {

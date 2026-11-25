@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../../lib/api.js';
 import { useProduct, money } from '../../lib/store.jsx';
 import {
-  Alert, Badge, Button, Checkbox, Citation, Field, Input, Panel, ProductPicture, Select, Spinner,
+  Alert, Badge, Button, Checkbox, Field, Input, Panel, ProductPicture, Select, Spinner,
 } from '../../ui/nop/kit.jsx';
 
 /* --------------------------------------------------------------------- cart --- */
@@ -124,11 +124,7 @@ export function Cart() {
             <Alert tone="info" title="One cart, several sellers">
               This cart holds items from {cart.sellers.length} sellers. One payment is taken and the order is split into
               one sub-order per seller and fulfilment choice at placement.
-              <Citation className="mt-1">
-                Decision CART-500: the native per-vendor cart stays off (shoppingcartsettings.vendorenabled = false).
-                CHK-004 splits order and payment; BR-CHK-009 groups lines by seller and fulfilment.
-              </Citation>
-            </Alert>
+</Alert>
           )}
 
           <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
@@ -145,10 +141,7 @@ export function Cart() {
                       </li>
                     ))}
                   </ul>
-                  <Citation className="mt-2">
-                    AC-CHK-001-03-02: moving an item back re-runs the stock and price checks; a warning keeps it in the list.
-                  </Citation>
-                </Panel>
+</Panel>
               )}
               <Panel title="Estimate shipping" subtitle="Native cart block (ShippingSettings.EstimateShippingCartPageEnabled)">
                 <p className="text-[13px] text-nop-muted">
@@ -176,11 +169,7 @@ export function Cart() {
                 >
                   Checkout
                 </Button>
-                <Citation className="mt-2">
-                  BR-CHK-003: prices and totals are always recalculated on the server at placement; nothing sent by the
-                  browser is used.
-                </Citation>
-              </Panel>
+</Panel>
             </div>
           </div>
         </>
@@ -276,13 +265,9 @@ export function Checkout() {
     return (
       <div className="max-w-xl mx-auto space-y-4">
         <h1 className="nop-page-title">Sign in to continue</h1>
-        <Alert tone="warning" title="This client requires an account before payment">
+        <Alert tone="warning" title="This store requires an account before payment">
           Guests may browse and fill a cart, but no order or payment can be made by a guest.
-          <Citation className="mt-1">
-            AC-CHK-002-02-02 / REQ-MPC-FR-125. The only difference from the other client is the setting
-            ordersettings.anonymouscheckoutallowed = false - BR-CHK-002: no code differs between clients.
-          </Citation>
-        </Alert>
+</Alert>
         <div className="flex gap-2">
           <Button as="link" to="/login" variant="brand">Log in or register</Button>
           <Button as="link" to="/cart">Back to cart</Button>
@@ -353,11 +338,7 @@ export function Checkout() {
             <Button variant="success" onClick={() => respondToPush(true)}>Enter PIN and confirm</Button>
             <Button variant="danger" onClick={() => respondToPush(false)}>Cancel on handset</Button>
           </div>
-          <Citation className="mt-3">
-            Mock {selected?.name} (decision P-3): the push and the callback follow the recorded sample payload in
-            packages/mocks/payloads. No request leaves the prototype.
-          </Citation>
-        </Panel>
+</Panel>
       </div>
     );
   }
@@ -394,11 +375,7 @@ export function Checkout() {
                   </Select>
                 </Field>
               </div>
-              <Citation className="mt-3">
-                CHK-007 structured address capture; AddressSettings.* plus the Landmark, Address name and PO box address
-                attributes. BR-CHK-011: the client rule sets which locators are required.
-              </Citation>
-            </Panel>
+</Panel>
           )}
 
           {step === 'shipping-method' && (
@@ -464,11 +441,7 @@ export function Checkout() {
                   </Alert>
                 </div>
               )}
-              <Citation className="mt-3">
-                PAY-001 / BR-PAY-001: the offer comes from paymentsettings.activepaymentmethodsystemnames in the client
-                pack, narrowed by the PAY-024 routing rules. Every rail is a mock (P-3).
-              </Citation>
-            </Panel>
+</Panel>
           )}
 
           {step === 'payment-info' && (
@@ -555,8 +528,7 @@ export function Checkout() {
                 <div className="border-t border-nop-border mt-2 pt-2">
                   <Row label="Total" value={money(totals.total, currency)} strong />
                 </div>
-                <Citation className="mt-2">{totals.citation}</Citation>
-              </>
+</>
             )}
           </Panel>
           {state.cart.multiSeller && (
@@ -569,11 +541,7 @@ export function Checkout() {
                   </li>
                 ))}
               </ul>
-              <Citation className="mt-2">
-                CHK-004: one payment, one sub-order per seller and fulfilment choice, one checkout reference
-                (BR-CHK-007 allocates order-level amounts in proportion to sub-order sub-totals).
-              </Citation>
-            </Panel>
+</Panel>
           )}
         </aside>
       </div>
