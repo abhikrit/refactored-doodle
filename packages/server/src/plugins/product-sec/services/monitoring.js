@@ -494,19 +494,19 @@ export async function decideFindingAsync({
 /** The known platform findings of BR-SEC-081, each with its product control. */
 export const PLATFORM_FINDINGS = [
   {
-    id: 1, finding: 'Misc.Brevo and Misc.Omnisend configuration actions', control: 'resolved natively in 5.00: they now require Configuration.ManagePlugins', status: 'resolved natively',
+    id: 1, finding: 'Marketing plugin configuration pages (Brevo, Omnisend)', control: 'resolved in the platform release: the pages now require the plugin-management permission', status: 'resolved natively',
   },
   {
-    id: 2, finding: 'Admin DiscountController.ProductAddPopup [POST] and other vendors\' discounts', control: 'resolved natively in 5.00, so the MKT vendor discount filter is withdrawn (BR-MKT-011)', status: 'resolved natively',
+    id: 2, finding: 'A seller could add another seller\'s discount to a product', control: 'resolved in the platform release: the action refuses another seller\'s discount', status: 'resolved natively',
   },
   {
-    id: 3, finding: 'Admin ArtificialIntelligenceController.GenerateMetaTags has no CheckPermission', control: 'the AI action filter (BR-AI-004)', status: 'product control',
+    id: 3, finding: 'The meta-tag generator had no permission check', control: 'the product permission filter on the generator', status: 'product control',
   },
   {
-    id: 4, finding: 'DownloadController.GetFileUpload and Admin DownloadFile serve files by GUID without an ownership check, and upload types are checked only in the browser', control: 'the single SEC download-ownership filter with its IC-SEC-05 providers (BR-SEC-005) and the ADM-008 upload policy (BR-ADM-060)', status: 'product control',
+    id: 4, finding: 'Uploaded files were served by reference with no ownership check, and file types were checked only in the browser', control: 'the one download-ownership check, with the rules each module registers, and the upload policy that checks every file on the server', status: 'product control',
   },
   {
-    id: 5, finding: 'the HTML-editor file manager elFinder writes files through its own allow-list', control: 'the ADM-008 upload filter on Connector (BR-ADM-060)', status: 'product control',
+    id: 5, finding: 'The HTML-editor file manager wrote files through its own list of allowed types', control: 'the upload policy applied to the file manager as well', status: 'product control',
   },
 ];
 
@@ -515,11 +515,15 @@ export async function penTestScopeAsync({ release, storeId = 1 } = {}) {
   const { extensionRegister } = await import('../../../core/providers.js');
   const register = extensionRegister();
   const accepted = await getSettingAsync('sec.pentestacceptedrisks', storeId, []);
+  const { registry } = await import('@product/shared');
+  const featureName = Object.fromEntries(registry.features.map((f) => [f.id, f.name]));
   const entries = register.map((e) => ({
     kind: 'extension register entry',
     target: e.service ?? e.target ?? e.name,
     owner: e.owner ?? e.feature ?? null,
-    control: accepted.includes(e.service ?? e.target) ? 'accepted risk' : (e.feature ?? e.owner ?? 'product control'),
+    control: accepted.includes(e.service ?? e.target)
+      ? 'accepted risk'
+      : (featureName[e.feature] ?? e.note ?? e.owner ?? 'product control'),
   }));
   const platform = PLATFORM_FINDINGS.map((f) => ({
     kind: 'known platform finding',

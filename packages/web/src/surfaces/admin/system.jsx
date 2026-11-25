@@ -6,7 +6,7 @@ import { api } from '../../lib/api.js';
 import { useProduct } from '../../lib/store.jsx';
 import { AdminPage } from '../../ui/nop/shells.jsx';
 import {
-  Alert, Badge, Breadcrumb, Button, Citation, Field, Grid, Input, KeyValue, Panel, SearchPanel,
+  Alert, Badge, Breadcrumb, Button, Field, Grid, Input, KeyValue, Panel, SearchPanel,
   Select, Spinner, StatTile, Tabs,
 } from '../../ui/nop/kit.jsx';
 
@@ -69,10 +69,6 @@ export function AdminAudit() {
           />
         )}
       </Panel>
-      <Citation>
-        SEC-010 gives an auditor read-only access. In the prototype the Auditor role reaches this screen and nothing
-        that writes.
-      </Citation>
     </AdminPage>
   );
 }
@@ -240,10 +236,6 @@ export function AdminMocks() {
           </div>
         </>
       )}
-      <Citation>
-        L1 section 6.9 lists the 45 external-system features. Each adapter here sits behind the interface the PRD names,
-        so a real sandbox (for example Safaricom Daraja) replaces the mock without changing the callers.
-      </Citation>
     </AdminPage>
   );
 }
@@ -262,10 +254,6 @@ export function AdminDiagnostics() {
         <div className="grid gap-4 lg:grid-cols-3">
           <Panel title="In-memory store" subtitle="Entity → row count">
             <KeyValue rows={Object.entries(data.store).sort((a, b) => b[1] - a[1])} />
-            <Citation className="mt-3">
-              Deviation from handoff decision P-4: there is no MySQL or SQL Server. The store is a Map per table behind
-              an async IRepository-shaped interface, so callers port unchanged to Nop.Data.
-            </Citation>
           </Panel>
           <Panel title="Named locks taken" subtitle="ILocker keys as the PRD writes them">
             {data.locks.length === 0 ? <p className="text-[13px] text-nop-muted">No lock taken yet.</p> : (
@@ -343,10 +331,6 @@ export function AdminPlugins() {
                   rowKey={(o) => o.service}
                 />
                 <div className="p-3">
-                  <Citation>
-                    Decision OVR-REG / L1 section 6.2 principle 7: one owner per overridden service. The prototype's
-                    registry refuses a second claim, so a module can only plug in through the owner's contract.
-                  </Citation>
                 </div>
               </>
             )}
@@ -378,10 +362,6 @@ export function AdminPlugins() {
                   </div>
                 ))}
                 <div className="p-3">
-                  <Citation>
-                    L1 section 6.2 principle 8: consumers only notify or enqueue and swallow exceptions. No validation
-                    and no state change belongs in a consumer.
-                  </Citation>
                 </div>
               </div>
             )}
@@ -394,10 +374,6 @@ export function AdminPlugins() {
                   rowKey={(r, i) => i}
                 />
                 <div className="p-3">
-                  <Citation>
-                    L1 section 6.3: six features involve a core modification. Everything else is a plugin
-                    (CLAUDE.md: "Never edit nopCommerce core, except entries listed in the core-modification register").
-                  </Citation>
                 </div>
               </>
             )}
@@ -414,11 +390,6 @@ export function AdminPlugins() {
                   rowKey={(r) => r['PRD ID']}
                 />
                 <div className="p-3">
-                  <Citation>
-                    Decision P-2: no purchases for the prototype. Each licensed or paid-stub feature gets a minimal
-                    in-house equivalent behind the same extension point, or a mock. Vendor 5.00 builds are unverified
-                    (V-01 / VENDOR-500).
-                  </Citation>
                 </div>
               </>
             )}
@@ -498,10 +469,6 @@ export function AdminScreens() {
           rowKey={(s) => s.id}
         />
       </Panel>
-      <Citation>
-        Module chapters section 11.1. The note there is explicit: screen layouts are not specified, so this prototype
-        builds no layout of its own beyond the native nopCommerce admin and DefaultClean storefront patterns.
-      </Citation>
     </AdminPage>
   );
 }

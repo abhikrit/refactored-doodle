@@ -194,7 +194,7 @@ export async function applyPackChainAsync(chain, { storeId = 1, replace = true, 
     actor,
     actorRole: 'Platform team',
     after: { chain: report.chain.map((c) => `${c.layer}/${c.id}`), keys: report.keys.length },
-    note: `pack chain applied in order ${LAYER_ORDER.join(' -> ')} (BR-PLT-010)`,
+    note: `pack chain applied in order ${LAYER_ORDER.join(' -> ')}`,
   });
 
   return report;

@@ -118,7 +118,7 @@ export function ScheduleTasks() {
             {!rows ? <Spinner /> : (
               <Grid
                 columns={[
-                  { key: 'name', header: 'Name', render: (t) => <span><span className="font-medium">{t.name}</span>{t.productTask && <Badge tone="blue" className="ml-2">{t.productTask}</Badge>}</span> },
+                  { key: 'name', header: 'Name', render: (t) => <span className="font-medium">{t.name}</span> },
                   { key: 'type', header: 'Type', render: (t) => <span className="font-mono text-[11.5px] text-nop-muted">{t.type}</span> },
                   {
                     key: 'seconds',
@@ -419,7 +419,6 @@ export function ExtensionRegister() {
                   : <span className="text-nop-muted">—</span>),
               },
               { key: 'order', header: 'Order', align: 'right' },
-              { key: 'rule', header: 'Rule', render: (e) => <span className="font-mono text-[11.5px]">{e.rule}</span> },
               { key: 'note', header: 'Note' },
             ]}
             rows={data.entries}
@@ -433,7 +432,7 @@ export function ExtensionRegister() {
               ? <Alert tone="success" title="No conflict">Every target in the register has exactly one owner, and no bundled plugin replaces a service the product owns.</Alert>
               : conflicts.map((w, i) => (
                 <Alert key={i} tone="error" title={w.target}>
-                  {w.message} <span className="text-nop-muted">({w.rule})</span>
+                  {w.message}
                 </Alert>
               ))}
             {refused.length > 0 && (
@@ -444,7 +443,7 @@ export function ExtensionRegister() {
               >
                 {refused.map((w, i) => (
                   <Alert key={i} tone="warning" title={w.target}>
-                    {w.message} <span className="text-nop-muted">({w.rule})</span>
+                    {w.message}
                   </Alert>
                 ))}
               </Panel>

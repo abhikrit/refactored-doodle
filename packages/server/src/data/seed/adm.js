@@ -164,7 +164,7 @@ export async function seedAdmAsync({ clientId }) {
 
   /* ------------------------------------------------------ ADM-005 eligibility, quotas -- */
   await repository('EligibilityBinding').insertAsync({
-    ruleSetCode: 'scheme-eligibility', customerRole: 'BulkBuyer', eligibleOutcome: 'Eligible', note: 'native ACL by customer role decides visibility (BR-ADM-050)',
+    ruleSetCode: 'scheme-eligibility', customerRole: 'BulkBuyer', eligibleOutcome: 'Eligible', note: 'the customer role decides who sees the scheme',
   });
   const quotaProduct = (await repository('Product').getAllAsync())[0];
   if (quotaProduct) {
@@ -191,7 +191,7 @@ export async function seedAdmAsync({ clientId }) {
         { order: 2, approverRole: 'Compliance', authorityLimit: null },
         { order: 9, approverRole: 'Administrators', isAppealStep: true },
       ],
-      note: 'REQ-MPC-FR-039: high-risk action, the old account stays in use until approval',
+      note: 'a high-risk change: the old account stays in use until the change is approved',
     },
     {
       code: 'internal-approval-chain',
@@ -207,7 +207,7 @@ export async function seedAdmAsync({ clientId }) {
         },
         { order: 9, approverRole: 'Administrators', isAppealStep: true },
       ],
-      note: 'REQ-KTDA-WF-004: sequential internal approval stages; step 2 applies only above the amount',
+      note: 'approval stages in order; the second stage applies only above the amount',
     },
     {
       code: 'template-approval', objectType: 'TransactionTemplate', steps: [{ order: 1, approverRole: 'Administrators' }], note: 'FC-M02-011: approved by someone other than the author',
@@ -216,7 +216,7 @@ export async function seedAdmAsync({ clientId }) {
       code: 'screening-review', objectType: 'ScreeningMatch', steps: [{ order: 1, approverRole: 'Compliance' }], note: 'FC-M02-031: a reviewer clears or confirms the match',
     },
     {
-      code: 'listing-moderation', objectType: 'Listing', steps: [{ order: 1, approverRole: 'Catalogue' }], note: 'REQ-MPC-FR-319: product listing moderation (CAT-022, CAT-043)',
+      code: 'listing-moderation', objectType: 'Listing', steps: [{ order: 1, approverRole: 'Catalogue' }], note: 'a new listing is checked before it is published',
     },
     {
       code: 'seller-application', objectType: 'SellerApplication', steps: [{ order: 1, approverRole: 'Compliance' }], note: 'SEL-003, with the IC-ADM-03 CanDecide guard',

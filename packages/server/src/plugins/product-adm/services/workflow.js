@@ -43,14 +43,23 @@ const operations = new Map();
  */
 export async function registerStepOperationAsync({
   code, owningModule, feature, inputSchema = [], outputSchema = [], defaultTimeoutMs = 5000,
-  defaultRetries = 2, handler = null, note = '',
+  defaultRetries = 2, handler = null, note = '', rule = null,
 }) {
   const existing = operations.get(code);
   if (existing && existing.owningModule !== owningModule) {
     throw new Error(`IC-ADM-01: step operation ${code} is already registered by ${existing.owningModule}`);
   }
   operations.set(code, {
-    code, owningModule, feature, inputSchema, outputSchema, defaultTimeoutMs, defaultRetries, handler, note,
+    code,
+    owningModule,
+    feature,
+    inputSchema,
+    outputSchema,
+    defaultTimeoutMs,
+    defaultRetries,
+    handler,
+    note,
+    rule,
   });
   return operations.get(code);
 }

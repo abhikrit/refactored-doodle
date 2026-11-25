@@ -42,7 +42,7 @@ export default definePlugin({
       built: false,
       features: ctx.features.length,
       screens: ctx.screens.length,
-      note: 'PRD-INT-004 outbox built (IC-INT-09); the rest is a scaffold - built in wave 6 (Reach)',
+      note: 'PRD-INT-004 outbox built; the rest is a scaffold - built in wave 6 (Reach)',
       builtFeatures: ['PRD-INT-004'],
     });
   },

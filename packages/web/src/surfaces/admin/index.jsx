@@ -7,7 +7,7 @@ import { api } from '../../lib/api.js';
 import { useProduct, money } from '../../lib/store.jsx';
 import { AdminPage } from '../../ui/nop/shells.jsx';
 import {
-  Alert, Badge, Breadcrumb, Button, ButtonBar, Citation, Field, Grid, Input, KeyValue, NotBuilt,
+  Alert, Badge, Breadcrumb, Button, ButtonBar, Field, Grid, Input, KeyValue, NotBuilt,
   Panel, ProductPicture, SearchPanel, Select, Spinner, StatTile, Tabs,
 } from '../../ui/nop/kit.jsx';
 
@@ -135,10 +135,6 @@ export function AdminProducts() {
           />
         )}
       </Panel>
-      <Citation>
-        Products, prices and stock are synthetic (P-5). Bulk edit, import/export and the listing approval queue
-        (CAT-009, CAT-010, CAT-022) are wave 2.
-      </Citation>
     </AdminPage>
   );
 }
@@ -202,11 +198,6 @@ export function AdminProductEdit() {
                   rowKey={(t) => t.quantity}
                 />
               )}
-              <Citation>
-                Decision PRICE-500: customer and company prices are native price lists (CAT-039, CAT-042) and
-                catalogsettings.priceliststrategy chooses MinimalPrice or UseByPriority. A tier price found afterwards
-                replaces the price-list price - the rule where a product carries both is owned by the CAT chapter.
-              </Citation>
             </div>
           )}
           {tab === 'inventory' && (
@@ -223,10 +214,6 @@ export function AdminProductEdit() {
           {tab === 'pictures' && (
             <div className="flex items-start gap-4">
               <div className="w-40"><ProductPicture picture={product.picture} name={product.name} /></div>
-              <Citation>
-                No client images were supplied (P-5), so pictures are drawn placeholders. CAT-016 product pictures and
-                media, and the ADM-008 upload and scanning controls, are built in their own sessions.
-              </Citation>
             </div>
           )}
           {tab === 'attributes' && (
@@ -261,10 +248,6 @@ export function AdminCategories() {
           />
         )}
       </Panel>
-      <Citation>
-        L1 section 6.5: the category taxonomy and specification attributes are pack layers vertical → client
-        (CAT-001 / CAT-004).
-      </Citation>
     </AdminPage>
   );
 }
@@ -470,10 +453,6 @@ export function AdminOrderDetails() {
                     rows={order.siblings}
                     rowKey={(s) => s.orderNumber}
                   />
-                  <Citation className="mt-2">
-                    BR-CHK-007: order-level amounts are allocated in proportion to sub-order sub-totals, except a
-                    per-seller delivery fee, which stays with that seller's sub-order.
-                  </Citation>
                 </div>
               )}
             </div>
@@ -589,10 +568,6 @@ export function AdminPayments() {
           />
         )}
       </Panel>
-      <Citation>
-        BR-CHK-022 / decision SPLIT-PAY: paying once for several sub-orders needs group support (IC-PAY-02); a method
-        that does not declare it is not offered for a multi-seller cart.
-      </Citation>
     </AdminPage>
   );
 }
@@ -652,10 +627,6 @@ export function AdminRoles() {
           />
         )}
       </Panel>
-      <Citation>
-        Packs use 5.00.1 permission system names with the view / create-edit-delete split (for example
-        Catalog.ProductsView). 4.70 names such as ManageProducts are invalid and grant nothing.
-      </Citation>
     </AdminPage>
   );
 }

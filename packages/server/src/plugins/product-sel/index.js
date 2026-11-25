@@ -132,6 +132,6 @@ export default definePlugin({
       } catch (err) { return next(err); }
     });
     ctx.addRouter('/api/sellers', r);
-    ctx.declare({ built: false, partial: true, owns: ['PRD-SEL-001', 'PRD-SEL-008', 'PRD-SEL-016'], note: 'seller list and seller dashboard read model only; onboarding, approval stages and settlements are wave 2. SEL-005 payout account changes and SEL-003 applications go through the ADM-006 approval queue (IC-ADM-03), which is what AC-ADM-006-05-01 and AC-ADM-006-01-04 require.' });
+    ctx.declare({ built: false, partial: true, owns: ['PRD-SEL-001', 'PRD-SEL-008', 'PRD-SEL-016'], note: 'seller list and seller dashboard read model only; onboarding, approval stages and settlements are wave 2. SEL-005 payout account changes and SEL-003 applications go through the ADM-006 approval queue, which is what and require.' });
   },
 });

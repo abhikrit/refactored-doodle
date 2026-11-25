@@ -292,7 +292,8 @@ describe('US-ADM-002-02 the ready-made steps', () => {
     const operations = await api.get('/api/admin-console/step-operations');
     const op = operations.find((o) => o.code === 'PAY.ReleaseEscrowStage');
     assert.equal(op.owningModule, 'Product.PAY', 'the operation belongs to PAY');
-    assert.match(op.note, /BR-ADM-011/);
+    assert.equal(op.rule, 'BR-ADM-011');
+    assert.match(op.note, /changes no payment state itself/);
   });
 
   test('AC-ADM-002-02-05', async () => {

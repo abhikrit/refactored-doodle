@@ -14,6 +14,7 @@ import {
   AcceptTerms, AccountActivity, AccountCompany, AccountDashboard, AccountHistory,
   AccountPreferences, AccountPrivacy, TradeApplication,
 } from './surfaces/storefront/account-identity.jsx';
+import { CookieSettings } from './surfaces/storefront/cookies.jsx';
 
 import {
   AdminProductEdit, AdminProducts, Dashboard,
@@ -21,6 +22,9 @@ import {
 import {
   AdminAccess, AdminAccounts, AdminCustomers, AdminPrivacy, AdminSecurity,
 } from './surfaces/admin/iam.jsx';
+import {
+  AdminAuditTrail, AdminBreaches, AdminDataProtection, AdminSecurityOperations,
+} from './surfaces/admin/sec.jsx';
 import { AdminSettings } from './surfaces/admin/configuration.jsx';
 import { AdminPlugins } from './surfaces/admin/system.jsx';
 import {
@@ -82,6 +86,7 @@ export default function App() {
               <Route path="/account/company" element={store(<AccountCompany />)} />
               <Route path="/account/trade-application" element={store(<TradeApplication />)} />
               <Route path="/customer/accept-terms" element={store(<AcceptTerms />)} />
+              <Route path="/cookie-settings" element={store(<CookieSettings />)} />
 
               {/* administration */}
               <Route path="/admin" element={<Dashboard />} />
@@ -100,6 +105,10 @@ export default function App() {
               <Route path="/admin/system/log" element={<SystemLog />} />
               <Route path="/admin/system/maintenance" element={<Maintenance />} />
               <Route path="/admin/system/extension-register" element={<ExtensionRegister />} />
+              <Route path="/admin/system/audit-trail" element={<AdminAuditTrail />} />
+              <Route path="/admin/system/data-protection" element={<AdminDataProtection />} />
+              <Route path="/admin/system/breaches" element={<AdminBreaches />} />
+              <Route path="/admin/system/security-operations" element={<AdminSecurityOperations />} />
               <Route path="/admin/configuration/workflows" element={<Workflows />} />
               <Route path="/admin/configuration/rules" element={<Rules />} />
               <Route path="/admin/configuration/transaction-types" element={<TransactionTypes />} />

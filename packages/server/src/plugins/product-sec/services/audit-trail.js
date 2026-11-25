@@ -451,8 +451,10 @@ export async function complianceReportAsync({ from, to = new Date().toISOString(
 /** The screen of AC-SEC-004-03-01, with the catalogue entry of each event id. */
 export async function searchAsync(filter = {}) {
   const rows = await auditTrailAsync(filter);
+  const { registry } = await import('@product/shared');
+  const catalogue = Object.fromEntries(registry.auditEvents.map((e) => [e.id, e]));
   return {
-    events: rows,
+    events: rows.map((r) => ({ ...r, what: catalogue[r.event]?.event ?? r.note ?? null })),
     total: rows.length,
     searchableBy: ['actor', 'entity', 'entityId', 'event', 'storeId', 'from', 'to', 'amount'],
     sqlRequired: false,

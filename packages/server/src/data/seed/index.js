@@ -371,7 +371,7 @@ async function seedInnerAsync({ clientId, report }) {
   }
   for (const l of [
     { logLevel: 'Information', shortMessage: 'Application started', fullMessage: 'The prototype started and applied the client configuration pack.' },
-    { logLevel: 'Information', shortMessage: 'Configuration pack applied', fullMessage: 'global -> country -> vertical -> client -> store merged (BR-PLT-010).' },
+    { logLevel: 'Information', shortMessage: 'Configuration pack applied', fullMessage: 'The configuration layers were merged in order: global, country, vertical, client, store.' },
     { logLevel: 'Warning', shortMessage: 'Mock adapter not configured for a real sandbox', fullMessage: 'Every external system is a mock (decision P-3).' },
     { logLevel: 'Error', shortMessage: 'Payment callback for an unknown reference', fullMessage: 'A callback arrived for a provider reference with no transaction. Synthetic sample.' },
   ]) {

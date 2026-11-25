@@ -14,6 +14,7 @@ import {
 import { useProduct, money } from '../../lib/store.jsx';
 import { api } from '../../lib/api.js';
 import { Badge, Button, Spinner } from './kit.jsx';
+import { CookieBanner } from '../../surfaces/storefront/cookies.jsx';
 
 /* ------------------------------------------------------------- storefront --- */
 
@@ -157,6 +158,7 @@ export function StorefrontShell({ children }) {
       </nav>
 
       <main className="flex-1 mx-auto max-w-[1280px] w-full px-4 py-6">{children}</main>
+      <CookieBanner />
 
       <footer className="border-t border-store-border mt-8 bg-store-panel">
         <div className="mx-auto max-w-[1280px] px-4 py-8 grid gap-6 md:grid-cols-4 text-[13px]">
@@ -257,6 +259,10 @@ const ADMIN_NAV = [
       { label: 'Log', to: '/admin/system/log' },
       { label: 'Maintenance', to: '/admin/system/maintenance' },
       { label: 'Extension register', to: '/admin/system/extension-register' },
+      { label: 'Audit trail', to: '/admin/system/audit-trail' },
+      { label: 'Data protection', to: '/admin/system/data-protection' },
+      { label: 'Breach cases', to: '/admin/system/breaches' },
+      { label: 'Security operations', to: '/admin/system/security-operations' },
     ],
   },
   { label: 'Plugins', to: '/admin/plugins' },

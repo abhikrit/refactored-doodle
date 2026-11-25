@@ -7,7 +7,7 @@ import { api } from '../../lib/api.js';
 import { useProduct, money } from '../../lib/store.jsx';
 import { AdminPage } from '../../ui/nop/shells.jsx';
 import {
-  Alert, Badge, Breadcrumb, Button, Citation, Field, Grid, Input, KeyValue, Panel, SearchPanel,
+  Alert, Badge, Breadcrumb, Button, Field, Grid, Input, KeyValue, Panel, SearchPanel,
   Select, Spinner, Tabs,
 } from '../../ui/nop/kit.jsx';
 
@@ -57,11 +57,6 @@ export function AdminSettings() {
           />
         )}
       </Panel>
-      <Citation>
-        L1 section 6.5: global, country, vertical and client layers exist only in pack files. The PLT-003 loader merges
-        them at apply time and writes the result as StoreId 0 rows, store-layer keys as StoreId = n rows (BR-PLT-010).
-        No runtime layer resolver is built (NOP-906).
-      </Citation>
     </AdminPage>
   );
 }
@@ -212,10 +207,6 @@ export function AdminPacks() {
                         {p.message} <span className="text-nop-muted">({p.rule})</span>
                       </Alert>
                     )))}
-                  <Citation>
-                    BR-PLT-013 / decision CFG-01: a secret never travels in a pack. The loader refuses a pack whose key
-                    ends in a secret word and lists malformed keys and unknown feature IDs (NFR-X-008 pack validation).
-                  </Citation>
                 </div>
               )}
             </div>
@@ -293,10 +284,6 @@ export function AdminFeatureRegistry() {
           />
         )}
       </Panel>
-      <Citation>
-        Decision P-1: a held feature is built with the PRD's Proposed option and labelled here and in /trace. It is not
-        hidden and it is not silently finished.
-      </Citation>
     </AdminPage>
   );
 }
@@ -346,11 +333,6 @@ export function AdminLanguages() {
           rowKey={(l) => l.culture}
         />
       </Panel>
-      <Citation>
-        KTDA: Kiswahili, English, French, Arabic, Russian, Mandarin (REQ-KTDA-LOC-001); right-to-left for Arabic is an
-        inference (KG-14). Malawi Post: English and Chichewa (REQ-MPC-FR-023, priority Could). Translation content was
-        not supplied, so only the language rows exist (P-5).
-      </Citation>
     </AdminPage>
   );
 }
@@ -372,10 +354,6 @@ export function AdminCurrencies() {
           rowKey={(c) => c.code}
         />
       </Panel>
-      <Citation>
-        KTDA states a USD base with multi-currency (REQ-KTDA-LOC-002). Rates here are synthetic (P-5) and the settlement
-        currency per payment method is open (decision C-FX).
-      </Citation>
     </AdminPage>
   );
 }
@@ -469,10 +447,6 @@ export function AdminShippingMethods() {
           />
         )}
       </Panel>
-      <Citation>
-        BR-CHK-010: window capacity is checked and reserved at placement under the lock chk-slot-{'{SlotId}'}-{'{Date}'};
-        a cancelled order releases its place. Outlet capacity and closures are LOG-003 extensions in the Postal pack.
-      </Citation>
     </AdminPage>
   );
 }
@@ -528,10 +502,6 @@ export function AdminAcl() {
           </Panel>
         </>
       )}
-      <Citation>
-        IAM-008 adds a scope to a grant (outlet, warehouse, seller, agency, company), which the native model has no field
-        for - in the real build that is the IAM-008 plugin plus the one core modification listed in L1 section 6.3.
-      </Citation>
     </AdminPage>
   );
 }
@@ -563,10 +533,6 @@ export function AdminMessageTemplates() {
           />
         )}
       </Panel>
-      <Citation>
-        Definition of Done criterion 8: all user-facing text is a locale resource, so a client language pack translates
-        it. Native resources are reused unchanged.
-      </Citation>
     </AdminPage>
   );
 }

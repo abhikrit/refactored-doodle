@@ -99,7 +99,7 @@ export default definePlugin({
       owner: 'Product.IAM',
       feature: 'PRD-IAM-026',
       startupOrder: 3010,
-      note: 'BR-IAM-130 / decision SINGLE-FILTER: exactly one filter guards Place order for customer.',
+      note: 'exactly one filter guards Place order for customer.',
     });
 
     await ensureProductRolesAsync();

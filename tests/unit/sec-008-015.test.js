@@ -529,7 +529,7 @@ describe('PRD-SEC-011 vulnerability management', () => {
     const findings = await api.get('/api/security/vulnerabilities/platform-findings', SESSIONS.admin);
     assert.equal(findings.length, 5);
     assert.ok(findings.filter((f) => f.status === 'resolved natively').length === 2);
-    assert.ok(findings.some((f) => /download-ownership filter/.test(f.control)));
+    assert.ok(findings.some((f) => /download-ownership check/.test(f.control)));
     assert.ok(findings.every((f) => f.control));
 
     const firstEntry = extensionRegister()[0];

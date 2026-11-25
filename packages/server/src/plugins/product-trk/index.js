@@ -20,7 +20,7 @@ export default definePlugin({
       feature: 'PRD-TRK-005',
       startupOrder: 3310,
       rule: 'BR-ADM-003',
-      note: 'Multi-channel messaging host (TRK-005). Routing per event and channel comes from the pack (decision MSG-ROUTE).',
+      note: 'Multi-channel messaging host (TRK-005). Routing per event and channel comes from the pack.',
     });
     // event consumers only notify (L1 section 6.2 principle 8)
     ctx.events.subscribe('OrderPlacedEvent', {

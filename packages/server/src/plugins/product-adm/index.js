@@ -124,7 +124,7 @@ export default definePlugin({
     // Single-owner actions: one filter, and other features supply rules to the owner
     // (AC-ADM-001-04-06, decision SINGLE-FILTER, BR-ADM-006 and BR-ADM-007).
     registerActionFilter('Admin CustomerController.Impersonate', {
-      owner: 'Product.IAM', feature: 'PRD-IAM-026', order: 100, singleOwner: true, rule: 'BR-ADM-006', note: 'the single impersonation filter (BR-IAM-130)',
+      owner: 'Product.IAM', feature: 'PRD-IAM-026', order: 100, singleOwner: true, rule: 'BR-ADM-006', note: 'the single impersonation filter',
     });
     registerRuleProvider('Admin CustomerController.Impersonate', {
       owner: 'Product.CRM', feature: 'PRD-CRM-015', name: 'account managers for their assigned customers',
@@ -139,7 +139,7 @@ export default definePlugin({
       owner: 'Product.EGV', feature: 'PRD-EGV-002', name: 'agency files',
     });
     registerActionFilter('Nop.Web CheckoutController.ConfirmOrder', {
-      owner: 'Product.CHK', feature: 'PRD-CHK-009', order: 100, singleOwner: true, rule: 'BR-ADM-007', note: 'acknowledgements and the terms checkbox are enforced on the server (BR-CHK-013)',
+      owner: 'Product.CHK', feature: 'PRD-CHK-009', order: 100, singleOwner: true, rule: 'BR-ADM-007', note: 'acknowledgements and the terms checkbox are enforced on the server',
     });
     registerActionFilter('Admin SettingController.SettingUpdate', {
       owner: 'Product.PLT', feature: 'PRD-PLT-004', order: 100, singleOwner: true, rule: 'BR-ADM-006', note: 'settings change control',
@@ -161,7 +161,7 @@ export default definePlugin({
 
     /* ---- what ADM registers with other modules --------------------------------------- */
     for (const c of ADM_EVENT_CODES) {
-      registerEventCode({ ...c, owner: 'Product.ADM', note: 'BR-ADM-085: ADM sends only through TRK-005' });
+      registerEventCode({ ...c, owner: 'Product.ADM', note: 'ADM sends only through TRK-005' });
     }
 
     for (const context of ADM_CONTEXTS) {
@@ -182,7 +182,7 @@ export default definePlugin({
       feature: 'PRD-EGV-002',
       defaultTimeoutMs: 4000,
       defaultRetries: 2,
-      note: 'IC-EGV-02, called through the EGV service',
+      note: ', called through the EGV service',
       handler: async (variables) => ({
         ok: variables.identityNumber !== 'UNKNOWN',
         message: variables.identityNumber === 'UNKNOWN' ? 'the registry did not recognise the applicant' : undefined,
@@ -200,7 +200,8 @@ export default definePlugin({
       code: 'PAY.ReleaseEscrowStage',
       owningModule: 'Product.PAY',
       feature: 'PRD-PAY-007',
-      note: 'BR-ADM-011: the step calls PAY; it changes no payment state itself',
+      rule: 'BR-ADM-011',
+      note: 'the step calls PAY; it changes no payment state itself',
       handler: async (variables) => ({ ok: true, released: variables.amount ?? null }),
     });
     await registerStepOperationAsync({

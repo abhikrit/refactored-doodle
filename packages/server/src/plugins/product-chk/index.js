@@ -21,13 +21,13 @@ export default definePlugin({
       owner: 'Product.CHK',
       feature: 'PRD-CHK-003',
       startupOrder: 3200,
-      note: 'BR-CHK-015: one override, cart check providers run after the native checks (IC-CHK-01).',
+      note: 'one override, cart check providers run after the native checks.',
     });
     ctx.providers.claimOverride('IOrderProcessingService', {
       owner: 'Product.CHK',
       feature: 'PRD-CHK-003',
       startupOrder: 3200,
-      note: 'BR-CHK-006: the placement host. One lock, one payment, one sub-order per splitter group.',
+      note: 'the placement host. One lock, one payment, one sub-order per splitter group.',
     });
     ctx.providers.registerProvider('IC-CHK-11', {
       area: 'CHK',
