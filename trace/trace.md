@@ -1,6 +1,6 @@
 # Trace report
 
-Generated 2026-11-25T10:47:51.317Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
+Generated 2026-11-25T11:24:54.720Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
 
 ## 1. Reconciliation
 
@@ -11,15 +11,15 @@ its criteria tested and the rest not is partial, and is never counted as built.
 
 | State | Features | Meaning |
 |---|---|---|
-| Built and passing | 39 | Every AC of the feature has a passing test named by the AC ID |
-| Partly covered | 15 | Some ACs have passing tests, the rest have none yet |
-| Held, prototype default | 94 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
-| Mocked externally | 29 | External-system feature standing behind a mock adapter (P-3) |
-| Not built | 257 | Scaffolded in Session 0, built in its own session |
+| Built and passing | 54 | Every AC of the feature has a passing test named by the AC ID |
+| Partly covered | 14 | Some ACs have passing tests, the rest have none yet |
+| Held, prototype default | 92 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
+| Mocked externally | 24 | External-system feature standing behind a mock adapter (P-3) |
+| Not built | 250 | Scaffolded in Session 0, built in its own session |
 | **Total** | **434** | reconciles: yes |
 
 Acceptance criteria in the product: 2850. Criteria with a test in this repository:
-338 (338 passing, 0 failing).
+440 (440 passing, 0 failing).
 
 ## 2. Coverage by area and wave
 
@@ -28,7 +28,7 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 | 1 Foundation | ADM | Administration, workflow and operations console | 12 | 12 | 0 | 0 | 0 | 0 |
 | 1 Foundation | IAM | Identity, access and accounts | 27 | 27 | 0 | 0 | 0 | 0 |
 | 1 Foundation | PLT | Platform foundation and multi-client configuration | 27 | 0 | 2 | 3 | 4 | 18 |
-| 1 Foundation | SEC | Security, audit and compliance | 15 | 0 | 1 | 2 | 5 | 7 |
+| 1 Foundation | SEC | Security, audit and compliance | 15 | 15 | 0 | 0 | 0 | 0 |
 | 2 Catalogue | CAT | Catalogue and listings | 43 | 0 | 0 | 9 | 0 | 34 |
 | 2 Catalogue | INV | Inventory and warehouses | 13 | 0 | 0 | 1 | 0 | 12 |
 | 2 Catalogue | SEL | Sellers and marketplace onboarding | 25 | 0 | 0 | 4 | 1 | 20 |
@@ -54,8 +54,8 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 
 | Client | Requirements | Mapped to a feature | Demonstrated in the prototype | Project service |
 |---|---|---|---|---|
-| KTDA | 95 | 80 | 12 | 17 |
-| Malawi Post | 411 | 374 | 32 | 38 |
+| KTDA | 95 | 80 | 15 | 17 |
+| Malawi Post | 411 | 374 | 38 | 38 |
 
 "Demonstrated in the prototype" means at least one feature that delivers the requirement has a
 passing AC-named test here. It is not a compliance statement: the compliance status of each
@@ -399,12 +399,114 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-PLT-003-01-01 | PRD-PLT-003 | node (API and rules) | pass |
 | AC-PLT-003-01-02 | PRD-PLT-003 | node (API and rules) | pass |
 | AC-PLT-022-01-02 | PRD-PLT-022 | node (API and rules) | pass |
+| AC-SEC-001-01-01 | PRD-SEC-001 | node (API and rules) | pass |
+| AC-SEC-001-01-02 | PRD-SEC-001 | node (API and rules) | pass |
+| AC-SEC-001-01-03 | PRD-SEC-001 | node (API and rules) | pass |
+| AC-SEC-001-01-04 | PRD-SEC-001 | node (API and rules) | pass |
+| AC-SEC-001-02-01 | PRD-SEC-001 | node (API and rules) | pass |
+| AC-SEC-001-02-02 | PRD-SEC-001 | node (API and rules) | pass |
+| AC-SEC-001-03-01 | PRD-SEC-001 | node (API and rules) | pass |
+| AC-SEC-001-03-02 | PRD-SEC-001 | node (API and rules) | pass |
+| AC-SEC-001-04-01 | PRD-SEC-001 | node (API and rules) | pass |
+| AC-SEC-001-04-02 | PRD-SEC-001 | node (API and rules) | pass |
+| AC-SEC-002-01-01 | PRD-SEC-002 | node (API and rules) | pass |
+| AC-SEC-002-01-02 | PRD-SEC-002 | node (API and rules) | pass |
+| AC-SEC-002-01-03 | PRD-SEC-002 | node (API and rules) | pass |
+| AC-SEC-002-02-01 | PRD-SEC-002 | node (API and rules) | pass |
+| AC-SEC-002-03-01 | PRD-SEC-002 | node (API and rules) | pass |
+| AC-SEC-002-03-02 | PRD-SEC-002 | node (API and rules) | pass |
+| AC-SEC-002-04-01 | PRD-SEC-002 | node (API and rules) | pass |
+| AC-SEC-002-04-02 | PRD-SEC-002 | node (API and rules) | pass |
+| AC-SEC-002-04-03 | PRD-SEC-002 | node (API and rules) | pass |
+| AC-SEC-002-04-04 | PRD-SEC-002 | node (API and rules) | pass |
+| AC-SEC-002-04-05 | PRD-SEC-002 | node (API and rules) | pass |
+| AC-SEC-002-04-06 | PRD-SEC-002 | node (API and rules) | pass |
+| AC-SEC-003-01-01 | PRD-SEC-003 | node (API and rules) | pass |
+| AC-SEC-003-01-02 | PRD-SEC-003 | node (API and rules) | pass |
+| AC-SEC-003-01-03 | PRD-SEC-003 | node (API and rules) | pass |
+| AC-SEC-003-02-01 | PRD-SEC-003 | node (API and rules) | pass |
+| AC-SEC-004-01-01 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-01-02 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-01-03 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-01-04 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-01-05 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-01-06 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-02-01 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-02-02 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-02-03 | PRD-SEC-004 | node (API and rules) | pass |
 | AC-SEC-004-03-01 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-03-02 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-04-01 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-04-02 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-05-01 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-05-02 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-05-03 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-06-01 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-06-02 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-07-01 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-004-08-01 | PRD-SEC-004 | node (API and rules) | pass |
+| AC-SEC-005-01-01 | PRD-SEC-005 | node (API and rules) | pass |
+| AC-SEC-005-01-02 | PRD-SEC-005 | node (API and rules) | pass |
+| AC-SEC-005-02-01 | PRD-SEC-005 | node (API and rules) | pass |
+| AC-SEC-006-01-01 | PRD-SEC-006 | node (API and rules) | pass |
+| AC-SEC-006-01-02 | PRD-SEC-006 | node (API and rules) | pass |
+| AC-SEC-006-01-03 | PRD-SEC-006 | node (API and rules) | pass |
+| AC-SEC-007-01-01 | PRD-SEC-007 | node (API and rules) | pass |
+| AC-SEC-007-01-02 | PRD-SEC-007 | node (API and rules) | pass |
+| AC-SEC-007-01-03 | PRD-SEC-007 | node (API and rules) | pass |
+| AC-SEC-007-01-04 | PRD-SEC-007 | node (API and rules) | pass |
+| AC-SEC-007-02-01 | PRD-SEC-007 | node (API and rules) | pass |
+| AC-SEC-007-03-01 | PRD-SEC-007 | node (API and rules) | pass |
+| AC-SEC-007-04-01 | PRD-SEC-007 | node (API and rules) | pass |
+| AC-SEC-007-04-02 | PRD-SEC-007 | node (API and rules) | pass |
+| AC-SEC-007-04-03 | PRD-SEC-007 | node (API and rules) | pass |
+| AC-SEC-007-05-01 | PRD-SEC-007 | node (API and rules) | pass |
+| AC-SEC-008-01-01 | PRD-SEC-008 | node (API and rules) | pass |
+| AC-SEC-008-01-02 | PRD-SEC-008 | node (API and rules) | pass |
+| AC-SEC-008-01-03 | PRD-SEC-008 | node (API and rules) | pass |
+| AC-SEC-008-02-01 | PRD-SEC-008 | node (API and rules) | pass |
+| AC-SEC-008-02-02 | PRD-SEC-008 | node (API and rules) | pass |
+| AC-SEC-008-02-03 | PRD-SEC-008 | node (API and rules) | pass |
+| AC-SEC-008-02-04 | PRD-SEC-008 | node (API and rules) | pass |
+| AC-SEC-009-01-01 | PRD-SEC-009 | node (API and rules) | pass |
+| AC-SEC-009-01-02 | PRD-SEC-009 | node (API and rules) | pass |
+| AC-SEC-009-02-01 | PRD-SEC-009 | node (API and rules) | pass |
+| AC-SEC-010-01-01 | PRD-SEC-010 | node (API and rules) | pass |
+| AC-SEC-010-01-02 | PRD-SEC-010 | node (API and rules) | pass |
+| AC-SEC-010-01-03 | PRD-SEC-010 | node (API and rules) | pass |
+| AC-SEC-010-02-01 | PRD-SEC-010 | node (API and rules) | pass |
+| AC-SEC-010-02-02 | PRD-SEC-010 | node (API and rules) | pass |
+| AC-SEC-011-01-01 | PRD-SEC-011 | node (API and rules) | pass |
+| AC-SEC-011-02-01 | PRD-SEC-011 | node (API and rules) | pass |
+| AC-SEC-011-03-01 | PRD-SEC-011 | node (API and rules) | pass |
+| AC-SEC-011-03-02 | PRD-SEC-011 | node (API and rules) | pass |
+| AC-SEC-012-01-01 | PRD-SEC-012 | node (API and rules) | pass |
+| AC-SEC-012-01-02 | PRD-SEC-012 | node (API and rules) | pass |
+| AC-SEC-012-01-03 | PRD-SEC-012 | node (API and rules) | pass |
+| AC-SEC-012-02-01 | PRD-SEC-012 | node (API and rules) | pass |
+| AC-SEC-012-03-01 | PRD-SEC-012 | node (API and rules) | pass |
+| AC-SEC-012-03-02 | PRD-SEC-012 | node (API and rules) | pass |
+| AC-SEC-012-04-01 | PRD-SEC-012 | node (API and rules) | pass |
+| AC-SEC-012-05-01 | PRD-SEC-012 | node (API and rules) | pass |
+| AC-SEC-012-06-01 | PRD-SEC-012 | node (API and rules) | pass |
+| AC-SEC-013-01-01 | PRD-SEC-013 | node (API and rules) | pass |
+| AC-SEC-013-01-02 | PRD-SEC-013 | node (API and rules) | pass |
+| AC-SEC-013-01-03 | PRD-SEC-013 | node (API and rules) | pass |
+| AC-SEC-013-01-04 | PRD-SEC-013 | node (API and rules) | pass |
+| AC-SEC-013-01-05 | PRD-SEC-013 | node (API and rules) | pass |
+| AC-SEC-014-01-01 | PRD-SEC-014 | node (API and rules) | pass |
+| AC-SEC-014-02-01 | PRD-SEC-014 | node (API and rules) | pass |
+| AC-SEC-014-02-02 | PRD-SEC-014 | node (API and rules) | pass |
+| AC-SEC-014-02-03 | PRD-SEC-014 | node (API and rules) | pass |
+| AC-SEC-014-02-04 | PRD-SEC-014 | node (API and rules) | pass |
+| AC-SEC-014-02-05 | PRD-SEC-014 | node (API and rules) | pass |
+| AC-SEC-015-01-01 | PRD-SEC-015 | node (API and rules) | pass |
+| AC-SEC-015-01-02 | PRD-SEC-015 | node (API and rules) | pass |
 | AC-TRK-001-01-01 | PRD-TRK-001 | node (API and rules) | pass |
 | AC-TRK-001-01-02 | PRD-TRK-001 | node (API and rules) | pass |
 | AC-TRK-011-01-02 | PRD-TRK-011 | node (API and rules) | pass |
 
-## 5. Features held by an open decision (94)
+## 5. Features held by an open decision (92)
 
 Each is built as the PRD's Proposed option and labelled "Prototype default - decision <ID> pending"
 in the user interface and here.
@@ -799,21 +901,21 @@ in the user interface and here.
 | PRD-DOC-004 | Document review and compliance export | DOC | P2 | 4 | not-built | 4 | 0 | - |
 | PRD-DOC-005 | Document requirements and validation | DOC | P2 | 4 | mocked | 6 | 0 | - |
 | PRD-DOC-006 | Export document set | DOC | P1 | 4 | held-default | 5 | 0 | DOC-LIB |
-| PRD-SEC-001 | Encryption and transport security | SEC | P1 | 1 | not-built | 10 | 0 | - |
-| PRD-SEC-002 | Edge protection | SEC | P1 | 1 | mocked | 12 | 0 | - |
-| PRD-SEC-003 | PCI-DSS scope control | SEC | P1 | 1 | not-built | 4 | 0 | - |
-| PRD-SEC-004 | Platform audit trail | SEC | P1 | 1 | partial | 20 | 1 | - |
-| PRD-SEC-005 | Anomaly and correlation detection | SEC | P2 | 1 | mocked | 3 | 0 | - |
-| PRD-SEC-006 | Data residency | SEC | P1 | 1 | held-default | 3 | 0 | DP-01 |
-| PRD-SEC-007 | Consent and privacy tools | SEC | P1 | 1 | not-built | 10 | 0 | - |
-| PRD-SEC-008 | Breach notification workflow | SEC | P1 | 1 | not-built | 7 | 0 | - |
-| PRD-SEC-009 | Compliance reports and certificates | SEC | P2 | 1 | mocked | 3 | 0 | - |
-| PRD-SEC-010 | Auditor read-only access | SEC | P2 | 1 | not-built | 5 | 0 | - |
-| PRD-SEC-011 | Vulnerability management | SEC | P1 | 1 | mocked | 4 | 0 | - |
-| PRD-SEC-012 | Country data-protection pack | SEC | P1 | 1 | not-built | 9 | 0 | - |
-| PRD-SEC-013 | Bot protection | SEC | P1 | 1 | not-built | 5 | 0 | - |
-| PRD-SEC-014 | Data classification and masking | SEC | P2 | 1 | held-default | 6 | 0 | DP-01 |
-| PRD-SEC-015 | Security incident management | SEC | P2 | 1 | mocked | 2 | 0 | - |
+| PRD-SEC-001 | Encryption and transport security | SEC | P1 | 1 | built | 10 | 10 | - |
+| PRD-SEC-002 | Edge protection | SEC | P1 | 1 | built | 12 | 12 | - |
+| PRD-SEC-003 | PCI-DSS scope control | SEC | P1 | 1 | built | 4 | 4 | - |
+| PRD-SEC-004 | Platform audit trail | SEC | P1 | 1 | built | 20 | 20 | - |
+| PRD-SEC-005 | Anomaly and correlation detection | SEC | P2 | 1 | built | 3 | 3 | - |
+| PRD-SEC-006 | Data residency | SEC | P1 | 1 | built | 3 | 3 | DP-01 |
+| PRD-SEC-007 | Consent and privacy tools | SEC | P1 | 1 | built | 10 | 10 | - |
+| PRD-SEC-008 | Breach notification workflow | SEC | P1 | 1 | built | 7 | 7 | - |
+| PRD-SEC-009 | Compliance reports and certificates | SEC | P2 | 1 | built | 3 | 3 | - |
+| PRD-SEC-010 | Auditor read-only access | SEC | P2 | 1 | built | 5 | 5 | - |
+| PRD-SEC-011 | Vulnerability management | SEC | P1 | 1 | built | 4 | 4 | - |
+| PRD-SEC-012 | Country data-protection pack | SEC | P1 | 1 | built | 9 | 9 | - |
+| PRD-SEC-013 | Bot protection | SEC | P1 | 1 | built | 5 | 5 | - |
+| PRD-SEC-014 | Data classification and masking | SEC | P2 | 1 | built | 6 | 6 | DP-01 |
+| PRD-SEC-015 | Security incident management | SEC | P2 | 1 | built | 2 | 2 | - |
 | PRD-INT-001 | Public REST API | INT | P1 | 6 | held-default | 20 | 0 | API-01, PAID-STUB, API-GW / API-01 / PAID-STUB / API-GW |
 | PRD-INT-002 | Integration layer (API gateway) | INT | P1 | 6 | held-default | 14 | 0 | API-GW |
 | PRD-INT-003 | Webhooks and events | INT | P1 | 6 | not-built | 14 | 0 | - |

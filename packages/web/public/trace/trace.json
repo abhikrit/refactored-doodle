@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-25T10:47:51.317Z",
+  "generated": "2026-11-25T11:24:54.720Z",
   "generator": "scripts/build-trace.mjs",
   "registry": {
     "areas": 24,
@@ -31,14 +31,14 @@
   },
   "totals": {
     "features": 434,
-    "built": 39,
-    "partial": 15,
-    "heldWithDefault": 94,
-    "mocked": 29,
-    "notBuilt": 257,
+    "built": 54,
+    "partial": 14,
+    "heldWithDefault": 92,
+    "mocked": 24,
+    "notBuilt": 250,
     "criteria": 2850,
-    "criteriaWithTests": 338,
-    "testsPassing": 338,
+    "criteriaWithTests": 440,
+    "testsPassing": 440,
     "testsFailing": 0,
     "stories": 1160,
     "reconciles": true
@@ -86,11 +86,11 @@
       "wave": 1,
       "waveName": "Foundation",
       "features": 15,
-      "built": 0,
-      "partial": 1,
-      "held": 2,
-      "mocked": 5,
-      "notBuilt": 7
+      "built": 15,
+      "partial": 0,
+      "held": 0,
+      "mocked": 0,
+      "notBuilt": 0
     },
     {
       "area": "CAT",
@@ -337,14 +337,14 @@
     {
       "client": "KTDA",
       "requirements": 95,
-      "demonstratedInPrototype": 12,
+      "demonstratedInPrototype": 15,
       "mappedToFeatures": 80,
       "projectService": 17
     },
     {
       "client": "MPC",
       "requirements": 411,
-      "demonstratedInPrototype": 32,
+      "demonstratedInPrototype": 38,
       "mappedToFeatures": 374,
       "projectService": 38
     }
@@ -2835,9 +2835,723 @@
       "status": "pass"
     },
     {
+      "criterion": "AC-SEC-001-01-01",
+      "feature": "PRD-SEC-001",
+      "test": "AC-SEC-001-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-001-01-02",
+      "feature": "PRD-SEC-001",
+      "test": "AC-SEC-001-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-001-01-03",
+      "feature": "PRD-SEC-001",
+      "test": "AC-SEC-001-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-001-01-04",
+      "feature": "PRD-SEC-001",
+      "test": "AC-SEC-001-01-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-001-02-01",
+      "feature": "PRD-SEC-001",
+      "test": "AC-SEC-001-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-001-02-02",
+      "feature": "PRD-SEC-001",
+      "test": "AC-SEC-001-02-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-001-03-01",
+      "feature": "PRD-SEC-001",
+      "test": "AC-SEC-001-03-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-001-03-02",
+      "feature": "PRD-SEC-001",
+      "test": "AC-SEC-001-03-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-001-04-01",
+      "feature": "PRD-SEC-001",
+      "test": "AC-SEC-001-04-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-001-04-02",
+      "feature": "PRD-SEC-001",
+      "test": "AC-SEC-001-04-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-002-01-01",
+      "feature": "PRD-SEC-002",
+      "test": "AC-SEC-002-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-002-01-02",
+      "feature": "PRD-SEC-002",
+      "test": "AC-SEC-002-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-002-01-03",
+      "feature": "PRD-SEC-002",
+      "test": "AC-SEC-002-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-002-02-01",
+      "feature": "PRD-SEC-002",
+      "test": "AC-SEC-002-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-002-03-01",
+      "feature": "PRD-SEC-002",
+      "test": "AC-SEC-002-03-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-002-03-02",
+      "feature": "PRD-SEC-002",
+      "test": "AC-SEC-002-03-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-002-04-01",
+      "feature": "PRD-SEC-002",
+      "test": "AC-SEC-002-04-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-002-04-02",
+      "feature": "PRD-SEC-002",
+      "test": "AC-SEC-002-04-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-002-04-03",
+      "feature": "PRD-SEC-002",
+      "test": "AC-SEC-002-04-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-002-04-04",
+      "feature": "PRD-SEC-002",
+      "test": "AC-SEC-002-04-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-002-04-05",
+      "feature": "PRD-SEC-002",
+      "test": "AC-SEC-002-04-05",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-002-04-06",
+      "feature": "PRD-SEC-002",
+      "test": "AC-SEC-002-04-06",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-003-01-01",
+      "feature": "PRD-SEC-003",
+      "test": "AC-SEC-003-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-003-01-02",
+      "feature": "PRD-SEC-003",
+      "test": "AC-SEC-003-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-003-01-03",
+      "feature": "PRD-SEC-003",
+      "test": "AC-SEC-003-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-003-02-01",
+      "feature": "PRD-SEC-003",
+      "test": "AC-SEC-003-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-01-01",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-01-02",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-01-03",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-01-04",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-01-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-01-05",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-01-05",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-01-06",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-01-06",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-02-01",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-02-02",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-02-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-02-03",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-02-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
       "criterion": "AC-SEC-004-03-01",
       "feature": "PRD-SEC-004",
       "test": "AC-SEC-004-03-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-03-02",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-03-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-04-01",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-04-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-04-02",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-04-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-05-01",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-05-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-05-02",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-05-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-05-03",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-05-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-06-01",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-06-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-06-02",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-06-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-07-01",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-07-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-004-08-01",
+      "feature": "PRD-SEC-004",
+      "test": "AC-SEC-004-08-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-005-01-01",
+      "feature": "PRD-SEC-005",
+      "test": "AC-SEC-005-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-005-01-02",
+      "feature": "PRD-SEC-005",
+      "test": "AC-SEC-005-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-005-02-01",
+      "feature": "PRD-SEC-005",
+      "test": "AC-SEC-005-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-006-01-01",
+      "feature": "PRD-SEC-006",
+      "test": "AC-SEC-006-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-006-01-02",
+      "feature": "PRD-SEC-006",
+      "test": "AC-SEC-006-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-006-01-03",
+      "feature": "PRD-SEC-006",
+      "test": "AC-SEC-006-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-007-01-01",
+      "feature": "PRD-SEC-007",
+      "test": "AC-SEC-007-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-007-01-02",
+      "feature": "PRD-SEC-007",
+      "test": "AC-SEC-007-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-007-01-03",
+      "feature": "PRD-SEC-007",
+      "test": "AC-SEC-007-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-007-01-04",
+      "feature": "PRD-SEC-007",
+      "test": "AC-SEC-007-01-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-007-02-01",
+      "feature": "PRD-SEC-007",
+      "test": "AC-SEC-007-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-007-03-01",
+      "feature": "PRD-SEC-007",
+      "test": "AC-SEC-007-03-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-007-04-01",
+      "feature": "PRD-SEC-007",
+      "test": "AC-SEC-007-04-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-007-04-02",
+      "feature": "PRD-SEC-007",
+      "test": "AC-SEC-007-04-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-007-04-03",
+      "feature": "PRD-SEC-007",
+      "test": "AC-SEC-007-04-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-007-05-01",
+      "feature": "PRD-SEC-007",
+      "test": "AC-SEC-007-05-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-008-01-01",
+      "feature": "PRD-SEC-008",
+      "test": "AC-SEC-008-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-008-01-02",
+      "feature": "PRD-SEC-008",
+      "test": "AC-SEC-008-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-008-01-03",
+      "feature": "PRD-SEC-008",
+      "test": "AC-SEC-008-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-008-02-01",
+      "feature": "PRD-SEC-008",
+      "test": "AC-SEC-008-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-008-02-02",
+      "feature": "PRD-SEC-008",
+      "test": "AC-SEC-008-02-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-008-02-03",
+      "feature": "PRD-SEC-008",
+      "test": "AC-SEC-008-02-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-008-02-04",
+      "feature": "PRD-SEC-008",
+      "test": "AC-SEC-008-02-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-009-01-01",
+      "feature": "PRD-SEC-009",
+      "test": "AC-SEC-009-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-009-01-02",
+      "feature": "PRD-SEC-009",
+      "test": "AC-SEC-009-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-009-02-01",
+      "feature": "PRD-SEC-009",
+      "test": "AC-SEC-009-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-010-01-01",
+      "feature": "PRD-SEC-010",
+      "test": "AC-SEC-010-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-010-01-02",
+      "feature": "PRD-SEC-010",
+      "test": "AC-SEC-010-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-010-01-03",
+      "feature": "PRD-SEC-010",
+      "test": "AC-SEC-010-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-010-02-01",
+      "feature": "PRD-SEC-010",
+      "test": "AC-SEC-010-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-010-02-02",
+      "feature": "PRD-SEC-010",
+      "test": "AC-SEC-010-02-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-011-01-01",
+      "feature": "PRD-SEC-011",
+      "test": "AC-SEC-011-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-011-02-01",
+      "feature": "PRD-SEC-011",
+      "test": "AC-SEC-011-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-011-03-01",
+      "feature": "PRD-SEC-011",
+      "test": "AC-SEC-011-03-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-011-03-02",
+      "feature": "PRD-SEC-011",
+      "test": "AC-SEC-011-03-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-012-01-01",
+      "feature": "PRD-SEC-012",
+      "test": "AC-SEC-012-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-012-01-02",
+      "feature": "PRD-SEC-012",
+      "test": "AC-SEC-012-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-012-01-03",
+      "feature": "PRD-SEC-012",
+      "test": "AC-SEC-012-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-012-02-01",
+      "feature": "PRD-SEC-012",
+      "test": "AC-SEC-012-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-012-03-01",
+      "feature": "PRD-SEC-012",
+      "test": "AC-SEC-012-03-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-012-03-02",
+      "feature": "PRD-SEC-012",
+      "test": "AC-SEC-012-03-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-012-04-01",
+      "feature": "PRD-SEC-012",
+      "test": "AC-SEC-012-04-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-012-05-01",
+      "feature": "PRD-SEC-012",
+      "test": "AC-SEC-012-05-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-012-06-01",
+      "feature": "PRD-SEC-012",
+      "test": "AC-SEC-012-06-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-013-01-01",
+      "feature": "PRD-SEC-013",
+      "test": "AC-SEC-013-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-013-01-02",
+      "feature": "PRD-SEC-013",
+      "test": "AC-SEC-013-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-013-01-03",
+      "feature": "PRD-SEC-013",
+      "test": "AC-SEC-013-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-013-01-04",
+      "feature": "PRD-SEC-013",
+      "test": "AC-SEC-013-01-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-013-01-05",
+      "feature": "PRD-SEC-013",
+      "test": "AC-SEC-013-01-05",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-014-01-01",
+      "feature": "PRD-SEC-014",
+      "test": "AC-SEC-014-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-014-02-01",
+      "feature": "PRD-SEC-014",
+      "test": "AC-SEC-014-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-014-02-02",
+      "feature": "PRD-SEC-014",
+      "test": "AC-SEC-014-02-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-014-02-03",
+      "feature": "PRD-SEC-014",
+      "test": "AC-SEC-014-02-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-014-02-04",
+      "feature": "PRD-SEC-014",
+      "test": "AC-SEC-014-02-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-014-02-05",
+      "feature": "PRD-SEC-014",
+      "test": "AC-SEC-014-02-05",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-015-01-01",
+      "feature": "PRD-SEC-015",
+      "test": "AC-SEC-015-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-SEC-015-01-02",
+      "feature": "PRD-SEC-015",
+      "test": "AC-SEC-015-01-02",
       "suite": "node (API and rules)",
       "status": "pass"
     },
@@ -11775,10 +12489,10 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "Configuration",
-      "state": "not-built",
+      "state": "built",
       "criteria": 10,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 10,
+      "criteriaPassing": 10,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
@@ -11786,7 +12500,58 @@
         "REQ-MPC-FR-148",
         "REQ-MPC-SEC-001"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-001-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-001-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-001-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-001-01-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-001-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-001-02-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-001-03-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-001-03-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-001-04-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-001-04-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-002",
@@ -11796,10 +12561,10 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "External system",
-      "state": "mocked",
+      "state": "built",
       "criteria": 12,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 12,
+      "criteriaPassing": 12,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
@@ -11807,7 +12572,68 @@
         "REQ-KTDA-SEC-002",
         "REQ-MPC-SEC-001"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-002-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-002-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-002-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-002-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-002-03-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-002-03-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-002-04-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-002-04-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-002-04-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-002-04-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-002-04-05",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-002-04-06",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-003",
@@ -11817,10 +12643,10 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "Configuration",
-      "state": "not-built",
+      "state": "built",
       "criteria": 4,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 4,
+      "criteriaPassing": 4,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
@@ -11828,7 +12654,28 @@
         "REQ-MPC-FR-129",
         "REQ-MPC-FR-148"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-003-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-003-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-003-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-003-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-004",
@@ -11838,10 +12685,10 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "Code-level",
-      "state": "partial",
+      "state": "built",
       "criteria": 20,
-      "criteriaCovered": 1,
-      "criteriaPassing": 1,
+      "criteriaCovered": 20,
+      "criteriaPassing": 20,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
@@ -11852,7 +12699,102 @@
       ],
       "tests": [
         {
+          "criterion": "AC-SEC-004-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-01-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-01-05",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-01-06",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-02-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-02-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
           "criterion": "AC-SEC-004-03-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-03-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-04-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-04-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-05-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-05-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-05-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-06-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-06-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-07-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-004-08-01",
           "status": "pass",
           "suite": "node (API and rules)"
         }
@@ -11866,14 +12808,30 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "External system",
-      "state": "mocked",
+      "state": "built",
       "criteria": 3,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 3,
+      "criteriaPassing": 3,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-005-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-005-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-005-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-006",
@@ -11883,16 +12841,32 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "External system",
-      "state": "held-default",
+      "state": "built",
       "criteria": 3,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 3,
+      "criteriaPassing": 3,
       "heldBy": [
         "DP-01"
       ],
       "prototypeDefaultLabel": "Prototype default — decision DP-01 pending",
       "requirements": [],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-006-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-006-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-006-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-007",
@@ -11902,10 +12876,10 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "Configuration",
-      "state": "not-built",
+      "state": "built",
       "criteria": 10,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 10,
+      "criteriaPassing": 10,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
@@ -11914,7 +12888,58 @@
         "REQ-MPC-FR-010",
         "REQ-MPC-FR-017"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-007-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-007-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-007-04-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-007-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-007-01-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-007-04-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-007-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-007-03-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-007-05-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-007-04-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-008",
@@ -11924,14 +12949,50 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "Code-level",
-      "state": "not-built",
+      "state": "built",
       "criteria": 7,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 7,
+      "criteriaPassing": 7,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-008-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-008-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-008-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-008-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-008-02-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-008-02-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-008-02-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-009",
@@ -11941,14 +13002,30 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "External system",
-      "state": "mocked",
+      "state": "built",
       "criteria": 3,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 3,
+      "criteriaPassing": 3,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-009-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-009-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-009-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-010",
@@ -11958,14 +13035,40 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "Code-level",
-      "state": "not-built",
+      "state": "built",
       "criteria": 5,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 5,
+      "criteriaPassing": 5,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-010-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-010-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-010-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-010-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-010-02-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-011",
@@ -11975,14 +13078,35 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "External system",
-      "state": "mocked",
+      "state": "built",
       "criteria": 4,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 4,
+      "criteriaPassing": 4,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-011-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-011-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-011-03-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-011-03-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-012",
@@ -11992,17 +13116,63 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "Code-level",
-      "state": "not-built",
+      "state": "built",
       "criteria": 9,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 9,
+      "criteriaPassing": 9,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
         "REQ-KTDA-LEG-001",
         "REQ-KTDA-ANL-008"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-012-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-012-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-012-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-012-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-012-03-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-012-03-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-012-04-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-012-05-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-012-06-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-013",
@@ -12012,14 +13182,40 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "Configuration",
-      "state": "not-built",
+      "state": "built",
       "criteria": 5,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 5,
+      "criteriaPassing": 5,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-013-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-013-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-013-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-013-01-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-013-01-05",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-014",
@@ -12029,16 +13225,47 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "Code-level",
-      "state": "held-default",
+      "state": "built",
       "criteria": 6,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 6,
+      "criteriaPassing": 6,
       "heldBy": [
         "DP-01"
       ],
       "prototypeDefaultLabel": "Prototype default — decision DP-01 pending",
       "requirements": [],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-014-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-014-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-014-02-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-014-02-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-014-02-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-014-02-05",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-SEC-015",
@@ -12048,14 +13275,25 @@
       "wave": 1,
       "pack": "Core (always on)",
       "implementation": "External system",
-      "state": "mocked",
+      "state": "built",
       "criteria": 2,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 2,
+      "criteriaPassing": 2,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-SEC-015-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-SEC-015-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-INT-001",

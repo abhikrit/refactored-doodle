@@ -39,6 +39,27 @@ import {
   settingsAsync as captchaSettingsAsync, validateAsync as validateCaptchaAsync, lookupAsync,
   providerTransferCheckAsync, configureAsync as configureCaptchaAsync, resetLookups,
 } from './services/captcha.js';
+import { registerEventCodesAsync, secEventCodesAsync } from './services/notices.js';
+import {
+  edgeAsync, recordEdgeAsync, wafAsync, clientIpAsync, adminIpCheckAsync, honeypotAsync,
+  recordUploadAsync, ownershipsAsync, downloadProviders, evaluateDownloadAccessAsync,
+  uploadTypeCheckAsync, UPLOAD_ACTIONS,
+} from './services/edge.js';
+import {
+  openCaseAsync, casesAsync, caseAsync, freezeAffectedListAsync, notifySubjectsAsync,
+  recordRegulatorNoticeAsync, deadlineTaskAsync, assessAsync, confirmAssessmentAsync,
+  closeCaseAsync,
+} from './services/breach.js';
+import {
+  exportConfigAsync, runExportTaskAsync, exportBatchesAsync, backlogCheckAsync,
+  detectionSplitAsync, evidenceExportAsync, integrityStatementAsync, incidentEvidenceAsync,
+  linkIncidentAsync, residencyAsync, recordResidencyAsync, residencyChecklistAsync,
+  recordDependencyScanAsync, dependencyScansAsync, recordFindingAsync, findingsAsync,
+  decideFindingAsync, penTestScopeAsync, PLATFORM_FINDINGS,
+} from './services/monitoring.js';
+import {
+  grantAsync, grantsAsync, revokeAsync, checkAccessAsync, auditorTrailAsync,
+} from './services/auditor-access.js';
 
 export default definePlugin({
   area: 'SEC',
@@ -52,6 +73,9 @@ export default definePlugin({
       note: 'The SEC-004 repository decorator writes the audit trail. In 5.00.1 it implements only the async members (the sync IRepository members were removed).',
     });
     const registration = registerDecoratorAsync();
+    // BR-SEC-100: SEC registers its event codes with TRK-005 at installation and sends nothing
+    // itself; every SEC notice goes out through IC-TRK-04 SendEvent.
+    registerEventCodesAsync();
 
     const send = (fn) => async (req, res, next) => {
       try { res.json(await fn(req)); } catch (err) { next(err); }
@@ -264,12 +288,138 @@ export default definePlugin({
     }));
     r.get('/captcha/provider-transfer', send((req) => providerTransferCheckAsync({ storeId: req.storeId })));
 
+    /* ------------------------------------------------- PRD-SEC-002 edge protection ------ */
+    r.get('/edge', send((req) => edgeAsync({ storeId: req.storeId })));
+    r.post('/edge', gate('Configuration.ManageSettings'), send((req) => recordEdgeAsync({
+      values: req.body?.values ?? {}, actor: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/edge/waf', send((req) => wafAsync({ ...req.body, storeId: req.storeId })));
+    r.get('/edge/client-ip', send((req) => clientIpAsync({
+      forwardedFor: req.query.forwardedFor ?? null, remoteAddress: req.query.remoteAddress ?? req.ip, storeId: req.storeId,
+    })));
+    r.get('/edge/admin-ip', send((req) => adminIpCheckAsync({
+      ipAddress: req.query.ipAddress ?? req.ip, storeId: req.storeId,
+    })));
+    r.post('/edge/honeypot', send((req) => honeypotAsync({ fields: req.body?.fields ?? {}, storeId: req.storeId })));
+    r.get('/uploads/actions', send(() => ({ actions: UPLOAD_ACTIONS })));
+    r.get('/uploads/ownership', send(() => ownershipsAsync()));
+    r.post('/uploads/ownership', send(async (req) => recordUploadAsync({
+      ...req.body, customerId: req.body?.customerId ?? req.actor?.id ?? null, storeId: req.storeId,
+    })));
+    r.get('/uploads/providers', send(() => downloadProviders()));
+    r.post('/downloads/access', send(async (req) => evaluateDownloadAccessAsync({
+      downloadGuid: req.body?.downloadGuid,
+      requester: req.body?.asGuest === true ? null : req.actor,
+      area: req.body?.area ?? 'storefront',
+      storeId: req.storeId,
+    })));
+    r.post('/uploads/type-check', send((req) => uploadTypeCheckAsync({
+      ...req.body, bytes: Buffer.from(req.body?.content ?? '', 'utf8'), actor: req.actorEmail ?? 'customer',
+    })));
+
+    /* ----------------------------------------- PRD-SEC-008 the breach workflow ---------- */
+    r.get('/breaches', gate('Security.Core.Breaches.View'), send((req) => casesAsync(req.query)));
+    r.get('/breaches/:id', gate('Security.Core.Breaches.View'), send((req) => caseAsync(Number(req.params.id))));
+    r.post('/breaches', send(async (req) => openCaseAsync({
+      ...req.body, actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/breaches/:id/affected', send(async (req) => freezeAffectedListAsync({
+      caseId: Number(req.params.id), criteria: req.body?.criteria ?? {}, actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/breaches/:id/assess', send(async (req) => assessAsync({
+      caseId: Number(req.params.id), ...req.body, actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/breaches/:id/confirm', send(async (req) => confirmAssessmentAsync({
+      caseId: Number(req.params.id), actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/breaches/:id/notify-subjects', send(async (req) => notifySubjectsAsync({
+      caseId: Number(req.params.id), actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/breaches/:id/regulator-notice', send(async (req) => recordRegulatorNoticeAsync({
+      caseId: Number(req.params.id), ...req.body, actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/breaches/:id/close', send(async (req) => closeCaseAsync({
+      caseId: Number(req.params.id), actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/breaches/deadline-task', send((req) => deadlineTaskAsync({ storeId: req.storeId })));
+
+    /* ------------------- PRD-SEC-005, PRD-SEC-009, PRD-SEC-015 and PRD-SEC-006 --------- */
+    r.get('/monitoring/configuration', send((req) => exportConfigAsync(req.storeId)));
+    r.get('/monitoring/batches', send(() => exportBatchesAsync()));
+    r.post('/monitoring/export-task', send((req) => runExportTaskAsync({
+      actor: req.actorEmail, adapterFails: req.body?.adapterFails === true, storeId: req.storeId,
+    })));
+    r.post('/monitoring/backlog-check', send((req) => backlogCheckAsync({ storeId: req.storeId })));
+    r.get('/monitoring/detection', send((req) => detectionSplitAsync({ storeId: req.storeId })));
+    r.post('/evidence/export', send(async (req) => evidenceExportAsync({
+      from: req.body?.from, to: req.body?.to ?? new Date().toISOString(), actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/evidence/integrity-statement', send(async (req) => integrityStatementAsync({
+      from: req.body?.from, to: req.body?.to ?? new Date().toISOString(), actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/incidents/evidence', send(async (req) => incidentEvidenceAsync({
+      ...req.body, actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/incidents/link', send(async (req) => linkIncidentAsync({
+      ...req.body, actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.get('/residency', send((req) => residencyAsync({ storeId: req.storeId })));
+    r.post('/residency', gate('Configuration.ManageSettings'), send((req) => recordResidencyAsync({
+      ...req.body, actor: req.actorEmail, storeId: req.storeId,
+    })));
+    r.get('/residency/checklist', send((req) => residencyChecklistAsync({ storeId: req.storeId })));
+
+    /* ------------------------------------------ PRD-SEC-010 auditor read-only access ---- */
+    r.get('/auditor-grants', send(() => grantsAsync()));
+    r.post('/auditor-grants', send(async (req) => grantAsync({
+      ...req.body, actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/auditor-grants/:id/revoke', send(async (req) => revokeAsync({
+      grantId: Number(req.params.id), actor: req.actor, by: req.actorEmail, storeId: req.storeId,
+    })));
+    r.get('/auditor-grants/check', send(async (req) => checkAccessAsync({
+      customer: req.actor, permission: req.query.permission ?? 'Security.Core.AuditTrail.View', storeId: req.storeId,
+    })));
+    r.get('/auditor-trail', send(async (req) => auditorTrailAsync({
+      customer: req.actor,
+      from: req.query.from ?? null,
+      to: req.query.to ?? null,
+      exported: req.query.exported === 'true',
+      storeId: req.storeId,
+    })));
+
+    /* ------------------------------------------ PRD-SEC-011 vulnerability management ---- */
+    r.get('/vulnerabilities/scans', send(() => dependencyScansAsync()));
+    r.post('/vulnerabilities/scans', send((req) => recordDependencyScanAsync({
+      ...req.body, actor: req.actorEmail, storeId: req.storeId,
+    })));
+    r.get('/vulnerabilities/findings', send((req) => findingsAsync(req.query)));
+    r.post('/vulnerabilities/findings', send((req) => recordFindingAsync({
+      ...req.body, actor: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/vulnerabilities/findings/:id/decide', send((req) => decideFindingAsync({
+      findingId: Number(req.params.id), ...req.body, actor: req.actorEmail, storeId: req.storeId,
+    })));
+    r.get('/vulnerabilities/pen-test-scope', send((req) => penTestScopeAsync({
+      release: req.query.release ?? null, storeId: req.storeId,
+    })));
+    r.get('/vulnerabilities/platform-findings', send(() => PLATFORM_FINDINGS));
+    r.get('/event-codes', send(() => secEventCodesAsync()));
+
     ctx.addRouter('/api/security', r);
     ctx.declare({
       built: true,
-      owns: ['PRD-SEC-001', 'PRD-SEC-003', 'PRD-SEC-004', 'PRD-SEC-007', 'PRD-SEC-012', 'PRD-SEC-013', 'PRD-SEC-014'],
-      builtFeatures: ['PRD-SEC-001', 'PRD-SEC-003', 'PRD-SEC-004', 'PRD-SEC-007', 'PRD-SEC-012', 'PRD-SEC-013', 'PRD-SEC-014'],
-      note: 'the audit trail, the consent and cookie tools, the country data-protection pack and data classification',
+      owns: [
+        'PRD-SEC-001', 'PRD-SEC-002', 'PRD-SEC-003', 'PRD-SEC-004', 'PRD-SEC-005', 'PRD-SEC-006',
+        'PRD-SEC-007', 'PRD-SEC-008', 'PRD-SEC-009', 'PRD-SEC-010', 'PRD-SEC-011', 'PRD-SEC-012',
+        'PRD-SEC-013', 'PRD-SEC-014', 'PRD-SEC-015',
+      ],
+      builtFeatures: [
+        'PRD-SEC-001', 'PRD-SEC-002', 'PRD-SEC-003', 'PRD-SEC-004', 'PRD-SEC-005', 'PRD-SEC-006',
+        'PRD-SEC-007', 'PRD-SEC-008', 'PRD-SEC-009', 'PRD-SEC-010', 'PRD-SEC-011', 'PRD-SEC-012',
+        'PRD-SEC-013', 'PRD-SEC-014', 'PRD-SEC-015',
+      ],
+      note: 'the whole security, audit and compliance area',
     });
   },
 });
