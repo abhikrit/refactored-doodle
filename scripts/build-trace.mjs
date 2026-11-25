@@ -64,8 +64,13 @@ const rows = features.map((f) => {
   const acs = criteriaByFeature[f.id] ?? [];
   const covered = acs.filter((a) => byCriterion.has(a.id));
   const passing = covered.filter((a) => byCriterion.get(a.id).status === 'pass');
+  // Decision P-6: a feature is reported built only when EVERY one of its criteria has a test
+  // named by its AC ID and that test passes. A feature with some criteria tested and some not is
+  // 'partial' and is never counted as built - "everything else is not-built, never silently green".
   let state;
-  if (passing.length > 0) state = covered.length === passing.length ? 'built' : 'built-with-failures';
+  if (acs.length > 0 && passing.length === acs.length) state = 'built';
+  else if (passing.length > 0 && passing.length === covered.length) state = 'partial';
+  else if (covered.length > 0) state = 'built-with-failures';
   else if (f.held) state = 'held-default';
   else if (f.external) state = 'mocked';
   else state = 'not-built';
@@ -91,7 +96,8 @@ const rows = features.map((f) => {
 const count = (s) => rows.filter((r) => r.state === s).length;
 const totals = {
   features: rows.length,
-  built: count('built') + count('built-with-failures'),
+  built: count('built'),
+  partial: count('partial') + count('built-with-failures'),
   heldWithDefault: count('held-default'),
   mocked: count('mocked'),
   notBuilt: count('not-built'),
@@ -101,10 +107,11 @@ const totals = {
   testsFailing: [...byCriterion.values()].filter((t) => t.status === 'fail').length,
   stories: stories.length,
 };
-totals.reconciles = totals.built + totals.heldWithDefault + totals.mocked + totals.notBuilt === totals.features;
+totals.reconciles = totals.built + totals.partial + totals.heldWithDefault + totals.mocked
+  + totals.notBuilt === totals.features;
 
 // requirement coverage: a requirement counts as demonstrated when one of its features is built
-const builtIds = new Set(rows.filter((r) => r.state.startsWith('built')).map((r) => r.id));
+const builtIds = new Set(rows.filter((r) => r.state === 'built').map((r) => r.id));
 const requirementCoverage = ['KTDA', 'MPC'].map((client) => {
   const list = requirements.filter((r) => r.client === client);
   const demonstrated = list.filter((r) => r.features.some((f) => builtIds.has(f)));
@@ -125,7 +132,8 @@ const byArea = areas.map((a) => {
     wave: a.wave,
     waveName: a.waveName,
     features: inArea.length,
-    built: inArea.filter((r) => r.state.startsWith('built')).length,
+    built: inArea.filter((r) => r.state === 'built').length,
+    partial: inArea.filter((r) => r.state === 'partial' || r.state === 'built-with-failures').length,
     held: inArea.filter((r) => r.state === 'held-default').length,
     mocked: inArea.filter((r) => r.state === 'mocked').length,
     notBuilt: inArea.filter((r) => r.state === 'not-built').length,
@@ -163,11 +171,13 @@ Generated ${trace.generated} by \`scripts/build-trace.mjs\`. Source of every ID:
 ## 1. Reconciliation
 
 Every one of the ${totals.features} product features is in exactly one state. Nothing is reported
-done because it looks finished: a feature counts as built only when an acceptance criterion of
-its own has a passing test named by that AC ID (prototype decision P-6).
+done because it looks finished: a feature counts as built only when EVERY one of its acceptance
+criteria has a passing test named by that AC ID (prototype decision P-6). A feature with some of
+its criteria tested and the rest not is partial, and is never counted as built.
 
 ${table(['State', 'Features', 'Meaning'], [
-    `| Built and passing | ${totals.built} | At least one AC has a passing test named by the AC ID |`,
+    `| Built and passing | ${totals.built} | Every AC of the feature has a passing test named by the AC ID |`,
+    `| Partly covered | ${totals.partial} | Some ACs have passing tests, the rest have none yet |`,
     `| Held, prototype default | ${totals.heldWithDefault} | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |`,
     `| Mocked externally | ${totals.mocked} | External-system feature standing behind a mock adapter (P-3) |`,
     `| Not built | ${totals.notBuilt} | Scaffolded in Session 0, built in its own session |`,
@@ -179,9 +189,9 @@ ${totals.criteriaWithTests} (${totals.testsPassing} passing, ${totals.testsFaili
 
 ## 2. Coverage by area and wave
 
-${table(['Wave', 'Area', 'Name', 'Features', 'Built', 'Held', 'Mocked', 'Not built'],
+${table(['Wave', 'Area', 'Name', 'Features', 'Built', 'Partial', 'Held', 'Mocked', 'Not built'],
     byArea.sort((a, b) => a.wave - b.wave || a.area.localeCompare(b.area))
-      .map((a) => `| ${a.wave} ${a.waveName} | ${a.area} | ${a.name} | ${a.features} | ${a.built} | ${a.held} | ${a.mocked} | ${a.notBuilt} |`))}
+      .map((a) => `| ${a.wave} ${a.waveName} | ${a.area} | ${a.name} | ${a.features} | ${a.built} | ${a.partial} | ${a.held} | ${a.mocked} | ${a.notBuilt} |`))}
 
 ## 3. Client requirement coverage
 
@@ -270,6 +280,6 @@ writeFileSync(join(publicDir, 'trace.json'), `${JSON.stringify(trace, null, 2)}\
 
 console.log('trace written:');
 console.log(`  trace/trace.json, trace/trace.md, trace/coverage.html`);
-console.log(`  features ${totals.features} = built ${totals.built} + held ${totals.heldWithDefault} + mocked ${totals.mocked} + not built ${totals.notBuilt} (reconciles: ${totals.reconciles})`);
+console.log(`  features ${totals.features} = built ${totals.built} + partial ${totals.partial} + held ${totals.heldWithDefault} + mocked ${totals.mocked} + not built ${totals.notBuilt} (reconciles: ${totals.reconciles})`);
 console.log(`  tests ${totals.criteriaWithTests} AC-named (${totals.testsPassing} pass, ${totals.testsFailing} fail)`);
 if (!totals.reconciles || totals.testsFailing > 0) process.exitCode = 1;

@@ -1,16 +1,18 @@
 # Trace report
 
-Generated 2026-11-25T10:23:00.392Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
+Generated 2026-11-25T10:47:51.317Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
 
 ## 1. Reconciliation
 
 Every one of the 434 product features is in exactly one state. Nothing is reported
-done because it looks finished: a feature counts as built only when an acceptance criterion of
-its own has a passing test named by that AC ID (prototype decision P-6).
+done because it looks finished: a feature counts as built only when EVERY one of its acceptance
+criteria has a passing test named by that AC ID (prototype decision P-6). A feature with some of
+its criteria tested and the rest not is partial, and is never counted as built.
 
 | State | Features | Meaning |
 |---|---|---|
-| Built and passing | 54 | At least one AC has a passing test named by the AC ID |
+| Built and passing | 39 | Every AC of the feature has a passing test named by the AC ID |
+| Partly covered | 15 | Some ACs have passing tests, the rest have none yet |
 | Held, prototype default | 94 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
 | Mocked externally | 29 | External-system feature standing behind a mock adapter (P-3) |
 | Not built | 257 | Scaffolded in Session 0, built in its own session |
@@ -21,39 +23,39 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 
 ## 2. Coverage by area and wave
 
-| Wave | Area | Name | Features | Built | Held | Mocked | Not built |
-|---|---|---|---|---|---|---|---|
-| 1 Foundation | ADM | Administration, workflow and operations console | 12 | 12 | 0 | 0 | 0 |
-| 1 Foundation | IAM | Identity, access and accounts | 27 | 27 | 0 | 0 | 0 |
-| 1 Foundation | PLT | Platform foundation and multi-client configuration | 27 | 2 | 3 | 4 | 18 |
-| 1 Foundation | SEC | Security, audit and compliance | 15 | 1 | 2 | 5 | 7 |
-| 2 Catalogue | CAT | Catalogue and listings | 43 | 0 | 9 | 0 | 34 |
-| 2 Catalogue | INV | Inventory and warehouses | 13 | 0 | 1 | 0 | 12 |
-| 2 Catalogue | SEL | Sellers and marketplace onboarding | 25 | 0 | 4 | 1 | 20 |
-| 2 Catalogue | SRC | Search, discovery and merchandising | 27 | 0 | 4 | 1 | 22 |
-| 3 Buy | CHK | Cart and checkout | 19 | 6 | 4 | 0 | 9 |
-| 3 Buy | ORD | Orders and B2B transactions (RFQ, contracts, requisitions, offers, group buying) | 28 | 2 | 11 | 0 | 15 |
-| 3 Buy | PAY | Payments, tax, settlement and reconciliation | 36 | 1 | 14 | 0 | 21 |
-| 4 Fulfil | DOC | Documents and records | 6 | 0 | 2 | 1 | 3 |
-| 4 Fulfil | LOG | Shipping, logistics and fulfilment | 32 | 1 | 6 | 2 | 23 |
-| 4 Fulfil | RET | Returns, refunds and disputes | 11 | 0 | 4 | 0 | 7 |
-| 4 Fulfil | TRK | Tracking and notifications | 12 | 2 | 1 | 0 | 9 |
-| 5 Engage and run | CRM | Customer service, help desk and chat | 15 | 0 | 1 | 0 | 14 |
-| 5 Engage and run | MKT | Marketing, promotions, loyalty, content and SEO | 14 | 0 | 1 | 0 | 13 |
-| 5 Engage and run | RPT | Reporting and analytics | 12 | 0 | 5 | 4 | 3 |
-| 6 Reach | AI | AI capabilities | 10 | 0 | 0 | 5 | 5 |
-| 6 Reach | CHN | Channels: mobile app, PWA, USSD, SMS, WhatsApp, assisted/agent | 13 | 0 | 2 | 2 | 9 |
-| 6 Reach | INT | Integrations and APIs | 13 | 0 | 4 | 1 | 8 |
-| 7 Verticals | EGV | e-Government and service catalogue (optional pack) | 7 | 0 | 7 | 0 | 0 |
-| 7 Verticals | FIN | Financial products | 5 | 0 | 1 | 3 | 1 |
-| 7 Verticals | SVC | Services commerce (booking, delivery and completion of services; SVC-007 covers electronically delivered goods) | 12 | 0 | 8 | 0 | 4 |
+| Wave | Area | Name | Features | Built | Partial | Held | Mocked | Not built |
+|---|---|---|---|---|---|---|---|---|
+| 1 Foundation | ADM | Administration, workflow and operations console | 12 | 12 | 0 | 0 | 0 | 0 |
+| 1 Foundation | IAM | Identity, access and accounts | 27 | 27 | 0 | 0 | 0 | 0 |
+| 1 Foundation | PLT | Platform foundation and multi-client configuration | 27 | 0 | 2 | 3 | 4 | 18 |
+| 1 Foundation | SEC | Security, audit and compliance | 15 | 0 | 1 | 2 | 5 | 7 |
+| 2 Catalogue | CAT | Catalogue and listings | 43 | 0 | 0 | 9 | 0 | 34 |
+| 2 Catalogue | INV | Inventory and warehouses | 13 | 0 | 0 | 1 | 0 | 12 |
+| 2 Catalogue | SEL | Sellers and marketplace onboarding | 25 | 0 | 0 | 4 | 1 | 20 |
+| 2 Catalogue | SRC | Search, discovery and merchandising | 27 | 0 | 0 | 4 | 1 | 22 |
+| 3 Buy | CHK | Cart and checkout | 19 | 0 | 6 | 4 | 0 | 9 |
+| 3 Buy | ORD | Orders and B2B transactions (RFQ, contracts, requisitions, offers, group buying) | 28 | 0 | 2 | 11 | 0 | 15 |
+| 3 Buy | PAY | Payments, tax, settlement and reconciliation | 36 | 0 | 1 | 14 | 0 | 21 |
+| 4 Fulfil | DOC | Documents and records | 6 | 0 | 0 | 2 | 1 | 3 |
+| 4 Fulfil | LOG | Shipping, logistics and fulfilment | 32 | 0 | 1 | 6 | 2 | 23 |
+| 4 Fulfil | RET | Returns, refunds and disputes | 11 | 0 | 0 | 4 | 0 | 7 |
+| 4 Fulfil | TRK | Tracking and notifications | 12 | 0 | 2 | 1 | 0 | 9 |
+| 5 Engage and run | CRM | Customer service, help desk and chat | 15 | 0 | 0 | 1 | 0 | 14 |
+| 5 Engage and run | MKT | Marketing, promotions, loyalty, content and SEO | 14 | 0 | 0 | 1 | 0 | 13 |
+| 5 Engage and run | RPT | Reporting and analytics | 12 | 0 | 0 | 5 | 4 | 3 |
+| 6 Reach | AI | AI capabilities | 10 | 0 | 0 | 0 | 5 | 5 |
+| 6 Reach | CHN | Channels: mobile app, PWA, USSD, SMS, WhatsApp, assisted/agent | 13 | 0 | 0 | 2 | 2 | 9 |
+| 6 Reach | INT | Integrations and APIs | 13 | 0 | 0 | 4 | 1 | 8 |
+| 7 Verticals | EGV | e-Government and service catalogue (optional pack) | 7 | 0 | 0 | 7 | 0 | 0 |
+| 7 Verticals | FIN | Financial products | 5 | 0 | 0 | 1 | 3 | 1 |
+| 7 Verticals | SVC | Services commerce (booking, delivery and completion of services; SVC-007 covers electronically delivered goods) | 12 | 0 | 0 | 8 | 0 | 4 |
 
 ## 3. Client requirement coverage
 
 | Client | Requirements | Mapped to a feature | Demonstrated in the prototype | Project service |
 |---|---|---|---|---|
-| KTDA | 95 | 80 | 19 | 17 |
-| Malawi Post | 411 | 374 | 61 | 38 |
+| KTDA | 95 | 80 | 12 | 17 |
+| Malawi Post | 411 | 374 | 32 | 38 |
 
 "Demonstrated in the prototype" means at least one feature that delivers the requirement has a
 passing AC-named test here. It is not a compliance statement: the compliance status of each
@@ -440,7 +442,7 @@ in the user interface and here.
 |---|---|---|---|---|---|---|---|---|
 | PRD-PLT-001 | Client instance provisioning | PLT | P1 | 1 | mocked | 10 | 0 | - |
 | PRD-PLT-002 | Client data isolation | PLT | P1 | 1 | held-default | 5 | 0 | F-CAT-B |
-| PRD-PLT-003 | Configuration packs | PLT | P1 | 1 | built | 19 | 2 | - |
+| PRD-PLT-003 | Configuration packs | PLT | P1 | 1 | partial | 19 | 2 | - |
 | PRD-PLT-004 | Settings change control | PLT | P1 | 1 | held-default | 17 | 0 | WF-ENG |
 | PRD-PLT-005 | Configuration export, import and promotion | PLT | P1 | 1 | not-built | 7 | 0 | - |
 | PRD-PLT-006 | Branding and theme | PLT | P1 | 1 | not-built | 4 | 0 | - |
@@ -459,7 +461,7 @@ in the user interface and here.
 | PRD-PLT-019 | Contextual help and guided tours | PLT | P1 | 1 | not-built | 4 | 0 | - |
 | PRD-PLT-020 | Data retention and archival | PLT | P1 | 1 | not-built | 11 | 0 | - |
 | PRD-PLT-021 | Product release and upgrade management | PLT | P1 | 1 | mocked | 7 | 0 | - |
-| PRD-PLT-022 | Feature and module registry | PLT | P1 | 1 | built | 6 | 1 | - |
+| PRD-PLT-022 | Feature and module registry | PLT | P1 | 1 | partial | 6 | 1 | - |
 | PRD-PLT-023 | Client data migration toolkit | PLT | P1 | 1 | not-built | 6 | 0 | - |
 | PRD-PLT-024 | Exchange-rate provider framework | PLT | P1 | 1 | not-built | 3 | 0 | - |
 | PRD-PLT-025 | Translation management | PLT | P1 | 1 | not-built | 7 | 0 | - |
@@ -600,29 +602,29 @@ in the user interface and here.
 | PRD-SRC-025 | Unified search | SRC | P2 | 2 | not-built | 3 | 0 | - |
 | PRD-SRC-026 | Search performance and freshness | SRC | P2 | 2 | not-built | 4 | 0 | - |
 | PRD-SRC-027 | Storefront conveniences | SRC | P2 | 2 | not-built | 5 | 0 | - |
-| PRD-CHK-001 | Shopping cart | CHK | P1 | 3 | built | 6 | 4 | - |
-| PRD-CHK-002 | Checkout | CHK | P1 | 3 | built | 10 | 5 | - |
+| PRD-CHK-001 | Shopping cart | CHK | P1 | 3 | partial | 6 | 4 | - |
+| PRD-CHK-002 | Checkout | CHK | P1 | 3 | partial | 10 | 5 | - |
 | PRD-CHK-003 | Checkout validation | CHK | P1 | 3 | not-built | 16 | 0 | - |
-| PRD-CHK-004 | Multi-seller split checkout | CHK | P1 | 3 | built | 12 | 4 | WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01 |
-| PRD-CHK-005 | Fulfilment method per line | CHK | P1 | 3 | built | 6 | 2 | - |
+| PRD-CHK-004 | Multi-seller split checkout | CHK | P1 | 3 | partial | 12 | 4 | WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01 |
+| PRD-CHK-005 | Fulfilment method per line | CHK | P1 | 3 | partial | 6 | 2 | - |
 | PRD-CHK-006 | Delivery slot and instructions | CHK | P1 | 3 | not-built | 10 | 0 | - |
 | PRD-CHK-007 | Structured address capture | CHK | P1 | 3 | not-built | 6 | 0 | - |
 | PRD-CHK-008 | Checkout resilience and idempotency | CHK | P1 | 3 | not-built | 9 | 0 | - |
 | PRD-CHK-009 | E-transactions consumer controls | CHK | P1 | 3 | not-built | 6 | 0 | - |
 | PRD-CHK-010 | Minimum order and fee thresholds | CHK | P1 | 3 | not-built | 3 | 0 | - |
 | PRD-CHK-011 | Cart restriction rules | CHK | P1 | 3 | not-built | 6 | 0 | - |
-| PRD-CHK-012 | Pickup code / QR | CHK | P1 | 3 | built | 7 | 2 | - |
+| PRD-CHK-012 | Pickup code / QR | CHK | P1 | 3 | partial | 7 | 2 | - |
 | PRD-CHK-013 | Assisted checkout | CHK | P1 | 3 | not-built | 6 | 0 | - |
 | PRD-CHK-014 | Estimated delivery at checkout | CHK | P1 | 3 | not-built | 5 | 0 | - |
 | PRD-CHK-015 | Checkout attributes | CHK | P1 | 3 | held-default | 3 | 0 | PH-INF |
 | PRD-CHK-016 | B2B on-account payment and credit limits | CHK | P1 | 3 | held-default | 6 | 0 | PH-INF, PAID-STUB / PH-INF / PAID-STUB |
 | PRD-CHK-017 | B2B quick order and bulk add | CHK | P1 | 3 | held-default | 3 | 0 | PH-INF |
 | PRD-CHK-018 | B2B purchase approval | CHK | P1 | 3 | held-default | 6 | 0 | PH-INF, WF-ENG / PH-INF / WF-ENG |
-| PRD-CHK-019 | Order confirmation | CHK | P1 | 3 | built | 4 | 1 | - |
+| PRD-CHK-019 | Order confirmation | CHK | P1 | 3 | partial | 4 | 1 | - |
 | PRD-PAY-001 | Payment method framework and routing | PAY | P1 | 3 | not-built | 10 | 0 | - |
 | PRD-PAY-002 | Card payments (framework) | PAY | P1 | 3 | not-built | 9 | 0 | - |
 | PRD-PAY-003 | PayPal | PAY | P1 | 3 | held-default | 2 | 0 | K-08 |
-| PRD-PAY-004 | Mobile money (framework) | PAY | P1 | 3 | built | 9 | 2 | - |
+| PRD-PAY-004 | Mobile money (framework) | PAY | P1 | 3 | partial | 9 | 2 | - |
 | PRD-PAY-005 | Bank transfer | PAY | P1 | 3 | not-built | 7 | 0 | - |
 | PRD-PAY-006 | Letters of credit | PAY | P1 | 3 | not-built | 5 | 0 | - |
 | PRD-PAY-007 | Escrow and staged release | PAY | P1 | 3 | held-default | 7 | 0 | PAY-DIRECT / LIC-01 |
@@ -656,12 +658,12 @@ in the user interface and here.
 | PRD-PAY-035 | Direct payment to the seller | PAY | P2 | 3 | held-default | 5 | 0 | PO-REC-v8, PAY-DIRECT / LIC-01 / PO-REC-v8 / PAY-DIRECT / LIC-01 |
 | PRD-PAY-036 | Offline direct payment confirmation | PAY | P2 | 3 | held-default | 4 | 0 | WF-ENG, PO-REC-v8, PAY-DIRECT / LIC-01 / WF-ENG / PO-REC-v8 / PAY-DIRECT / LIC-01 |
 | PRD-ORD-001 | Order management console | ORD | P1 | 3 | not-built | 8 | 0 | - |
-| PRD-ORD-002 | Configurable order status model | ORD | P1 | 3 | built | 15 | 1 | - |
+| PRD-ORD-002 | Configurable order status model | ORD | P1 | 3 | partial | 15 | 1 | - |
 | PRD-ORD-003 | Order interventions with reason codes and audit | ORD | P1 | 3 | not-built | 7 | 0 | - |
 | PRD-ORD-004 | Cancellation rules | ORD | P1 | 3 | not-built | 8 | 0 | - |
 | PRD-ORD-005 | Seller order processing | ORD | P1 | 3 | not-built | 7 | 0 | - |
 | PRD-ORD-006 | Partial fulfilment approval | ORD | P1 | 3 | not-built | 5 | 0 | - |
-| PRD-ORD-007 | Order numbering | ORD | P1 | 3 | built | 5 | 1 | - |
+| PRD-ORD-007 | Order numbering | ORD | P1 | 3 | partial | 5 | 1 | - |
 | PRD-ORD-008 | Reorder | ORD | P1 | 3 | not-built | 2 | 0 | - |
 | PRD-ORD-009 | Invoices | ORD | P1 | 3 | held-default | 6 | 0 | DOC-LIB |
 | PRD-ORD-010 | Order holds | ORD | P1 | 3 | not-built | 8 | 0 | - |
@@ -694,7 +696,7 @@ in the user interface and here.
 | PRD-LOG-009 | Warehouse pick, pack, dispatch | LOG | P1 | 4 | not-built | 12 | 0 | - |
 | PRD-LOG-010 | Shipments | LOG | P1 | 4 | not-built | 5 | 0 | - |
 | PRD-LOG-011 | Logistics task creation and seller pickup | LOG | P1 | 4 | held-default | 7 | 0 | FG-06 |
-| PRD-LOG-012 | Proof of delivery record | LOG | P1 | 4 | built | 10 | 1 | - |
+| PRD-LOG-012 | Proof of delivery record | LOG | P1 | 4 | partial | 10 | 1 | - |
 | PRD-LOG-013 | Delivery exceptions | LOG | P1 | 4 | not-built | 8 | 0 | - |
 | PRD-LOG-014 | COD cash reconciliation | LOG | P1 | 4 | not-built | 5 | 0 | - |
 | PRD-LOG-015 | Address validation and geocoding | LOG | P1 | 4 | not-built | 5 | 0 | - |
@@ -715,7 +717,7 @@ in the user interface and here.
 | PRD-LOG-030 | Shipping lines and agents adapter | LOG | P1 | 4 | not-built | 3 | 0 | - |
 | PRD-LOG-031 | MPC delivery partner adapters | LOG | P1 | 4 | not-built | 2 | 0 | - |
 | PRD-LOG-032 | Own-fleet POD capture | LOG | P1 | 4 | held-default | 4 | 0 | FG-06, PAID-STUB / FG-06 / PAID-STUB |
-| PRD-TRK-001 | Buyer shipment tracking | TRK | P1 | 4 | built | 11 | 2 | - |
+| PRD-TRK-001 | Buyer shipment tracking | TRK | P1 | 4 | partial | 11 | 2 | - |
 | PRD-TRK-002 | Tracking event hub | TRK | P1 | 4 | not-built | 15 | 0 | - |
 | PRD-TRK-003 | Scanning and field operations app | TRK | P1 | 4 | held-default | 6 | 0 | FG-06 |
 | PRD-TRK-004 | Email notifications and templates | TRK | P1 | 4 | not-built | 6 | 0 | - |
@@ -725,7 +727,7 @@ in the user interface and here.
 | PRD-TRK-008 | In-app notification feed | TRK | P2 | 4 | not-built | 3 | 0 | - |
 | PRD-TRK-009 | Proactive outreach and outage notices | TRK | P1 | 4 | not-built | 5 | 0 | - |
 | PRD-TRK-010 | Seller shipment visibility | TRK | P1 | 4 | not-built | 3 | 0 | - |
-| PRD-TRK-011 | Guest order-status lookup | TRK | P1 | 4 | built | 3 | 1 | - |
+| PRD-TRK-011 | Guest order-status lookup | TRK | P1 | 4 | partial | 3 | 1 | - |
 | PRD-TRK-012 | Shipment and pickup event notifications | TRK | P1 | 4 | not-built | 8 | 0 | - |
 | PRD-RET-001 | Return requests | RET | P1 | 4 | not-built | 12 | 0 | - |
 | PRD-RET-002 | Return eligibility rules | RET | P1 | 4 | not-built | 7 | 0 | - |
@@ -800,7 +802,7 @@ in the user interface and here.
 | PRD-SEC-001 | Encryption and transport security | SEC | P1 | 1 | not-built | 10 | 0 | - |
 | PRD-SEC-002 | Edge protection | SEC | P1 | 1 | mocked | 12 | 0 | - |
 | PRD-SEC-003 | PCI-DSS scope control | SEC | P1 | 1 | not-built | 4 | 0 | - |
-| PRD-SEC-004 | Platform audit trail | SEC | P1 | 1 | built | 20 | 1 | - |
+| PRD-SEC-004 | Platform audit trail | SEC | P1 | 1 | partial | 20 | 1 | - |
 | PRD-SEC-005 | Anomaly and correlation detection | SEC | P2 | 1 | mocked | 3 | 0 | - |
 | PRD-SEC-006 | Data residency | SEC | P1 | 1 | held-default | 3 | 0 | DP-01 |
 | PRD-SEC-007 | Consent and privacy tools | SEC | P1 | 1 | not-built | 10 | 0 | - |
