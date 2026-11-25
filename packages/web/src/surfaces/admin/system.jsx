@@ -28,7 +28,7 @@ export function AdminAudit() {
     <AdminPage
       title="Platform audit trail"
       breadcrumb={crumb({ label: 'Audit trail' })}
-      intro="PRD-SEC-004. Every write in the prototype goes through the trail with the actor, the entity, the before and after values and the AUD event code from the module chapter."
+      intro="Every change is recorded here with who made it, what it was, and the values before and after."
     >
       <SearchPanel onClear={() => setFilter({ area: '', event: '', actor: '' })}>
         <Field label="Area">
@@ -37,7 +37,7 @@ export function AdminAudit() {
             {areas.map((a) => <option key={a.code} value={a.code}>{a.code}</option>)}
           </Select>
         </Field>
-        <Field label="Event code"><Input value={filter.event} onChange={(e) => setFilter({ ...filter, event: e.target.value })} placeholder="AUD-CHK-004-01" /></Field>
+        <Field label="Event code"><Input value={filter.event} onChange={(e) => setFilter({ ...filter, event: e.target.value })} placeholder="Event code" /></Field>
         <Field label="Actor"><Input value={filter.actor} onChange={(e) => setFilter({ ...filter, actor: e.target.value })} /></Field>
       </SearchPanel>
       <Panel bodyClass="p-0" subtitle={rows ? `${rows.length} entries` : undefined}>
@@ -85,7 +85,7 @@ export function AdminMessages() {
     <AdminPage
       title="Message queue and delivery records"
       breadcrumb={crumb({ label: 'Message queue' })}
-      intro="TRK-005 multi-channel messaging and TRK-007 delivery records. Routing per event and channel comes from the pack (decision MSG-ROUTE); every gateway is a mock (P-3)."
+      intro="Messages sent to customers and staff, and which channel carried each one. The channel per event comes from the configuration pack."
     >
       <Panel bodyClass="p-0" subtitle={rows ? `${rows.length} messages` : undefined}>
         {!rows ? <Spinner /> : (
@@ -115,7 +115,7 @@ export function AdminTracking() {
   const { content } = useProduct();
   useEffect(() => { api.get('/tracking/hub').then(setRows).catch(() => {}); }, [content?.clientName]);
   return (
-    <AdminPage title="Tracking update hub" breadcrumb={crumb({ label: 'Tracking hub' })} intro="TRK-002. Carrier and postal codes are normalised to the product event dictionary.">
+    <AdminPage title="Tracking update hub" breadcrumb={crumb({ label: 'Tracking hub' })} intro="Tracking updates from the carriers, translated into the events customers see.">
       <Panel bodyClass="p-0">
         {!rows ? <Spinner /> : (
           <Grid
@@ -164,7 +164,7 @@ export function AdminMocks() {
     <AdminPage
       title="Mocks console"
       breadcrumb={crumb({ label: 'Mocks console' })}
-      intro="Decision P-3: the 45 external-system features are mocks with recorded sample payloads, switchable to real sandboxes later. Nothing here reaches the network."
+      intro="The external systems this store talks to. Each one can be switched between healthy, slow and failing while you try a journey."
     >
       {!data ? <Spinner /> : (
         <>

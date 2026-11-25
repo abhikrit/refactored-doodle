@@ -136,6 +136,36 @@ async function seedSecurityAsync() {
     auditors: 'Auditor',
     'platform team': 'PlatformTeam',
     platform: 'PlatformTeam',
+    // the rest of the BR-IAM-050 product role catalogue, as the chapter tables name them
+    accountmanager: 'AccountManager',
+    'account manager': 'AccountManager',
+    securityofficer: 'SecurityOfficer',
+    'security officer': 'SecurityOfficer',
+    privacyofficer: 'PrivacyOfficer',
+    'privacy officer': 'PrivacyOfficer',
+    supportmanager: 'SupportManager',
+    'support manager': 'SupportManager',
+    operationsmanager: 'OperationsManager',
+    'operations manager': 'OperationsManager',
+    tradebuyer: 'TradeBuyer',
+    'trade buyer': 'TradeBuyer',
+    risk: 'Risk',
+    stock: 'Stock',
+    quality: 'Quality',
+    courier: 'Courier',
+    marketing: 'Marketing',
+    content: 'Content',
+    contentapprover: 'ContentApprover',
+    'content approver': 'ContentApprover',
+    analyst: 'Analyst',
+    procurement: 'Procurement',
+    programme: 'Programme',
+    agencyofficer: 'AgencyOfficer',
+    'agency officer': 'AgencyOfficer',
+    agencyadmin: 'AgencyAdmin',
+    'agency administrator': 'AgencyAdmin',
+    logisticsops: 'LogisticsOps',
+    'logistics operations': 'LogisticsOps',
   };
   for (const p of registry.permissions) {
     for (const systemName of p.systemName.split('/').map((x) => x.trim()).filter(Boolean)) {
@@ -252,6 +282,20 @@ export async function seedAsync({ clientId, report }) {
   await seedSecurityAsync();
   await seedPackEntitiesAsync(report);
   await seedCustomersAsync(clientId);
+
+  // The native Country rows the address book and PRD-IAM-024 need. BR-IAM-121 requires
+  // Country.SubjectToVat to be reviewed for every country rather than left at a default, so each
+  // row below carries the reviewed value for the countries these two clients trade in.
+  for (const c of [
+    { name: 'Malawi', twoLetterIsoCode: 'MW', threeLetterIsoCode: 'MWI', subjectToVat: true },
+    { name: 'Kenya', twoLetterIsoCode: 'KE', threeLetterIsoCode: 'KEN', subjectToVat: true },
+    { name: 'South Africa', twoLetterIsoCode: 'ZA', threeLetterIsoCode: 'ZAF', subjectToVat: true },
+    { name: 'Zambia', twoLetterIsoCode: 'ZM', threeLetterIsoCode: 'ZMB', subjectToVat: true },
+  ]) {
+    await repository('Country').insertAsync({
+      ...c, published: true, allowsBilling: true, allowsShipping: true, subjectToVatReviewedBy: 'BR-IAM-121',
+    });
+  }
 
   // PRD-IAM-016 and PRD-IAM-017: the policy versions MKT-008 supplies through IC-MKT-03, the
   // native GdprConsent rows and the quotes and return requests of the bundled Misc.RFQ plugin.

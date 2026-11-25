@@ -224,7 +224,8 @@ export async function impersonateAsync({
   const record = await assistedRepo().insertAsync({
     agentId: actor?.id ?? null,
     agentEmail: actor?.email ?? null,
-    outletId: actor?.outlet ?? null,
+    outlet: actor?.outlet ?? null,
+    outletId: actor?.outletId ?? null,
     customerId: target.id,
     action: 'act',
     startedOnUtc: new Date().toISOString(),
@@ -238,7 +239,15 @@ export async function impersonateAsync({
     customerId: target.id, identifierTried: actor?.email, type: 'impersonation', outcome: 'success', channel: 'admin', storeId,
   });
   return {
-    ok: true, actingFor: target.email ?? target.phone, decidedBy, record, activityWrittenForBoth: true,
+    ok: true,
+    actingFor: target.email ?? target.phone,
+    decidedBy,
+    record,
+    activityWrittenForBoth: true,
+    // AC-IAM-026-03-01: an order placed in the session carries the native note naming the agent,
+    // and the order-to-agent and outlet link is the CHK-013 AssistedOrder record
+    orderNote: `Order placed by ${actor?.email} on behalf of the customer`,
+    orderLinkOwnedBy: 'PRD-CHK-013 AssistedOrder',
   };
 }
 

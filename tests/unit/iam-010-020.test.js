@@ -148,8 +148,11 @@ describe('PRD-IAM-010 user administration console', () => {
 
     const refused = await api.post('/api/identity/users/impersonate', { customerEmail: other.email }, 'iam-d-agent');
     assert.equal(refused.ok, false);
-    assert.equal(refused.messageKey, 'Iam.ImpersonationNotAllowed');
+    // "with message Iam.ImpersonationNotAllowed (or the refusing provider message)": the IAM-026
+    // agent rule refuses with its own, Iam.ScopeDenied
+    assert.ok(['Iam.ImpersonationNotAllowed', 'Iam.ScopeDenied'].includes(refused.messageKey));
     assert.ok(refused.providersAsked.includes('PRD-IAM-026'), 'every registered rule provider was asked');
+    assert.ok(refused.providersAsked.includes('PRD-CRM-015'), 'including the account-manager rule');
 
     const trail = await auditTrailAsync({ entity: 'Customer', entityId: other.id });
     assert.ok(trail.some((t) => t.event === 'AUD-IAM-019' && t.outcome === 'rejected'), 'AUD-IAM-019 is written');
@@ -159,14 +162,21 @@ describe('PRD-IAM-010 user administration console', () => {
   });
 
   test('AC-IAM-010-03-03', async () => {
-    // "the native action refuses it (NonAdminNotImpersonateAsAdminError); the IAM filter does not
-    //  relax native checks"
-    const agent = await byEmail('agent.blantyre@example.com');
-    await makeCustomerAsync({
-      email: 'outlet.admin@example.com', firstName: 'Outlet', lastName: 'Administrator', roles: ['Administrators'], outlet: agent.outlet,
+    // "a user who is not an administrator is allowed by a rule provider for a customer who is an
+    //  administrator, then the native action refuses it
+    //  (NonAdminNotImpersonateAsAdminError); the IAM filter does not relax native checks"
+    // the rule that allows a non-administrator here is the CRM-015 account-manager rule: the
+    // IAM-026 agent rule refuses staff accounts outright (AC-IAM-026-03-02)
+    const manager = await makeCustomerAsync({
+      email: 'account.manager@example.com', firstName: 'Account', lastName: 'Manager', roles: ['AccountManager'],
     });
-    const refused = await api.post('/api/identity/users/impersonate', { customerEmail: 'outlet.admin@example.com' }, 'iam-d-agent');
-    assert.equal(refused.filterAllowed, true, 'the rule provider allowed it: the customer is at this agent\'s outlet');
+    await makeCustomerAsync({
+      email: 'managed.admin@example.com', firstName: 'Managed', lastName: 'Administrator', roles: ['Administrators'], accountManagerId: manager.id,
+    });
+    await signInAsync(manager.email, 'iam-d-manager');
+
+    const refused = await api.post('/api/identity/users/impersonate', { customerEmail: 'managed.admin@example.com' }, 'iam-d-manager');
+    assert.equal(refused.filterAllowed, true, 'the rule provider allowed it: the customer is assigned to this manager');
     assert.equal(refused.ok, false);
     assert.equal(refused.nativeRefusal, true);
     assert.equal(refused.messageKey, 'Admin.Customers.Customers.NonAdminNotImpersonateAsAdminError');

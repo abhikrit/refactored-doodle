@@ -366,7 +366,7 @@ export function Checkout() {
                 <Field label="E-mail" required={!customer}><Input type="email" value={address.email} onChange={(e) => setAddress({ ...address, email: e.target.value })} /></Field>
                 <Field label="Phone"><Input value={address.phone} onChange={(e) => setAddress({ ...address, phone: e.target.value })} /></Field>
                 <Field label="Street address" hint="CHK-007: a street address, a landmark or a map pin is enough"><Input value={address.addressLine1} onChange={(e) => setAddress({ ...address, addressLine1: e.target.value })} /></Field>
-                <Field label="Landmark" hint="Address attribute (REQ-MPC-FR-113)"><Input value={address.landmark} onChange={(e) => setAddress({ ...address, landmark: e.target.value })} /></Field>
+                <Field label="Landmark" hint="Nearest landmark, to help the courier find you"><Input value={address.landmark} onChange={(e) => setAddress({ ...address, landmark: e.target.value })} /></Field>
                 <Field label="City / town" required><Input value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} /></Field>
                 <Field label="County / district">
                   <Select value={address.county} onChange={(e) => setAddress({ ...address, county: e.target.value })}>

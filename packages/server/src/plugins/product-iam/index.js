@@ -72,6 +72,23 @@ import {
   quotePdfAsync, historyAsync, historyExportAsync, reorderAsync, quickActionsAsync,
   dashboardAsync, figuresAsync, waitingProviders, WAITING_ITEMS,
 } from './services/self-service.js';
+import {
+  COMPANY_ROLES, COMPANY_ROLE_RIGHTS, createCompanyAsync, companiesAsync, companyAsync,
+  companyOfCustomerAsync, membershipProviders, addMemberAsync, removeMemberAsync,
+  linkOrderToCompanyAsync, companyOrdersAsync, companyAddressesAsync, createCostCentreAsync,
+  costCentresAsync, budgetCheckAsync, chargeOrderAsync, releaseChargeAsync,
+} from './services/companies.js';
+import {
+  registerTradeUploadContextAsync, requiredDocumentsAsync, submitTradeApplicationAsync,
+  tradeApplicationsAsync, decideTradeApplicationAsync, tradePricesVisibleAsync,
+  taxExemptionAsync, calculateLineTaxAsync, setTaxExemptAsync, euVatConfigurationAsync,
+  applyEuVatGuardAsync, setVatNumberAsync, markVatNumberAsync,
+} from './services/trade.js';
+import {
+  assistedServiceEnabledAsync, agentProfileAsync, assignOutletAsync, agentsAsync,
+  assistedRegistrationStartAsync, assistedRegistrationCompleteAsync, actingConsentStartAsync,
+  endActingSessionAsync, assistedRecordsAsync,
+} from './services/agents.js';
 import { mockRegistry } from '@product/mocks';
 
 export default definePlugin({
@@ -87,6 +104,8 @@ export default definePlugin({
 
     await ensureProductRolesAsync();
     await applyAuthLoggingConfigurationAsync();
+    // IC-ADM-08 RegisterUploadContext for AC-IAM-023-01-02
+    await registerTradeUploadContextAsync();
 
     // IC-IAM-09: the agent rule of IAM-026. Other modules register their own providers; one
     // Allow is enough and the filter itself stays IAM-026's (BR-IAM-130).
@@ -94,21 +113,32 @@ export default definePlugin({
       name: 'agents for customers of their own outlet',
       area: 'IAM',
       feature: 'PRD-IAM-026',
-      fn: async ({ actor, target, customerCode, storeId }) => {
+      fn: async ({
+        actor, target, customerCode, storeId,
+      }) => {
+        // BR-IAM-141: with the feature off for the store the rule is not applicable at all
+        const feature = await assistedServiceEnabledAsync(storeId ?? 1);
+        if (!feature.enabled) {
+          return { decision: 'NotApplicable', reason: 'assisted service is not enabled for this store (IC-PLT-02)' };
+        }
         if (!await ctx.security.authorizeAsync('Identity.Core.AssistedService.Access', actor)) {
           return { decision: 'NotApplicable', reason: 'the user is not an assisted-service agent' };
         }
         if (!actor?.outlet) {
-          return { decision: 'Deny', messageKey: 'Iam.AgentNotAssigned', message: 'You are not assigned to an outlet. Contact your administrator.' };
+          return { decision: 'Deny', messageKey: 'Iam.AgentNotAssigned', message: ctx.messages.resource('Iam.AgentNotAssigned') };
         }
-        // the rule is the outlet, nothing else: AC-IAM-010-03-03 requires the native checks to
-        // still refuse an administrator target, so the filter does not pre-empt them here
-        if (target.outlet !== actor.outlet) {
-          return { decision: 'Deny', messageKey: 'Iam.ImpersonationNotAllowed', message: 'You cannot act for this customer.' };
+        // AC-IAM-026-03-02: an agent never acts for staff; native code refuses only administrators
+        const staffRoles = ['Administrators', 'PlatformTeam', 'Finance', 'Compliance', 'SecurityOfficer', 'Catalogue', 'Logistics', 'Operations', 'Support', 'Auditor', 'PrivacyOfficer', 'Warehouse', 'Agent'];
+        if ((target.roles ?? []).some((role) => staffRoles.includes(role))) {
+          return { decision: 'Deny', messageKey: 'Iam.ScopeDenied', message: ctx.messages.resource('Iam.ScopeDenied') };
+        }
+        // AC-IAM-026-03-03: agents act only for the customers of their own outlet
+        if ((target.registeredAtOutlet ?? target.outlet ?? null) !== actor.outlet) {
+          return { decision: 'Deny', messageKey: 'Iam.ScopeDenied', message: ctx.messages.resource('Iam.ScopeDenied') };
         }
         const codeRequired = await ctx.settings.getSettingAsync('iam.customercoderequiredforacting', storeId ?? 1, false);
         if (codeRequired === true && !customerCode) {
-          return { decision: 'Deny', messageKey: 'Iam.ImpersonationNotAllowed', message: 'Ask the customer for their customer code.' };
+          return { decision: 'Deny', messageKey: 'Iam.ScopeDenied', message: 'Ask the customer for their customer code.' };
         }
         return { decision: 'Allow', reason: 'the customer is registered at an outlet of this agent' };
       },
@@ -645,6 +675,85 @@ export default definePlugin({
       customer: await me(req), months: req.query.months ? Number(req.query.months) : 6, storeId: req.storeId,
     })));
     r.get('/my/waiting-providers', send(() => waitingProviders()));
+
+    /* ------------------------- PRD-IAM-022, 023, 024, 026 and 027 ----------------------- */
+    r.get('/companies', gate('Identity.Core.TradeAccounts.CreateEditDelete'), send(() => companiesAsync()));
+    r.post('/companies', gate('Identity.Core.TradeAccounts.CreateEditDelete'), send((req) => createCompanyAsync({ ...req.body, actor: req.actorEmail })));
+    r.get('/companies/roles', send(() => ({ roles: COMPANY_ROLES, rights: COMPANY_ROLE_RIGHTS })));
+    r.get('/companies/of-customer', send(async (req) => companyOfCustomerAsync({
+      customerId: req.query.customerId ? Number(req.query.customerId) : (await me(req)).id,
+    })));
+    r.get('/companies/membership-providers', send(() => membershipProviders()));
+    r.get('/companies/addresses', send(async (req) => companyAddressesAsync({ customer: await me(req) })));
+    r.get('/companies/:id', send((req) => companyAsync(Number(req.params.id))));
+    r.get('/companies/:id/orders', send(async (req) => companyOrdersAsync({
+      companyId: Number(req.params.id), customer: await me(req),
+    })));
+    r.post('/companies/:id/members', send((req) => addMemberAsync({
+      companyId: Number(req.params.id), ...req.body, actor: req.actorEmail, storeId: req.storeId,
+    })));
+    r.delete('/companies/:id/members/:customerId', send((req) => removeMemberAsync({
+      companyId: Number(req.params.id), customerId: Number(req.params.customerId), actor: req.actorEmail, storeId: req.storeId,
+    })));
+    r.post('/companies/orders/link', send((req) => linkOrderToCompanyAsync(req.body)));
+    r.get('/cost-centres', send((req) => costCentresAsync(req.query.companyId ?? null)));
+    r.post('/cost-centres', send((req) => createCostCentreAsync({ ...req.body, actor: req.actorEmail, storeId: req.storeId })));
+    r.post('/cost-centres/check', send(async (req) => budgetCheckAsync({
+      ...req.body, customer: await me(req), storeId: req.storeId,
+    })));
+    r.post('/cost-centres/charge', send((req) => chargeOrderAsync({ ...req.body, storeId: req.storeId })));
+    r.post('/cost-centres/release', send((req) => releaseChargeAsync(req.body)));
+
+    r.get('/trade-applications', gate('Identity.Core.TradeAccounts.CreateEditDelete'), send((req) => tradeApplicationsAsync(req.query)));
+    r.get('/trade-applications/requirements', send(async (req) => ({
+      fields: ['companyName', 'registrationNumber', 'taxNumber'],
+      documents: await requiredDocumentsAsync(req.storeId),
+      uploadContext: 'trade application document',
+      policyOwnedBy: 'PRD-ADM-008',
+    })));
+    r.post('/trade-applications', send(async (req) => submitTradeApplicationAsync({
+      customer: await me(req), ...req.body, storeId: req.storeId,
+    })));
+    r.post('/trade-applications/:id/decide', send(async (req) => decideTradeApplicationAsync({
+      applicationId: Number(req.params.id), ...req.body, by: req.actorEmail, actor: await me(req), storeId: req.storeId,
+    })));
+    r.get('/trade-prices', send(async (req) => tradePricesVisibleAsync({ customer: await me(req) })));
+
+    r.get('/tax/exemption', send(async (req) => taxExemptionAsync({
+      customerId: req.query.customerId ? Number(req.query.customerId) : (await me(req)).id,
+    })));
+    r.post('/tax/calculate', send((req) => calculateLineTaxAsync(req.body)));
+    r.post('/tax/exemption', send(async (req) => setTaxExemptAsync({
+      ...req.body, by: req.actorEmail, actor: await me(req),
+    })));
+    r.get('/tax/eu-vat', send((req) => euVatConfigurationAsync({ storeId: req.storeId })));
+    r.post('/tax/eu-vat/guard', send((req) => applyEuVatGuardAsync({ storeId: req.storeId })));
+    r.post('/tax/vat-number', send(async (req) => setVatNumberAsync({
+      customerId: req.body.customerId ?? (await me(req)).id, vatNumber: req.body.vatNumber,
+    })));
+    r.post('/tax/vat-number/mark', send(async (req) => markVatNumberAsync({
+      ...req.body, by: req.actorEmail, actor: await me(req),
+    })));
+
+    r.get('/agents', send(() => agentsAsync()));
+    r.get('/agents/assisted-service', send((req) => assistedServiceEnabledAsync(req.storeId)));
+    r.get('/agents/me', send(async (req) => agentProfileAsync({ customer: await me(req), storeId: req.storeId })));
+    r.post('/agents/outlet', send(async (req) => assignOutletAsync({
+      ...req.body, by: req.actorEmail, actor: await me(req),
+    })));
+    r.get('/agents/records', send((req) => assistedRecordsAsync(req.query)));
+    r.post('/agents/register/start', send(async (req) => assistedRegistrationStartAsync({
+      agent: await me(req), ...req.body, storeId: req.storeId, smsProvider: sms(),
+    })));
+    r.post('/agents/register/complete', send(async (req) => assistedRegistrationCompleteAsync({
+      agent: await me(req), ...req.body, storeId: req.storeId, ipAddress: req.ip,
+    })));
+    r.post('/agents/acting/consent', send(async (req) => actingConsentStartAsync({
+      agent: await me(req), ...req.body, storeId: req.storeId, smsProvider: sms(),
+    })));
+    r.post('/agents/acting/end', send(async (req) => endActingSessionAsync({
+      agent: await me(req), recordId: req.body.recordId ?? null, storeId: req.storeId,
+    })));
 
     // AC-IAM-025-01-01: the bundled Misc.RFQ plugin owns quotes, so its in-house substitute
     // (decision P-2) reports the quotes that wait for the customer.

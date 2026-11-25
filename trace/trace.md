@@ -1,6 +1,6 @@
 # Trace report
 
-Generated 2026-11-25T07:40:10.581Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
+Generated 2026-11-25T10:23:00.392Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
 
 ## 1. Reconciliation
 
@@ -10,21 +10,21 @@ its own has a passing test named by that AC ID (prototype decision P-6).
 
 | State | Features | Meaning |
 |---|---|---|
-| Built and passing | 27 | At least one AC has a passing test named by the AC ID |
-| Held, prototype default | 97 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
-| Mocked externally | 30 | External-system feature standing behind a mock adapter (P-3) |
-| Not built | 280 | Scaffolded in Session 0, built in its own session |
+| Built and passing | 54 | At least one AC has a passing test named by the AC ID |
+| Held, prototype default | 94 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
+| Mocked externally | 29 | External-system feature standing behind a mock adapter (P-3) |
+| Not built | 257 | Scaffolded in Session 0, built in its own session |
 | **Total** | **434** | reconciles: yes |
 
 Acceptance criteria in the product: 2850. Criteria with a test in this repository:
-133 (133 passing, 0 failing).
+338 (338 passing, 0 failing).
 
 ## 2. Coverage by area and wave
 
 | Wave | Area | Name | Features | Built | Held | Mocked | Not built |
 |---|---|---|---|---|---|---|---|
 | 1 Foundation | ADM | Administration, workflow and operations console | 12 | 12 | 0 | 0 | 0 |
-| 1 Foundation | IAM | Identity, access and accounts | 27 | 0 | 3 | 1 | 23 |
+| 1 Foundation | IAM | Identity, access and accounts | 27 | 27 | 0 | 0 | 0 |
 | 1 Foundation | PLT | Platform foundation and multi-client configuration | 27 | 2 | 3 | 4 | 18 |
 | 1 Foundation | SEC | Security, audit and compliance | 15 | 1 | 2 | 5 | 7 |
 | 2 Catalogue | CAT | Catalogue and listings | 43 | 0 | 9 | 0 | 34 |
@@ -52,8 +52,8 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 
 | Client | Requirements | Mapped to a feature | Demonstrated in the prototype | Project service |
 |---|---|---|---|---|
-| KTDA | 95 | 80 | 10 | 17 |
-| Malawi Post | 411 | 374 | 35 | 38 |
+| KTDA | 95 | 80 | 19 | 17 |
+| Malawi Post | 411 | 374 | 61 | 38 |
 
 "Demonstrated in the prototype" means at least one feature that delivers the requirement has a
 passing AC-named test here. It is not a compliance statement: the compliance status of each
@@ -184,6 +184,211 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-CHK-012-01-02 | PRD-CHK-012 | node (API and rules) | pass |
 | AC-CHK-012-02-03 | PRD-CHK-012 | node (API and rules) | pass |
 | AC-CHK-019-01-03 | PRD-CHK-019 | node (API and rules) | pass |
+| AC-IAM-001-01-01 | PRD-IAM-001 | node (API and rules) | pass |
+| AC-IAM-001-01-02 | PRD-IAM-001 | node (API and rules) | pass |
+| AC-IAM-001-01-03 | PRD-IAM-001 | node (API and rules) | pass |
+| AC-IAM-001-01-04 | PRD-IAM-001 | node (API and rules) | pass |
+| AC-IAM-001-02-01 | PRD-IAM-001 | node (API and rules) | pass |
+| AC-IAM-001-02-02 | PRD-IAM-001 | node (API and rules) | pass |
+| AC-IAM-001-03-01 | PRD-IAM-001 | node (API and rules) | pass |
+| AC-IAM-001-04-01 | PRD-IAM-001 | node (API and rules) | pass |
+| AC-IAM-001-04-02 | PRD-IAM-001 | node (API and rules) | pass |
+| AC-IAM-001-04-03 | PRD-IAM-001 | node (API and rules) | pass |
+| AC-IAM-001-05-01 | PRD-IAM-001 | node (API and rules) | pass |
+| AC-IAM-002-01-01 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-01-02 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-01-03 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-01-04 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-01-05 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-01-06 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-01-07 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-01-08 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-01-09 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-01-10 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-02-01 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-02-02 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-02-03 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-02-04 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-02-05 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-02-06 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-02-07 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-03-01 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-03-02 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-002-04-01 | PRD-IAM-002 | node (API and rules) | pass |
+| AC-IAM-003-01-01 | PRD-IAM-003 | node (API and rules) | pass |
+| AC-IAM-003-01-02 | PRD-IAM-003 | node (API and rules) | pass |
+| AC-IAM-003-01-03 | PRD-IAM-003 | node (API and rules) | pass |
+| AC-IAM-003-02-01 | PRD-IAM-003 | node (API and rules) | pass |
+| AC-IAM-003-02-02 | PRD-IAM-003 | node (API and rules) | pass |
+| AC-IAM-003-03-01 | PRD-IAM-003 | node (API and rules) | pass |
+| AC-IAM-003-03-02 | PRD-IAM-003 | node (API and rules) | pass |
+| AC-IAM-003-04-01 | PRD-IAM-003 | node (API and rules) | pass |
+| AC-IAM-003-04-02 | PRD-IAM-003 | node (API and rules) | pass |
+| AC-IAM-003-04-03 | PRD-IAM-003 | node (API and rules) | pass |
+| AC-IAM-004-01-01 | PRD-IAM-004 | node (API and rules) | pass |
+| AC-IAM-004-01-02 | PRD-IAM-004 | node (API and rules) | pass |
+| AC-IAM-004-01-03 | PRD-IAM-004 | node (API and rules) | pass |
+| AC-IAM-004-01-04 | PRD-IAM-004 | node (API and rules) | pass |
+| AC-IAM-004-02-01 | PRD-IAM-004 | node (API and rules) | pass |
+| AC-IAM-004-02-02 | PRD-IAM-004 | node (API and rules) | pass |
+| AC-IAM-004-02-03 | PRD-IAM-004 | node (API and rules) | pass |
+| AC-IAM-004-02-04 | PRD-IAM-004 | node (API and rules) | pass |
+| AC-IAM-004-03-01 | PRD-IAM-004 | node (API and rules) | pass |
+| AC-IAM-004-03-02 | PRD-IAM-004 | node (API and rules) | pass |
+| AC-IAM-005-01-01 | PRD-IAM-005 | node (API and rules) | pass |
+| AC-IAM-005-01-02 | PRD-IAM-005 | node (API and rules) | pass |
+| AC-IAM-005-01-03 | PRD-IAM-005 | node (API and rules) | pass |
+| AC-IAM-005-02-01 | PRD-IAM-005 | node (API and rules) | pass |
+| AC-IAM-005-02-02 | PRD-IAM-005 | node (API and rules) | pass |
+| AC-IAM-005-03-01 | PRD-IAM-005 | node (API and rules) | pass |
+| AC-IAM-006-01-01 | PRD-IAM-006 | node (API and rules) | pass |
+| AC-IAM-006-01-02 | PRD-IAM-006 | node (API and rules) | pass |
+| AC-IAM-006-01-03 | PRD-IAM-006 | node (API and rules) | pass |
+| AC-IAM-006-02-01 | PRD-IAM-006 | node (API and rules) | pass |
+| AC-IAM-006-03-01 | PRD-IAM-006 | node (API and rules) | pass |
+| AC-IAM-006-03-02 | PRD-IAM-006 | node (API and rules) | pass |
+| AC-IAM-006-04-01 | PRD-IAM-006 | node (API and rules) | pass |
+| AC-IAM-007-01-01 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-007-01-02 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-007-02-01 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-007-02-02 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-007-03-01 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-007-04-01 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-007-04-02 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-007-04-03 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-007-04-04 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-007-04-05 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-007-04-06 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-007-05-01 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-007-05-02 | PRD-IAM-007 | node (API and rules) | pass |
+| AC-IAM-008-01-01 | PRD-IAM-008 | node (API and rules) | pass |
+| AC-IAM-008-01-02 | PRD-IAM-008 | node (API and rules) | pass |
+| AC-IAM-008-01-03 | PRD-IAM-008 | node (API and rules) | pass |
+| AC-IAM-008-01-04 | PRD-IAM-008 | node (API and rules) | pass |
+| AC-IAM-008-01-05 | PRD-IAM-008 | node (API and rules) | pass |
+| AC-IAM-008-01-06 | PRD-IAM-008 | node (API and rules) | pass |
+| AC-IAM-008-01-07 | PRD-IAM-008 | node (API and rules) | pass |
+| AC-IAM-008-02-01 | PRD-IAM-008 | node (API and rules) | pass |
+| AC-IAM-009-01-01 | PRD-IAM-009 | node (API and rules) | pass |
+| AC-IAM-009-01-02 | PRD-IAM-009 | node (API and rules) | pass |
+| AC-IAM-009-01-03 | PRD-IAM-009 | node (API and rules) | pass |
+| AC-IAM-009-01-04 | PRD-IAM-009 | node (API and rules) | pass |
+| AC-IAM-009-01-05 | PRD-IAM-009 | node (API and rules) | pass |
+| AC-IAM-009-02-01 | PRD-IAM-009 | node (API and rules) | pass |
+| AC-IAM-009-02-02 | PRD-IAM-009 | node (API and rules) | pass |
+| AC-IAM-010-01-01 | PRD-IAM-010 | node (API and rules) | pass |
+| AC-IAM-010-02-01 | PRD-IAM-010 | node (API and rules) | pass |
+| AC-IAM-010-02-02 | PRD-IAM-010 | node (API and rules) | pass |
+| AC-IAM-010-03-01 | PRD-IAM-010 | node (API and rules) | pass |
+| AC-IAM-010-03-02 | PRD-IAM-010 | node (API and rules) | pass |
+| AC-IAM-010-03-03 | PRD-IAM-010 | node (API and rules) | pass |
+| AC-IAM-010-04-01 | PRD-IAM-010 | node (API and rules) | pass |
+| AC-IAM-010-04-02 | PRD-IAM-010 | node (API and rules) | pass |
+| AC-IAM-010-04-03 | PRD-IAM-010 | node (API and rules) | pass |
+| AC-IAM-010-05-01 | PRD-IAM-010 | node (API and rules) | pass |
+| AC-IAM-010-05-02 | PRD-IAM-010 | node (API and rules) | pass |
+| AC-IAM-011-01-01 | PRD-IAM-011 | node (API and rules) | pass |
+| AC-IAM-011-01-02 | PRD-IAM-011 | node (API and rules) | pass |
+| AC-IAM-011-01-03 | PRD-IAM-011 | node (API and rules) | pass |
+| AC-IAM-011-02-01 | PRD-IAM-011 | node (API and rules) | pass |
+| AC-IAM-011-02-02 | PRD-IAM-011 | node (API and rules) | pass |
+| AC-IAM-011-03-01 | PRD-IAM-011 | node (API and rules) | pass |
+| AC-IAM-011-03-02 | PRD-IAM-011 | node (API and rules) | pass |
+| AC-IAM-012-01-01 | PRD-IAM-012 | node (API and rules) | pass |
+| AC-IAM-012-01-02 | PRD-IAM-012 | node (API and rules) | pass |
+| AC-IAM-012-01-03 | PRD-IAM-012 | node (API and rules) | pass |
+| AC-IAM-012-02-01 | PRD-IAM-012 | node (API and rules) | pass |
+| AC-IAM-012-02-02 | PRD-IAM-012 | node (API and rules) | pass |
+| AC-IAM-012-02-03 | PRD-IAM-012 | node (API and rules) | pass |
+| AC-IAM-012-03-01 | PRD-IAM-012 | node (API and rules) | pass |
+| AC-IAM-012-03-02 | PRD-IAM-012 | node (API and rules) | pass |
+| AC-IAM-013-01-01 | PRD-IAM-013 | node (API and rules) | pass |
+| AC-IAM-013-01-02 | PRD-IAM-013 | node (API and rules) | pass |
+| AC-IAM-013-01-03 | PRD-IAM-013 | node (API and rules) | pass |
+| AC-IAM-013-01-04 | PRD-IAM-013 | node (API and rules) | pass |
+| AC-IAM-014-01-01 | PRD-IAM-014 | node (API and rules) | pass |
+| AC-IAM-014-01-02 | PRD-IAM-014 | node (API and rules) | pass |
+| AC-IAM-014-02-01 | PRD-IAM-014 | node (API and rules) | pass |
+| AC-IAM-014-02-02 | PRD-IAM-014 | node (API and rules) | pass |
+| AC-IAM-014-02-03 | PRD-IAM-014 | node (API and rules) | pass |
+| AC-IAM-015-01-01 | PRD-IAM-015 | node (API and rules) | pass |
+| AC-IAM-015-01-02 | PRD-IAM-015 | node (API and rules) | pass |
+| AC-IAM-015-02-01 | PRD-IAM-015 | node (API and rules) | pass |
+| AC-IAM-015-02-02 | PRD-IAM-015 | node (API and rules) | pass |
+| AC-IAM-016-01-01 | PRD-IAM-016 | node (API and rules) | pass |
+| AC-IAM-016-01-02 | PRD-IAM-016 | node (API and rules) | pass |
+| AC-IAM-016-01-03 | PRD-IAM-016 | node (API and rules) | pass |
+| AC-IAM-016-02-01 | PRD-IAM-016 | node (API and rules) | pass |
+| AC-IAM-016-02-02 | PRD-IAM-016 | node (API and rules) | pass |
+| AC-IAM-016-02-03 | PRD-IAM-016 | node (API and rules) | pass |
+| AC-IAM-016-02-04 | PRD-IAM-016 | node (API and rules) | pass |
+| AC-IAM-016-03-01 | PRD-IAM-016 | node (API and rules) | pass |
+| AC-IAM-016-03-02 | PRD-IAM-016 | node (API and rules) | pass |
+| AC-IAM-017-01-01 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-017-01-02 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-017-01-03 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-017-02-01 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-017-03-01 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-017-03-02 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-017-03-03 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-017-04-01 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-017-04-02 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-017-04-03 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-017-05-01 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-017-05-02 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-017-06-01 | PRD-IAM-017 | node (API and rules) | pass |
+| AC-IAM-018-01-01 | PRD-IAM-018 | node (API and rules) | pass |
+| AC-IAM-018-01-02 | PRD-IAM-018 | node (API and rules) | pass |
+| AC-IAM-018-02-01 | PRD-IAM-018 | node (API and rules) | pass |
+| AC-IAM-018-03-01 | PRD-IAM-018 | node (API and rules) | pass |
+| AC-IAM-019-01-01 | PRD-IAM-019 | node (API and rules) | pass |
+| AC-IAM-019-01-02 | PRD-IAM-019 | node (API and rules) | pass |
+| AC-IAM-019-01-03 | PRD-IAM-019 | node (API and rules) | pass |
+| AC-IAM-019-01-04 | PRD-IAM-019 | node (API and rules) | pass |
+| AC-IAM-020-01-01 | PRD-IAM-020 | node (API and rules) | pass |
+| AC-IAM-020-01-02 | PRD-IAM-020 | node (API and rules) | pass |
+| AC-IAM-020-01-03 | PRD-IAM-020 | node (API and rules) | pass |
+| AC-IAM-020-01-04 | PRD-IAM-020 | node (API and rules) | pass |
+| AC-IAM-020-01-05 | PRD-IAM-020 | node (API and rules) | pass |
+| AC-IAM-020-02-01 | PRD-IAM-020 | node (API and rules) | pass |
+| AC-IAM-021-01-01 | PRD-IAM-021 | node (API and rules) | pass |
+| AC-IAM-021-02-01 | PRD-IAM-021 | node (API and rules) | pass |
+| AC-IAM-021-03-01 | PRD-IAM-021 | node (API and rules) | pass |
+| AC-IAM-021-03-02 | PRD-IAM-021 | node (API and rules) | pass |
+| AC-IAM-021-03-03 | PRD-IAM-021 | node (API and rules) | pass |
+| AC-IAM-021-04-01 | PRD-IAM-021 | node (API and rules) | pass |
+| AC-IAM-022-01-01 | PRD-IAM-022 | node (API and rules) | pass |
+| AC-IAM-022-01-02 | PRD-IAM-022 | node (API and rules) | pass |
+| AC-IAM-022-01-03 | PRD-IAM-022 | node (API and rules) | pass |
+| AC-IAM-022-02-01 | PRD-IAM-022 | node (API and rules) | pass |
+| AC-IAM-022-02-02 | PRD-IAM-022 | node (API and rules) | pass |
+| AC-IAM-022-02-03 | PRD-IAM-022 | node (API and rules) | pass |
+| AC-IAM-022-02-04 | PRD-IAM-022 | node (API and rules) | pass |
+| AC-IAM-023-01-01 | PRD-IAM-023 | node (API and rules) | pass |
+| AC-IAM-023-01-02 | PRD-IAM-023 | node (API and rules) | pass |
+| AC-IAM-023-02-01 | PRD-IAM-023 | node (API and rules) | pass |
+| AC-IAM-023-02-02 | PRD-IAM-023 | node (API and rules) | pass |
+| AC-IAM-023-02-03 | PRD-IAM-023 | node (API and rules) | pass |
+| AC-IAM-024-01-01 | PRD-IAM-024 | node (API and rules) | pass |
+| AC-IAM-024-01-02 | PRD-IAM-024 | node (API and rules) | pass |
+| AC-IAM-024-02-01 | PRD-IAM-024 | node (API and rules) | pass |
+| AC-IAM-024-02-02 | PRD-IAM-024 | node (API and rules) | pass |
+| AC-IAM-025-01-01 | PRD-IAM-025 | node (API and rules) | pass |
+| AC-IAM-025-02-01 | PRD-IAM-025 | node (API and rules) | pass |
+| AC-IAM-025-03-01 | PRD-IAM-025 | node (API and rules) | pass |
+| AC-IAM-026-01-01 | PRD-IAM-026 | node (API and rules) | pass |
+| AC-IAM-026-02-01 | PRD-IAM-026 | node (API and rules) | pass |
+| AC-IAM-026-02-02 | PRD-IAM-026 | node (API and rules) | pass |
+| AC-IAM-026-03-01 | PRD-IAM-026 | node (API and rules) | pass |
+| AC-IAM-026-03-02 | PRD-IAM-026 | node (API and rules) | pass |
+| AC-IAM-026-03-03 | PRD-IAM-026 | node (API and rules) | pass |
+| AC-IAM-026-03-04 | PRD-IAM-026 | node (API and rules) | pass |
+| AC-IAM-026-04-01 | PRD-IAM-026 | node (API and rules) | pass |
+| AC-IAM-026-04-02 | PRD-IAM-026 | node (API and rules) | pass |
+| AC-IAM-026-04-03 | PRD-IAM-026 | node (API and rules) | pass |
+| AC-IAM-027-01-01 | PRD-IAM-027 | node (API and rules) | pass |
+| AC-IAM-027-01-02 | PRD-IAM-027 | node (API and rules) | pass |
+| AC-IAM-027-01-03 | PRD-IAM-027 | node (API and rules) | pass |
 | AC-LOG-012-03-01 | PRD-LOG-012 | node (API and rules) | pass |
 | AC-ORD-002-02-01 | PRD-ORD-002 | node (API and rules) | pass |
 | AC-ORD-007-01-02 | PRD-ORD-007 | node (API and rules) | pass |
@@ -197,7 +402,7 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-TRK-001-01-02 | PRD-TRK-001 | node (API and rules) | pass |
 | AC-TRK-011-01-02 | PRD-TRK-011 | node (API and rules) | pass |
 
-## 5. Features held by an open decision (97)
+## 5. Features held by an open decision (94)
 
 Each is built as the PRD's Proposed option and labelled "Prototype default - decision <ID> pending"
 in the user interface and here.
@@ -260,33 +465,33 @@ in the user interface and here.
 | PRD-PLT-025 | Translation management | PLT | P1 | 1 | not-built | 7 | 0 | - |
 | PRD-PLT-026 | Hosting profile and sizing NFR | PLT | P1 | 1 | held-default | 2 | 0 | C-SIZE |
 | PRD-PLT-027 | Data consistency safeguards | PLT | P2 | 1 | not-built | 5 | 0 | - |
-| PRD-IAM-001 | Customer registration and login | IAM | P1 | 1 | not-built | 11 | 0 | - |
-| PRD-IAM-002 | Mobile-number identity with OTP | IAM | P1 | 1 | not-built | 20 | 0 | - |
-| PRD-IAM-003 | Password policy, lockout and recovery | IAM | P1 | 1 | not-built | 10 | 0 | - |
-| PRD-IAM-004 | Multi-factor authentication by role | IAM | P1 | 1 | not-built | 10 | 0 | - |
-| PRD-IAM-005 | Single sign-on for staff and B2B buyers | IAM | P2 | 1 | not-built | 6 | 0 | - |
-| PRD-IAM-006 | Session management | IAM | P1 | 1 | not-built | 7 | 0 | - |
-| PRD-IAM-007 | Roles and permissions | IAM | P1 | 1 | not-built | 13 | 0 | - |
-| PRD-IAM-008 | Scoped permissions | IAM | P1 | 1 | not-built | 8 | 0 | - |
-| PRD-IAM-009 | Permission delegation | IAM | P2 | 1 | not-built | 7 | 0 | - |
-| PRD-IAM-010 | User administration console | IAM | P1 | 1 | not-built | 11 | 0 | - |
-| PRD-IAM-011 | Staff invitation and access reviews | IAM | P1 | 1 | not-built | 7 | 0 | - |
-| PRD-IAM-012 | Authentication audit and suspicious-login detection | IAM | P1 | 1 | not-built | 8 | 0 | - |
-| PRD-IAM-013 | Passwordless and biometric login | IAM | P2 | 1 | not-built | 4 | 0 | - |
-| PRD-IAM-014 | Customer profile and address book | IAM | P1 | 1 | not-built | 5 | 0 | - |
-| PRD-IAM-015 | Pickup preference and preferred channel | IAM | P1 | 1 | not-built | 4 | 0 | - |
-| PRD-IAM-016 | Terms acceptance with versioning | IAM | P1 | 1 | not-built | 9 | 0 | - |
-| PRD-IAM-017 | Privacy rights | IAM | P1 | 1 | not-built | 13 | 0 | - |
-| PRD-IAM-018 | Account activity history | IAM | P1 | 1 | not-built | 4 | 0 | - |
-| PRD-IAM-019 | Account synchronisation with core systems | IAM | P1 | 1 | not-built | 4 | 0 | - |
-| PRD-IAM-020 | Identity verification adapter framework | IAM | P1 | 1 | mocked | 6 | 0 | - |
-| PRD-IAM-021 | Customer transaction history | IAM | P1 | 1 | not-built | 6 | 0 | - |
-| PRD-IAM-022 | B2B company accounts | IAM | P1 | 1 | held-default | 7 | 0 | PH-INF |
-| PRD-IAM-023 | B2B buyer registration and approval | IAM | P1 | 1 | held-default | 5 | 0 | PH-INF |
-| PRD-IAM-024 | Tax-exempt and VAT-registered buyers | IAM | P1 | 1 | not-built | 4 | 0 | - |
-| PRD-IAM-025 | Customer home dashboard | IAM | P2 | 1 | not-built | 3 | 0 | - |
-| PRD-IAM-026 | Assisted service by agents | IAM | P1 | 1 | not-built | 10 | 0 | - |
-| PRD-IAM-027 | Company cost centres and budgets | IAM | P2 | 1 | held-default | 3 | 0 | PH-INF |
+| PRD-IAM-001 | Customer registration and login | IAM | P1 | 1 | built | 11 | 11 | - |
+| PRD-IAM-002 | Mobile-number identity with OTP | IAM | P1 | 1 | built | 20 | 20 | - |
+| PRD-IAM-003 | Password policy, lockout and recovery | IAM | P1 | 1 | built | 10 | 10 | - |
+| PRD-IAM-004 | Multi-factor authentication by role | IAM | P1 | 1 | built | 10 | 10 | - |
+| PRD-IAM-005 | Single sign-on for staff and B2B buyers | IAM | P2 | 1 | built | 6 | 6 | - |
+| PRD-IAM-006 | Session management | IAM | P1 | 1 | built | 7 | 7 | - |
+| PRD-IAM-007 | Roles and permissions | IAM | P1 | 1 | built | 13 | 13 | - |
+| PRD-IAM-008 | Scoped permissions | IAM | P1 | 1 | built | 8 | 8 | - |
+| PRD-IAM-009 | Permission delegation | IAM | P2 | 1 | built | 7 | 7 | - |
+| PRD-IAM-010 | User administration console | IAM | P1 | 1 | built | 11 | 11 | - |
+| PRD-IAM-011 | Staff invitation and access reviews | IAM | P1 | 1 | built | 7 | 7 | - |
+| PRD-IAM-012 | Authentication audit and suspicious-login detection | IAM | P1 | 1 | built | 8 | 8 | - |
+| PRD-IAM-013 | Passwordless and biometric login | IAM | P2 | 1 | built | 4 | 4 | - |
+| PRD-IAM-014 | Customer profile and address book | IAM | P1 | 1 | built | 5 | 5 | - |
+| PRD-IAM-015 | Pickup preference and preferred channel | IAM | P1 | 1 | built | 4 | 4 | - |
+| PRD-IAM-016 | Terms acceptance with versioning | IAM | P1 | 1 | built | 9 | 9 | - |
+| PRD-IAM-017 | Privacy rights | IAM | P1 | 1 | built | 13 | 13 | - |
+| PRD-IAM-018 | Account activity history | IAM | P1 | 1 | built | 4 | 4 | - |
+| PRD-IAM-019 | Account synchronisation with core systems | IAM | P1 | 1 | built | 4 | 4 | - |
+| PRD-IAM-020 | Identity verification adapter framework | IAM | P1 | 1 | built | 6 | 6 | - |
+| PRD-IAM-021 | Customer transaction history | IAM | P1 | 1 | built | 6 | 6 | - |
+| PRD-IAM-022 | B2B company accounts | IAM | P1 | 1 | built | 7 | 7 | PH-INF |
+| PRD-IAM-023 | B2B buyer registration and approval | IAM | P1 | 1 | built | 5 | 5 | PH-INF |
+| PRD-IAM-024 | Tax-exempt and VAT-registered buyers | IAM | P1 | 1 | built | 4 | 4 | - |
+| PRD-IAM-025 | Customer home dashboard | IAM | P2 | 1 | built | 3 | 3 | - |
+| PRD-IAM-026 | Assisted service by agents | IAM | P1 | 1 | built | 10 | 10 | - |
+| PRD-IAM-027 | Company cost centres and budgets | IAM | P2 | 1 | built | 3 | 3 | PH-INF |
 | PRD-SEL-001 | Seller application and profile | SEL | P1 | 2 | not-built | 6 | 0 | - |
 | PRD-SEL-002 | Seller KYC documents | SEL | P1 | 2 | not-built | 10 | 0 | - |
 | PRD-SEL-003 | Seller verification workflow and tiers | SEL | P1 | 2 | held-default | 15 | 0 | WF-ENG |

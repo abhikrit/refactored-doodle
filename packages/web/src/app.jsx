@@ -10,10 +10,17 @@ import {
   AccountAddresses, AccountInfo, AccountOrderDetails, AccountOrders, AccountWishlist, Login,
   OrderStatus, PublicTracking, Register,
 } from './surfaces/storefront/account.jsx';
+import {
+  AcceptTerms, AccountActivity, AccountCompany, AccountDashboard, AccountHistory,
+  AccountPreferences, AccountPrivacy, TradeApplication,
+} from './surfaces/storefront/account-identity.jsx';
 
 import {
-  AdminCustomers, AdminProductEdit, AdminProducts, Dashboard,
+  AdminProductEdit, AdminProducts, Dashboard,
 } from './surfaces/admin/index.jsx';
+import {
+  AdminAccess, AdminAccounts, AdminCustomers, AdminPrivacy, AdminSecurity,
+} from './surfaces/admin/iam.jsx';
 import { AdminSettings } from './surfaces/admin/configuration.jsx';
 import { AdminPlugins } from './surfaces/admin/system.jsx';
 import {
@@ -67,6 +74,14 @@ export default function App() {
               <Route path="/account/orders/:orderNumber" element={store(<AccountOrderDetails />)} />
               <Route path="/account/addresses" element={store(<AccountAddresses />)} />
               <Route path="/account/wishlist" element={store(<AccountWishlist />)} />
+              <Route path="/account/dashboard" element={store(<AccountDashboard />)} />
+              <Route path="/account/history" element={store(<AccountHistory />)} />
+              <Route path="/account/preferences" element={store(<AccountPreferences />)} />
+              <Route path="/account/privacy" element={store(<AccountPrivacy />)} />
+              <Route path="/account/activity" element={store(<AccountActivity />)} />
+              <Route path="/account/company" element={store(<AccountCompany />)} />
+              <Route path="/account/trade-application" element={store(<TradeApplication />)} />
+              <Route path="/customer/accept-terms" element={store(<AcceptTerms />)} />
 
               {/* administration */}
               <Route path="/admin" element={<Dashboard />} />
@@ -75,13 +90,16 @@ export default function App() {
               <Route path="/admin/catalog/bulk-edit" element={<BulkEdit />} />
               <Route path="/admin/catalog/products/:id" element={<AdminProductEdit />} />
               <Route path="/admin/customers" element={<AdminCustomers />} />
+              <Route path="/admin/customers/security" element={<AdminSecurity />} />
+              <Route path="/admin/customers/access" element={<AdminAccess />} />
+              <Route path="/admin/customers/privacy" element={<AdminPrivacy />} />
+              <Route path="/admin/customers/business" element={<AdminAccounts />} />
               <Route path="/admin/configuration/settings" element={<AdminSettings />} />
               <Route path="/admin/configuration/widgets" element={<Widgets />} />
               <Route path="/admin/system/schedule-tasks" element={<ScheduleTasks />} />
               <Route path="/admin/system/log" element={<SystemLog />} />
               <Route path="/admin/system/maintenance" element={<Maintenance />} />
               <Route path="/admin/system/extension-register" element={<ExtensionRegister />} />
-              {/* PRD-ADM-002 to PRD-ADM-012 */}
               <Route path="/admin/configuration/workflows" element={<Workflows />} />
               <Route path="/admin/configuration/rules" element={<Rules />} />
               <Route path="/admin/configuration/transaction-types" element={<TransactionTypes />} />

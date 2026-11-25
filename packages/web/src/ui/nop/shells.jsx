@@ -89,7 +89,7 @@ export function StorefrontShell({ children }) {
 
       {/* .header-lower - padding 35px 0 in the theme; tightened for a 1280 canvas */}
       <div className="border-b border-store-border">
-        <div className="mx-auto max-w-[1280px] px-4 py-5 flex items-center gap-4">
+        <div className="mx-auto max-w-[1280px] px-4 py-5 flex flex-wrap items-center gap-x-4 gap-y-3">
           <Link to="/" className="flex items-center gap-2.5 shrink-0">
             <span className="size-9 rounded-sm grid place-items-center font-bold text-white brand-bg">
               {(content?.brand?.logoText ?? 'NC').slice(0, 2).toUpperCase()}
@@ -99,7 +99,7 @@ export function StorefrontShell({ children }) {
             </span>
           </Link>
 
-          <div className="relative flex-1 max-w-xl mx-auto">
+          <div className="relative flex-1 min-w-[12rem] max-w-xl mx-auto order-last w-full sm:order-none sm:w-auto">
             <form
               onSubmit={(e) => { e.preventDefault(); window.location.assign(`/search?q=${encodeURIComponent(term)}`); }}
               className="flex"
@@ -142,7 +142,7 @@ export function StorefrontShell({ children }) {
 
       {/* category menu */}
       <nav aria-label="Categories" className="brand-bg">
-        <div className="mx-auto max-w-[1280px] px-4 flex items-center gap-1 overflow-x-auto">
+        <div className="mx-auto max-w-[1280px] px-4 flex items-center gap-1 overflow-x-auto max-w-full">
           {categories.map((c) => (
             <Link
               key={c.id}
@@ -152,7 +152,7 @@ export function StorefrontShell({ children }) {
               {c.name}
             </Link>
           ))}
-          <Link to="/order-status" className="ml-auto px-3 py-2.5 text-[13px] whitespace-nowrap hover:bg-black/15">Track an order</Link>
+          <Link to="/order-status" className="sm:ml-auto px-3 py-2.5 text-[13px] whitespace-nowrap hover:bg-black/15">Track an order</Link>
         </div>
       </nav>
 
@@ -218,7 +218,16 @@ const ADMIN_NAV = [
       { label: 'Bulk edit', to: '/admin/catalog/bulk-edit' },
     ],
   },
-  { label: 'Customers', to: '/admin/customers' },
+  {
+    label: 'Customers',
+    children: [
+      { label: 'Customers', to: '/admin/customers' },
+      { label: 'Sessions and sign-in security', to: '/admin/customers/security' },
+      { label: 'Access governance', to: '/admin/customers/access' },
+      { label: 'Privacy requests', to: '/admin/customers/privacy' },
+      { label: 'Business accounts', to: '/admin/customers/business' },
+    ],
+  },
   {
     label: 'Configuration',
     children: [

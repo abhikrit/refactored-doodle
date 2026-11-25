@@ -216,14 +216,20 @@ export function Register() {
   );
 }
 
-const ACCOUNT_NAV = [
+export const ACCOUNT_NAV = [
   { to: '/account', label: 'Customer info', end: true },
+  { to: '/account/dashboard', label: 'My dashboard' },
   { to: '/account/orders', label: 'Orders' },
+  { to: '/account/history', label: 'Quotes and returns' },
   { to: '/account/addresses', label: 'Addresses' },
+  { to: '/account/preferences', label: 'Delivery and notices' },
+  { to: '/account/company', label: 'My company' },
+  { to: '/account/privacy', label: 'Privacy' },
+  { to: '/account/activity', label: 'Account activity' },
   { to: '/account/wishlist', label: 'Wishlist' },
 ];
 
-function AccountLayout({ children, title }) {
+export function AccountLayout({ children, title }) {
   const { customer } = useProduct();
   if (!customer) {
     return (

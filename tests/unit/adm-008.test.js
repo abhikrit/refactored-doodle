@@ -22,8 +22,11 @@ describe('US-ADM-008-01 which file types and sizes', () => {
     // "a file with an extension not allowed is refused with Adm.UploadTypeNotAllowed before
     //  anything is stored"
     const contexts = await api.get('/api/admin-console/uploads/contexts');
-    assert.equal(contexts.length, 15, 'the fifteen ADM contexts of the native upload actions');
+    const admOwned = contexts.filter((c) => c.owningFeature.startsWith('PRD-ADM'));
+    assert.equal(admOwned.length, 15, 'the fifteen ADM contexts of the native upload actions');
     assert.ok(contexts.every((c) => c.allowedExtensions && c.maxSizeKb), 'each sets extensions and a maximum size');
+    // other modules register their own through IC-ADM-08; the register holds them all
+    assert.ok(contexts.length >= admOwned.length);
 
     const refused = await upload({
       action: 'Nop.Web CustomerController.UploadAvatar', fileName: 'avatar.exe', contentBase64: PNG,

@@ -92,7 +92,7 @@ export function AdminPacks() {
     <AdminPage
       title="Configuration packs"
       breadcrumb={crumb({ label: 'Configuration packs' })}
-      intro="PRD-PLT-003. Onboarding a client is a pack, not a code change: global → country → vertical → client → store, merged at apply time (BR-PLT-010)."
+      intro="Onboarding a client is a configuration pack, not a code change. The layers are merged in order — global, country, vertical, client, store — when the pack is applied."
       actions={(
         <div className="flex items-center gap-2">
           {clients.map((c) => (
@@ -245,7 +245,7 @@ export function AdminFeatureRegistry() {
     <AdminPage
       title="Feature and module registry"
       breadcrumb={crumb({ label: 'Feature registry' })}
-      intro="PRD-PLT-022. Every feature is a switch read through IC-PLT-02 before a page, widget, provider or scheduled task acts for a store."
+      intro="Every feature is a switch. It is read before a page, a widget, a provider or a scheduled task does anything for this store."
     >
       <SearchPanel onClear={() => setFilter({ q: '', area: '', phase: '', held: '', enabled: '' })}>
         <Field label="Feature ID or name"><Input value={filter.q} onChange={(e) => setFilter({ ...filter, q: e.target.value })} /></Field>
@@ -388,7 +388,7 @@ export function AdminPaymentMethods() {
     <AdminPage
       title="Payment methods"
       breadcrumb={crumb({ label: 'Payment methods' })}
-      intro="PAY-001. The active list is paymentsettings.activepaymentmethodsystemnames from the client pack; each provider is a mock in the prototype (P-3)."
+      intro="The payment methods this store offers, in the order the configuration pack lists them."
     >
       {!methods ? <Spinner /> : (
         <>
@@ -437,7 +437,7 @@ export function AdminShippingMethods() {
     api.get('/logistics/delivery-slots').then(setSlots).catch(() => {});
   }, [content?.clientName]);
   return (
-    <AdminPage title="Shipping methods" breadcrumb={crumb({ label: 'Shipping methods' })} intro="LOG-001 methods and rates, LOG-003 pickup points and outlets, CHK-006 delivery windows.">
+    <AdminPage title="Shipping methods" breadcrumb={crumb({ label: 'Shipping methods' })} intro="Delivery methods and their rates, the pickup points and outlets, and the delivery windows offered at checkout.">
       <Panel title="Shipping methods" bodyClass="p-0">
         {!methods ? <Spinner /> : <Grid columns={[{ key: 'name', header: 'Name' }, { key: 'description', header: 'Description' }]} rows={methods} rowKey={(m) => m.name} />}
       </Panel>
@@ -491,7 +491,7 @@ export function AdminAcl() {
     <AdminPage
       title="Access control list"
       breadcrumb={crumb({ label: 'Access control list' })}
-      intro="IAM-007 and IAM-008. Permission system names are the 5.00.1 names from the module chapters, with the view / create-edit-delete split."
+      intro="Which customer roles hold which permissions. Viewing and changing are separate permissions."
     >
       {!acl ? <Spinner /> : (
         <>
@@ -545,7 +545,7 @@ export function AdminMessageTemplates() {
     <AdminPage
       title="Message templates and locale resources"
       breadcrumb={crumb({ label: 'Message templates' })}
-      intro="TRK-004 e-mail templates and the locale resource keys every module declares. The default English text is the text the PRD proposes - nothing here is invented."
+      intro="The e-mail templates and the wording used across the store."
     >
       <div className="max-w-sm"><Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Filter, e.g. Chk." /></div>
       <Panel bodyClass="p-0" subtitle={messages ? `${rows.length} of ${messages.length} keys` : undefined}>
