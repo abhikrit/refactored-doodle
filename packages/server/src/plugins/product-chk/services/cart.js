@@ -13,40 +13,54 @@ import { runProviders } from '../../../core/providers.js';
 import { resource } from '../../../core/messages.js';
 import { productAsync, finalPriceAsync, viewProductAsync } from '../../product-cat/services/catalogue.js';
 import { getSettingAsync } from '../../../core/settings.js';
+import { itemWarningsAsync, subTotalAsync } from './validation.js';
 
 const cartRepo = () => repository('ShoppingCartItem');
 
-export const CART_TYPE = { ShoppingCart: 1, Wishlist: 2, SavedForLater: 3 };
+/**
+ * AC-CHK-001-02-01: ShoppingCartItem carries CustomerId, so a signed-in shopper has one cart
+ * whatever device they are on. A guest cart is the session's own rows until sign-in migrates
+ * them (AC-CHK-001-02-02).
+ */
+const inScope = (row, { sessionId, customer }) => (customer
+  ? (Number(row.customerId) === Number(customer.id)
+    || (row.sessionId === sessionId && (row.customerId ?? null) === null))
+  : row.sessionId === sessionId);
 
-/** Native quantity warnings (ShoppingCartService.GetStandardWarningsAsync). */
-function standardWarnings(product, quantity) {
-  const w = [];
-  if (!product.published) w.push('This product is not available.');
-  if (quantity < (product.orderMinimumQuantity ?? 1)) {
-    w.push(`The minimum quantity for ${product.name} is ${product.orderMinimumQuantity}.`);
-  }
-  if (quantity > (product.orderMaximumQuantity ?? 1000)) {
-    w.push(`The maximum quantity for ${product.name} is ${product.orderMaximumQuantity}.`);
-  }
-  if (product.manageInventoryMethod === 'ManageStock' && quantity > (product.stockQuantity ?? 0)) {
-    w.push(`We have only ${product.stockQuantity} of ${product.name} in stock.`);
-  }
-  if (product.callForPrice) w.push(resource('Cat.CallForPrice') || 'Call for price');
-  return w;
+async function cartRowsAsync({ sessionId, customer = null }) {
+  return cartRepo().getAllAsync((row) => inScope(row, { sessionId, customer }));
 }
 
-export async function cartItemWarningsAsync(product, quantity, context) {
-  const warnings = standardWarnings(product, quantity);
-  // IC-CHK-01 providers run after the native checks, in registered order
-  const results = await runProviders('IC-CHK-01', 'collect', { product, quantity, ...context });
-  for (const r of results) {
-    if (r.error) {
-      warnings.push(resource('Chk.CartCheckUnavailable'));
-      continue;
-    }
-    for (const w of r.result?.warnings ?? []) warnings.push(w);
-  }
-  return warnings;
+export const CART_TYPE = { ShoppingCart: 1, Wishlist: 2, SavedForLater: 3 };
+
+/**
+ * The warnings of one line, through the single CHK-003 override: the native checks first, then
+ * the IC-CHK-01 providers in their registered order (BR-CHK-015). Callers get the text; the
+ * keys are on the detailed result, which the cart page and the placement host both read.
+ */
+export async function cartItemWarningsAsync(product, quantity, context = {}) {
+  const result = await itemWarningsAsync({
+    product,
+    quantity,
+    customer: context.customer ?? null,
+    storeId: context.storeId ?? 1,
+    cartType: context.cartType ?? CART_TYPE.ShoppingCart,
+    item: context.item ?? null,
+    fulfilment: context.fulfilment ?? null,
+  });
+  return result.warnings.map((w) => w.message);
+}
+
+export async function cartItemWarningDetailAsync(product, quantity, context = {}) {
+  return itemWarningsAsync({
+    product,
+    quantity,
+    customer: context.customer ?? null,
+    storeId: context.storeId ?? 1,
+    cartType: context.cartType ?? CART_TYPE.ShoppingCart,
+    item: context.item ?? null,
+    fulfilment: context.fulfilment ?? null,
+  });
 }
 
 export async function addToCartAsync({
@@ -54,14 +68,16 @@ export async function addToCartAsync({
 }) {
   const product = await productAsync(productId);
   if (!product) throw new Error('product not found');
-  const existing = await cartRepo().getOneAsync((i) => i.sessionId === sessionId
+  const existing = await cartRepo().getOneAsync((i) => inScope(i, { sessionId, customer })
     && i.productId === productId && i.cartType === cartType);
   const newQuantity = (existing?.quantity ?? 0) + quantity;
   const warnings = await cartItemWarningsAsync(product, newQuantity, { sessionId, customer });
   if (warnings.length) return { ok: false, warnings };
 
   if (existing) {
-    await cartRepo().updateAsync({ ...existing, quantity: newQuantity });
+    await cartRepo().updateAsync({
+      ...existing, quantity: newQuantity, customerId: customer?.id ?? existing.customerId ?? null,
+    });
   } else {
     await cartRepo().insertAsync({
       sessionId,
@@ -83,7 +99,7 @@ export async function updateItemAsync({
   sessionId, itemId, quantity, fulfilment, pickupPointId, deliverySlotId, customer = null,
 }) {
   const item = await cartRepo().getByIdAsync(itemId);
-  if (!item || item.sessionId !== sessionId) throw new Error('cart item not found');
+  if (!item || !inScope(item, { sessionId, customer })) throw new Error('cart item not found');
   const product = await productAsync(item.productId);
   if (quantity != null) {
     if (quantity <= 0) {
@@ -106,16 +122,18 @@ export async function updateItemAsync({
   return { ok: true, warnings: [] };
 }
 
-export async function removeItemAsync({ sessionId, itemId }) {
+export async function removeItemAsync({ sessionId, itemId, customer = null }) {
   const item = await cartRepo().getByIdAsync(itemId);
-  if (item && item.sessionId === sessionId) await cartRepo().deleteAsync(item);
+  if (item && inScope(item, { sessionId, customer })) await cartRepo().deleteAsync(item);
   return { ok: true };
 }
 
 /** BR-CHK-001: move a line to the saved-for-later list and back, with the checks re-run. */
-export async function saveForLaterAsync({ sessionId, itemId, back = false, customer = null }) {
+export async function saveForLaterAsync({
+  sessionId, itemId, back = false, customer = null,
+}) {
   const item = await cartRepo().getByIdAsync(itemId);
-  if (!item || item.sessionId !== sessionId) throw new Error('cart item not found');
+  if (!item || !inScope(item, { sessionId, customer })) throw new Error('cart item not found');
   const allowed = await getSettingAsync('shoppingcartsettings.allowmultiplewishlist', 1, false);
   if (!allowed) {
     return { ok: false, warnings: ['Save for later is not enabled for this client (shoppingcartsettings.allowmultiplewishlist).'] };
@@ -149,17 +167,22 @@ export async function migrateCartAsync({ fromSessionId, toSessionId, customer })
 
 /** The cart as the cart page and the mini cart show it, with server-side totals (BR-CHK-003). */
 export async function getCartAsync({ sessionId, customer = null, storeId = 1 }) {
-  const rows = await cartRepo().getAllAsync((i) => i.sessionId === sessionId);
+  const rows = await cartRowsAsync({ sessionId, customer });
   const build = async (item) => {
     const product = await productAsync(item.productId);
     const view = await viewProductAsync(product, { customer, quantity: item.quantity });
     const price = await finalPriceAsync(product, { customer, quantity: item.quantity });
     const unitPrice = price.price ?? 0;
+    const line = await subTotalAsync({
+      item: { ...item, unitPrice }, includeDiscounts: true, customer, storeId,
+    });
     return {
       ...item,
       product: view,
       unitPrice,
-      subtotal: Number((unitPrice * item.quantity).toFixed(2)),
+      subtotal: line.subTotal,
+      discountAmount: line.discountAmount,
+      subtotalAdjustedBy: line.adjustedBy,
       priceParts: price.parts,
       callForPrice: price.callForPrice,
     };
@@ -170,8 +193,6 @@ export async function getCartAsync({ sessionId, customer = null, storeId = 1 }) 
   for (const r of rows.filter((i) => i.cartType === CART_TYPE.SavedForLater)) saved.push(await build(r));
 
   const subtotal = Number(items.reduce((s, i) => s + i.subtotal, 0).toFixed(2));
-  // IC-CHK-05: the one line subtotal adjuster (MKT-002) would plug in here
-  const adjustments = await runProviders('IC-CHK-05', 'collect', { items, subtotal, customer });
   const sellers = [...new Set(items.map((i) => i.vendorId))];
   const miniCartEnabled = await getSettingAsync('shoppingcartsettings.minishoppingcartenabled', storeId, true);
 
@@ -184,8 +205,11 @@ export async function getCartAsync({ sessionId, customer = null, storeId = 1 }) 
     subtotal,
     sellers,
     multiSeller: sellers.length > 1,
-    adjustments: adjustments.map((a) => a.result).filter(Boolean),
+    subtotalAdjustedBy: items.find((i) => i.subtotalAdjustedBy)?.subtotalAdjustedBy ?? null,
     miniCartEnabled,
+    miniCart: miniCartEnabled === true
+      ? { itemCount: items.reduce((s, i) => s + i.quantity, 0), subtotal }
+      : null,
     features: ['PRD-CHK-001', 'PRD-CHK-005'],
   };
 }

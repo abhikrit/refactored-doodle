@@ -174,9 +174,15 @@ describe('Session 0 journey in the browser', { skip }, () => {
     await page.getByRole('button', { name: 'Checkout' }).click();
     await page.waitForURL('**/checkout');
     await page.waitForTimeout(500);
-    for (const [label, value] of [['First name', 'Amina'], ['Last name', 'Otieno'], ['E-mail', 'buyer@example.com'], ['Street address', '12 Moi Avenue'], ['City / town', 'Nairobi']]) {
+    for (const [label, value] of [['First name', 'Amina'], ['Last name', 'Otieno'], ['E-mail', 'buyer@example.com'], ['Phone', '254700000001'], ['Street address', '12 Moi Avenue'], ['City / town', 'Nairobi']]) {
       const field = page.getByLabel(label, { exact: false }).first();
       if (await field.count()) await field.fill(value);
+    }
+    // the address step is checked on the server, so the country it asks for is chosen here
+    const country = page.getByLabel('Country', { exact: false }).first();
+    if (await country.count()) {
+      const options = await country.locator('option').all();
+      if (options.length > 1) await country.selectOption(await options[1].getAttribute('value'));
     }
     const next = page.getByRole('button', { name: 'Continue' });
     for (let i = 0; i < 5; i += 1) {

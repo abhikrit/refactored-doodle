@@ -206,7 +206,7 @@ describe('PRD-CHK-002 Checkout', () => {
       paymentMethodSystemName: 'Payments.TnmMpamba', termsAccepted: true, paymentData: { phone: '265880000001' },
     });
     assert.equal(refused.ok, false);
-    assert.equal(refused.stoppedAt, 'eligibility');
+    assert.equal(refused.stoppedAt, 'buyer eligibility');
     assert.match(refused.failures[0].message, /sign in/i);
     await applyClient('KTDA');
   });
@@ -236,7 +236,8 @@ describe('PRD-CHK-002 Checkout', () => {
       paymentData: { phone: '254700000001' },
     });
     assert.equal(refused.ok, false);
-    assert.match(refused.stoppedAt, /price check/);
+    assert.equal(refused.stoppedAt, 'price');
+    assert.equal(refused.messageKey, 'Chk.PriceChanged');
     assert.ok(refused.failures[0].newTotal > 0.01, 'the server states its own total');
   });
 

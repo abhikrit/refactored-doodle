@@ -1,6 +1,6 @@
 # Trace report
 
-Generated 2026-11-26T10:41:49.351Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
+Generated 2026-11-26T11:19:44.531Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
 
 ## 1. Reconciliation
 
@@ -11,15 +11,15 @@ its criteria tested and the rest not is partial, and is never counted as built.
 
 | State | Features | Meaning |
 |---|---|---|
-| Built and passing | 75 | Every AC of the feature has a passing test named by the AC ID |
-| Partly covered | 10 | Some ACs have passing tests, the rest have none yet |
+| Built and passing | 78 | Every AC of the feature has a passing test named by the AC ID |
+| Partly covered | 8 | Some ACs have passing tests, the rest have none yet |
 | Held, prototype default | 90 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
 | Mocked externally | 24 | External-system feature standing behind a mock adapter (P-3) |
-| Not built | 235 | Scaffolded in Session 0, built in its own session |
+| Not built | 234 | Scaffolded in Session 0, built in its own session |
 | **Total** | **434** | reconciles: yes |
 
 Acceptance criteria in the product: 2850. Criteria with a test in this repository:
-612 (612 passing, 0 failing).
+635 (635 passing, 0 failing).
 
 ## 2. Coverage by area and wave
 
@@ -33,7 +33,7 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 | 2 Catalogue | INV | Inventory and warehouses | 13 | 0 | 0 | 1 | 0 | 12 |
 | 2 Catalogue | SEL | Sellers and marketplace onboarding | 25 | 0 | 0 | 4 | 1 | 20 |
 | 2 Catalogue | SRC | Search, discovery and merchandising | 27 | 0 | 0 | 4 | 1 | 22 |
-| 3 Buy | CHK | Cart and checkout | 19 | 0 | 6 | 4 | 0 | 9 |
+| 3 Buy | CHK | Cart and checkout | 19 | 3 | 4 | 4 | 0 | 8 |
 | 3 Buy | ORD | Orders and B2B transactions (RFQ, contracts, requisitions, offers, group buying) | 28 | 0 | 2 | 11 | 0 | 15 |
 | 3 Buy | PAY | Payments, tax, settlement and reconciliation | 36 | 0 | 1 | 14 | 0 | 21 |
 | 4 Fulfil | DOC | Documents and records | 6 | 0 | 0 | 2 | 1 | 3 |
@@ -54,8 +54,8 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 
 | Client | Requirements | Mapped to a feature | Demonstrated in the prototype | Project service |
 |---|---|---|---|---|
-| KTDA | 95 | 80 | 21 | 17 |
-| Malawi Post | 411 | 374 | 71 | 38 |
+| KTDA | 95 | 80 | 25 | 17 |
+| Malawi Post | 411 | 374 | 80 | 38 |
 
 "Demonstrated in the prototype" means at least one feature that delivers the requirement has a
 passing AC-named test here. It is not a compliance statement: the compliance status of each
@@ -170,13 +170,36 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-ADM-012-02-02 | PRD-ADM-012 | node (API and rules) | pass |
 | AC-CHK-001-01-01 | PRD-CHK-001 | node (API and rules) | pass |
 | AC-CHK-001-01-02 | PRD-CHK-001 | node (API and rules) | pass |
+| AC-CHK-001-02-01 | PRD-CHK-001 | node (API and rules) | pass |
+| AC-CHK-001-02-02 | PRD-CHK-001 | node (API and rules) | pass |
 | AC-CHK-001-03-01 | PRD-CHK-001 | node (API and rules) | pass |
 | AC-CHK-001-03-02 | PRD-CHK-001 | node (API and rules) | pass |
+| AC-CHK-002-01-01 | PRD-CHK-002 | node (API and rules) | pass |
+| AC-CHK-002-01-02 | PRD-CHK-002 | node (API and rules) | pass |
+| AC-CHK-002-01-03 | PRD-CHK-002 | node (API and rules) | pass |
 | AC-CHK-002-02-01 | PRD-CHK-002 | node (API and rules) | pass |
 | AC-CHK-002-02-02 | PRD-CHK-002 | node (API and rules) | pass |
+| AC-CHK-002-02-03 | PRD-CHK-002 | node (API and rules) | pass |
 | AC-CHK-002-03-01 | PRD-CHK-002 | node (API and rules) | pass |
+| AC-CHK-002-04-01 | PRD-CHK-002 | node (API and rules) | pass |
 | AC-CHK-002-04-02 | PRD-CHK-002 | node (API and rules) | pass |
 | AC-CHK-002-05-01 | PRD-CHK-002 | node (API and rules) | pass |
+| AC-CHK-003-01-01 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-01-02 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-01-03 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-02-01 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-02-02 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-02-03 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-02-04 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-03-01 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-03-02 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-03-03 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-03-04 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-04-01 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-04-02 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-04-03 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-04-04 | PRD-CHK-003 | node (API and rules) | pass |
+| AC-CHK-003-04-05 | PRD-CHK-003 | node (API and rules) | pass |
 | AC-CHK-004-01-01 | PRD-CHK-004 | node (API and rules) | pass |
 | AC-CHK-004-01-02 | PRD-CHK-004 | node (API and rules) | pass |
 | AC-CHK-004-01-03 | PRD-CHK-004 | node (API and rules) | pass |
@@ -876,9 +899,9 @@ in the user interface and here.
 | PRD-SRC-025 | Unified search | SRC | P2 | 2 | not-built | 3 | 0 | - |
 | PRD-SRC-026 | Search performance and freshness | SRC | P2 | 2 | not-built | 4 | 0 | - |
 | PRD-SRC-027 | Storefront conveniences | SRC | P2 | 2 | not-built | 5 | 0 | - |
-| PRD-CHK-001 | Shopping cart | CHK | P1 | 3 | partial | 6 | 4 | - |
-| PRD-CHK-002 | Checkout | CHK | P1 | 3 | partial | 10 | 5 | - |
-| PRD-CHK-003 | Checkout validation | CHK | P1 | 3 | not-built | 16 | 0 | - |
+| PRD-CHK-001 | Shopping cart | CHK | P1 | 3 | built | 6 | 6 | - |
+| PRD-CHK-002 | Checkout | CHK | P1 | 3 | built | 10 | 10 | - |
+| PRD-CHK-003 | Checkout validation | CHK | P1 | 3 | built | 16 | 16 | - |
 | PRD-CHK-004 | Multi-seller split checkout | CHK | P1 | 3 | partial | 12 | 4 | WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01 |
 | PRD-CHK-005 | Fulfilment method per line | CHK | P1 | 3 | partial | 6 | 2 | - |
 | PRD-CHK-006 | Delivery slot and instructions | CHK | P1 | 3 | not-built | 10 | 0 | - |

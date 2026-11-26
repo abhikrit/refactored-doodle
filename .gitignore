@@ -6,3 +6,4 @@ test-results/
 playwright-report/
 .vite/
 trace/last-run.json
+trace/screens/

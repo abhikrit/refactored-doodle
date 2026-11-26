@@ -464,7 +464,7 @@ export function ProductDetails() {
             <div className="space-y-2">
               <p>
                 {product.isShipEnabled
-                  ? 'Delivery and collection options, fees and the expected delivery date are shown at checkout from the LOG-002 fee engine and LOG-005 expected dates.'
+                  ? 'Delivery and collection options, fees and the expected delivery date are shown at checkout.'
                   : 'This is a service or a digital item: it is not shipped (SVC-007 / CAT-026).'}
               </p>
 </div>

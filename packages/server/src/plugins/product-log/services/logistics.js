@@ -49,16 +49,28 @@ export async function quoteFulfilmentAsync({ cart, storeId = 1 }) {
   }
   const perGroup = [...groups.values()].map((g) => {
     if (g.fulfilment === 'pickup') {
-      return { ...g, fee: 0, basis: 'Pickup at an outlet - no delivery fee (LOG-003)' };
+      return {
+        ...g, fee: 0, basis: 'Pickup at an outlet - no delivery fee (LOG-003)', basisText: 'Collection at an outlet - no delivery fee.',
+      };
     }
     if (freeOver != null && g.subtotal >= Number(freeOver)) {
-      return { ...g, fee: 0, basis: `Free delivery over ${freeOver} (ShippingSettings.FreeShippingOverXValue)` };
+      return {
+        ...g,
+        fee: 0,
+        basis: `Free delivery over ${freeOver} (ShippingSettings.FreeShippingOverXValue)`,
+        basisText: `Free delivery on orders over ${freeOver}.`,
+      };
     }
     // weight band - the real fee table (DeliveryFeeTable) is a new entity owned by LOG-002
     const base = 3.5;
     const perKg = 0.45;
     const fee = Number((base + perKg * g.weightKg).toFixed(2));
-    return { ...g, fee, basis: `Weight band: base ${base} + ${perKg}/kg x ${g.weightKg.toFixed(2)} kg (LOG-002 fee engine; the client fee table is not stated in source)` };
+    return {
+      ...g,
+      fee,
+      basis: `Weight band: base ${base} + ${perKg}/kg x ${g.weightKg.toFixed(2)} kg (LOG-002 fee engine; the client fee table is not stated in source)`,
+      basisText: `Weight ${g.weightKg.toFixed(2)} kg - a base fee plus a charge for each kilogram.`,
+    };
   });
   return {
     perGroup,

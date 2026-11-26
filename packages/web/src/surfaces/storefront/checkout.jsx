@@ -109,7 +109,14 @@ export function Cart() {
                         aria-label={`Quantity of ${item.product.name}`}
                       />
                     </td>
-                    <td className="px-3 py-3 text-right font-medium">{money(item.subtotal, currency)}</td>
+                    <td className="px-3 py-3 text-right font-medium">
+                      {money(item.subtotal, currency)}
+                      {item.discountAmount > 0 && (
+                        <div className="text-[11.5px] font-normal text-green-700">
+                          including a discount of {money(item.discountAmount, currency)}
+                        </div>
+                      )}
+                    </td>
                     <td className="px-3 py-3 text-right whitespace-nowrap">
                       {allowSaveForLater && <Button size="sm" onClick={() => saveForLater(item.id, false)}>Save for later</Button>}
                       <Button size="sm" variant="danger" className="ml-1.5" onClick={() => remove(item.id)}>Remove</Button>
@@ -143,9 +150,9 @@ export function Cart() {
                   </ul>
 </Panel>
               )}
-              <Panel title="Estimate shipping" subtitle="Native cart block (ShippingSettings.EstimateShippingCartPageEnabled)">
+              <Panel title="Estimate shipping">
                 <p className="text-[13px] text-nop-muted">
-                  Delivery fees are calculated per seller group by the LOG-002 fee engine and shown at checkout.
+                  Delivery and collection fees are calculated for each seller and shown at checkout.
                 </p>
               </Panel>
             </div>
@@ -189,21 +196,25 @@ const STEP_LABELS = {
   confirm: 'Confirm order',
 };
 
-function CheckoutProgress({ steps, current }) {
-  const index = steps.findIndex((s) => s.id === current);
+function CheckoutProgress({ indicator }) {
   return (
     <ol className="nop-order-progress flex flex-wrap items-start justify-center gap-x-6 gap-y-3">
-      {steps.map((s, i) => (
-        <li key={s.id} className={i > index ? 'inactive-step' : undefined}>
+      {indicator.map((s, i) => (
+        <li
+          key={s.id}
+          className={s.state === 'todo' ? 'inactive-step' : undefined}
+          aria-current={s.state === 'current' ? 'step' : undefined}
+        >
           <span
             className="step-mark text-[15px]"
-            style={i === index ? { borderColor: 'var(--brand)', color: 'var(--brand)' } : undefined}
+            style={s.state === 'current' ? { borderColor: 'var(--brand)', color: 'var(--brand)' } : undefined}
           >
-            {i + 1}
+            {s.state === 'done' ? '\u2713' : i + 1}
           </span>
-          <span className={`block min-w-[80px] text-[14px] ${i === index ? 'font-semibold text-store-dark' : 'text-store-dark'}`}>
+          <span className={`block min-w-[80px] text-[14px] ${s.state === 'current' ? 'font-semibold text-store-dark' : 'text-store-dark'}`}>
             {STEP_LABELS[s.id] ?? s.name}
           </span>
+          <span className="sr-only">{s.state === 'done' ? ' (completed)' : ''}</span>
         </li>
       ))}
     </ol>
@@ -230,6 +241,18 @@ export function Checkout() {
   const [failures, setFailures] = useState([]);
   const [placing, setPlacing] = useState(false);
   const [pending, setPending] = useState(null);
+  const [progress, setProgress] = useState(null);
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [required, setRequired] = useState({});
+  const [summary, setSummary] = useState(null);
+  const [chosenAddressId, setChosenAddressId] = useState('');
+  const [countries, setCountries] = useState([]);
+
+  const loadProgress = React.useCallback(async () => {
+    const next = await api.get('/checkout-area/checkout/steps');
+    setProgress(next);
+    return next;
+  }, []);
 
   useEffect(() => {
     api.get('/checkout-area/checkout').then((s) => {
@@ -238,7 +261,18 @@ export function Checkout() {
       if (s.paymentMethods[0]) setMethod(s.paymentMethods[0].systemName);
     }).catch(() => {});
     api.get('/logistics/delivery-slots').then(setSlots).catch(() => {});
-  }, [content?.clientName]);
+    api.get('/checkout-area/checkout/step-fields').then(setRequired).catch(() => {});
+    api.get('/platform/countries').then(setCountries).catch(() => {});
+    loadProgress().catch(() => {});
+  }, [content?.clientName, loadProgress]);
+
+  // the address the account keeps as its default is pre-selected on the two address steps
+  useEffect(() => {
+    if (!progress?.defaultAddress || chosenAddressId) return;
+    const a = progress.defaultAddress;
+    setChosenAddressId(String(a.id));
+    setAddress((current) => ({ ...current, ...a }));
+  }, [progress?.defaultAddress, chosenAddressId]);
 
   useEffect(() => {
     if (customer) {
@@ -258,6 +292,11 @@ export function Checkout() {
     if (!method) return;
     api.get(`/checkout-area/checkout/totals?paymentMethodSystemName=${method}`).then(setTotals).catch(() => {});
   }, [method, step]);
+
+  useEffect(() => {
+    if (step !== 'confirm' || !method) return;
+    api.get(`/checkout-area/checkout/confirm-summary?paymentMethodSystemName=${method}`).then(setSummary).catch(() => {});
+  }, [step, method]);
 
   if (!state) return <Spinner />;
 
@@ -279,12 +318,36 @@ export function Checkout() {
   const currency = totals?.currency ?? 'USD';
   const selected = state.paymentMethods.find((m) => m.systemName === method);
   const stepIds = state.steps.map((s) => s.id);
-  const goNext = () => {
-    const i = stepIds.indexOf(step);
-    setStep(stepIds[Math.min(i + 1, stepIds.length - 1)]);
+  const indicator = progress?.progressIndicator
+    ?? state.steps.map((s) => ({ id: s.id, name: s.name, state: s.id === step ? 'current' : 'todo' }));
+  const isRequired = (field) => (required[step] ?? []).includes(field);
+
+  // every step is checked on the server; a failure shows the step again with what was entered
+  // kept and a message against each field that failed
+  const goNext = async () => {
+    const values = {
+      billing: { ...address },
+      shipping: { ...address },
+      'shipping-method': { fulfilment: 'per line' },
+      'payment-method': { paymentMethodSystemName: method },
+      'payment-info': {},
+    }[step] ?? {};
+    const res = await api.post(`/checkout-area/checkout/steps/${step}`, {
+      antiforgeryToken: 'prototype-antiforgery-token',
+      values,
+    });
+    if (res.ok !== true) {
+      setFieldErrors(res.fieldErrors ?? {});
+      if (res.progressIndicator) setProgress((p) => ({ ...(p ?? {}), progressIndicator: res.progressIndicator }));
+      return;
+    }
+    setFieldErrors({});
+    const next = await loadProgress();
+    setStep(res.nextStep ?? next.currentStep ?? stepIds[Math.min(stepIds.indexOf(step) + 1, stepIds.length - 1)]);
   };
   const goBack = () => {
     const i = stepIds.indexOf(step);
+    setFieldErrors({});
     setStep(stepIds[Math.max(i - 1, 0)]);
   };
 
@@ -295,7 +358,7 @@ export function Checkout() {
       const res = await api.post('/checkout-area/checkout/confirm', {
         paymentMethodSystemName: method,
         termsAccepted: terms,
-        shownTotal: totals?.total,
+        shownTotal: summary?.total ?? totals?.total,
         paymentData: { phone },
         billingAddress: address,
         shippingAddress: address,
@@ -303,6 +366,12 @@ export function Checkout() {
       });
       if (!res.ok) {
         setFailures(res.failures ?? [{ message: 'Placement failed.' }]);
+        if (res.messageKey === 'Chk.PriceChanged') {
+          const fresh = await api.get(`/checkout-area/checkout/confirm-summary?paymentMethodSystemName=${method}`);
+          setSummary(fresh);
+          setTotals(await api.get(`/checkout-area/checkout/totals?paymentMethodSystemName=${method}`));
+        }
+        if (res.failures?.[0]?.step && res.failures[0].step !== 'confirm') setStep(res.failures[0].step);
         return;
       }
       await refreshCart();
@@ -346,7 +415,7 @@ export function Checkout() {
   return (
     <div className="space-y-4">
       <h1 className="nop-page-title">Checkout</h1>
-      <CheckoutProgress steps={state.steps} current={step} />
+      <CheckoutProgress indicator={indicator} />
 
       {failures.length > 0 && (
         <Alert tone="error" title="The order was not placed">
@@ -360,29 +429,64 @@ export function Checkout() {
         <div className="space-y-4">
           {(step === 'billing' || step === 'shipping') && (
             <Panel title={STEP_LABELS[step]}>
+              {(progress?.addressBook ?? []).length > 0 && (
+                <div className="mb-3 max-w-md">
+                  <Field label="Use an address you have saved">
+                    <Select
+                      value={chosenAddressId}
+                      onChange={(e) => {
+                        setChosenAddressId(e.target.value);
+                        const picked = (progress.addressBook ?? []).find((a) => String(a.id) === e.target.value);
+                        if (picked) setAddress((current) => ({ ...current, ...picked }));
+                      }}
+                    >
+                      <option value="">Enter a new address</option>
+                      {(progress.addressBook ?? []).map((a) => (
+                        <option key={a.id} value={a.id}>
+                          {[a.addressLine1, a.city, a.country].filter(Boolean).join(', ')}
+                          {String(a.id) === String(progress.defaultAddress?.id) ? ' (your default)' : ''}
+                        </option>
+                      ))}
+                    </Select>
+                  </Field>
+                </div>
+              )}
               <div className="grid gap-3 sm:grid-cols-2">
-                <Field label="First name" required><Input value={address.firstName} onChange={(e) => setAddress({ ...address, firstName: e.target.value })} /></Field>
-                <Field label="Last name" required><Input value={address.lastName} onChange={(e) => setAddress({ ...address, lastName: e.target.value })} /></Field>
-                <Field label="E-mail" required={!customer}><Input type="email" value={address.email} onChange={(e) => setAddress({ ...address, email: e.target.value })} /></Field>
-                <Field label="Phone"><Input value={address.phone} onChange={(e) => setAddress({ ...address, phone: e.target.value })} /></Field>
-                <Field label="Street address" hint="CHK-007: a street address, a landmark or a map pin is enough"><Input value={address.addressLine1} onChange={(e) => setAddress({ ...address, addressLine1: e.target.value })} /></Field>
+                <Field label="First name" required={isRequired('firstName')} error={fieldErrors.firstName}><Input value={address.firstName} onChange={(e) => setAddress({ ...address, firstName: e.target.value })} /></Field>
+                <Field label="Last name" required={isRequired('lastName')} error={fieldErrors.lastName}><Input value={address.lastName} onChange={(e) => setAddress({ ...address, lastName: e.target.value })} /></Field>
+                <Field label="E-mail" required={!customer} error={fieldErrors.email}><Input type="email" value={address.email} onChange={(e) => setAddress({ ...address, email: e.target.value })} /></Field>
+                <Field label="Phone" required={isRequired('phone')} error={fieldErrors.phone}><Input value={address.phone} onChange={(e) => setAddress({ ...address, phone: e.target.value })} /></Field>
+                <Field label="Street address" required={isRequired('addressLine1')} error={fieldErrors.addressLine1} hint="A street address, a landmark or a map pin is enough"><Input value={address.addressLine1} onChange={(e) => setAddress({ ...address, addressLine1: e.target.value })} /></Field>
                 <Field label="Landmark" hint="Nearest landmark, to help the courier find you"><Input value={address.landmark} onChange={(e) => setAddress({ ...address, landmark: e.target.value })} /></Field>
-                <Field label="City / town" required><Input value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} /></Field>
+                <Field label="City / town" required={isRequired('city')} error={fieldErrors.city}><Input value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} /></Field>
+                <Field label="Country" required={isRequired('country')} error={fieldErrors.country}>
+                  <Select value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })}>
+                    <option value="">Choose…</option>
+                    {countries
+                      .filter((c) => c.published !== false && (step === 'shipping' ? c.allowsShipping !== false : c.allowsBilling !== false))
+                      .map((c) => <option key={c.id ?? c.name} value={c.name}>{c.name}</option>)}
+                  </Select>
+                </Field>
                 <Field label="County / district">
                   <Select value={address.county} onChange={(e) => setAddress({ ...address, county: e.target.value })}>
                     <option value="">Choose…</option>
-                    {(entities.statesProvinces ?? []).map((s) => <option key={s} value={s}>{s}</option>)}
+                    {(entities.statesProvinces ?? []).map((sp) => <option key={sp} value={sp}>{sp}</option>)}
                   </Select>
                 </Field>
               </div>
+              {Object.keys(fieldErrors).length > 0 && (
+                <p className="mt-3 text-[12.5px] text-red-700">
+                  Please correct the fields marked above. What you have already entered has been kept.
+                </p>
+              )}
 </Panel>
           )}
 
           {step === 'shipping-method' && (
             <Panel title="Shipping method">
               <p className="text-[13px] text-nop-muted mb-3">
-                Each cart line already carries its own choice of home delivery or collection (CHK-005). The fee is
-                calculated per seller group.
+                Each item in your cart already carries its own choice of home delivery or collection. The fee is
+                calculated for each seller.
               </p>
               <div className="space-y-2">
                 {(totals?.perSeller ?? []).map((g) => (
@@ -396,13 +500,13 @@ export function Checkout() {
                       </div>
                       <div className="font-medium">{money(g.fee, currency)}</div>
                     </div>
-                    <p className="text-[11.5px] text-nop-muted mt-1.5">{g.basis}</p>
+                    <p className="text-[11.5px] text-nop-muted mt-1.5">{g.basisText ?? ''}</p>
                   </div>
                 ))}
               </div>
               {state.deliveryDate.enabled && slots.length > 0 && (
                 <div className="mt-4 max-w-sm">
-                  <Field label="Delivery window" hint={`CHK-006; capacity is reserved at placement under the lock chk-slot-{SlotId}-{Date}`}>
+                  <Field label="Delivery window" hint="Your window is held when the order is placed">
                     <Select value={slot} onChange={(e) => setSlot(e.target.value)}>
                       <option value="">No preference</option>
                       {slots.map((s) => <option key={s.id} value={s.id}>{s.name} (capacity {s.capacity})</option>)}
@@ -422,7 +526,7 @@ export function Checkout() {
                     <span className="min-w-0">
                       <span className="font-medium text-[13px] block">{m.name}</span>
                       <span className="text-[12px] text-nop-muted">
-                        {m.kind} · {m.feature}
+                        {m.kind}
                         {m.additionalFee > 0 ? ` · additional fee ${money(m.additionalFee, currency)}` : ''}
                         {m.supportsGroupPayment ? ' · supports one payment for several sellers' : ''}
                       </span>
@@ -435,7 +539,7 @@ export function Checkout() {
                   <Alert tone="info" title="Methods not offered for this cart">
                     <ul className="space-y-1">
                       {state.paymentMethodsExcluded.map((m) => (
-                        <li key={m.systemName}><span className="font-medium">{m.name}</span> - {m.citation}</li>
+                        <li key={m.systemName}><span className="font-medium">{m.name}</span> - {m.explanation ?? 'not available for this cart'}</li>
                       ))}
                     </ul>
                   </Alert>
@@ -469,25 +573,41 @@ export function Checkout() {
             <Panel title="Confirm order">
               <div className="space-y-3">
                 <div className="border border-nop-border rounded-sm divide-y divide-gray-100">
-                  {(state.cart.items ?? []).map((item) => (
-                    <div key={item.id} className="flex items-center gap-3 p-3">
-                      <div className="w-10"><ProductPicture picture={item.product.picture} name={item.product.name} size="sm" /></div>
+                  {(summary?.lines ?? []).map((line) => (
+                    <div key={line.productId} className="flex items-center gap-3 p-3">
                       <div className="flex-1 min-w-0">
-                        <div className="text-[13px] font-medium truncate">{item.product.name}</div>
+                        <div className="text-[13px] font-medium truncate">{line.name}</div>
                         <div className="text-[12px] text-nop-muted">
-                          {item.quantity} × {money(item.unitPrice, currency)} · {item.product.vendor?.name} · {item.fulfilment === 'pickup' ? 'collection' : 'delivery'}
+                          {line.quantity} × {money(line.unitPrice, summary.currency)} · {line.fulfilment === 'pickup' ? 'collection' : 'delivery'}
                         </div>
                       </div>
-                      <div className="text-[13px] font-medium">{money(item.subtotal, currency)}</div>
+                      <div className="text-[13px] font-medium">{money(line.subtotal, summary.currency)}</div>
                     </div>
                   ))}
+                  {!summary && <div className="p-3"><Spinner label="Calculating your order" /></div>}
                 </div>
+
+                {summary && (
+                  <dl className="border border-nop-border rounded-sm p-3 bg-store-totals">
+                    <Row label="Sub-total" value={money(summary.subtotal, summary.currency)} />
+                    {summary.discount > 0 && <Row label="Discount" value={`- ${money(summary.discount, summary.currency)}`} />}
+                    <Row label="Delivery / collection" value={money(summary.deliveryFee, summary.currency)} />
+                    {summary.paymentFee > 0 && <Row label="Payment fee" value={money(summary.paymentFee, summary.currency)} />}
+                    <Row label="Tax" value={money(summary.tax, summary.currency)} />
+                    <div className="border-t border-nop-border mt-2 pt-2">
+                      <Row label="Total to pay" value={money(summary.total, summary.currency)} strong />
+                    </div>
+                    <p className="mt-2 text-[11.5px] text-nop-muted">
+                      Reference {summary.reference}. Nothing is charged until you confirm.
+                    </p>
+                  </dl>
+                )}
 
                 <Checkbox
                   label="I have read the returns and refund policy"
                   checked={acknowledged}
                   onChange={(e) => setAcknowledged(e.target.checked)}
-                  hint="CHK-009 e-transactions consumer controls; the notice set comes from the country law profile."
+                  hint="We keep a record of this acknowledgement with your order."
                 />
                 {state.termsRequired && (
                   <Checkbox
@@ -586,7 +706,7 @@ export function OrderCompleted() {
         {result.split ? ` · ${result.orders.length} sub-orders` : ''}
       </Alert>
 
-      <Panel title="Orders" subtitle="CHK-019 confirmation; CHK-004 one sub-order per seller and fulfilment choice">
+      <Panel title="Orders" subtitle="One order per seller and delivery choice, under one reference">
         <ul className="divide-y divide-gray-100">
           {result.orders.map((o) => (
             <li key={o.orderNumber} className="py-3 flex flex-wrap items-center gap-3">

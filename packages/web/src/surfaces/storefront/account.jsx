@@ -381,7 +381,7 @@ export function AccountOrderDetails() {
         </Panel>
 
         {tracking && (
-          <Panel title="Tracking" subtitle={`${tracking.carrier} · ${tracking.trackingNumber} (TRK-001)`}>
+          <Panel title="Tracking" subtitle={`${tracking.carrier} · ${tracking.trackingNumber}`}>
             <ol className="relative border-l border-nop-border ml-2 space-y-3">
               {tracking.events.map((e) => (
                 <li key={e.id} className="pl-4">

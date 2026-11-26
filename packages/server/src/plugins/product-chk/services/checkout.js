@@ -28,6 +28,9 @@ import { getCartAsync } from './cart.js';
 import { paymentMethodsForStoreAsync, processPaymentAsync } from '../../product-pay/services/payments.js';
 import { nextOrderNumberAsync, initialStageAsync } from '../../product-ord/services/orders.js';
 import { quoteFulfilmentAsync, reserveSlotAsync } from '../../product-log/services/logistics.js';
+import {
+  runCheckOrderAsync, reserveAsync, confirmAsync, releaseAsync, cartWarningsAsync,
+} from './validation.js';
 
 const sessionRepo = () => repository('CheckoutSession');
 const orderRepo = () => repository('Order');
@@ -101,80 +104,85 @@ export async function checkoutStateAsync({ sessionId, customer, storeId = 1 }) {
 export async function validateAsync({
   sessionId, customer, storeId = 1, paymentMethodSystemName, termsAccepted, shownTotal,
 }) {
-  const failures = [];
   const cart = await getCartAsync({ sessionId, customer, storeId });
-
-  if (!cart.items.length) failures.push({ step: 'cart', message: 'Your cart is empty.' });
-  for (const item of cart.items) {
-    if (item.callForPrice) {
-      failures.push({ step: 'cart', message: `${item.product.name} is call for price and cannot be bought directly (CAT-013).` });
-    }
-    if (item.fulfilment === 'pickup' && !item.pickupPointId) {
-      failures.push({ step: 'shipping-method', message: `Choose an outlet to collect ${item.product.name} from.` });
-    }
+  if (!cart.items.length) {
+    return {
+      ok: false,
+      stoppedAt: 'stock and availability',
+      failures: [{ step: 'cart', message: 'Your cart is empty.' }],
+    };
   }
-  if (failures.length) return { ok: false, failures, stoppedAt: 'native cart and item warnings' };
-
-  // BR-CHK-004: the confirm-page total is stored server-side; a different total refuses placement
-  if (shownTotal != null) {
-    const totals = await totalsAsync({ sessionId, customer, storeId, paymentMethodSystemName });
-    if (money(shownTotal) !== money(totals.total)) {
+  for (const item of cart.items) {
+    if (item.fulfilment === 'pickup' && !item.pickupPointId) {
       return {
         ok: false,
-        stoppedAt: 'price check (BR-CHK-004)',
-        failures: [{ step: 'confirm', message: resource('Chk.PriceChanged'), newTotal: totals.total }],
+        stoppedAt: 'stock and availability',
+        failures: [{ step: 'shipping-method', message: `Choose an outlet to collect ${item.product.name} from.` }],
       };
     }
   }
 
-  // sign-in rule, AC-CHK-002-02-02 / 02-03
-  const guestAllowed = await getSettingAsync('ordersettings.anonymouscheckoutallowed', storeId, true);
-  if (!guestAllowed && !customer) {
+  const totals = await totalsAsync({
+    sessionId, customer, storeId, paymentMethodSystemName,
+  });
+
+  // the payment method must be active and, for a multi-seller cart, group-capable (BR-CHK-022);
+  // the check itself happens inside the ordered run, at the payment-method position
+  const methods = await paymentMethodsForStoreAsync({ storeId, multiSeller: cart.multiSeller });
+  const chosen = methods.available.find((m) => m.systemName === paymentMethodSystemName) ?? null;
+  const excluded = methods.excluded.find((m) => m.systemName === paymentMethodSystemName) ?? null;
+  const paymentMethod = chosen
+    ? { valid: true }
+    : {
+      valid: false,
+      messageKey: excluded?.reason === 'no-group-support' ? 'Chk.MultiSellerNotSupported' : 'Chk.PaymentMethodInvalid',
+      message: excluded?.reason === 'no-group-support'
+        ? resource('Chk.MultiSellerNotSupported')
+        : resource('Chk.PaymentMethodInvalid'),
+    };
+
+  // AC-CHK-003-02-03: stock and availability, price, buyer eligibility, payment method, fraud
+  const ordered = await runCheckOrderAsync({
+    cart,
+    customer,
+    storeId,
+    paymentMethodSystemName,
+    paymentMethod,
+    shownTotal: shownTotal ?? null,
+    currentTotal: totals.total,
+  });
+  if (ordered.ok !== true) {
     return {
       ok: false,
-      stoppedAt: 'eligibility',
-      failures: [{ step: 'sign-in', message: 'Sign in or register to place this order.', citation: 'REQ-MPC-FR-125; OrderSettings.AnonymousCheckoutAllowed off' }],
+      stoppedAt: ordered.stoppedAt,
+      checkSteps: ordered.steps,
+      messageKey: ordered.messageKey,
+      newTotal: ordered.newTotal ?? null,
+      failures: [{
+        step: ordered.stoppedAt === 'price' ? 'confirm' : (ordered.stoppedAt === 'payment method' ? 'payment-method' : 'cart'),
+        message: ordered.message,
+        messageKey: ordered.messageKey ?? null,
+        newTotal: ordered.newTotal ?? null,
+      }],
+      paymentInitiated: false,
     };
   }
 
-  // terms, enforced on the server by the CHK-009 action filter (BR-CHK-013)
+  // the terms, enforced on the server by the CHK-009 action filter (BR-CHK-013)
   const termsOnConfirm = await getSettingAsync('ordersettings.termsofserviceonorderconfirmpage', storeId, false);
   if (termsOnConfirm && !termsAccepted) {
     return {
       ok: false,
-      stoppedAt: 'eligibility',
-      failures: [{ step: 'confirm', message: resource('Chk.TermsRequired'), citation: 'AC-CHK-002-05-01; BR-CHK-013 server-side check' }],
+      stoppedAt: 'buyer eligibility',
+      messageKey: 'Chk.TermsRequired',
+      failures: [{ step: 'confirm', message: resource('Chk.TermsRequired'), messageKey: 'Chk.TermsRequired' }],
+      paymentInitiated: false,
     };
   }
 
-  // IC-CHK-02 validators of other modules
-  const results = await runProviders('IC-CHK-02', 'firstFail', { cart, customer, storeId });
-  const failed = results.find((r) => r.result && r.result.ok === false);
-  if (failed) {
-    return {
-      ok: false,
-      stoppedAt: `validator ${failed.provider} (${failed.feature})`,
-      failures: [{ step: 'confirm', message: failed.result.message }],
-    };
-  }
-
-  // payment method active and allowed (BR-PAY-001), and group-capable for a multi-seller cart
-  const methods = await paymentMethodsForStoreAsync({ storeId, multiSeller: cart.multiSeller });
-  if (!methods.available.some((m) => m.systemName === paymentMethodSystemName)) {
-    const excluded = methods.excluded.find((m) => m.systemName === paymentMethodSystemName);
-    return {
-      ok: false,
-      stoppedAt: 'payment method',
-      failures: [{
-        step: 'payment-method',
-        message: excluded?.reason === 'no-group-support'
-          ? resource('Chk.MultiSellerNotSupported')
-          : resource('Chk.PaymentMethodInvalid'),
-      }],
-    };
-  }
-
-  return { ok: true, failures: [], cart };
+  return {
+    ok: true, failures: [], cart, checkSteps: ordered.steps, checkOrder: ordered.checkOrder,
+  };
 }
 
 /** Order totals, always recalculated on the server (BR-CHK-003 / AC-CHK-002-04-02). */
@@ -484,4 +492,194 @@ export async function markPickupCodeUsedAsync(orderNumber) {
 
 export async function checkoutExceptionsAsync() {
   return exceptionRepo().getAllAsync();
+}
+
+/* ====================================================== PRD-CHK-002 the steps ========== */
+
+/** The fields each step requires, so a missing one comes back against its own field. */
+export const STEP_FIELDS = {
+  billing: ['firstName', 'lastName', 'addressLine1', 'city', 'country', 'phone'],
+  shipping: ['firstName', 'lastName', 'addressLine1', 'city', 'country', 'phone'],
+  'shipping-method': ['fulfilment'],
+  'payment-method': ['paymentMethodSystemName'],
+  'payment-info': [],
+  confirm: [],
+};
+
+/**
+ * AC-CHK-002-04-01: every checkout request is served over HTTPS and every POST carries a valid
+ * antiforgery token. The prototype runs on http locally, so the check reports what the filter
+ * would enforce and refuses a POST with no token either way.
+ */
+export function checkoutRequestGuard({
+  method = 'GET', secure = false, forwardedProto = null, antiforgeryToken = null, sessionToken = null,
+}) {
+  const https = secure === true || forwardedProto === 'https';
+  if (String(method).toUpperCase() !== 'GET' && !antiforgeryToken) {
+    return {
+      ok: false,
+      refused: true,
+      reason: 'the antiforgery token is missing',
+      messageKey: 'Chk.AntiforgeryRequired',
+      https,
+      httpsRequired: true,
+    };
+  }
+  if (String(method).toUpperCase() !== 'GET' && sessionToken && antiforgeryToken !== sessionToken) {
+    return {
+      ok: false, refused: true, reason: 'the antiforgery token does not match', https, httpsRequired: true,
+    };
+  }
+  return {
+    ok: true, https, httpsRequired: true, servedOverHttps: https, antiforgeryChecked: String(method).toUpperCase() !== 'GET',
+  };
+}
+
+/**
+ * AC-CHK-002-02-03: with guest checkout off, a request to any checkout action from somebody who
+ * is not signed in is challenged - including a direct post to confirm.
+ */
+export async function guestGuardAsync({ action, customer, storeId = 1 }) {
+  const guestAllowed = await getSettingAsync('ordersettings.anonymouscheckoutallowed', storeId, true);
+  if (guestAllowed === true || customer) return { ok: true, challenged: false };
+  return {
+    ok: false,
+    challenged: true,
+    action,
+    redirectTo: '/login?returnUrl=/checkout',
+    orderCreated: false,
+    paymentExecuted: false,
+    message: 'Sign in or register to place this order.',
+  };
+}
+
+/**
+ * AC-CHK-002-01-02 and 01-03: the progress of the multi-page checkout, the step that is current,
+ * the ones still to come, and the address IAM-014 pre-selects on the two address steps.
+ */
+export async function stepStateAsync({
+  sessionId, customer, storeId = 1, currentStep = null,
+}) {
+  const state = await checkoutStateAsync({ sessionId, customer, storeId });
+  const session = state.session;
+  const completed = session.completedSteps ?? [];
+  const steps = state.steps.map((step, index) => ({
+    ...step,
+    index,
+    completed: completed.includes(step.id),
+    current: step.id === (currentStep ?? steps0Current(state.steps, completed)),
+  }));
+  // the address book, so the step can show the picker the shopper chooses another address from
+  const addressBook = customer
+    ? await repository('Address').getAllAsync((a) => Number(a.customerId) === Number(customer.id))
+    : [];
+  let defaultAddress = null;
+  if (customer) {
+    const preference = await repository('CustomerPreference').getOneAsync((p) => Number(p.customerId) === Number(customer.id));
+    if (preference?.defaultAddressId) {
+      const address = await repository('Address').getByIdAsync(preference.defaultAddressId);
+      const countries = await repository('Country').getAllAsync((c) => c.published !== false);
+      const allowed = address && countries.some((c) => c.name === address.country || c.twoLetterIsoCode === address.country);
+      if (address && allowed) defaultAddress = address;
+    }
+  }
+  return {
+    reference: session.reference,
+    onePageCheckout: state.onePageCheckout === true,
+    steps,
+    currentStep: steps.find((s) => s.current)?.id ?? steps[0]?.id ?? null,
+    remainingSteps: steps.filter((s) => !s.completed).map((s) => s.id),
+    progressIndicator: steps.map((s) => ({ id: s.id, name: s.name, state: s.completed ? 'done' : (s.current ? 'current' : 'todo') })),
+    addressBook,
+    defaultAddress,
+    defaultAddressPreselectedOn: defaultAddress ? ['billing', 'shipping'] : [],
+    values: session.stepValues ?? {},
+    signInRequired: state.signInRequired,
+  };
+}
+
+const steps0Current = (steps, completed) => steps.find((s) => !completed.includes(s.id))?.id ?? steps[steps.length - 1]?.id;
+
+/**
+ * AC-CHK-002-01-03: a step is validated on the server; a failure shows the step again with the
+ * values kept and a message against each field, and a completed step is not asked for again.
+ */
+export async function submitStepAsync({
+  sessionId, customer, storeId = 1, step, values = {},
+}) {
+  const session = await openSessionAsync({ sessionId, customer, storeId });
+  const required = STEP_FIELDS[step];
+  if (!required) return { ok: false, message: `${step} is not a checkout step` };
+  const fieldErrors = {};
+  for (const field of required) {
+    if (values[field] === undefined || values[field] === null || String(values[field]).trim() === '') {
+      fieldErrors[field] = 'This field is required.';
+    }
+  }
+  if (values.phone && !/^[+0-9 ()-]{6,}$/.test(String(values.phone))) {
+    fieldErrors.phone = 'Enter a telephone number we can reach you on.';
+  }
+  const keptValues = { ...(session.stepValues ?? {}), [step]: values };
+  if (Object.keys(fieldErrors).length) {
+    await sessionRepo().updateAsync({ ...session, stepValues: keptValues });
+    const state = await stepStateAsync({
+      sessionId, customer, storeId, currentStep: step,
+    });
+    return {
+      ok: false,
+      step,
+      fieldErrors,
+      values,
+      valuesKept: true,
+      progressIndicator: state.progressIndicator,
+      validatedOn: 'the server (ModelState)',
+    };
+  }
+  const completed = [...new Set([...(session.completedSteps ?? []), step])];
+  await sessionRepo().updateAsync({ ...session, completedSteps: completed, stepValues: keptValues });
+  const state = await stepStateAsync({ sessionId, customer, storeId });
+  return {
+    ok: true,
+    step,
+    completedSteps: completed,
+    nextStep: state.currentStep,
+    progressIndicator: state.progressIndicator,
+    noCompletedStepRepeated: true,
+  };
+}
+
+/**
+ * AC-CHK-002-03-01: what the confirm step shows, every line and every amount, before payment is
+ * executed. The totals are the server's own (BR-CHK-003).
+ */
+export async function confirmSummaryAsync({
+  sessionId, customer, storeId = 1, paymentMethodSystemName = null,
+}) {
+  const cart = await getCartAsync({ sessionId, customer, storeId });
+  const totals = await totalsAsync({
+    sessionId, customer, storeId, paymentMethodSystemName,
+  });
+  const session = await openSessionAsync({ sessionId, customer, storeId });
+  await sessionRepo().updateAsync({ ...session, shownTotal: totals.total, shownOnUtc: new Date().toISOString() });
+  return {
+    reference: session.reference,
+    lines: cart.items.map((i) => ({
+      productId: i.productId,
+      name: i.product.name,
+      quantity: i.quantity,
+      unitPrice: i.unitPrice,
+      subtotal: i.subtotal,
+      fulfilment: i.fulfilment ?? null,
+    })),
+    subtotal: totals.subtotal,
+    discount: totals.discount ?? 0,
+    tax: totals.tax ?? 0,
+    paymentFee: totals.paymentFee ?? 0,
+    deliveryFee: totals.deliveryFee ?? 0,
+    total: totals.total,
+    currency: totals.currency,
+    paymentExecuted: false,
+    calculatedOn: 'the server',
+    rule: 'BR-CHK-003',
+  };
 }

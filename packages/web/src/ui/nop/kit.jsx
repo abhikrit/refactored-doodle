@@ -138,7 +138,9 @@ export function SearchPanel({ children, onSearch, onClear }) {
   );
 }
 
-export function Field({ label, hint, children, required }) {
+export function Field({
+  label, hint, children, required, error,
+}) {
   return (
     <label className="block">
       <span className="block text-[12.5px] font-medium text-gray-700 mb-1">
@@ -146,7 +148,9 @@ export function Field({ label, hint, children, required }) {
         {required && <span className="text-nop-red"> *</span>}
       </span>
       {children}
-      {hint && <span className="block text-[11.5px] text-nop-muted mt-1">{hint}</span>}
+      {/* the native field-validation-error span, under the field it belongs to */}
+      {error && <span className="block text-[11.5px] text-nop-red mt-1" role="alert">{error}</span>}
+      {hint && !error && <span className="block text-[11.5px] text-nop-muted mt-1">{hint}</span>}
     </label>
   );
 }

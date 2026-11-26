@@ -13,7 +13,9 @@ import {
 } from 'react-router-dom';
 import { useProduct, money } from '../../lib/store.jsx';
 import { api } from '../../lib/api.js';
-import { Badge, Button, Spinner } from './kit.jsx';
+import {
+  Badge, Button, ProductPicture, Spinner,
+} from './kit.jsx';
 import { CookieBanner } from '../../surfaces/storefront/cookies.jsx';
 
 /* ------------------------------------------------------------- storefront --- */
@@ -141,6 +143,83 @@ function NotificationBell() {
   );
 }
 
+/**
+ * The native mini shopping cart flyout of DefaultClean, on the header's cart link: the lines, the
+ * sub-total and the two buttons. shoppingcartsettings.minishoppingcartenabled turns it off, and
+ * the link alone remains (PRD-CHK-001).
+ */
+function MiniCart({ cart, currency }) {
+  const [open, setOpen] = useState(false);
+  const enabled = cart?.miniCartEnabled === true && cart?.miniCart;
+  const lines = cart?.items ?? [];
+  return (
+    <div
+      className="relative shrink-0"
+      onMouseEnter={() => enabled && setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <Link
+        to="/cart"
+        className="flex items-center gap-2 border border-store-border px-3 py-2 hover:bg-gray-50"
+        onClick={() => setOpen(false)}
+        aria-haspopup={enabled ? 'true' : undefined}
+        aria-expanded={enabled ? open : undefined}
+      >
+        <span className="text-[13px] font-medium">Shopping cart</span>
+        <Badge tone="blue">{cart?.itemCount ?? 0}</Badge>
+        {cart?.subtotal > 0 && <span className="hidden sm:inline text-[12px] text-nop-muted">{money(cart.subtotal, currency)}</span>}
+      </Link>
+      {enabled && open && (
+        <div className="absolute right-0 top-full z-50 w-80 border border-store-border bg-white shadow-lg" role="dialog" aria-label="Mini shopping cart">
+          {lines.length === 0 ? (
+            <p className="p-4 text-[13px] text-nop-muted">You have no items in your shopping cart.</p>
+          ) : (
+            <>
+              <p className="px-4 pt-3 text-[12.5px] text-nop-muted">
+                There {cart.itemCount === 1 ? 'is 1 item' : `are ${cart.itemCount} items`} in your cart.
+              </p>
+              <ul className="max-h-72 overflow-auto divide-y divide-gray-100 px-4">
+                {lines.map((item) => (
+                  <li key={item.id} className="flex gap-2 py-2.5">
+                    <div className="w-10 shrink-0">
+                      <ProductPicture picture={item.product?.picture} name={item.product?.name} size="sm" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <Link to={`/product/${item.productId}`} className="block truncate text-[13px] font-medium hover:brand-text" onClick={() => setOpen(false)}>
+                        {item.product?.name}
+                      </Link>
+                      <div className="text-[12px] text-nop-muted">
+                        {item.quantity} × {money(item.unitPrice, currency)}
+                        {item.fulfilment === 'pickup' ? ' · collection' : ''}
+                      </div>
+                    </div>
+                    <div className="text-[12.5px] font-medium whitespace-nowrap">{money(item.subtotal, currency)}</div>
+                  </li>
+                ))}
+              </ul>
+              <div className="border-t border-nop-border px-4 py-3">
+                <div className="flex justify-between text-[13px]">
+                  <span className="text-nop-muted">Sub-total</span>
+                  <span className="font-semibold">{money(cart.miniCart.subtotal, currency)}</span>
+                </div>
+                {cart.savedForLater?.length > 0 && (
+                  <p className="mt-1 text-[12px] text-nop-muted">
+                    {cart.savedForLater.length} item{cart.savedForLater.length === 1 ? '' : 's'} in {cart.savedForLaterName}.
+                  </p>
+                )}
+                <div className="mt-3 flex gap-2">
+                  <Button as="link" to="/cart" size="sm" onClick={() => setOpen(false)}>View cart</Button>
+                  <Button as="link" to="/checkout" size="sm" variant="brand" onClick={() => setOpen(false)}>Checkout</Button>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function StorefrontShell({ children }) {
   const {
     content, cart, customer, entities, settings, refreshCustomer,
@@ -248,11 +327,7 @@ export function StorefrontShell({ children }) {
             )}
           </div>
 
-          <Link to="/cart" className="flex items-center gap-2 shrink-0 border border-store-border px-3 py-2 hover:bg-gray-50">
-            <span className="text-[13px] font-medium">Shopping cart</span>
-            <Badge tone="blue">{cart?.itemCount ?? 0}</Badge>
-            {cart?.subtotal > 0 && <span className="hidden sm:inline text-[12px] text-nop-muted">{money(cart.subtotal, currency?.code)}</span>}
-          </Link>
+          <MiniCart cart={cart} currency={currency?.code} />
         </div>
       </div>
 

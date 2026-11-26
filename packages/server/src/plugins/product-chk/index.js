@@ -10,7 +10,18 @@ import {
 } from './services/cart.js';
 import {
   checkoutStateAsync, totalsAsync, validateAsync, placeOrderAsync, splitCart, checkoutExceptionsAsync,
+  stepStateAsync, submitStepAsync, confirmSummaryAsync, checkoutRequestGuard, guestGuardAsync,
+  STEP_FIELDS,
 } from './services/checkout.js';
+import {
+  itemWarningsAsync, cartWarningsAsync, standardWarningsAsync, subTotalAsync,
+  guardOrderActionAsync, cancelOrderAsync, runCheckOrderAsync, registerCartCheckProvider,
+  registerSubtotalAdjuster, registerOrderActionGuard, registerCancellationParticipant,
+  registerPlacementParticipant, cartCheckProvidersRegistered, subtotalAdjusterRegistered,
+  placementValidatorsRegistered, placementParticipantsRegistered, orderActionGuardsRegistered,
+  cancellationParticipantsRegistered, NATIVE_WARNINGS, CHECK_ORDER,
+} from './services/validation.js';
+import { productAsync } from '../product-cat/services/catalogue.js';
 import { currentCustomerAsync } from '../product-iam/services/identity.js';
 
 export default definePlugin({
@@ -87,6 +98,96 @@ export default definePlugin({
         res.json(await placeOrderAsync({ ...(await withCustomer(req)), ...req.body, actor: req.actorEmail ?? 'storefront' }));
       } catch (err) { next(err); }
     });
+    /* ------------------------------------- PRD-CHK-002 the steps -------------------- */
+    const send = (fn) => async (req, res, next) => {
+      try { res.json(await fn(req)); } catch (err) { next(err); }
+    };
+    r.get('/checkout/steps', send(async (req) => stepStateAsync({
+      ...await withCustomer(req), currentStep: req.query.step ?? null,
+    })));
+    r.post('/checkout/steps/:step', send(async (req) => {
+      const guard = checkoutRequestGuard({
+        method: 'POST',
+        secure: req.secure,
+        forwardedProto: req.get('x-forwarded-proto') ?? null,
+        antiforgeryToken: req.get('x-antiforgery') ?? req.body?.antiforgeryToken ?? null,
+      });
+      if (guard.ok !== true) return guard;
+      const base = await withCustomer(req);
+      const challenge = await guestGuardAsync({ action: `step:${req.params.step}`, customer: base.customer, storeId: base.storeId });
+      if (challenge.ok !== true) return challenge;
+      return submitStepAsync({ ...base, step: req.params.step, values: req.body?.values ?? req.body ?? {} });
+    }));
+    r.get('/checkout/confirm-summary', send(async (req) => confirmSummaryAsync({
+      ...await withCustomer(req), paymentMethodSystemName: req.query.paymentMethodSystemName ?? null,
+    })));
+    r.post('/checkout/guard', send(async (req) => {
+      const base = await withCustomer(req);
+      return {
+        request: checkoutRequestGuard({
+          method: req.body?.method ?? 'POST',
+          secure: req.secure,
+          forwardedProto: req.get('x-forwarded-proto') ?? null,
+          antiforgeryToken: req.body?.antiforgeryToken ?? null,
+          sessionToken: req.body?.sessionToken ?? null,
+        }),
+        guest: await guestGuardAsync({ action: req.body?.action ?? 'confirm', customer: base.customer, storeId: base.storeId }),
+      };
+    }));
+    r.get('/checkout/step-fields', send(() => STEP_FIELDS));
+
+    /* ------------------------------------- PRD-CHK-003 the validation host ---------- */
+    r.get('/validation/providers', send(() => ({
+      cartChecks: cartCheckProvidersRegistered(),
+      subtotalAdjuster: subtotalAdjusterRegistered(),
+      placementValidators: placementValidatorsRegistered(),
+      placementParticipants: placementParticipantsRegistered(),
+      orderActionGuards: orderActionGuardsRegistered(),
+      cancellationParticipants: cancellationParticipantsRegistered(),
+      nativeWarnings: NATIVE_WARNINGS,
+      checkOrder: CHECK_ORDER,
+    })));
+    r.post('/validation/item-warnings', send(async (req) => {
+      const base = await withCustomer(req);
+      return itemWarningsAsync({
+        product: await productAsync(req.body?.productId),
+        quantity: Number(req.body?.quantity ?? 1),
+        customer: base.customer,
+        storeId: base.storeId,
+        cartType: Number(req.body?.cartType ?? 1),
+      });
+    }));
+    r.post('/validation/standard-warnings', send(async (req) => {
+      const base = await withCustomer(req);
+      return {
+        warnings: await standardWarningsAsync({
+          product: await productAsync(req.body?.productId),
+          quantity: Number(req.body?.quantity ?? 1),
+          customer: base.customer,
+          storeId: base.storeId,
+        }),
+      };
+    }));
+    r.post('/validation/cart-warnings', send(async (req) => {
+      const base = await withCustomer(req);
+      return cartWarningsAsync({ cart: await getCartAsync(base), customer: base.customer, storeId: base.storeId });
+    }));
+    r.post('/validation/subtotal', send(async (req) => {
+      const base = await withCustomer(req);
+      return subTotalAsync({
+        item: req.body?.item ?? {}, includeDiscounts: req.body?.includeDiscounts !== false, customer: base.customer, storeId: base.storeId,
+      });
+    }));
+    r.post('/validation/order-action', send(async (req) => guardOrderActionAsync({
+      action: req.body?.action,
+      order: await ctx.repository('Order').getOneAsync((o) => o.orderNumber === req.body?.orderNumber),
+      shipment: req.body?.shipmentId ? await ctx.repository('Shipment').getByIdAsync(req.body.shipmentId) : null,
+      actor: req.actorEmail,
+    })));
+    r.post('/orders/:orderNumber/cancel', send((req) => cancelOrderAsync({
+      orderNumber: req.params.orderNumber, reason: req.body?.reason ?? null, actor: req.actorEmail ?? 'admin', storeId: req.storeId,
+    })));
+
     r.get('/checkout/exceptions', async (req, res, next) => {
       try { res.json(await checkoutExceptionsAsync()); } catch (err) { next(err); }
     });
