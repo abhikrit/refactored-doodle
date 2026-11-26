@@ -82,6 +82,29 @@
         "symbol": "$",
         "rate": 0.00058
       }
+    ],
+    "addressAttributes": [
+      {
+        "name": "Landmark",
+        "attributeControlType": "TextBox",
+        "isRequired": false,
+        "maxLength": 120,
+        "note": "REQ-MPC-FR-113: the nearest landmark, for places with no street numbers"
+      },
+      {
+        "name": "Address name",
+        "attributeControlType": "TextBox",
+        "isRequired": false,
+        "maxLength": 60,
+        "note": "REQ-MPC-FR-113: the shopper's own name for the address"
+      },
+      {
+        "name": "PO box",
+        "attributeControlType": "TextBox",
+        "isRequired": false,
+        "maxLength": 40,
+        "note": "A post-office box, including a virtual post box, switched on for this country"
+      }
     ]
   },
   "_sources": {

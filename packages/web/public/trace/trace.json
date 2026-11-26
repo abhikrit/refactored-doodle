@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-26T11:19:44.531Z",
+  "generated": "2026-11-26T11:52:38.099Z",
   "generator": "scripts/build-trace.mjs",
   "registry": {
     "areas": 24,
@@ -31,14 +31,14 @@
   },
   "totals": {
     "features": 434,
-    "built": 78,
-    "partial": 8,
+    "built": 82,
+    "partial": 7,
     "heldWithDefault": 90,
     "mocked": 24,
-    "notBuilt": 234,
+    "notBuilt": 231,
     "criteria": 2850,
-    "criteriaWithTests": 635,
-    "testsPassing": 635,
+    "criteriaWithTests": 660,
+    "testsPassing": 660,
     "testsFailing": 0,
     "stories": 1160,
     "reconciles": true
@@ -146,11 +146,11 @@
       "wave": 3,
       "waveName": "Buy",
       "features": 19,
-      "built": 3,
-      "partial": 4,
+      "built": 7,
+      "partial": 3,
       "held": 4,
       "mocked": 0,
-      "notBuilt": 8
+      "notBuilt": 5
     },
     {
       "area": "ORD",
@@ -344,7 +344,7 @@
     {
       "client": "MPC",
       "requirements": 411,
-      "demonstratedInPrototype": 80,
+      "demonstratedInPrototype": 84,
       "mappedToFeatures": 374,
       "projectService": 38
     }
@@ -1470,6 +1470,20 @@
       "status": "pass"
     },
     {
+      "criterion": "AC-CHK-005-01-01",
+      "feature": "PRD-CHK-005",
+      "test": "AC-CHK-005-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-005-01-02",
+      "feature": "PRD-CHK-005",
+      "test": "AC-CHK-005-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
       "criterion": "AC-CHK-005-01-03",
       "feature": "PRD-CHK-005",
       "test": "AC-CHK-005-01-03",
@@ -1477,9 +1491,135 @@
       "status": "pass"
     },
     {
+      "criterion": "AC-CHK-005-01-04",
+      "feature": "PRD-CHK-005",
+      "test": "AC-CHK-005-01-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
       "criterion": "AC-CHK-005-01-05",
       "feature": "PRD-CHK-005",
       "test": "AC-CHK-005-01-05",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-005-01-06",
+      "feature": "PRD-CHK-005",
+      "test": "AC-CHK-005-01-06",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-006-01-01",
+      "feature": "PRD-CHK-006",
+      "test": "AC-CHK-006-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-006-01-02",
+      "feature": "PRD-CHK-006",
+      "test": "AC-CHK-006-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-006-01-03",
+      "feature": "PRD-CHK-006",
+      "test": "AC-CHK-006-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-006-01-04",
+      "feature": "PRD-CHK-006",
+      "test": "AC-CHK-006-01-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-006-01-05",
+      "feature": "PRD-CHK-006",
+      "test": "AC-CHK-006-01-05",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-006-01-06",
+      "feature": "PRD-CHK-006",
+      "test": "AC-CHK-006-01-06",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-006-01-07",
+      "feature": "PRD-CHK-006",
+      "test": "AC-CHK-006-01-07",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-006-02-01",
+      "feature": "PRD-CHK-006",
+      "test": "AC-CHK-006-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-006-03-01",
+      "feature": "PRD-CHK-006",
+      "test": "AC-CHK-006-03-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-006-03-02",
+      "feature": "PRD-CHK-006",
+      "test": "AC-CHK-006-03-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-007-01-01",
+      "feature": "PRD-CHK-007",
+      "test": "AC-CHK-007-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-007-01-02",
+      "feature": "PRD-CHK-007",
+      "test": "AC-CHK-007-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-007-01-03",
+      "feature": "PRD-CHK-007",
+      "test": "AC-CHK-007-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-007-01-04",
+      "feature": "PRD-CHK-007",
+      "test": "AC-CHK-007-01-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-007-02-01",
+      "feature": "PRD-CHK-007",
+      "test": "AC-CHK-007-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-007-03-01",
+      "feature": "PRD-CHK-007",
+      "test": "AC-CHK-007-03-01",
       "suite": "node (API and rules)",
       "status": "pass"
     },
@@ -1494,6 +1634,41 @@
       "criterion": "AC-CHK-012-02-03",
       "feature": "PRD-CHK-012",
       "test": "AC-CHK-012-02-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-014-01-01",
+      "feature": "PRD-CHK-014",
+      "test": "AC-CHK-014-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-014-01-02",
+      "feature": "PRD-CHK-014",
+      "test": "AC-CHK-014-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-014-01-03",
+      "feature": "PRD-CHK-014",
+      "test": "AC-CHK-014-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-014-01-04",
+      "feature": "PRD-CHK-014",
+      "test": "AC-CHK-014-01-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-014-01-05",
+      "feature": "PRD-CHK-014",
+      "test": "AC-CHK-014-01-05",
       "suite": "node (API and rules)",
       "status": "pass"
     },
@@ -9825,10 +10000,10 @@
       "wave": 3,
       "pack": "Postal and logistics pack",
       "implementation": "Code-level",
-      "state": "partial",
+      "state": "built",
       "criteria": 6,
-      "criteriaCovered": 2,
-      "criteriaPassing": 2,
+      "criteriaCovered": 6,
+      "criteriaPassing": 6,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
@@ -9836,12 +10011,32 @@
       ],
       "tests": [
         {
+          "criterion": "AC-CHK-005-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-005-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
           "criterion": "AC-CHK-005-01-03",
           "status": "pass",
           "suite": "node (API and rules)"
         },
         {
+          "criterion": "AC-CHK-005-01-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
           "criterion": "AC-CHK-005-01-05",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-005-01-06",
           "status": "pass",
           "suite": "node (API and rules)"
         }
@@ -9855,16 +10050,67 @@
       "wave": 3,
       "pack": "Postal and logistics pack",
       "implementation": "Code-level",
-      "state": "not-built",
+      "state": "built",
       "criteria": 10,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 10,
+      "criteriaPassing": 10,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
         "REQ-MPC-FR-106"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-CHK-006-03-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-006-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-006-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-006-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-006-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-006-01-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-006-01-05",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-006-01-06",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-006-01-07",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-006-03-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-CHK-007",
@@ -9874,16 +10120,47 @@
       "wave": 3,
       "pack": "Core (always on)",
       "implementation": "Code-level",
-      "state": "not-built",
+      "state": "built",
       "criteria": 6,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 6,
+      "criteriaPassing": 6,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
         "REQ-MPC-FR-113"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-CHK-007-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-007-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-007-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-007-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-007-01-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-007-03-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-CHK-008",
@@ -10023,16 +10300,42 @@
       "wave": 3,
       "pack": "Postal and logistics pack",
       "implementation": "Code-level",
-      "state": "not-built",
+      "state": "built",
       "criteria": 5,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 5,
+      "criteriaPassing": 5,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
         "REQ-MPC-FR-119"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-CHK-014-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-014-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-014-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-014-01-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-014-01-05",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-CHK-015",

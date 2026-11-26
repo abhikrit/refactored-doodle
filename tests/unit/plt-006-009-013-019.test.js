@@ -265,8 +265,12 @@ describe('PRD-PLT-009 languages and language packs', () => {
 
     const form = await api.get(`/api/platform/address-form?countryId=${malawi.id}`, SESSIONS.buyer);
     assert.equal(form.regionsOffered, true);
-    assert.deepEqual(form.regions.map((r) => r.name), ['Central Region', 'Northern Region', 'Southern Region']);
-    assert.equal(form.regions[0].abbreviation, 'CR');
+    const names = form.regions.map((r) => r.name);
+    for (const region of ['Central Region', 'Northern Region', 'Southern Region']) {
+      assert.ok(names.includes(region), `${region} is offered for that country`);
+    }
+    assert.ok(names.includes('Lilongwe'), 'beside the districts the configuration pack supplied');
+    assert.equal(form.regions.find((r) => r.name === 'Central Region').abbreviation, 'CR');
 
     const other = countries.find((c) => c.twoLetterIsoCode === 'KE');
     const kenya = await api.get(`/api/platform/address-form?countryId=${other.id}`, SESSIONS.buyer);

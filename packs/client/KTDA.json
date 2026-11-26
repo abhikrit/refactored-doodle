@@ -44,7 +44,8 @@
     "shippingsettings.allowpickupinstore": true,
     "store.sslenabled": true,
     "pay.bulkbuyer.role": "BulkBuyer",
-    "sel.marketplace.enabled": false
+    "sel.marketplace.enabled": false,
+    "shippingsettings.allowcustomertochoosedeliverydate": false
   },
   "content": {
     "clientName": "Kenya Tea Development Agency",
@@ -155,14 +156,16 @@
     "content.tagline": "REQ-KTDA-CUS-002 / CAT-002 / PRJ-002: value-added teas, bulk teas, contract packaging, forward contracts",
     "extends.verticals": "L1 section 6.6 pack set. The Marketplace pack is off because the KTDA seller model is not stated (gap KG-01)",
     "sel.marketplace.enabled": "Off - gap KG-01: it is not stated whether KTDA is the only seller or the 71 factories and subsidiaries sell",
-    "ordersettings.customordernumbermask": "ORD section 10.2: OrderSettings.CustomOrderNumberMask - mask not stated in the KTDA source, prototype default"
+    "ordersettings.customordernumbermask": "ORD section 10.2: OrderSettings.CustomOrderNumberMask - mask not stated in the KTDA source, prototype default",
+    "shippingsettings.allowcustomertochoosedeliverydate": "CHK section 10.2 shows no delivery windows for this client ('-'), so the native desired-date list is set off explicitly; its install default is on (AC-CHK-006-03-02)"
   },
   "_notStatedInSource": [
     "Brand guidelines not provided (REQ-KTDA-UX-002) - colours and logo are placeholders",
     "Organisation structure and roles not described (G-ORG, KG-16)",
     "Tax regimes not stated (KG-06); exchange-rate settlement currency open (C-FX)",
     "Shipping method prices and rules not stated (KG-13)",
-    "Pickup points, factories and depots here are synthetic (P-5)"
+    "Pickup points, factories and depots here are synthetic (P-5)",
+    "Whether shoppers may choose a delivery date is not stated: the pack sets it off explicitly because the native install default is on and this client has no delivery windows"
   ],
   "_heldDecisionsVisibleToUsers": [
     "PH-INF",

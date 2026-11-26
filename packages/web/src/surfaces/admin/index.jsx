@@ -353,12 +353,16 @@ export function AdminOrders() {
 export function AdminOrderDetails() {
   const { orderNumber } = useParams();
   const [order, setOrder] = useState(null);
+  const [addressDetail, setAddressDetail] = useState(null);
   const [tab, setTab] = useState('info');
   const [notice, setNotice] = useState(null);
   const [busy, setBusy] = useState(false);
 
   const load = () => api.get(`/orders/${orderNumber}`).then(setOrder).catch(() => {});
   useEffect(() => { load(); }, [orderNumber]);
+  useEffect(() => {
+    api.get(`/checkout-area/orders/${orderNumber}/address`).then(setAddressDetail).catch(() => {});
+  }, [orderNumber]);
   if (!order) return <AdminPage title="Order" breadcrumb={crumb({ label: 'Sales' }, { label: 'Orders', to: '/admin/sales/orders' })}><Spinner /></AdminPage>;
 
   const act = async (fn) => {
@@ -461,14 +465,47 @@ export function AdminOrderDetails() {
             <div className="grid gap-4 md:grid-cols-2 text-[13px]">
               <div>
                 <h3 className="font-semibold mb-1.5">Billing address</h3>
-                {order.billingAddress ? <KeyValue rows={Object.entries(order.billingAddress).filter(([, v]) => v)} /> : <p className="text-nop-muted">-</p>}
+                {order.billingAddress ? <KeyValue rows={Object.entries(order.billingAddress).filter(([, v]) => v && typeof v !== 'object')} /> : <p className="text-nop-muted">-</p>}
               </div>
               <div>
                 <h3 className="font-semibold mb-1.5">{order.fulfilment === 'pickup' ? 'Collection' : 'Shipping address'}</h3>
                 {order.fulfilment === 'pickup'
                   ? <KeyValue rows={[['Outlet', order.pickupPoint?.name], ['City', order.pickupPoint?.city], ['Opening hours', order.pickupPoint?.openingHours], ['Pickup code', order.hasPickupCode ? (order.pickupCodeUsed ? 'used' : 'issued (stored as a hash)') : '-']]} />
-                  : (order.shippingAddress ? <KeyValue rows={Object.entries(order.shippingAddress).filter(([, v]) => v)} /> : <p className="text-nop-muted">-</p>)}
+                  : (order.shippingAddress ? <KeyValue rows={Object.entries(order.shippingAddress).filter(([, v]) => v && typeof v !== 'object')} /> : <p className="text-nop-muted">-</p>)}
               </div>
+              {/* what the courier needs: the landmark beside the address, the pin and the
+                  instructions the shopper wrote at checkout */}
+              {(addressDetail?.landmark || addressDetail?.pin || addressDetail?.poBox
+                || addressDetail?.addressName || order.deliveryInstructions) && (
+                <div className="md:col-span-2 border border-nop-border rounded-sm p-3">
+                  <h3 className="font-semibold mb-1.5">Finding the customer</h3>
+                  <KeyValue rows={[
+                    ['Landmark', addressDetail?.landmark ?? '-'],
+                    ['Name for the address', addressDetail?.addressName ?? '-'],
+                    ['PO box', addressDetail?.poBox ?? '-'],
+                    ['Delivery instructions', order.deliveryInstructions ?? '-'],
+                    ['Map pin', addressDetail?.pin
+                      ? (
+                        <a href={addressDetail.pin.mapUrl} target="_blank" rel="noreferrer" className="text-nop-blue hover:underline">
+                          {addressDetail.pin.latitude}, {addressDetail.pin.longitude}
+                        </a>
+                      )
+                      : '-'],
+                  ]}
+                  />
+                </div>
+              )}
+              {(order.desiredDeliveryDateUtc || order.estimatedDelivery) && (
+                <div className="md:col-span-2">
+                  <h3 className="font-semibold mb-1.5">Delivery dates</h3>
+                  <KeyValue rows={[
+                    ['Preferred date the customer chose', order.desiredDeliveryDateUtc ?? '-'],
+                    ['Expected delivery', order.estimatedDelivery?.message
+                      ?? (order.estimatedDelivery?.collectFrom ? `Ready to collect from ${order.estimatedDelivery.collectFrom}` : '-')],
+                  ]}
+                  />
+                </div>
+              )}
             </div>
           )}
           {tab === 'products' && (

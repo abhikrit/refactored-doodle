@@ -5,14 +5,24 @@
 
 import { Router } from 'express';
 import { definePlugin } from '../../core/plugin-host.js';
+import { estimateAsync } from './services/estimates.js';
 import {
-  shippingMethodsAsync, pickupPointsAsync, deliverySlotsAsync, createShipmentAsync, dispatchShipmentAsync, handoverAsync, shipmentsAsync,
+  shippingMethodsAsync, pickupPointsAsync, createShipmentAsync, dispatchShipmentAsync, handoverAsync, shipmentsAsync,
 } from './services/logistics.js';
 
 export default definePlugin({
   area: 'LOG',
   startupOrder: 3300,
   async install(ctx) {
+    // IC-CHK-03: LOG-005 supplies the delivery estimate CHK-014 shows (BR-LOG-030). CHK
+    // calculates no date of its own.
+    ctx.providers.registerProvider('IC-CHK-03', {
+      area: 'LOG',
+      feature: 'PRD-LOG-005',
+      name: 'delivery estimate',
+      fn: estimateAsync,
+    });
+
     // AC-IAM-025-01-01: LOG owns the deliveries, so it reports the ones waiting for the customer.
     ctx.providers.registerProvider('PRD-IAM-025 waiting items', {
       name: 'deliveries to confirm',
@@ -56,9 +66,6 @@ export default definePlugin({
     });
     r.get('/pickup-points', async (req, res, next) => {
       try { res.json(await pickupPointsAsync()); } catch (err) { next(err); }
-    });
-    r.get('/delivery-slots', async (req, res, next) => {
-      try { res.json(await deliverySlotsAsync()); } catch (err) { next(err); }
     });
     r.get('/shipments', async (req, res, next) => {
       try { res.json(await shipmentsAsync()); } catch (err) { next(err); }

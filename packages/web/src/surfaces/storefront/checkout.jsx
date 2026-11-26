@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../../lib/api.js';
 import { useProduct, money } from '../../lib/store.jsx';
 import {
-  Alert, Badge, Button, Checkbox, Field, Input, Panel, ProductPicture, Select, Spinner,
+  Alert, Badge, Button, Checkbox, Field, Input, Panel, ProductPicture, Select, Spinner, Textarea,
 } from '../../ui/nop/kit.jsx';
 
 /* --------------------------------------------------------------------- cart --- */
@@ -243,10 +243,17 @@ export function Checkout() {
   const [pending, setPending] = useState(null);
   const [progress, setProgress] = useState(null);
   const [fieldErrors, setFieldErrors] = useState({});
+  const [stepMessage, setStepMessage] = useState(null);
   const [required, setRequired] = useState({});
   const [summary, setSummary] = useState(null);
   const [chosenAddressId, setChosenAddressId] = useState('');
   const [countries, setCountries] = useState([]);
+  const [shippingStep, setShippingStep] = useState(null);
+  const [lineErrors, setLineErrors] = useState([]);
+  const [instructions, setInstructions] = useState('');
+  const [addressForm, setAddressForm] = useState(null);
+  const [attributes, setAttributes] = useState({});
+  const [pin, setPin] = useState(null);
 
   const loadProgress = React.useCallback(async () => {
     const next = await api.get('/checkout-area/checkout/steps');
@@ -260,7 +267,7 @@ export function Checkout() {
       setStep(s.steps[0]?.id ?? 'confirm');
       if (s.paymentMethods[0]) setMethod(s.paymentMethods[0].systemName);
     }).catch(() => {});
-    api.get('/logistics/delivery-slots').then(setSlots).catch(() => {});
+    api.get('/checkout-area/delivery-windows').then((w) => setSlots(w.windows ?? [])).catch(() => {});
     api.get('/checkout-area/checkout/step-fields').then(setRequired).catch(() => {});
     api.get('/platform/countries').then(setCountries).catch(() => {});
     loadProgress().catch(() => {});
@@ -292,6 +299,26 @@ export function Checkout() {
     if (!method) return;
     api.get(`/checkout-area/checkout/totals?paymentMethodSystemName=${method}`).then(setTotals).catch(() => {});
   }, [method, step]);
+
+  const loadShippingStep = React.useCallback(async (date = null) => {
+    const query = date ? `?date=${encodeURIComponent(date)}` : '';
+    const next = await api.get(`/checkout-area/checkout/shipping-step${query}`);
+    setShippingStep(next);
+    setInstructions((current) => current || next.instructions?.value || '');
+    return next;
+  }, []);
+
+  useEffect(() => {
+    if (step !== 'shipping-method') return;
+    loadShippingStep(slot ? null : null).catch(() => {});
+  }, [step, loadShippingStep]);
+
+  // the address form of the chosen country: the county fields, the attributes and the map pin
+  useEffect(() => {
+    if (step !== 'billing' && step !== 'shipping') return;
+    const query = address.country ? `?country=${encodeURIComponent(address.country)}` : '';
+    api.get(`/checkout-area/address/form${query}`).then(setAddressForm).catch(() => {});
+  }, [step, address.country]);
 
   useEffect(() => {
     if (step !== 'confirm' || !method) return;
@@ -326,9 +353,21 @@ export function Checkout() {
   // kept and a message against each field that failed
   const goNext = async () => {
     const values = {
-      billing: { ...address },
-      shipping: { ...address },
-      'shipping-method': { fulfilment: 'per line' },
+      billing: { ...address, attributes, pin },
+      shipping: { ...address, attributes, pin },
+      'shipping-method': {
+        fulfilment: 'per line',
+        lines: (shippingStep?.lines ?? []).map((l) => ({
+          itemId: l.shoppingCartItemId,
+          method: l.chosen.method,
+          pickupPointId: l.chosen.pickupPointId,
+        })),
+        shippingMethod: shippingStep?.shippingMethod ?? null,
+        desiredDeliveryDate: shippingStep?.chosenDate ?? null,
+        deliverySlotId: slot || null,
+        area: address.city || null,
+        ...(shippingStep?.instructions ? { instructions } : {}),
+      },
       'payment-method': { paymentMethodSystemName: method },
       'payment-info': {},
     }[step] ?? {};
@@ -338,16 +377,21 @@ export function Checkout() {
     });
     if (res.ok !== true) {
       setFieldErrors(res.fieldErrors ?? {});
+      setLineErrors(res.lineErrors ?? []);
+      setStepMessage(res.message ?? null);
       if (res.progressIndicator) setProgress((p) => ({ ...(p ?? {}), progressIndicator: res.progressIndicator }));
       return;
     }
     setFieldErrors({});
+    setLineErrors([]);
+    setStepMessage(null);
     const next = await loadProgress();
     setStep(res.nextStep ?? next.currentStep ?? stepIds[Math.min(stepIds.indexOf(step) + 1, stepIds.length - 1)]);
   };
   const goBack = () => {
     const i = stepIds.indexOf(step);
     setFieldErrors({});
+    setStepMessage(null);
     setStep(stepIds[Math.max(i - 1, 0)]);
   };
 
@@ -457,7 +501,20 @@ export function Checkout() {
                 <Field label="E-mail" required={!customer} error={fieldErrors.email}><Input type="email" value={address.email} onChange={(e) => setAddress({ ...address, email: e.target.value })} /></Field>
                 <Field label="Phone" required={isRequired('phone')} error={fieldErrors.phone}><Input value={address.phone} onChange={(e) => setAddress({ ...address, phone: e.target.value })} /></Field>
                 <Field label="Street address" required={isRequired('addressLine1')} error={fieldErrors.addressLine1} hint="A street address, a landmark or a map pin is enough"><Input value={address.addressLine1} onChange={(e) => setAddress({ ...address, addressLine1: e.target.value })} /></Field>
-                <Field label="Landmark" hint="Nearest landmark, to help the courier find you"><Input value={address.landmark} onChange={(e) => setAddress({ ...address, landmark: e.target.value })} /></Field>
+                <Field
+                  label="Landmark"
+                  required={(addressForm?.attributes ?? []).find((a) => a.name === 'Landmark')?.isRequired === true}
+                  error={fieldErrors.Landmark}
+                  hint="Nearest landmark, to help the courier find you"
+                >
+                  <Input
+                    value={attributes.Landmark ?? address.landmark ?? ''}
+                    onChange={(e) => {
+                      setAttributes({ ...attributes, Landmark: e.target.value });
+                      setAddress({ ...address, landmark: e.target.value });
+                    }}
+                  />
+                </Field>
                 <Field label="City / town" required={isRequired('city')} error={fieldErrors.city}><Input value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} /></Field>
                 <Field label="Country" required={isRequired('country')} error={fieldErrors.country}>
                   <Select value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })}>
@@ -467,13 +524,87 @@ export function Checkout() {
                       .map((c) => <option key={c.id ?? c.name} value={c.name}>{c.name}</option>)}
                   </Select>
                 </Field>
-                <Field label="County / district">
-                  <Select value={address.county} onChange={(e) => setAddress({ ...address, county: e.target.value })}>
-                    <option value="">Choose…</option>
-                    {(entities.statesProvinces ?? []).map((sp) => <option key={sp} value={sp}>{sp}</option>)}
-                  </Select>
-                </Field>
+                {addressForm?.county.enabled !== false && (
+                  <Field
+                    label="County / district"
+                    required={addressForm?.county.required === true}
+                    error={fieldErrors.county}
+                  >
+                    <Select value={address.county} onChange={(e) => setAddress({ ...address, county: e.target.value })}>
+                      <option value="">Choose…</option>
+                      {(addressForm?.statesProvinces?.length ? addressForm.statesProvinces : (entities.statesProvinces ?? []))
+                        .map((sp) => <option key={sp} value={sp}>{sp}</option>)}
+                    </Select>
+                  </Field>
+                )}
+                {/* the address attributes this store asks for: landmark, a name for the address,
+                    a post-office box */}
+                {(addressForm?.attributes ?? []).filter((a) => a.name !== 'Landmark').map((attribute) => (
+                  <Field
+                    key={attribute.id}
+                    label={attribute.name}
+                    required={attribute.isRequired}
+                    error={fieldErrors[attribute.name]}
+                  >
+                    <Input
+                      value={attributes[attribute.name] ?? ''}
+                      maxLength={attribute.maxLength ?? undefined}
+                      onChange={(e) => setAttributes({ ...attributes, [attribute.name]: e.target.value })}
+                    />
+                  </Field>
+                ))}
               </div>
+
+              {addressForm?.mapPinEnabled && (
+                <div className="mt-3 border border-nop-border rounded-sm p-3">
+                  <div className="text-[12.5px] font-medium text-gray-700">Put a pin on the map</div>
+                  <p className="text-[11.5px] text-nop-muted mt-0.5">
+                    If your home is hard to describe, drop a pin and the courier will use it.
+                  </p>
+                  <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                    <Field label="Latitude">
+                      <Input
+                        value={pin?.latitude ?? ''}
+                        onChange={(e) => setPin({ ...(pin ?? {}), latitude: e.target.value })}
+                        placeholder="-13.9626"
+                      />
+                    </Field>
+                    <Field label="Longitude">
+                      <Input
+                        value={pin?.longitude ?? ''}
+                        onChange={(e) => setPin({ ...(pin ?? {}), longitude: e.target.value })}
+                        placeholder="33.7741"
+                      />
+                    </Field>
+                    <div className="self-end">
+                      <Button
+                        size="sm"
+                        onClick={() => {
+                          if (!navigator.geolocation) return;
+                          navigator.geolocation.getCurrentPosition((position) => setPin({
+                            latitude: position.coords.latitude.toFixed(6),
+                            longitude: position.coords.longitude.toFixed(6),
+                          }));
+                        }}
+                      >
+                        Use where I am now
+                      </Button>
+                    </div>
+                  </div>
+                  {pin?.latitude && pin?.longitude && (
+                    <p className="text-[11.5px] text-nop-muted mt-1.5">
+                      Pin at {pin.latitude}, {pin.longitude}.
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {(addressForm?.locatorRule ?? []).length > 0 && (
+                <p className="mt-2 text-[11.5px] text-nop-muted">
+                  Give at least one of: {addressForm.locatorRule.map((l) => ({ street: 'a street address', landmark: 'a landmark', pin: 'a pin on the map' }[l] ?? l)).join(', ')}.
+                </p>
+              )}
+              {stepMessage && <Alert tone="error" className="mt-3">{stepMessage}</Alert>}
               {Object.keys(fieldErrors).length > 0 && (
                 <p className="mt-3 text-[12.5px] text-red-700">
                   Please correct the fields marked above. What you have already entered has been kept.
@@ -484,34 +615,160 @@ export function Checkout() {
 
           {step === 'shipping-method' && (
             <Panel title="Shipping method">
-              <p className="text-[13px] text-nop-muted mb-3">
-                Each item in your cart already carries its own choice of home delivery or collection. The fee is
-                calculated for each seller.
-              </p>
-              <div className="space-y-2">
-                {(totals?.perSeller ?? []).map((g) => (
-                  <div key={g.key} className="border border-nop-border rounded-sm p-3">
-                    <div className="flex items-center justify-between gap-3">
-                      <div>
-                        <div className="font-medium text-[13px]">{g.vendorName}</div>
-                        <div className="text-[12px] text-nop-muted">
-                          {g.fulfilment === 'pickup' ? 'Collection at an outlet' : 'Home delivery'} · {g.lines} line{g.lines === 1 ? '' : 's'} · {g.weightKg.toFixed(2)} kg
+              {!shippingStep ? <Spinner label="Loading your delivery choices" /> : (
+                <div className="space-y-5">
+                  {lineErrors.length > 0 && (
+                    <Alert tone="error">
+                      <ul className="list-disc pl-5 space-y-0.5">
+                        {lineErrors.map((e, i) => <li key={i}>{e.message}</li>)}
+                      </ul>
+                    </Alert>
+                  )}
+
+                  {/* the choice of each item: delivered, or collected at an outlet */}
+                  <div className="space-y-3">
+                    {shippingStep.lines.map((line) => (
+                      <div key={line.shoppingCartItemId} className="border border-nop-border rounded-sm p-3">
+                        <div className="font-medium text-[13px]">{line.productName}</div>
+                        <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                          <Field label="How would you like this item?">
+                            <Select
+                              value={line.chosen.method}
+                              aria-label={`Fulfilment for ${line.productName}`}
+                              onChange={async (e) => {
+                                await api.post(`/checkout-area/fulfilment/lines/${line.shoppingCartItemId}`, {
+                                  method: e.target.value,
+                                  pickupPointId: e.target.value === 'pickup'
+                                    ? (line.chosen.pickupPointId ?? line.preferredPickupPointId ?? line.outlets[0]?.id ?? null)
+                                    : null,
+                                });
+                                await loadShippingStep(shippingStep.chosenDate);
+                                await refreshCart();
+                              }}
+                            >
+                              {line.methods.map((m) => (
+                                <option key={m.id} value={m.id} disabled={!m.offered}>{m.name}</option>
+                              ))}
+                            </Select>
+                          </Field>
+                          {line.chosen.method === 'pickup' && (
+                            <Field label="Collect from" hint={line.preferredPickupPointId ? 'Your usual outlet is chosen for you' : null}>
+                              <Select
+                                value={line.chosen.pickupPointId ?? ''}
+                                aria-label={`Outlet for ${line.productName}`}
+                                onChange={async (e) => {
+                                  await api.post(`/checkout-area/fulfilment/lines/${line.shoppingCartItemId}`, {
+                                    method: 'pickup', pickupPointId: Number(e.target.value),
+                                  });
+                                  await loadShippingStep(shippingStep.chosenDate);
+                                  await refreshCart();
+                                }}
+                              >
+                                <option value="">Choose an outlet…</option>
+                                {line.outlets.map((o) => <option key={o.id} value={o.id}>{o.name} - {o.city}</option>)}
+                              </Select>
+                            </Field>
+                          )}
                         </div>
+                        {line.methods.filter((m) => !m.offered && m.reason).map((m) => (
+                          <p key={m.id} className="text-[11.5px] text-amber-800 mt-1.5">{m.name}: {m.reason}</p>
+                        ))}
+                        {line.outletsNotOffered.length > 0 && line.chosen.method === 'pickup' && (
+                          <p className="text-[11.5px] text-nop-muted mt-1.5">
+                            {line.outletsNotOffered.map((o) => `${o.name} - ${o.reason}`).join('; ')}
+                          </p>
+                        )}
                       </div>
-                      <div className="font-medium">{money(g.fee, currency)}</div>
-                    </div>
-                    <p className="text-[11.5px] text-nop-muted mt-1.5">{g.basisText ?? ''}</p>
+                    ))}
                   </div>
-                ))}
-              </div>
-              {state.deliveryDate.enabled && slots.length > 0 && (
-                <div className="mt-4 max-w-sm">
-                  <Field label="Delivery window" hint="Your window is held when the order is placed">
-                    <Select value={slot} onChange={(e) => setSlot(e.target.value)}>
-                      <option value="">No preference</option>
-                      {slots.map((s) => <option key={s.id} value={s.id}>{s.name} (capacity {s.capacity})</option>)}
-                    </Select>
-                  </Field>
+
+                  {/* what each delivery option and each outlet would mean */}
+                  {(shippingStep.estimates.options.some((o) => o.earliest) || shippingStep.estimates.outlets.length > 0) && (
+                    <div className="space-y-2">
+                      <h3 className="text-[13px] font-semibold text-store-dark">When to expect your order</h3>
+                      {shippingStep.estimates.options.filter((o) => o.earliest).map((o) => (
+                        <div key={o.shippingMethod} className="flex items-center justify-between gap-3 border border-nop-border rounded-sm px-3 py-2">
+                          <span className="text-[13px] font-medium">{o.shippingMethod}</span>
+                          <span className="text-[12.5px] text-nop-muted">{o.message}</span>
+                        </div>
+                      ))}
+                      {shippingStep.estimates.outlets.map((o) => (
+                        <div key={o.pickupPointId} className="flex items-center justify-between gap-3 border border-nop-border rounded-sm px-3 py-2">
+                          <span className="text-[13px] font-medium">{o.name}</span>
+                          <span className="text-[12.5px] text-nop-muted">
+                            {o.collectFrom ? `Ready to collect from ${o.collectFrom}` : 'The collection date is not available yet'}
+                          </span>
+                        </div>
+                      ))}
+                      {shippingStep.estimates.options.every((o) => !o.earliest) && shippingStep.estimates.outlets.length === 0 && (
+                        <p className="text-[12.5px] text-nop-muted">No date is available for these options.</p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* the fee of each seller and fulfilment group */}
+                  <div className="space-y-2">
+                    {(totals?.perSeller ?? []).map((g) => (
+                      <div key={g.key} className="border border-nop-border rounded-sm p-3">
+                        <div className="flex items-center justify-between gap-3">
+                          <div>
+                            <div className="font-medium text-[13px]">{g.vendorName}</div>
+                            <div className="text-[12px] text-nop-muted">
+                              {g.fulfilment === 'pickup' ? 'Collection at an outlet' : 'Home delivery'} · {g.lines} line{g.lines === 1 ? '' : 's'} · {g.weightKg.toFixed(2)} kg
+                            </div>
+                          </div>
+                          <div className="font-medium">{money(g.fee, currency)}</div>
+                        </div>
+                        <p className="text-[11.5px] text-nop-muted mt-1.5">{g.basisText ?? ''}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* the preferred date and the windows of that date */}
+                  {shippingStep.desiredDate.enabled && (
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <Field label={shippingStep.desiredDate.label} hint={shippingStep.desiredDate.note}>
+                        <Select
+                          value={shippingStep.chosenDate ?? ''}
+                          onChange={async (e) => { await loadShippingStep(e.target.value || null); setSlot(''); }}
+                        >
+                          <option value="">No preference</option>
+                          {shippingStep.desiredDate.dates.map((d) => <option key={d} value={d}>{d}</option>)}
+                        </Select>
+                      </Field>
+                      {shippingStep.windowsOffered && (
+                        <Field label="Delivery window" error={fieldErrors.deliverySlotId} hint="Your window is held when the order is placed">
+                          <Select value={slot} onChange={(e) => setSlot(e.target.value)}>
+                            <option value="">No preference</option>
+                            {shippingStep.windows.map((w) => (
+                              <option key={w.id} value={w.id}>{w.start}-{w.end} ({w.remaining} left)</option>
+                            ))}
+                          </Select>
+                        </Field>
+                      )}
+                    </div>
+                  )}
+                  {shippingStep.desiredDate.enabled && shippingStep.chosenDate && !shippingStep.windowsOffered && (
+                    <p className="text-[12.5px] text-nop-muted">No delivery window is offered for that date.</p>
+                  )}
+
+                  {/* the delivery instructions, where the store asks for them */}
+                  {shippingStep.instructions && (
+                    <Field
+                      label={shippingStep.instructions.name}
+                      required={shippingStep.instructions.isRequired}
+                      error={fieldErrors.instructions}
+                      hint="The courier reads this when they come to you"
+                    >
+                      <Textarea
+                        rows={3}
+                        maxLength={shippingStep.instructions.maxLength ?? undefined}
+                        value={instructions}
+                        onChange={(e) => setInstructions(e.target.value)}
+                        placeholder="Blue gate opposite the school, ask for Amina"
+                      />
+                    </Field>
+                  )}
                 </div>
               )}
             </Panel>

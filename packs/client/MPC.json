@@ -122,37 +122,233 @@
     "shippingMethods": [
       {
         "name": "Standard",
-        "description": "Malawi Post standard delivery"
+        "description": "Malawi Post standard delivery",
+        "transitDays": 3,
+        "transitDaysSpread": 2
       },
       {
         "name": "Express",
-        "description": "Malawi Post express delivery"
+        "description": "Malawi Post express delivery",
+        "transitDays": 1,
+        "transitDaysSpread": 0
       },
       {
         "name": "Pickup at a post office",
-        "description": "Collect at the chosen outlet with your pickup code"
+        "description": "Collect at the chosen outlet with your pickup code",
+        "transitDays": 0
       }
     ],
     "pickupPoints": [
       {
         "name": "Lilongwe Post Office",
         "city": "Lilongwe",
-        "openingHours": "Mon-Fri 08:00-16:30, Sat 08:00-12:00"
+        "openingHours": "Mon-Fri 08:00-16:30, Sat 08:00-12:00",
+        "transitDays": 1,
+        "closedDays": [
+          "Sun"
+        ],
+        "closedDates": []
       },
       {
         "name": "Blantyre Post Office",
         "city": "Blantyre",
-        "openingHours": "Mon-Fri 08:00-16:30, Sat 08:00-12:00"
+        "openingHours": "Mon-Fri 08:00-16:30, Sat 08:00-12:00",
+        "transitDays": 2,
+        "closedDays": [
+          "Sun"
+        ],
+        "closedDates": []
       },
       {
         "name": "Mzuzu Post Office",
         "city": "Mzuzu",
-        "openingHours": "Mon-Fri 08:00-16:30"
+        "openingHours": "Mon-Fri 08:00-16:30",
+        "transitDays": 3,
+        "closedDays": [
+          "Sun"
+        ],
+        "closedDates": []
       },
       {
         "name": "Zomba Post Office",
         "city": "Zomba",
-        "openingHours": "Mon-Fri 08:00-16:30"
+        "openingHours": "Mon-Fri 08:00-16:30",
+        "transitDays": 2,
+        "closedDays": [
+          "Sun"
+        ],
+        "closedDates": []
+      }
+    ],
+    "deliveryWindows": [
+      {
+        "shippingMethod": "Standard",
+        "area": "Lilongwe",
+        "dayOfWeek": "Mon",
+        "start": "08:00",
+        "end": "12:00",
+        "capacity": 30,
+        "isActive": true,
+        "name": "Morning 08:00-12:00"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Lilongwe",
+        "dayOfWeek": "Tue",
+        "start": "08:00",
+        "end": "12:00",
+        "capacity": 30,
+        "isActive": true,
+        "name": "Morning 08:00-12:00"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Lilongwe",
+        "dayOfWeek": "Wed",
+        "start": "08:00",
+        "end": "12:00",
+        "capacity": 30,
+        "isActive": true,
+        "name": "Morning 08:00-12:00"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Lilongwe",
+        "dayOfWeek": "Thu",
+        "start": "08:00",
+        "end": "12:00",
+        "capacity": 30,
+        "isActive": true,
+        "name": "Morning 08:00-12:00"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Lilongwe",
+        "dayOfWeek": "Fri",
+        "start": "08:00",
+        "end": "12:00",
+        "capacity": 30,
+        "isActive": true,
+        "name": "Morning 08:00-12:00"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Lilongwe",
+        "dayOfWeek": "Mon",
+        "start": "13:00",
+        "end": "16:30",
+        "capacity": 30,
+        "isActive": true,
+        "name": "Afternoon 13:00-16:30"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Lilongwe",
+        "dayOfWeek": "Tue",
+        "start": "13:00",
+        "end": "16:30",
+        "capacity": 30,
+        "isActive": true,
+        "name": "Afternoon 13:00-16:30"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Lilongwe",
+        "dayOfWeek": "Wed",
+        "start": "13:00",
+        "end": "16:30",
+        "capacity": 30,
+        "isActive": true,
+        "name": "Afternoon 13:00-16:30"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Lilongwe",
+        "dayOfWeek": "Thu",
+        "start": "13:00",
+        "end": "16:30",
+        "capacity": 30,
+        "isActive": true,
+        "name": "Afternoon 13:00-16:30"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Lilongwe",
+        "dayOfWeek": "Fri",
+        "start": "13:00",
+        "end": "16:30",
+        "capacity": 30,
+        "isActive": true,
+        "name": "Afternoon 13:00-16:30"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Blantyre",
+        "dayOfWeek": "Mon",
+        "start": "08:00",
+        "end": "12:00",
+        "capacity": 20,
+        "isActive": true,
+        "name": "Morning 08:00-12:00"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Blantyre",
+        "dayOfWeek": "Tue",
+        "start": "08:00",
+        "end": "12:00",
+        "capacity": 20,
+        "isActive": true,
+        "name": "Morning 08:00-12:00"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Blantyre",
+        "dayOfWeek": "Wed",
+        "start": "08:00",
+        "end": "12:00",
+        "capacity": 20,
+        "isActive": true,
+        "name": "Morning 08:00-12:00"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Blantyre",
+        "dayOfWeek": "Thu",
+        "start": "08:00",
+        "end": "12:00",
+        "capacity": 20,
+        "isActive": true,
+        "name": "Morning 08:00-12:00"
+      },
+      {
+        "shippingMethod": "Standard",
+        "area": "Blantyre",
+        "dayOfWeek": "Fri",
+        "start": "08:00",
+        "end": "12:00",
+        "capacity": 20,
+        "isActive": true,
+        "name": "Morning 08:00-12:00"
+      },
+      {
+        "shippingMethod": "Express",
+        "area": "Lilongwe",
+        "dayOfWeek": "Sat",
+        "start": "08:00",
+        "end": "12:00",
+        "capacity": 15,
+        "isActive": true,
+        "name": "Saturday 08:00-12:00"
+      }
+    ],
+    "checkoutAttributes": [
+      {
+        "name": "Delivery instructions",
+        "attributeControlType": "TextBox",
+        "isRequired": false,
+        "maxLength": 200,
+        "note": "REQ-MPC-FR-106: the courier reads these on the order"
       }
     ]
   },
@@ -183,7 +379,9 @@
     "Tables 8, 10 and 13 and the Complaints and ADR policy were not provided (T-MISS) - FIN-005, RET-003, EGV-* and CRM-004 content is a placeholder",
     "Seller model is an inference (MG-02); whether Malawi Post sells or SMEs sell through it is open",
     "Hosting region (MG-14) and data-protection region (DP-01) open; sizing floor-or-ceiling open (C-SIZE)",
-    "Postal operations scope held by FG-06; native mobile apps held by M-19"
+    "Postal operations scope held by FG-06; native mobile apps held by M-19",
+    "Transit days per shipping option and outlet are not stated (FR-182 states the estimate, not the days): the values here are synthetic (P-5) so LOG-005 can return a date",
+    "Delivery window days, times and capacity are not stated (FR-106 states 'where supported'): the windows here are synthetic (P-5)"
   ],
   "_heldDecisionsVisibleToUsers": [
     "FG-06",

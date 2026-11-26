@@ -216,15 +216,27 @@ async function seedPackEntitiesAsync(report) {
       acceptsReturns: true,
       capacityParcels: 150,
       openNow: true,
+      closedDays: p.closedDays ?? [],
+      closedDates: p.closedDates ?? [],
+      excludedProductIds: p.excludedProductIds ?? [],
+      excludedCategoryIds: p.excludedCategoryIds ?? [],
     });
+  }
+  // CHK-006 delivery windows and CHK-007 address attributes come from the pack layers that own
+  // them (CHK section 10.2): windows per client, address attributes per country then client.
+  for (const w of entities.deliveryWindows ?? []) {
+    await repository('DeliverySlotDefinition').insertAsync({ ...w, storeId: w.storeId ?? 1 });
+  }
+  for (const a of entities.addressAttributes ?? []) {
+    await repository('AddressAttribute').insertAsync({ ...a, isActive: a.isActive !== false });
+  }
+  for (const a of entities.checkoutAttributes ?? []) {
+    await repository('CheckoutAttribute').insertAsync({ ...a, isActive: a.isActive !== false });
   }
   for (const s of content.storefronts ?? []) {
     await repository('Store').insertAsync({
       ...s, sslEnabled: true, companyName: content.clientName,
     });
-  }
-  for (const state of entities.statesProvinces ?? []) {
-    await repository('StateProvince').insertAsync({ name: state, published: true });
   }
 }
 
@@ -345,6 +357,18 @@ async function seedInnerAsync({ clientId, report }) {
     });
   }
 
+  // The regions or districts of the pack's own country (PRD-PLT-009 imports more later). They
+  // are inserted after the countries so that each row names the country it belongs to.
+  const countryLayer = (report.chain ?? []).find((p) => p.layer === 'country');
+  const packCountry = countryLayer
+    ? await repository('Country').getOneAsync((c) => c.twoLetterIsoCode === String(countryLayer.id).toUpperCase())
+    : null;
+  for (const state of report.entities?.statesProvinces ?? []) {
+    await repository('StateProvince').insertAsync({
+      name: state, countryId: packCountry?.id ?? null, published: true,
+    });
+  }
+
   // PRD-IAM-016 and PRD-IAM-017: the policy versions MKT-008 supplies through IC-MKT-03, the
   // native GdprConsent rows and the quotes and return requests of the bundled Misc.RFQ plugin.
   for (const v of [
@@ -435,9 +459,6 @@ async function seedInnerAsync({ clientId, report }) {
   }
   for (const priceList of catalogue.priceLists ?? []) {
     await repository('PriceList').insertAsync({ ...priceList, synthetic: true });
-  }
-  for (const slot of catalogue.deliverySlots ?? []) {
-    await repository('DeliverySlotDefinition').insertAsync({ ...slot, synthetic: true });
   }
 
   // PRD-ADM-002 to PRD-ADM-012: rule sets, transaction types, eligibility, approval chains,

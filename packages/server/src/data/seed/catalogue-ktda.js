@@ -135,10 +135,6 @@ export const ktdaCatalogue = {
       note: 'Native 5.00 price list (decision PRICE-500). A tier price found afterwards replaces the price-list price - the CAT chapter owns the rule where both apply.',
     },
   ],
-  deliverySlots: [
-    { id: 1, name: 'Morning 08:00-12:00', capacity: 40, days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] },
-    { id: 2, name: 'Afternoon 13:00-17:00', capacity: 40, days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] },
-  ],
   placeholders: [
     'KTDA brand guidelines were not provided (REQ-KTDA-UX-002) - theme colours are placeholders',
     'Product data, prices and factory list are synthetic (P-5); the seller model is open (gap KG-01)',

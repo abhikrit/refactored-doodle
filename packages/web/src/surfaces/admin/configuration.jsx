@@ -564,12 +564,10 @@ export function AdminPaymentMethods() {
 export function AdminShippingMethods() {
   const [methods, setMethods] = useState(null);
   const [points, setPoints] = useState(null);
-  const [slots, setSlots] = useState(null);
   const { content } = useProduct();
   useEffect(() => {
     api.get('/logistics/methods').then(setMethods).catch(() => {});
     api.get('/logistics/pickup-points').then(setPoints).catch(() => {});
-    api.get('/logistics/delivery-slots').then(setSlots).catch(() => {});
   }, [content?.clientName]);
   return (
     <AdminPage title="Shipping methods" breadcrumb={crumb({ label: 'Shipping methods' })} intro="Delivery methods and their rates, the pickup points and outlets, and the delivery windows offered at checkout.">
@@ -591,18 +589,11 @@ export function AdminShippingMethods() {
           />
         )}
       </Panel>
-      <Panel title="Delivery windows" bodyClass="p-0">
-        {!slots ? <Spinner /> : (
-          <Grid
-            columns={[
-              { key: 'name', header: 'Window' },
-              { key: 'capacity', header: 'Capacity', align: 'right' },
-              { key: 'days', header: 'Days', render: (s) => (s.days ?? []).join(', ') },
-            ]}
-            rows={slots}
-            rowKey={(s) => s.id}
-          />
-        )}
+      <Panel title="Delivery windows">
+        <p className="text-[13px] text-nop-muted">
+          The time windows offered at checkout are kept on their own screen, with the places each
+          one still has: <Link to="/admin/configuration/delivery-windows" className="underline">Delivery windows</Link>.
+        </p>
       </Panel>
     </AdminPage>
   );

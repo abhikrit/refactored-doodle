@@ -27,12 +27,21 @@ import { getSettingAsync } from '../../../core/settings.js';
 import { getCartAsync } from './cart.js';
 import { paymentMethodsForStoreAsync, processPaymentAsync } from '../../product-pay/services/payments.js';
 import { nextOrderNumberAsync, initialStageAsync } from '../../product-ord/services/orders.js';
-import { quoteFulfilmentAsync, reserveSlotAsync } from '../../product-log/services/logistics.js';
+import { quoteFulfilmentAsync } from '../../product-log/services/logistics.js';
 import {
   runCheckOrderAsync, reserveAsync, confirmAsync, releaseAsync, cartWarningsAsync,
 } from './validation.js';
 
 const sessionRepo = () => repository('CheckoutSession');
+import {
+  cartFulfilmentOptionsAsync, setLineFulfilmentAsync, stepEstimatesAsync, estimateForCartAsync,
+} from './fulfilment.js';
+import {
+  windowsAsync, desiredDateOptionsAsync, instructionsAttributeAsync, setInstructionsAsync,
+  chosenWindowAsync,
+} from './slots.js';
+import { addressFormAsync, locatorCheck } from './address.js';
+
 const orderRepo = () => repository('Order');
 const orderItemRepo = () => repository('OrderItem');
 const pickupCodeRepo = () => repository('PickupCode');
@@ -93,6 +102,58 @@ export async function checkoutStateAsync({ sessionId, customer, storeId = 1 }) {
       'guestCheckoutAllowed': 'OrderSettings.AnonymousCheckoutAllowed - BR-CHK-002: a per-client setting, no code differs between clients (KTDA on, Malawi Post off)',
       'paymentMethods': 'BR-CHK-022 / decision SPLIT-PAY: a multi-seller checkout offers only methods that declare group support',
     },
+  };
+}
+
+/**
+ * Everything the shipping method step shows: the fulfilment choice of each line (CHK-005), the
+ * expected dates (CHK-014), the native preferred-date list and the delivery windows of the
+ * chosen date (CHK-006) and the delivery instructions attribute.
+ */
+export async function shippingStepAsync({
+  sessionId, customer, storeId = 1, shippingMethod = null, area = null, date = null,
+}) {
+  const cart = await getCartAsync({ sessionId, customer, storeId });
+  const session = await openSessionAsync({ sessionId, customer, storeId });
+  const fulfilment = await cartFulfilmentOptionsAsync({
+    cart, customer, storeId, date: date ?? session.desiredDeliveryDate ?? null,
+  });
+  const estimates = await stepEstimatesAsync({
+    cart, address: session.shippingAddress ?? null, storeId, customer,
+  });
+  const chosenMethod = shippingMethod
+    ?? estimates.options.find((o) => Number(o.transitDays ?? 0) > 0)?.shippingMethod
+    ?? estimates.options[0]?.shippingMethod
+    ?? null;
+  const transitDays = estimates.options.find((o) => o.shippingMethod === chosenMethod)?.transitDays ?? 0;
+  const desiredDate = await desiredDateOptionsAsync({ storeId, transitDays });
+  const chosenDate = date ?? session.desiredDeliveryDate ?? null;
+  const windows = await windowsAsync({
+    shippingMethod: chosenMethod,
+    area: area ?? session.shippingAddress?.city ?? null,
+    date: chosenDate,
+    storeId,
+  });
+  const instructions = await instructionsAttributeAsync({ storeId });
+
+  return {
+    lines: fulfilment.lines,
+    estimates,
+    shippingMethod: chosenMethod,
+    desiredDate,
+    chosenDate,
+    windows: windows.windows,
+    windowsOffered: windows.offered,
+    chosenWindow: await chosenWindowAsync(session),
+    instructions: instructions
+      ? {
+        name: instructions.name,
+        controlType: instructions.attributeControlType ?? 'TextBox',
+        isRequired: instructions.isRequired === true,
+        maxLength: instructions.maxLength ?? null,
+        value: session.deliveryInstructions ?? '',
+      }
+      : null,
   };
 }
 
@@ -252,7 +313,7 @@ async function issuePickupCodeAsync({ order, pickupPointId, storeId }) {
 export async function placeOrderAsync({
   sessionId, customer, storeId = 1, paymentMethodSystemName, paymentData = {},
   termsAccepted = false, shownTotal = null, billingAddress = null, shippingAddress = null,
-  deliverySlotId = null, actor = 'storefront',
+  deliverySlotId = null, desiredDeliveryDate = null, actor = 'storefront',
 }) {
   const validation = await validateAsync({
     sessionId, customer, storeId, paymentMethodSystemName, termsAccepted, shownTotal,
@@ -269,29 +330,41 @@ export async function placeOrderAsync({
     const groups = splitCart(cart);
     const reservations = [];
 
+    // the window and the date the shopper chose on the shipping method step
+    const slotId = deliverySlotId ?? session.deliverySlotId ?? null;
+    const desiredDate = desiredDeliveryDate ?? session.desiredDeliveryDate ?? null;
+
     // ---- Reserve phase (IC-CHK-06), each under its own ILocker key (BR-CHK-020) ------------
     try {
-      if (deliverySlotId) {
-        const slot = await reserveSlotAsync({ deliverySlotId, date: new Date().toISOString().slice(0, 10) });
-        if (!slot.ok) {
-          return {
-            ok: false, stoppedAt: 'reserve: delivery slot', failures: [{ step: 'shipping-method', message: resource('Chk.SlotFull') }],
-          };
-        }
-        reservations.push(slot);
-      }
       const participants = await runProviders('IC-CHK-06', 'firstFail', {
-        phase: 'Reserve', cart, customer, storeId, totals,
+        phase: 'Reserve',
+        cart,
+        customer,
+        storeId,
+        totals,
+        deliverySlotId: slotId,
+        date: desiredDate,
       });
       const refused = participants.find((p) => p.result && p.result.ok === false);
       if (refused) {
+        reservations.push(...participants
+          .filter((x) => x.result && x.result.ok !== false && x.result.reservation)
+          .map((x) => ({ feature: x.feature, reservation: x.result.reservation })));
+        await releaseAsync({ reservations, reason: 'a later reservation was refused' });
         return {
           ok: false,
           stoppedAt: `reserve: ${refused.provider}`,
-          failures: [{ step: 'confirm', message: refused.result.message }],
+          messageKey: refused.result.messageKey ?? null,
+          failures: [{
+            step: refused.result.messageKey === 'Chk.SlotFull' ? 'shipping-method' : 'confirm',
+            message: refused.result.message,
+            messageKey: refused.result.messageKey ?? null,
+          }],
         };
       }
-      reservations.push(...participants.map((p) => p.result).filter(Boolean));
+      reservations.push(...participants
+        .filter((x) => x.result && x.result.reservation)
+        .map((x) => ({ feature: x.feature, reservation: x.result.reservation })));
     } catch (err) {
       return { ok: false, stoppedAt: 'reserve', failures: [{ step: 'confirm', message: err.message }] };
     }
@@ -313,7 +386,7 @@ export async function placeOrderAsync({
       await exceptionRepo().insertAsync({
         kind: 'payment-failed', checkoutReference: session.reference, message: err.message, feature: 'PRD-PAY-011',
       });
-      await runProviders('IC-CHK-06', 'notify', { phase: 'Release', reservations });
+      await releaseAsync({ reservations, reason: 'the payment failed' });
       return {
         ok: false,
         stoppedAt: 'payment',
@@ -322,11 +395,15 @@ export async function placeOrderAsync({
       };
     }
     if (payment.status === 'Failed') {
-      await runProviders('IC-CHK-06', 'notify', { phase: 'Release', reservations });
+      await releaseAsync({ reservations, reason: 'the payment failed' });
       return {
         ok: false, stoppedAt: 'payment', failures: [{ step: 'payment-info', message: payment.reason ?? 'Payment failed' }], payment,
       };
     }
+
+    // AC-CHK-014-01-04: the estimate shown for the chosen option is stored with the order, so
+    // the confirm page and tracking show the same dates. CHK does not calculate it (IC-CHK-03).
+    const estimate = await estimateForCartAsync({ cart, address: shippingAddress, storeId });
 
     // ---- save one sub-order per group, allocating order-level amounts (BR-CHK-007) ---------
     const subtotalAll = groups.reduce((s, g) => s + g.items.reduce((x, i) => x + i.subtotal, 0), 0) || 1;
@@ -361,7 +438,15 @@ export async function placeOrderAsync({
         fulfilment: group.fulfilment,
         pickupPointId: group.pickupPointId,
         pickUpInStore: group.fulfilment === 'pickup',
-        deliverySlotId,
+        deliverySlotId: slotId,
+        // AC-CHK-006-01-07: the desired date is read once and set on every sub-order, because
+        // the native SaveOrderDetailsAsync copies it only to the first order saved
+        desiredDeliveryDateUtc: desiredDate,
+        checkoutAttributeDescription: session.checkoutAttributeDescription ?? null,
+        deliveryInstructions: session.deliveryInstructions ?? null,
+        estimatedDelivery: group.fulfilment === 'pickup'
+          ? (estimate?.kind === 'pickup' ? estimate : null)
+          : (estimate?.kind === 'delivery' ? estimate : null),
         billingAddress,
         shippingAddress: group.fulfilment === 'pickup' ? null : shippingAddress,
         paymentMethodSystemName,
@@ -379,7 +464,7 @@ export async function placeOrderAsync({
         placedOnUtc: new Date().toISOString(),
       });
       for (const item of group.items) {
-        await orderItemRepo().insertAsync({
+        const orderItem = await orderItemRepo().insertAsync({
           orderId: order.id,
           productId: item.productId,
           productName: item.product.name,
@@ -391,6 +476,13 @@ export async function placeOrderAsync({
           fulfilment: item.fulfilment,
           pickupPointId: item.pickupPointId,
         });
+        // the line's choice follows the item onto the order (CHK-005, section 9)
+        await repository('OrderItemFulfilment').insertAsync({
+          orderItemId: orderItem.id,
+          orderId: order.id,
+          method: item.fulfilment,
+          pickupPointId: item.pickupPointId ?? null,
+        });
       }
       let pickupCode = null;
       if (group.fulfilment === 'pickup') {
@@ -399,7 +491,7 @@ export async function placeOrderAsync({
       orders.push({ ...order, pickupCode, items: group.items.length });
 
       // Confirm phase per saved sub-order, then the event (BR-CHK-006)
-      await runProviders('IC-CHK-06', 'notify', { phase: 'Confirm', order, reservations });
+      await confirmAsync({ reservations, order, storeId });
       await publishAsync('OrderPlacedEvent', { order });
       await auditAsync({
         event: 'AUD-CHK-004-01',
@@ -610,6 +702,12 @@ export async function submitStepAsync({
   const session = await openSessionAsync({ sessionId, customer, storeId });
   const required = STEP_FIELDS[step];
   if (!required) return { ok: false, message: `${step} is not a checkout step` };
+  // the shipping method step carries the choice of each line, the date and the window
+  if (step === 'shipping-method') {
+    return submitShippingMethodAsync({
+      sessionId, customer, storeId, values, session,
+    });
+  }
   const fieldErrors = {};
   for (const field of required) {
     if (values[field] === undefined || values[field] === null || String(values[field]).trim() === '') {
@@ -620,7 +718,19 @@ export async function submitStepAsync({
     fieldErrors.phone = 'Enter a telephone number we can reach you on.';
   }
   const keptValues = { ...(session.stepValues ?? {}), [step]: values };
-  if (Object.keys(fieldErrors).length) {
+  // BR-CHK-011: the address steps must carry at least the locators the client rule requires
+  let locator = { ok: true };
+  if (step === 'billing' || step === 'shipping') {
+    const form = await addressFormAsync({ storeId, country: values.country ?? null });
+    locator = locatorCheck({
+      values,
+      attributes: values.attributes ?? { Landmark: values.landmark ?? '' },
+      pin: values.pin ?? null,
+      locatorRule: form.locatorRule,
+    });
+  }
+
+  if (Object.keys(fieldErrors).length || locator.ok !== true) {
     await sessionRepo().updateAsync({ ...session, stepValues: keptValues });
     const state = await stepStateAsync({
       sessionId, customer, storeId, currentStep: step,
@@ -631,12 +741,25 @@ export async function submitStepAsync({
       fieldErrors,
       values,
       valuesKept: true,
+      messageKey: locator.ok === true ? null : locator.messageKey,
+      message: locator.ok === true ? null : locator.message,
+      locatorRule: locator.ok === true ? null : locator.rule,
       progressIndicator: state.progressIndicator,
       validatedOn: 'the server (ModelState)',
     };
   }
   const completed = [...new Set([...(session.completedSteps ?? []), step])];
-  await sessionRepo().updateAsync({ ...session, completedSteps: completed, stepValues: keptValues });
+  const addressOnSession = (step === 'billing' || step === 'shipping')
+    ? {
+      [step === 'billing' ? 'billingAddress' : 'shippingAddress']: {
+        ...values,
+        customAttributes: values.attributes ?? (values.landmark ? { Landmark: values.landmark } : {}),
+      },
+    }
+    : {};
+  await sessionRepo().updateAsync({
+    ...session, completedSteps: completed, stepValues: keptValues, ...addressOnSession,
+  });
   const state = await stepStateAsync({ sessionId, customer, storeId });
   return {
     ok: true,
@@ -645,6 +768,110 @@ export async function submitStepAsync({
     nextStep: state.currentStep,
     progressIndicator: state.progressIndicator,
     noCompletedStepRepeated: true,
+  };
+}
+
+/**
+ * The shipping method step: the fulfilment choice of each line (CHK-005), the preferred delivery
+ * date and window (CHK-006) and the delivery instructions. Each is checked on the server, and a
+ * failure comes back against the line or the field it belongs to.
+ */
+async function submitShippingMethodAsync({
+  sessionId, customer, storeId = 1, values = {}, session,
+}) {
+  const fieldErrors = {};
+  const lineErrors = [];
+
+  // AC-CHK-005-01-01: the choice of each line, stored per line
+  for (const line of values.lines ?? []) {
+    const result = await setLineFulfilmentAsync({
+      shoppingCartItemId: Number(line.itemId ?? line.shoppingCartItemId),
+      method: line.method,
+      pickupPointId: line.pickupPointId ?? null,
+      storeId,
+    });
+    if (result.ok !== true) {
+      lineErrors.push({
+        itemId: Number(line.itemId ?? line.shoppingCartItemId),
+        message: result.message,
+        messageKey: result.messageKey ?? null,
+      });
+    }
+  }
+
+  // every line must carry a choice, and a collected line must name its outlet
+  const cart = await getCartAsync({ sessionId, customer, storeId });
+  for (const item of cart.items) {
+    if (!item.fulfilment) {
+      lineErrors.push({ itemId: item.id, message: `Choose delivery or collection for ${item.product.name}.` });
+    } else if (item.fulfilment === 'pickup' && !item.pickupPointId) {
+      lineErrors.push({ itemId: item.id, message: `Choose an outlet to collect ${item.product.name} from.` });
+    }
+  }
+
+  // CHK-006: the preferred date and the window of that date
+  const desiredDeliveryDate = values.desiredDeliveryDate ?? session.desiredDeliveryDate ?? null;
+  const deliverySlotId = values.deliverySlotId != null && values.deliverySlotId !== ''
+    ? Number(values.deliverySlotId)
+    : null;
+  if (deliverySlotId) {
+    const offered = await windowsAsync({
+      shippingMethod: values.shippingMethod ?? null,
+      area: values.area ?? session.shippingAddress?.city ?? null,
+      date: desiredDeliveryDate,
+      storeId,
+    });
+    if (!offered.windows.some((w) => Number(w.id) === deliverySlotId)) {
+      fieldErrors.deliverySlotId = resource('Chk.SlotFull');
+    }
+  }
+
+  // CHK-006-02: the instructions, where the store offers the attribute
+  let instructions = null;
+  if (values.instructions !== undefined) {
+    instructions = await setInstructionsAsync({ session, text: values.instructions, storeId });
+    if (instructions.ok !== true && instructions.offered !== false) {
+      fieldErrors.instructions = instructions.message;
+    }
+  }
+
+  if (lineErrors.length || Object.keys(fieldErrors).length) {
+    const state = await stepStateAsync({
+      sessionId, customer, storeId, currentStep: 'shipping-method',
+    });
+    return {
+      ok: false,
+      step: 'shipping-method',
+      fieldErrors,
+      lineErrors,
+      values,
+      valuesKept: true,
+      progressIndicator: state.progressIndicator,
+      validatedOn: 'the server (ModelState)',
+    };
+  }
+
+  const fresh = await sessionRepo().getByIdAsync(session.id);
+  await sessionRepo().updateAsync({
+    ...fresh,
+    desiredDeliveryDate,
+    deliverySlotId,
+    shippingMethod: values.shippingMethod ?? fresh.shippingMethod ?? null,
+  });
+  const completed = [...new Set([...(fresh.completedSteps ?? []), 'shipping-method'])];
+  await sessionRepo().updateAsync({
+    ...await sessionRepo().getByIdAsync(session.id), completedSteps: completed,
+  });
+  const state = await stepStateAsync({ sessionId, customer, storeId });
+  return {
+    ok: true,
+    step: 'shipping-method',
+    completedSteps: completed,
+    nextStep: state.currentStep,
+    progressIndicator: state.progressIndicator,
+    desiredDeliveryDate,
+    deliverySlotId,
+    instructions: instructions?.description ?? null,
   };
 }
 

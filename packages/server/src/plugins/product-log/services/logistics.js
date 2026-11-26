@@ -2,6 +2,7 @@
 //
 // LOG-001 methods and rates, LOG-002 delivery fee rules (the fee engine is the active rate
 // method), LOG-003 pickup points and outlets, LOG-004 coverage, LOG-010 shipments,
+// Delivery windows belong to CHK-006 (its DeliverySlotDefinition, BR-CHK-010), not to LOG.
 // LOG-012 proof of delivery, which calls CHK-012 for the pickup code (IC-CHK-09).
 // Carrier calls go to the mocks (P-3). LOG-011/022/023/024/032 are held by FG-06.
 
@@ -21,10 +22,6 @@ export async function shippingMethodsAsync() {
 
 export async function pickupPointsAsync() {
   return repository('StorePickupPoint').getAllAsync();
-}
-
-export async function deliverySlotsAsync() {
-  return repository('DeliverySlotDefinition').getAllAsync();
 }
 
 /**
@@ -78,18 +75,6 @@ export async function quoteFulfilmentAsync({ cart, storeId = 1 }) {
     currency,
     features: ['PRD-LOG-001', 'PRD-LOG-002', 'PRD-LOG-003'],
   };
-}
-
-/** BR-CHK-010: slot capacity is checked and reserved under ILocker key chk-slot-{SlotId}-{Date}. */
-export async function reserveSlotAsync({ deliverySlotId, date }) {
-  return withLockAsync(lockKey.deliverySlot(deliverySlotId, date), async () => {
-    const slot = await repository('DeliverySlotDefinition').getByIdAsync(deliverySlotId);
-    if (!slot) return { ok: false, message: 'unknown delivery window' };
-    const taken = await repository('DeliverySlotReservation').countAsync((r) => r.deliverySlotId === Number(deliverySlotId) && r.date === date && !r.released);
-    if (taken >= slot.capacity) return { ok: false, message: 'slot full' };
-    const row = await repository('DeliverySlotReservation').insertAsync({ deliverySlotId: Number(deliverySlotId), date, released: false });
-    return { ok: true, reservationId: row.id, slot: slot.name, remaining: slot.capacity - taken - 1 };
-  });
 }
 
 /** LOG-010: create a shipment, label and tracking number through the carrier adapter (mock). */

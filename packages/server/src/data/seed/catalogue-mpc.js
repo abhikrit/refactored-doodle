@@ -140,11 +140,6 @@ export const mpcCatalogue = {
       note: 'Native 5.00 price list (decision PRICE-500); per-currency fixed prices (CAT-042) remain a build.',
     },
   ],
-  deliverySlots: [
-    { id: 1, name: 'Morning 08:00-12:00', capacity: 30, days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] },
-    { id: 2, name: 'Afternoon 13:00-16:30', capacity: 30, days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] },
-    { id: 3, name: 'Saturday 08:00-12:00', capacity: 15, days: ['Sat'] },
-  ],
   placeholders: [
     'Malawi Post branding is not stated in source - theme colours are placeholders',
     'Tables 8, 10 and 13 and the Complaints and ADR policy were not provided (T-MISS): the financial, return-shipping and e-government rows are placeholders',

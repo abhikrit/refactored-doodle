@@ -223,7 +223,9 @@ export function StatTile({
   return to ? <Link to={to} className="block h-full hover:brightness-[1.03]">{inner}</Link> : inner;
 }
 
-export function Alert({ tone = 'info', title, children }) {
+export function Alert({
+  tone = 'info', title, children, className = '',
+}) {
   const tones = {
     info: 'bg-sky-50 border-sky-200 text-sky-900',
     success: 'bg-emerald-50 border-emerald-200 text-emerald-900',
@@ -231,7 +233,7 @@ export function Alert({ tone = 'info', title, children }) {
     error: 'bg-red-50 border-red-200 text-red-900',
   };
   return (
-    <div className={`border rounded-sm px-3 py-2.5 text-[13px] ${tones[tone]}`}>
+    <div className={`border rounded-sm px-3 py-2.5 text-[13px] ${tones[tone]} ${className}`}>
       {title && <div className="font-semibold mb-0.5">{title}</div>}
       {children}
     </div>
