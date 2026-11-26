@@ -35,6 +35,7 @@ import {
 import {
   AdminEmailTemplates, AdminNotificationDefinitions, AdminNotificationLog,
 } from './surfaces/admin/trk.jsx';
+import { AdminTrackAndTrace, AdminTrackingConfiguration } from './surfaces/admin/trk-hub.jsx';
 import { AdminPlugins } from './surfaces/admin/system.jsx';
 import {
   AdminConsole, BulkEdit, ExtensionRegister, Maintenance, ScheduleTasks, SystemLog, Widgets,
@@ -125,6 +126,8 @@ export default function App() {
               <Route path="/admin/content/notifications" element={<AdminNotificationDefinitions />} />
               <Route path="/admin/content/locale-resources" element={<AdminMessageTemplates />} />
               <Route path="/admin/system/notification-log" element={<AdminNotificationLog />} />
+              <Route path="/admin/operations/track-and-trace" element={<AdminTrackAndTrace />} />
+              <Route path="/admin/configuration/tracking" element={<AdminTrackingConfiguration />} />
               <Route path="/admin/configuration/widgets" element={<Widgets />} />
               <Route path="/admin/system/schedule-tasks" element={<ScheduleTasks />} />
               <Route path="/admin/system/log" element={<SystemLog />} />

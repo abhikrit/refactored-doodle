@@ -380,6 +380,7 @@ const ADMIN_NAV = [
       { label: 'Shipping methods', to: '/admin/configuration/shipping-methods' },
       { label: 'Access control list', to: '/admin/configuration/acl' },
       { label: 'Retention rules and runs', to: '/admin/configuration/retention' },
+      { label: 'Tracking sources and events', to: '/admin/configuration/tracking' },
       { label: 'Widgets', to: '/admin/configuration/widgets' },
       { label: 'Workflows', to: '/admin/configuration/workflows' },
       { label: 'Business rules', to: '/admin/configuration/rules' },
@@ -402,6 +403,7 @@ const ADMIN_NAV = [
     label: 'Operations',
     children: [
       { label: 'Console', to: '/admin/operations' },
+      { label: 'Track and trace', to: '/admin/operations/track-and-trace' },
       { label: 'Approvals', to: '/admin/operations/approvals' },
       { label: 'Exceptions', to: '/admin/operations/exceptions' },
       { label: 'Alerts', to: '/admin/operations/alerts' },

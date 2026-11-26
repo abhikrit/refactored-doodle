@@ -67,6 +67,9 @@ export async function ensureInstalledAsync() {
   await installEventCodeDefinitionsAsync();
   const { installTemplatesAsync } = await import('./email-templates.js');
   await installTemplatesAsync();
+  // the shipment and pickup messages PRD-TRK-012 adds to the native set
+  const { installTrk012DefinitionsAsync } = await import('./shipment-notifications.js');
+  await installTrk012DefinitionsAsync();
   return { installed: true };
 }
 

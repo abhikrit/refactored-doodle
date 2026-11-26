@@ -271,7 +271,9 @@ async function seedCustomersAsync(clientId) {
     {
       email: 'finance@example.com', firstName: 'Finance', lastName: 'Officer', roles: ['Finance'], password: 'demo', authorityLimits: { approval: 500000 },
     },
-    { email: 'logistics@example.com', firstName: 'Logistics', lastName: 'Officer', roles: ['Logistics'], password: 'demo' },
+    // LogisticsOps is the product catalogue role the TRK and LOG chapters grant their
+    // permissions to (BR-IAM-050); Logistics is the staff group the console screens read
+    { email: 'logistics@example.com', firstName: 'Logistics', lastName: 'Officer', roles: ['Logistics', 'LogisticsOps'], password: 'demo' },
     { email: 'support@example.com', firstName: 'Support', lastName: 'Agent', roles: ['Support'], password: 'demo' },
     { email: 'auditor@example.com', firstName: 'External', lastName: 'Auditor', roles: ['Auditor'], password: 'demo' },
     {

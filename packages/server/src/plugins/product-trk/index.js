@@ -21,6 +21,18 @@ import {
   templatesAsync, saveTemplateAsync, templateForAsync, allowedTokens, receiveBounceAsync,
   clearBounceAsync, bounceStateAsync, bouncedCustomersAsync, queuedEmailsAsync,
 } from './services/email-templates.js';
+import {
+  ensureHubInstalledAsync, submitEventsAsync, processEventAsync, reprocessEventAsync,
+  manualEventAsync, rejectedEventsAsync, eventsAsync, timelineAsync, sourcesAsync,
+  eventCodesAsync, mappingsAsync, saveMappingAsync, registerExternalReferenceAsync,
+  externalReferencesAsync, saveExpectationRuleAsync, expectationRulesAsync, runAlertTaskAsync,
+  alertsAsync, resolveAlertAsync, searchAsync as hubSearchAsync, archivedEventsAsync,
+  stateRefusalsAsync, COMMON_EVENT_CODES,
+} from './services/event-hub.js';
+import {
+  installTrk012DefinitionsAsync, shipmentSentAsync, readyForPickupAsync,
+  runPickupReminderTaskAsync, TRK012_DEFINITIONS,
+} from './services/shipment-notifications.js';
 import { registerNotificationEngine } from '../../core/messages.js';
 import { messageGateways } from '@product/mocks';
 
@@ -199,6 +211,60 @@ export default definePlugin({
     n.get('/reference/:reference', send((req) => outcomesByReferenceAsync(req.params.reference)));
     ctx.addRouter('/api/notifications', n);
 
+    /* ------------------------------------- PRD-TRK-002 the tracking event hub --------- */
+    const h = Router();
+    h.get('/sources', send(() => sourcesAsync()));
+    h.get('/event-codes', send(() => eventCodesAsync()));
+    h.get('/mappings', send((req) => mappingsAsync(req.query.source ?? null)));
+    h.post('/mappings', send((req) => saveMappingAsync({ ...req.body, actor: req.actor, storeId: req.storeId })));
+    h.post('/events', send((req) => submitEventsAsync({
+      sourceCode: req.body?.sourceCode,
+      credentials: req.body?.credentials ?? null,
+      events: req.body?.events ?? [],
+      actor: req.actorEmail,
+      gateways: messageGateways,
+    })));
+    h.post('/events/manual', send((req) => manualEventAsync({
+      ...req.body, actor: req.actor, gateways: messageGateways,
+    })));
+    h.get('/events', send((req) => eventsAsync({ status: req.query.status ?? null, reference: req.query.reference ?? null })));
+    h.get('/events/rejected', send(() => rejectedEventsAsync()));
+    h.post('/events/:id/reprocess', send((req) => reprocessEventAsync({
+      eventId: Number(req.params.id), actor: req.actor, gateways: messageGateways,
+    })));
+    h.post('/events/:id/process', send((req) => processEventAsync({ eventId: Number(req.params.id), gateways: messageGateways })));
+    h.get('/timeline/:reference', send((req) => timelineAsync(req.params.reference)));
+    h.get('/search', send((req) => hubSearchAsync({ term: req.query.q, requester: req.actor })));
+    h.get('/archive', send((req) => archivedEventsAsync({ reference: req.query.reference ?? null, requester: req.actor })));
+    h.get('/references', send(() => externalReferencesAsync()));
+    h.post('/references', send((req) => registerExternalReferenceAsync(req.body)));
+    h.get('/expectation-rules', send(() => expectationRulesAsync()));
+    h.post('/expectation-rules', send((req) => saveExpectationRuleAsync({ ...req.body, actor: req.actor, storeId: req.storeId })));
+    h.get('/alerts', send((req) => alertsAsync({ status: req.query.status ?? null })));
+    h.post('/alerts/task', send((req) => runAlertTaskAsync({ now: req.body?.now ?? null })));
+    h.post('/alerts/:id/resolve', send((req) => resolveAlertAsync({
+      alertId: Number(req.params.id), note: req.body?.note, actor: req.actor,
+    })));
+    h.get('/state-refusals', send(() => stateRefusalsAsync()));
+    h.get('/common-codes', send(() => COMMON_EVENT_CODES));
+
+    /* ------------------------------------- PRD-TRK-012 shipment notifications --------- */
+    h.post('/shipments/sent', send(async (req) => shipmentSentAsync({
+      shipment: await ctx.repository('Shipment').getOneAsync((s) => s.trackingNumber === req.body?.trackingNumber),
+      gateways: messageGateways,
+      storeId: req.storeId,
+    })));
+    h.post('/shipments/ready-for-pickup', send(async (req) => readyForPickupAsync({
+      shipment: await ctx.repository('Shipment').getOneAsync((s) => s.trackingNumber === req.body?.trackingNumber),
+      gateways: messageGateways,
+      storeId: req.storeId,
+    })));
+    h.post('/pickup-reminders/task', send((req) => runPickupReminderTaskAsync({
+      now: req.body?.now ?? null, gateways: messageGateways, storeId: req.storeId,
+    })));
+    h.get('/shipment-templates', send(() => TRK012_DEFINITIONS.map((d) => ({ key: d.key, category: d.category, channels: d.channels }))));
+    ctx.addRouter('/api/tracking-hub', h);
+
     ctx.addRouter('/api/tracking', r);
     // IC-PLT-08: tracking events have an active period and then an archive period; the
     // notification log follows its own rule (AC-PLT-020-02-01, AC-PLT-020-02-02).
@@ -217,12 +283,14 @@ export default definePlugin({
     });
 
     await ensureInstalledAsync();
+    await ensureHubInstalledAsync();
+    await installTrk012DefinitionsAsync();
 
     ctx.declare({
       built: true,
-      owns: ['PRD-TRK-001', 'PRD-TRK-004', 'PRD-TRK-005', 'PRD-TRK-007', 'PRD-TRK-011'],
-      builtFeatures: ['PRD-TRK-004', 'PRD-TRK-005', 'PRD-TRK-007'],
-      note: 'the notification engine, e-mail templates and bounces, and the notification log',
+      owns: ['PRD-TRK-001', 'PRD-TRK-002', 'PRD-TRK-004', 'PRD-TRK-005', 'PRD-TRK-007', 'PRD-TRK-011', 'PRD-TRK-012'],
+      builtFeatures: ['PRD-TRK-002', 'PRD-TRK-004', 'PRD-TRK-005', 'PRD-TRK-007', 'PRD-TRK-012'],
+      note: 'the tracking event hub, the notification engine, e-mail templates and bounces, the notification log and the shipment messages',
     });
   },
 });
