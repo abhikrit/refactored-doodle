@@ -70,6 +70,8 @@ export async function ensureInstalledAsync() {
   // the shipment and pickup messages PRD-TRK-012 adds to the native set
   const { installTrk012DefinitionsAsync } = await import('./shipment-notifications.js');
   await installTrk012DefinitionsAsync();
+  const { installOutreachDefinitionAsync } = await import('./outreach.js');
+  await installOutreachDefinitionAsync();
   return { installed: true };
 }
 
@@ -590,8 +592,19 @@ export async function sendNotificationAsync({
       }
 
       if (channel === 'inapp') {
+        // SM-TRK-08: it arrives Unread and stays in the feed until the customer clears it
         await repository('InAppNotification').insertAsync({
-          customerId: recipient.customer?.id ?? null, definitionKey: effectiveDefinition.key, text, read: false, storeId,
+          customerId: recipient.customer?.id ?? null,
+          definitionKey: effectiveDefinition.key,
+          text,
+          status: 'Unread',
+          read: false,
+          orderId: order?.id ?? null,
+          orderNumber: order?.orderNumber ?? null,
+          trackingNumber: shipment?.trackingNumber ?? null,
+          link: order?.orderNumber ? `/account/orders/${order.orderNumber}` : (shipment?.trackingNumber ? `/track/${shipment.trackingNumber}` : null),
+          storeId,
+          createdOnUtc: new Date().toISOString(),
         });
       }
       const sent = await sendThroughGatewayAsync({

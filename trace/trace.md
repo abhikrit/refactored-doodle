@@ -1,6 +1,6 @@
 # Trace report
 
-Generated 2026-11-26T10:19:23.662Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
+Generated 2026-11-26T10:41:49.351Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
 
 ## 1. Reconciliation
 
@@ -11,15 +11,15 @@ its criteria tested and the rest not is partial, and is never counted as built.
 
 | State | Features | Meaning |
 |---|---|---|
-| Built and passing | 72 | Every AC of the feature has a passing test named by the AC ID |
+| Built and passing | 75 | Every AC of the feature has a passing test named by the AC ID |
 | Partly covered | 10 | Some ACs have passing tests, the rest have none yet |
-| Held, prototype default | 91 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
+| Held, prototype default | 90 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
 | Mocked externally | 24 | External-system feature standing behind a mock adapter (P-3) |
-| Not built | 237 | Scaffolded in Session 0, built in its own session |
+| Not built | 235 | Scaffolded in Session 0, built in its own session |
 | **Total** | **434** | reconciles: yes |
 
 Acceptance criteria in the product: 2850. Criteria with a test in this repository:
-598 (598 passing, 0 failing).
+612 (612 passing, 0 failing).
 
 ## 2. Coverage by area and wave
 
@@ -39,7 +39,7 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 | 4 Fulfil | DOC | Documents and records | 6 | 0 | 0 | 2 | 1 | 3 |
 | 4 Fulfil | LOG | Shipping, logistics and fulfilment | 32 | 0 | 1 | 6 | 2 | 23 |
 | 4 Fulfil | RET | Returns, refunds and disputes | 11 | 0 | 0 | 4 | 0 | 7 |
-| 4 Fulfil | TRK | Tracking and notifications | 12 | 9 | 0 | 1 | 0 | 2 |
+| 4 Fulfil | TRK | Tracking and notifications | 12 | 12 | 0 | 0 | 0 | 0 |
 | 5 Engage and run | CRM | Customer service, help desk and chat | 15 | 0 | 0 | 1 | 0 | 14 |
 | 5 Engage and run | MKT | Marketing, promotions, loyalty, content and SEO | 14 | 0 | 0 | 1 | 0 | 13 |
 | 5 Engage and run | RPT | Reporting and analytics | 12 | 0 | 0 | 5 | 4 | 3 |
@@ -55,7 +55,7 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 | Client | Requirements | Mapped to a feature | Demonstrated in the prototype | Project service |
 |---|---|---|---|---|
 | KTDA | 95 | 80 | 21 | 17 |
-| Malawi Post | 411 | 374 | 67 | 38 |
+| Malawi Post | 411 | 374 | 71 | 38 |
 
 "Demonstrated in the prototype" means at least one feature that delivers the requirement has a
 passing AC-named test here. It is not a compliance statement: the compliance status of each
@@ -603,6 +603,12 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-TRK-002-03-03 | PRD-TRK-002 | node (API and rules) | pass |
 | AC-TRK-002-04-01 | PRD-TRK-002 | node (API and rules) | pass |
 | AC-TRK-002-05-01 | PRD-TRK-002 | node (API and rules) | pass |
+| AC-TRK-003-01-01 | PRD-TRK-003 | node (API and rules) | pass |
+| AC-TRK-003-01-02 | PRD-TRK-003 | node (API and rules) | pass |
+| AC-TRK-003-02-01 | PRD-TRK-003 | node (API and rules) | pass |
+| AC-TRK-003-03-01 | PRD-TRK-003 | node (API and rules) | pass |
+| AC-TRK-003-03-02 | PRD-TRK-003 | node (API and rules) | pass |
+| AC-TRK-003-03-03 | PRD-TRK-003 | node (API and rules) | pass |
 | AC-TRK-004-01-01 | PRD-TRK-004 | node (API and rules) | pass |
 | AC-TRK-004-01-02 | PRD-TRK-004 | node (API and rules) | pass |
 | AC-TRK-004-01-03 | PRD-TRK-004 | node (API and rules) | pass |
@@ -649,6 +655,14 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-TRK-007-01-05 | PRD-TRK-007 | node (API and rules) | pass |
 | AC-TRK-007-01-06 | PRD-TRK-007 | node (API and rules) | pass |
 | AC-TRK-007-02-01 | PRD-TRK-007 | node (API and rules) | pass |
+| AC-TRK-008-01-01 | PRD-TRK-008 | node (API and rules) | pass |
+| AC-TRK-008-01-02 | PRD-TRK-008 | node (API and rules) | pass |
+| AC-TRK-008-01-03 | PRD-TRK-008 | node (API and rules) | pass |
+| AC-TRK-009-01-01 | PRD-TRK-009 | node (API and rules) | pass |
+| AC-TRK-009-01-02 | PRD-TRK-009 | node (API and rules) | pass |
+| AC-TRK-009-01-03 | PRD-TRK-009 | node (API and rules) | pass |
+| AC-TRK-009-02-01 | PRD-TRK-009 | node (API and rules) | pass |
+| AC-TRK-009-02-02 | PRD-TRK-009 | node (API and rules) | pass |
 | AC-TRK-010-01-01 | PRD-TRK-010 | node (API and rules) | pass |
 | AC-TRK-010-01-02 | PRD-TRK-010 | node (API and rules) | pass |
 | AC-TRK-010-02-01 | PRD-TRK-010 | node (API and rules) | pass |
@@ -664,7 +678,7 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-TRK-012-04-01 | PRD-TRK-012 | node (API and rules) | pass |
 | AC-TRK-012-04-02 | PRD-TRK-012 | node (API and rules) | pass |
 
-## 5. Features held by an open decision (91)
+## 5. Features held by an open decision (90)
 
 Each is built as the PRD's Proposed option and labelled "Prototype default - decision <ID> pending"
 in the user interface and here.
@@ -979,13 +993,13 @@ in the user interface and here.
 | PRD-LOG-032 | Own-fleet POD capture | LOG | P1 | 4 | held-default | 4 | 0 | FG-06, PAID-STUB / FG-06 / PAID-STUB |
 | PRD-TRK-001 | Buyer shipment tracking | TRK | P1 | 4 | built | 11 | 11 | - |
 | PRD-TRK-002 | Tracking event hub | TRK | P1 | 4 | built | 15 | 15 | - |
-| PRD-TRK-003 | Scanning and field operations app | TRK | P1 | 4 | held-default | 6 | 0 | FG-06 |
+| PRD-TRK-003 | Scanning and field operations app | TRK | P1 | 4 | built | 6 | 6 | FG-06 |
 | PRD-TRK-004 | Email notifications and templates | TRK | P1 | 4 | built | 6 | 6 | - |
 | PRD-TRK-005 | Notification engine (multi-channel) | TRK | P1 | 4 | built | 17 | 17 | - |
 | PRD-TRK-006 | Notification preferences | TRK | P1 | 4 | built | 16 | 16 | - |
 | PRD-TRK-007 | Notification delivery tracking and audit | TRK | P1 | 4 | built | 7 | 7 | - |
-| PRD-TRK-008 | In-app notification feed | TRK | P2 | 4 | not-built | 3 | 0 | - |
-| PRD-TRK-009 | Proactive outreach and outage notices | TRK | P1 | 4 | not-built | 5 | 0 | - |
+| PRD-TRK-008 | In-app notification feed | TRK | P2 | 4 | built | 3 | 3 | - |
+| PRD-TRK-009 | Proactive outreach and outage notices | TRK | P1 | 4 | built | 5 | 5 | - |
 | PRD-TRK-010 | Seller shipment visibility | TRK | P1 | 4 | built | 3 | 3 | - |
 | PRD-TRK-011 | Guest order-status lookup | TRK | P1 | 4 | built | 3 | 3 | - |
 | PRD-TRK-012 | Shipment and pickup event notifications | TRK | P1 | 4 | built | 8 | 8 | - |

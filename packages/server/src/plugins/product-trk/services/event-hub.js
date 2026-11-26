@@ -59,7 +59,17 @@ export const DEFAULT_SOURCES = [
     name: 'Scanning app',
     type: 'scanner app',
     mappings: {
-      SCAN_IN: 'ARRIVED_HUB', SCAN_OUT: 'DEPARTED_HUB', LOAD: 'OUT_FOR_DELIVERY', POD: 'DELIVERED', HANDOVER: 'COLLECTED', FAIL: 'ATTEMPT_FAILED',
+      SCAN_IN: 'ARRIVED_HUB',
+      SCAN_OUT: 'DEPARTED_HUB',
+      LOAD: 'OUT_FOR_DELIVERY',
+      POD: 'DELIVERED',
+      HANDOVER: 'COLLECTED',
+      FAIL: 'ATTEMPT_FAILED',
+      // the scan types the field app sends (PRD-TRK-003)
+      pickup: 'PICKED_UP',
+      'hub-arrival': 'ARRIVED_HUB',
+      'hub-departure': 'DEPARTED_HUB',
+      delivery: 'DELIVERED',
     },
   },
   {

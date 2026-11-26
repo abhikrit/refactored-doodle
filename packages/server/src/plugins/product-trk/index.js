@@ -44,6 +44,17 @@ import {
   openShareLinkAsync, shareLinksAsync, myOrderTrackingAsync, myOrdersTrackingAsync,
   guestLookupAsync, sellerShipmentsAsync, sellerShipmentAsync,
 } from './services/public-tracking.js';
+import {
+  createNoticeAsync, previewNoticeAsync, sendNoticeAsync, cancelNoticeAsync, runNoticeTaskAsync,
+  noticesAsync, noticeAsync, matchAsync, createBannerAsync, activeBannersAsync, bannersAsync,
+  endBannerAsync, runSourceMonitorAsync, feedAsync, feedCountAsync, openNotificationAsync,
+  clearNotificationAsync, installOutreachDefinitionAsync,
+} from './services/outreach.js';
+import {
+  registerDeviceAsync, revokeDeviceAsync, devicesAsync, submitScansAsync, workListAsync,
+  downloadAccessProviderAsync, scanEventsAsync, UPLOAD_CONTEXT, SCAN_TYPES,
+  PROTOTYPE_DEFAULT_LABEL as SCANNING_LABEL,
+} from './services/scanning.js';
 import { registerNotificationEngine } from '../../core/messages.js';
 import { messageGateways } from '@product/mocks';
 
@@ -136,6 +147,26 @@ export default definePlugin({
     const send = (fn) => async (req, res, next) => {
       try { res.json(await fn(req)); } catch (err) { next(err); }
     };
+
+    // PRD-TRK-003: the upload context of the scanning app's media, through the ADM-008 gate
+    const { registerUploadContextAsync } = await import('../product-adm/services/uploads.js');
+    await registerUploadContextAsync({
+      code: UPLOAD_CONTEXT,
+      owningFeature: 'PRD-TRK-003',
+      coveredActions: ['Product.TRK ScanController.SubmitEvents'],
+      ownEndpoint: true,
+      allowedExtensions: ['jpg', 'jpeg', 'png', 'mp3', 'mp4', 'm4a'],
+      maxSizeKb: 8192,
+      scanEnabled: true,
+      failMode: 'reject',
+    });
+    // IC-SEC-05: TRK claims its own scan media on the SEC-002 download filter
+    ctx.providers.registerProvider('IC-SEC-05', {
+      area: 'TRK',
+      feature: 'PRD-TRK-003',
+      name: 'tracking scan media',
+      fn: (request) => downloadAccessProviderAsync(request),
+    });
 
     const r = Router();
     r.get('/hub', async (req, res, next) => {
@@ -348,6 +379,56 @@ export default definePlugin({
       shipmentId: Number(req.params.shipmentId), vendorId: Number(req.params.vendorId), requester: req.actor, storeId: req.storeId,
     })));
 
+    /* ------------------------------------- PRD-TRK-009 outreach and banners ---------- */
+    h.get('/notices', send(() => noticesAsync()));
+    h.post('/notices', send((req) => createNoticeAsync({ ...req.body, actor: req.actor, storeId: req.storeId })));
+    h.get('/notices/:id', send((req) => noticeAsync(Number(req.params.id))));
+    h.get('/notices/:id/preview', send((req) => previewNoticeAsync({
+      noticeId: Number(req.params.id), requester: req.actor, storeId: req.storeId,
+    })));
+    h.post('/notices/:id/send', send((req) => sendNoticeAsync({
+      noticeId: Number(req.params.id), sendAtUtc: req.body?.sendAtUtc ?? null, actor: req.actor, gateways: messageGateways, storeId: req.storeId,
+    })));
+    h.post('/notices/:id/cancel', send((req) => cancelNoticeAsync({
+      noticeId: Number(req.params.id), actor: req.actor, storeId: req.storeId,
+    })));
+    h.post('/notices/task', send((req) => runNoticeTaskAsync({
+      now: req.body?.now ?? null, gateways: messageGateways, storeId: req.storeId,
+    })));
+    h.post('/notices/match', send((req) => matchAsync({ criteria: req.body?.criteria ?? {}, storeId: req.storeId })));
+    h.get('/banners', send(() => bannersAsync()));
+    h.get('/banners/active', send((req) => activeBannersAsync({
+      storeId: Number(req.query.storeId ?? req.storeId), sourceCode: req.query.source ?? null,
+    })));
+    h.post('/banners', send((req) => createBannerAsync({ ...req.body, actor: req.actor, storeId: req.storeId })));
+    h.post('/banners/:id/end', send((req) => endBannerAsync({ bannerId: Number(req.params.id), actor: req.actor })));
+    h.post('/source-monitor', send((req) => runSourceMonitorAsync({ now: req.body?.now ?? null, storeId: req.storeId })));
+
+    /* ------------------------------------- PRD-TRK-008 the in-app feed --------------- */
+    h.get('/feed', send((req) => feedAsync({ customerId: Number(req.query.customerId ?? req.actor?.id ?? 0) })));
+    h.get('/feed/count', send((req) => feedCountAsync({ customerId: Number(req.query.customerId ?? req.actor?.id ?? 0) })));
+    h.post('/feed/:id/open', send((req) => openNotificationAsync({
+      notificationId: Number(req.params.id), customerId: Number(req.body?.customerId ?? req.actor?.id ?? 0),
+    })));
+    h.post('/feed/:id/clear', send((req) => clearNotificationAsync({
+      notificationId: Number(req.params.id), customerId: Number(req.body?.customerId ?? req.actor?.id ?? 0),
+    })));
+
+    /* ------------------------------------- PRD-TRK-003 the scanning app -------------- */
+    h.get('/devices', send(() => devicesAsync()));
+    h.post('/devices', send((req) => registerDeviceAsync({ ...req.body, actor: req.actor, storeId: req.storeId })));
+    h.post('/devices/:deviceId/revoke', send((req) => revokeDeviceAsync({
+      deviceId: req.params.deviceId, actor: req.actor, storeId: req.storeId,
+    })));
+    h.post('/scans', send((req) => submitScansAsync({
+      ...req.body, gateways: messageGateways, storeId: req.storeId,
+    })));
+    h.get('/scans', send(() => scanEventsAsync()));
+    h.get('/work-list', send((req) => workListAsync({
+      deviceId: req.query.deviceId, token: req.query.token ?? null, storeId: req.storeId,
+    })));
+    h.get('/scan-types', send(() => ({ types: SCAN_TYPES, uploadContext: UPLOAD_CONTEXT, prototypeDefaultLabel: SCANNING_LABEL })));
+
     ctx.addRouter('/api/tracking-hub', h);
 
     ctx.addRouter('/api/tracking', r);
@@ -370,12 +451,20 @@ export default definePlugin({
     await ensureInstalledAsync();
     await ensureHubInstalledAsync();
     await installTrk012DefinitionsAsync();
+    await installOutreachDefinitionAsync();
 
     ctx.declare({
       built: true,
-      owns: ['PRD-TRK-001', 'PRD-TRK-002', 'PRD-TRK-004', 'PRD-TRK-005', 'PRD-TRK-006', 'PRD-TRK-007', 'PRD-TRK-010', 'PRD-TRK-011', 'PRD-TRK-012'],
-      builtFeatures: ['PRD-TRK-001', 'PRD-TRK-002', 'PRD-TRK-004', 'PRD-TRK-005', 'PRD-TRK-006', 'PRD-TRK-007', 'PRD-TRK-010', 'PRD-TRK-011', 'PRD-TRK-012'],
-      note: 'the tracking event hub and pages, the notification engine with its preferences, e-mail templates and bounces, the notification log and the shipment messages',
+      owns: [
+        'PRD-TRK-001', 'PRD-TRK-002', 'PRD-TRK-003', 'PRD-TRK-004', 'PRD-TRK-005', 'PRD-TRK-006',
+        'PRD-TRK-007', 'PRD-TRK-008', 'PRD-TRK-009', 'PRD-TRK-010', 'PRD-TRK-011', 'PRD-TRK-012',
+      ],
+      builtFeatures: [
+        'PRD-TRK-001', 'PRD-TRK-002', 'PRD-TRK-003', 'PRD-TRK-004', 'PRD-TRK-005', 'PRD-TRK-006',
+        'PRD-TRK-007', 'PRD-TRK-008', 'PRD-TRK-009', 'PRD-TRK-010', 'PRD-TRK-011', 'PRD-TRK-012',
+      ],
+      holdingDecisions: ['FG-06'],
+      note: 'the whole tracking and notification module: the event hub and its pages, the notification engine with preferences, templates, the log, shipment messages, outreach and banners, the in-app feed, and the scanning app behind its mock (decision FG-06 pending)',
     });
   },
 });

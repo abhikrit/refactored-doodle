@@ -29,6 +29,118 @@ const SURFACES = [
 
 /* ------------------------------------------------------------- storefront ---- */
 
+/** PRD-TRK-009: what staff, or a quiet tracking source, put at the top of every page. */
+function ServiceBanners() {
+  const [banners, setBanners] = useState([]);
+  const [dismissed, setDismissed] = useState([]);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    let live = true;
+    api.get('/tracking-hub/banners/active')
+      .then((r) => live && setBanners(r.banners ?? []))
+      .catch(() => {});
+    return () => { live = false; };
+  }, [pathname]);
+
+  const showing = banners.filter((b) => !dismissed.includes(b.id));
+  if (showing.length === 0) return null;
+  return (
+    <div className="bg-amber-50 border-b border-amber-200">
+      {showing.map((banner) => (
+        <div key={banner.id} className="mx-auto max-w-[1280px] px-4 py-2 flex items-start gap-3">
+          <p className="text-[13px] text-amber-900 flex-1">{banner.text}</p>
+          <button
+            type="button"
+            className="text-[12px] text-amber-900/70 hover:text-amber-900"
+            onClick={() => setDismissed((d) => [...d, banner.id])}
+          >
+            Hide
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** PRD-TRK-008: the bell and its list, in the header links. */
+function NotificationBell() {
+  const { customer } = useProduct();
+  const { pathname } = useLocation();
+  const [unread, setUnread] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [rows, setRows] = useState([]);
+
+  const refresh = async () => {
+    if (!customer) return;
+    const count = await api.get('/tracking-hub/feed/count').catch(() => null);
+    setUnread(count?.unread ?? 0);
+  };
+
+  useEffect(() => { refresh(); }, [customer?.id, pathname]);
+
+  const openList = async () => {
+    setOpen((o) => !o);
+    if (open) return;
+    const feed = await api.get('/tracking-hub/feed').catch(() => null);
+    setRows(feed?.notifications ?? []);
+  };
+
+  if (!customer) return null;
+  return (
+    <div className="relative">
+      <button type="button" onClick={openList} className="relative text-store-text hover:underline" aria-label="Notifications">
+        <span aria-hidden>Updates</span>
+        {unread > 0 && (
+          <span className="absolute -top-2 -right-3 min-w-[16px] h-4 px-1 rounded-full brand-bg text-white text-[10px] leading-4 text-center">
+            {unread}
+          </span>
+        )}
+      </button>
+      {open && (
+        <div className="absolute right-0 top-6 z-50 w-[min(22rem,calc(100vw-2rem))] bg-white border border-nop-border rounded-sm shadow-lg">
+          <div className="px-3 py-2 border-b border-nop-border text-[13px] font-semibold">Your updates</div>
+          <div className="max-h-[60vh] overflow-y-auto">
+            {rows.length === 0 && <p className="px-3 py-3 text-[12.5px] text-nop-muted">Nothing new.</p>}
+            {rows.map((row) => (
+              <div key={row.id} className={`px-3 py-2 border-b border-gray-100 ${row.status === 'Unread' ? 'bg-sky-50/60' : ''}`}>
+                <p className="text-[12.5px] text-store-text">{row.text}</p>
+                <div className="mt-1 flex items-center gap-3">
+                  <span className="text-[11.5px] text-nop-muted">{new Date(row.at).toLocaleString('en-GB')}</span>
+                  {row.link && (
+                    <Link
+                      to={row.link}
+                      className="text-[11.5px] underline"
+                      onClick={async () => {
+                        await api.post(`/tracking-hub/feed/${row.id}/open`, {});
+                        setOpen(false);
+                        refresh();
+                      }}
+                    >
+                      Open
+                    </Link>
+                  )}
+                  <button
+                    type="button"
+                    className="text-[11.5px] text-nop-muted hover:text-store-text"
+                    onClick={async () => {
+                      await api.post(`/tracking-hub/feed/${row.id}/clear`, {});
+                      setRows((r) => r.filter((x) => x.id !== row.id));
+                      refresh();
+                    }}
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function StorefrontShell({ children }) {
   const {
     content, cart, customer, entities, settings, refreshCustomer,
@@ -51,6 +163,7 @@ export function StorefrontShell({ children }) {
 
   return (
     <div className="min-h-full flex flex-col bg-white">
+      <ServiceBanners />
       {/* .header-upper - border-bottom 1px solid #ddd */}
       <div className="border-b border-store-border text-[12px] text-store-text">
         <div className="mx-auto max-w-[1280px] px-4 py-1.5 flex flex-wrap items-center gap-x-4 gap-y-1">
@@ -68,6 +181,8 @@ export function StorefrontShell({ children }) {
             )}
             {customer ? (
               <>
+                {/* widget zone header_links_after: the PRD-TRK-008 bell */}
+                <NotificationBell />
                 <Link to="/account" className="hover:text-nop-blue">My account</Link>
                 <button
                   type="button"
@@ -410,6 +525,7 @@ const ADMIN_NAV = [
     children: [
       { label: 'Console', to: '/admin/operations' },
       { label: 'Track and trace', to: '/admin/operations/track-and-trace' },
+      { label: 'Notices and banners', to: '/admin/operations/notices' },
       { label: 'Approvals', to: '/admin/operations/approvals' },
       { label: 'Exceptions', to: '/admin/operations/exceptions' },
       { label: 'Alerts', to: '/admin/operations/alerts' },

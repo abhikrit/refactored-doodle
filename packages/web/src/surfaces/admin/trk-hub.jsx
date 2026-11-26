@@ -7,7 +7,7 @@ import { AdminPage } from '../../ui/nop/shells.jsx';
 import { useProduct } from '../../lib/store.jsx';
 import {
   Alert, Badge, Breadcrumb, Button, Field, Grid, Input, KeyValue, Panel, SearchPanel,
-  Select, Spinner, StatTile, Tabs,
+  Select, Spinner, StatTile, Tabs, Textarea,
 } from '../../ui/nop/kit.jsx';
 
 const crumb = (group, ...items) => (
@@ -279,6 +279,7 @@ export function AdminTrackingConfiguration() {
   const [sources, setSources] = useState(null);
   const [mappings, setMappings] = useState(null);
   const [rules, setRules] = useState(null);
+  const [devices, setDevices] = useState(null);
   const [notice, setNotice] = useState(null);
   const [mapping, setMapping] = useState({ sourceCode: '', code: '', eventCode: '' });
   const [rule, setRule] = useState({
@@ -290,6 +291,7 @@ export function AdminTrackingConfiguration() {
     api.get('/tracking-hub/sources').then(setSources).catch(() => setSources([]));
     api.get('/tracking-hub/mappings').then(setMappings).catch(() => setMappings([]));
     api.get('/tracking-hub/expectation-rules').then(setRules).catch(() => setRules([]));
+    api.get('/tracking-hub/devices').then(setDevices).catch(() => setDevices([]));
   }, []);
   useEffect(() => { load(); }, [load]);
 
@@ -331,6 +333,7 @@ export function AdminTrackingConfiguration() {
           { id: 'sources', label: 'Sources', count: (sources ?? []).length },
           { id: 'mappings', label: 'What partners call them', count: (mappings ?? []).length },
           { id: 'rules', label: 'Expected scans', count: (rules ?? []).length },
+          { id: 'devices', label: 'Scanning devices', count: (devices ?? []).length },
         ]}
       />
 
@@ -405,6 +408,46 @@ export function AdminTrackingConfiguration() {
             )}
           </Panel>
         </>
+      )}
+
+      {tab === 'devices' && (
+        <Panel
+          bodyClass="p-0"
+          subtitle="The handsets that may send scans, and the staff member each one belongs to. A revoked handset is refused."
+        >
+          {!devices ? <Spinner /> : (
+            <Grid
+              rows={devices}
+              rowKey={(d) => d.deviceId}
+              empty="No scanning device has been registered."
+              columns={[
+                { key: 'deviceId', header: 'Device', render: (d) => <span className="font-mono text-[12px]">{d.deviceId}</span> },
+                { key: 'staffName', header: 'Used by' },
+                { key: 'status', header: 'Status', render: (d) => <Badge tone={d.status === 'Active' ? 'green' : 'red'}>{d.status}</Badge> },
+                { key: 'registeredOnUtc', header: 'Registered', render: (d) => when(d.registeredOnUtc) },
+                { key: 'registeredBy', header: 'Registered by', render: (d) => d.registeredBy ?? '-' },
+                {
+                  key: 'revoke',
+                  header: '',
+                  render: (d) => (d.status === 'Active'
+                    ? (
+                      <Button
+                        size="sm"
+                        variant="danger"
+                        onClick={async () => {
+                          await api.post(`/tracking-hub/devices/${d.deviceId}/revoke`, {});
+                          load();
+                        }}
+                      >
+                        Revoke
+                      </Button>
+                    )
+                    : null),
+                },
+              ]}
+            />
+          )}
+        </Panel>
       )}
 
       {tab === 'rules' && (
@@ -527,6 +570,226 @@ export function AdminSellerShipments() {
               />
             )}
         </Panel>
+      )}
+    </AdminPage>
+  );
+}
+
+/* ====================================================== notices and banners ============ */
+
+export function AdminOutreach() {
+  const [tab, setTab] = useState('notices');
+  const [notices, setNotices] = useState(null);
+  const [banners, setBanners] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [notice, setNotice] = useState(null);
+  const [draft, setDraft] = useState({
+    name: '', text: '', lastEventCode: '', orderStatus: '', sendAtUtc: '',
+  });
+  const [banner, setBanner] = useState({ text: '', stores: '', toUtc: '' });
+  const [codes, setCodes] = useState([]);
+
+  const load = useCallback(() => {
+    api.get('/tracking-hub/notices').then(setNotices).catch(() => setNotices([]));
+    api.get('/tracking-hub/banners').then(setBanners).catch(() => setBanners([]));
+    api.get('/tracking-hub/common-codes').then(setCodes).catch(() => {});
+  }, []);
+  useEffect(() => { load(); }, [load]);
+
+  const create = async () => {
+    const criteria = {};
+    if (draft.lastEventCode) criteria.lastEventCode = draft.lastEventCode;
+    if (draft.orderStatus) criteria.orderStatus = draft.orderStatus;
+    const created = await api.post('/tracking-hub/notices', { name: draft.name, text: draft.text, criteria })
+      .catch((err) => ({ ok: false, message: err.message }));
+    if (created.ok === false) { setNotice({ tone: 'error', text: created.message ?? 'That notice was not created.' }); return; }
+    setNotice({ tone: 'success', text: 'Saved as a draft. Preview it before you send it.' });
+    setDraft({
+      name: '', text: '', lastEventCode: '', orderStatus: '', sendAtUtc: '',
+    });
+    load();
+  };
+
+  const showPreview = async (id) => {
+    setPreview(await api.get(`/tracking-hub/notices/${id}/preview`).catch(() => null));
+  };
+
+  const send = async (id, sendAtUtc = null) => {
+    const sent = await api.post(`/tracking-hub/notices/${id}/send`, { sendAtUtc })
+      .catch((err) => ({ ok: false, message: err.message }));
+    setNotice(sent.ok === false
+      ? { tone: 'error', text: sent.message ?? 'It was not sent.' }
+      : { tone: 'success', text: sent.status === 'Scheduled' ? 'Scheduled.' : `Sent to ${sent.counts?.recipients ?? 0} people.` });
+    load();
+  };
+
+  const cancel = async (id) => {
+    await api.post(`/tracking-hub/notices/${id}/cancel`, {}).catch(() => {});
+    setNotice({ tone: 'success', text: 'Cancelled. Nothing was sent.' });
+    load();
+  };
+
+  const createBanner = async () => {
+    const created = await api.post('/tracking-hub/banners', {
+      text: banner.text,
+      stores: banner.stores ? banner.stores.split(',').map((s) => Number(s.trim())).filter(Boolean) : [],
+      toUtc: banner.toUtc || null,
+    }).catch((err) => ({ ok: false, message: err.message }));
+    setNotice(created.ok === false
+      ? { tone: 'error', text: created.message ?? 'That banner was not created.' }
+      : { tone: 'success', text: 'The banner is on the storefront.' });
+    setBanner({ text: '', stores: '', toUtc: '' });
+    load();
+  };
+
+  const runMonitor = async () => {
+    const r = await api.post('/tracking-hub/source-monitor', {}).catch(() => null);
+    setNotice({ tone: 'success', text: `${r?.raised ?? 0} banners raised, ${r?.removed ?? 0} removed.` });
+    load();
+  };
+
+  return (
+    <AdminPage
+      title="Notices and banners"
+      breadcrumb={crumb('Operations', { label: 'Notices' })}
+      intro="Tell a group of customers about a delay, and put a message at the top of the shop while it lasts."
+      actions={(
+        <>
+          <Button size="sm" onClick={load}>Refresh</Button>
+          <Button size="sm" variant="primary" onClick={runMonitor}>Check the sources</Button>
+        </>
+      )}
+    >
+      {notice && <Alert tone={notice.tone}>{notice.text}</Alert>}
+      <Tabs
+        active={tab}
+        onChange={setTab}
+        tabs={[
+          { id: 'notices', label: 'Notices', count: (notices ?? []).length },
+          { id: 'banners', label: 'Banners', count: (banners ?? []).filter((b) => b.status === 'Active').length },
+        ]}
+      />
+
+      {tab === 'notices' && (
+        <>
+          <Panel title="Write a notice" subtitle="Choose who it reaches, then preview it before anything goes out.">
+            <div className="grid gap-3 md:grid-cols-3">
+              <Field label="Name" required><Input value={draft.name} onChange={(e) => setDraft({ ...draft, name: e.target.value })} placeholder="Customs delay" /></Field>
+              <Field label="Parcels whose last scan was">
+                <Select value={draft.lastEventCode} onChange={(e) => setDraft({ ...draft, lastEventCode: e.target.value })}>
+                  <option value="">Any</option>
+                  {codes.map((c) => <option key={c.code} value={c.code}>{c.displayName}</option>)}
+                </Select>
+              </Field>
+              <Field label="Orders at stage">
+                <Select value={draft.orderStatus} onChange={(e) => setDraft({ ...draft, orderStatus: e.target.value })}>
+                  <option value="">Any</option>
+                  {['Packed', 'Dispatched', 'ReadyForPickup', 'Delivered'].map((s) => <option key={s} value={s}>{s}</option>)}
+                </Select>
+              </Field>
+            </div>
+            <Field label="What to tell them" required>
+              <Textarea rows={3} value={draft.text} onChange={(e) => setDraft({ ...draft, text: e.target.value })} />
+            </Field>
+            <div className="mt-3"><Button variant="primary" onClick={create} disabled={!draft.name || !draft.text}>Save as a draft</Button></div>
+          </Panel>
+
+          <Panel bodyClass="p-0">
+            {!notices ? <Spinner /> : (
+              <Grid
+                rows={[...notices].reverse()}
+                rowKey={(o) => o.id}
+                empty="No notice has been written yet."
+                columns={[
+                  { key: 'name', header: 'Notice' },
+                  { key: 'text', header: 'Message', render: (o) => <span className="text-[12.5px]">{o.text}</span> },
+                  { key: 'status', header: 'Status', render: (o) => <Badge tone={{ Draft: 'slate', Scheduled: 'amber', Completed: 'green', Cancelled: 'red', Sending: 'blue' }[o.status]}>{o.status}</Badge> },
+                  { key: 'sendAtUtc', header: 'Scheduled for', render: (o) => when(o.sendAtUtc) },
+                  { key: 'counts', header: 'Reached', render: (o) => (o.counts ? `${o.counts.sent} of ${o.counts.recipients}` : '-') },
+                  {
+                    key: 'actions',
+                    header: '',
+                    render: (o) => (
+                      <div className="flex gap-1.5">
+                        <Button size="sm" onClick={() => showPreview(o.id)}>Preview</Button>
+                        {['Draft', 'Scheduled'].includes(o.status) && <Button size="sm" variant="success" onClick={() => send(o.id)}>Send now</Button>}
+                        {['Draft', 'Scheduled'].includes(o.status) && <Button size="sm" variant="danger" onClick={() => cancel(o.id)}>Cancel</Button>}
+                      </div>
+                    ),
+                  },
+                ]}
+              />
+            )}
+          </Panel>
+
+          {preview?.ok && (
+            <Panel title="Who this reaches" subtitle="Nothing has been sent.">
+              <KeyValue rows={[['Customers', preview.matchingCustomers], ['Parcels', preview.matchingShipments], ['Status', preview.status]]} />
+              <div className="h-3" />
+              <Grid
+                dense
+                rows={preview.sample}
+                rowKey={(s) => s.trackingNumber}
+                empty="Nothing matches those criteria."
+                columns={[
+                  { key: 'trackingNumber', header: 'Parcel', render: (s) => <span className="font-mono text-[12px]">{s.trackingNumber}</span> },
+                  { key: 'orderNumber', header: 'Order' },
+                  { key: 'lastEventCode', header: 'Last scan' },
+                  { key: 'contact', header: 'Reached at' },
+                ]}
+              />
+            </Panel>
+          )}
+        </>
+      )}
+
+      {tab === 'banners' && (
+        <>
+          <Panel title="Put a message on the shop" subtitle="It appears at the top of every page while it is active.">
+            <div className="grid gap-3 md:grid-cols-3 items-end">
+              <div className="md:col-span-2">
+                <Field label="Message" required><Input value={banner.text} onChange={(e) => setBanner({ ...banner, text: e.target.value })} placeholder="Deliveries in Blantyre are running late today." /></Field>
+              </div>
+              <Field label="Stores" hint="empty for every store"><Input value={banner.stores} onChange={(e) => setBanner({ ...banner, stores: e.target.value })} placeholder="1, 2" /></Field>
+              <Field label="Until"><Input type="datetime-local" value={banner.toUtc} onChange={(e) => setBanner({ ...banner, toUtc: e.target.value })} /></Field>
+              <Button variant="primary" onClick={createBanner} disabled={!banner.text.trim()}>Show it</Button>
+            </div>
+          </Panel>
+          <Panel bodyClass="p-0">
+            {!banners ? <Spinner /> : (
+              <Grid
+                rows={[...banners].reverse()}
+                rowKey={(b) => b.id}
+                empty="No banner has been used."
+                columns={[
+                  { key: 'text', header: 'Message' },
+                  { key: 'automatic', header: 'Raised by', render: (b) => (b.automatic ? 'A quiet source' : 'Staff') },
+                  { key: 'status', header: 'Status', render: (b) => <Badge tone={{ Active: 'green', Scheduled: 'amber', Ended: 'slate' }[b.status]}>{b.status}</Badge> },
+                  { key: 'fromUtc', header: 'From', render: (b) => when(b.fromUtc) },
+                  { key: 'toUtc', header: 'Until', render: (b) => when(b.toUtc) },
+                  { key: 'stores', header: 'Stores', render: (b) => ((b.stores ?? []).join(', ') || 'all') },
+                  {
+                    key: 'end',
+                    header: '',
+                    render: (b) => (b.status !== 'Ended'
+                      ? (
+                        <Button
+                          size="sm"
+                          onClick={async () => {
+                            await api.post(`/tracking-hub/banners/${b.id}/end`, {});
+                            load();
+                          }}
+                        >
+                          Take it down
+                        </Button>
+                      )
+                      : null),
+                  },
+                ]}
+              />
+            )}
+          </Panel>
+        </>
       )}
     </AdminPage>
   );

@@ -39,7 +39,7 @@ import {
   AdminEmailTemplates, AdminNotificationDefinitions, AdminNotificationLog,
 } from './surfaces/admin/trk.jsx';
 import {
-  AdminSellerShipments, AdminTrackAndTrace, AdminTrackingConfiguration,
+  AdminOutreach, AdminSellerShipments, AdminTrackAndTrace, AdminTrackingConfiguration,
 } from './surfaces/admin/trk-hub.jsx';
 import { AdminPlugins } from './surfaces/admin/system.jsx';
 import {
@@ -134,6 +134,7 @@ export default function App() {
               <Route path="/admin/content/locale-resources" element={<AdminMessageTemplates />} />
               <Route path="/admin/system/notification-log" element={<AdminNotificationLog />} />
               <Route path="/admin/operations/track-and-trace" element={<AdminTrackAndTrace />} />
+              <Route path="/admin/operations/notices" element={<AdminOutreach />} />
               <Route path="/admin/sales/shipments" element={<AdminSellerShipments />} />
               <Route path="/admin/configuration/tracking" element={<AdminTrackingConfiguration />} />
               <Route path="/admin/configuration/widgets" element={<Widgets />} />
