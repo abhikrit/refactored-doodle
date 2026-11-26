@@ -33,6 +33,17 @@ import {
   installTrk012DefinitionsAsync, shipmentSentAsync, readyForPickupAsync,
   runPickupReminderTaskAsync, TRK012_DEFINITIONS,
 } from './services/shipment-notifications.js';
+import {
+  matrixAsync, setPreferenceAsync, updatePreferenceAsync, checkAllowedAsync,
+  checkAllowedForSenderAsync, defaultsAsync, saveDefaultsAsync, setOrderSubscriptionAsync,
+  orderSubscriptionAsync, oneClickUnsubscribeAsync, unsubscribeLinkFor, contactOptOutsAsync,
+  contactOptOutStateAsync, releaseHeldAsync, preferencesAsync,
+} from './services/preferences.js';
+import {
+  publicTrackingAsync, refreshTrackingAsync, createShareLinkAsync, revokeShareLinkAsync,
+  openShareLinkAsync, shareLinksAsync, myOrderTrackingAsync, myOrdersTrackingAsync,
+  guestLookupAsync, sellerShipmentsAsync, sellerShipmentAsync,
+} from './services/public-tracking.js';
 import { registerNotificationEngine } from '../../core/messages.js';
 import { messageGateways } from '@product/mocks';
 
@@ -263,6 +274,80 @@ export default definePlugin({
       now: req.body?.now ?? null, gateways: messageGateways, storeId: req.storeId,
     })));
     h.get('/shipment-templates', send(() => TRK012_DEFINITIONS.map((d) => ({ key: d.key, category: d.category, channels: d.channels }))));
+    /* ------------------------------------- PRD-TRK-006 notification preferences ------ */
+    const p = Router();
+    p.get('/defaults', send((req) => defaultsAsync(req.storeId)));
+    p.post('/defaults', send((req) => saveDefaultsAsync({ ...req.body, actor: req.actor, storeId: req.body?.storeId ?? 0 })));
+    p.get('/matrix', send((req) => matrixAsync({
+      customerId: Number(req.query.customerId ?? req.actor?.id ?? 0), storeId: req.storeId,
+    })));
+    p.post('/matrix', send((req) => setPreferenceAsync({
+      customerId: Number(req.body?.customerId ?? req.actor?.id ?? 0), ...req.body, actor: req.actor, storeId: req.storeId,
+    })));
+    p.get('/rows', send((req) => preferencesAsync(req.query.customerId ? Number(req.query.customerId) : null)));
+    p.post('/update', send((req) => updatePreferenceAsync({ ...req.body, actor: req.actor, storeId: req.storeId })));
+    p.get('/check', send((req) => checkAllowedAsync({
+      customerId: req.query.customerId ? Number(req.query.customerId) : null,
+      phone: req.query.phone ?? null,
+      recipient: req.query.recipient ?? null,
+      channel: req.query.channel,
+      category: req.query.category ?? null,
+      sender: req.query.sender ?? null,
+      orderId: req.query.orderId ? Number(req.query.orderId) : null,
+      storeId: req.storeId,
+    })));
+    p.post('/check', send((req) => checkAllowedForSenderAsync({ ...req.body, storeId: req.storeId })));
+    p.get('/opt-outs', send(() => contactOptOutsAsync()));
+    p.get('/opt-outs/state', send((req) => contactOptOutStateAsync({ phone: req.query.phone, channel: req.query.channel })));
+    p.get('/orders/:orderId', send((req) => orderSubscriptionAsync(Number(req.params.orderId))));
+    p.post('/orders/:orderId', send((req) => setOrderSubscriptionAsync({
+      orderId: Number(req.params.orderId), customerId: req.actor?.id ?? null, subscribed: req.body?.subscribed === true, actor: req.actor, storeId: req.storeId,
+    })));
+    p.get('/orders/:orderId/link', send((req) => ({ link: unsubscribeLinkFor(Number(req.params.orderId)) })));
+    p.post('/unsubscribe/:orderId', send((req) => oneClickUnsubscribeAsync({
+      orderId: Number(req.params.orderId), token: req.body?.token ?? req.query.t, storeId: req.storeId,
+    })));
+    p.post('/release-held', send((req) => releaseHeldAsync({
+      now: req.body?.now ?? null, gateways: messageGateways, storeId: req.storeId,
+    })));
+    ctx.addRouter('/api/notification-preferences', p);
+
+    /* ------------------------------------- PRD-TRK-001, 010 and 011 the pages -------- */
+    h.get('/public/:reference', send((req) => publicTrackingAsync({
+      reference: req.params.reference,
+      session: req.sessionId,
+      captchaResponse: req.query.captcha ?? null,
+      storeId: req.storeId,
+    })));
+    h.post('/public/:reference/refresh', send((req) => refreshTrackingAsync({
+      reference: req.params.reference, session: req.sessionId, storeId: req.storeId,
+    })));
+    h.post('/share', send((req) => createShareLinkAsync({
+      reference: req.body?.reference, customerId: req.actor?.id, storeId: req.storeId,
+    })));
+    h.post('/share/:token/revoke', send((req) => revokeShareLinkAsync({
+      token: req.params.token, customerId: req.actor?.id, storeId: req.storeId,
+    })));
+    h.get('/share/:token', send((req) => openShareLinkAsync({ token: req.params.token, storeId: req.storeId })));
+    h.get('/shares', send((req) => shareLinksAsync(req.actor?.id ?? null)));
+    h.get('/my-orders', send((req) => myOrdersTrackingAsync({ customerId: req.actor?.id, storeId: req.storeId })));
+    h.get('/my-orders/:orderNumber', send((req) => myOrderTrackingAsync({
+      orderNumber: req.params.orderNumber, customerId: req.actor?.id, storeId: req.storeId,
+    })));
+    h.post('/guest-lookup', send((req) => guestLookupAsync({
+      orderNumber: req.body?.orderNumber,
+      contact: req.body?.contact,
+      session: req.sessionId,
+      captchaResponse: req.body?.captcha ?? null,
+      storeId: req.storeId,
+    })));
+    h.get('/seller/:vendorId/shipments', send((req) => sellerShipmentsAsync({
+      vendorId: Number(req.params.vendorId), requester: req.actor, storeId: req.storeId,
+    })));
+    h.get('/seller/:vendorId/shipments/:shipmentId', send((req) => sellerShipmentAsync({
+      shipmentId: Number(req.params.shipmentId), vendorId: Number(req.params.vendorId), requester: req.actor, storeId: req.storeId,
+    })));
+
     ctx.addRouter('/api/tracking-hub', h);
 
     ctx.addRouter('/api/tracking', r);
@@ -288,9 +373,9 @@ export default definePlugin({
 
     ctx.declare({
       built: true,
-      owns: ['PRD-TRK-001', 'PRD-TRK-002', 'PRD-TRK-004', 'PRD-TRK-005', 'PRD-TRK-007', 'PRD-TRK-011', 'PRD-TRK-012'],
-      builtFeatures: ['PRD-TRK-002', 'PRD-TRK-004', 'PRD-TRK-005', 'PRD-TRK-007', 'PRD-TRK-012'],
-      note: 'the tracking event hub, the notification engine, e-mail templates and bounces, the notification log and the shipment messages',
+      owns: ['PRD-TRK-001', 'PRD-TRK-002', 'PRD-TRK-004', 'PRD-TRK-005', 'PRD-TRK-006', 'PRD-TRK-007', 'PRD-TRK-010', 'PRD-TRK-011', 'PRD-TRK-012'],
+      builtFeatures: ['PRD-TRK-001', 'PRD-TRK-002', 'PRD-TRK-004', 'PRD-TRK-005', 'PRD-TRK-006', 'PRD-TRK-007', 'PRD-TRK-010', 'PRD-TRK-011', 'PRD-TRK-012'],
+      note: 'the tracking event hub and pages, the notification engine with its preferences, e-mail templates and bounces, the notification log and the shipment messages',
     });
   },
 });

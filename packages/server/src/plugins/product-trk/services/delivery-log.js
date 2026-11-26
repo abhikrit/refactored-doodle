@@ -20,6 +20,7 @@ export async function logMessageAsync({
   order = null, shipment = null, tokens = {}, key = null, storeId = 1, reference = null,
   occurrenceKey = null, text = null, contentVersion = null, languageId = null,
   languageFallback = false, ignoreDelayBeforeSend = false, fallbackOfId = null, sender = null,
+  heldUntilUtc = null, rule = null,
 }) {
   return logRepo().insertAsync({
     definitionId: definition?.id ?? null,
@@ -47,6 +48,8 @@ export async function logMessageAsync({
     languageId,
     languageFallback,
     ignoreDelayBeforeSend,
+    heldUntilUtc,
+    rule,
     storeId,
     createdOnUtc: new Date().toISOString(),
     sentOnUtc: null,

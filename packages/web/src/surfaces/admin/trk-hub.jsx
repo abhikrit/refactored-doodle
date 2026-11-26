@@ -4,6 +4,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { api } from '../../lib/api.js';
 import { AdminPage } from '../../ui/nop/shells.jsx';
+import { useProduct } from '../../lib/store.jsx';
 import {
   Alert, Badge, Breadcrumb, Button, Field, Grid, Input, KeyValue, Panel, SearchPanel,
   Select, Spinner, StatTile, Tabs,
@@ -446,6 +447,86 @@ export function AdminTrackingConfiguration() {
             )}
           </Panel>
         </>
+      )}
+    </AdminPage>
+  );
+}
+
+/* ====================================================== the seller's shipments ========= */
+
+export function AdminSellerShipments() {
+  const { customer } = useProduct();
+  const [shipments, setShipments] = useState(null);
+  const [open, setOpen] = useState(null);
+  const [notice, setNotice] = useState(null);
+  const vendorId = customer?.vendorId ?? null;
+
+  const load = useCallback(() => {
+    if (!vendorId) return;
+    api.get(`/tracking-hub/seller/${vendorId}/shipments`)
+      .then((r) => setShipments(r.shipments ?? []))
+      .catch((err) => setNotice({ tone: 'error', text: err.message }));
+  }, [vendorId]);
+  useEffect(() => { load(); }, [load]);
+
+  const openShipment = async (shipmentId) => {
+    const view = await api.get(`/tracking-hub/seller/${vendorId}/shipments/${shipmentId}`).catch((err) => ({ ok: false, message: err.message }));
+    if (view.ok === false) { setNotice({ tone: 'error', text: view.message ?? 'That shipment is not yours.' }); return; }
+    setOpen(view);
+  };
+
+  if (!vendorId) {
+    return (
+      <AdminPage title="My shipments" breadcrumb={crumb('Sales', { label: 'Shipments' })}>
+        <Alert tone="info">This page belongs to a seller account. Sign in as a seller to see the parcels of your own products.</Alert>
+      </AdminPage>
+    );
+  }
+
+  return (
+    <AdminPage
+      title="My shipments"
+      breadcrumb={crumb('Sales', { label: 'Shipments' })}
+      intro="The parcels of your own products, and what has happened to each of them."
+      actions={<Button size="sm" onClick={load}>Refresh</Button>}
+    >
+      {notice && <Alert tone={notice.tone}>{notice.text}</Alert>}
+      <Panel bodyClass="p-0" subtitle={shipments ? `${shipments.length} parcels` : undefined}>
+        {!shipments ? <Spinner /> : (
+          <Grid
+            rows={shipments}
+            rowKey={(s) => s.shipmentId}
+            empty="None of your products has been shipped yet."
+            onRowClick={(s) => openShipment(s.shipmentId)}
+            columns={[
+              { key: 'trackingNumber', header: 'Parcel', render: (s) => <span className="font-mono text-[12px]">{s.trackingNumber}</span> },
+              { key: 'orderNumber', header: 'Order' },
+              { key: 'shippedOnUtc', header: 'Shipped', render: (s) => when(s.shippedOnUtc) },
+              { key: 'readyForPickupOnUtc', header: 'Ready for collection', render: (s) => when(s.readyForPickupOnUtc) },
+              { key: 'deliveredOnUtc', header: 'Delivered', render: (s) => when(s.deliveredOnUtc) },
+              { key: 'open', header: '', render: (s) => <Button size="sm" onClick={() => openShipment(s.shipmentId)}>Open</Button> },
+            ]}
+          />
+        )}
+      </Panel>
+      {open?.ok && (
+        <Panel title={open.trackingNumber} subtitle="Every scan on this parcel, including hand-over and delivery.">
+          {open.displayShipmentEventsToStoreOwner === false
+            ? <Alert tone="info">The shop does not show scan events to sellers.</Alert>
+            : (
+              <Grid
+                dense
+                rows={open.events}
+                rowKey={(e) => e.id}
+                empty="No scans yet."
+                columns={[
+                  { key: 'at', header: 'When', render: (e) => when(e.at) },
+                  { key: 'displayName', header: 'Event' },
+                  { key: 'location', header: 'Where', render: (e) => e.location ?? '-' },
+                ]}
+              />
+            )}
+        </Panel>
       )}
     </AdminPage>
   );

@@ -223,6 +223,7 @@ export const ACCOUNT_NAV = [
   { to: '/account/history', label: 'Quotes and returns' },
   { to: '/account/addresses', label: 'Addresses' },
   { to: '/account/preferences', label: 'Delivery and notices' },
+  { to: '/account/notifications', label: 'Messages from us' },
   { to: '/account/company', label: 'My company' },
   { to: '/account/privacy', label: 'Privacy' },
   { to: '/account/activity', label: 'Account activity' },
@@ -432,62 +433,3 @@ export function AccountWishlist() {
   );
 }
 
-export function OrderStatus() {
-  const [orderNumber, setOrderNumber] = useState('');
-  const [contact, setContact] = useState('');
-  const [result, setResult] = useState(null);
-
-  const check = async () => {
-    setResult(await api.get(`/tracking/guest-status?orderNumber=${encodeURIComponent(orderNumber)}&contact=${encodeURIComponent(contact)}`));
-  };
-
-  return (
-    <div className="max-w-xl mx-auto space-y-4">
-      <h1 className="nop-page-title">Check an order</h1>
-      <Panel subtitle="TRK-011 order status check for guests">
-        <div className="space-y-3">
-          <Field label="Order number" required><Input value={orderNumber} onChange={(e) => setOrderNumber(e.target.value)} placeholder="KTDA-2026-000001" /></Field>
-          <Field label="E-mail or phone used on the order" required><Input value={contact} onChange={(e) => setContact(e.target.value)} /></Field>
-          <Button variant="brand" onClick={check} disabled={!orderNumber || !contact}>Check</Button>
-        </div>
-        {result && (
-          <div className="mt-4">
-            {result.found ? (
-              <Alert tone="success" title={`Order ${result.orderNumber}`}>
-                Stage {result.stage} · payment {result.paymentStatus}
-                {result.trackingNumber && <> · tracking <Link className="underline" to={`/track/${result.trackingNumber}`}>{result.trackingNumber}</Link></>}
-              </Alert>
-            ) : (
-              <Alert tone="warning">{result.reason ?? 'No order was found for those details.'}</Alert>
-            )}
-          </div>
-        )}
-      </Panel>
-    </div>
-  );
-}
-
-export function PublicTracking() {
-  const { trackingNumber } = useParams();
-  const [tracking, setTracking] = useState(null);
-  useEffect(() => { api.get(`/tracking/${trackingNumber}`).then(setTracking).catch(() => {}); }, [trackingNumber]);
-  if (!tracking) return <Spinner />;
-  return (
-    <div className="max-w-2xl mx-auto space-y-4">
-      <h1 className="nop-page-title">Tracking {trackingNumber}</h1>
-      {!tracking.found ? <Alert tone="warning">No shipment was found for that number.</Alert> : (
-        <Panel title={`${tracking.carrier} · ${tracking.order?.orderNumber}`}>
-          <ol className="relative border-l border-nop-border ml-2 space-y-3">
-            {tracking.events.map((e) => (
-              <li key={e.id} className="pl-4">
-                <span className="absolute -left-[5px] mt-1.5 size-2.5 rounded-full bg-nop-blue" />
-                <div className="text-[13px] font-medium">{e.description}</div>
-                <div className="text-[12px] text-nop-muted">{e.location} · {new Date(e.occurredOnUtc).toLocaleString('en-GB')} · {e.code}</div>
-              </li>
-            ))}
-          </ol>
-</Panel>
-      )}
-    </div>
-  );
-}

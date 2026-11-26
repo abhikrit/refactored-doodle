@@ -285,6 +285,10 @@ async function seedCustomersAsync(clientId) {
     // the SEC chapter's own roles: the privacy officer holds the data-protection permissions and
     // the security officer the sign-in and audit ones
     { email: 'privacy@example.com', firstName: 'Privacy', lastName: 'Officer', roles: ['PrivacyOfficer'], password: 'demo' },
+    // a seller signs in to the admin area, where the Vendors role scopes what they see
+    {
+      email: 'seller@example.com', firstName: 'Seller', lastName: 'Account', roles: ['Registered', 'Vendors'], password: 'demo', vendorName: 'Chikondi Crafts',
+    },
     { email: 'security@example.com', firstName: 'Security', lastName: 'Officer', roles: ['SecurityOfficer'], password: 'demo' },
   ];
   const clientSpecific = clientId === 'MPC'
@@ -297,7 +301,8 @@ async function seedCustomersAsync(clientId) {
 
   const { newSalt, hashPassword } = await import('../../plugins/product-iam/services/passwords.js');
   for (const c of [...common, ...clientSpecific]) {
-    const { password, ...rest } = c;
+    const { password, vendorName, ...rest } = c;
+    if (vendorName) rest.vendorName = vendorName;
     const customer = await repository('Customer').insertAsync({
       ...rest, password: null, active: true, deleted: false, isSystemAccount: false, synthetic: true,
     });
@@ -409,6 +414,12 @@ async function seedInnerAsync({ clientId, report }) {
   const catalogue = clientId === 'KTDA' ? ktdaCatalogue : mpcCatalogue;
   for (const vendor of catalogue.vendors) {
     await repository('Vendor').insertAsync({ ...vendor, active: true, synthetic: true });
+  }
+  // a seller account is linked to its vendor record, which the catalogue seeds after the people
+  const vendorRows = await repository('Vendor').getAllAsync();
+  for (const staff of await repository('Customer').getAllAsync((c) => c.vendorName && !c.vendorId)) {
+    const vendor = vendorRows.find((v) => v.name === staff.vendorName) ?? vendorRows[0];
+    if (vendor) await repository('Customer').updateAsync({ ...staff, vendorId: vendor.id });
   }
   for (const category of catalogue.categories) {
     await repository('Category').insertAsync({ ...category, published: true, synthetic: true });

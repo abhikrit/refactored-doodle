@@ -8,8 +8,11 @@ import { Home, ProductList, ProductDetails } from './surfaces/storefront/catalog
 import { Cart, Checkout, OrderCompleted } from './surfaces/storefront/checkout.jsx';
 import {
   AccountAddresses, AccountInfo, AccountOrderDetails, AccountOrders, AccountWishlist, Login,
-  OrderStatus, PublicTracking, Register,
+  Register,
 } from './surfaces/storefront/account.jsx';
+import {
+  AccountNotifications, OrderStatus, PublicTracking, SharedTracking,
+} from './surfaces/storefront/tracking.jsx';
 import {
   AcceptTerms, AccountActivity, AccountCompany, AccountDashboard, AccountHistory,
   AccountPreferences, AccountPrivacy, TradeApplication,
@@ -35,7 +38,9 @@ import {
 import {
   AdminEmailTemplates, AdminNotificationDefinitions, AdminNotificationLog,
 } from './surfaces/admin/trk.jsx';
-import { AdminTrackAndTrace, AdminTrackingConfiguration } from './surfaces/admin/trk-hub.jsx';
+import {
+  AdminSellerShipments, AdminTrackAndTrace, AdminTrackingConfiguration,
+} from './surfaces/admin/trk-hub.jsx';
 import { AdminPlugins } from './surfaces/admin/system.jsx';
 import {
   AdminConsole, BulkEdit, ExtensionRegister, Maintenance, ScheduleTasks, SystemLog, Widgets,
@@ -82,6 +87,7 @@ export default function App() {
               <Route path="/login" element={store(<Login />)} />
               <Route path="/register" element={store(<Register />)} />
               <Route path="/order-status" element={store(<OrderStatus />)} />
+              <Route path="/track/share/:token" element={store(<SharedTracking />)} />
               <Route path="/track/:trackingNumber" element={store(<PublicTracking />)} />
               <Route path="/account" element={store(<AccountInfo />)} />
               <Route path="/account/orders" element={store(<AccountOrders />)} />
@@ -91,6 +97,7 @@ export default function App() {
               <Route path="/account/dashboard" element={store(<AccountDashboard />)} />
               <Route path="/account/history" element={store(<AccountHistory />)} />
               <Route path="/account/preferences" element={store(<AccountPreferences />)} />
+              <Route path="/account/notifications" element={store(<AccountNotifications />)} />
               <Route path="/account/privacy" element={store(<AccountPrivacy />)} />
               <Route path="/account/activity" element={store(<AccountActivity />)} />
               <Route path="/account/company" element={store(<AccountCompany />)} />
@@ -127,6 +134,7 @@ export default function App() {
               <Route path="/admin/content/locale-resources" element={<AdminMessageTemplates />} />
               <Route path="/admin/system/notification-log" element={<AdminNotificationLog />} />
               <Route path="/admin/operations/track-and-trace" element={<AdminTrackAndTrace />} />
+              <Route path="/admin/sales/shipments" element={<AdminSellerShipments />} />
               <Route path="/admin/configuration/tracking" element={<AdminTrackingConfiguration />} />
               <Route path="/admin/configuration/widgets" element={<Widgets />} />
               <Route path="/admin/system/schedule-tasks" element={<ScheduleTasks />} />

@@ -356,6 +356,12 @@ const ADMIN_NAV = [
     ],
   },
   {
+    label: 'Sales',
+    children: [
+      { label: 'Shipments', to: '/admin/sales/shipments' },
+    ],
+  },
+  {
     label: 'Customers',
     children: [
       { label: 'Customers', to: '/admin/customers' },

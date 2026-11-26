@@ -429,7 +429,17 @@ export async function sendNotificationAsync({
   const messages = [];
   let queuedEmailId = 0;
   for (const recipient of resolved) {
-    const channels = onlyChannels ?? [...(effectiveDefinition.channels ?? [])];
+    // BR-TRK-031: the customer's own channel order comes first, then the definition's
+    const { channelOrderAsync } = await import('./preferences.js');
+    const ordered = onlyChannels
+      ? { channels: onlyChannels, from: 'the fallback step' }
+      : await channelOrderAsync({
+        customerId: recipient.customer?.id ?? null,
+        category: effectiveDefinition.category ?? null,
+        definitionChannels: effectiveDefinition.channels ?? [],
+        storeId,
+      });
+    const channels = ordered.channels;
     let delivered = false;
     for (let i = 0; i < channels.length; i += 1) {
       const channel = channels[i];
@@ -477,6 +487,31 @@ export async function sendNotificationAsync({
         }
       }
 
+      // BR-TRK-031 and BR-TRK-032: the preferences of this recipient on this channel
+      const { checkAllowedAsync } = await import('./preferences.js');
+      const verdict = await checkAllowedAsync({
+        customerId: recipient.customer?.id ?? null,
+        phone: recipient.phone ?? null,
+        recipient: address,
+        channel,
+        category: effectiveDefinition.category ?? null,
+        mandatory: effectiveDefinition.mandatory === true,
+        orderId: order?.id ?? null,
+        storeId,
+      });
+      if (verdict.allowed !== true) {
+        messages.push(await logMessageAsync({
+          definition: effectiveDefinition, channel, recipient, address, status: 'Suppressed', reason: verdict.reason, order, shipment, tokens, key, storeId, reference, rule: 'BR-TRK-031',
+        }));
+        continue;
+      }
+      if (verdict.overLimit === true) {
+        messages.push(await logMessageAsync({
+          definition: effectiveDefinition, channel, recipient, address, status: 'Suppressed', reason: `over the limit of ${verdict.limit} messages for this channel and period`, order, shipment, tokens, key, storeId, reference, rule: 'BR-TRK-032',
+        }));
+        continue;
+      }
+
       // BR-TRK-022: at most one message per occurrence, channel and recipient
       const occurrenceKey = [
         effectiveDefinition.key,
@@ -493,6 +528,30 @@ export async function sendNotificationAsync({
       }
 
       const text = renderAsync(content.text ?? `%${effectiveDefinition.key}%`, tokens);
+      if (verdict.insideQuietHours === true && effectiveDefinition.urgent !== true) {
+        messages.push(await logMessageAsync({
+          definition: effectiveDefinition,
+          channel,
+          recipient,
+          address,
+          status: 'Held',
+          reason: `inside the quiet hours ${verdict.quietHours}`,
+          order,
+          shipment,
+          tokens,
+          key,
+          storeId,
+          reference,
+          occurrenceKey,
+          text,
+          contentVersion: content.version,
+          languageId: content.languageId,
+          heldUntilUtc: verdict.quietHoursEnd,
+          rule: 'BR-TRK-032',
+        }));
+        delivered = true;
+        continue;
+      }
       const row = await logMessageAsync({
         definition: effectiveDefinition,
         channel,
@@ -558,6 +617,37 @@ export async function sendNotificationAsync({
     channels: effectiveDefinition.channels,
     ignoreDelayBeforeSend,
     rule: 'BR-TRK-020',
+  };
+}
+
+/** BR-TRK-032: a held message goes out on its own channel once the quiet period has ended. */
+export async function resendHeldAsync({ message, gateways = null, storeId = 1 }) {
+  const definition = await definitionAsync(message.definitionKey);
+  if (!definition) return { ok: false, message: 'that definition is gone' };
+  const { updateMessageAsync } = await import('./delivery-log.js');
+  if (message.channel === 'email') {
+    const queued = await queueEmailAsync({
+      to: message.recipient, key: message.definitionKey, text: message.text, tokens: message.tokens ?? {}, languageId: message.languageId ?? 1, storeId,
+    });
+    return {
+      ok: true,
+      message: await updateMessageAsync(message.id, {
+        status: 'Pending', queuedEmailId: queued.id, reason: 'released when the quiet period ended', heldUntilUtc: null,
+      }),
+    };
+  }
+  const sent = await sendThroughGatewayAsync({
+    channel: message.channel, address: message.recipient, text: message.text, tokens: message.tokens ?? {}, key: message.definitionKey, gateways,
+  });
+  return {
+    ok: true,
+    message: await updateMessageAsync(message.id, {
+      status: sent.status,
+      providerMessageId: sent.providerMessageId,
+      reason: sent.reason ?? 'released when the quiet period ended',
+      heldUntilUtc: null,
+      sentOnUtc: sent.status === 'Sent' ? new Date().toISOString() : null,
+    }),
   };
 }
 
