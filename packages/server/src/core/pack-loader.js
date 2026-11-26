@@ -52,9 +52,27 @@ export function settingsCatalogue(root) {
 /** A product plugin declares the keys it owns at installation. */
 const pluginKeys = new Map(); // owner -> { prefixes, keys }
 
-export function declareSettingKeys({ owner, prefixes = [], keys = [] }) {
-  pluginKeys.set(owner, { owner, prefixes, keys });
+export function declareSettingKeys({
+  owner, prefixes = [], keys = [], fixedValues = {},
+}) {
+  pluginKeys.set(owner, {
+    owner, prefixes, keys, fixedValues,
+  });
   return pluginKeys.get(owner);
+}
+
+/**
+ * A key a plugin's catalogue pins to one value (AC-CHK-004-01-08 / decision CART-500): pack
+ * validation refuses any other value for it, whatever layer states it.
+ */
+export function fixedKeyValue(key) {
+  for (const declaration of pluginKeys.values()) {
+    const fixed = declaration.fixedValues ?? {};
+    if (Object.prototype.hasOwnProperty.call(fixed, key)) {
+      return { owner: declaration.owner, ...fixed[key] };
+    }
+  }
+  return null;
 }
 
 export const declaredSettingKeys = () => [...pluginKeys.values()];
@@ -155,6 +173,16 @@ export function validatePack(pack, { root = null, stores = null } = {}) {
   });
 
   for (const [key, value] of Object.entries(pack.settings ?? {})) {
+    const fixed = fixedKeyValue(key);
+    if (fixed && value !== fixed.value) {
+      refuse(
+        key,
+        fixed.rule ?? 'the plugin key catalogue',
+        'Plt.PackKeyUnknown',
+        `${resource('Plt.PackKeyUnknown')} (${key}: ${fixed.owner} fixes this key at ${JSON.stringify(fixed.value)}${fixed.reason ? ` - ${fixed.reason}` : ''})`,
+      );
+      continue;
+    }
     if (isSecretKey(key)) {
       refuse(key, 'BR-PLT-013 / CFG-01', 'Plt.PackSecretRefused', `${resource('Plt.PackSecretRefused')} (${key})`);
       continue;

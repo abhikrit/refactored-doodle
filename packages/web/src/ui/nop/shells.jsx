@@ -542,19 +542,26 @@ const ADMIN_NAV = [
     label: 'Catalog',
     children: [
       { label: 'Products', to: '/admin/catalog/products' },
+      { label: 'Categories', to: '/admin/catalog/categories' },
+      { label: 'Price lists', to: '/admin/catalog/price-lists' },
       { label: 'Bulk edit', to: '/admin/catalog/bulk-edit' },
     ],
   },
   {
     label: 'Sales',
     children: [
+      { label: 'Orders', to: '/admin/sales/orders' },
       { label: 'Shipments', to: '/admin/sales/shipments' },
+      { label: 'Payments', to: '/admin/sales/payments' },
+      { label: 'Checkout exceptions', to: '/admin/sales/checkout-exceptions' },
     ],
   },
   {
     label: 'Customers',
     children: [
       { label: 'Customers', to: '/admin/customers' },
+      { label: 'Customer roles', to: '/admin/customers/roles' },
+      { label: 'Sellers', to: '/admin/customers/vendors' },
       { label: 'Sessions and sign-in security', to: '/admin/customers/security' },
       { label: 'Access governance', to: '/admin/customers/access' },
       { label: 'Privacy requests', to: '/admin/customers/privacy' },

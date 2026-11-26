@@ -1,7 +1,7 @@
 // nopCommerce administration - Dashboard, Catalog, Sales and Customers.
 // Every grid, panel, tab strip and button bar follows the native admin pattern.
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { api } from '../../lib/api.js';
 import { useProduct, money } from '../../lib/store.jsx';
@@ -611,22 +611,49 @@ export function AdminPayments() {
 
 export function AdminCheckoutExceptions() {
   const [rows, setRows] = useState(null);
-  useEffect(() => { api.get('/checkout-area/checkout/exceptions').then(setRows).catch(() => {}); }, []);
+  const [refunds, setRefunds] = useState([]);
+  const [form, setForm] = useState({});
+  const [notice, setNotice] = useState(null);
+
+  const load = useCallback(() => {
+    api.get('/checkout-area/checkout/exceptions').then(setRows).catch(() => setRows([]));
+  }, []);
+  useEffect(load, [load]);
+
+  const raiseRefund = async (reference) => {
+    const body = form[reference] ?? {};
+    const res = await api.post(`/checkout-area/checkout/exceptions/${reference}/refund`, {
+      amount: Number(body.amount ?? 0), reason: body.reason ?? null,
+    });
+    if (res.ok !== true) { setNotice({ tone: 'error', text: res.message ?? 'The refund was not raised.' }); return; }
+    setNotice({
+      tone: 'success',
+      text: `A refund of ${res.trigger.amount} was requested for ${reference}. Returns and refunds will handle it.`,
+    });
+    setRefunds((current) => [...current, res.trigger]);
+    setForm({ ...form, [reference]: {} });
+  };
+
+  const splitFailures = (rows ?? []).filter((r) => r.kind === 'split-placement');
+
   return (
     <AdminPage
       title="Checkout exceptions"
       breadcrumb={crumb({ label: 'Sales' }, { label: 'Checkout exceptions' })}
       intro="Checkouts that did not finish cleanly: failed placements, confirmations that were not sent and reservations still held."
     >
-      <Panel bodyClass="p-0">
+      {notice && <Alert tone={notice.tone}>{notice.text}</Alert>}
+
+      <Panel title="All exceptions" bodyClass="p-0">
         {!rows ? <Spinner /> : (
           <Grid
             columns={[
               { key: 'kind', header: 'Kind' },
               { key: 'checkoutReference', header: 'Checkout ref', render: (r) => <span className="font-mono text-[12px]">{r.checkoutReference}</span> },
-              { key: 'feature', header: 'Feature' },
+              { key: 'orderNumber', header: 'Order', render: (r) => r.orderNumber ?? '-' },
+              { key: 'feature', header: 'Raised by' },
               { key: 'message', header: 'Message' },
-              { key: 'createdOnUtc', header: 'When', render: (r) => new Date(r.createdOnUtc).toLocaleString('en-GB') },
+              { key: 'createdOnUtc', header: 'When', render: (r) => (r.createdOnUtc ? new Date(r.createdOnUtc).toLocaleString('en-GB') : '-') },
             ]}
             rows={rows}
             rowKey={(r) => r.id}
@@ -634,6 +661,67 @@ export function AdminCheckoutExceptions() {
           />
         )}
       </Panel>
+
+      {splitFailures.map((row) => (
+        <Panel
+          key={row.id}
+          title={`Split placement ${row.checkoutReference}`}
+          subtitle="The payment went through and one of the orders could not be saved."
+        >
+          <KeyValue rows={[
+            ['Orders saved', (row.ordersSaved ?? []).join(', ') || 'none'],
+            ['Seller whose order failed', row.vendorId ?? '-'],
+            ['Payment reference', <span className="font-mono text-[12px]">{row.paymentProviderRef ?? '-'}</span>],
+            ['What went wrong', row.message],
+          ]}
+          />
+          <div className="mt-3 grid gap-3 sm:grid-cols-3">
+            <Field label="Amount to refund" hint="The share of the order that was never saved">
+              <Input
+                type="number"
+                min="0"
+                step="0.01"
+                value={form[row.checkoutReference]?.amount ?? ''}
+                onChange={(e) => setForm({
+                  ...form,
+                  [row.checkoutReference]: { ...(form[row.checkoutReference] ?? {}), amount: e.target.value },
+                })}
+              />
+            </Field>
+            <Field label="Reason">
+              <Input
+                value={form[row.checkoutReference]?.reason ?? ''}
+                onChange={(e) => setForm({
+                  ...form,
+                  [row.checkoutReference]: { ...(form[row.checkoutReference] ?? {}), reason: e.target.value },
+                })}
+              />
+            </Field>
+            <div className="self-end">
+              <Button variant="primary" onClick={() => raiseRefund(row.checkoutReference)}>Raise the refund</Button>
+            </div>
+          </div>
+          <p className="mt-2 text-[11.5px] text-nop-muted">
+            The refund is handled by returns and refunds, which keeps the record and talks to the payment provider.
+          </p>
+        </Panel>
+      ))}
+
+      {refunds.length > 0 && (
+        <Panel title="Refunds raised in this session" bodyClass="p-0">
+          <Grid
+            dense
+            columns={[
+              { key: 'checkoutReference', header: 'Checkout ref' },
+              { key: 'amount', header: 'Amount', align: 'right' },
+              { key: 'reason', header: 'Reason', render: (r) => r.reason ?? '-' },
+              { key: 'state', header: 'State', render: (r) => <Badge tone="blue">{r.state}</Badge> },
+            ]}
+            rows={refunds}
+            rowKey={(r) => r.id}
+          />
+        </Panel>
+      )}
     </AdminPage>
   );
 }

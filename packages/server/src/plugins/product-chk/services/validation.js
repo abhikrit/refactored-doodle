@@ -424,19 +424,21 @@ export async function reserveAsync(context) {
 /** Confirm, per saved sub-order, before OrderPlacedEvent. */
 export async function confirmAsync({ reservations = [], order, storeId = 1 }) {
   const confirmed = [];
-  for (const held of reservations) {
-    const participant = providers('IC-CHK-06').find((p) => p.feature === held.feature);
-    if (!participant) continue;
+  // every participant hears Confirm for each saved sub-order, whether or not it reserved
+  // anything: PAY-011 links the sub-order to the group payment and ORD-005 creates the seller
+  // task at this point, not from an event consumer (BR-CHK-006).
+  for (const participant of providers('IC-CHK-06')) {
+    const held = reservations.find((r) => r.feature === participant.feature) ?? null;
     try {
       await participant.fn({
-        phase: 'Confirm', reservation: held.reservation, order, storeId,
+        phase: 'Confirm', reservation: held?.reservation ?? null, order, storeId,
       });
-      confirmed.push(held.feature);
+      confirmed.push(participant.feature);
     } catch (err) {
       await repository('CheckoutException').insertAsync({
         kind: 'participant-confirm',
         orderNumber: order?.orderNumber ?? null,
-        feature: held.feature,
+        feature: participant.feature,
         message: err.message,
         createdOnUtc: new Date().toISOString(),
       });

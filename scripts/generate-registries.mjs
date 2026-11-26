@@ -757,7 +757,12 @@ for (const h of holds) for (const f of h.features) (heldBy[f] ||= []).push(h.dec
 const readyBy = {};
 for (const r of readiness) for (const f of r.features) (readyBy[f] ||= []).push(r.decision);
 for (const f of features) {
-  f.heldBy = uniq([...(f.onHold ? [f.onHold] : []), ...(heldBy[f.id] || [])]);
+  // the Status line may name several decisions in one string ("WF-ENG, PAY-DIRECT / LIC-01");
+  // each is a decision of the register, so the list holds one entry per decision
+  const onHoldDecisions = f.onHold
+    ? String(f.onHold).split(',').map((x) => x.trim()).filter(Boolean)
+    : [];
+  f.heldBy = uniq([...onHoldDecisions, ...(heldBy[f.id] || [])]);
   f.readinessConditions = uniq(readyBy[f.id] || []);
   f.held = f.heldBy.length > 0;
   f.prototypeDefaultLabel = f.held

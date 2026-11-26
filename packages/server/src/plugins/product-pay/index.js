@@ -5,14 +5,47 @@
 
 import { Router } from 'express';
 import { definePlugin } from '../../core/plugin-host.js';
+import { registerPlacementParticipant } from '../product-chk/services/validation.js';
 import {
   paymentMethodsForStoreAsync, confirmPushAsync, markPaidOfflineAsync, transactionsAsync,
+  retryPaymentAsync,
 } from './services/payments.js';
+import { currentCustomerAsync } from '../product-iam/services/identity.js';
 
 export default definePlugin({
   area: 'PAY',
   startupOrder: 3210,
   async install(ctx) {
+    // IC-CHK-06 Confirm only (BR-PAY-014): one payment is taken for the checkout, and each
+    // sub-order is linked to that group transaction as it is saved (AC-CHK-004-01-02).
+    // PRD-PAY-011 itself is not built in this wave: this is the link the CHK-004 split needs.
+    registerPlacementParticipant({
+      area: 'PAY',
+      feature: 'PRD-PAY-011',
+      name: 'group payment link',
+      lockKey: () => null,
+      fn: async ({ phase, order }) => {
+        if (phase !== 'Confirm' || !order?.checkoutReference) return { ok: true };
+        const transaction = await ctx.repository('PaymentTransaction')
+          .getOneAsync((t) => t.checkoutReference === order.checkoutReference);
+        if (!transaction) return { ok: true };
+        const existing = await ctx.repository('OrderPaymentLink')
+          .getOneAsync((l) => Number(l.orderId) === Number(order.id));
+        if (!existing) {
+          await ctx.repository('OrderPaymentLink').insertAsync({
+            orderId: order.id,
+            orderNumber: order.orderNumber,
+            paymentTransactionId: transaction.id,
+            providerRef: transaction.providerRef,
+            checkoutReference: order.checkoutReference,
+            groupPayment: true,
+            share: order.total,
+          });
+        }
+        return { ok: true, linkedTo: transaction.providerRef };
+      },
+    });
+
     ctx.providers.claimOverride('IPaymentService', {
       owner: 'Product.PAY',
       feature: 'PRD-PAY-001',
@@ -27,6 +60,16 @@ export default definePlugin({
     });
     r.post('/callback', async (req, res, next) => {
       try { res.json(await confirmPushAsync({ providerRef: req.body.providerRef, accept: req.body.accept !== false })); } catch (err) { next(err); }
+    });
+    r.post('/retry', async (req, res, next) => {
+      try {
+        res.json(await retryPaymentAsync({
+          orderNumber: req.body?.orderNumber,
+          storeId: req.storeId,
+          data: req.body?.paymentData ?? {},
+          customer: await currentCustomerAsync(req.sessionId),
+        }));
+      } catch (err) { next(err); }
     });
     r.post('/mark-paid', async (req, res, next) => {
       try {

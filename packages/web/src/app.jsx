@@ -20,7 +20,9 @@ import {
 import { CookieSettings } from './surfaces/storefront/cookies.jsx';
 
 import {
-  AdminProductEdit, AdminProducts, Dashboard,
+  AdminCategories, AdminCheckoutExceptions, AdminOrderDetails, AdminOrders, AdminPayments,
+  AdminPriceLists, AdminProductEdit, AdminProducts, AdminRoles, AdminShipments, AdminVendors,
+  Dashboard,
 } from './surfaces/admin/index.jsx';
 import {
   AdminAccess, AdminAccounts, AdminCustomers, AdminPrivacy, AdminSecurity,
@@ -137,7 +139,16 @@ export default function App() {
               <Route path="/admin/system/notification-log" element={<AdminNotificationLog />} />
               <Route path="/admin/operations/track-and-trace" element={<AdminTrackAndTrace />} />
               <Route path="/admin/operations/notices" element={<AdminOutreach />} />
+              <Route path="/admin/sales/orders" element={<AdminOrders />} />
+              <Route path="/admin/sales/orders/:orderNumber" element={<AdminOrderDetails />} />
+              <Route path="/admin/sales/checkout-exceptions" element={<AdminCheckoutExceptions />} />
+              <Route path="/admin/sales/payments" element={<AdminPayments />} />
               <Route path="/admin/sales/shipments" element={<AdminSellerShipments />} />
+              <Route path="/admin/sales/shipment-list" element={<AdminShipments />} />
+              <Route path="/admin/catalog/categories" element={<AdminCategories />} />
+              <Route path="/admin/catalog/price-lists" element={<AdminPriceLists />} />
+              <Route path="/admin/customers/roles" element={<AdminRoles />} />
+              <Route path="/admin/customers/vendors" element={<AdminVendors />} />
               <Route path="/admin/configuration/tracking" element={<AdminTrackingConfiguration />} />
               <Route path="/admin/configuration/widgets" element={<Widgets />} />
               <Route path="/admin/system/schedule-tasks" element={<ScheduleTasks />} />

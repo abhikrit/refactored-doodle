@@ -4,10 +4,10 @@
 // shipping) were NOT provided - decision T-MISS - so those rows are placeholders, not content.
 
 const VENDORS = [
-  { id: 201, name: 'Chikondi Crafts', sellerType: 'SME', district: 'Lilongwe', rating: 4.6, tier: 'Silver', active: true },
-  { id: 202, name: 'Mzuzu Coffee Growers', sellerType: 'SME', district: 'Mzuzu', rating: 4.8, tier: 'Gold', active: true },
-  { id: 203, name: 'Blantyre Home Store', sellerType: 'SME', district: 'Blantyre', rating: 4.2, tier: 'Bronze', active: true },
-  { id: 204, name: 'Malawi Post', sellerType: 'Client', district: 'Lilongwe', rating: 4.4, tier: 'Client', active: true },
+  { id: 201, name: 'Chikondi Crafts', email: 'chikondi.crafts@example.com', sellerType: 'SME', district: 'Lilongwe', rating: 4.6, tier: 'Silver', active: true },
+  { id: 202, name: 'Mzuzu Coffee Growers', email: 'mzuzu.coffee@example.com', sellerType: 'SME', district: 'Mzuzu', rating: 4.8, tier: 'Gold', active: true },
+  { id: 203, name: 'Blantyre Home Store', email: 'blantyre.home@example.com', sellerType: 'SME', district: 'Blantyre', rating: 4.2, tier: 'Bronze', active: true },
+  { id: 204, name: 'Malawi Post', email: 'seller.desk@example.com', sellerType: 'Client', district: 'Lilongwe', rating: 4.4, tier: 'Client', active: true },
 ];
 
 const CATEGORIES = [

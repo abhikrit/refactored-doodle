@@ -52,6 +52,7 @@ export const SESSIONS = {
   support: 'adm-support',
   privacy: 'adm-privacy',
   security: 'adm-security',
+  seller: 'adm-seller',
 };
 
 const EMAILS = {
@@ -68,6 +69,7 @@ const EMAILS = {
   'adm-support': 'support@example.com',
   'adm-privacy': 'privacy@example.com',
   'adm-security': 'security@example.com',
+  'adm-seller': 'seller@example.com',
 };
 
 export async function startAsync({ client = 'MPC' } = {}) {

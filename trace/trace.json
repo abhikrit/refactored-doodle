@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-26T11:52:38.099Z",
+  "generated": "2026-11-26T15:34:05.005Z",
   "generator": "scripts/build-trace.mjs",
   "registry": {
     "areas": 24,
@@ -31,14 +31,14 @@
   },
   "totals": {
     "features": 434,
-    "built": 82,
-    "partial": 7,
+    "built": 85,
+    "partial": 5,
     "heldWithDefault": 90,
     "mocked": 24,
-    "notBuilt": 231,
+    "notBuilt": 230,
     "criteria": 2850,
-    "criteriaWithTests": 660,
-    "testsPassing": 660,
+    "criteriaWithTests": 680,
+    "testsPassing": 680,
     "testsFailing": 0,
     "stories": 1160,
     "reconciles": true
@@ -122,11 +122,11 @@
       "wave": 3,
       "waveName": "Buy",
       "features": 19,
-      "built": 7,
-      "partial": 3,
+      "built": 10,
+      "partial": 1,
       "held": 4,
       "mocked": 0,
-      "notBuilt": 5
+      "notBuilt": 4
     },
     {
       "area": "PAY",
@@ -337,14 +337,14 @@
     {
       "client": "KTDA",
       "requirements": 95,
-      "demonstratedInPrototype": 25,
+      "demonstratedInPrototype": 26,
       "mappedToFeatures": 80,
       "projectService": 17
     },
     {
       "client": "MPC",
       "requirements": 411,
-      "demonstratedInPrototype": 84,
+      "demonstratedInPrototype": 86,
       "mappedToFeatures": 374,
       "projectService": 38
     }
@@ -1463,9 +1463,65 @@
       "status": "pass"
     },
     {
+      "criterion": "AC-CHK-004-01-04",
+      "feature": "PRD-CHK-004",
+      "test": "AC-CHK-004-01-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-004-01-05",
+      "feature": "PRD-CHK-004",
+      "test": "AC-CHK-004-01-05",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-004-01-06",
+      "feature": "PRD-CHK-004",
+      "test": "AC-CHK-004-01-06",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
       "criterion": "AC-CHK-004-01-07",
       "feature": "PRD-CHK-004",
       "test": "AC-CHK-004-01-07",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-004-01-08",
+      "feature": "PRD-CHK-004",
+      "test": "AC-CHK-004-01-08",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-004-01-09",
+      "feature": "PRD-CHK-004",
+      "test": "AC-CHK-004-01-09",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-004-02-01",
+      "feature": "PRD-CHK-004",
+      "test": "AC-CHK-004-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-004-02-02",
+      "feature": "PRD-CHK-004",
+      "test": "AC-CHK-004-02-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-004-03-01",
+      "feature": "PRD-CHK-004",
+      "test": "AC-CHK-004-03-01",
       "suite": "node (API and rules)",
       "status": "pass"
     },
@@ -1624,6 +1680,69 @@
       "status": "pass"
     },
     {
+      "criterion": "AC-CHK-008-01-01",
+      "feature": "PRD-CHK-008",
+      "test": "AC-CHK-008-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-008-01-02",
+      "feature": "PRD-CHK-008",
+      "test": "AC-CHK-008-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-008-01-03",
+      "feature": "PRD-CHK-008",
+      "test": "AC-CHK-008-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-008-02-01",
+      "feature": "PRD-CHK-008",
+      "test": "AC-CHK-008-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-008-02-02",
+      "feature": "PRD-CHK-008",
+      "test": "AC-CHK-008-02-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-008-03-01",
+      "feature": "PRD-CHK-008",
+      "test": "AC-CHK-008-03-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-008-03-02",
+      "feature": "PRD-CHK-008",
+      "test": "AC-CHK-008-03-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-008-03-03",
+      "feature": "PRD-CHK-008",
+      "test": "AC-CHK-008-03-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-008-03-04",
+      "feature": "PRD-CHK-008",
+      "test": "AC-CHK-008-03-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
       "criterion": "AC-CHK-012-01-02",
       "feature": "PRD-CHK-012",
       "test": "AC-CHK-012-01-02",
@@ -1673,9 +1792,30 @@
       "status": "pass"
     },
     {
+      "criterion": "AC-CHK-019-01-01",
+      "feature": "PRD-CHK-019",
+      "test": "AC-CHK-019-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-019-01-02",
+      "feature": "PRD-CHK-019",
+      "test": "AC-CHK-019-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
       "criterion": "AC-CHK-019-01-03",
       "feature": "PRD-CHK-019",
       "test": "AC-CHK-019-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-CHK-019-01-04",
+      "feature": "PRD-CHK-019",
+      "test": "AC-CHK-019-01-04",
       "suite": "node (API and rules)",
       "status": "pass"
     },
@@ -7947,11 +8087,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "WF-ENG, PAY-DIRECT / LIC-01",
         "WF-ENG",
         "PAY-DIRECT / LIC-01"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01 pending",
+      "prototypeDefaultLabel": "Prototype default — decision WF-ENG / PAY-DIRECT / LIC-01 pending",
       "requirements": [
         "REQ-MPC-FR-042",
         "REQ-MPC-FR-145"
@@ -8104,7 +8243,6 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "PH-INF, PO-REC-v8, PAY-DIRECT / LIC-01, E-INV, PAID-STUB, DOC-LIB",
         "PH-INF",
         "PO-REC-v8",
         "PAY-DIRECT / LIC-01",
@@ -8112,7 +8250,7 @@
         "PAID-STUB",
         "DOC-LIB"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision PH-INF, PO-REC-v8, PAY-DIRECT / LIC-01, E-INV, PAID-STUB, DOC-LIB / PH-INF / PO-REC-v8 / PAY-DIRECT / LIC-01 / E-INV / PAID-STUB / DOC-LIB pending",
+      "prototypeDefaultLabel": "Prototype default — decision PH-INF / PO-REC-v8 / PAY-DIRECT / LIC-01 / E-INV / PAID-STUB / DOC-LIB pending",
       "requirements": [],
       "tests": []
     },
@@ -8323,12 +8461,11 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "API-01, PAID-STUB, API-GW",
         "API-01",
         "PAID-STUB",
         "API-GW"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision API-01, PAID-STUB, API-GW / API-01 / PAID-STUB / API-GW pending",
+      "prototypeDefaultLabel": "Prototype default — decision API-01 / PAID-STUB / API-GW pending",
       "requirements": [
         "REQ-MPC-FR-072"
       ],
@@ -8900,11 +9037,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "PH-INF, UOM-01",
         "PH-INF",
         "UOM-01"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision PH-INF, UOM-01 / PH-INF / UOM-01 pending",
+      "prototypeDefaultLabel": "Prototype default — decision PH-INF / UOM-01 pending",
       "requirements": [
         "REQ-KTDA-PRJ-002"
       ],
@@ -9956,16 +10092,15 @@
       "wave": 3,
       "pack": "Marketplace pack",
       "implementation": "Code-level",
-      "state": "partial",
+      "state": "built",
       "criteria": 12,
-      "criteriaCovered": 4,
-      "criteriaPassing": 4,
+      "criteriaCovered": 12,
+      "criteriaPassing": 12,
       "heldBy": [
-        "WF-ENG, PAY-DIRECT / LIC-01",
         "WF-ENG",
         "PAY-DIRECT / LIC-01"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01 pending",
+      "prototypeDefaultLabel": "Prototype default — decision WF-ENG / PAY-DIRECT / LIC-01 pending",
       "requirements": [
         "REQ-MPC-FR-110"
       ],
@@ -9986,7 +10121,47 @@
           "suite": "node (API and rules)"
         },
         {
+          "criterion": "AC-CHK-004-01-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-004-01-05",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-004-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-004-02-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-004-01-06",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-004-03-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
           "criterion": "AC-CHK-004-01-07",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-004-01-08",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-004-01-09",
           "status": "pass",
           "suite": "node (API and rules)"
         }
@@ -10170,17 +10345,63 @@
       "wave": 3,
       "pack": "Core (always on)",
       "implementation": "Code-level",
-      "state": "not-built",
+      "state": "built",
       "criteria": 9,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 9,
+      "criteriaPassing": 9,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
         "REQ-MPC-FR-108",
         "REQ-MPC-FR-114"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-CHK-008-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-008-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-008-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-008-02-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-008-03-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-008-03-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-008-03-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-008-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-008-03-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-CHK-009",
@@ -10371,11 +10592,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "PH-INF, PAID-STUB",
         "PH-INF",
         "PAID-STUB"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision PH-INF, PAID-STUB / PH-INF / PAID-STUB pending",
+      "prototypeDefaultLabel": "Prototype default — decision PH-INF / PAID-STUB pending",
       "requirements": [
         "REQ-KTDA-CUS-002"
       ],
@@ -10415,11 +10635,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "PH-INF, WF-ENG",
         "PH-INF",
         "WF-ENG"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision PH-INF, WF-ENG / PH-INF / WF-ENG pending",
+      "prototypeDefaultLabel": "Prototype default — decision PH-INF / WF-ENG pending",
       "requirements": [
         "REQ-KTDA-CUS-002"
       ],
@@ -10433,10 +10652,10 @@
       "wave": 3,
       "pack": "Core (always on)",
       "implementation": "Configuration",
-      "state": "partial",
+      "state": "built",
       "criteria": 4,
-      "criteriaCovered": 1,
-      "criteriaPassing": 1,
+      "criteriaCovered": 4,
+      "criteriaPassing": 4,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
@@ -10445,7 +10664,22 @@
       ],
       "tests": [
         {
+          "criterion": "AC-CHK-019-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-019-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
           "criterion": "AC-CHK-019-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-CHK-019-01-04",
           "status": "pass",
           "suite": "node (API and rules)"
         }
@@ -10650,12 +10884,11 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, PAY-DIRECT / LIC-01, WAL-01",
         "FG-06",
         "PAY-DIRECT / LIC-01",
         "WAL-01"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, PAY-DIRECT / LIC-01, WAL-01 / FG-06 / PAY-DIRECT / LIC-01 / WAL-01 pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / PAY-DIRECT / LIC-01 / WAL-01 pending",
       "requirements": [
         "REQ-MPC-FR-130"
       ],
@@ -10976,12 +11209,11 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "PH-INF, E-INV, DOC-LIB",
         "PH-INF",
         "E-INV",
         "DOC-LIB"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB pending",
+      "prototypeDefaultLabel": "Prototype default — decision PH-INF / E-INV / DOC-LIB pending",
       "requirements": [
         "REQ-KTDA-ORD-002",
         "REQ-KTDA-TAX-001"
@@ -11001,12 +11233,11 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "PH-INF, E-INV, DOC-LIB",
         "PH-INF",
         "E-INV",
         "DOC-LIB"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB pending",
+      "prototypeDefaultLabel": "Prototype default — decision PH-INF / E-INV / DOC-LIB pending",
       "requirements": [],
       "tests": []
     },
@@ -11023,12 +11254,11 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "PH-INF, E-INV, DOC-LIB",
         "PH-INF",
         "E-INV",
         "DOC-LIB"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB pending",
+      "prototypeDefaultLabel": "Prototype default — decision PH-INF / E-INV / DOC-LIB pending",
       "requirements": [],
       "tests": []
     },
@@ -11191,11 +11421,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "PO-REC-v8, PAY-DIRECT / LIC-01",
         "PO-REC-v8",
         "PAY-DIRECT / LIC-01"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision PO-REC-v8, PAY-DIRECT / LIC-01 / PO-REC-v8 / PAY-DIRECT / LIC-01 pending",
+      "prototypeDefaultLabel": "Prototype default — decision PO-REC-v8 / PAY-DIRECT / LIC-01 pending",
       "requirements": [],
       "tests": []
     },
@@ -11212,12 +11441,11 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "WF-ENG, PO-REC-v8, PAY-DIRECT / LIC-01",
         "WF-ENG",
         "PO-REC-v8",
         "PAY-DIRECT / LIC-01"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision WF-ENG, PO-REC-v8, PAY-DIRECT / LIC-01 / WF-ENG / PO-REC-v8 / PAY-DIRECT / LIC-01 pending",
+      "prototypeDefaultLabel": "Prototype default — decision WF-ENG / PO-REC-v8 / PAY-DIRECT / LIC-01 pending",
       "requirements": [],
       "tests": []
     },
@@ -11669,11 +11897,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "CALLOFF-PLACE, DOC-LIB",
         "CALLOFF-PLACE",
         "DOC-LIB"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision CALLOFF-PLACE, DOC-LIB / CALLOFF-PLACE / DOC-LIB pending",
+      "prototypeDefaultLabel": "Prototype default — decision CALLOFF-PLACE / DOC-LIB pending",
       "requirements": [
         "REQ-KTDA-PRJ-002",
         "REQ-KTDA-WF-003"
@@ -11729,11 +11956,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "PH-INF, DOC-LIB",
         "PH-INF",
         "DOC-LIB"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision PH-INF, DOC-LIB / PH-INF / DOC-LIB pending",
+      "prototypeDefaultLabel": "Prototype default — decision PH-INF / DOC-LIB pending",
       "requirements": [
         "REQ-KTDA-PAY-006",
         "REQ-KTDA-PAY-009"
@@ -12437,11 +12663,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, PAID-STUB",
         "FG-06",
         "PAID-STUB"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, PAID-STUB / FG-06 / PAID-STUB pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / PAID-STUB pending",
       "requirements": [
         "REQ-MPC-FR-187"
       ],
@@ -13526,11 +13751,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "WF-ENG, T-MISS",
         "WF-ENG",
         "T-MISS"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision WF-ENG, T-MISS / WF-ENG / T-MISS pending",
+      "prototypeDefaultLabel": "Prototype default — decision WF-ENG / T-MISS pending",
       "requirements": [
         "REQ-MPC-FR-269",
         "REQ-MPC-FR-270"
@@ -14272,11 +14496,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, PAID-STUB",
         "FG-06",
         "PAID-STUB"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, PAID-STUB / FG-06 / PAID-STUB pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / PAID-STUB pending",
       "requirements": [
         "REQ-MPC-FR-281",
         "REQ-MPC-FR-295"
@@ -15969,12 +16192,11 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "API-01, PAID-STUB, API-GW",
         "API-01",
         "PAID-STUB",
         "API-GW"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision API-01, PAID-STUB, API-GW / API-01 / PAID-STUB / API-GW pending",
+      "prototypeDefaultLabel": "Prototype default — decision API-01 / PAID-STUB / API-GW pending",
       "requirements": [
         "REQ-KTDA-INT-001",
         "REQ-KTDA-INT-002",
@@ -16250,11 +16472,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "M-19, PAID-STUB",
         "M-19",
         "PAID-STUB"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision M-19, PAID-STUB / M-19 / PAID-STUB pending",
+      "prototypeDefaultLabel": "Prototype default — decision M-19 / PAID-STUB pending",
       "requirements": [
         "REQ-MPC-MOB-001",
         "REQ-MPC-MOB-002"
@@ -16731,11 +16952,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, T-MISS",
         "FG-06",
         "T-MISS"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / T-MISS pending",
       "requirements": [
         "REQ-MPC-FR-336"
       ],
@@ -16754,11 +16974,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, T-MISS",
         "FG-06",
         "T-MISS"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / T-MISS pending",
       "requirements": [
         "REQ-MPC-FR-089",
         "REQ-MPC-FR-307"
@@ -16778,12 +16997,11 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, WF-ENG, T-MISS",
         "FG-06",
         "WF-ENG",
         "T-MISS"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, WF-ENG, T-MISS / FG-06 / WF-ENG / T-MISS pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / WF-ENG / T-MISS pending",
       "requirements": [
         "REQ-MPC-FR-307",
         "REQ-MPC-FR-332",
@@ -16804,11 +17022,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, T-MISS",
         "FG-06",
         "T-MISS"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / T-MISS pending",
       "requirements": [
         "REQ-MPC-FR-334"
       ],
@@ -16827,11 +17044,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, T-MISS",
         "FG-06",
         "T-MISS"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / T-MISS pending",
       "requirements": [
         "REQ-MPC-FR-335"
       ],
@@ -16850,11 +17066,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, T-MISS",
         "FG-06",
         "T-MISS"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / T-MISS pending",
       "requirements": [
         "REQ-MPC-FR-146",
         "REQ-MPC-FR-331"
@@ -16874,11 +17089,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, T-MISS",
         "FG-06",
         "T-MISS"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / T-MISS pending",
       "requirements": [
         "REQ-MPC-FR-307",
         "REQ-MPC-FR-345"
@@ -16898,12 +17112,11 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, WF-ENG, T-MISS",
         "FG-06",
         "WF-ENG",
         "T-MISS"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, WF-ENG, T-MISS / FG-06 / WF-ENG / T-MISS pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / WF-ENG / T-MISS pending",
       "requirements": [
         "REQ-MPC-FR-350"
       ],
@@ -16958,11 +17171,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, PO-REC-v8",
         "FG-06",
         "PO-REC-v8"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, PO-REC-v8 / FG-06 / PO-REC-v8 pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / PO-REC-v8 pending",
       "requirements": [],
       "tests": []
     },
@@ -16979,11 +17191,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, PO-REC-v8",
         "FG-06",
         "PO-REC-v8"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, PO-REC-v8 / FG-06 / PO-REC-v8 pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / PO-REC-v8 pending",
       "requirements": [],
       "tests": []
     },
@@ -17134,11 +17345,10 @@
       "criteriaCovered": 0,
       "criteriaPassing": 0,
       "heldBy": [
-        "FG-06, PO-REC-v8",
         "FG-06",
         "PO-REC-v8"
       ],
-      "prototypeDefaultLabel": "Prototype default — decision FG-06, PO-REC-v8 / FG-06 / PO-REC-v8 pending",
+      "prototypeDefaultLabel": "Prototype default — decision FG-06 / PO-REC-v8 pending",
       "requirements": [],
       "tests": []
     }

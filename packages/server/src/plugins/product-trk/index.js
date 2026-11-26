@@ -98,7 +98,8 @@ export default definePlugin({
 
     // BR-TRK-020: every module's sendAsync call lands in the engine from here on
     registerNotificationEngine(async ({
-      event, to, tokens, storeId, gateways, reference, order, shipment, customer, languageId, channels,
+      event, to, tokens, storeId, gateways, reference, order, shipment, customer, languageId,
+      channels, attachments,
     }) => {
       const addresses = Array.isArray(to) ? to : [to].filter(Boolean);
       const recipients = [];
@@ -123,6 +124,7 @@ export default definePlugin({
         storeId,
         reference,
         languageId,
+        attachments: attachments ?? [],
         gateways: gateways ?? messageGateways,
       });
       if (sent.ok === false && sent.unknownKey) {

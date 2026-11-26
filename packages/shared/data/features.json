@@ -4803,7 +4803,6 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "WF-ENG, PAY-DIRECT / LIC-01",
       "WF-ENG",
       "PAY-DIRECT / LIC-01"
     ],
@@ -4811,7 +4810,7 @@
       "C-SELLER"
     ],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01 pending",
+    "prototypeDefaultLabel": "Prototype default — decision WF-ENG / PAY-DIRECT / LIC-01 pending",
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -5311,7 +5310,6 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "PH-INF, PO-REC-v8, PAY-DIRECT / LIC-01, E-INV, PAID-STUB, DOC-LIB",
       "PH-INF",
       "PO-REC-v8",
       "PAY-DIRECT / LIC-01",
@@ -5323,7 +5321,7 @@
       "C-SELLER"
     ],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision PH-INF, PO-REC-v8, PAY-DIRECT / LIC-01, E-INV, PAID-STUB, DOC-LIB / PH-INF / PO-REC-v8 / PAY-DIRECT / LIC-01 / E-INV / PAID-STUB / DOC-LIB pending",
+    "prototypeDefaultLabel": "Prototype default — decision PH-INF / PO-REC-v8 / PAY-DIRECT / LIC-01 / E-INV / PAID-STUB / DOC-LIB pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -6054,14 +6052,13 @@
     "configuration": false,
     "codeLevel": false,
     "heldBy": [
-      "API-01, PAID-STUB, API-GW",
       "API-01",
       "PAID-STUB",
       "API-GW"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision API-01, PAID-STUB, API-GW / API-01 / PAID-STUB / API-GW pending",
+    "prototypeDefaultLabel": "Prototype default — decision API-01 / PAID-STUB / API-GW pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -8001,13 +7998,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "PH-INF, UOM-01",
       "PH-INF",
       "UOM-01"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision PH-INF, UOM-01 / PH-INF / UOM-01 pending",
+    "prototypeDefaultLabel": "Prototype default — decision PH-INF / UOM-01 pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -11132,7 +11128,6 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "WF-ENG, PAY-DIRECT / LIC-01",
       "WF-ENG",
       "PAY-DIRECT / LIC-01"
     ],
@@ -11140,7 +11135,7 @@
       "SPLIT-PAY"
     ],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01 pending",
+    "prototypeDefaultLabel": "Prototype default — decision WF-ENG / PAY-DIRECT / LIC-01 pending",
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -11935,13 +11930,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "PH-INF, PAID-STUB",
       "PH-INF",
       "PAID-STUB"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision PH-INF, PAID-STUB / PH-INF / PAID-STUB pending",
+    "prototypeDefaultLabel": "Prototype default — decision PH-INF / PAID-STUB pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -12070,13 +12064,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "PH-INF, WF-ENG",
       "PH-INF",
       "WF-ENG"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision PH-INF, WF-ENG / PH-INF / WF-ENG pending",
+    "prototypeDefaultLabel": "Prototype default — decision PH-INF / WF-ENG pending",
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -12777,7 +12770,6 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "FG-06, PAY-DIRECT / LIC-01, WAL-01",
       "FG-06",
       "PAY-DIRECT / LIC-01",
       "WAL-01"
@@ -12786,7 +12778,7 @@
       "OVR-REG"
     ],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, PAY-DIRECT / LIC-01, WAL-01 / FG-06 / PAY-DIRECT / LIC-01 / WAL-01 pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / PAY-DIRECT / LIC-01 / WAL-01 pending",
     "priority": "Could Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -13850,7 +13842,6 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "PH-INF, E-INV, DOC-LIB",
       "PH-INF",
       "E-INV",
       "DOC-LIB"
@@ -13859,7 +13850,7 @@
       "OVR-REG"
     ],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB pending",
+    "prototypeDefaultLabel": "Prototype default — decision PH-INF / E-INV / DOC-LIB pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -13915,14 +13906,13 @@
     "configuration": false,
     "codeLevel": false,
     "heldBy": [
-      "PH-INF, E-INV, DOC-LIB",
       "PH-INF",
       "E-INV",
       "DOC-LIB"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB pending",
+    "prototypeDefaultLabel": "Prototype default — decision PH-INF / E-INV / DOC-LIB pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -13973,14 +13963,13 @@
     "configuration": false,
     "codeLevel": false,
     "heldBy": [
-      "PH-INF, E-INV, DOC-LIB",
       "PH-INF",
       "E-INV",
       "DOC-LIB"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB pending",
+    "prototypeDefaultLabel": "Prototype default — decision PH-INF / E-INV / DOC-LIB pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -14457,13 +14446,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "PO-REC-v8, PAY-DIRECT / LIC-01",
       "PO-REC-v8",
       "PAY-DIRECT / LIC-01"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision PO-REC-v8, PAY-DIRECT / LIC-01 / PO-REC-v8 / PAY-DIRECT / LIC-01 pending",
+    "prototypeDefaultLabel": "Prototype default — decision PO-REC-v8 / PAY-DIRECT / LIC-01 pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -14521,14 +14509,13 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "WF-ENG, PO-REC-v8, PAY-DIRECT / LIC-01",
       "WF-ENG",
       "PO-REC-v8",
       "PAY-DIRECT / LIC-01"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision WF-ENG, PO-REC-v8, PAY-DIRECT / LIC-01 / WF-ENG / PO-REC-v8 / PAY-DIRECT / LIC-01 pending",
+    "prototypeDefaultLabel": "Prototype default — decision WF-ENG / PO-REC-v8 / PAY-DIRECT / LIC-01 pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -16060,13 +16047,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "CALLOFF-PLACE, DOC-LIB",
       "CALLOFF-PLACE",
       "DOC-LIB"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision CALLOFF-PLACE, DOC-LIB / CALLOFF-PLACE / DOC-LIB pending",
+    "prototypeDefaultLabel": "Prototype default — decision CALLOFF-PLACE / DOC-LIB pending",
     "priority": "Must Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -16254,13 +16240,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "PH-INF, DOC-LIB",
       "PH-INF",
       "DOC-LIB"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision PH-INF, DOC-LIB / PH-INF / DOC-LIB pending",
+    "prototypeDefaultLabel": "Prototype default — decision PH-INF / DOC-LIB pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -18571,13 +18556,12 @@
     "configuration": false,
     "codeLevel": false,
     "heldBy": [
-      "FG-06, PAID-STUB",
       "FG-06",
       "PAID-STUB"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, PAID-STUB / FG-06 / PAID-STUB pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / PAID-STUB pending",
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
@@ -20623,13 +20607,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "WF-ENG, T-MISS",
       "WF-ENG",
       "T-MISS"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision WF-ENG, T-MISS / WF-ENG / T-MISS pending",
+    "prototypeDefaultLabel": "Prototype default — decision WF-ENG / T-MISS pending",
     "priority": "Must Have",
     "category": "Fulfilment & Customer Service",
     "capabilityType": null,
@@ -23201,13 +23184,12 @@
     "configuration": false,
     "codeLevel": false,
     "heldBy": [
-      "FG-06, PAID-STUB",
       "FG-06",
       "PAID-STUB"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, PAID-STUB / FG-06 / PAID-STUB pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / PAID-STUB pending",
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
@@ -25656,7 +25638,6 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "API-01, PAID-STUB, API-GW",
       "API-01",
       "PAID-STUB",
       "API-GW"
@@ -25666,7 +25647,7 @@
       "KG-03"
     ],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision API-01, PAID-STUB, API-GW / API-01 / PAID-STUB / API-GW pending",
+    "prototypeDefaultLabel": "Prototype default — decision API-01 / PAID-STUB / API-GW pending",
     "priority": "Must Have",
     "category": "Platform & Administration",
     "capabilityType": null,
@@ -26602,13 +26583,12 @@
     "configuration": false,
     "codeLevel": false,
     "heldBy": [
-      "M-19, PAID-STUB",
       "M-19",
       "PAID-STUB"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision M-19, PAID-STUB / M-19 / PAID-STUB pending",
+    "prototypeDefaultLabel": "Prototype default — decision M-19 / PAID-STUB pending",
     "priority": "Must Have",
     "category": "Channels, Reporting & AI",
     "capabilityType": null,
@@ -28479,13 +28459,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "FG-06, T-MISS",
       "FG-06",
       "T-MISS"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / T-MISS pending",
     "priority": "Could Have",
     "category": "Vertical Packs",
     "capabilityType": null,
@@ -28558,7 +28537,6 @@
     "configuration": true,
     "codeLevel": false,
     "heldBy": [
-      "FG-06, T-MISS",
       "FG-06",
       "T-MISS"
     ],
@@ -28566,7 +28544,7 @@
       "OVR-REG"
     ],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / T-MISS pending",
     "priority": "Must Have",
     "category": "Vertical Packs",
     "capabilityType": null,
@@ -28656,7 +28634,6 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "FG-06, WF-ENG, T-MISS",
       "FG-06",
       "WF-ENG",
       "T-MISS"
@@ -28666,7 +28643,7 @@
       "MSG-ROUTE"
     ],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, WF-ENG, T-MISS / FG-06 / WF-ENG / T-MISS pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / WF-ENG / T-MISS pending",
     "priority": "Must Have",
     "category": "Vertical Packs",
     "capabilityType": null,
@@ -28738,13 +28715,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "FG-06, T-MISS",
       "FG-06",
       "T-MISS"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / T-MISS pending",
     "priority": "Could Have",
     "category": "Vertical Packs",
     "capabilityType": null,
@@ -28810,7 +28786,6 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "FG-06, T-MISS",
       "FG-06",
       "T-MISS"
     ],
@@ -28818,7 +28793,7 @@
       "OVR-REG"
     ],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / T-MISS pending",
     "priority": "Must Have",
     "category": "Vertical Packs",
     "capabilityType": null,
@@ -28890,13 +28865,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "FG-06, T-MISS",
       "FG-06",
       "T-MISS"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / T-MISS pending",
     "priority": "Must Have",
     "category": "Vertical Packs",
     "capabilityType": null,
@@ -28961,13 +28935,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "FG-06, T-MISS",
       "FG-06",
       "T-MISS"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, T-MISS / FG-06 / T-MISS pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / T-MISS pending",
     "priority": "Should Have",
     "category": "Vertical Packs",
     "capabilityType": null,
@@ -29031,7 +29004,6 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "FG-06, WF-ENG, T-MISS",
       "FG-06",
       "WF-ENG",
       "T-MISS"
@@ -29040,7 +29012,7 @@
       "ONE-RECORD"
     ],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, WF-ENG, T-MISS / FG-06 / WF-ENG / T-MISS pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / WF-ENG / T-MISS pending",
     "priority": "Should Have",
     "category": "Vertical Packs",
     "capabilityType": null,
@@ -29270,13 +29242,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "FG-06, PO-REC-v8",
       "FG-06",
       "PO-REC-v8"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, PO-REC-v8 / FG-06 / PO-REC-v8 pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / PO-REC-v8 pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -29351,7 +29322,6 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "FG-06, PO-REC-v8",
       "FG-06",
       "PO-REC-v8"
     ],
@@ -29360,7 +29330,7 @@
       "DEP-BAL"
     ],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, PO-REC-v8 / FG-06 / PO-REC-v8 pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / PO-REC-v8 pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,
@@ -29923,13 +29893,12 @@
     "configuration": false,
     "codeLevel": true,
     "heldBy": [
-      "FG-06, PO-REC-v8",
       "FG-06",
       "PO-REC-v8"
     ],
     "readinessConditions": [],
     "held": true,
-    "prototypeDefaultLabel": "Prototype default — decision FG-06, PO-REC-v8 / FG-06 / PO-REC-v8 pending",
+    "prototypeDefaultLabel": "Prototype default — decision FG-06 / PO-REC-v8 pending",
     "priority": "Should Have",
     "category": "Commerce",
     "capabilityType": null,

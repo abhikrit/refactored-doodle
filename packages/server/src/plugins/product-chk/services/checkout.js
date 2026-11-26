@@ -41,6 +41,14 @@ import {
   chosenWindowAsync,
 } from './slots.js';
 import { addressFormAsync, locatorCheck } from './address.js';
+import {
+  splitGroups, allocate, groupPaymentAsync, linkOrderAsync, placementExceptionAsync,
+  PROTOTYPE_DEFAULT,
+} from './split.js';
+import {
+  placementIntervalGuardAsync, markPlacement, idempotentPlacementAsync,
+  recordIdempotentResultAsync, orderGuidForAsync, updateSessionAsync,
+} from './resilience.js';
 
 const orderRepo = () => repository('Order');
 const orderItemRepo = () => repository('OrderItem');
@@ -275,19 +283,7 @@ export async function totalsAsync({
 }
 
 /** IC-CHK-11 splitter: group lines by seller and fulfilment choice (BR-CHK-009). */
-export function splitCart(cart) {
-  const groups = new Map();
-  for (const item of cart.items) {
-    const key = `${item.vendorId}|${item.fulfilment}|${item.pickupPointId ?? 0}`;
-    if (!groups.has(key)) {
-      groups.set(key, {
-        key, vendorId: item.vendorId, fulfilment: item.fulfilment, pickupPointId: item.pickupPointId, items: [],
-      });
-    }
-    groups.get(key).items.push(item);
-  }
-  return [...groups.values()];
-}
+export const splitCart = splitGroups;
 
 function hashCode(code) {
   return createHash('sha256').update(code).digest('hex');
@@ -322,8 +318,35 @@ export async function placeOrderAsync({
 
   const session = await openSessionAsync({ sessionId, customer, storeId });
   const withLock = await getSettingAsync('ordersettings.placeorderwithlock', storeId, true);
+
+  // AC-CHK-008-03-01: the native minimum placement interval, checked once for the checkout
+  const interval = await placementIntervalGuardAsync({ customer, sessionId, storeId });
+  if (interval.ok !== true) {
+    return {
+      ok: false,
+      stoppedAt: 'placement interval',
+      messageKey: interval.messageKey,
+      failures: [{ step: 'confirm', message: interval.message, messageKey: interval.messageKey }],
+      orderCreated: false,
+    };
+  }
+
   const run = async () => {
     const cart = await getCartAsync({ sessionId, customer, storeId });
+
+    // AC-CHK-008-03-02: a repeated confirm of the same checkout and cart gets the same orders
+    const idempotency = await idempotentPlacementAsync({ session, cart, storeId });
+    if (idempotency.replay === true) {
+      return {
+        ok: true,
+        replay: true,
+        idempotencyKey: idempotency.key,
+        checkoutReference: session.reference,
+        orders: idempotency.orders,
+        payments: 0,
+        note: idempotency.note,
+      };
+    }
     const totals = await totalsAsync({
       sessionId, customer, storeId, paymentMethodSystemName,
     });
@@ -370,6 +393,14 @@ export async function placeOrderAsync({
     }
 
     // ---- payment, ONCE for the whole checkout (BR-CHK-006, BR-CHK-022) ---------------------
+    // IC-CHK-04: the payment carries the share of each seller, so one payment can be split,
+    // and the same allocation is what each sub-order is saved with (BR-CHK-007)
+    const allocation = allocate({ groups, totals });
+
+    // AC-CHK-008-03-03: a retry inside RegenerateOrderGuidInterval keeps the same OrderGuid, so
+    // the provider sees the same merchant reference
+    const guid = await orderGuidForAsync({ session, storeId });
+
     let payment;
     try {
       payment = await processPaymentAsync({
@@ -377,6 +408,10 @@ export async function placeOrderAsync({
         amount: totals.total,
         currency: totals.currency,
         checkoutReference: session.reference,
+        orderGuid: guid.orderGuid,
+        sharePerSeller: allocation.allocations.map((a) => ({
+          vendorId: a.vendorId, amount: a.total,
+        })),
         customer,
         storeId,
         data: paymentData,
@@ -406,28 +441,20 @@ export async function placeOrderAsync({
     const estimate = await estimateForCartAsync({ cart, address: shippingAddress, storeId });
 
     // ---- save one sub-order per group, allocating order-level amounts (BR-CHK-007) ---------
-    const subtotalAll = groups.reduce((s, g) => s + g.items.reduce((x, i) => x + i.subtotal, 0), 0) || 1;
     const orders = [];
-    let allocated = { delivery: 0, payment: 0, tax: 0 };
-    for (const [index, group] of groups.entries()) {
-      const groupSubtotal = money(group.items.reduce((s, i) => s + i.subtotal, 0));
-      const share = groupSubtotal / subtotalAll;
-      const last = index === groups.length - 1;
-      const groupQuote = totals.perSeller.find((p) => p.key === group.key);
-      const deliveryFee = groupQuote ? groupQuote.fee : money(totals.deliveryFee * share);
-      const paymentFee = last ? money(totals.paymentFee - allocated.payment) : money(totals.paymentFee * share);
-      const tax = last ? money(totals.tax - allocated.tax) : money(totals.tax * share);
-      allocated = {
-        delivery: money(allocated.delivery + deliveryFee),
-        payment: money(allocated.payment + paymentFee),
-        tax: money(allocated.tax + tax),
-      };
+    try {
+      for (const [index, group] of groups.entries()) {
+      const share = allocation.allocations[index];
+      const groupSubtotal = share.subtotal;
+      const deliveryFee = share.deliveryFee;
+      const paymentFee = share.paymentFee;
+      const tax = share.tax;
       const vendor = await repository('Vendor').getByIdAsync(group.vendorId);
       const orderNumber = await nextOrderNumberAsync(storeId);
       const stage = await initialStageAsync(storeId);
       const order = await orderRepo().insertAsync({
         orderNumber,
-        orderGuid: randomBytes(8).toString('hex'),
+        orderGuid: index === 0 ? guid.orderGuid : randomBytes(8).toString('hex'),
         checkoutReference: session.reference,
         storeId,
         customerId: customer?.id ?? null,
@@ -458,10 +485,16 @@ export async function placeOrderAsync({
         subtotal: groupSubtotal,
         deliveryFee,
         paymentFee,
+        discount: share.discount,
+        checkoutAttributeFee: share.checkoutAttributeFee,
         tax,
-        total: money(groupSubtotal + deliveryFee + paymentFee + tax),
+        total: share.total,
         currency: totals.currency,
         placedOnUtc: new Date().toISOString(),
+      });
+      // AC-CHK-004-01-01 and AC-CHK-008-01-02: every sub-order is linked to the one checkout
+      await linkOrderAsync({
+        order, session, group, allocation: share,
       });
       for (const item of group.items) {
         const orderItem = await orderItemRepo().insertAsync({
@@ -506,25 +539,101 @@ export async function placeOrderAsync({
         },
         note: `sub-order of checkout ${session.reference} (BR-CHK-009 grouping by seller and fulfilment)`,
       });
+      }
+    } catch (err) {
+      // AC-CHK-004-01-05: the payment went through and a later sub-order could not be saved
+      const problem = await placementExceptionAsync({
+        session, savedOrders: orders, failedGroup: groups[orders.length] ?? null, error: err, payment, storeId,
+      });
+      await updateSessionAsync({ id: session.id, changes: { state: 'PlacementException' } });
+      await auditAsync({
+        event: 'AUD-CHK-007',
+        area: 'CHK',
+        feature: 'PRD-CHK-004',
+        entity: 'CheckoutSession',
+        entityId: session.id,
+        actor: customer?.email ?? actor,
+        after: { state: 'PlacementException', ordersSaved: orders.map((o) => o.orderNumber) },
+        note: problem.message,
+        outcome: 'failure',
+      });
+      return {
+        ok: false,
+        stoppedAt: 'sub-order save',
+        messageKey: problem.messageKey,
+        checkoutReference: session.reference,
+        orders,
+        ordersKept: orders.length,
+        payment,
+        exception: problem.exception,
+        failures: [{ step: 'confirm', message: problem.message, messageKey: problem.messageKey }],
+      };
     }
 
     // ---- clear the cart once, close the session (BR-CHK-006, SM-CHK-01) -------------------
     for (const item of cart.items) await repository('ShoppingCartItem').deleteAsync(item);
-    await sessionRepo().updateAsync({ ...session, state: 'Placed', placedOrderIds: orders.map((o) => o.id) });
+    await updateSessionAsync({
+      id: session.id,
+      changes: { state: 'Placed', placedOrderIds: orders.map((o) => o.id), placedOnUtc: new Date().toISOString() },
+    });
+    // the native interval key is set once, after every sub-order is saved (BR-CHK-006)
+    markPlacement({ customer, sessionId });
+    await recordIdempotentResultAsync({ key: idempotency.key, orders, storeId });
 
     // ---- CHK-019 confirmation, through TRK-005 -------------------------------------------
-    const confirmation = orders.length > 1
-      ? resource('Chk.OrderPlacedGroup', { reference: session.reference, count: orders.length })
-      : `Your order ${orders[0].orderNumber} has been placed.`;
     const to = customer?.email ?? billingAddress?.email ?? 'guest@example.com';
-    await sendAsync({
-      event: 'Chk.OrderPlacedGroup',
-      to,
-      tokens: { reference: session.reference, count: orders.length },
-      storeId,
-      feature: 'PRD-CHK-019',
-      gateways: (await import('@product/mocks')).messageGateways,
-    });
+    const gateways = (await import('@product/mocks')).messageGateways;
+    const attachInvoice = await getSettingAsync('ordersettings.attachpdfinvoicetoorderplacedemail', storeId, false);
+    let confirmation;
+    if (orders.length > 1) {
+      // AC-CHK-019-01-03: one confirmation for the checkout, listing every sub-order, instead
+      // of one native e-mail per sub-order
+      confirmation = resource('Chk.OrderPlacedGroup', { reference: session.reference, count: orders.length });
+      await sendAsync({
+        event: 'Chk.OrderPlacedGroup',
+        to,
+        tokens: {
+          reference: session.reference,
+          count: orders.length,
+          'sub-orders': orders.map((o) => `${o.orderNumber} (${o.vendorName ?? 'this store'})`).join(', '),
+        },
+        storeId,
+        feature: 'PRD-CHK-019',
+        attachments: attachInvoice === true ? orders.map((o) => `invoice-${o.orderNumber}.pdf`) : [],
+        gateways,
+      });
+    } else {
+      // AC-CHK-019-01-02: the native customer notification, with the invoice attached when the
+      // store asks for it
+      confirmation = `Your order ${orders[0].orderNumber} has been placed.`;
+      await sendAsync({
+        event: 'OrderPlaced.CustomerNotification',
+        to,
+        tokens: {
+          'order number': orders[0].orderNumber,
+          reference: session.reference,
+          total: orders[0].total,
+        },
+        storeId,
+        feature: 'PRD-CHK-019',
+        attachments: attachInvoice === true ? [`invoice-${orders[0].orderNumber}.pdf`] : [],
+        gateways,
+      });
+    }
+
+    // AC-CHK-004-02-02: each seller hears about their own sub-order only
+    for (const o of orders.filter((x) => x.vendorId)) {
+      const vendor = await repository('Vendor').getByIdAsync(o.vendorId);
+      if (!vendor?.email) continue;
+      await sendAsync({
+        event: 'OrderPlaced.VendorNotification',
+        to: vendor.email,
+        tokens: { 'order number': o.orderNumber, seller: vendor.name, reference: session.reference },
+        storeId,
+        feature: 'PRD-CHK-004',
+        gateways,
+      });
+    }
     for (const o of orders.filter((x) => x.pickupCode)) {
       const point = await repository('StorePickupPoint').getByIdAsync(o.pickupPointId);
       await sendAsync({
@@ -534,7 +643,7 @@ export async function placeOrderAsync({
         tokens: { 'order number': o.orderNumber, outlet: point?.name ?? 'the outlet', code: o.pickupCode },
         storeId,
         feature: 'PRD-CHK-012',
-        gateways: (await import('@product/mocks')).messageGateways,
+        gateways,
       });
     }
 
@@ -544,9 +653,15 @@ export async function placeOrderAsync({
       orders,
       totals,
       payment,
+      payments: 1,
       confirmation,
+      allocation,
       split: groups.length > 1,
-      features: ['PRD-CHK-003', 'PRD-CHK-004', 'PRD-CHK-012', 'PRD-CHK-019', 'PRD-ORD-007', 'PRD-PAY-011'],
+      sellers: [...new Set(groups.map((g) => g.vendorId))].length,
+      idempotencyKey: idempotency.key,
+      orderGuidReused: guid.reused,
+      prototypeDefault: groups.length > 1 ? PROTOTYPE_DEFAULT : null,
+      features: ['PRD-CHK-003', 'PRD-CHK-004', 'PRD-CHK-008', 'PRD-CHK-012', 'PRD-CHK-019', 'PRD-ORD-007', 'PRD-PAY-011'],
     };
   };
 

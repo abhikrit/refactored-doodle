@@ -4,8 +4,8 @@
 // is invented for the prototype and marked synthetic.
 
 const VENDORS = [
-  { id: 101, name: 'KTDA Kangaita Factory', sellerType: 'Factory', county: 'Kirinyaga', rating: 4.7, active: true },
-  { id: 102, name: 'KTDA Michimikuru Factory', sellerType: 'Factory', county: 'Meru', rating: 4.5, active: true },
+  { id: 101, name: 'KTDA Kangaita Factory', email: 'ktda.kangaita.factory@example.com', sellerType: 'Factory', county: 'Kirinyaga', rating: 4.7, active: true },
+  { id: 102, name: 'KTDA Michimikuru Factory', email: 'ktda.michimikuru.factory@example.com', sellerType: 'Factory', county: 'Meru', rating: 4.5, active: true },
 ];
 
 const CATEGORIES = [

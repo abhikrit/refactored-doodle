@@ -48,10 +48,23 @@ export const notificationEngineRegistered = () => engine !== null;
 export async function sendAsync({
   event, to, channels, tokens = {}, storeId = 1, feature = 'PRD-TRK-005', gateways = null,
   reference = null, order = null, shipment = null, customer = null, languageId = null,
+  attachments = [],
 }) {
   if (engine) {
     return engine({
-      event, to, channels, tokens, storeId, feature, gateways, reference, order, shipment, customer, languageId,
+      event,
+      to,
+      channels,
+      tokens,
+      storeId,
+      feature,
+      gateways,
+      reference,
+      order,
+      shipment,
+      customer,
+      languageId,
+      attachments,
     });
   }
   const routed = channels ?? (await getSettingAsync(`trk.route.${event}`, storeId, ['email']));

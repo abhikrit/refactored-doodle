@@ -11,7 +11,7 @@ import {
 import {
   checkoutStateAsync, totalsAsync, validateAsync, placeOrderAsync, splitCart, checkoutExceptionsAsync,
   stepStateAsync, submitStepAsync, confirmSummaryAsync, checkoutRequestGuard, guestGuardAsync,
-  shippingStepAsync, STEP_FIELDS,
+  shippingStepAsync, openSessionAsync, STEP_FIELDS,
 } from './services/checkout.js';
 import {
   cartFulfilmentOptionsAsync, lineOptionsAsync, setLineFulfilmentAsync, stepEstimatesAsync,
@@ -24,6 +24,16 @@ import {
 import {
   addressFormAsync, saveAddressAsync, addressAttributesAsync, orderAddressAsync,
 } from './services/address.js';
+import {
+  splitGroups, allocate, groupPaymentAsync, cartCheckAsync as groupPaymentCartCheckAsync,
+  checkoutLinksAsync, requestRefundAsync, PROTOTYPE_DEFAULT,
+} from './services/split.js';
+import {
+  resumeAsync, resumePaymentAsync, checkoutNodeReadinessAsync, idempotencyKey, cartHash,
+  placementLockCount, updateSessionAsync,
+} from './services/resilience.js';
+import { registerEventCodeAsync } from '../product-trk/services/notifications.js';
+import { declareSettingKeys } from '../../core/pack-loader.js';
 import {
   itemWarningsAsync, cartWarningsAsync, standardWarningsAsync, subTotalAsync,
   guardOrderActionAsync, cancelOrderAsync, runCheckOrderAsync, registerCartCheckProvider,
@@ -51,6 +61,59 @@ export default definePlugin({
       startupOrder: 3200,
       note: 'the placement host. One lock, one payment, one sub-order per splitter group.',
     });
+    // AC-CHK-019-01-04: CHK registers its own event codes with TRK-005 (IC-TRK-04); a send with
+    // an unregistered code is refused by TRK.
+    registerEventCodeAsync({
+      code: 'Chk.OrderPlacedGroup',
+      owningModule: 'Product.CHK',
+      feature: 'PRD-CHK-019',
+      category: 'Orders',
+      defaultChannels: ['email', 'inapp'],
+      content: {
+        email: 'Your order {reference} has been placed. It will be delivered by {count} sellers.',
+        inapp: 'Your order {reference} has been placed ({count} sellers).',
+      },
+    });
+    registerEventCodeAsync({
+      code: 'Chk.PickupCode',
+      owningModule: 'Product.CHK',
+      feature: 'PRD-CHK-012',
+      category: 'Orders',
+      // inactive by default: ShipmentReadyForPickup.CustomerNotification carries the code
+      defaultChannels: [],
+      content: {
+        sms: 'Your pickup code for order {order number} at {outlet}: {code}',
+      },
+    });
+
+    // AC-CHK-004-01-08 / decision CART-500: the native per-seller cart settings are pinned off
+    // in the CHK key catalogue, so pack validation refuses any other value (BR-CHK-023).
+    declareSettingKeys({
+      owner: 'Product.CHK',
+      prefixes: ['chk.'],
+      keys: ['shoppingcartsettings.vendorenabled', 'shoppingcartsettings.vendorrequired'],
+      fixedValues: {
+        'shoppingcartsettings.vendorenabled': {
+          value: false,
+          rule: 'BR-CHK-023 / decision CART-500',
+          reason: 'the product keeps one cart for all sellers and splits the order in CHK-004',
+        },
+        'shoppingcartsettings.vendorrequired': {
+          value: false,
+          rule: 'BR-CHK-023 / decision CART-500',
+          reason: 'the product keeps one cart for all sellers and splits the order in CHK-004',
+        },
+      },
+    });
+
+    // AC-CHK-004-01-07: the cart says when a multi-seller cart cannot be paid for in one go
+    registerCartCheckProvider({
+      area: 'CHK',
+      feature: 'PRD-CHK-004',
+      name: 'group payment',
+      fn: groupPaymentCartCheckAsync,
+    });
+
     // CHK-006 reserves and releases the delivery window (BR-CHK-010, IC-CHK-06 and IC-CHK-08)
     registerPlacementParticipant({
       area: 'CHK',
@@ -304,6 +367,52 @@ export default definePlugin({
     r.get('/orders/:orderNumber/address', send(async (req) => orderAddressAsync({
       orderNumber: req.params.orderNumber,
     })));
+
+    /* --------------------- PRD-CHK-004 the split, PRD-CHK-008 the one reference ----- */
+    r.get('/split/preview', send(async (req) => {
+      const base = await withCustomer(req);
+      const cart = await getCartAsync(base);
+      const totals = await totalsAsync({
+        ...base, paymentMethodSystemName: req.query.paymentMethodSystemName ?? null,
+      });
+      const groups = splitGroups(cart);
+      return {
+        groups: groups.map((g) => ({
+          key: g.key, vendorId: g.vendorId, fulfilment: g.fulfilment, lines: g.items.length,
+        })),
+        allocation: allocate({ groups, totals }),
+        groupPayment: await groupPaymentAsync({ cart, storeId: base.storeId }),
+        prototypeDefault: groups.length > 1 ? PROTOTYPE_DEFAULT : null,
+      };
+    }));
+    r.get('/split/group-payment', send(async (req) => {
+      const base = await withCustomer(req);
+      return groupPaymentAsync({ cart: await getCartAsync(base), storeId: base.storeId });
+    }));
+    r.get('/checkout/links/:reference', send((req) => checkoutLinksAsync(req.params.reference)));
+    r.post('/checkout/exceptions/:reference/refund', gate('Checkout.Core.Exceptions.View'), send((req) => requestRefundAsync({
+      reference: req.params.reference,
+      amount: Number(req.body?.amount ?? 0),
+      reason: req.body?.reason ?? null,
+      actor: req.actorEmail ?? 'support',
+      storeId: req.storeId,
+    })));
+    r.get('/checkout/resume', send(async (req) => resumeAsync(await withCustomer(req))));
+    r.get('/orders/:orderNumber/resume-payment', send((req) => resumePaymentAsync({
+      orderNumber: req.params.orderNumber, storeId: req.storeId,
+    })));
+    r.get('/checkout/idempotency', send(async (req) => {
+      const base = await withCustomer(req);
+      const cart = await getCartAsync(base);
+      const session = await openSessionAsync(base);
+      return {
+        reference: session?.reference ?? null,
+        cartHash: cartHash(cart),
+        key: session ? idempotencyKey({ reference: session.reference, cart }) : null,
+        placementLockTaken: placementLockCount(base.customer?.id ?? base.sessionId),
+      };
+    }));
+    r.get('/checkout/node-readiness', send((req) => checkoutNodeReadinessAsync({ storeId: req.storeId })));
 
     r.get('/checkout/exceptions', async (req, res, next) => {
       try { res.json(await checkoutExceptionsAsync()); } catch (err) { next(err); }

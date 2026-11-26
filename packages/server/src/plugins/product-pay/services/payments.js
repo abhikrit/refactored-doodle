@@ -117,6 +117,61 @@ export async function confirmPushAsync({ providerRef, accept = true }) {
   return { ...result, orders: orders.map((o) => o.orderNumber) };
 }
 
+/**
+ * The retry path an order with an interrupted payment offers (AC-CHK-008-02-01): the native
+ * RePostPayment, allowed while PaymentSettings.AllowRepostingPayments is on. The payment keeps
+ * the checkout reference and the OrderGuid it had, so the provider sees the same request.
+ * PRD-PAY-011 owns payment status; this is the entry point it exposes for the retry.
+ */
+export async function retryPaymentAsync({
+  orderNumber, storeId = 1, data = {}, customer = null,
+}) {
+  const order = await repository('Order').getOneAsync((o) => o.orderNumber === orderNumber);
+  if (!order) return { ok: false, message: 'order not found' };
+  const allowed = await getSettingAsync('paymentsettings.allowrepostingpayments', storeId, true);
+  if (allowed !== true) {
+    return { ok: false, message: 'This store does not allow a payment to be started again.' };
+  }
+  if (order.paymentStatus === 'Paid') {
+    return { ok: false, alreadyPaid: true, message: 'This order has already been paid.' };
+  }
+  const result = await processPaymentAsync({
+    systemName: order.paymentMethodSystemName,
+    amount: order.total,
+    currency: order.currency,
+    checkoutReference: order.checkoutReference,
+    orderGuid: order.orderGuid,
+    customer,
+    storeId,
+    data,
+  });
+  await repository('Order').updateAsync({
+    ...order,
+    paymentProviderRef: result.providerRef,
+    paymentStatus: result.status === 'Paid' ? 'Paid' : 'Pending',
+    paidOnUtc: result.status === 'Paid' ? new Date().toISOString() : null,
+  });
+  await auditAsync({
+    event: 'AUD-PAY-011-02',
+    area: 'PAY',
+    feature: 'PRD-PAY-011',
+    entity: 'Order',
+    entityId: order.id,
+    actor: customer?.email ?? 'storefront',
+    before: { paymentStatus: order.paymentStatus },
+    after: { paymentStatus: result.status === 'Paid' ? 'Paid' : 'Pending' },
+    note: `the payment of ${order.orderNumber} was started again with the same checkout reference`,
+  });
+  return {
+    ok: true,
+    status: result.status,
+    providerRef: result.providerRef,
+    customerAction: result.customerAction ?? null,
+    checkoutReference: order.checkoutReference,
+    sameMerchantReference: true,
+  };
+}
+
 /** PAY-036: confirming a payment made outside the platform (cash at the counter, bank transfer). */
 export async function markPaidOfflineAsync({ orderNumber, actor = 'finance', note = '' }) {
   const order = await repository('Order').getOneAsync((o) => o.orderNumber === orderNumber);

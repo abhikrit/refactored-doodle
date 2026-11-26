@@ -314,12 +314,16 @@ export function AccountOrderDetails() {
   const { orderNumber } = useParams();
   const [order, setOrder] = useState(null);
   const [tracking, setTracking] = useState(null);
+  const [resumePayment, setResumePayment] = useState(null);
+  const [notice, setNotice] = useState(null);
 
   useEffect(() => {
     api.get(`/orders/${orderNumber}`).then(async (o) => {
       setOrder(o);
       const t = o.shipments?.[0]?.trackingNumber;
       if (t) setTracking(await api.get(`/tracking/${t}`));
+      // an interrupted payment can be completed from here (CHK-008)
+      api.get(`/checkout-area/orders/${orderNumber}/resume-payment`).then(setResumePayment).catch(() => {});
     }).catch(() => {});
   }, [orderNumber]);
 
@@ -328,6 +332,30 @@ export function AccountOrderDetails() {
   return (
     <AccountLayout title={`Order ${order.orderNumber}`}>
       <div className="space-y-4">
+        {resumePayment?.canCompletePayment && (
+          <Alert tone="warning" title="Your payment has not been completed">
+            <p>
+              This order is waiting for payment of {money(resumePayment.total, resumePayment.currency)}.
+              You can finish paying now, with the same reference.
+            </p>
+            <div className="mt-2">
+              <Button
+                variant="brand"
+                size="sm"
+                onClick={async () => {
+                  const res = await api.post('/payments/retry', { orderNumber: order.orderNumber });
+                  setNotice(res.ok === false
+                    ? (res.message ?? 'The payment could not be started again.')
+                    : 'The payment has been started again. Follow the prompt on your phone or at the counter.');
+                }}
+              >
+                Complete the payment
+              </Button>
+            </div>
+          </Alert>
+        )}
+        {notice && <Alert tone="info">{notice}</Alert>}
+
         <Panel title="Order information">
           <KeyValue rows={[
             ['Order number', <span className="font-mono">{order.orderNumber}</span>],

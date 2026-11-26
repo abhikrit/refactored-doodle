@@ -1,6 +1,6 @@
 # Trace report
 
-Generated 2026-11-26T11:52:38.099Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
+Generated 2026-11-26T15:34:05.005Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
 
 ## 1. Reconciliation
 
@@ -11,15 +11,15 @@ its criteria tested and the rest not is partial, and is never counted as built.
 
 | State | Features | Meaning |
 |---|---|---|
-| Built and passing | 82 | Every AC of the feature has a passing test named by the AC ID |
-| Partly covered | 7 | Some ACs have passing tests, the rest have none yet |
+| Built and passing | 85 | Every AC of the feature has a passing test named by the AC ID |
+| Partly covered | 5 | Some ACs have passing tests, the rest have none yet |
 | Held, prototype default | 90 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
 | Mocked externally | 24 | External-system feature standing behind a mock adapter (P-3) |
-| Not built | 231 | Scaffolded in Session 0, built in its own session |
+| Not built | 230 | Scaffolded in Session 0, built in its own session |
 | **Total** | **434** | reconciles: yes |
 
 Acceptance criteria in the product: 2850. Criteria with a test in this repository:
-660 (660 passing, 0 failing).
+680 (680 passing, 0 failing).
 
 ## 2. Coverage by area and wave
 
@@ -33,7 +33,7 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 | 2 Catalogue | INV | Inventory and warehouses | 13 | 0 | 0 | 1 | 0 | 12 |
 | 2 Catalogue | SEL | Sellers and marketplace onboarding | 25 | 0 | 0 | 4 | 1 | 20 |
 | 2 Catalogue | SRC | Search, discovery and merchandising | 27 | 0 | 0 | 4 | 1 | 22 |
-| 3 Buy | CHK | Cart and checkout | 19 | 7 | 3 | 4 | 0 | 5 |
+| 3 Buy | CHK | Cart and checkout | 19 | 10 | 1 | 4 | 0 | 4 |
 | 3 Buy | ORD | Orders and B2B transactions (RFQ, contracts, requisitions, offers, group buying) | 28 | 0 | 2 | 11 | 0 | 15 |
 | 3 Buy | PAY | Payments, tax, settlement and reconciliation | 36 | 0 | 1 | 14 | 0 | 21 |
 | 4 Fulfil | DOC | Documents and records | 6 | 0 | 0 | 2 | 1 | 3 |
@@ -54,8 +54,8 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 
 | Client | Requirements | Mapped to a feature | Demonstrated in the prototype | Project service |
 |---|---|---|---|---|
-| KTDA | 95 | 80 | 25 | 17 |
-| Malawi Post | 411 | 374 | 84 | 38 |
+| KTDA | 95 | 80 | 26 | 17 |
+| Malawi Post | 411 | 374 | 86 | 38 |
 
 "Demonstrated in the prototype" means at least one feature that delivers the requirement has a
 passing AC-named test here. It is not a compliance statement: the compliance status of each
@@ -203,7 +203,15 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-CHK-004-01-01 | PRD-CHK-004 | node (API and rules) | pass |
 | AC-CHK-004-01-02 | PRD-CHK-004 | node (API and rules) | pass |
 | AC-CHK-004-01-03 | PRD-CHK-004 | node (API and rules) | pass |
+| AC-CHK-004-01-04 | PRD-CHK-004 | node (API and rules) | pass |
+| AC-CHK-004-01-05 | PRD-CHK-004 | node (API and rules) | pass |
+| AC-CHK-004-01-06 | PRD-CHK-004 | node (API and rules) | pass |
 | AC-CHK-004-01-07 | PRD-CHK-004 | node (API and rules) | pass |
+| AC-CHK-004-01-08 | PRD-CHK-004 | node (API and rules) | pass |
+| AC-CHK-004-01-09 | PRD-CHK-004 | node (API and rules) | pass |
+| AC-CHK-004-02-01 | PRD-CHK-004 | node (API and rules) | pass |
+| AC-CHK-004-02-02 | PRD-CHK-004 | node (API and rules) | pass |
+| AC-CHK-004-03-01 | PRD-CHK-004 | node (API and rules) | pass |
 | AC-CHK-005-01-01 | PRD-CHK-005 | node (API and rules) | pass |
 | AC-CHK-005-01-02 | PRD-CHK-005 | node (API and rules) | pass |
 | AC-CHK-005-01-03 | PRD-CHK-005 | node (API and rules) | pass |
@@ -226,6 +234,15 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-CHK-007-01-04 | PRD-CHK-007 | node (API and rules) | pass |
 | AC-CHK-007-02-01 | PRD-CHK-007 | node (API and rules) | pass |
 | AC-CHK-007-03-01 | PRD-CHK-007 | node (API and rules) | pass |
+| AC-CHK-008-01-01 | PRD-CHK-008 | node (API and rules) | pass |
+| AC-CHK-008-01-02 | PRD-CHK-008 | node (API and rules) | pass |
+| AC-CHK-008-01-03 | PRD-CHK-008 | node (API and rules) | pass |
+| AC-CHK-008-02-01 | PRD-CHK-008 | node (API and rules) | pass |
+| AC-CHK-008-02-02 | PRD-CHK-008 | node (API and rules) | pass |
+| AC-CHK-008-03-01 | PRD-CHK-008 | node (API and rules) | pass |
+| AC-CHK-008-03-02 | PRD-CHK-008 | node (API and rules) | pass |
+| AC-CHK-008-03-03 | PRD-CHK-008 | node (API and rules) | pass |
+| AC-CHK-008-03-04 | PRD-CHK-008 | node (API and rules) | pass |
 | AC-CHK-012-01-02 | PRD-CHK-012 | node (API and rules) | pass |
 | AC-CHK-012-02-03 | PRD-CHK-012 | node (API and rules) | pass |
 | AC-CHK-014-01-01 | PRD-CHK-014 | node (API and rules) | pass |
@@ -233,7 +250,10 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-CHK-014-01-03 | PRD-CHK-014 | node (API and rules) | pass |
 | AC-CHK-014-01-04 | PRD-CHK-014 | node (API and rules) | pass |
 | AC-CHK-014-01-05 | PRD-CHK-014 | node (API and rules) | pass |
+| AC-CHK-019-01-01 | PRD-CHK-019 | node (API and rules) | pass |
+| AC-CHK-019-01-02 | PRD-CHK-019 | node (API and rules) | pass |
 | AC-CHK-019-01-03 | PRD-CHK-019 | node (API and rules) | pass |
+| AC-CHK-019-01-04 | PRD-CHK-019 | node (API and rules) | pass |
 | AC-IAM-001-01-01 | PRD-IAM-001 | node (API and rules) | pass |
 | AC-IAM-001-01-02 | PRD-IAM-001 | node (API and rules) | pass |
 | AC-IAM-001-01-03 | PRD-IAM-001 | node (API and rules) | pass |
@@ -832,7 +852,7 @@ in the user interface and here.
 | PRD-SEL-014 | Approved supplier panels | SEL | P2 | 2 | not-built | 4 | 0 | - |
 | PRD-SEL-015 | Bulk participant import and invitation | SEL | P2 | 2 | not-built | 5 | 0 | - |
 | PRD-SEL-016 | Commission and fee rules | SEL | P1 | 2 | not-built | 6 | 0 | - |
-| PRD-SEL-017 | Seller settlements and payouts | SEL | P1 | 2 | held-default | 15 | 0 | WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01 |
+| PRD-SEL-017 | Seller settlements and payouts | SEL | P1 | 2 | held-default | 15 | 0 | WF-ENG / PAY-DIRECT / LIC-01 |
 | PRD-SEL-018 | Seller locations and fulfilment opt-in | SEL | P1 | 2 | not-built | 4 | 0 | - |
 | PRD-SEL-019 | Seller vacation mode | SEL | P1 | 2 | not-built | 5 | 0 | - |
 | PRD-SEL-020 | Seller notifications | SEL | P1 | 2 | not-built | 4 | 0 | - |
@@ -840,7 +860,7 @@ in the user interface and here.
 | PRD-SEL-022 | Seller diversity tracking | SEL | P3 | 2 | not-built | 2 | 0 | - |
 | PRD-SEL-023 | Seller training content | SEL | P1 | 2 | not-built | 3 | 0 | - |
 | PRD-SEL-024 | Seller blacklisting | SEL | P1 | 2 | not-built | 5 | 0 | - |
-| PRD-SEL-025 | Commission invoicing to sellers | SEL | P2 | 2 | held-default | 6 | 0 | PH-INF, PO-REC-v8, PAY-DIRECT / LIC-01, E-INV, PAID-STUB, DOC-LIB / PH-INF / PO-REC-v8 / PAY-DIRECT / LIC-01 / E-INV / PAID-STUB / DOC-LIB |
+| PRD-SEL-025 | Commission invoicing to sellers | SEL | P2 | 2 | held-default | 6 | 0 | PH-INF / PO-REC-v8 / PAY-DIRECT / LIC-01 / E-INV / PAID-STUB / DOC-LIB |
 | PRD-CAT-001 | Category taxonomy | CAT | P1 | 2 | not-built | 8 | 0 | - |
 | PRD-CAT-002 | Product master record | CAT | P1 | 2 | not-built | 14 | 0 | - |
 | PRD-CAT-003 | Identifier patterns | CAT | P1 | 2 | not-built | 5 | 0 | - |
@@ -851,7 +871,7 @@ in the user interface and here.
 | PRD-CAT-008 | Product cloning and listing templates | CAT | P2 | 2 | not-built | 4 | 0 | - |
 | PRD-CAT-009 | Bulk import/export and PDF catalogue | CAT | P1 | 2 | not-built | 8 | 0 | - |
 | PRD-CAT-010 | Import validation report | CAT | P1 | 2 | not-built | 4 | 0 | - |
-| PRD-CAT-011 | Catalogue API | CAT | P1 | 2 | held-default | 5 | 0 | API-01, PAID-STUB, API-GW / API-01 / PAID-STUB / API-GW |
+| PRD-CAT-011 | Catalogue API | CAT | P1 | 2 | held-default | 5 | 0 | API-01 / PAID-STUB / API-GW |
 | PRD-CAT-012 | Price tiers by customer group and quantity | CAT | P1 | 2 | not-built | 5 | 0 | - |
 | PRD-CAT-013 | Call-for-price / negotiable flag | CAT | P1 | 2 | not-built | 6 | 0 | - |
 | PRD-CAT-014 | Product tax category | CAT | P1 | 2 | not-built | 3 | 0 | - |
@@ -881,7 +901,7 @@ in the user interface and here.
 | PRD-CAT-038 | Guided seller listing wizard | CAT | P1 | 2 | not-built | 4 | 0 | - |
 | PRD-CAT-039 | Customer and company price lists | CAT | P1 | 2 | held-default | 13 | 0 | PH-INF |
 | PRD-CAT-040 | Company-specific assortment | CAT | P2 | 2 | held-default | 4 | 0 | PH-INF |
-| PRD-CAT-041 | Units of measure and pack selling | CAT | P1 | 2 | held-default | 3 | 0 | PH-INF, UOM-01 / PH-INF / UOM-01 |
+| PRD-CAT-041 | Units of measure and pack selling | CAT | P1 | 2 | held-default | 3 | 0 | PH-INF / UOM-01 |
 | PRD-CAT-042 | Fixed prices per currency | CAT | P1 | 2 | held-default | 15 | 0 | PH-INF |
 | PRD-CAT-043 | Seller listing moderation | CAT | P1 | 2 | held-default | 5 | 0 | WF-ENG |
 | PRD-INV-001 | Stock tracking | INV | P1 | 2 | not-built | 10 | 0 | - |
@@ -927,11 +947,11 @@ in the user interface and here.
 | PRD-CHK-001 | Shopping cart | CHK | P1 | 3 | built | 6 | 6 | - |
 | PRD-CHK-002 | Checkout | CHK | P1 | 3 | built | 10 | 10 | - |
 | PRD-CHK-003 | Checkout validation | CHK | P1 | 3 | built | 16 | 16 | - |
-| PRD-CHK-004 | Multi-seller split checkout | CHK | P1 | 3 | partial | 12 | 4 | WF-ENG, PAY-DIRECT / LIC-01 / WF-ENG / PAY-DIRECT / LIC-01 |
+| PRD-CHK-004 | Multi-seller split checkout | CHK | P1 | 3 | built | 12 | 12 | WF-ENG / PAY-DIRECT / LIC-01 |
 | PRD-CHK-005 | Fulfilment method per line | CHK | P1 | 3 | built | 6 | 6 | - |
 | PRD-CHK-006 | Delivery slot and instructions | CHK | P1 | 3 | built | 10 | 10 | - |
 | PRD-CHK-007 | Structured address capture | CHK | P1 | 3 | built | 6 | 6 | - |
-| PRD-CHK-008 | Checkout resilience and idempotency | CHK | P1 | 3 | not-built | 9 | 0 | - |
+| PRD-CHK-008 | Checkout resilience and idempotency | CHK | P1 | 3 | built | 9 | 9 | - |
 | PRD-CHK-009 | E-transactions consumer controls | CHK | P1 | 3 | not-built | 6 | 0 | - |
 | PRD-CHK-010 | Minimum order and fee thresholds | CHK | P1 | 3 | not-built | 3 | 0 | - |
 | PRD-CHK-011 | Cart restriction rules | CHK | P1 | 3 | not-built | 6 | 0 | - |
@@ -939,10 +959,10 @@ in the user interface and here.
 | PRD-CHK-013 | Assisted checkout | CHK | P1 | 3 | not-built | 6 | 0 | - |
 | PRD-CHK-014 | Estimated delivery at checkout | CHK | P1 | 3 | built | 5 | 5 | - |
 | PRD-CHK-015 | Checkout attributes | CHK | P1 | 3 | held-default | 3 | 0 | PH-INF |
-| PRD-CHK-016 | B2B on-account payment and credit limits | CHK | P1 | 3 | held-default | 6 | 0 | PH-INF, PAID-STUB / PH-INF / PAID-STUB |
+| PRD-CHK-016 | B2B on-account payment and credit limits | CHK | P1 | 3 | held-default | 6 | 0 | PH-INF / PAID-STUB |
 | PRD-CHK-017 | B2B quick order and bulk add | CHK | P1 | 3 | held-default | 3 | 0 | PH-INF |
-| PRD-CHK-018 | B2B purchase approval | CHK | P1 | 3 | held-default | 6 | 0 | PH-INF, WF-ENG / PH-INF / WF-ENG |
-| PRD-CHK-019 | Order confirmation | CHK | P1 | 3 | partial | 4 | 1 | - |
+| PRD-CHK-018 | B2B purchase approval | CHK | P1 | 3 | held-default | 6 | 0 | PH-INF / WF-ENG |
+| PRD-CHK-019 | Order confirmation | CHK | P1 | 3 | built | 4 | 4 | - |
 | PRD-PAY-001 | Payment method framework and routing | PAY | P1 | 3 | not-built | 10 | 0 | - |
 | PRD-PAY-002 | Card payments (framework) | PAY | P1 | 3 | not-built | 9 | 0 | - |
 | PRD-PAY-003 | PayPal | PAY | P1 | 3 | held-default | 2 | 0 | K-08 |
@@ -951,7 +971,7 @@ in the user interface and here.
 | PRD-PAY-006 | Letters of credit | PAY | P1 | 3 | not-built | 5 | 0 | - |
 | PRD-PAY-007 | Escrow and staged release | PAY | P1 | 3 | held-default | 7 | 0 | PAY-DIRECT / LIC-01 |
 | PRD-PAY-008 | Cash on delivery and cash at outlet | PAY | P1 | 3 | not-built | 7 | 0 | - |
-| PRD-PAY-009 | Wallet and store credit | PAY | P1 | 3 | held-default | 7 | 0 | FG-06, PAY-DIRECT / LIC-01, WAL-01 / FG-06 / PAY-DIRECT / LIC-01 / WAL-01 |
+| PRD-PAY-009 | Wallet and store credit | PAY | P1 | 3 | held-default | 7 | 0 | FG-06 / PAY-DIRECT / LIC-01 / WAL-01 |
 | PRD-PAY-010 | Split payments | PAY | P1 | 3 | held-default | 6 | 0 | PAY-DIRECT / LIC-01 |
 | PRD-PAY-011 | Payment status lifecycle | PAY | P1 | 3 | not-built | 15 | 0 | - |
 | PRD-PAY-012 | Payment idempotency | PAY | P1 | 3 | not-built | 4 | 0 | - |
@@ -967,9 +987,9 @@ in the user interface and here.
 | PRD-PAY-022 | Bulk disbursements | PAY | P3 | 3 | not-built | 4 | 0 | - |
 | PRD-PAY-023 | Multi-currency settlement | PAY | P1 | 3 | held-default | 3 | 0 | C-FX |
 | PRD-PAY-024 | Payment connector SDK | PAY | P1 | 3 | not-built | 7 | 0 | - |
-| PRD-PAY-025 | Fiscal e-invoicing framework | PAY | P1 | 3 | held-default | 6 | 0 | PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB |
-| PRD-PAY-026 | KRA eTIMS adapter | PAY | P1 | 3 | held-default | 1 | 0 | PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB |
-| PRD-PAY-027 | MRA EIS adapter | PAY | P1 | 3 | held-default | 1 | 0 | PH-INF, E-INV, DOC-LIB / PH-INF / E-INV / DOC-LIB |
+| PRD-PAY-025 | Fiscal e-invoicing framework | PAY | P1 | 3 | held-default | 6 | 0 | PH-INF / E-INV / DOC-LIB |
+| PRD-PAY-026 | KRA eTIMS adapter | PAY | P1 | 3 | held-default | 1 | 0 | PH-INF / E-INV / DOC-LIB |
+| PRD-PAY-027 | MRA EIS adapter | PAY | P1 | 3 | held-default | 1 | 0 | PH-INF / E-INV / DOC-LIB |
 | PRD-PAY-028 | M-Pesa (Kenya) adapter | PAY | P1 | 3 | not-built | 2 | 0 | - |
 | PRD-PAY-029 | TNM Mpamba adapter | PAY | P1 | 3 | not-built | 1 | 0 | - |
 | PRD-PAY-030 | Airtel Money adapter | PAY | P1 | 3 | not-built | 1 | 0 | - |
@@ -977,8 +997,8 @@ in the user interface and here.
 | PRD-PAY-032 | MPC card gateway adapter | PAY | P1 | 3 | held-default | 1 | 0 | MG-03 |
 | PRD-PAY-033 | Accounts receivable | PAY | P1 | 3 | held-default | 10 | 0 | PAID-STUB |
 | PRD-PAY-034 | Outlet receipt printing and cash-up | PAY | P1 | 3 | held-default | 4 | 0 | PH-INF |
-| PRD-PAY-035 | Direct payment to the seller | PAY | P2 | 3 | held-default | 5 | 0 | PO-REC-v8, PAY-DIRECT / LIC-01 / PO-REC-v8 / PAY-DIRECT / LIC-01 |
-| PRD-PAY-036 | Offline direct payment confirmation | PAY | P2 | 3 | held-default | 4 | 0 | WF-ENG, PO-REC-v8, PAY-DIRECT / LIC-01 / WF-ENG / PO-REC-v8 / PAY-DIRECT / LIC-01 |
+| PRD-PAY-035 | Direct payment to the seller | PAY | P2 | 3 | held-default | 5 | 0 | PO-REC-v8 / PAY-DIRECT / LIC-01 |
+| PRD-PAY-036 | Offline direct payment confirmation | PAY | P2 | 3 | held-default | 4 | 0 | WF-ENG / PO-REC-v8 / PAY-DIRECT / LIC-01 |
 | PRD-ORD-001 | Order management console | ORD | P1 | 3 | not-built | 8 | 0 | - |
 | PRD-ORD-002 | Configurable order status model | ORD | P1 | 3 | partial | 15 | 1 | - |
 | PRD-ORD-003 | Order interventions with reason codes and audit | ORD | P1 | 3 | not-built | 7 | 0 | - |
@@ -1000,10 +1020,10 @@ in the user interface and here.
 | PRD-ORD-019 | Contract repository | ORD | P2 | 3 | not-built | 2 | 0 | - |
 | PRD-ORD-020 | Award and acceptance letters | ORD | P2 | 3 | held-default | 3 | 0 | DOC-LIB |
 | PRD-ORD-021 | Performance securities | ORD | P3 | 3 | not-built | 4 | 0 | - |
-| PRD-ORD-022 | Contract-to-order execution | ORD | P1 | 3 | held-default | 5 | 0 | CALLOFF-PLACE, DOC-LIB / CALLOFF-PLACE / DOC-LIB |
+| PRD-ORD-022 | Contract-to-order execution | ORD | P1 | 3 | held-default | 5 | 0 | CALLOFF-PLACE / DOC-LIB |
 | PRD-ORD-023 | Group buying | ORD | P2 | 3 | not-built | 4 | 0 | - |
 | PRD-ORD-024 | Scheme applications | ORD | P3 | 3 | held-default | 5 | 0 | WF-ENG |
-| PRD-ORD-025 | Proforma invoice | ORD | P1 | 3 | held-default | 4 | 0 | PH-INF, DOC-LIB / PH-INF / DOC-LIB |
+| PRD-ORD-025 | Proforma invoice | ORD | P1 | 3 | held-default | 4 | 0 | PH-INF / DOC-LIB |
 | PRD-ORD-026 | Incoterms | ORD | P1 | 3 | held-default | 2 | 0 | PH-INF |
 | PRD-ORD-027 | Sample orders | ORD | P2 | 3 | not-built | 2 | 0 | - |
 | PRD-ORD-028 | Recurring and subscription orders | ORD | P2 | 3 | not-built | 6 | 0 | - |
@@ -1038,7 +1058,7 @@ in the user interface and here.
 | PRD-LOG-029 | Aramex adapter | LOG | P1 | 4 | not-built | 3 | 0 | - |
 | PRD-LOG-030 | Shipping lines and agents adapter | LOG | P1 | 4 | not-built | 3 | 0 | - |
 | PRD-LOG-031 | MPC delivery partner adapters | LOG | P1 | 4 | not-built | 2 | 0 | - |
-| PRD-LOG-032 | Own-fleet POD capture | LOG | P1 | 4 | held-default | 4 | 0 | FG-06, PAID-STUB / FG-06 / PAID-STUB |
+| PRD-LOG-032 | Own-fleet POD capture | LOG | P1 | 4 | held-default | 4 | 0 | FG-06 / PAID-STUB |
 | PRD-TRK-001 | Buyer shipment tracking | TRK | P1 | 4 | built | 11 | 11 | - |
 | PRD-TRK-002 | Tracking event hub | TRK | P1 | 4 | built | 15 | 15 | - |
 | PRD-TRK-003 | Scanning and field operations app | TRK | P1 | 4 | built | 6 | 6 | FG-06 |
@@ -1065,7 +1085,7 @@ in the user interface and here.
 | PRD-CRM-001 | Help desk ticketing | CRM | P1 | 5 | not-built | 16 | 0 | - |
 | PRD-CRM-002 | Multi-channel case intake | CRM | P1 | 5 | not-built | 12 | 0 | - |
 | PRD-CRM-003 | Agent 360° view | CRM | P1 | 5 | not-built | 8 | 0 | - |
-| PRD-CRM-004 | Complaints process | CRM | P1 | 5 | held-default | 7 | 0 | WF-ENG, T-MISS / WF-ENG / T-MISS |
+| PRD-CRM-004 | Complaints process | CRM | P1 | 5 | held-default | 7 | 0 | WF-ENG / T-MISS |
 | PRD-CRM-005 | Support quality analytics | CRM | P1 | 5 | not-built | 6 | 0 | - |
 | PRD-CRM-006 | Ticket collaboration and audit | CRM | P1 | 5 | not-built | 6 | 0 | - |
 | PRD-CRM-007 | Knowledge base | CRM | P1 | 5 | not-built | 9 | 0 | - |
@@ -1102,7 +1122,7 @@ in the user interface and here.
 | PRD-RPT-009 | Operator performance metrics | RPT | P2 | 5 | not-built | 4 | 0 | - |
 | PRD-RPT-010 | Operational dashboards | RPT | P1 | 5 | held-default | 5 | 0 | PAID-STUB |
 | PRD-RPT-011 | Commerce and marketing analytics | RPT | P1 | 5 | held-default | 9 | 0 | PAID-STUB |
-| PRD-RPT-012 | e-Government and engagement reports | RPT | P1 | 5 | held-default | 2 | 0 | FG-06, PAID-STUB / FG-06 / PAID-STUB |
+| PRD-RPT-012 | e-Government and engagement reports | RPT | P1 | 5 | held-default | 2 | 0 | FG-06 / PAID-STUB |
 | PRD-ADM-001 | Administration console | ADM | P1 | 1 | built | 12 | 12 | - |
 | PRD-ADM-002 | Workflow engine | ADM | P1 | 1 | built | 20 | 20 | WF-ENG |
 | PRD-ADM-003 | Business rules engine | ADM | P1 | 1 | built | 9 | 9 | - |
@@ -1136,7 +1156,7 @@ in the user interface and here.
 | PRD-SEC-013 | Bot protection | SEC | P1 | 1 | built | 5 | 5 | - |
 | PRD-SEC-014 | Data classification and masking | SEC | P2 | 1 | built | 6 | 6 | DP-01 |
 | PRD-SEC-015 | Security incident management | SEC | P2 | 1 | built | 2 | 2 | - |
-| PRD-INT-001 | Public REST API | INT | P1 | 6 | held-default | 20 | 0 | API-01, PAID-STUB, API-GW / API-01 / PAID-STUB / API-GW |
+| PRD-INT-001 | Public REST API | INT | P1 | 6 | held-default | 20 | 0 | API-01 / PAID-STUB / API-GW |
 | PRD-INT-002 | Integration layer (API gateway) | INT | P1 | 6 | held-default | 14 | 0 | API-GW |
 | PRD-INT-003 | Webhooks and events | INT | P1 | 6 | not-built | 14 | 0 | - |
 | PRD-INT-004 | Integration health and retries | INT | P1 | 6 | mocked | 9 | 0 | - |
@@ -1149,7 +1169,7 @@ in the user interface and here.
 | PRD-INT-011 | Plugin extensibility | INT | P1 | 6 | not-built | 6 | 0 | - |
 | PRD-INT-012 | Punch-out | INT | P3 | 6 | not-built | 7 | 0 | - |
 | PRD-INT-013 | MANEPS adapter | INT | P1 | 6 | held-default | 2 | 0 | MG-09 |
-| PRD-CHN-001 | Native mobile apps | CHN | P1 | 6 | held-default | 5 | 0 | M-19, PAID-STUB / M-19 / PAID-STUB |
+| PRD-CHN-001 | Native mobile apps | CHN | P1 | 6 | held-default | 5 | 0 | M-19 / PAID-STUB |
 | PRD-CHN-002 | PWA and low-bandwidth mode | CHN | P1 | 6 | not-built | 9 | 0 | - |
 | PRD-CHN-003 | USSD channel | CHN | P1 | 6 | mocked | 8 | 0 | - |
 | PRD-CHN-004 | IVR channel | CHN | P2 | 6 | mocked | 3 | 0 | - |
@@ -1176,18 +1196,18 @@ in the user interface and here.
 | PRD-FIN-002 | Invoice discounting | FIN | P3 | 7 | mocked | 7 | 0 | - |
 | PRD-FIN-003 | Insurance | FIN | P3 | 7 | mocked | 9 | 0 | - |
 | PRD-FIN-004 | Subsidies and incentives | FIN | P3 | 7 | not-built | 8 | 0 | - |
-| PRD-FIN-005 | Financial and partner services catalogue | FIN | P1 | 7 | held-default | 8 | 0 | FG-06, T-MISS / FG-06 / T-MISS |
-| PRD-EGV-001 | e-Government service catalogue | EGV | P1 | 7 | held-default | 9 | 0 | FG-06, T-MISS / FG-06 / T-MISS |
-| PRD-EGV-002 | Service applications | EGV | P1 | 7 | held-default | 18 | 0 | FG-06, WF-ENG, T-MISS / FG-06 / WF-ENG / T-MISS |
-| PRD-EGV-003 | Appointments | EGV | P1 | 7 | held-default | 6 | 0 | FG-06, T-MISS / FG-06 / T-MISS |
-| PRD-EGV-004 | Document delivery | EGV | P1 | 7 | held-default | 6 | 0 | FG-06, T-MISS / FG-06 / T-MISS |
-| PRD-EGV-005 | Government fee collection | EGV | P1 | 7 | held-default | 8 | 0 | FG-06, T-MISS / FG-06 / T-MISS |
-| PRD-EGV-006 | Agency administration | EGV | P1 | 7 | held-default | 6 | 0 | FG-06, T-MISS / FG-06 / T-MISS |
-| PRD-EGV-007 | Digital ID service workflows | EGV | P1 | 7 | held-default | 4 | 0 | FG-06, WF-ENG, T-MISS / FG-06 / WF-ENG / T-MISS |
+| PRD-FIN-005 | Financial and partner services catalogue | FIN | P1 | 7 | held-default | 8 | 0 | FG-06 / T-MISS |
+| PRD-EGV-001 | e-Government service catalogue | EGV | P1 | 7 | held-default | 9 | 0 | FG-06 / T-MISS |
+| PRD-EGV-002 | Service applications | EGV | P1 | 7 | held-default | 18 | 0 | FG-06 / WF-ENG / T-MISS |
+| PRD-EGV-003 | Appointments | EGV | P1 | 7 | held-default | 6 | 0 | FG-06 / T-MISS |
+| PRD-EGV-004 | Document delivery | EGV | P1 | 7 | held-default | 6 | 0 | FG-06 / T-MISS |
+| PRD-EGV-005 | Government fee collection | EGV | P1 | 7 | held-default | 8 | 0 | FG-06 / T-MISS |
+| PRD-EGV-006 | Agency administration | EGV | P1 | 7 | held-default | 6 | 0 | FG-06 / T-MISS |
+| PRD-EGV-007 | Digital ID service workflows | EGV | P1 | 7 | held-default | 4 | 0 | FG-06 / WF-ENG / T-MISS |
 | PRD-SVC-001 | Service pricing models | SVC | P2 | 7 | held-default | 8 | 0 | PO-REC-v8 |
 | PRD-SVC-002 | Service providers and resources | SVC | P2 | 7 | not-built | 8 | 0 | - |
-| PRD-SVC-003 | Booking changes, cancellations and no-shows | SVC | P2 | 7 | held-default | 9 | 0 | FG-06, PO-REC-v8 / FG-06 / PO-REC-v8 |
-| PRD-SVC-004 | Deposits and advance payment for bookings | SVC | P2 | 7 | held-default | 8 | 0 | FG-06, PO-REC-v8 / FG-06 / PO-REC-v8 |
+| PRD-SVC-003 | Booking changes, cancellations and no-shows | SVC | P2 | 7 | held-default | 9 | 0 | FG-06 / PO-REC-v8 |
+| PRD-SVC-004 | Deposits and advance payment for bookings | SVC | P2 | 7 | held-default | 8 | 0 | FG-06 / PO-REC-v8 |
 | PRD-SVC-005 | Service order lifecycle and completion sign-off | SVC | P1 | 7 | not-built | 13 | 0 | - |
 | PRD-SVC-006 | Service location at booking | SVC | P2 | 7 | held-default | 5 | 0 | PO-REC-v8 |
 | PRD-SVC-007 | Digital products and downloads | SVC | P2 | 7 | held-default | 8 | 0 | PO-REC-v8 |
@@ -1195,4 +1215,4 @@ in the user interface and here.
 | PRD-SVC-009 | Service vouchers and e-tickets | SVC | P2 | 7 | held-default | 8 | 0 | PO-REC-v8 |
 | PRD-SVC-010 | Service reminders and follow-up | SVC | P2 | 7 | held-default | 5 | 0 | PO-REC-v8 |
 | PRD-SVC-011 | Service-level targets for service orders | SVC | P1 | 7 | not-built | 7 | 0 | - |
-| PRD-SVC-012 | Service reports | SVC | P2 | 7 | held-default | 5 | 0 | FG-06, PO-REC-v8 / FG-06 / PO-REC-v8 |
+| PRD-SVC-012 | Service reports | SVC | P2 | 7 | held-default | 5 | 0 | FG-06 / PO-REC-v8 |

@@ -383,6 +383,7 @@ export async function sendNotificationAsync({
   gateways = null,
   sender = null,
   onlyChannels = null,
+  attachments = [],
 }) {
   const definition = await definitionAsync(key);
   if (!definition) {
@@ -451,7 +452,7 @@ export async function sendNotificationAsync({
       // AC-TRK-005-01-04: a channel the client switched off is skipped and the skip logged
       if (!await channelEnabledAsync(channel, storeId)) {
         messages.push(await logMessageAsync({
-          definition: effectiveDefinition, channel, recipient, status: 'Suppressed', reason: `the ${channel} channel is switched off for this client`, order, shipment, tokens, key, storeId, reference,
+          definition: effectiveDefinition, channel, recipient, status: 'Suppressed', reason: `the ${channel} channel is switched off for this client`, order, shipment, tokens, key, storeId, reference, attachments,
         }));
         continue;
       }
@@ -566,6 +567,7 @@ export async function sendNotificationAsync({
         key,
         storeId,
         reference,
+        attachments,
         occurrenceKey,
         text,
         contentVersion: content.version,
