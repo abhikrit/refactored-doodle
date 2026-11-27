@@ -14,6 +14,7 @@ import { resource } from '../../../core/messages.js';
 import { productAsync, finalPriceAsync, viewProductAsync } from '../../product-cat/services/catalogue.js';
 import { getSettingAsync } from '../../../core/settings.js';
 import { itemWarningsAsync, subTotalAsync } from './validation.js';
+import { pickupOnlyAsync } from './cart-rules.js';
 
 const cartRepo = () => repository('ShoppingCartItem');
 
@@ -46,7 +47,8 @@ export async function cartItemWarningsAsync(product, quantity, context = {}) {
     storeId: context.storeId ?? 1,
     cartType: context.cartType ?? CART_TYPE.ShoppingCart,
     item: context.item ?? null,
-    fulfilment: context.fulfilment ?? null,
+    sessionId: context.sessionId ?? context.item?.sessionId ?? null,
+    fulfilment: context.fulfilment ?? context.item?.fulfilment ?? null,
   });
   return result.warnings.map((w) => w.message);
 }
@@ -65,13 +67,22 @@ export async function cartItemWarningDetailAsync(product, quantity, context = {}
 
 export async function addToCartAsync({
   sessionId, productId, quantity = 1, customer = null, cartType = CART_TYPE.ShoppingCart,
+  storeId = 1,
 }) {
   const product = await productAsync(productId);
   if (!product) throw new Error('product not found');
   const existing = await cartRepo().getOneAsync((i) => inScope(i, { sessionId, customer })
     && i.productId === productId && i.cartType === cartType);
   const newQuantity = (existing?.quantity ?? 0) + quantity;
-  const warnings = await cartItemWarningsAsync(product, newQuantity, { sessionId, customer });
+  // CHK-005: a line that the client's rules make collection-only starts as a collection line
+  // (CHK-011 owns the rule; the cart only reads it)
+  const collectOnly = await pickupOnlyAsync({ product, storeId: storeId ?? 1 });
+  const warnings = await cartItemWarningsAsync(product, newQuantity, {
+    sessionId,
+    customer,
+    item: existing ?? null,
+    fulfilment: existing?.fulfilment ?? (collectOnly ? 'pickup' : 'delivery'),
+  });
   if (warnings.length) return { ok: false, warnings };
 
   if (existing) {
@@ -86,8 +97,9 @@ export async function addToCartAsync({
       vendorId: product.vendorId,
       quantity,
       cartType,
-      // CHK-005 fulfilment method per line: delivery by default, pickup where the line demands it
-      fulfilment: product.pickupOnly ? 'pickup' : 'delivery',
+      // CHK-005 fulfilment method per line: delivery by default, collection where the product
+      // or a CHK-011 rule demands it
+      fulfilment: collectOnly ? 'pickup' : 'delivery',
       pickupPointId: null,
       deliverySlotId: null,
     });
@@ -106,10 +118,12 @@ export async function updateItemAsync({
       await cartRepo().deleteAsync(item);
       return { ok: true, warnings: [], removed: true };
     }
-    const warnings = await cartItemWarningsAsync(product, quantity, { sessionId, customer });
+    const warnings = await cartItemWarningsAsync(product, quantity, {
+      sessionId, customer, item, fulfilment: fulfilment ?? item.fulfilment ?? null,
+    });
     if (warnings.length) return { ok: false, warnings };
   }
-  if (fulfilment === 'delivery' && product.pickupOnly) {
+  if (fulfilment === 'delivery' && await pickupOnlyAsync({ product, storeId: 1 })) {
     return { ok: false, warnings: [resource('Chk.PickupOnly')] };
   }
   await cartRepo().updateAsync({

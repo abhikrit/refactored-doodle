@@ -34,7 +34,7 @@ import {
   AdminAcl, AdminCurrencies, AdminFeatureRegistry, AdminLanguages, AdminMessageTemplates,
   AdminPacks, AdminPaymentMethods, AdminSettings, AdminShippingMethods, AdminStores,
 } from './surfaces/admin/configuration.jsx';
-import { AdminDeliveryWindows } from './surfaces/admin/chk.jsx';
+import { AdminCartRules, AdminCheckoutNotices, AdminDeliveryWindows } from './surfaces/admin/chk.jsx';
 import {
   AdminChangeSets, AdminCountries, AdminHelpContent, AdminRetention,
 } from './surfaces/admin/plt.jsx';
@@ -130,6 +130,8 @@ export default function App() {
               <Route path="/admin/configuration/payment-methods" element={<AdminPaymentMethods />} />
               <Route path="/admin/configuration/shipping-methods" element={<AdminShippingMethods />} />
               <Route path="/admin/configuration/delivery-windows" element={<AdminDeliveryWindows />} />
+              <Route path="/admin/configuration/cart-rules" element={<AdminCartRules />} />
+              <Route path="/admin/configuration/checkout-notices" element={<AdminCheckoutNotices />} />
               <Route path="/admin/configuration/acl" element={<AdminAcl />} />
               <Route path="/admin/configuration/retention" element={<AdminRetention />} />
               <Route path="/admin/content/help" element={<AdminHelpContent />} />

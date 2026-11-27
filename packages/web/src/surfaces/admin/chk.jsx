@@ -182,3 +182,293 @@ export function AdminDeliveryWindows() {
     </AdminPage>
   );
 }
+
+
+/* ====================================================== cart restriction rules ======== */
+
+const RULE_KINDS = [
+  { id: 'ProhibitedCombination', label: 'These items cannot be bought together' },
+  { id: 'PickupOnly', label: 'This item can only be collected' },
+  { id: 'DeliveryConstraint', label: 'This item is only delivered to certain areas' },
+];
+const SCOPE_KINDS = [
+  { id: 'product', label: 'a product' },
+  { id: 'category', label: 'a category' },
+  { id: 'vendor', label: 'a seller' },
+];
+
+const EMPTY_RULE = {
+  type: 'ProhibitedCombination',
+  scopeAKind: 'product',
+  scopeAId: '',
+  scopeBKind: 'product',
+  scopeBId: '',
+  areas: '',
+  messageText: '',
+  isActive: true,
+};
+
+export function AdminCartRules() {
+  const [rules, setRules] = useState(null);
+  const [form, setForm] = useState(EMPTY_RULE);
+  const [notice, setNotice] = useState(null);
+  const [denied, setDenied] = useState(null);
+
+  const load = useCallback(() => {
+    api.get('/checkout-area/cart-rules')
+      .then((r) => { setRules(r); setDenied(null); })
+      .catch((err) => setDenied(err.message ?? 'Access denied'));
+  }, []);
+  useEffect(load, [load]);
+
+  const save = async () => {
+    const body = {
+      type: form.type,
+      scopeA: form.scopeAId ? { kind: form.scopeAKind, id: form.scopeAId } : null,
+      scopeB: form.type === 'ProhibitedCombination' && form.scopeBId
+        ? { kind: form.scopeBKind, id: form.scopeBId }
+        : null,
+      areas: form.areas ? form.areas.split(',').map((a) => a.trim()).filter(Boolean) : [],
+      messageText: form.messageText,
+      isActive: form.isActive,
+    };
+    const res = await api.post('/checkout-area/cart-rules', body);
+    if (res.ok !== true) { setNotice({ tone: 'error', text: res.message ?? 'The rule was not saved.' }); return; }
+    setNotice({ tone: 'success', text: 'The rule is in force.' });
+    setForm(EMPTY_RULE);
+    load();
+  };
+
+  const setActive = async (rule, isActive) => {
+    await api.post(`/checkout-area/cart-rules/${rule.id}/active`, { isActive });
+    setNotice({ tone: 'success', text: isActive ? 'The rule is in force again.' : 'The rule no longer applies.' });
+    load();
+  };
+
+  if (denied) {
+    return (
+      <AdminPage title="Cart restriction rules" breadcrumb={crumb({ label: 'Cart restriction rules' })}>
+        <Alert tone="error" title="Access denied">{denied}</Alert>
+      </AdminPage>
+    );
+  }
+
+  return (
+    <AdminPage
+      title="Cart restriction rules"
+      breadcrumb={crumb({ label: 'Cart restriction rules' })}
+      intro="Rules that stop items being bought together, make an item collection-only, or limit where it is delivered. A rule applies as soon as it is saved, at the cart and again when the order is placed."
+    >
+      {notice && <Alert tone={notice.tone}>{notice.text}</Alert>}
+
+      <Panel title="Add a rule">
+        <div className="grid gap-3 md:grid-cols-2">
+          <Field label="What the rule does" required>
+            <Select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}>
+              {RULE_KINDS.map((k) => <option key={k.id} value={k.id}>{k.label}</option>)}
+            </Select>
+          </Field>
+          <Field label="The text the shopper reads" required hint="It is shown with the warning, so write it for them">
+            <Input value={form.messageText} onChange={(e) => setForm({ ...form, messageText: e.target.value })} />
+          </Field>
+          <Field label="It applies to" required>
+            <div className="flex gap-2">
+              <Select value={form.scopeAKind} onChange={(e) => setForm({ ...form, scopeAKind: e.target.value })}>
+                {SCOPE_KINDS.map((k) => <option key={k.id} value={k.id}>{k.label}</option>)}
+              </Select>
+              <Input placeholder="its number" value={form.scopeAId} onChange={(e) => setForm({ ...form, scopeAId: e.target.value })} />
+            </div>
+          </Field>
+          {form.type === 'ProhibitedCombination' && (
+            <Field label="And cannot be with" required>
+              <div className="flex gap-2">
+                <Select value={form.scopeBKind} onChange={(e) => setForm({ ...form, scopeBKind: e.target.value })}>
+                  {SCOPE_KINDS.map((k) => <option key={k.id} value={k.id}>{k.label}</option>)}
+                </Select>
+                <Input placeholder="its number" value={form.scopeBId} onChange={(e) => setForm({ ...form, scopeBId: e.target.value })} />
+              </div>
+            </Field>
+          )}
+          {form.type === 'DeliveryConstraint' && (
+            <Field label="Delivered only to" hint="Areas, separated by commas">
+              <Input value={form.areas} onChange={(e) => setForm({ ...form, areas: e.target.value })} />
+            </Field>
+          )}
+        </div>
+        <div className="mt-3 flex items-center gap-3">
+          <Checkbox label="In force" checked={form.isActive} onChange={(e) => setForm({ ...form, isActive: e.target.checked })} />
+          <Button variant="primary" onClick={save}>Save</Button>
+        </div>
+      </Panel>
+
+      <Panel title="Rules" bodyClass="p-0">
+        {!rules ? <Spinner /> : (
+          <Grid
+            columns={[
+              { key: 'type', header: 'Rule', render: (r) => RULE_KINDS.find((k) => k.id === r.type)?.label ?? r.type },
+              { key: 'scopeA', header: 'Applies to', render: (r) => `${r.scopeA?.kind ?? '-'} ${r.scopeA?.id ?? ''}` },
+              { key: 'scopeB', header: 'With', render: (r) => (r.scopeB ? `${r.scopeB.kind} ${r.scopeB.id}` : '-') },
+              { key: 'areas', header: 'Areas', render: (r) => (r.areas ?? []).join(', ') || '-' },
+              { key: 'messageText', header: 'What the shopper reads' },
+              {
+                key: 'isActive',
+                header: 'In force',
+                render: (r) => <Badge tone={r.isActive === false ? 'slate' : 'green'}>{r.isActive === false ? 'No' : 'Yes'}</Badge>,
+              },
+              {
+                key: 'actions',
+                header: '',
+                render: (r) => (
+                  <Button size="sm" variant={r.isActive === false ? 'primary' : 'danger'} onClick={() => setActive(r, r.isActive === false)}>
+                    {r.isActive === false ? 'Put back in force' : 'Stop applying'}
+                  </Button>
+                ),
+              },
+            ]}
+            rows={rules}
+            rowKey={(r) => r.id}
+            empty="No cart rule has been set for this client."
+          />
+        )}
+      </Panel>
+    </AdminPage>
+  );
+}
+
+/* ====================================================== checkout notices ============== */
+
+const POINT_LABELS = {
+  cart: 'The cart page',
+  shipping: 'The address and delivery step',
+  payment: 'The payment step',
+  confirm: 'The confirm step',
+  completed: 'The order completed page',
+};
+
+export function AdminCheckoutNotices() {
+  const [profile, setProfile] = useState(null);
+  const [topics, setTopics] = useState([]);
+  const [form, setForm] = useState({
+    checkpoint: 'confirm', topicSystemName: '', requiresAcknowledgement: false, policySystemName: '',
+  });
+  const [limit, setLimit] = useState('');
+  const [notice, setNotice] = useState(null);
+  const [denied, setDenied] = useState(null);
+
+  const load = useCallback(() => {
+    api.get('/checkout-area/notices/profile')
+      .then((p) => { setProfile(p); setLimit(p.confirmationTimeLimitHours ?? ''); setDenied(null); })
+      .catch((err) => setDenied(err.message ?? 'Access denied'));
+    api.get('/checkout-area/notices/topics').then(setTopics).catch(() => setTopics([]));
+  }, []);
+  useEffect(load, [load]);
+
+  const save = async () => {
+    const res = await api.post('/checkout-area/notices', {
+      checkpoint: form.checkpoint,
+      topicSystemName: form.topicSystemName,
+      requiresAcknowledgement: form.requiresAcknowledgement,
+      policySystemName: form.policySystemName || null,
+    });
+    if (res.ok !== true) { setNotice({ tone: 'error', text: res.message ?? 'The notice was not saved.' }); return; }
+    setNotice({ tone: 'success', text: 'The notice will be shown at that point of checkout.' });
+    load();
+  };
+  const remove = async (row) => {
+    await api.post('/checkout-area/notices', { ...row, remove: true });
+    setNotice({ tone: 'success', text: 'The notice is no longer shown.' });
+    load();
+  };
+  const saveLimit = async () => {
+    const res = await api.post('/checkout-area/notices/confirmation-time-limit', { hours: Number(limit) });
+    setNotice(res.ok === true
+      ? { tone: 'success', text: `A confirmation that has not gone out within ${limit} hours will be reported.` }
+      : { tone: 'error', text: res.message ?? 'The limit was not saved.' });
+    load();
+  };
+
+  if (denied) {
+    return (
+      <AdminPage title="Checkout notices" breadcrumb={crumb({ label: 'Checkout notices' })}>
+        <Alert tone="error" title="Access denied">{denied}</Alert>
+      </AdminPage>
+    );
+  }
+
+  return (
+    <AdminPage
+      title="Checkout notices"
+      breadcrumb={crumb({ label: 'Checkout notices' })}
+      intro="The notices and acknowledgements the law of this country asks for, and where in checkout each one is shown. They are kept with the country's own profile, so data protection and e-commerce rules stay in one place."
+    >
+      {notice && <Alert tone={notice.tone}>{notice.text}</Alert>}
+
+      <Panel title="Add a notice">
+        <div className="grid gap-3 md:grid-cols-2">
+          <Field label="Shown at" required>
+            <Select value={form.checkpoint} onChange={(e) => setForm({ ...form, checkpoint: e.target.value })}>
+              {Object.entries(POINT_LABELS).map(([id, label]) => <option key={id} value={id}>{label}</option>)}
+            </Select>
+          </Field>
+          <Field label="The page it shows" required hint="One of the store's own pages">
+            <Select value={form.topicSystemName} onChange={(e) => setForm({ ...form, topicSystemName: e.target.value })}>
+              <option value="">Choose a page</option>
+              {topics.map((t) => <option key={t.systemName} value={t.systemName}>{t.title}</option>)}
+            </Select>
+          </Field>
+          <Field label="Policy it belongs to" hint="Leave empty unless the text is a versioned policy">
+            <Input value={form.policySystemName} onChange={(e) => setForm({ ...form, policySystemName: e.target.value })} />
+          </Field>
+          <div className="self-end">
+            <Checkbox
+              label="The shopper must tick it before paying"
+              checked={form.requiresAcknowledgement}
+              onChange={(e) => setForm({ ...form, requiresAcknowledgement: e.target.checked })}
+            />
+          </div>
+        </div>
+        <div className="mt-3">
+          <Button variant="primary" onClick={save} disabled={!form.topicSystemName}>Save</Button>
+        </div>
+      </Panel>
+
+      <Panel title="Notices" bodyClass="p-0" subtitle={profile ? `The profile of ${profile.country}` : null}>
+        {!profile ? <Spinner /> : (
+          <Grid
+            columns={[
+              { key: 'checkpoint', header: 'Shown at', render: (r) => POINT_LABELS[r.checkpoint] ?? r.checkpoint },
+              { key: 'topicSystemName', header: 'Page' },
+              { key: 'policySystemName', header: 'Policy', render: (r) => r.policySystemName ?? '-' },
+              {
+                key: 'requiresAcknowledgement',
+                header: 'Must be ticked',
+                render: (r) => <Badge tone={r.requiresAcknowledgement ? 'amber' : 'slate'}>{r.requiresAcknowledgement ? 'Yes' : 'No'}</Badge>,
+              },
+              { key: 'scope', header: 'Applies to', render: (r) => (r.scope && r.scope !== 'all' ? `${r.scope} ${r.scopeValue ?? ''}` : 'every order') },
+              {
+                key: 'actions',
+                header: '',
+                render: (r) => <Button size="sm" variant="danger" onClick={() => remove(r)}>Stop showing</Button>,
+              },
+            ]}
+            rows={profile.notices}
+            rowKey={(r) => `${r.checkpoint}-${r.topicSystemName}`}
+            empty="No notice has been set for this country."
+          />
+        )}
+      </Panel>
+
+      <Panel title="Confirmation time limit" subtitle="How long the order confirmation may take before it is reported.">
+        <div className="flex items-end gap-3">
+          <Field label="Hours">
+            <Input type="number" min="0" value={limit} onChange={(e) => setLimit(e.target.value)} />
+          </Field>
+          <Button variant="primary" onClick={saveLimit}>Save</Button>
+        </div>
+        <p className="mt-2 text-[11.5px] text-nop-muted">
+          A confirmation still waiting after this many hours appears on the checkout exceptions screen.
+        </p>
+      </Panel>
+    </AdminPage>
+  );
+}

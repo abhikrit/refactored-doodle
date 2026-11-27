@@ -131,7 +131,7 @@ export async function standardWarningsAsync({
  */
 export async function itemWarningsAsync({
   product, quantity = 1, customer = null, storeId = 1, cartType = 1, item = null,
-  fulfilment = null, attributesXml = null, rental = null,
+  fulfilment = null, attributesXml = null, rental = null, sessionId = null, cart = null,
 }) {
   let warnings = await standardWarningsAsync({
     product, quantity, customer, storeId, cartType,
@@ -150,6 +150,9 @@ export async function itemWarningsAsync({
         fulfilment,
         attributesXml,
         rental,
+        // the cart this line belongs to, for a rule that looks at the other lines
+        sessionId: sessionId ?? item?.sessionId ?? null,
+        cart,
         nativeWarnings: warnings.map((w) => ({ key: w.key, message: w.message })),
       });
     } catch (err) {
@@ -182,9 +185,13 @@ export async function itemWarningsAsync({
       }
     }
     for (const added of result.warnings ?? []) {
-      // a provider may return a plain string, which is what the modules built before this host do
+      // a provider may return a plain string, which is what the modules built before this host
+      // do; anything else it puts on the warning (the rule it came from, what the shopper may do
+      // instead) travels with it
+      const extra = typeof added === 'string' ? {} : added;
       warnings.push({
-        key: added.key ?? (typeof added === 'string' ? `${provider.feature}.warning` : `${provider.feature}.warning`),
+        ...extra,
+        key: added.key ?? `${provider.feature}.warning`,
         message: typeof added === 'string' ? added : (added.message ?? String(added)),
         addedBy: provider.feature,
         native: false,
@@ -196,11 +203,57 @@ export async function itemWarningsAsync({
   };
 }
 
+/**
+ * PRD-CHK-010: the native minimum order value. OrderSettings.MinOrderSubtotalAmount and
+ * MinOrderTotalAmount are store-overridable, and the native warnings name the minimum.
+ */
+export async function minimumOrderWarningsAsync({
+  cart, storeId = 1, total = null, currency = null,
+}) {
+  const [minSubtotal, minTotal, includingTax] = await Promise.all([
+    getSettingAsync('ordersettings.minordersubtotalamount', storeId, 0),
+    getSettingAsync('ordersettings.minordertotalamount', storeId, 0),
+    getSettingAsync('ordersettings.minordersubtotalamountincludingtax', storeId, false),
+  ]);
+  const warnings = [];
+  const subtotal = Number(cart?.subtotal ?? 0);
+  const money = (n) => `${currency ? `${currency} ` : ''}${Number(n).toFixed(2)}`;
+  if (Number(minSubtotal) > 0 && subtotal < Number(minSubtotal)) {
+    warnings.push({
+      key: 'Checkout.MinOrderSubtotalAmount',
+      message: `The minimum order subtotal amount is ${money(minSubtotal)}.`,
+      minimum: Number(minSubtotal),
+      includingTax: includingTax === true,
+      native: true,
+    });
+  }
+  if (Number(minTotal) > 0 && total !== null && Number(total) < Number(minTotal)) {
+    warnings.push({
+      key: 'Checkout.MinOrderTotalAmount',
+      message: `The minimum order total amount is ${money(minTotal)}.`,
+      minimum: Number(minTotal),
+      native: true,
+    });
+  }
+  return {
+    warnings,
+    refused: warnings.length > 0,
+    minOrderSubtotalAmount: Number(minSubtotal),
+    minOrderTotalAmount: Number(minTotal),
+    storeId,
+  };
+}
+
 /** GetShoppingCartWarningsAsync: the same, for the whole cart. */
 export async function cartWarningsAsync({
-  cart, customer = null, storeId = 1, fulfilment = null,
+  cart, customer = null, storeId = 1, fulfilment = null, total = null, currency = null,
 }) {
   const warnings = [];
+  // PRD-CHK-010: the cart as a whole must reach the store's minimum
+  const minimum = await minimumOrderWarningsAsync({
+    cart, storeId, total, currency,
+  });
+  warnings.push(...minimum.warnings);
   for (const line of cart.items ?? []) {
     const product = line.product ?? await repository('Product').getByIdAsync(line.productId);
     const result = await itemWarningsAsync({
@@ -209,6 +262,8 @@ export async function cartWarningsAsync({
       customer,
       storeId,
       item: line,
+      cart,
+      sessionId: line.sessionId ?? null,
       fulfilment: fulfilment ?? line.fulfilment ?? null,
     });
     for (const warning of result.warnings) warnings.push({ ...warning, itemId: line.id, productId: product?.id ?? line.productId });
@@ -473,9 +528,9 @@ export async function runCheckOrderAsync({
 }) {
   const steps = [];
 
-  // 1. stock and availability
+  // 1. stock and availability (and the store's own minimum order value, CHK-010)
   const stock = await cartWarningsAsync({
-    cart, customer, storeId, fulfilment,
+    cart, customer, storeId, fulfilment, total: currentTotal, currency: cart?.currency ?? null,
   });
   steps.push({ check: 'stock and availability', failed: stock.refused });
   if (stock.refused) {

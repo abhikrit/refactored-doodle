@@ -369,6 +369,26 @@ async function seedInnerAsync({ clientId, report }) {
     });
   }
 
+  // The native Topic rows the storefront pages and the CHK-009 checkout notices point at. The
+  // client texts were not supplied (T-MISS), so each body says so rather than inventing policy.
+  for (const topic of [
+    { systemName: 'ConditionsOfUse', title: 'Conditions of use' },
+    { systemName: 'PrivacyInfo', title: 'Privacy notice' },
+    { systemName: 'ShippingInfo', title: 'Shipping and returns' },
+    { systemName: 'AboutUs', title: 'About us' },
+    { systemName: 'ReturnsAndRefunds', title: 'Returns and refunds policy' },
+    { systemName: 'ETransactionsNotice', title: 'Your rights when buying online' },
+  ]) {
+    await repository('Topic').insertAsync({
+      ...topic,
+      body: `${topic.title}: the client text has not been supplied, so this page is a placeholder.`,
+      published: true,
+      includeInFooterColumn1: true,
+      placeholder: true,
+      storeId: 1,
+    });
+  }
+
   // PRD-IAM-016 and PRD-IAM-017: the policy versions MKT-008 supplies through IC-MKT-03, the
   // native GdprConsent rows and the quotes and return requests of the bundled Misc.RFQ plugin.
   for (const v of [

@@ -75,7 +75,8 @@
       "email",
       "sms",
       "inapp"
-    ]
+    ],
+    "chk.pickup.failurelimit": 3
   },
   "content": {
     "clientName": "Malawi Posts Corporation",
@@ -372,7 +373,8 @@
     "entities.languages": "REQ-MPC-FR-023: English and Chichewa (priority Could); languages and currency not fixed (MG-04)",
     "entities.shippingMethods": "Standard, express, pickup - REQ-MPC-FR-184; prices not stated",
     "sel.marketplace.enabled": "On - the Marketplace pack: SMEs sell through Malawi Post is an inference (gap MG-02)",
-    "content.brand": "Branding is not stated in the Malawi Post source - placeholder colours (P-5)"
+    "content.brand": "Branding is not stated in the Malawi Post source - placeholder colours (P-5)",
+    "chk.pickup.failurelimit": "CHK section 10.2 'Pickup identification methods; code failure limit': the limit is not stated in source, so the pack carries it as a value an administrator can change"
   },
   "_notStatedInSource": [
     "Branding not stated in source",
@@ -381,7 +383,8 @@
     "Hosting region (MG-14) and data-protection region (DP-01) open; sizing floor-or-ceiling open (C-SIZE)",
     "Postal operations scope held by FG-06; native mobile apps held by M-19",
     "Transit days per shipping option and outlet are not stated (FR-182 states the estimate, not the days): the values here are synthetic (P-5) so LOG-005 can return a date",
-    "Delivery window days, times and capacity are not stated (FR-106 states 'where supported'): the windows here are synthetic (P-5)"
+    "Delivery window days, times and capacity are not stated (FR-106 states 'where supported'): the windows here are synthetic (P-5)",
+    "The pickup-code failure limit is not stated (FR-124 states code and QR only): the pack sets 3"
   ],
   "_heldDecisionsVisibleToUsers": [
     "FG-06",

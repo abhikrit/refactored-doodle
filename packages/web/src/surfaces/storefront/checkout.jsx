@@ -19,12 +19,15 @@ export function Cart() {
   const navigate = useNavigate();
   const [warnings, setWarnings] = useState([]);
   const [points, setPoints] = useState([]);
+  const [thresholds, setThresholds] = useState(null);
   const [terms, setTerms] = useState(false);
   const termsOnCart = settings('ordersettings.termsofserviceonshoppingcartpage', false);
   const allowSaveForLater = settings('shoppingcartsettings.allowmultiplewishlist', false);
 
   useEffect(() => { api.get('/logistics/pickup-points').then(setPoints).catch(() => {}); }, []);
   useEffect(() => { refreshCart(); }, [refreshCart]);
+  // the store's minimum order value, if it sets one (CHK-010)
+  useEffect(() => { api.get('/checkout-area/thresholds').then(setThresholds).catch(() => {}); }, [cart?.subtotal]);
 
   if (!cart) return <Spinner />;
   const currency = cart.items[0]?.product?.currency ?? 'USD';
@@ -45,6 +48,11 @@ export function Cart() {
     <div className="space-y-5">
       <h1 className="nop-page-title">Shopping cart</h1>
       {warnings.length > 0 && <Alert tone="warning">{warnings.join(' ')}</Alert>}
+      {thresholds?.refused && (
+        <Alert tone="warning" title="Your cart is below the smallest order this shop takes">
+          {thresholds.warnings.map((w) => <div key={w.key}>{w.message}</div>)}
+        </Alert>
+      )}
 
       {cart.items.length === 0 ? (
         <Alert tone="info">Your shopping cart is empty. <Link to="/search" className="underline">Browse the catalogue</Link>.</Alert>
@@ -171,7 +179,7 @@ export function Cart() {
                   variant="brand"
                   size="lg"
                   className="w-full mt-3"
-                  disabled={termsOnCart && !terms}
+                  disabled={(termsOnCart && !terms) || thresholds?.refused === true}
                   onClick={() => navigate('/checkout')}
                 >
                   Checkout
@@ -254,6 +262,11 @@ export function Checkout() {
   const [addressForm, setAddressForm] = useState(null);
   const [attributes, setAttributes] = useState({});
   const [pin, setPin] = useState(null);
+  const [notices, setNotices] = useState([]);
+  const [mustAcknowledge, setMustAcknowledge] = useState([]);
+  const [ticked, setTicked] = useState({});
+  const [pickupMethods, setPickupMethods] = useState(null);
+  const [pickupMethod, setPickupMethod] = useState(null);
 
   const loadProgress = React.useCallback(async () => {
     const next = await api.get('/checkout-area/checkout/steps');
@@ -324,6 +337,19 @@ export function Checkout() {
     if (step !== 'confirm' || !method) return;
     api.get(`/checkout-area/checkout/confirm-summary?paymentMethodSystemName=${method}`).then(setSummary).catch(() => {});
   }, [step, method]);
+
+  // the notices this country asks for at this point of checkout, and what must be ticked
+  useEffect(() => {
+    api.get(`/checkout-area/notices/${step}`).then((n) => setNotices(n.notices ?? [])).catch(() => setNotices([]));
+    if (step !== 'confirm') return;
+    api.get('/checkout-area/checkout/acknowledgements')
+      .then((a) => setMustAcknowledge(a.required ?? []))
+      .catch(() => setMustAcknowledge([]));
+    api.get('/checkout-area/pickup-code/methods').then((m) => {
+      setPickupMethods(m);
+      setPickupMethod((current) => current ?? m.defaultMethod ?? null);
+    }).catch(() => {});
+  }, [step]);
 
   if (!state) return <Spinner />;
 
@@ -402,6 +428,8 @@ export function Checkout() {
       const res = await api.post('/checkout-area/checkout/confirm', {
         paymentMethodSystemName: method,
         termsAccepted: terms,
+        acknowledgements: Object.entries(ticked).filter(([, v]) => v).map(([k]) => k),
+        pickupIdentification: pickupMethod,
         shownTotal: summary?.total ?? totals?.total,
         paymentData: { phone },
         billingAddress: address,
@@ -460,6 +488,17 @@ export function Checkout() {
     <div className="space-y-4">
       <h1 className="nop-page-title">Checkout</h1>
       <CheckoutProgress indicator={indicator} />
+
+      {notices.length > 0 && (
+        <div className="space-y-2">
+          {notices.map((n) => (
+            <Alert key={n.topicSystemName} tone="info" title={n.title}>
+              {n.body}
+              {n.version ? <span className="block text-[11.5px] mt-1">Version {n.version}.</span> : null}
+            </Alert>
+          ))}
+        </div>
+      )}
 
       {failures.length > 0 && (
         <Alert tone="error" title="The order was not placed">
@@ -860,12 +899,32 @@ export function Checkout() {
                   </dl>
                 )}
 
-                <Checkbox
-                  label="I have read the returns and refund policy"
-                  checked={acknowledged}
-                  onChange={(e) => setAcknowledged(e.target.checked)}
-                  hint="We keep a record of this acknowledgement with your order."
-                />
+                {mustAcknowledge.map((notice) => (
+                  <Checkbox
+                    key={notice.topicSystemName}
+                    label={`I have read the ${String(notice.title ?? '').toLowerCase()}`}
+                    checked={ticked[notice.topicSystemName] === true}
+                    onChange={(e) => setTicked({ ...ticked, [notice.topicSystemName]: e.target.checked })}
+                    hint="We keep a record of this with your order."
+                  />
+                ))}
+                {mustAcknowledge.length === 0 && (
+                  <Checkbox
+                    label="I have read the returns and refund policy"
+                    checked={acknowledged}
+                    onChange={(e) => setAcknowledged(e.target.checked)}
+                    hint="We keep a record of this acknowledgement with your order."
+                  />
+                )}
+                {pickupMethods?.choiceOffered && (state.cart.items ?? []).some((i) => i.fulfilment === 'pickup') && (
+                  <Field label="How would you like to collect?" hint="Show this at the counter when you collect">
+                    <Select value={pickupMethod ?? ''} onChange={(e) => setPickupMethod(e.target.value)}>
+                      {pickupMethods.offered.map((m) => (
+                        <option key={m} value={m}>{m === 'QR' ? 'A QR code' : 'An order code'}</option>
+                      ))}
+                    </Select>
+                  </Field>
+                )}
                 {state.termsRequired && (
                   <Checkbox
                     label="I agree with the terms of service"
@@ -878,7 +937,11 @@ export function Checkout() {
                   variant="brand"
                   size="lg"
                   onClick={confirm}
-                  disabled={placing || !acknowledged || (state.termsRequired && !terms)}
+                  disabled={placing
+                    || (mustAcknowledge.length
+                      ? mustAcknowledge.some((n) => ticked[n.topicSystemName] !== true)
+                      : !acknowledged)
+                    || (state.termsRequired && !terms)}
                 >
                   {placing ? 'Placing the order…' : 'Confirm order'}
                 </Button>

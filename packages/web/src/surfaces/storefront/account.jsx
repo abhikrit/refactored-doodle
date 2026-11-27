@@ -315,6 +315,7 @@ export function AccountOrderDetails() {
   const [order, setOrder] = useState(null);
   const [tracking, setTracking] = useState(null);
   const [resumePayment, setResumePayment] = useState(null);
+  const [pickupCode, setPickupCode] = useState(null);
   const [notice, setNotice] = useState(null);
 
   useEffect(() => {
@@ -324,6 +325,7 @@ export function AccountOrderDetails() {
       if (t) setTracking(await api.get(`/tracking/${t}`));
       // an interrupted payment can be completed from here (CHK-008)
       api.get(`/checkout-area/orders/${orderNumber}/resume-payment`).then(setResumePayment).catch(() => {});
+      api.get(`/checkout-area/orders/${orderNumber}/pickup-code`).then(setPickupCode).catch(() => {});
     }).catch(() => {});
   }, [orderNumber]);
 
@@ -386,11 +388,27 @@ export function AccountOrderDetails() {
 
         {order.hasPickupCode && (
           <Panel title="Collection">
-            <Alert tone={order.pickupCodeUsed ? 'success' : 'info'}>
-              {order.pickupCodeUsed
-                ? 'This order has been collected: the pickup code was used at the outlet.'
-                : `Bring your pickup code to ${order.pickupPoint?.name}. It is single use and was sent to you by SMS.`}
+            <Alert tone={pickupCode?.status === 'Used' ? 'success' : (pickupCode?.status === 'Locked' ? 'warning' : 'info')}>
+              {pickupCode?.status === 'Used'
+                ? 'This order has been collected: the code was used at the outlet.'
+                : pickupCode?.status === 'Locked'
+                  ? 'Too many wrong codes were entered. Bring something with your name on it and the staff will check who you are.'
+                  : `Bring your ${pickupCode?.method === 'QR' ? 'QR code' : 'order code'} to ${order.pickupPoint?.name}. It is single use and was sent to you.`}
             </Alert>
+            {pickupCode && (
+              <KeyValue
+                className="mt-3"
+                rows={[
+                  ['How you will be identified', pickupCode.method === 'QR' ? 'A QR code' : 'An order code'],
+                  ['Where', pickupCode.outlet ? `${pickupCode.outlet.name}, ${pickupCode.outlet.city}` : '-'],
+                  ['Sent to you', pickupCode.sentOnUtc ? new Date(pickupCode.sentOnUtc).toLocaleString('en-GB') : 'not yet'],
+                  ['Collected', pickupCode.usedOnUtc ? new Date(pickupCode.usedOnUtc).toLocaleString('en-GB') : 'not yet'],
+                ]}
+              />
+            )}
+            <p className="mt-2 text-[11.5px] text-nop-muted">
+              We keep only a scrambled copy of the code, so nobody here can read it back to you.
+            </p>
 </Panel>
         )}
 

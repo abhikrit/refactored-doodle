@@ -157,6 +157,23 @@ export function registerDecoratorAsync() {
        * AC-SEC-004-01-02: a delete by predicate reads the matching rows first and writes one
        * event with old values per row.
        */
+      /**
+       * The predicate overload and the soft delete of IRepository: an audited entity keeps them
+       * too, so retention and any other caller sees the same repository whether or not the
+       * entity is audited.
+       */
+      async deleteManyAsync(predicate) {
+        const result = await this.deleteAsync(predicate);
+        return { removed: result?.deleted ?? 0, physical: true };
+      },
+
+      async softDeleteAsync(entity) {
+        const id = entity?.id ?? entity;
+        const current = await plain.getByIdAsync(id);
+        if (!current) return null;
+        return this.updateAsync({ ...current, deleted: true });
+      },
+
       async deleteAsync(entityOrPredicate) {
         if (typeof entityOrPredicate === 'function') {
           const rows = await plain.getAllAsync(entityOrPredicate);

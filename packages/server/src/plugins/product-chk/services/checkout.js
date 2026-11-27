@@ -16,7 +16,7 @@
 // CART-500: there is one cart for all sellers; the native per-vendor cart stays off.
 // SPLIT-PAY / BR-CHK-022: a multi-seller checkout offers only methods that declare group support.
 
-import { createHash, randomBytes } from 'node:crypto';
+import { randomBytes } from 'node:crypto';
 import { repository } from '../../../core/repository.js';
 import { runProviders } from '../../../core/providers.js';
 import { withLockAsync, lockKey } from '../../../core/locker.js';
@@ -41,6 +41,11 @@ import {
   chosenWindowAsync,
 } from './slots.js';
 import { addressFormAsync, locatorCheck } from './address.js';
+import { confirmFilterAsync, recordAcknowledgementsAsync, noticesForAsync } from './notices.js';
+import {
+  issueAsync as issuePickupCodeServiceAsync, verifyAsync as verifyCodeAsync,
+  markUsedAsync as markCodeUsedAsync, revokeAsync as revokePickupCodeAsync,
+} from './pickup-code.js';
 import {
   splitGroups, allocate, groupPaymentAsync, linkOrderAsync, placementExceptionAsync,
   PROTOTYPE_DEFAULT,
@@ -285,32 +290,32 @@ export async function totalsAsync({
 /** IC-CHK-11 splitter: group lines by seller and fulfilment choice (BR-CHK-009). */
 export const splitCart = splitGroups;
 
-function hashCode(code) {
-  return createHash('sha256').update(code).digest('hex');
-}
-
-/** CHK-012 / BR-CHK-016: single-use code, bound to one sub-order and one outlet, stored hashed. */
-async function issuePickupCodeAsync({ order, pickupPointId, storeId }) {
-  const code = String(Math.floor(100000 + Math.random() * 900000));
-  const limit = await getSettingAsync('chk.pickup.failurelimit', storeId, 3);
-  await pickupCodeRepo().insertAsync({
-    orderId: order.id,
-    orderNumber: order.orderNumber,
-    pickupPointId,
-    codeHash: hashCode(code),
-    used: false,
-    locked: false,
-    failedAttempts: 0,
-    failureLimit: limit,
-  });
-  return code;
-}
-
 export async function placeOrderAsync({
   sessionId, customer, storeId = 1, paymentMethodSystemName, paymentData = {},
   termsAccepted = false, shownTotal = null, billingAddress = null, shippingAddress = null,
-  deliverySlotId = null, desiredDeliveryDate = null, actor = 'storefront',
+  deliverySlotId = null, desiredDeliveryDate = null, acknowledgements = [], ipAddress = null,
+  pickupIdentification = null, actor = 'storefront',
 }) {
+  // BR-CHK-013: the acknowledgements and the terms are enforced on the server, before anything
+  // else, because the confirm action takes no model a validator could see
+  const filtered = await confirmFilterAsync({
+    cart: await getCartAsync({ sessionId, customer, storeId }),
+    storeId,
+    customer,
+    acknowledgements,
+    termsAccepted,
+  });
+  if (filtered.ok !== true) {
+    return {
+      ok: false,
+      stoppedAt: 'buyer eligibility',
+      messageKey: filtered.messageKey,
+      failures: [{ step: 'confirm', message: filtered.message, messageKey: filtered.messageKey }],
+      missingAcknowledgements: filtered.missing ?? [],
+      orderCreated: false,
+    };
+  }
+
   const validation = await validateAsync({
     sessionId, customer, storeId, paymentMethodSystemName, termsAccepted, shownTotal,
   });
@@ -519,7 +524,10 @@ export async function placeOrderAsync({
       }
       let pickupCode = null;
       if (group.fulfilment === 'pickup') {
-        pickupCode = await issuePickupCodeAsync({ order, pickupPointId: group.pickupPointId, storeId });
+        const issued = await issuePickupCodeServiceAsync({
+          order, pickupPointId: group.pickupPointId, storeId, method: pickupIdentification,
+        });
+        pickupCode = issued.code;
       }
       orders.push({ ...order, pickupCode, items: group.items.length });
 
@@ -579,6 +587,15 @@ export async function placeOrderAsync({
     // the native interval key is set once, after every sub-order is saved (BR-CHK-006)
     markPlacement({ customer, sessionId });
     await recordIdempotentResultAsync({ key: idempotency.key, orders, storeId });
+
+    // AC-CHK-009-02-02: the acceptance is IAM's record; CHK links it to the order
+    if ((acknowledgements ?? []).length) {
+      for (const order of orders) {
+        await recordAcknowledgementsAsync({
+          order, customer, acknowledgements, storeId, ipAddress,
+        });
+      }
+    }
 
     // ---- CHK-019 confirmation, through TRK-005 -------------------------------------------
     const to = customer?.email ?? billingAddress?.email ?? 'guest@example.com';
@@ -670,31 +687,21 @@ export async function placeOrderAsync({
     : run();
 }
 
-/** CHK-012 verification, called by the LOG-012 handover step (IC-CHK-09). */
-export async function verifyPickupCodeAsync({ orderNumber, code, pickupPointId }) {
-  const row = await pickupCodeRepo().getOneAsync((r) => r.orderNumber === orderNumber);
-  if (!row) return { ok: false, message: resource('Chk.PickupCodeInvalid') };
-  if (row.locked) return { ok: false, message: resource('Chk.PickupCodeLocked') };
-  if (row.used) return { ok: false, message: resource('Chk.PickupCodeUsed') };
-  if (pickupPointId != null && Number(row.pickupPointId) !== Number(pickupPointId)) {
-    return { ok: false, message: resource('Chk.PickupCodeInvalid') };
-  }
-  if (row.codeHash !== hashCode(String(code))) {
-    const failedAttempts = row.failedAttempts + 1;
-    const locked = failedAttempts >= row.failureLimit;
-    await pickupCodeRepo().updateAsync({ ...row, failedAttempts, locked });
-    return {
-      ok: false,
-      message: locked ? resource('Chk.PickupCodeLocked') : resource('Chk.PickupCodeInvalid'),
-      failedAttempts,
-    };
-  }
-  return { ok: true, row };
+/**
+ * IC-CHK-09, as LOG-012 calls it. The check itself is the CHK-012 service; these two keep the
+ * names the handover step already uses.
+ */
+export async function verifyPickupCodeAsync({
+  orderNumber, code, pickupPointId, verifiedBy = null, storeId = 1,
+}) {
+  const result = await verifyCodeAsync({
+    orderNumber, code, pickupPointId, verifiedBy, storeId,
+  });
+  return { ...result, message: result.message ?? null };
 }
 
-export async function markPickupCodeUsedAsync(orderNumber) {
-  const row = await pickupCodeRepo().getOneAsync((r) => r.orderNumber === orderNumber);
-  if (row) await pickupCodeRepo().updateAsync({ ...row, used: true, usedOnUtc: new Date().toISOString() });
+export async function markPickupCodeUsedAsync(orderNumber, verifiedBy = null) {
+  return markCodeUsedAsync({ orderNumber, verifiedBy });
 }
 
 export async function checkoutExceptionsAsync() {

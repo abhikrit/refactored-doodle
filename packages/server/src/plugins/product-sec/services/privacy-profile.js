@@ -74,6 +74,44 @@ export async function profileAsync({ storeId = 1, country = null } = {}) {
   };
 }
 
+/**
+ * Fields of this entity that another module owns (decision ONE-RECORD). The owning module's own
+ * permission guards the change; SEC keeps the record and writes the audit event, so there is
+ * still one profile and one trail.
+ */
+const OWNED_FIELDS = {
+  eTransactions: { owner: 'PRD-CHK-009', permission: 'Checkout.Core.Rules.CreateEditDelete' },
+};
+
+export async function saveOwnedFieldAsync({
+  country = null, field, value, owner, storeId = 1, actorEmail = null,
+}) {
+  const owned = OWNED_FIELDS[field];
+  if (!owned) return { ok: false, message: `${field} is not a field another module owns on this profile` };
+  if (owned.owner !== owner) {
+    return { ok: false, message: `${field} belongs to ${owned.owner}, not to ${owner}` };
+  }
+  const iso = country ?? await instanceCountryAsync(storeId);
+  const before = await profileAsync({ storeId, country: iso });
+  const merged = { ...blank(iso), ...before, [field]: value, country: iso };
+  delete merged.display;
+  delete merged.missing;
+  await saveSettingAsync(PROFILE_SETTING(iso), merged, 0);
+  await auditAsync({
+    event: 'AUD-SEC-006',
+    area: 'SEC',
+    feature: 'PRD-SEC-012',
+    entity: 'CountryPrivacyProfile',
+    entityId: iso,
+    actor: actorEmail,
+    before: { [field]: before[field] ?? null },
+    after: { [field]: value },
+    storeId,
+    note: `the ${field} fields, owned by ${owned.owner}, were changed`,
+  });
+  return { ok: true, profile: await profileAsync({ storeId, country: iso }), ownedBy: owned.owner };
+}
+
 /** IC-SEC-03 GetProfile. */
 export const getProfileAsync = (country, storeId = 1) => profileAsync({ country, storeId });
 

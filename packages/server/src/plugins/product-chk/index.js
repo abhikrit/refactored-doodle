@@ -32,10 +32,23 @@ import {
   resumeAsync, resumePaymentAsync, checkoutNodeReadinessAsync, idempotencyKey, cartHash,
   placementLockCount, updateSessionAsync,
 } from './services/resilience.js';
+import {
+  saveRuleAsync, setRuleActiveAsync, rulesAsync, cartCheckAsync as cartRuleCheckAsync,
+  RULE_TYPE,
+} from './services/cart-rules.js';
+import {
+  noticeProfileAsync, saveNoticeAsync, setConfirmationTimeLimitAsync, noticesForAsync,
+  acknowledgementsRequiredAsync, confirmFilterAsync, acknowledgementsForOrderAsync,
+  overdueConfirmationsAsync, CHECKOUT_POINTS,
+} from './services/notices.js';
+import {
+  identificationMethodsAsync, codeForOrderAsync, markSentAsync, deliveryRouteAsync,
+  revokeAsync as revokePickupCodeAsync, verifyAsync as verifyCodeAsync, CODE_STATE,
+} from './services/pickup-code.js';
 import { registerEventCodeAsync } from '../product-trk/services/notifications.js';
 import { declareSettingKeys } from '../../core/pack-loader.js';
 import {
-  itemWarningsAsync, cartWarningsAsync, standardWarningsAsync, subTotalAsync,
+  itemWarningsAsync, cartWarningsAsync, standardWarningsAsync, subTotalAsync, minimumOrderWarningsAsync,
   guardOrderActionAsync, cancelOrderAsync, runCheckOrderAsync, registerCartCheckProvider,
   registerSubtotalAdjuster, registerOrderActionGuard, registerCancellationParticipant,
   registerPlacementParticipant, cartCheckProvidersRegistered, subtotalAdjusterRegistered,
@@ -104,6 +117,23 @@ export default definePlugin({
           reason: 'the product keeps one cart for all sellers and splits the order in CHK-004',
         },
       },
+    });
+
+    // AC-CHK-011-01-01 and 02-01: the client's cart restriction rules are one provider on the
+    // CHK-003 override (BR-CHK-015), so they run at the cart, at checkout and at placement
+    registerCartCheckProvider({
+      area: 'CHK',
+      feature: 'PRD-CHK-011',
+      name: 'cart restriction rules',
+      fn: cartRuleCheckAsync,
+    });
+
+    // AC-CHK-012-01-02: a cancelled order revokes its pickup code (SM-CHK-03, IC-CHK-08)
+    registerCancellationParticipant({
+      area: 'CHK',
+      feature: 'PRD-CHK-012',
+      name: 'revoke the pickup code',
+      fn: revokePickupCodeAsync,
     });
 
     // AC-CHK-004-01-07: the cart says when a multi-seller cart cannot be paid for in one go
@@ -414,6 +444,93 @@ export default definePlugin({
     }));
     r.get('/checkout/node-readiness', send((req) => checkoutNodeReadinessAsync({ storeId: req.storeId })));
 
+    /* --------------------- PRD-CHK-011 cart rules, PRD-CHK-010 thresholds ----------- */
+    r.get('/cart-rules', gate('Checkout.Core.Rules.View'), send((req) => rulesAsync({ storeId: req.storeId })));
+    r.post('/cart-rules', gate('Checkout.Core.Rules.CreateEditDelete'), send((req) => saveRuleAsync({
+      ...req.body, storeId: req.storeId, actor: req.actorEmail ?? 'administrator',
+    })));
+    r.post('/cart-rules/:id/active', gate('Checkout.Core.Rules.CreateEditDelete'), send((req) => setRuleActiveAsync({
+      id: Number(req.params.id),
+      isActive: req.body?.isActive === true,
+      storeId: req.storeId,
+      actor: req.actorEmail ?? 'administrator',
+    })));
+    r.get('/cart-rules/kinds', send(() => RULE_TYPE));
+    r.get('/thresholds', send(async (req) => {
+      const base = await withCustomer(req);
+      const cart = await getCartAsync(base);
+      const totals = await totalsAsync({ ...base, paymentMethodSystemName: req.query.paymentMethodSystemName ?? null });
+      return minimumOrderWarningsAsync({
+        cart, storeId: base.storeId, total: totals.total, currency: totals.currency,
+      });
+    }));
+
+    /* --------------------- PRD-CHK-009 notices and acknowledgements ----------------- */
+    r.get('/notices/profile', send((req) => noticeProfileAsync({ storeId: req.storeId })));
+    r.get('/notices/points', send(() => CHECKOUT_POINTS));
+    r.get('/notices/topics', send(async (req) => (await ctx.repository('Topic')
+      .getAllAsync((t) => t.published !== false
+        && (t.storeId == null || Number(t.storeId) === Number(req.storeId))))
+      .map((t) => ({
+        systemName: t.systemName, title: t.title, placeholder: t.placeholder === true,
+      }))));
+    r.get('/notices/:checkpoint', send(async (req) => {
+      const base = await withCustomer(req);
+      return noticesForAsync({
+        checkpoint: req.params.checkpoint,
+        storeId: base.storeId,
+        cart: await getCartAsync(base),
+        customer: base.customer,
+      });
+    }));
+    r.post('/notices', gate('Checkout.Core.Rules.CreateEditDelete'), send((req) => saveNoticeAsync({
+      ...req.body, storeId: req.storeId, actor: req.actor, actorEmail: req.actorEmail ?? 'administrator',
+    })));
+    r.post('/notices/confirmation-time-limit', gate('Checkout.Core.Rules.CreateEditDelete'), send((req) => setConfirmationTimeLimitAsync({
+      hours: Number(req.body?.hours ?? 0),
+      storeId: req.storeId,
+      actor: req.actor,
+      actorEmail: req.actorEmail ?? 'administrator',
+    })));
+    r.get('/checkout/acknowledgements', send(async (req) => {
+      const base = await withCustomer(req);
+      return acknowledgementsRequiredAsync({
+        cart: await getCartAsync(base), storeId: base.storeId, customer: base.customer,
+      });
+    }));
+    r.post('/checkout/acknowledgements/check', send(async (req) => {
+      const base = await withCustomer(req);
+      return confirmFilterAsync({
+        cart: await getCartAsync(base),
+        storeId: base.storeId,
+        customer: base.customer,
+        acknowledgements: req.body?.acknowledgements ?? [],
+        termsAccepted: req.body?.termsAccepted ?? null,
+      });
+    }));
+    r.get('/orders/:orderNumber/acknowledgements', send((req) => acknowledgementsForOrderAsync(req.params.orderNumber)));
+    r.get('/notices/confirmations/overdue', gate('Checkout.Core.Exceptions.View'), send((req) => overdueConfirmationsAsync({
+      storeId: req.storeId, now: req.query.now ?? null,
+    })));
+
+    /* --------------------- PRD-CHK-012 the pickup code ------------------------------ */
+    r.get('/pickup-code/methods', send((req) => identificationMethodsAsync({ storeId: req.storeId })));
+    r.get('/pickup-code/route', send((req) => deliveryRouteAsync({ storeId: req.storeId })));
+    r.get('/orders/:orderNumber/pickup-code', send((req) => codeForOrderAsync({ orderNumber: req.params.orderNumber })));
+    r.post('/orders/:orderNumber/pickup-code/sent', send((req) => markSentAsync({
+      orderNumber: req.params.orderNumber,
+      shipmentId: req.body?.shipmentId ?? null,
+      channel: req.body?.channel ?? null,
+    })));
+    r.post('/orders/:orderNumber/pickup-code/verify', send((req) => verifyCodeAsync({
+      orderNumber: req.params.orderNumber,
+      code: req.body?.code,
+      pickupPointId: req.body?.pickupPointId ?? null,
+      verifiedBy: req.actorEmail ?? null,
+      storeId: req.storeId,
+    })));
+    r.get('/pickup-code/states', send(() => CODE_STATE));
+
     r.get('/checkout/exceptions', async (req, res, next) => {
       try { res.json(await checkoutExceptionsAsync()); } catch (err) { next(err); }
     });
@@ -421,7 +538,8 @@ export default definePlugin({
     ctx.declare({
       built: true,
       owns: ['PRD-CHK-001', 'PRD-CHK-002', 'PRD-CHK-003', 'PRD-CHK-004', 'PRD-CHK-005', 'PRD-CHK-006',
-        'PRD-CHK-007', 'PRD-CHK-012', 'PRD-CHK-014', 'PRD-CHK-019'],
+        'PRD-CHK-007', 'PRD-CHK-008', 'PRD-CHK-009', 'PRD-CHK-010', 'PRD-CHK-011', 'PRD-CHK-012',
+        'PRD-CHK-014', 'PRD-CHK-019'],
       note: 'cart, checkout, the validation host, split placement, fulfilment per line, delivery windows, address capture, the pickup code and the confirmation',
     });
   },
