@@ -53,12 +53,37 @@ export function settingsCatalogue(root) {
 const pluginKeys = new Map(); // owner -> { prefixes, keys }
 
 export function declareSettingKeys({
-  owner, prefixes = [], keys = [], fixedValues = {},
+  owner, prefixes = [], keys = [], fixedValues = {}, packDefaults = {}, secretKeys = [],
 }) {
   pluginKeys.set(owner, {
-    owner, prefixes, keys, fixedValues,
+    owner, prefixes, keys, fixedValues, packDefaults, secretKeys,
   });
   return pluginKeys.get(owner);
+}
+
+/**
+ * The keys a module's own key catalogue flags secret (BR-PAY-110, BR-PLT-013). A pack that
+ * states one is refused and an export omits it, whatever its spelling.
+ */
+export function declaredSecretKeys() {
+  return [...pluginKeys.values()].flatMap((d) => (d.secretKeys ?? []).map((key) => ({ owner: d.owner, key })));
+}
+
+export const isDeclaredSecretKey = (key) => declaredSecretKeys().some((s) => s.key === key);
+
+/**
+ * A native install default a module turns round for every pack unless the client pack states the
+ * key itself (BR-PAY-170, AC-PAY-011-01-02). Unlike a fixed value it is not refused when a pack
+ * states it: the pack simply wins.
+ */
+export function packDefaultsDeclared() {
+  const out = [];
+  for (const declaration of pluginKeys.values()) {
+    for (const [key, value] of Object.entries(declaration.packDefaults ?? {})) {
+      out.push({ owner: declaration.owner, key, ...value });
+    }
+  }
+  return out;
 }
 
 /**
@@ -183,7 +208,7 @@ export function validatePack(pack, { root = null, stores = null } = {}) {
       );
       continue;
     }
-    if (isSecretKey(key)) {
+    if (isSecretKey(key) || isDeclaredSecretKey(key)) {
       refuse(key, 'BR-PLT-013 / CFG-01', 'Plt.PackSecretRefused', `${resource('Plt.PackSecretRefused')} (${key})`);
       continue;
     }
@@ -467,6 +492,26 @@ export async function applyPackChainAsync(chain, {
             createdOnUtc: new Date().toISOString(),
           });
         }
+      }
+
+      // A module's pack default: a native install default the owning module turns round for every
+      // pack (BR-PAY-170). A layer that states the key wins, so only keys no layer stated are
+      // written here.
+      for (const def of packDefaultsDeclared()) {
+        const stated = [...merged.values()].some((r) => r.key === def.key);
+        if (stated) continue;
+        await saveSettingAsync(def.key, def.value, 0, `${def.owner} pack default`);
+        written.push({
+          key: def.key,
+          value: def.value,
+          storeId: 0,
+          layer: `${def.owner} pack default`,
+          pack: def.owner,
+          overrode: [],
+          moduleDefault: true,
+          rule: def.rule ?? null,
+          reason: def.reason ?? null,
+        });
       }
 
       // AC-PLT-003-01-03: store rows the new version no longer states are dropped

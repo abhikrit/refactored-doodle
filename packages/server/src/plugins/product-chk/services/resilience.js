@@ -136,16 +136,18 @@ export async function recordIdempotentResultAsync({ key, orders, storeId = 1 }) 
  * same merchant reference.
  */
 export async function orderGuidForAsync({ session, storeId = 1 }) {
-  const minutes = Number(await getSettingAsync('paymentsettings.regenerateorderguidinterval', storeId, 3));
+  // PaymentSettings.RegenerateOrderGuidInterval is in seconds, native default 180 (section 10.2
+  // of the PAY chapter); AC-PAY-012-01-04 is the same window seen from the payment side.
+  const seconds = Number(await getSettingAsync('paymentsettings.regenerateorderguidinterval', storeId, 180));
   const now = Date.now();
   const issuedAt = session.orderGuidIssuedOnUtc ? Date.parse(session.orderGuidIssuedOnUtc) : null;
   const withinInterval = session.checkoutOrderGuid && issuedAt !== null
-    && (now - issuedAt) / 60000 < minutes;
+    && (now - issuedAt) / 1000 < seconds;
   if (withinInterval) {
     return {
       orderGuid: session.checkoutOrderGuid,
       reused: true,
-      intervalMinutes: minutes,
+      intervalSeconds: seconds,
       merchantReference: session.reference,
     };
   }
@@ -156,7 +158,7 @@ export async function orderGuidForAsync({ session, storeId = 1 }) {
     orderGuidIssuedOnUtc: new Date(now).toISOString(),
   });
   return {
-    orderGuid, reused: false, intervalMinutes: minutes, merchantReference: session.reference,
+    orderGuid, reused: false, intervalSeconds: seconds, merchantReference: session.reference,
   };
 }
 

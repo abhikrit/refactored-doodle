@@ -39,6 +39,8 @@ import {
   AdminAssistedOrders, AdminCartRules, AdminCheckoutNotices, AdminCreditAccounts,
   AdminDeliveryWindows,
 } from './surfaces/admin/chk.jsx';
+import { AdminPaymentRouting } from './surfaces/admin/pay.jsx';
+import { PaymentStatus } from './surfaces/storefront/payment.jsx';
 import {
   AdminChangeSets, AdminCountries, AdminHelpContent, AdminRetention,
 } from './surfaces/admin/plt.jsx';
@@ -97,6 +99,7 @@ export default function App() {
               <Route path="/login" element={store(<Login />)} />
               <Route path="/register" element={store(<Register />)} />
               <Route path="/order-status" element={store(<OrderStatus />)} />
+              <Route path="/payment-status/:orderNumber" element={store(<PaymentStatus />)} />
               <Route path="/track/share/:token" element={store(<SharedTracking />)} />
               <Route path="/track/:trackingNumber" element={store(<PublicTracking />)} />
               <Route path="/account" element={store(<AccountInfo />)} />
@@ -135,6 +138,7 @@ export default function App() {
               <Route path="/admin/configuration/currencies" element={<AdminCurrencies />} />
               <Route path="/admin/configuration/countries" element={<AdminCountries />} />
               <Route path="/admin/configuration/payment-methods" element={<AdminPaymentMethods />} />
+              <Route path="/admin/configuration/payment-routing" element={<AdminPaymentRouting />} />
               <Route path="/admin/configuration/shipping-methods" element={<AdminShippingMethods />} />
               <Route path="/admin/configuration/delivery-windows" element={<AdminDeliveryWindows />} />
               <Route path="/admin/configuration/cart-rules" element={<AdminCartRules />} />

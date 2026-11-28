@@ -20,7 +20,10 @@
       "disablebillingaddresscheckoutstep": "boolean",
       "placeorderwithlock": "boolean",
       "minimumorderplacementinterval": "number",
-      "allowcustomerscancelorders": "boolean"
+      "allowcustomerscancelorders": "boolean",
+      "autocancelenabled": "boolean",
+      "autocanceldelay": "number",
+      "autocancelignoredpaymentmethods": "array"
     },
     "catalogsettings": {
       "enablespecificationattributefiltering": "boolean",
@@ -50,7 +53,8 @@
     },
     "paymentsettings": {
       "activepaymentmethodsystemnames": "array",
-      "allowrepostingpayments": "boolean"
+      "allowrepostingpayments": "boolean",
+      "regenerateorderguidinterval": "number"
     },
     "shippingsettings": {
       "activeshippingratecomputationmethodsystemnames": "array",
@@ -187,6 +191,9 @@
     },
     "commonsettings": {
       "clearlogolderthandays": "number"
+    },
+    "remindersettings": {
+      "pendingordersenabled": "boolean"
     }
   },
   "productKeys": {
@@ -196,7 +203,10 @@
     "pay": {
       "bulkbuyer.role": "string",
       "fiscal.adapter": "string",
-      "country.rails": "array"
+      "country.rails": "array",
+      "supportcontact": "string",
+      "additionalfee.<systemname>": "number",
+      "callback.allowedips.<systemname>": "array"
     },
     "sel": {
       "marketplace.enabled": "boolean"

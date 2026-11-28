@@ -524,7 +524,8 @@ export async function releaseAsync({ reservations = [], reason = null }) {
  */
 export async function runCheckOrderAsync({
   cart, customer = null, storeId = 1, paymentMethodSystemName = null, shownTotal = null,
-  currentTotal = null, fulfilment = null, paymentMethod = null,
+  currentTotal = null, fulfilment = null, paymentMethod = null, address = null,
+  pickupPointId = null, sellerIds = [], multiSeller = false,
 }) {
   const steps = [];
 
@@ -593,8 +594,19 @@ export async function runCheckOrderAsync({
       paymentInitiated: false,
     };
   }
+  // the validators see the cart as it will be placed: who is buying, how it will be fulfilled,
+  // where it is going and which sellers are in it (PAY-001 reads all four, BR-PAY-002)
   const validators = await runProviders('IC-CHK-02', 'firstFail', {
-    cart, customer, storeId, paymentMethodSystemName, total: currentTotal, fulfilment,
+    cart,
+    customer,
+    storeId,
+    paymentMethodSystemName,
+    total: currentTotal,
+    fulfilment,
+    address,
+    pickupPointId,
+    sellerIds,
+    multiSeller,
   });
   const refused = validators.find((r) => r.result && r.result.ok === false);
   steps.push({ check: 'payment method', failed: Boolean(refused) });

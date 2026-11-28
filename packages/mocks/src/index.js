@@ -298,7 +298,9 @@ const adapters = [
     systemName: 'Payments.Card', name: 'Card payments', kind: 'card', country: 'KE', feature: 'PRD-PAY-002', payloadName: 'card-gateway', supportsGroupPayment: true,
   }),
   paymentAdapter({
-    systemName: 'Payments.PayPalStandard', name: 'PayPal', kind: 'wallet', country: 'KE', feature: 'PRD-PAY-003', payloadName: 'paypal',
+    // a Redirection-type rail that can take one payment for a split checkout: BR-PAY-014 states
+    // that such an adapter redirects for the checkout total from PostProcessPaymentAsync
+    systemName: 'Payments.PayPalStandard', name: 'PayPal', kind: 'wallet', country: 'KE', feature: 'PRD-PAY-003', payloadName: 'paypal', supportsGroupPayment: true,
   }),
   paymentAdapter({
     systemName: 'Payments.BankTransfer', name: 'Bank transfer', kind: 'offline', country: 'KE/MW', feature: 'PRD-PAY-005', capture: 'manual', payloadName: 'bank-transfer', offlineAtCounter: false,

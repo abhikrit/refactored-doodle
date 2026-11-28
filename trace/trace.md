@@ -1,6 +1,6 @@
 # Trace report
 
-Generated 2026-11-28T10:27:58.370Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
+Generated 2026-11-28T11:56:25.434Z by `scripts/build-trace.mjs`. Source of every ID: `/docs`.
 
 ## 1. Reconciliation
 
@@ -11,15 +11,15 @@ its criteria tested and the rest not is partial, and is never counted as built.
 
 | State | Features | Meaning |
 |---|---|---|
-| Built and passing | 94 | Every AC of the feature has a passing test named by the AC ID |
+| Built and passing | 98 | Every AC of the feature has a passing test named by the AC ID |
 | Partly covered | 4 | Some ACs have passing tests, the rest have none yet |
 | Held, prototype default | 86 | Held by an open decision; built as the PRD's Proposed option and labelled (P-1) |
 | Mocked externally | 24 | External-system feature standing behind a mock adapter (P-3) |
-| Not built | 226 | Scaffolded in Session 0, built in its own session |
+| Not built | 222 | Scaffolded in Session 0, built in its own session |
 | **Total** | **434** | reconciles: yes |
 
 Acceptance criteria in the product: 2850. Criteria with a test in this repository:
-724 (724 passing, 0 failing).
+760 (760 passing, 0 failing).
 
 ## 2. Coverage by area and wave
 
@@ -35,7 +35,7 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 | 2 Catalogue | SRC | Search, discovery and merchandising | 27 | 0 | 0 | 4 | 1 | 22 |
 | 3 Buy | CHK | Cart and checkout | 19 | 19 | 0 | 0 | 0 | 0 |
 | 3 Buy | ORD | Orders and B2B transactions (RFQ, contracts, requisitions, offers, group buying) | 28 | 0 | 2 | 11 | 0 | 15 |
-| 3 Buy | PAY | Payments, tax, settlement and reconciliation | 36 | 0 | 1 | 14 | 0 | 21 |
+| 3 Buy | PAY | Payments, tax, settlement and reconciliation | 36 | 4 | 1 | 14 | 0 | 17 |
 | 4 Fulfil | DOC | Documents and records | 6 | 0 | 0 | 2 | 1 | 3 |
 | 4 Fulfil | LOG | Shipping, logistics and fulfilment | 32 | 0 | 1 | 6 | 2 | 23 |
 | 4 Fulfil | RET | Returns, refunds and disputes | 11 | 0 | 0 | 4 | 0 | 7 |
@@ -54,8 +54,8 @@ Acceptance criteria in the product: 2850. Criteria with a test in this repositor
 
 | Client | Requirements | Mapped to a feature | Demonstrated in the prototype | Project service |
 |---|---|---|---|---|
-| KTDA | 95 | 80 | 26 | 17 |
-| Malawi Post | 411 | 374 | 93 | 38 |
+| KTDA | 95 | 80 | 27 | 17 |
+| Malawi Post | 411 | 374 | 100 | 38 |
 
 "Demonstrated in the prototype" means at least one feature that delivers the requirement has a
 passing AC-named test here. It is not a compliance statement: the compliance status of each
@@ -506,8 +506,44 @@ requirement is in `docs/compliance/Compliance-Traceability.md`.
 | AC-LOG-012-03-01 | PRD-LOG-012 | node (API and rules) | pass |
 | AC-ORD-002-02-01 | PRD-ORD-002 | node (API and rules) | pass |
 | AC-ORD-007-01-02 | PRD-ORD-007 | node (API and rules) | pass |
+| AC-PAY-001-01-01 | PRD-PAY-001 | node (API and rules) | pass |
+| AC-PAY-001-01-02 | PRD-PAY-001 | node (API and rules) | pass |
+| AC-PAY-001-02-01 | PRD-PAY-001 | node (API and rules) | pass |
+| AC-PAY-001-02-02 | PRD-PAY-001 | node (API and rules) | pass |
+| AC-PAY-001-02-03 | PRD-PAY-001 | node (API and rules) | pass |
+| AC-PAY-001-02-04 | PRD-PAY-001 | node (API and rules) | pass |
+| AC-PAY-001-02-05 | PRD-PAY-001 | node (API and rules) | pass |
+| AC-PAY-001-03-01 | PRD-PAY-001 | node (API and rules) | pass |
+| AC-PAY-001-03-02 | PRD-PAY-001 | node (API and rules) | pass |
+| AC-PAY-001-03-03 | PRD-PAY-001 | node (API and rules) | pass |
 | AC-PAY-004-01-01 | PRD-PAY-004 | node (API and rules) | pass |
 | AC-PAY-004-01-02 | PRD-PAY-004 | node (API and rules) | pass |
+| AC-PAY-011-01-01 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-01-02 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-02-01 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-02-02 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-03-01 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-03-02 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-03-03 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-04-01 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-04-02 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-04-03 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-04-04 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-04-05 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-04-06 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-04-07 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-011-04-08 | PRD-PAY-011 | node (API and rules) | pass |
+| AC-PAY-012-01-01 | PRD-PAY-012 | node (API and rules) | pass |
+| AC-PAY-012-01-02 | PRD-PAY-012 | node (API and rules) | pass |
+| AC-PAY-012-01-03 | PRD-PAY-012 | node (API and rules) | pass |
+| AC-PAY-012-01-04 | PRD-PAY-012 | node (API and rules) | pass |
+| AC-PAY-024-01-01 | PRD-PAY-024 | node (API and rules) | pass |
+| AC-PAY-024-01-02 | PRD-PAY-024 | node (API and rules) | pass |
+| AC-PAY-024-01-03 | PRD-PAY-024 | node (API and rules) | pass |
+| AC-PAY-024-01-04 | PRD-PAY-024 | node (API and rules) | pass |
+| AC-PAY-024-01-05 | PRD-PAY-024 | node (API and rules) | pass |
+| AC-PAY-024-02-01 | PRD-PAY-024 | node (API and rules) | pass |
+| AC-PAY-024-02-02 | PRD-PAY-024 | node (API and rules) | pass |
 | AC-PLT-003-01-01 | PRD-PLT-003 | node (API and rules) | pass |
 | AC-PLT-003-01-02 | PRD-PLT-003 | node (API and rules) | pass |
 | AC-PLT-003-01-03 | PRD-PLT-003 | node (API and rules) | pass |
@@ -1007,7 +1043,7 @@ in the user interface and here.
 | PRD-CHK-017 | B2B quick order and bulk add | CHK | P1 | 3 | built | 3 | 3 | PH-INF |
 | PRD-CHK-018 | B2B purchase approval | CHK | P1 | 3 | built | 6 | 6 | PH-INF / WF-ENG |
 | PRD-CHK-019 | Order confirmation | CHK | P1 | 3 | built | 4 | 4 | - |
-| PRD-PAY-001 | Payment method framework and routing | PAY | P1 | 3 | not-built | 10 | 0 | - |
+| PRD-PAY-001 | Payment method framework and routing | PAY | P1 | 3 | built | 10 | 10 | - |
 | PRD-PAY-002 | Card payments (framework) | PAY | P1 | 3 | not-built | 9 | 0 | - |
 | PRD-PAY-003 | PayPal | PAY | P1 | 3 | held-default | 2 | 0 | K-08 |
 | PRD-PAY-004 | Mobile money (framework) | PAY | P1 | 3 | partial | 9 | 2 | - |
@@ -1017,8 +1053,8 @@ in the user interface and here.
 | PRD-PAY-008 | Cash on delivery and cash at outlet | PAY | P1 | 3 | not-built | 7 | 0 | - |
 | PRD-PAY-009 | Wallet and store credit | PAY | P1 | 3 | held-default | 7 | 0 | FG-06 / PAY-DIRECT / LIC-01 / WAL-01 |
 | PRD-PAY-010 | Split payments | PAY | P1 | 3 | held-default | 6 | 0 | PAY-DIRECT / LIC-01 |
-| PRD-PAY-011 | Payment status lifecycle | PAY | P1 | 3 | not-built | 15 | 0 | - |
-| PRD-PAY-012 | Payment idempotency | PAY | P1 | 3 | not-built | 4 | 0 | - |
+| PRD-PAY-011 | Payment status lifecycle | PAY | P1 | 3 | built | 15 | 15 | - |
+| PRD-PAY-012 | Payment idempotency | PAY | P1 | 3 | built | 4 | 4 | - |
 | PRD-PAY-013 | Payment receipts | PAY | P1 | 3 | not-built | 4 | 0 | - |
 | PRD-PAY-014 | Payment reconciliation | PAY | P1 | 3 | not-built | 5 | 0 | - |
 | PRD-PAY-015 | Payment fees | PAY | P1 | 3 | not-built | 6 | 0 | - |
@@ -1030,7 +1066,7 @@ in the user interface and here.
 | PRD-PAY-021 | Tax on fees and tax reporting | PAY | P1 | 3 | not-built | 3 | 0 | - |
 | PRD-PAY-022 | Bulk disbursements | PAY | P3 | 3 | not-built | 4 | 0 | - |
 | PRD-PAY-023 | Multi-currency settlement | PAY | P1 | 3 | held-default | 3 | 0 | C-FX |
-| PRD-PAY-024 | Payment connector SDK | PAY | P1 | 3 | not-built | 7 | 0 | - |
+| PRD-PAY-024 | Payment connector SDK | PAY | P1 | 3 | built | 7 | 7 | - |
 | PRD-PAY-025 | Fiscal e-invoicing framework | PAY | P1 | 3 | held-default | 6 | 0 | PH-INF / E-INV / DOC-LIB |
 | PRD-PAY-026 | KRA eTIMS adapter | PAY | P1 | 3 | held-default | 1 | 0 | PH-INF / E-INV / DOC-LIB |
 | PRD-PAY-027 | MRA EIS adapter | PAY | P1 | 3 | held-default | 1 | 0 | PH-INF / E-INV / DOC-LIB |

@@ -368,7 +368,16 @@ export function AccountOrderDetails() {
             ['Placed', new Date(order.placedOnUtc).toLocaleString('en-GB')],
             ['Seller', order.vendorName],
             ['Stage', <Badge tone={order.stage === 'Delivered' ? 'green' : 'slate'}>{order.stage}</Badge>],
-            ['Payment', <Badge tone={order.paymentStatus === 'Paid' ? 'green' : 'amber'}>{order.paymentStatus} · {order.paymentMethodSystemName}</Badge>],
+            ['Payment', (
+              <span className="flex flex-wrap items-center gap-2">
+                <Badge tone={order.paymentStatus === 'Paid' ? 'green' : 'amber'}>{order.paymentStatus} · {order.paymentMethodSystemName}</Badge>
+                {order.paymentStatus !== 'Paid' && (
+                  <Link to={`/payment-status/${order.orderNumber}`} className="text-[12.5px] brand-text hover:underline">
+                    payment status and retry
+                  </Link>
+                )}
+              </span>
+            )],
             ['Fulfilment', order.fulfilment === 'pickup' ? `Collection at ${order.pickupPoint?.name}` : 'Home delivery'],
             ['Total', money(order.total, order.currency)],
           ]}

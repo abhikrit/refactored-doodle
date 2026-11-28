@@ -134,10 +134,23 @@ export function plainRepository(entityName) {
 }
 
 /** Reset the whole in-memory store (used by the seeder and by tests). */
+/**
+ * Caches a module holds outside the store have to be dropped when the store is reset, because a
+ * reset hands out the same row ids again: a stale entry keyed by a customer id would then belong
+ * to a different customer (seen with the native placement-interval cache after a pack switch).
+ */
+const resetListeners = new Set();
+
+export function onStoreReset(fn) {
+  resetListeners.add(fn);
+  return () => resetListeners.delete(fn);
+}
+
 export async function resetStore() {
   tables.clear();
   repositories.clear(); // the decorator stands: the pack loader re-seeds after the plugins install
   nextId = 1;
+  for (const listener of resetListeners) await listener();
 }
 
 export function storeSnapshot() {

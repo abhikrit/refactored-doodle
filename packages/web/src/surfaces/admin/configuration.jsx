@@ -525,6 +525,7 @@ export function AdminPaymentMethods() {
       title="Payment methods"
       breadcrumb={crumb({ label: 'Payment methods' })}
       intro="The payment methods this store offers, in the order the configuration pack lists them."
+      actions={<Button as="link" to="/admin/configuration/payment-routing">Routing rules and connectors</Button>}
     >
       {!methods ? <Spinner /> : (
         <>
@@ -534,6 +535,7 @@ export function AdminPaymentMethods() {
                 { key: 'name', header: 'Payment method' },
                 { key: 'systemName', header: 'System name', render: (m) => <span className="font-mono text-[12px]">{m.systemName}</span> },
                 { key: 'kind', header: 'Kind' },
+                { key: 'methodType', header: 'Type' },
                 { key: 'capture', header: 'Capture' },
                 { key: 'supportsGroupPayment', header: 'Group payment', render: (m) => <Badge tone={m.supportsGroupPayment ? 'green' : 'slate'}>{m.supportsGroupPayment ? 'Yes' : 'No'}</Badge> },
                 { key: 'additionalFee', header: 'Additional fee', align: 'right', render: (m) => (m.additionalFee ? money(m.additionalFee, 'USD') : '-') },

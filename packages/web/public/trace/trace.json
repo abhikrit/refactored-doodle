@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-28T10:27:58.370Z",
+  "generated": "2026-11-28T11:56:25.434Z",
   "generator": "scripts/build-trace.mjs",
   "registry": {
     "areas": 24,
@@ -31,14 +31,14 @@
   },
   "totals": {
     "features": 434,
-    "built": 94,
+    "built": 98,
     "partial": 4,
     "heldWithDefault": 86,
     "mocked": 24,
-    "notBuilt": 226,
+    "notBuilt": 222,
     "criteria": 2850,
-    "criteriaWithTests": 724,
-    "testsPassing": 724,
+    "criteriaWithTests": 760,
+    "testsPassing": 760,
     "testsFailing": 0,
     "stories": 1160,
     "reconciles": true
@@ -170,11 +170,11 @@
       "wave": 3,
       "waveName": "Buy",
       "features": 36,
-      "built": 0,
+      "built": 4,
       "partial": 1,
       "held": 14,
       "mocked": 0,
-      "notBuilt": 21
+      "notBuilt": 17
     },
     {
       "area": "DOC",
@@ -337,14 +337,14 @@
     {
       "client": "KTDA",
       "requirements": 95,
-      "demonstratedInPrototype": 26,
+      "demonstratedInPrototype": 27,
       "mappedToFeatures": 80,
       "projectService": 17
     },
     {
       "client": "MPC",
       "requirements": 411,
-      "demonstratedInPrototype": 93,
+      "demonstratedInPrototype": 100,
       "mappedToFeatures": 374,
       "projectService": 38
     }
@@ -3584,6 +3584,76 @@
       "status": "pass"
     },
     {
+      "criterion": "AC-PAY-001-01-01",
+      "feature": "PRD-PAY-001",
+      "test": "AC-PAY-001-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-001-01-02",
+      "feature": "PRD-PAY-001",
+      "test": "AC-PAY-001-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-001-02-01",
+      "feature": "PRD-PAY-001",
+      "test": "AC-PAY-001-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-001-02-02",
+      "feature": "PRD-PAY-001",
+      "test": "AC-PAY-001-02-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-001-02-03",
+      "feature": "PRD-PAY-001",
+      "test": "AC-PAY-001-02-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-001-02-04",
+      "feature": "PRD-PAY-001",
+      "test": "AC-PAY-001-02-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-001-02-05",
+      "feature": "PRD-PAY-001",
+      "test": "AC-PAY-001-02-05",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-001-03-01",
+      "feature": "PRD-PAY-001",
+      "test": "AC-PAY-001-03-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-001-03-02",
+      "feature": "PRD-PAY-001",
+      "test": "AC-PAY-001-03-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-001-03-03",
+      "feature": "PRD-PAY-001",
+      "test": "AC-PAY-001-03-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
       "criterion": "AC-PAY-004-01-01",
       "feature": "PRD-PAY-004",
       "test": "AC-PAY-004-01-01",
@@ -3594,6 +3664,188 @@
       "criterion": "AC-PAY-004-01-02",
       "feature": "PRD-PAY-004",
       "test": "AC-PAY-004-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-01-01",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-01-02",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-02-01",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-02-02",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-02-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-03-01",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-03-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-03-02",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-03-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-03-03",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-03-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-04-01",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-04-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-04-02",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-04-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-04-03",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-04-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-04-04",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-04-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-04-05",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-04-05",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-04-06",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-04-06",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-04-07",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-04-07",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-011-04-08",
+      "feature": "PRD-PAY-011",
+      "test": "AC-PAY-011-04-08",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-012-01-01",
+      "feature": "PRD-PAY-012",
+      "test": "AC-PAY-012-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-012-01-02",
+      "feature": "PRD-PAY-012",
+      "test": "AC-PAY-012-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-012-01-03",
+      "feature": "PRD-PAY-012",
+      "test": "AC-PAY-012-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-012-01-04",
+      "feature": "PRD-PAY-012",
+      "test": "AC-PAY-012-01-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-024-01-01",
+      "feature": "PRD-PAY-024",
+      "test": "AC-PAY-024-01-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-024-01-02",
+      "feature": "PRD-PAY-024",
+      "test": "AC-PAY-024-01-02",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-024-01-03",
+      "feature": "PRD-PAY-024",
+      "test": "AC-PAY-024-01-03",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-024-01-04",
+      "feature": "PRD-PAY-024",
+      "test": "AC-PAY-024-01-04",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-024-01-05",
+      "feature": "PRD-PAY-024",
+      "test": "AC-PAY-024-01-05",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-024-02-01",
+      "feature": "PRD-PAY-024",
+      "test": "AC-PAY-024-02-01",
+      "suite": "node (API and rules)",
+      "status": "pass"
+    },
+    {
+      "criterion": "AC-PAY-024-02-02",
+      "feature": "PRD-PAY-024",
+      "test": "AC-PAY-024-02-02",
       "suite": "node (API and rules)",
       "status": "pass"
     },
@@ -11229,10 +11481,10 @@
       "wave": 3,
       "pack": "Core (always on)",
       "implementation": "Code-level",
-      "state": "not-built",
+      "state": "built",
       "criteria": 10,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 10,
+      "criteriaPassing": 10,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
@@ -11241,7 +11493,58 @@
         "REQ-MPC-FR-305",
         "REQ-MPC-PAY-001"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-PAY-001-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-001-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-001-02-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-001-02-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-001-02-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-001-03-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-001-03-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-001-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-001-02-05",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-001-03-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-PAY-002",
@@ -11459,17 +11762,93 @@
       "wave": 3,
       "pack": "Core (always on)",
       "implementation": "Code-level",
-      "state": "not-built",
+      "state": "built",
       "criteria": 15,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 15,
+      "criteriaPassing": 15,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
         "REQ-MPC-FR-134",
         "REQ-MPC-FR-150"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-PAY-011-03-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-03-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-02-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-03-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-04-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-04-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-04-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-04-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-04-05",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-04-06",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-04-07",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-04-08",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-011-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-PAY-012",
@@ -11479,16 +11858,37 @@
       "wave": 3,
       "pack": "Core (always on)",
       "implementation": "Code-level",
-      "state": "not-built",
+      "state": "built",
       "criteria": 4,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 4,
+      "criteriaPassing": 4,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
         "REQ-MPC-FR-135"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-PAY-012-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-012-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-012-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-012-01-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-PAY-013",
@@ -11719,10 +12119,10 @@
       "wave": 3,
       "pack": "Core (always on)",
       "implementation": "Code-level",
-      "state": "not-built",
+      "state": "built",
       "criteria": 7,
-      "criteriaCovered": 0,
-      "criteriaPassing": 0,
+      "criteriaCovered": 7,
+      "criteriaPassing": 7,
       "heldBy": [],
       "prototypeDefaultLabel": null,
       "requirements": [
@@ -11730,7 +12130,43 @@
         "REQ-MPC-FR-330",
         "REQ-MPC-PAY-001"
       ],
-      "tests": []
+      "tests": [
+        {
+          "criterion": "AC-PAY-024-01-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-024-01-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-024-01-03",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-024-01-04",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-024-02-01",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-024-01-05",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        },
+        {
+          "criterion": "AC-PAY-024-02-02",
+          "status": "pass",
+          "suite": "node (API and rules)"
+        }
+      ]
     },
     {
       "id": "PRD-PAY-025",

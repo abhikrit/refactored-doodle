@@ -99,7 +99,11 @@ export async function checkoutStateAsync({ sessionId, customer, storeId = 1 }) {
     { id: 'confirm', name: 'Confirm order' },
   ];
   const session = await openSessionAsync({ sessionId, customer, storeId });
-  const methods = await paymentMethodsForStoreAsync({ storeId, multiSeller: cart.multiSeller });
+  // PAY-001 evaluates its routing rules against the cart, the fulfilment choice and the address,
+  // so the payment step passes all three (BR-PAY-002)
+  const methods = await paymentMethodsForStoreAsync(await methodContextAsync({
+    cart, customer, storeId, session,
+  }));
 
   return {
     session,
@@ -112,12 +116,46 @@ export async function checkoutStateAsync({ sessionId, customer, storeId = 1 }) {
     pickupAllowed,
     paymentMethods: methods.available,
     paymentMethodsExcluded: methods.excluded,
+    // AC-PAY-001-03-02: with no method available the step stops the checkout and says who to
+    // contact, instead of showing an empty list
+    paymentMethodsNotice: methods.stopCheckout === true
+      ? {
+        messageKey: methods.messageKey,
+        message: methods.message,
+        supportContact: methods.supportContact ?? null,
+      }
+      : null,
     cart,
     features: ['PRD-CHK-002', 'PRD-CHK-005', 'PRD-CHK-006', 'PRD-CHK-014'],
     citations: {
       'guestCheckoutAllowed': 'OrderSettings.AnonymousCheckoutAllowed - BR-CHK-002: a per-client setting, no code differs between clients (KTDA on, Malawi Post off)',
       'paymentMethods': 'BR-CHK-022 / decision SPLIT-PAY: a multi-seller checkout offers only methods that declare group support',
     },
+  };
+}
+
+/**
+ * The context a payment method offer is evaluated against: who is buying, what is in the cart,
+ * how it will be fulfilled and where it is going. PAY-001 reads the location type of the address
+ * from the LOG-004 coverage area; CHK supplies the address, never the location type.
+ */
+export async function methodContextAsync({
+  cart, customer = null, storeId = 1, session = null, total = null,
+}) {
+  const lines = cart?.items ?? [];
+  // the fulfilment methods the cart actually holds: a cart with a pickup line and a delivery
+  // line carries both, because the choice is per line (CHK-005)
+  const fulfilment = [...new Set(lines.map((i) => i.fulfilment ?? 'delivery'))];
+  return {
+    storeId,
+    multiSeller: cart?.multiSeller === true,
+    cart: lines,
+    customer,
+    fulfilment,
+    address: session?.shippingAddress ?? null,
+    pickupPointId: lines.find((i) => i.pickupPointId)?.pickupPointId ?? null,
+    total: total ?? cart?.subtotal ?? null,
+    sellerIds: [...new Set(lines.map((i) => i.vendorId).filter((v) => v !== null && v !== undefined))],
   };
 }
 
@@ -209,7 +247,11 @@ export async function validateAsync({
   const methods = await paymentMethodsForStoreAsync({ storeId, multiSeller: cart.multiSeller });
   const chosen = methods.available.find((m) => m.systemName === paymentMethodSystemName) ?? null;
   const excluded = methods.excluded.find((m) => m.systemName === paymentMethodSystemName) ?? null;
-  const paymentMethod = chosen
+  // a method refused by a PAY routing rule is not CHK's to report: the PAY validator sees the
+  // final cart, the fulfilment choice and the address, and answers with Pay.MethodNotAllowed
+  // (AC-PAY-001-03-03). CHK's own check is that the method is active and, for a split cart,
+  // group-capable (BR-CHK-022).
+  const paymentMethod = chosen || excluded?.reason === 'routing-rule'
     ? { valid: true }
     : {
       valid: false,
@@ -220,6 +262,9 @@ export async function validateAsync({
     };
 
   // AC-CHK-003-02-03: stock and availability, price, buyer eligibility, payment method, fraud
+  const context = await methodContextAsync({
+    cart, customer, storeId, session: await openSessionAsync({ sessionId, customer, storeId }), total: totals.total,
+  });
   const ordered = await runCheckOrderAsync({
     cart,
     customer,
@@ -228,6 +273,11 @@ export async function validateAsync({
     paymentMethod,
     shownTotal: shownTotal ?? null,
     currentTotal: totals.total,
+    fulfilment: context.fulfilment,
+    address: context.address,
+    pickupPointId: context.pickupPointId,
+    sellerIds: context.sellerIds,
+    multiSeller: context.multiSeller,
   });
   if (ordered.ok !== true) {
     return {
@@ -235,6 +285,9 @@ export async function validateAsync({
       stoppedAt: ordered.stoppedAt,
       checkSteps: ordered.steps,
       messageKey: ordered.messageKey,
+      message: ordered.message ?? null,
+      // which module's validator stopped it, so the screen can name the owner of the rule
+      refusedBy: ordered.refusedBy ?? null,
       newTotal: ordered.newTotal ?? null,
       failures: [{
         step: ordered.stoppedAt === 'price' ? 'confirm' : (ordered.stoppedAt === 'payment method' ? 'payment-method' : 'cart'),

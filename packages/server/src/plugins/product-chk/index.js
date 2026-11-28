@@ -30,7 +30,7 @@ import {
 } from './services/split.js';
 import {
   resumeAsync, resumePaymentAsync, checkoutNodeReadinessAsync, idempotencyKey, cartHash,
-  placementLockCount, updateSessionAsync,
+  placementLockCount, updateSessionAsync, clearPlacementInterval,
 } from './services/resilience.js';
 import {
   saveRuleAsync, setRuleActiveAsync, rulesAsync, cartCheckAsync as cartRuleCheckAsync,
@@ -66,6 +66,7 @@ import {
 } from './services/approval.js';
 import { registerEventCodeAsync } from '../product-trk/services/notifications.js';
 import { declareSettingKeys } from '../../core/pack-loader.js';
+import { onStoreReset } from '../../core/repository.js';
 import {
   itemWarningsAsync, cartWarningsAsync, standardWarningsAsync, subTotalAsync, minimumOrderWarningsAsync,
   guardOrderActionAsync, cancelOrderAsync, runCheckOrderAsync, registerCartCheckProvider,
@@ -81,6 +82,10 @@ export default definePlugin({
   area: 'CHK',
   startupOrder: 3200,
   async install(ctx) {
+    // a pack switch re-seeds the store and hands out the row ids again, so the native
+    // placement-interval cache is dropped with it (it is keyed by customer id)
+    onStoreReset(() => { clearPlacementInterval(); });
+
     ctx.providers.claimOverride('IShoppingCartService', {
       owner: 'Product.CHK',
       feature: 'PRD-CHK-003',

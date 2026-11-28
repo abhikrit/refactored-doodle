@@ -285,7 +285,9 @@ describe('PRD-CHK-004 Multi-seller split checkout', () => {
 
   test('AC-CHK-004-01-02', async () => {
     // "one payment is initiated once, before any sub-order is saved, for the checkout total".
-    const tx = await get('/api/payments/transactions');
+    // the transactions list needs Payments.Core.Transactions.View, so it is read as staff
+    await post('/api/identity/sign-in', { email: 'admin@example.com', password: 'demo' }, 'journey-payments');
+    const tx = await get('/api/payments/transactions', 'journey-payments');
     const forCheckout = tx.filter((t) => t.checkoutReference === placed.checkoutReference);
     assert.equal(forCheckout.length, 1, 'exactly one payment per checkout');
     assert.equal(forCheckout[0].amount, totals.total);

@@ -832,6 +832,13 @@ export function Checkout() {
 
           {step === 'payment-method' && (
             <Panel title="Payment method">
+              {state.paymentMethodsNotice && (
+                <Alert tone="error" title="We cannot take a payment for this order">
+                  {state.paymentMethodsNotice.message}
+                  {state.paymentMethodsNotice.supportContact?.value
+                    && ` Please contact us on ${state.paymentMethodsNotice.supportContact.value}.`}
+                </Alert>
+              )}
               <div className="space-y-2">
                 {state.paymentMethods.map((m) => (
                   <label key={m.systemName} className={`flex items-start gap-3 border rounded-sm p-3 cursor-pointer ${method === m.systemName ? 'border-nop-blue bg-sky-50/40' : 'border-nop-border'}`}>
@@ -1094,8 +1101,18 @@ export function OrderCompleted() {
         </ul>
       </Panel>
 
+      {result.payment && result.payment.status !== 'Paid' && (
+        <Alert tone="info" title="Your payment is still being confirmed">
+          {result.payment.customerAction ?? 'We will send you a message as soon as the provider confirms it.'}
+          <div className="mt-2">
+            <Button as="link" to={`/payment-status/${result.orders[0].orderNumber}`}>Payment status</Button>
+          </div>
+        </Alert>
+      )}
+
       <div className="flex gap-2">
         <Button as="link" to="/account/orders" variant="brand">My orders</Button>
+        <Button as="link" to={`/payment-status/${result.orders[0].orderNumber}`}>Payment status</Button>
         <Button as="link" to="/">Continue shopping</Button>
       </div>
     </div>

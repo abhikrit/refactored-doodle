@@ -125,10 +125,10 @@ describe('PRD-CHK-004 one checkout, one sub-order per seller', () => {
 
     for (const order of placed.orders) {
       assert.equal(order.paymentProviderRef, transactions[0].providerRef, 'the one result is applied to every sub-order');
-      const link = await repository('OrderPaymentLink').getOneAsync((l) => Number(l.orderId) === Number(order.id));
+      const link = await repository('PaymentTransactionOrder').getOneAsync((l) => Number(l.orderId) === Number(order.id));
       assert.ok(link, 'and each sub-order is linked to the group transaction');
-      assert.equal(link.groupPayment, true);
-      assert.equal(Number(link.share), Number(order.total), 'with its own share');
+      assert.equal(Number(link.transactionId), Number(transactions[0].id));
+      assert.equal(Number(link.amount), Number(order.total), 'with its own share');
     }
   });
 

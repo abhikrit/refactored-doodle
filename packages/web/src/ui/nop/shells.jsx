@@ -582,6 +582,7 @@ const ADMIN_NAV = [
       { label: 'Currencies', to: '/admin/configuration/currencies' },
       { label: 'Countries', to: '/admin/configuration/countries' },
       { label: 'Payment methods', to: '/admin/configuration/payment-methods' },
+      { label: 'Payment methods and routing rules', to: '/admin/configuration/payment-routing' },
       { label: 'Shipping methods', to: '/admin/configuration/shipping-methods' },
       { label: 'Delivery windows', to: '/admin/configuration/delivery-windows' },
       { label: 'Cart restriction rules', to: '/admin/configuration/cart-rules' },
