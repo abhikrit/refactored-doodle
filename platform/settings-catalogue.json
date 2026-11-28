@@ -205,7 +205,11 @@
       "pickup.identification": "array",
       "map.pinenabled": "boolean",
       "address.locatorrule": "array",
-      "pickup.failurelimit": "number"
+      "pickup.failurelimit": "number",
+      "credit.blockwhenoverdue": "boolean",
+      "credit.overduegracedays": "number",
+      "approval.expirydays": "number",
+      "pickup.separatemessage": "boolean"
     },
     "iam": {
       "mfa.requiredroles": "array",

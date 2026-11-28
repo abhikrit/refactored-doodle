@@ -7,6 +7,7 @@ import { Router } from 'express';
 import { definePlugin } from '../../core/plugin-host.js';
 import {
   signInAsync, signOut, currentCustomerAsync, requestOtpAsync, verifyOtpAsync, startActingSessionAsync,
+  actingAgentAsync,
   customersAsync, completeSignInAsync,
 } from './services/identity.js';
 import {
@@ -490,7 +491,10 @@ export default definePlugin({
       ...req.body, staff: await currentCustomerAsync(req.sessionId),
     })));
     r.post('/users/impersonate', send(async (req) => impersonateAsync({
-      actor: await currentCustomerAsync(req.sessionId), ...req.body, storeId: req.storeId,
+      actor: await currentCustomerAsync(req.sessionId),
+      sessionId: req.sessionId,
+      ...req.body,
+      storeId: req.storeId,
     })));
     r.get('/users/impersonation-providers', send(() => impersonationProviders()));
     r.post('/account/deactivate', send(async (req) => selfDeactivateAsync({
@@ -752,7 +756,12 @@ export default definePlugin({
       agent: await me(req), ...req.body, storeId: req.storeId, smsProvider: sms(),
     })));
     r.post('/agents/acting/end', send(async (req) => endActingSessionAsync({
-      agent: await me(req), recordId: req.body.recordId ?? null, storeId: req.storeId,
+      sessionId: req.sessionId,
+      // while the session is acting, the signed-in account is the customer: the agent is the
+      // one the session was started by
+      agent: await actingAgentAsync(req.sessionId) ?? await me(req),
+      recordId: req.body.recordId ?? null,
+      storeId: req.storeId,
     })));
 
     // AC-IAM-025-01-01: the bundled Misc.RFQ plugin owns quotes, so its in-house substitute

@@ -472,3 +472,160 @@ export function AdminCheckoutNotices() {
     </AdminPage>
   );
 }
+
+
+/* ====================================================== assisted orders =============== */
+
+export function AdminAssistedOrders() {
+  const [data, setData] = useState(null);
+  const [filters, setFilters] = useState({ agent: '', outlet: '', from: '', to: '' });
+  const [denied, setDenied] = useState(null);
+
+  const load = useCallback(() => {
+    const query = new URLSearchParams();
+    for (const [k, v] of Object.entries(filters)) if (v) query.set(k, v);
+    api.get(`/checkout-area/assisted/orders?${query.toString()}`)
+      .then((d) => { setData(d); setDenied(d.denied ? d.message : null); })
+      .catch((err) => setDenied(err.message ?? 'Access denied'));
+  }, [filters]);
+  useEffect(load, [load]);
+
+  if (denied) {
+    return (
+      <AdminPage title="Orders placed at a counter" breadcrumb={crumb({ label: 'Orders placed at a counter' })}>
+        <Alert tone="error" title="Access denied">{denied}</Alert>
+      </AdminPage>
+    );
+  }
+
+  return (
+    <AdminPage
+      title="Orders placed at a counter"
+      breadcrumb={crumb({ label: 'Orders placed at a counter' })}
+      intro="Orders an agent placed for a walk-in customer, with the agent and the outlet. An agent sees only their own outlet."
+    >
+      <Panel title="Find">
+        <div className="grid gap-3 md:grid-cols-4">
+          <Field label="Agent"><Input value={filters.agent} onChange={(e) => setFilters({ ...filters, agent: e.target.value })} /></Field>
+          <Field label="Outlet"><Input value={filters.outlet} onChange={(e) => setFilters({ ...filters, outlet: e.target.value })} /></Field>
+          <Field label="From"><Input type="date" value={filters.from} onChange={(e) => setFilters({ ...filters, from: e.target.value })} /></Field>
+          <Field label="To"><Input type="date" value={filters.to} onChange={(e) => setFilters({ ...filters, to: e.target.value })} /></Field>
+        </div>
+      </Panel>
+
+      <Panel title="Orders" bodyClass="p-0" subtitle={data ? `${data.scope === 'outlet' ? `Your outlet: ${data.outlet}` : 'Every outlet'}` : null}>
+        {!data ? <Spinner /> : (
+          <Grid
+            columns={[
+              { key: 'orderNumber', header: 'Order', render: (r) => <span className="font-mono text-[12px]">{r.orderNumber}</span> },
+              { key: 'agentEmail', header: 'Agent' },
+              { key: 'outlet', header: 'Outlet' },
+              { key: 'createdOnUtc', header: 'Placed', render: (r) => new Date(r.createdOnUtc).toLocaleString('en-GB') },
+            ]}
+            rows={data.rows ?? []}
+            rowKey={(r) => r.id}
+            empty="No order has been placed at a counter yet."
+          />
+        )}
+      </Panel>
+    </AdminPage>
+  );
+}
+
+/* ====================================================== credit accounts =============== */
+
+export function AdminCreditAccounts() {
+  const [data, setData] = useState(null);
+  const [form, setForm] = useState({});
+  const [notice, setNotice] = useState(null);
+  const [denied, setDenied] = useState(null);
+
+  const load = useCallback(() => {
+    api.get('/checkout-area/credit/accounts')
+      .then((d) => { if (d.denied) setDenied(d.message); else { setData(d); setDenied(null); } })
+      .catch((err) => setDenied(err.message ?? 'Access denied'));
+  }, []);
+  useEffect(load, [load]);
+
+  const decide = async (account, decision) => {
+    const body = form[account.id] ?? {};
+    const res = await api.post(`/checkout-area/credit/accounts/${account.id}/decision`, {
+      decision,
+      creditLimit: body.creditLimit ? Number(body.creditLimit) : null,
+      paymentTermsDays: body.paymentTermsDays ? Number(body.paymentTermsDays) : null,
+      reason: body.reason ?? null,
+    });
+    setNotice(res.ok === true
+      ? { tone: 'success', text: `The account is now ${res.account.status.toLowerCase()}.` }
+      : { tone: 'error', text: res.message ?? 'That decision could not be taken.' });
+    load();
+  };
+
+  if (denied) {
+    return (
+      <AdminPage title="Credit accounts" breadcrumb={crumb({ label: 'Credit accounts' })}>
+        <Alert tone="error" title="Access denied">{denied}</Alert>
+      </AdminPage>
+    );
+  }
+
+  return (
+    <AdminPage
+      title="Credit accounts"
+      breadcrumb={crumb({ label: 'Credit accounts' })}
+      intro="Companies that buy on account: the limit, the payment terms and what is left to spend. Approving, suspending and closing an account is recorded."
+    >
+      {notice && <Alert tone={notice.tone}>{notice.text}</Alert>}
+
+      <Panel title="Accounts" bodyClass="p-0">
+        {!data ? <Spinner /> : (
+          <Grid
+            columns={[
+              { key: 'companyId', header: 'Company' },
+              { key: 'status', header: 'Status', render: (a) => <Badge tone={a.status === 'Approved' ? 'green' : (a.status === 'Suspended' ? 'amber' : 'slate')}>{a.status}</Badge> },
+              { key: 'creditLimit', header: 'Limit', align: 'right' },
+              { key: 'currencyCode', header: 'Currency' },
+              { key: 'paymentTermsDays', header: 'Terms (days)', align: 'right', render: (a) => a.paymentTermsDays ?? '-' },
+              { key: 'approvedBy', header: 'Approved by', render: (a) => a.approvedBy ?? '-' },
+            ]}
+            rows={data.accounts ?? []}
+            rowKey={(a) => a.id}
+            empty="No company has asked for credit yet."
+          />
+        )}
+      </Panel>
+
+      {(data?.accounts ?? []).map((account) => (
+        <Panel key={account.id} title={`Account ${account.id}`} subtitle={`Company ${account.companyId} · ${account.status}`}>
+          <div className="grid gap-3 md:grid-cols-4">
+            <Field label="Credit limit">
+              <Input
+                type="number"
+                value={form[account.id]?.creditLimit ?? account.creditLimit ?? ''}
+                onChange={(e) => setForm({ ...form, [account.id]: { ...(form[account.id] ?? {}), creditLimit: e.target.value } })}
+              />
+            </Field>
+            <Field label="Payment terms (days)">
+              <Input
+                type="number"
+                value={form[account.id]?.paymentTermsDays ?? account.paymentTermsDays ?? ''}
+                onChange={(e) => setForm({ ...form, [account.id]: { ...(form[account.id] ?? {}), paymentTermsDays: e.target.value } })}
+              />
+            </Field>
+            <Field label="Reason" hint="Needed to suspend an account">
+              <Input
+                value={form[account.id]?.reason ?? ''}
+                onChange={(e) => setForm({ ...form, [account.id]: { ...(form[account.id] ?? {}), reason: e.target.value } })}
+              />
+            </Field>
+            <div className="self-end flex gap-2">
+              <Button variant="primary" onClick={() => decide(account, 'approve')}>Approve</Button>
+              <Button variant="danger" onClick={() => decide(account, 'suspend')}>Suspend</Button>
+              <Button onClick={() => decide(account, 'close')}>Close</Button>
+            </div>
+          </div>
+        </Panel>
+      ))}
+    </AdminPage>
+  );
+}

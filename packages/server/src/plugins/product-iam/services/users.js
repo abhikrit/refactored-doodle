@@ -7,6 +7,7 @@
 // IAM-026 owns, which asks the registered rule providers (IC-IAM-09).
 
 import { repository } from '../../../core/repository.js';
+import { beginActingSession } from './identity.js';
 import { auditAsync } from '../../../core/audit.js';
 import { resource } from '../../../core/messages.js';
 import { authorizeAsync } from '../../../core/permissions.js';
@@ -170,9 +171,11 @@ export async function completeSelfReactivationAsync({ email, phone = null, code,
  * anyone else every registered rule provider (IC-IAM-09) is asked and one Allow is enough.
  */
 export async function impersonateAsync({
-  actor, customerEmail, customerCode = null, storeId = 1,
+  actor, customerEmail, customerPhone = null, customerCode = null, sessionId = null, storeId = 1,
 }) {
-  const target = await customerRepo().getOneAsync((c) => c.email === customerEmail && !c.deleted);
+  const target = customerEmail
+    ? await customerRepo().getOneAsync((c) => c.email === customerEmail && !c.deleted)
+    : await customerRepo().getOneAsync((c) => c.phone === customerPhone && !c.deleted);
   if (!target) return { ok: false, message: 'no such customer' };
   if (!await authorizeAsync('Customers.CustomersImpersonation', actor)) {
     return { ok: false, denied: true, permission: 'Customers.CustomersImpersonation' };
@@ -239,11 +242,18 @@ export async function impersonateAsync({
   await recordAuthEventAsync({
     customerId: target.id, identifierTried: actor?.email, type: 'impersonation', outcome: 'success', channel: 'admin', storeId,
   });
+  // the session now belongs to the customer, with the agent beside it, as native impersonation
+  // does; an order placed from here is an assisted order (CHK-013 records it)
+  const started = sessionId
+    ? beginActingSession({ sessionId, customer: target, agent: actor })
+    : { ok: false, message: 'no session to switch' };
+
   return {
     ok: true,
     actingFor: target.email ?? target.phone,
     decidedBy,
     record,
+    actingSessionStarted: started.ok === true,
     activityWrittenForBoth: true,
     // AC-IAM-026-03-01: an order placed in the session carries the native note naming the agent,
     // and the order-to-agent and outlet link is the CHK-013 AssistedOrder record

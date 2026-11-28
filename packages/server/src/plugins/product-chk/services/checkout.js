@@ -46,6 +46,9 @@ import {
   issueAsync as issuePickupCodeServiceAsync, verifyAsync as verifyCodeAsync,
   markUsedAsync as markCodeUsedAsync, revokeAsync as revokePickupCodeAsync,
 } from './pickup-code.js';
+import { recordAssistedOrderAsync, recordAssistedPaymentAsync } from './assisted.js';
+import { approvalForCartAsync } from './approval.js';
+import { validateAttributesAsync, attributeFeeAsync, describeAttributesAsync } from './checkout-attributes.js';
 import {
   splitGroups, allocate, groupPaymentAsync, linkOrderAsync, placementExceptionAsync,
   PROTOTYPE_DEFAULT,
@@ -177,6 +180,7 @@ export async function shippingStepAsync({
  */
 export async function validateAsync({
   sessionId, customer, storeId = 1, paymentMethodSystemName, termsAccepted, shownTotal,
+  checkoutAttributes = null,
 }) {
   const cart = await getCartAsync({ sessionId, customer, storeId });
   if (!cart.items.length) {
@@ -261,22 +265,32 @@ export async function validateAsync({
 
 /** Order totals, always recalculated on the server (BR-CHK-003 / AC-CHK-002-04-02). */
 export async function totalsAsync({
-  sessionId, customer, storeId = 1, paymentMethodSystemName = null,
+  sessionId, customer, storeId = 1, paymentMethodSystemName = null, checkoutAttributes = null,
 }) {
   const cart = await getCartAsync({ sessionId, customer, storeId });
+  const session = sessionId
+    ? await sessionRepo().getOneAsync((x) => x.sessionId === sessionId && x.state === 'Open')
+    : null;
   const fulfilment = await quoteFulfilmentAsync({ cart, storeId });
   const methods = await paymentMethodsForStoreAsync({ storeId, multiSeller: cart.multiSeller });
   const method = methods.available.find((m) => m.systemName === paymentMethodSystemName) ?? null;
   const subtotal = cart.subtotal;
   const deliveryFee = fulfilment.totalFee;
   const paymentFee = method?.additionalFee ?? 0;
+  // CHK-015: a checkout attribute the shopper chose may carry a fee, with its own tax category
+  const attributes = await attributeFeeAsync({
+    storeId, values: checkoutAttributes ?? session?.checkoutAttributeValues ?? {},
+  });
+  const checkoutAttributeFee = attributes.fee;
   const taxRate = await getSettingAsync('taxsettings.defaultrate', storeId, 0.16);
-  const tax = money((subtotal + deliveryFee + paymentFee) * taxRate);
-  const total = money(subtotal + deliveryFee + paymentFee + tax);
+  const tax = money((subtotal + deliveryFee + paymentFee + checkoutAttributeFee) * taxRate);
+  const total = money(subtotal + deliveryFee + paymentFee + checkoutAttributeFee + tax);
   return {
     subtotal,
     deliveryFee,
     paymentFee,
+    checkoutAttributeFee,
+    checkoutAttributes: attributes.chosen,
     taxRate,
     tax,
     total,
@@ -294,7 +308,7 @@ export async function placeOrderAsync({
   sessionId, customer, storeId = 1, paymentMethodSystemName, paymentData = {},
   termsAccepted = false, shownTotal = null, billingAddress = null, shippingAddress = null,
   deliverySlotId = null, desiredDeliveryDate = null, acknowledgements = [], ipAddress = null,
-  pickupIdentification = null, actor = 'storefront',
+  pickupIdentification = null, checkoutAttributes = {}, actor = 'storefront',
 }) {
   // BR-CHK-013: the acknowledgements and the terms are enforced on the server, before anything
   // else, because the confirm action takes no model a validator could see
@@ -316,8 +330,36 @@ export async function placeOrderAsync({
     };
   }
 
+  // AC-CHK-018-01-02 and 01-03: a cart above the buyer's company threshold needs an approval
+  // that was given for this very cart
+  const approval = await approvalForCartAsync({
+    customer, cart: await getCartAsync({ sessionId, customer, storeId }), storeId,
+  });
+  if (approval.required === true && approval.ok !== true) {
+    return {
+      ok: false,
+      stoppedAt: 'buyer eligibility',
+      messageKey: approval.messageKey,
+      failures: [{ step: 'confirm', message: approval.message, messageKey: approval.messageKey }],
+      approvalVoided: approval.voided ?? 0,
+      orderCreated: false,
+    };
+  }
+
+  // CHK-015: the checkout attributes this client asks for
+  const attributes = await validateAttributesAsync({ storeId, values: checkoutAttributes });
+  if (attributes.ok !== true) {
+    return {
+      ok: false,
+      stoppedAt: 'buyer eligibility',
+      fieldErrors: attributes.fieldErrors,
+      failures: [{ step: 'confirm', message: 'Please complete the fields this shop asks for.' }],
+      orderCreated: false,
+    };
+  }
+
   const validation = await validateAsync({
-    sessionId, customer, storeId, paymentMethodSystemName, termsAccepted, shownTotal,
+    sessionId, customer, storeId, paymentMethodSystemName, termsAccepted, shownTotal, checkoutAttributes,
   });
   if (!validation.ok) return { ok: false, ...validation };
 
@@ -353,7 +395,7 @@ export async function placeOrderAsync({
       };
     }
     const totals = await totalsAsync({
-      sessionId, customer, storeId, paymentMethodSystemName,
+      sessionId, customer, storeId, paymentMethodSystemName, checkoutAttributes,
     });
     const groups = splitCart(cart);
     const reservations = [];
@@ -474,7 +516,10 @@ export async function placeOrderAsync({
         // AC-CHK-006-01-07: the desired date is read once and set on every sub-order, because
         // the native SaveOrderDetailsAsync copies it only to the first order saved
         desiredDeliveryDateUtc: desiredDate,
-        checkoutAttributeDescription: session.checkoutAttributeDescription ?? null,
+        checkoutAttributeDescription: [
+          session.checkoutAttributeDescription ?? null,
+          (await describeAttributesAsync({ storeId, values: checkoutAttributes })).description,
+        ].filter(Boolean).join('; ') || null,
         deliveryInstructions: session.deliveryInstructions ?? null,
         estimatedDelivery: group.fulfilment === 'pickup'
           ? (estimate?.kind === 'pickup' ? estimate : null)
@@ -530,6 +575,14 @@ export async function placeOrderAsync({
         pickupCode = issued.code;
       }
       orders.push({ ...order, pickupCode, items: group.items.length });
+
+      // CHK-013: the agent and outlet of an assisted order, and the payment PAY-034 records
+      if (customer?.acting) {
+        await recordAssistedOrderAsync({ order, acting: customer.acting, storeId });
+        await recordAssistedPaymentAsync({
+          order, payment, acting: customer.acting, storeId,
+        });
+      }
 
       // Confirm phase per saved sub-order, then the event (BR-CHK-006)
       await confirmAsync({ reservations, order, storeId });

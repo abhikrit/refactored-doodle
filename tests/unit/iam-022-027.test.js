@@ -550,6 +550,11 @@ describe('PRD-IAM-026 assisted service by an outlet agent', () => {
     assert.ok(log.some((a) => a.systemKeyword === 'Impersonation.Started' && a.customerId === customer.id));
     const trail = await auditTrailAsync({ entity: 'Customer', entityId: customer.id });
     assert.ok(trail.some((t) => t.event === 'AUD-IAM-014') || acting.record.id, 'AUD-IAM-014 covers the assisted record');
+
+    // the agent now shops as that customer; AC-IAM-026-03-04 finishes the session
+    assert.equal(acting.actingSessionStarted, true);
+    const asCustomer = await api.get('/api/identity/me', 'iam-f-20');
+    assert.equal(asCustomer.email ?? asCustomer.phone, customer.email ?? customer.phone);
   });
 
   test('AC-IAM-026-03-02', async () => {
@@ -558,7 +563,8 @@ describe('PRD-IAM-026 assisted service by an outlet agent', () => {
     const staff = await customerAsync('finance.staff@example.com', null, {
       roles: ['Finance'], registeredAtOutlet: outlet.name, outlet: outlet.name,
     });
-    const refused = await api.post('/api/identity/users/impersonate', { customerEmail: staff.email }, 'iam-f-20');
+    await api.post('/api/identity/sign-in', { email: agent.email, password: 'demo' }, 'iam-f-21');
+    const refused = await api.post('/api/identity/users/impersonate', { customerEmail: staff.email }, 'iam-f-21');
     assert.equal(refused.ok, false);
     assert.equal(refused.messageKey, 'Iam.ScopeDenied', 'the agent rule denies a staff account');
     assert.ok(refused.providersAsked.includes('PRD-IAM-026'));
@@ -566,7 +572,7 @@ describe('PRD-IAM-026 assisted service by an outlet agent', () => {
     assert.ok(trail.some((t) => t.event === 'AUD-IAM-019'), 'AUD-IAM-019 is written');
 
     const administrator = await byEmail('admin@example.com');
-    const forAdmin = await api.post('/api/identity/users/impersonate', { customerEmail: administrator.email }, 'iam-f-20');
+    const forAdmin = await api.post('/api/identity/users/impersonate', { customerEmail: administrator.email }, 'iam-f-21');
     assert.equal(forAdmin.ok, false);
     assert.equal(forAdmin.messageKey, 'Iam.ScopeDenied', 'the agent rule denies before the native check is reached');
   });
@@ -575,14 +581,14 @@ describe('PRD-IAM-026 assisted service by an outlet agent', () => {
     // "the IAM-026 agent rule denies it (agents act only for their own outlet's customers), the
     //  filter refuses it with message Iam.ScopeDenied and AUD-IAM-019 is written"
     const elsewhere = await byEmail('other.outlet.customer@example.com');
-    const refused = await api.post('/api/identity/users/impersonate', { customerEmail: elsewhere.email }, 'iam-f-20');
+    const refused = await api.post('/api/identity/users/impersonate', { customerEmail: elsewhere.email }, 'iam-f-21');
     assert.equal(refused.ok, false);
     assert.equal(refused.messageKey, 'Iam.ScopeDenied');
     let trail = await auditTrailAsync({ entity: 'Customer', entityId: elsewhere.id });
     assert.ok(trail.some((t) => t.event === 'AUD-IAM-019'));
 
     const unstamped = await customerAsync('no.outlet.customer@example.com', null, { registeredAtOutlet: null, outlet: null });
-    const alsoRefused = await api.post('/api/identity/users/impersonate', { customerEmail: unstamped.email }, 'iam-f-20');
+    const alsoRefused = await api.post('/api/identity/users/impersonate', { customerEmail: unstamped.email }, 'iam-f-21');
     assert.equal(alsoRefused.ok, false, 'a customer with no outlet stamp is refused too');
     assert.equal(alsoRefused.messageKey, 'Iam.ScopeDenied');
     trail = await auditTrailAsync({ entity: 'Customer', entityId: unstamped.id });
@@ -595,6 +601,7 @@ describe('PRD-IAM-026 assisted service by an outlet agent', () => {
     const ended = await api.post('/api/identity/agents/acting/end', {}, 'iam-f-20');
     assert.equal(ended.ok, true);
     assert.equal(ended.impersonationEnded, true);
+    assert.equal(ended.sessionRestored, true, 'the agent has their own session back');
     assert.ok(ended.record.endedOnUtc);
 
     const log = await api.get('/api/identity/activity-log', SESSIONS.admin);

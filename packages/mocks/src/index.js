@@ -319,6 +319,9 @@ const adapters = [
   paymentAdapter({
     systemName: 'Payments.CashOnDelivery', name: 'Cash on delivery', kind: 'offline', country: 'MW', feature: 'PRD-PAY-008', capture: 'on-delivery', payloadName: 'cash-at-outlet', offlineAtCounter: true,
   }),
+  paymentAdapter({
+    systemName: 'Payments.OnAccount', name: 'On account (invoice)', kind: 'offline', country: 'KE/MW', feature: 'PRD-CHK-016', capture: 'invoice', payloadName: 'bank-transfer', offlineAtCounter: true,
+  }),
   // Carriers (LOG-006, LOG-025 to LOG-031)
   carrierAdapter({
     systemName: 'DHL', name: 'DHL', country: 'KE', feature: 'PRD-LOG-006',

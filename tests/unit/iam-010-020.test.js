@@ -126,6 +126,15 @@ describe('PRD-IAM-010 user administration console', () => {
     assert.ok(started.some((a) => a.customerId === buyer.id), 'written for the customer');
     assert.ok(started.some((a) => a.customerId === admin.id), 'written for the administrator');
 
+    // the storefront is now shown as that customer, until the session is finished
+    assert.equal(acting.actingSessionStarted, true);
+    const asCustomer = await api.get('/api/identity/me', SESSIONS.admin);
+    assert.equal(asCustomer.email, 'buyer@example.com', 'the session acts as the customer');
+    const finished = await api.post('/api/identity/agents/acting/end', {}, SESSIONS.admin);
+    assert.equal(finished.sessionRestored, true, 'and finishing gives the staff member their own session back');
+    const asAdmin = await api.get('/api/identity/me', SESSIONS.admin);
+    assert.equal(asAdmin.email, 'admin@example.com');
+
     // one product filter only (BR-IAM-130), and it is the one IAM-026 owns
     const registered = await api.get('/api/identity/users/impersonation-providers', SESSIONS.admin);
     assert.ok(registered.some((p) => p.feature === 'PRD-IAM-026'), 'the IAM-026 agent rule is a registered provider');

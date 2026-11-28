@@ -8,6 +8,7 @@
 // and the agent rule returns not applicable, so the filter refuses an agent's acting session.
 
 import { repository } from '../../../core/repository.js';
+import { endActingSession } from './identity.js';
 import { getSettingAsync } from '../../../core/settings.js';
 import { auditAsync } from '../../../core/audit.js';
 import { resource } from '../../../core/messages.js';
@@ -248,7 +249,9 @@ export async function actingConsentStartAsync({
 }
 
 /** AC-IAM-026-03-04: the session ends and Impersonation.Finished is written. */
-export async function endActingSessionAsync({ agent, recordId = null, storeId = 1 }) {
+export async function endActingSessionAsync({
+  agent, recordId = null, sessionId = null, storeId = 1,
+}) {
   const record = recordId
     ? await assistedRepo().getByIdAsync(recordId)
     : await assistedRepo().getOneAsync((r) => r.agentId === agent?.id && r.action === 'act' && !r.endedOnUtc);
@@ -266,8 +269,14 @@ export async function endActingSessionAsync({ agent, recordId = null, storeId = 
   await recordAuthEventAsync({
     customerId: record.customerId, identifierTried: agent?.email, type: 'impersonation-end', outcome: 'success', channel: 'admin', storeId,
   });
+  // the session belongs to the staff member again
+  const restored = sessionId ? endActingSession(sessionId) : { ok: false };
   return {
-    ok: true, record: updated, impersonationEnded: true, activityWritten: 'Impersonation.Finished',
+    ok: true,
+    record: updated,
+    impersonationEnded: true,
+    sessionRestored: restored.ok === true,
+    activityWritten: 'Impersonation.Finished',
   };
 }
 

@@ -267,6 +267,8 @@ export function Checkout() {
   const [ticked, setTicked] = useState({});
   const [pickupMethods, setPickupMethods] = useState(null);
   const [pickupMethod, setPickupMethod] = useState(null);
+  const [extraFields, setExtraFields] = useState([]);
+  const [extraValues, setExtraValues] = useState({});
 
   const loadProgress = React.useCallback(async () => {
     const next = await api.get('/checkout-area/checkout/steps');
@@ -338,6 +340,11 @@ export function Checkout() {
     api.get(`/checkout-area/checkout/confirm-summary?paymentMethodSystemName=${method}`).then(setSummary).catch(() => {});
   }, [step, method]);
 
+  useEffect(() => {
+    if (step !== 'confirm' || !method) return;
+    api.get(`/checkout-area/checkout/totals?paymentMethodSystemName=${method}`).then(setTotals).catch(() => {});
+  }, [JSON.stringify(extraValues)]);
+
   // the notices this country asks for at this point of checkout, and what must be ticked
   useEffect(() => {
     api.get(`/checkout-area/notices/${step}`).then((n) => setNotices(n.notices ?? [])).catch(() => setNotices([]));
@@ -350,6 +357,15 @@ export function Checkout() {
       setPickupMethod((current) => current ?? m.defaultMethod ?? null);
     }).catch(() => {});
   }, [step]);
+
+  // the fields this shop asks for at checkout, and whether one depends on another
+  useEffect(() => {
+    if (step !== 'confirm') return;
+    const query = new URLSearchParams(Object.entries(extraValues).map(([k, v]) => [k, String(v)]));
+    api.get(`/checkout-area/checkout-attributes?${query.toString()}`)
+      .then((a) => setExtraFields(a.attributes ?? []))
+      .catch(() => setExtraFields([]));
+  }, [step, JSON.stringify(extraValues)]);
 
   if (!state) return <Spinner />;
 
@@ -429,6 +445,7 @@ export function Checkout() {
         paymentMethodSystemName: method,
         termsAccepted: terms,
         acknowledgements: Object.entries(ticked).filter(([, v]) => v).map(([k]) => k),
+        checkoutAttributes: extraValues,
         pickupIdentification: pickupMethod,
         shownTotal: summary?.total ?? totals?.total,
         paymentData: { phone },
@@ -916,6 +933,35 @@ export function Checkout() {
                     hint="We keep a record of this acknowledgement with your order."
                   />
                 )}
+                {extraFields.filter((f) => f.shown).map((field) => (
+                  <Field
+                    key={field.id}
+                    label={field.name}
+                    required={field.isRequired}
+                    error={fieldErrors[field.id]}
+                  >
+                    {field.values.length > 0 ? (
+                      <Select
+                        value={extraValues[field.id] ?? ''}
+                        onChange={(e) => setExtraValues({ ...extraValues, [field.id]: e.target.value })}
+                      >
+                        <option value="">Choose…</option>
+                        {field.values.map((v) => (
+                          <option key={v.id} value={v.id}>
+                            {v.name}{v.priceAdjustment > 0 ? ` (+${money(v.priceAdjustment, currency)})` : ''}
+                          </option>
+                        ))}
+                      </Select>
+                    ) : (
+                      <Input
+                        value={extraValues[field.id] ?? ''}
+                        maxLength={field.validationMaxLength ?? undefined}
+                        onChange={(e) => setExtraValues({ ...extraValues, [field.id]: e.target.value })}
+                      />
+                    )}
+                  </Field>
+                ))}
+
                 {pickupMethods?.choiceOffered && (state.cart.items ?? []).some((i) => i.fulfilment === 'pickup') && (
                   <Field label="How would you like to collect?" hint="Show this at the counter when you collect">
                     <Select value={pickupMethod ?? ''} onChange={(e) => setPickupMethod(e.target.value)}>

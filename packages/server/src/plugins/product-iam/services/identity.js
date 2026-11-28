@@ -198,6 +198,45 @@ export async function verifyOtpAsync({ sessionId, phone, code }) {
   return { ok: true, customer: publicCustomer(customer) };
 }
 
+/**
+ * The acting session itself: once the single impersonation filter has allowed it (IAM-026), the
+ * caller's session becomes the customer's, with the agent kept beside it. Everything the agent
+ * then does - including placing an order - happens as that customer.
+ */
+export function beginActingSession({
+  sessionId, customer, agent,
+}) {
+  if (!sessionId || !customer || !agent) return { ok: false, message: 'an acting session needs a session, a customer and an agent' };
+  const own = sessions.get(sessionId) ?? null;
+  sessions.set(sessionId, {
+    customerId: customer.id,
+    actingFor: customer.id,
+    agentId: agent.id,
+    agentEmail: agent.email,
+    agentOutlet: agent.outlet ?? null,
+    // what the session was before, so finishing gives the staff member their own back
+    ownSession: own && !own.actingFor ? own : (own?.ownSession ?? null),
+  });
+  return { ok: true, sessionId };
+}
+
+/** Who is acting in this session, if anybody. */
+export async function actingAgentAsync(sessionId) {
+  const entry = sessions.get(sessionId);
+  if (!entry?.actingFor || !entry.agentId) return null;
+  const agent = await repository('Customer').getByIdAsync(entry.agentId);
+  return agent ? publicCustomer(agent) : null;
+}
+
+/** Finish session: the staff member is themselves again. */
+export function endActingSession(sessionId) {
+  const entry = sessions.get(sessionId);
+  if (!entry?.actingFor) return { ok: false, acting: false };
+  if (entry.ownSession) sessions.set(sessionId, entry.ownSession);
+  else sessions.delete(sessionId);
+  return { ok: true, acting: false, restored: Boolean(entry.ownSession) };
+}
+
 /** IAM-026 / CHK-013: an agent acts for a walk-in customer of their own outlet. */
 export async function startActingSessionAsync({ sessionId, agentEmail, customerEmail }) {
   const [agent, customer] = await Promise.all([

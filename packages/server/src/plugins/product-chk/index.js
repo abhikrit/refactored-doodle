@@ -45,6 +45,25 @@ import {
   identificationMethodsAsync, codeForOrderAsync, markSentAsync, deliveryRouteAsync,
   revokeAsync as revokePickupCodeAsync, verifyAsync as verifyCodeAsync, CODE_STATE,
 } from './services/pickup-code.js';
+import {
+  assistedOrdersForAsync, assistedPaymentMethodsAsync, getAssistedOrderAsync,
+  listAssistedOrdersAsync,
+} from './services/assisted.js';
+import {
+  saveAttributeAsync, saveAttributeValueAsync, attributesForAsync, validateAttributesAsync,
+  attributeFeeAsync, CONTROL_TYPES,
+} from './services/checkout-attributes.js';
+import {
+  applyAsync as applyForCreditAsync, decideAsync as decideCreditAsync, accountsAsync,
+  accountForCustomerAsync, availableCreditAsync, onAccountOfferAsync,
+  placementParticipantAsync as creditParticipantAsync, CREDIT_STATE, ON_ACCOUNT,
+} from './services/credit.js';
+import { quickOrderAsync, savedListsAsync, saveListAsync, addListToCartAsync } from './services/quick-order.js';
+import {
+  saveRuleAsync as saveApprovalRuleAsync, rulesAsync as approvalRulesAsync, thresholdForAsync,
+  submitForApprovalAsync, decideRequestAsync, approvalForCartAsync, requestsAsync,
+  expireRequestsAsync, registerCallbacks as registerApprovalCallbacksForChk, REQUEST_STATE,
+} from './services/approval.js';
 import { registerEventCodeAsync } from '../product-trk/services/notifications.js';
 import { declareSettingKeys } from '../../core/pack-loader.js';
 import {
@@ -127,6 +146,19 @@ export default definePlugin({
       name: 'cart restriction rules',
       fn: cartRuleCheckAsync,
     });
+
+    // CHK-016: the credit check and its reservation are a placement participant, so the credit
+    // of one company cannot be spent twice at once (BR-CHK-018, 'chk-credit-{id}')
+    registerPlacementParticipant({
+      area: 'CHK',
+      feature: 'PRD-CHK-016',
+      name: 'credit account',
+      lockKey: ({ customer }) => (customer ? `chk-credit-${customer.id}` : null),
+      fn: creditParticipantAsync,
+    });
+
+    // CHK-018 decides its own requests inside the ADM-006 queue (IC-ADM-03)
+    registerApprovalCallbacksForChk();
 
     // AC-CHK-012-01-02: a cancelled order revokes its pickup code (SM-CHK-03, IC-CHK-08)
     registerCancellationParticipant({
@@ -531,6 +563,128 @@ export default definePlugin({
     })));
     r.get('/pickup-code/states', send(() => CODE_STATE));
 
+    /* --------------------- PRD-CHK-013 assisted checkout ---------------------------- */
+    r.get('/assisted/orders', send(async (req) => assistedOrdersForAsync({
+      actor: req.actor,
+      agentEmail: req.query.agent ?? null,
+      outlet: req.query.outlet ?? null,
+      from: req.query.from ?? null,
+      to: req.query.to ?? null,
+    })));
+    r.get('/assisted/payment-methods', send(async (req) => assistedPaymentMethodsAsync({
+      storeId: req.storeId, multiSeller: req.query.multiSeller === 'true',
+    })));
+    r.get('/assisted/orders/:orderNumber', send((req) => getAssistedOrderAsync(req.params.orderNumber)));
+    r.get('/assisted/list', send((req) => listAssistedOrdersAsync({
+      agentEmail: req.query.agent ?? null,
+      outlet: req.query.outlet ?? null,
+      from: req.query.from ?? null,
+      to: req.query.to ?? null,
+    })));
+
+    /* --------------------- PRD-CHK-015 checkout attributes -------------------------- */
+    r.get('/checkout-attributes', send(async (req) => attributesForAsync({
+      storeId: req.storeId, values: req.query,
+    })));
+    r.get('/checkout-attributes/control-types', send(() => CONTROL_TYPES));
+    r.post('/checkout-attributes', gate('Catalog.CheckoutAttributesCreateEditDelete'), send((req) => saveAttributeAsync({
+      ...req.body, storeId: req.storeId, actor: req.actorEmail ?? 'administrator',
+    })));
+    r.post('/checkout-attributes/:id/values', gate('Catalog.CheckoutAttributesCreateEditDelete'), send((req) => saveAttributeValueAsync({
+      ...req.body, attributeId: Number(req.params.id), storeId: req.storeId,
+    })));
+    r.post('/checkout-attributes/validate', send((req) => validateAttributesAsync({
+      storeId: req.storeId, values: req.body?.values ?? {},
+    })));
+    r.post('/checkout-attributes/fee', send((req) => attributeFeeAsync({
+      storeId: req.storeId, values: req.body?.values ?? {},
+    })));
+
+    /* --------------------- PRD-CHK-016 on-account payment and credit ---------------- */
+    r.get('/credit/accounts', send((req) => accountsAsync({ actor: req.actor, storeId: req.storeId })));
+    r.post('/credit/apply', send((req) => applyForCreditAsync({
+      ...req.body, storeId: req.storeId,
+    })));
+    r.post('/credit/accounts/:id/decision', send((req) => decideCreditAsync({
+      accountId: Number(req.params.id), ...req.body, actor: req.actor, storeId: req.storeId,
+    })));
+    r.get('/credit/mine', send(async (req) => {
+      const base = await withCustomer(req);
+      const account = await accountForCustomerAsync({ customer: base.customer, storeId: base.storeId });
+      if (!account) return { account: null, credit: null };
+      return { account, credit: await availableCreditAsync({ account, storeId: base.storeId }) };
+    }));
+    r.get('/credit/on-account-offer', send(async (req) => {
+      const base = await withCustomer(req);
+      const totals = await totalsAsync({ ...base, paymentMethodSystemName: ON_ACCOUNT });
+      return onAccountOfferAsync({
+        customer: base.customer, total: Number(req.query.total ?? totals.total), storeId: base.storeId,
+      });
+    }));
+    r.get('/credit/states', send(() => CREDIT_STATE));
+
+    /* --------------------- PRD-CHK-017 quick order and saved lists ------------------ */
+    r.post('/quick-order', send(async (req) => {
+      const base = await withCustomer(req);
+      return quickOrderAsync({
+        ...base, lines: req.body?.lines ?? [], text: req.body?.text ?? null, file: req.body?.file ?? null,
+      });
+    }));
+    r.get('/saved-lists', send(async (req) => {
+      const base = await withCustomer(req);
+      return savedListsAsync({ customer: base.customer, storeId: base.storeId });
+    }));
+    r.post('/saved-lists', send(async (req) => {
+      const base = await withCustomer(req);
+      return saveListAsync({
+        customer: base.customer, name: req.body?.name, sessionId: base.sessionId, storeId: base.storeId,
+      });
+    }));
+    r.post('/saved-lists/:id/add-to-cart', send(async (req) => {
+      const base = await withCustomer(req);
+      return addListToCartAsync({
+        listId: Number(req.params.id), sessionId: base.sessionId, customer: base.customer, storeId: base.storeId,
+      });
+    }));
+
+    /* --------------------- PRD-CHK-018 purchase approval ---------------------------- */
+    r.get('/approval/rules', send((req) => approvalRulesAsync({ companyId: Number(req.query.companyId) })));
+    r.post('/approval/rules', send((req) => saveApprovalRuleAsync({
+      ...req.body, storeId: req.storeId, actor: req.actorEmail ?? 'company administrator',
+    })));
+    r.get('/approval/threshold', send(async (req) => {
+      const base = await withCustomer(req);
+      return thresholdForAsync({ customer: base.customer, storeId: base.storeId });
+    }));
+    r.post('/approval/submit', send(async (req) => {
+      const base = await withCustomer(req);
+      return submitForApprovalAsync({
+        customer: base.customer, cart: await getCartAsync(base), storeId: base.storeId,
+      });
+    }));
+    r.post('/approval/requests/:id/decision', send(async (req) => decideRequestAsync({
+      requestId: Number(req.params.id),
+      decision: req.body?.decision,
+      approver: req.actor,
+      reason: req.body?.reason ?? null,
+      storeId: req.storeId,
+    })));
+    r.get('/approval/requests', send(async (req) => requestsAsync({
+      companyId: req.query.companyId ?? null,
+      requesterId: req.query.requesterId ?? null,
+      status: req.query.status ?? null,
+    })));
+    r.get('/approval/for-cart', send(async (req) => {
+      const base = await withCustomer(req);
+      return approvalForCartAsync({
+        customer: base.customer, cart: await getCartAsync(base), storeId: base.storeId,
+      });
+    }));
+    r.post('/approval/expire', gate('Checkout.Core.Rules.CreateEditDelete'), send((req) => expireRequestsAsync({
+      storeId: req.storeId, now: req.body?.now ?? null,
+    })));
+    r.get('/approval/states', send(() => REQUEST_STATE));
+
     r.get('/checkout/exceptions', async (req, res, next) => {
       try { res.json(await checkoutExceptionsAsync()); } catch (err) { next(err); }
     });
@@ -539,7 +693,8 @@ export default definePlugin({
       built: true,
       owns: ['PRD-CHK-001', 'PRD-CHK-002', 'PRD-CHK-003', 'PRD-CHK-004', 'PRD-CHK-005', 'PRD-CHK-006',
         'PRD-CHK-007', 'PRD-CHK-008', 'PRD-CHK-009', 'PRD-CHK-010', 'PRD-CHK-011', 'PRD-CHK-012',
-        'PRD-CHK-014', 'PRD-CHK-019'],
+        'PRD-CHK-013', 'PRD-CHK-014', 'PRD-CHK-015', 'PRD-CHK-016', 'PRD-CHK-017', 'PRD-CHK-018',
+        'PRD-CHK-019'],
       note: 'cart, checkout, the validation host, split placement, fulfilment per line, delivery windows, address capture, the pickup code and the confirmation',
     });
   },

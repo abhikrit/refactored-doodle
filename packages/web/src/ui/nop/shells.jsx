@@ -554,6 +554,7 @@ const ADMIN_NAV = [
       { label: 'Shipments', to: '/admin/sales/shipments' },
       { label: 'Payments', to: '/admin/sales/payments' },
       { label: 'Checkout exceptions', to: '/admin/sales/checkout-exceptions' },
+      { label: 'Orders placed at a counter', to: '/admin/sales/assisted-orders' },
     ],
   },
   {
@@ -566,6 +567,7 @@ const ADMIN_NAV = [
       { label: 'Access governance', to: '/admin/customers/access' },
       { label: 'Privacy requests', to: '/admin/customers/privacy' },
       { label: 'Business accounts', to: '/admin/customers/business' },
+      { label: 'Credit accounts', to: '/admin/customers/credit-accounts' },
     ],
   },
   {

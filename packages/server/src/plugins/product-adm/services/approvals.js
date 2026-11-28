@@ -40,7 +40,10 @@ export function registerApprovalCallbacks(objectType, handlers) {
   return handlers;
 }
 export const approvalCallbacks = () => [...callbacks.entries()].map(([objectType, h]) => ({
-  objectType, feature: h.feature, hasGuard: typeof h.canDecide === 'function',
+  objectType,
+  feature: h.feature,
+  hasGuard: typeof h.canDecide === 'function',
+  saysWhoSeesIt: typeof h.canSee === 'function',
 }));
 
 /* ========================================================================= queue ========= */
@@ -60,6 +63,17 @@ export async function canSeeItemAsync(item, customer) {
   if (!step) return false;
   const delegated = (item.delegatedTo ?? []).includes(customer.email);
   if (delegated) return true; // an active delegation (IAM-009) carries the authority with it
+  // IC-ADM-03: a module may say who its own items belong to, where the right to decide is not a
+  // customer role - a company role kept in the IAM company tables, for instance. This is who
+  // sees the item; CanDecide is the separate guard that blocks a decision with a reason.
+  const owner = callbacks.get(item.objectType);
+  if (typeof owner?.canSee === 'function') {
+    const allowed = await owner.canSee(item, customer);
+    if (allowed !== true) return false;
+    const ownerLimit = step.authorityLimit ?? authorityOf(customer);
+    if (item.amount != null && ownerLimit != null && item.amount > ownerLimit) return false;
+    return true;
+  }
   if (!roles.includes(step.approverRole)) return false;
   const limit = step.authorityLimit ?? authorityOf(customer);
   if (item.amount != null && limit != null && item.amount > limit) return false;

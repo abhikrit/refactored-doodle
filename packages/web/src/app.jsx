@@ -18,6 +18,7 @@ import {
   AccountPreferences, AccountPrivacy, TradeApplication,
 } from './surfaces/storefront/account-identity.jsx';
 import { CookieSettings } from './surfaces/storefront/cookies.jsx';
+import { ApprovalRequests, QuickOrder, SavedLists } from './surfaces/storefront/b2b.jsx';
 
 import {
   AdminCategories, AdminCheckoutExceptions, AdminOrderDetails, AdminOrders, AdminPayments,
@@ -34,7 +35,10 @@ import {
   AdminAcl, AdminCurrencies, AdminFeatureRegistry, AdminLanguages, AdminMessageTemplates,
   AdminPacks, AdminPaymentMethods, AdminSettings, AdminShippingMethods, AdminStores,
 } from './surfaces/admin/configuration.jsx';
-import { AdminCartRules, AdminCheckoutNotices, AdminDeliveryWindows } from './surfaces/admin/chk.jsx';
+import {
+  AdminAssistedOrders, AdminCartRules, AdminCheckoutNotices, AdminCreditAccounts,
+  AdminDeliveryWindows,
+} from './surfaces/admin/chk.jsx';
 import {
   AdminChangeSets, AdminCountries, AdminHelpContent, AdminRetention,
 } from './surfaces/admin/plt.jsx';
@@ -86,6 +90,9 @@ export default function App() {
               <Route path="/product/:id" element={store(<ProductDetails />)} />
               <Route path="/cart" element={store(<Cart />)} />
               <Route path="/checkout" element={store(<Checkout />)} />
+              <Route path="/account/quick-order" element={store(<QuickOrder />)} />
+              <Route path="/account/saved-lists" element={store(<SavedLists />)} />
+              <Route path="/account/approvals" element={store(<ApprovalRequests />)} />
               <Route path="/order-completed" element={store(<OrderCompleted />)} />
               <Route path="/login" element={store(<Login />)} />
               <Route path="/register" element={store(<Register />)} />
@@ -144,6 +151,8 @@ export default function App() {
               <Route path="/admin/sales/orders" element={<AdminOrders />} />
               <Route path="/admin/sales/orders/:orderNumber" element={<AdminOrderDetails />} />
               <Route path="/admin/sales/checkout-exceptions" element={<AdminCheckoutExceptions />} />
+              <Route path="/admin/sales/assisted-orders" element={<AdminAssistedOrders />} />
+              <Route path="/admin/customers/credit-accounts" element={<AdminCreditAccounts />} />
               <Route path="/admin/sales/payments" element={<AdminPayments />} />
               <Route path="/admin/sales/shipments" element={<AdminSellerShipments />} />
               <Route path="/admin/sales/shipment-list" element={<AdminShipments />} />
